@@ -9,10 +9,11 @@ title:	Home
 	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 	<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-	{% for tag in post.tags %}
-		<span class="post-tag">{{ tag }}</span>
-	{% endfor %}
-	
+	<span class="tags">
+		{% for tag in post.tags %}
+		<a class="tag" href="/tags#{{tag}}">{{ tag }}</a>
+		{% endfor %}
+	</span>
 	<div class="post-content">
 		{{ post.summary }}
 	</div>
