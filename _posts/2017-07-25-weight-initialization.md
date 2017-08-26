@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Weight initialization - impact on layer distribution"
 date:   2017-07-25 00:00:00
 summary:    "This post covers some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers."

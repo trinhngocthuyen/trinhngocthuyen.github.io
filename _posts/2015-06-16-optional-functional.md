@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Optional - Functional"
 date:   2015-06-16 00:00:00
 summary:    "A demonstration of lazy evaluation using a simple trick"

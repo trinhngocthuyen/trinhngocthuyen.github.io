@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Luận UX: Ly cafe take-away"
 date:   2015-10-25 00:00:00
 summary:    ""

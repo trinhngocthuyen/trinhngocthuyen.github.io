@@ -1,4 +1,3 @@
-
 title: Thuyen's corner
 email: trinhngocthuyen@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
@@ -19,6 +18,9 @@ permalink: '/:year-:month-:day-:title.html'
 paginate: 10
 paginate_path: '/page:num/'
 excerpt_separator: <!--more-->
+
+# Disqus
+comments: true
 
 gems:
   - jekyll-feed

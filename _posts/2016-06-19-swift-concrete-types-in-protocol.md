@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Swift: Concrete types in Protocol"
 date:   2016-06-19 00:00:00
 summary:    "A specific use case that we are unable to use concrete types in protocol, and how to fix it."

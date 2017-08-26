@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Swift: Currying"
 date:   2016-04-17 00:00:00
 summary:    "This topic has been mentioned as a part of Functional programming. Though it’s kind of fun to use currying, we often see it on the list along with functors, applicative, monads... In this article, I’ll show you a couple of ways to have fun with currying."

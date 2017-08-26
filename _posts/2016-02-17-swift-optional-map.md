@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Swift: Optional — map"
 date:   2016-02-27 00:00:00
 summary:    "A few experiments with optionals in Swift."

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Garbage Collection (GC) algorithms"
 date:   2017-02-25 00:00:00
 summary:    ""

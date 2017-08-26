@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Swift: Generic protocol (p.1)"
 date:   2016-06-25 00:00:00
 summary:    "In this article, we would look into how to implement a generic protocol. A few lacks of language support (Swift version prior to 3.0) would be also pointed out for discussion."

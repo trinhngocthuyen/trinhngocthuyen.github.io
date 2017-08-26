@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "A misuse of Expectation"
 date:   2017-07-30 00:00:00
 summary:    ""

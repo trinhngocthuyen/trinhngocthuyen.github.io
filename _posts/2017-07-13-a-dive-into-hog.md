@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "A dive into Histogram of Oriented Gradients (HOG)"
 date:   2017-07-13 00:00:00
 summary:    "In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images... And then implement it in python (in order to comprehend it)."

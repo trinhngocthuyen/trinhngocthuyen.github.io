@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "RAC 3.0 with Login workflow"
 date:   2015-08-22 00:00:00
 summary:    "A particular example of RAC 3.0, applied in Login workflow."

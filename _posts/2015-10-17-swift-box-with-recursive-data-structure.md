@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "Swift: Box with recursive data structure"
 date:   2015-10-17 00:00:00
 summary:    "A workaround to model recursive data structure with enum"

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:   true
 title:  "A freestyle way to config UIView"
 date:   2016-09-11 00:00:00
 summary:    "This article is to introduce a freestyle way to set up views in iOS (by code)."
