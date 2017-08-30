@@ -1,7 +1,7 @@
 
 # Ref: https://github.com/tiepvupsu/tiepvupsu.github.io/blob/master/.gitignore
 
-_drafts/
+# _drafts/
 _site/
 */_site
 assets/*/latex/*.tex
