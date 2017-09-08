@@ -4,7 +4,7 @@ comments:	true
 title:  "Swift: ExpressibleByStringLiteral"
 date:   2016-12-03 00:00:00
 summary:    "It is a protocol in Swift 3 (which was StringLiteralConvertible in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string"
-tags:   
+tags:   ios
 ---
 
 It is a protocol in Swift 3 (which was `StringLiteralConvertible`{.swift} in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string.
