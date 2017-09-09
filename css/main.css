@@ -329,6 +329,27 @@ pre > code {
   color: #0067a7;
 }
 
+/** Sharebar **/
+.sharebar {
+  min-height: 50px;
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  
+  font-size: 11pt;
+  font-weight: bold;
+}
+.share-icon {
+  width: 30px;
+  height: 30px;
+}
+.share-icon:hover {
+  transform: scale(1.1);
+}
+
+
 /** Posts */
 .post-header {
   margin-bottom: 30px;
