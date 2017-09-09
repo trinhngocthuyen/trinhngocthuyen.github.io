@@ -3,7 +3,7 @@ layout:	default
 ---
 
 <div class="post-list">
-	{% for post in paginator.posts %}
+	{% for post in site.posts %}
 	
 	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 	<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
@@ -17,19 +17,4 @@ layout:	default
 		{{ post.summary }}
 	</div>
 	{% endfor %}
-</div>
-
-<!-- Pagination links -->
-<div class="pagination">
-	{% if paginator.previous_page %}
-	<a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
-	{% else %}
-	<span class="previous">Previous</span>
-	{% endif %}
-	<span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-	{% if paginator.next_page %}
-	<a href="{{ paginator.next_page_path }}" class="next">Next</a>
-	{% else %}
-	<span class="next ">Next</span>
-	{% endif %}
 </div>
