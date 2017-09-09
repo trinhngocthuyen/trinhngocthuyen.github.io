@@ -296,4 +296,4 @@ plt.show()
 
 [3] [http://mccormickml.com/2013/05/09/hog-person-detector-tutorial](http://mccormickml.com/2013/05/09/hog-person-detector-tutorial)
 
-Jupyter notebook: [here](https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/machinelearningcoban/HOG.ipynb)
+Jupyter notebook: [here](https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/funda_ml/HOG.ipynb)
