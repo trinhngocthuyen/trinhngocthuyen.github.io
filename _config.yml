@@ -39,3 +39,12 @@ gems:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Collections
+collections:
+  misc:
+    output: true
+  thinking:
+    output: true
+
+

@@ -1,0 +1,12 @@
+---
+layout:	page
+title: Misc
+---
+
+<div class="post-list">
+
+	{% for post in site.misc %}
+	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+	{% endfor %}
+
+</div>
