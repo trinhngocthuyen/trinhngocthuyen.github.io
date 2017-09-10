@@ -1,10 +1,10 @@
 <div class="sharebar">
 	<span>Share this</span>
 
-	<a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" rel="nofollow" target="_blank" title="Share on Facebook"><img class="share-icon" src="/assets/static/facebook.svg"></a>
+	<a href="https://facebook.com/sharer.php?u={{ page.url | prepend:site.baseurl | prepend:site.url }}" rel="nofollow" target="_blank" title="Share on Facebook"><img class="share-icon" src="/assets/static/facebook.svg"></a>
 	
-	<a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" title="Share on Twitter"><img class="share-icon" src="/assets/static/twitter.svg"></a>
+	<a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | prepend:site.baseurl | prepend:site.url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" title="Share on Twitter"><img class="share-icon" src="/assets/static/twitter.svg"></a>
 
-	<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}&source={{ include.title }}"" rel="nofollow" target="_blank" title="Share on LinkedIn"><img class="share-icon" src="/assets/static/linkedin.svg"></a>
+	<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ page.url | prepend:site.baseurl | prepend:site.url }}&title={{ page.title }}&source={{ include.title }}"" rel="nofollow" target="_blank" title="Share on LinkedIn"><img class="share-icon" src="/assets/static/linkedin.svg"></a>
 	
 </div>
