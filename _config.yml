@@ -11,6 +11,10 @@ github_username:  trinhngocthuyen
 markdown: kramdown
 theme: minima
 
+sass:
+  sass_dir:  _scss
+  # style:    :compressed
+
 # Permalinks
 permalink: '/:year-:month-:day-:title.html'
 
@@ -44,7 +48,7 @@ gems:
 collections:
   misc:
     output: true
-  thinking:
+  reasoning:
     output: true
 
 

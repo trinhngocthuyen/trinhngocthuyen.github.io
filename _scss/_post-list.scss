@@ -1,0 +1,23 @@
+/** Post list **/
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+  > li {
+    margin-bottom: 30px;
+  }
+}
+
+.post-meta {
+  font-size: 13px;
+  color: #a2a2a2;
+}
+
+.post-link {
+  display: block;
+  font-size: 20px;
+  color: #0067a7;
+  &:visited, &:hover {
+    color: #0067a7;
+  }
+}

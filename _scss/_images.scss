@@ -1,0 +1,23 @@
+/** Images */
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.content-img-left {
+  float: left;
+  padding-right: 15px;
+}
+
+/** Figures */
+
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: 12px;
+  color: #999999;
+  padding-bottom: 12px;
+}

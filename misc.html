@@ -5,7 +5,7 @@ title: Miscellaneous
 
 <div class="post-list">
 
-	{% for post in site.misc %}
+	{% for post in site.misc reversed %}
 	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 	<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -14,7 +14,7 @@ title: Miscellaneous
 		<a class="tag" href="/tags#{{tag}}">{{ tag }}</a>
 		{% endfor %}
 	</span>
-	<div class="post-content">
+	<div class="post-summary">
 		{{ post.summary }}
 	</div>
 	{% endfor %}

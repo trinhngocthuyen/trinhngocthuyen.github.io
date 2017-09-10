@@ -4,7 +4,7 @@ comments:	true
 title:  "Brain exercising #1"
 date:   2017-08-30 00:00:00
 summary:    ""
-tags:   maths
+tags:   maths algebra brain-exercises
 ---
 
 I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)... I am thinking of a little corner of this blog for this sort of exercising.

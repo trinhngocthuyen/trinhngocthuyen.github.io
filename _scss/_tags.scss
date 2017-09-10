@@ -1,0 +1,31 @@
+/** Tags */
+
+.tags {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  li {
+    float: left;
+    padding-right: 5px;
+  }
+}
+
+.tag {
+  color: #0067a7;
+  font-size: 11px;
+  font-weight: lighter;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  padding: 2px 5px 2px 5px;
+  &:visited {
+    color: #0067a7;
+  }
+  &::before {
+    content: '';
+  }
+  &:hover {
+    background-color: #999999;
+    color: white;
+    text-decoration: none;
+  }
+}

@@ -1,11 +1,11 @@
 ---
 layout:	page
-title: Thinking, Brain exercising...
+title: Reasoning, Thinking...
 ---
 
 <div class="post-list">
 
-	{% for post in site.thinking %}
+	{% for post in site.reasoning reversed %}
 	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 	<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -14,7 +14,7 @@ title: Thinking, Brain exercising...
 		<a class="tag" href="/tags#{{tag}}">{{ tag }}</a>
 		{% endfor %}
 	</span>
-	<div class="post-content">
+	<div class="post-summary">
 		{{ post.summary }}
 	</div>
 	{% endfor %}

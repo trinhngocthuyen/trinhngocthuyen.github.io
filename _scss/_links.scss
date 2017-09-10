@@ -1,0 +1,20 @@
+/** Links */
+
+a {
+  color: #2a7ae2;
+  text-decoration: none;
+  &:visited {
+    color: #1756a9;
+  }
+  &:hover {
+    color: #111;
+    text-decoration: underline;
+  }
+}
+
+.social-media-list a:hover {
+  text-decoration: none;
+  .username {
+    text-decoration: underline;
+  }
+}
