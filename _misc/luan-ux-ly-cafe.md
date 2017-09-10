@@ -3,7 +3,11 @@ layout: post
 comments:   true
 title:  "Luận UX: Ly cafe take-away"
 date:   2015-10-25 00:00:00
-summary:    ""
+summary:    "Mình rất thích đi cafe mặc dù đa số những trường hợp đều chỉ có 1 thân 1 cõi :D.
+Mình cũng là đứa tò mò, hay có câu hỏi về những thứ xung quanh như “sao cánh
+cửa này kỳ kỳ?”, “sao cái biển hiệu này lại treo ở đây?” hay “sao lúc đi thang
+cuốn người ta hay vịn tay vào thang” … Tình cờ một hôm đi cafe với đứa bạn,
+mình có 1 phát hiện nhỏ về việc branding trên ly cafe take-away..."
 tags:	ux
 ---
 

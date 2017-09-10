@@ -1,12 +1,22 @@
 ---
 layout:	page
-title: Misc
+title: Miscellaneous
 ---
 
 <div class="post-list">
 
 	{% for post in site.misc %}
 	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+	<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+	<span class="tags">
+		{% for tag in post.tags %}
+		<a class="tag" href="/tags#{{tag}}">{{ tag }}</a>
+		{% endfor %}
+	</span>
+	<div class="post-content">
+		{{ post.summary }}
+	</div>
 	{% endfor %}
 
 </div>
