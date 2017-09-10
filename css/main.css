@@ -341,16 +341,18 @@ pre > code {
 }
 
 /** Sharebar **/
-.sharebar {
+.share-bar {
   min-height: 50px;
   display:-webkit-box;
   -webkit-box-pack:center;
   -webkit-box-align:center;
   background-color: #eeeeee;
   border-radius: 3px;
-  
-  font-size: 11pt;
-  font-weight: bold;
+}
+.share-group {
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
 }
 .share-icon {
   width: 30px;
