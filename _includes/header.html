@@ -21,13 +21,13 @@
 
 			<div class="trigger">
 				<div class="header-nav-item">
-					<a href="/">Tech</a>
+					<a href="/tech" {% if section == 'tech' %} class="active"{% endif %}>Tech</a>
 				</div>
 				<div class="header-nav-item">
-				<a href="/reasoning.html" {% if section == 'reasoning' %} class="active"{% endif %}>Reasoning</a>
+				<a href="/reasoning" {% if section == 'reasoning' %} class="active"{% endif %}>Reasoning</a>
 				</div>
 				<div class="header-nav-item">
-					<a href="/misc.html" {% if section == 'misc' %} class="active"{% endif %}>Misc</a>
+					<a href="/misc" {% if section == 'misc' %} class="active"{% endif %}>Misc</a>
 				</div>
 				<div class="header-nav-item">
 					<a href="/about" {% if section == 'about' %} class="active"{% endif %}>About</a>

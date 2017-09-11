@@ -1,0 +1,26 @@
+---
+layout:	page
+permalink: /categories/
+title: Categories
+---
+
+<div class="post-list">
+
+	{% for post in site.posts %}
+	{% if post.categories contains "Tech" %}
+	<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+	<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+	<span class="tags">
+		{% for tag in post.tags %}
+		<a class="tag" href="/tags#{{tag}}">{{ tag }}</a>
+		{% endfor %}
+	</span>
+
+	<div class="post-summary">
+		{{ post.summary }}
+	</div>
+	{% endif %}
+	{% endfor %}
+
+</div>
