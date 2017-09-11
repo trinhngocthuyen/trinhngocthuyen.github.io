@@ -5,7 +5,7 @@ title:  "A misuse of Expectation"
 date:   2017-07-30 00:00:00
 summary:    "This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from lecture 23 of MIT6_042J"
 tags:   probability expectation
-categories: [Reasoning]
+categories: [Tech]
 ---
 
 This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from [lecture 23 of MIT6_042J](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/video-lectures/lecture-23-expectation-ii) by Tom Leigton. For full understanding, I recommend you watch this informative and fascinating lecture.

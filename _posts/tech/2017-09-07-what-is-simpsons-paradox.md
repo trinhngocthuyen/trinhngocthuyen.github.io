@@ -5,7 +5,7 @@ title:  "What is Simpson's paradox?"
 date:   2017-09-07 00:00:00
 summary:    "If you're from the world of statistics, you may have heard of it. Two doctors, Dr. Hibbert and Dr. Nick, both perform 2 types of surgeries: heart surgery and band-aid removal..."
 tags:   probability statistics paradox
-categories: [Reasoning]
+categories: [Tech]
 ---
 
 If you're from the world of statistics, you may have heard of it...
