@@ -3,14 +3,12 @@ layout: post
 comments:   true
 title:  "Tản mạn: Chuyện câu hỏi"
 date:   2016-07-30 00:00:00
-summary:    ""
+summary:    Dạo này cứ cách vài tuần, công ty có thêm vài người mới. Có một anh bạn (nhỏ hơn mình 1 tuổi) cũng mới vào nhưng ở team khác. Ku cậu là người hoạt khẩu, miệng nói liếng thoắng. Mình ngồi đối diện nhiều lúc cũng cảm thấy hơi ngộp tai.
 tags:	
 categories: [Misc]
 ---
 
 [1] Dạo này cứ cách vài tuần, công ty có thêm vài người mới. Có một anh bạn (nhỏ hơn mình 1 tuổi) cũng mới vào nhưng ở team khác. Ku cậu là người hoạt khẩu, miệng nói liếng thoắng. Mình ngồi đối diện nhiều lúc cũng cảm thấy hơi ngộp tai.
-
-<!--more-->
 
 Anh chàng hay có những thắc mắc về công việc rất thường xuyên. Hầu hết những câu hỏi đặc trưng mà mình nghe (một cách bị động) là những câu hỏi kiểu mẫu Why: *"tại sao lại làm vầy?", "tại sao A lại có thuộc tính B?"*... Một lần, bản tự hỏi chính mình, rồi quay sang hỏi mấy đứa bạn xung quanh: *"chẳng hiểu tại sao ABC lại dùng XYZ? Cái này không make sense. Đáng nhẽ phải dùng DEF mới đúng chứ nhỉ".* Nhiều đứa khác nghĩ: *"thằng này ngộ, dùng XYZ thì cũng có bị sao đâu. Hỏi riết, biết chừng nào làm xong"*. Mình đôi lúc cũng nằm trong đám đông ấy. Thế nhưng không phải tất cả những câu hỏi bạn ấy đặt ra đều vô lý.Nhiều lúc tranh luận với bản một hồi, tui cũng thắc mắc y chang bạn ấy. Những điều chúng ta coi là hiển nhiên, chưa chắc là đúng, chưa hẳn sẽ đúng trong tương lai...
 

@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Chuyện KFC - order"
 date:   2017-01-02 00:00:00
-summary:    ""
+summary:    Tôi rất ít khi đi ra ngoài ăn vặt bởi ăn uống không nằm trong top những thứ tôi quan tâm. (Nên khi đi đâu chơi, tôi không đặt nặng vấn đề ẩm thực, mà là trải nghiệm)... Hôm qua tôi cao hứng đi ăn KFC. Là ngày đầu năm, lại rơi vào chủ nhật, nên lượng khách ở KFC Âu Cơ cũng đông hơn ngày thường.
 tags:	
 categories: [Misc]
 ---

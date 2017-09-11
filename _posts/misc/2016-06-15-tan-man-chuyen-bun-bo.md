@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Tản mạn: Chuyện bún bò"
 date:   2016-06-15 00:00:00
-summary:    ""
+summary:    Sáng nay là một buổi sáng đẹp trời. Chắc vì cơn mưa đêm đã rửa sach bầu trời mùa hạ. Sáng nay tôi đạp xe đi làm. Một dịp tốt để quất 1 tô bún bò trước khi đạp gần chục cây số đến công ty.
 tags:	
 categories: [Misc]
 ---

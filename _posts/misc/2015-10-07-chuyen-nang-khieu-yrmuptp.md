@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Chuyện Năng Khiếu: YRMUPTP"
 date:   2015-10-07 00:00:00
-summary:    ""
+summary:    Đã 6 năm kể từ lúc lớp Toán 0710 bước sang niên học cuối cấp. Hầu như ai cũng tất bật cho kỳ thi đại học... Hồi đó trong lớp có một hình thức học nhóm tự phát rất hay. Khởi đầu là một nhóm (của tổ 3) với ý tưởng soạn đề thi và tổ chức thi thử để mọi người quen dần với kỳ thi đại học.
 tags:	
 categories: [Misc]
 ---

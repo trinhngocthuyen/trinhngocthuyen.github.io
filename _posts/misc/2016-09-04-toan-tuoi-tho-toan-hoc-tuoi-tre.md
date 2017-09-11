@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Chuyện học: Toán tuổi thơ - Toán học tuổi trẻ"
 date:   2016-09-04 00:00:00
-summary:    ""
+summary:    Giờ nghe tới chữ Toán là đầu óc loạn cào cào lên với hình ảnh dấu tích phân, luỹ thừa, logarit... chứ hồi cấp 2 tôi thích học Toán vô cùng 😀. Thuở đó, mấy đứa học sinh trường huyện tụi tôi không có điều kiện để tiếp xúc với nhiều nguồn tài liệu. Mỗi lần ba chở tôi xuống nhà sách thị xã mua sách, tôi hầu như chỉ lựa có mỗi cuốn sách “Nâng cao và phát triển Toán” (hình học và đại số) của Vũ Hữu Bình. Sự thật là, đứa nào học Toán cũng đều xem đây là cuốn sách gối đầu giường. Vì hơi kén chọn sách (1 phần cũng là do gu chọn sách, không thích mấy cuốn giấy màu trắng, dày, bìa sáng loáng...), tôi thấy rất đói sách. (Àh, mấy sách Tiếng anh, Ngữ văn... tôi không mua đâu :v)
 tags:	
 categories: [Misc]
 ---

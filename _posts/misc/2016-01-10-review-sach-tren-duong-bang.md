@@ -3,11 +3,10 @@ layout: post
 comments:   true
 title:  "Review sách: Trên đường băng"
 date:   2016-01-10 00:00:00
-summary:    ""
+summary:    Tony Buổi Sáng không còn là cái tên xa lạ gì với các bạn trẻ. Mình cũng là một người rất thích phong cách viết của dượng mặc dù không thường xuyên đọc mấy post của dượng trên fanpage.
 tags:	reading book-review
 categories: [Misc]
 ---
-
 
 *Lưu ý: Ở đây mình không định hệ thống hay thuật lại những gì cuốn sách nói, mà chỉ nêu ra những điều tâm đắc của cá nhân sau khi đọc.*
 

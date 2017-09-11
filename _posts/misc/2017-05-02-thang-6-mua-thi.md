@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Tháng 6 mùa thi..."
 date:   2017-05-02 00:00:00
-summary:    "Tháng 5 mùa chia tay, tháng 6 mùa thi... Những ký ức chợt ùa về. Các bạn học sinh lớp 9 đã bước vào những ngày thi vào lớp 10. Đúng chục năm trước, tôi cũng đã trải qua cảm giác tương tự..."
+summary:    Tháng 5 mùa chia tay, tháng 6 mùa thi... Những ký ức chợt ùa về. Các bạn học sinh lớp 9 đã bước vào những ngày thi vào lớp 10. Đúng chục năm trước, tôi cũng đã trải qua cảm giác tương tự...
 tags:	
 categories: [Misc]
 ---
@@ -11,8 +11,6 @@ categories: [Misc]
 Tháng 5 mùa chia tay, tháng 6 mùa thi... Những ký ức chợt ùa về.
 
 Các bạn học sinh lớp 9 đã bước vào những ngày thi vào lớp 10. Đúng chục năm trước, tôi cũng đã trải qua cảm giác tương tự.
-
-<!--more-->
 
 Tôi đăng ký thi 2 trường với môn chuyên là Toán: trường Lê Khiết ở quê (Quảng Ngãi) và trường Phổ Thông Năng Khiếu (TPHCM). Và may mắn đậu được cả 2 trường. Dĩ nhiên tôi chọn Năng Khiếu, vì nó nổi tiếng hơn, có điều kiện phát triển tốt hơn.
 

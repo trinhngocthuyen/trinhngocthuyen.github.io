@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Chuyện mưa"
 date:   2015-11-10 00:00:00
-summary:    ""
+summary:    Có lẽ ai cũng đều có 1 chút kỷ niệm nho nhỏ với mưa. Tôi cũng không phải một ngoại lệ... Hôm nay trời mưa to. Trên đường chạy về nhà, tôi nhớ đến Quảng Ngãi.
 tags:	
 categories: [Misc]
 ---

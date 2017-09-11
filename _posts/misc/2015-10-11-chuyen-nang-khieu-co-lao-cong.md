@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Chuyện Năng Khiếu: cô lao công"
 date:   2015-10-11 00:00:00
-summary:    ""
+summary:    Năng Khiếu, ngoài những câu chuyện “Olympic Toán quốc tế”, “Cầu truyền hình Olympia”... còn có những câu chuyện đời thường – về những người bình thường – và được viết bởi những người tầm thường.
 tags:
 categories: [Misc]
 ---

@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Hiệu ứng mồi (Priming effect)"
 date:   2015-11-01 00:00:00
-summary:    ""
+summary:	Hiệu ứng mồi (priming effect) là một hiệu ứng tâm lý diễn ra trong não bộ con người, khi kết quả hành động của một người bị ảnh hưởng bởi một vài thông tin người đó tiếp nhận được trước đó
 tags:	psychological-efffects
 categories: [Reasoning]
 ---

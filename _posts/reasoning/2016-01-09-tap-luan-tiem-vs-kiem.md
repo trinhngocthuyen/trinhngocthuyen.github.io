@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Tạp luận: tìm vs. kiếm"
 date:   2016-01-09 00:00:00
-summary:    ""
+summary:	"Năm 2 Đại học, tui có học môn Cơ sở trí tuệ nhân tạo. Buổi học đầu tiên, thầy giáo có nêu ra một câu hỏi như sau “tìm và kiếm khác nhau như thế nào?”. Sự thật là không có ai trong số lũ sinh viên tụi tui trả lời câu hỏi đó. Có thể có đứa biết câu trả lời hay ít nhất có một nhận định nào đó, còn tui thì mặt thộn ra, giống như khi bị hỏi về định nghĩa của những khái niệm trừu tượng kiểu như: “tình yêu là gì?”, “ý thức là gì?”."
 tags:	reasoning
 categories: [Reasoning]
 ---

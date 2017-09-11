@@ -9,6 +9,7 @@ cửa này kỳ kỳ?”, “sao cái biển hiệu này lại treo ở đây?�
 cuốn người ta hay vịn tay vào thang” ... Tình cờ một hôm đi cafe với đứa bạn,
 mình có 1 phát hiện nhỏ về việc branding trên ly cafe take-away..."
 tags:	ux reasoning
+categories: [Reasoning]
 ---
 
 Mình rất thích đi cafe mặc dù đa số những trường hợp đều chỉ có 1 thân 1 cõi :D.

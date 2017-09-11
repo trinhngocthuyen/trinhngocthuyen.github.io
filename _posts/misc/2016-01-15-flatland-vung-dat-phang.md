@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Flatland (Vùng đất phẳng)"
 date:   2016-01-15 00:00:00
-summary:    ""
+summary:    "Đây là một bộ phim hoạt hình dựa trên tiểu thuyết “Flatland: A Romance of Many Dimensions” của Edwin Abbot. Bộ phim này về mặt kỹ xảo thì không có gì đáng kể (nếu không muốn nói là hơi xấu), nhưng cái lôi cuốn người xem chính là cái ý tưởng độc đáo của phim. Đúng ra thì lời khen này nên dành tặng cho Abbot, tác giả cuốn sách."
 tags:	
 categories: [Misc]
 ---

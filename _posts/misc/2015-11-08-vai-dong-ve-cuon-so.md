@@ -3,7 +3,7 @@ layout: post
 comments:   true
 title:  "Vài dòng về cuốn sổ"
 date:   2015-11-08 00:00:00
-summary:    ""
+summary:    Chúng ta thường hay được khuyên rằng nên có 1 cuốn sổ ghi chú bên mình phòng khi có 1 ý tưởng rồ dại nào chợt đến. Tôi cũng đã theo lời khuyên ấy, cũng có cuốn sổ của riêng mình, mà thật ra là nhiều cuốn sổ.
 tags:	
 categories: [Misc]
 ---

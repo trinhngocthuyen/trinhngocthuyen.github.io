@@ -3,14 +3,13 @@ layout: post
 comments:   true
 title:  "Tản mạn: Chuyện khái niệm"
 date:   2016-07-25 00:00:00
-summary:    ""
+summary:    Gần đây, trên công ty thường hay xảy ra những cuộc tranh luận trong dự án mà đa số các trường hợp là do không thống nhất trong việc hiểu một khái niệm. Làm mình nhớ lại, thấm thía những câu chữ của thầy Phan Dũng viết về "Định nghĩa khái niệm" trong cuốn "Tư duy Logic, biện chứng và hệ thống".
 tags:	
 categories: [Misc]
 ---
 
 Gần đây, trên công ty thường hay xảy ra những cuộc tranh luận trong dự án mà đa số các trường hợp là do không thống nhất trong việc hiểu một khái niệm. Làm mình nhớ lại, thấm thía những câu chữ của thầy Phan Dũng viết về *"Định nghĩa khái niệm"* trong cuốn
 <a href="https://tiki.vn/tu-duy-logic-bien-chung-va-he-thong-tap3.html">*"Tư duy Logic, biện chứng và hệ thống"*</a>.
-<!--more-->
 
 [1] Trích lược từ sách *"Tư duy Logic, biện chứng và hệ thống"*
 
