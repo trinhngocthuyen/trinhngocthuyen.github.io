@@ -1,11 +1,11 @@
 {% assign current = page.url | downcase | split: '/' %}
 {% assign section = current[1] %}
 
-<header class="site-header">
+<!-- If the current page is the frontpage, use a different class: "site-header frontpage" -->
+<header {% if section == nil %}class="site-header frontpage"{% else %}class="site-header"{% endif %}>
 
 	<div class="wrapper">
 		<a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
-
 		
 		<nav class="site-nav">
 			<a href="#" class="menu-icon">

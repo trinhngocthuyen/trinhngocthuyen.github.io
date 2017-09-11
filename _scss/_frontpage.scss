@@ -1,0 +1,29 @@
+/** Frontpage **/
+
+// .frontpage-cover {
+// 	margin-top: calc(-#{$page-content-padding-top} + 10px);
+// 	margin-bottom: 10px;
+// }
+
+body, html {
+	height: 100%;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url('/assets/static/sea_cropped.png');
+    // background-image: url('/assets/static/sea.png');
+
+    /* Full height */
+    height: 40%; 
+    // position: relative;
+    // margin-top: 0;
+    // padding-top: 0;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
