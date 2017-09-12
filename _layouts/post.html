@@ -2,6 +2,12 @@
 layout: default
 ---
 
+<div class="post-levels">
+	<a href="/">Home</a>
+	<a href="/{{ page.categories | first | downcase}}">{{ page.categories | first }}</a>
+	{{ page.title }}
+</div>
+
 <div class="post">
 
 	<header class="post-header">

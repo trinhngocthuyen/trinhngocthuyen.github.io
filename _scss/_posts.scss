@@ -47,3 +47,20 @@
     font-size: 18px;
   }
 }
+
+/* Post navigation: previous, upper level */
+.post-levels {
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: lighter;
+  color: #888;
+  a {
+    font-size: 14px;
+    font-weight: normal;
+    padding-right: 5px;
+    color: $blue-color;
+    &:after {
+      content: ' >';
+    }
+  }
+}
