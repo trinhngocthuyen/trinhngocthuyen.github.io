@@ -1,15 +1,15 @@
 <div class="share-bar">
 	<div class="share-group">
 		<a href="https://facebook.com/sharer.php?u={{ page.url | prepend:site.baseurl | prepend:site.url }}" rel="nofollow" target="_blank" title="Share on Facebook"
-		onclick="ga_track_event('share_post', 'facebook')" 
+		onclick="ga_track_event('share_post', 'facebook', '{{ page.url }}')"
 		><img class="share-icon" src="/assets/static/facebook.svg"></a>
 
 		<a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | prepend:site.baseurl | prepend:site.url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" title="Share on Twitter"
-		onclick="ga_track_event('share_post', 'twitter')"
+		onclick="ga_track_event('share_post', 'twitter', '{{ page.url }}')"
 		><img class="share-icon" src="/assets/static/twitter.svg"></a>
 
 		<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ page.url | prepend:site.baseurl | prepend:site.url }}&title={{ page.title }}&source={{ include.title }}"" rel="nofollow" target="_blank" title="Share on LinkedIn"
-		onclick="ga_track_event('share_post', 'linkedin')"
+		onclick="ga_track_event('share_post', 'linkedin', '{{ page.url }}')"
 		><img class="share-icon" src="/assets/static/linkedin.svg"></a>
 	</div>
 </div>
