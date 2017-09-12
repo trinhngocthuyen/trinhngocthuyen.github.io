@@ -31,5 +31,15 @@
 		});
 	</script>
 	{% endif %}
+	
+	<script>
+		function ga_track_event(category, action, label='{{ page.url }}') {
+			{% if jekyll.environment == 'production' %}
+			ga('send', 'event', category, action, label);
+			{% else %}
+			console.log('GA event:', category, action, label);
+			{% endif %}
+		}
+	</script>
 
 </head>

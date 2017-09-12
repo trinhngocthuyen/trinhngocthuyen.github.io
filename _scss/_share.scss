@@ -9,6 +9,12 @@
   border-radius: 3px;
 }
 
+.post {
+  .share-bar {
+    background-color: $base-background-color;
+  }
+}
+
 .share-group {
   display: -webkit-box;
   -webkit-box-pack: center;
