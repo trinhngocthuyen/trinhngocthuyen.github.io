@@ -3,10 +3,10 @@
    ========================================================================== */
 
 /** Font **/
-$base-font-family: 'Roboto', sans-serif;
-$base-font-size: 16px;
+$font-family: 'Roboto', sans-serif;
+$font-size: 16px;
 
-$base-font-weight: normal;
+$font-weight: normal;
 $heading-font-weight: 400;
 
 $smaller-font-size: 15px;
@@ -14,8 +14,10 @@ $smaller-font-size: 15px;
 $navigation-font-size: 14px; // Menu (Tech/Reasoning/Misc/About)
 
 /** Colors **/
-$base-text-color: #393e46;
-$base-background-color: #fdfdfd;
+$primary-text-color: #393e46;
+$secondary-text-color: #777;
+
+$background-color: #fdfdfd;
 $code-background-color: #efefef;
 $green-color: #007256;
 $blue-color: #0067a7;
@@ -27,5 +29,5 @@ $navigation-text-color: $header-text-color;
 
 
 /** Margins/Padding **/
-$base-margin-bottom: 15px; 
+$margin-bottom: 15px; 
 $page-content-padding-top: 30px;
