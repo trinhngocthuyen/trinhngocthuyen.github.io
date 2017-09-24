@@ -31,6 +31,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: $heading-font-weight;
 }
 
+h2, h3 {
+  padding-top: 10px;
+}
+
 /** Wrapper */
 .wrapper {
   max-width: -webkit-calc(800px - (30px * 2));
