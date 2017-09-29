@@ -12,5 +12,5 @@ This blog came to existence with the same purposes.
 If you want to contact me:
 - [Email](mailto:trinhngocthuyen@gmail.com)
 - [Github](https://github.com/trinhngocthuyen)
-- [LinkedIn](https://www.linkedin.com/in/thuyen-trinh-6493a885/)
+- [LinkedIn](https://www.linkedin.com/in/thuyen-trinh/)
 - [Twitter](https://twitter.com/trinhngocthuyen)
