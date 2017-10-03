@@ -1,10 +1,12 @@
 /** Links */
 
 a {
-  color: #2a7ae2;
+  // color: #2a7ae2;
+  color: $blue-color;
   text-decoration: none;
   &:visited {
-    color: #1756a9;
+    // color: #1756a9;
+    color: $blue-color;
   }
   &:hover {
     color: #111;
