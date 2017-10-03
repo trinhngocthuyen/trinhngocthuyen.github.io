@@ -8,13 +8,13 @@ tags:   probability expectation
 categories: [Tech]
 ---
 
-This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from [lecture 23 of MIT6_042J](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/video-lectures/lecture-23-expectation-ii) by Tom Leigton. For full understanding, I recommend you watch this informative and fascinating lecture.
+This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from [lecture 23 of MIT6_042J](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/video-lectures/lecture-23-expectation-ii){:.ga-link} by Tom Leigton. For full understanding, I recommend you watch this informative and fascinating lecture.
 
 
 ### Example: RISC vs Z8002
 Data in table 1 is from a paper by some famous professors. They wanted to demonstrate that programs on a RISC processor are generally shorted than on a Z8002 processor. They performed some benchmarks and measured the code size of a problem on the 2 processors.
 
-P/s: Actually, Tom Leighton did not mention the source of this data. The most matched I can trace is [here](https://courses.cs.washington.edu/courses/cse548/05wi/files/Patterson-A-VLSI-RISC.pdf) (a pretty long time ago).
+P/s: Actually, Tom Leighton did not mention the source of this data. The most matched I can trace is [here](https://courses.cs.washington.edu/courses/cse548/05wi/files/Patterson-A-VLSI-RISC.pdf){:.ga-link} (a pretty long time ago).
 
 
 | Benchmark				| RISC	| Z8002	| Z8002/RISC	|

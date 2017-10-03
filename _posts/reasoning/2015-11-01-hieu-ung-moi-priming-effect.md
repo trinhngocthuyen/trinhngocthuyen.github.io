@@ -48,4 +48,4 @@ Tôi rất tâm đắc hiệu ứng này bởi vì nó chỉ ra rằng “mọi 
 
 **Tham khảo**
 
-- [Daniel Kahneman, Thinking, Fast and Slow](https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555)
+- [Daniel Kahneman, Thinking, Fast and Slow](https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555){:.ga-link}

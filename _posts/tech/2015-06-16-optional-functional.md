@@ -9,7 +9,7 @@ categories: [Tech]
 ---
 
 I have just read the chapter 5 of the book ["Functional programming in
-Swift"](http://www.objc.io/books/fpinswift/). This chapter is about
+Swift"](http://www.objc.io/books/fpinswift/){:.ga-link}. This chapter is about
 **"Optionals"**. And there are some interesting things I want to share.
 
 First of all, one of the most frustrating problem that developers have been

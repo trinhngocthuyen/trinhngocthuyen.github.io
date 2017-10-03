@@ -13,7 +13,7 @@ This topic (aka Currying) has been mentioned as a part of Functional programming
 
 ### What is currying?
 
-Roughly speaking, currying is the act of ***translating a single function of N arguments into N functions of a single argument***. For those who did not know what it is, take a look at [this link](https://www.objc.io/blog/2014/11/10/functional-snippet-6-currying/).
+Roughly speaking, currying is the act of ***translating a single function of N arguments into N functions of a single argument***. For those who did not know what it is, take a look at [this link](https://www.objc.io/blog/2014/11/10/functional-snippet-6-currying/){:.ga-link}.
 Suppose we a have a function multiply:
 
 ```swift
@@ -172,4 +172,4 @@ It seems better looking now!
 
 Have fun!
 
-The playground could be found [here](https://github.com/trinhngocthuyen/iOS-blog-posts/tree/master/functional-currying/functional-currying.playground)
+The playground could be found [here](https://github.com/trinhngocthuyen/iOS-blog-posts/tree/master/functional-currying/functional-currying.playground){:.ga-link}

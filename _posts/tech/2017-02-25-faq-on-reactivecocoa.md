@@ -31,7 +31,7 @@ categories: [Tech]
 #### Q: What is ReactiveCocoa?
 ReactiveCocoa is an FRP (Functional Reactive Programming) framework particularly used for iOS. FRP = **reactive programming** built on the components of **functional concepts**.
 
-- Reactive programming is [programming with asynchronous data streams](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754).
+- Reactive programming is [programming with asynchronous data streams](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754){:.ga-link}.
 - Functional concepts: *high-order functions, monads, functors, function compositions, natural transformation (map, filter, reduce...)... (You do not need to digest & comprehend it now)*.
 
 References:
@@ -61,7 +61,7 @@ Additionally, RAC could help us save a lot effort to implement:
 - Task management
 
 #### Q: What is a stream?
-> [A stream is a sequence of ongoing events ordered in time](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754).
+> [A stream is a sequence of ongoing events ordered in time](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754){:.ga-link}.
 
 #### Q: What can be considered a stream?
 **Anything!** From now on, you have to keep in mind that **everything can be a stream**.
@@ -82,7 +82,7 @@ We should care about the life cycle of a stream:
 - Stream **completed**
 - Stream is **disposed**
 
-![Alt text](https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67)
+![Alt text](https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67){:.ga-link}
 
 Besides, we should acknowledge some operations on streams:
 

@@ -36,7 +36,7 @@ However, comparing the total successes and failures shows the opposite relations
 
 Now you got the paradox, right? :D
 
-Intuitively, the paradox could be described [like this](https://brilliant.org/wiki/simpsons-paradox)
+Intuitively, the paradox could be described [like this](https://brilliant.org/wiki/simpsons-paradox){:.ga-link}
 
 > Simpson's paradox occurs when some groups of data show a certain relationship in each group, but when the data is combined, that relationship is reversed
 
@@ -60,8 +60,6 @@ So, we have to be careful when aggregating data especially when data is not equa
 
 ### Read more
 
-[1] [Blitzstein, Joseph K., and Jessica Hwang. “Conditional Probability.” *Introduction to Probability*, CRC Press/Taylor & Francis Group, 2015.](https://www.amazon.com/Introduction-Probability-Chapman-Statistical-Science/dp/1466575573)
-
-[2] https://brilliant.org/wiki/simpsons-paradox
-
-[3] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880329
+[1] [Blitzstein, Joseph K., and Jessica Hwang. “Conditional Probability.” *Introduction to Probability*, CRC Press/Taylor & Francis Group, 2015.](https://www.amazon.com/Introduction-Probability-Chapman-Statistical-Science/dp/1466575573){:.ga-link}<br>
+[2] [https://brilliant.org/wiki/simpsons-paradox](https://brilliant.org/wiki/simpsons-paradox){:.ga-link}<br>
+[3] [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880329](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880329){:.ga-link}

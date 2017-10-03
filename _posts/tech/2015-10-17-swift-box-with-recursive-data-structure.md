@@ -95,7 +95,7 @@ public enum Event<T, E: ErrorType> {
 Now you can define your own recursive data structure using this trick.
 
 
-The full demonstration can be found [here](https://gist.github.com/trinhngocthuyen/11a6b08f103999f352da).
+The full demonstration can be found [here](https://gist.github.com/trinhngocthuyen/11a6b08f103999f352da){:.ga-link}.
 
 <u>Updated:</u>
 Swift 2.1 has come with the support for recursive enums. Bravo! [Checkout the keyword: `indirect`]([https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html).

@@ -19,7 +19,7 @@ categories: [Tech]
 * [3. Another approaches](#another-approaches)
 * [Conclusion](#conclusion)
 
-In this post, I will carry out some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers. This was mentioned by Andrej in [cs231n/lec6](https://www.youtube.com/watch?v=hd_KFJ5ktUc&index=6&list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) as a motivation paving the way for batch normalization.
+In this post, I will carry out some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers. This was mentioned by Andrej in [cs231n/lec6](https://www.youtube.com/watch?v=hd_KFJ5ktUc&index=6&list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC){:.ga-link} as a motivation paving the way for batch normalization.
 
 I will try to keep things simple with intuition. Mathematics will not be richly convered.
 
@@ -231,7 +231,7 @@ Layer 20. mean: 0.000440	std: 0.000590
 --> Not accepted ❌
 
 
-A recent paper by [He et al](https://arxiv.org/pdf/1502.01852v1.pdf) dove into the analysis with ReLU activation and finally reached the conclusion that the variance of weights should be $2/N$. This is often used in practice.
+A recent paper by [He et al](https://arxiv.org/pdf/1502.01852v1.pdf){:.ga-link} dove into the analysis with ReLU activation and finally reached the conclusion that the variance of weights should be $2/N$. This is often used in practice.
 
 
 ```python
@@ -269,8 +269,8 @@ Hope this post provides helpful visualization to help understand some problems o
 
 Reference:
 
-[1] [CS231n course notes](http://cs231n.github.io/neural-networks-2)\\
-[2] [Understanding the difficulty of training deep feedforward neural networks](http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)\\
-[3] [Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification](https://arxiv.org/pdf/1502.01852v1.pdf)
+[1] [CS231n course notes](http://cs231n.github.io/neural-networks-2){:.ga-link}\\
+[2] [Understanding the difficulty of training deep feedforward neural networks](http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf){:.ga-link}\\
+[3] [Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification](https://arxiv.org/pdf/1502.01852v1.pdf){:.ga-link}
 
-Source code: [here](https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/experiments/weight_initialization.ipynb)
+Source code: [here](https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/experiments/weight_initialization.ipynb){:.ga-link}

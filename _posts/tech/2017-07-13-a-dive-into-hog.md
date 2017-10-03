@@ -291,10 +291,10 @@ plt.show()
 
 
 ### Reference
-[1] [http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf](http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf)
+[1] [http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf](http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf){:.ga-link}
 
-[2] [http://www.learnopencv.com/histogram-of-oriented-gradients](http://www.learnopencv.com/histogram-of-oriented-gradients)
+[2] [http://www.learnopencv.com/histogram-of-oriented-gradients](http://www.learnopencv.com/histogram-of-oriented-gradients){:.ga-link}
 
-[3] [http://mccormickml.com/2013/05/09/hog-person-detector-tutorial](http://mccormickml.com/2013/05/09/hog-person-detector-tutorial)
+[3] [http://mccormickml.com/2013/05/09/hog-person-detector-tutorial](http://mccormickml.com/2013/05/09/hog-person-detector-tutorial){:.ga-link}
 
-Jupyter notebook: [here](https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/funda_ml/HOG.ipynb)
+Jupyter notebook: [here](https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/funda_ml/HOG.ipynb){:.ga-link}

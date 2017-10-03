@@ -8,7 +8,7 @@ tags:	science astrology
 categories: [Misc]
 ---
 
-Cách đây không lâu, tôi tình cờ xem 1 video trên TED talk về chủ đề Vũ trụ học *["Shedding light on dark matter"](https://www.ted.com/talks/patricia_burchat_leads_a_search_for_dark_energy)*, rồi sau đó coi 1 loạt các phim tài liệu về chủ đề này... Post này tóm tắt lại những gì mình hiểu ở mức ý niệm (nên có thể có những chỗ hiểu chưa chính xác).
+Cách đây không lâu, tôi tình cờ xem 1 video trên TED talk về chủ đề Vũ trụ học *["Shedding light on dark matter"](https://www.ted.com/talks/patricia_burchat_leads_a_search_for_dark_energy){:.ga-link}*, rồi sau đó coi 1 loạt các phim tài liệu về chủ đề này... Post này tóm tắt lại những gì mình hiểu ở mức ý niệm (nên có thể có những chỗ hiểu chưa chính xác).
 
 ...<br>
 Trái Đất là một hành tinh trong *Hệ Mặt Trời (Solar System)*, một phần tử nhỏ trong 1 thiên hà xoắn ốc *(spiral galaxies)* gọi là *"Milky Way"* (dịch là *Dải Ngân Hà*). Và *Milky Way* chỉ là một trong hằng hà sa số các thiên hà ngoài kia... Nhiều đốm sáng lí nhí trên bầu trời đêm bạn nhìn thấy được là nguyên cả một thiên hà chứ hỏk phải là 1 ngôi sao nhỏ nhoi nào đó đâu :).
@@ -32,7 +32,7 @@ Trái Đất là một hành tinh trong *Hệ Mặt Trời (Solar System)*, mộ
 
 **Tham khảo**
 
-- [https://www.ted.com/talks/patricia_burchat_leads_a_search_for_dark_energy](https://www.ted.com/talks/patricia_burchat_leads_a_search_for_dark_energy)<br>
-- [https://www.youtube.com/watch?v=xJheDbOdT3Y](https://www.youtube.com/watch?v=xJheDbOdT3Y)<br>
-- [https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question59.html](https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question59.html)<br>
-- [https://www.youtube.com/watch?v=Rl8H4XEs0hw](https://www.youtube.com/watch?v=Rl8H4XEs0hw)<br>
+- [https://www.ted.com/talks/patricia_burchat_leads_a_search_for_dark_energy](https://www.ted.com/talks/patricia_burchat_leads_a_search_for_dark_energy){:.ga-link}<br>
+- [https://www.youtube.com/watch?v=xJheDbOdT3Y](https://www.youtube.com/watch?v=xJheDbOdT3Y){:.ga-link}<br>
+- [https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question59.html](https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question59.html){:.ga-link}<br>
+- [https://www.youtube.com/watch?v=Rl8H4XEs0hw](https://www.youtube.com/watch?v=Rl8H4XEs0hw){:.ga-link}<br>

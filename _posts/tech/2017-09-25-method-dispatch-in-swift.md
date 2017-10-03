@@ -42,7 +42,7 @@ Method dispatch is a term referring to mechanisms by which the program determine
 
 #### Message dispatch
 
-- In fact, it is Objective-C that provides this mechanism (sometimes, it is referred as [*message passing*](https://en.wikipedia.org/wiki/Message_passing)) and Swift code just uses the Objective-C runtime lib. Every time an Objective-C method is called, the invocation is passed to `objc_msgSend` which handles the look ups. Technically, the process starts from the given class and iterates the class hierarchy to pull out the implementation.
+- In fact, it is Objective-C that provides this mechanism (sometimes, it is referred as [*message passing*](https://en.wikipedia.org/wiki/Message_passing)){:.ga-link} and Swift code just uses the Objective-C runtime lib. Every time an Objective-C method is called, the invocation is passed to `objc_msgSend` which handles the look ups. Technically, the process starts from the given class and iterates the class hierarchy to pull out the implementation.
 - Unlike table dispatch, the *message passing dictionary* could be modified at runtime, enabling us to adjust the program behaviors while running. Method swizzling is one of the most popular technique, by taking advantage of this special feature.
 - *Message dispatch* is the most dynamic among the three. As a trade off, the cost of resolving implementation could be a little expensive though the lookup performance is guarded by caching mechanism.
 - This mechanism is a keystone of Cocoa frameworks. Looking at the source of code Swift, you will see that KVO is implemented using swizzling.
@@ -53,7 +53,7 @@ Method dispatch is a term referring to mechanisms by which the program determine
 
 #### Methodology to determine dispatch mechanism
 
-As a skeptic, I am more interested in the second part of the question. It is easy to come up with a hypothesis but testing it is not straightforward all the time. After hours googling, I happened to know the [SIL documentation](https://github.com/apple/swift/blob/master/docs/SIL.rst) which reasonably explains the presence of dispatch strategies. Here is a brief summary:
+As a skeptic, I am more interested in the second part of the question. It is easy to come up with a hypothesis but testing it is not straightforward all the time. After hours googling, I happened to know the [SIL documentation](https://github.com/apple/swift/blob/master/docs/SIL.rst){:.ga-link} which reasonably explains the presence of dispatch strategies. Here is a brief summary:
 
 (1) If a function uses table dispatch, it appears in the `vtable` (or `witness_table` for protocols).
 
@@ -64,7 +64,7 @@ sil_vtable Animal {
 }
 ```
 
-(2) If a function is dispatched via message, the keyword `volatile` should be present in the invocation. Also, you will find the two marker `foreign` and `objc_method`, indicating that the function is invoked using Objective-C runtime. Refer: [here](https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch).
+(2) If a function is dispatched via message, the keyword `volatile` should be present in the invocation. Also, you will find the two marker `foreign` and `objc_method`, indicating that the function is invoked using Objective-C runtime. Refer: [here](https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch){:.ga-link}.
 
 ```
 %14 = class_method [volatile] %13 : $Dog, #Dog.beWild!1.foreign : (Dog) -> () -> (), $@convention(objc_method) (Dog) -> () // user: %15
@@ -164,11 +164,11 @@ Finally, things might be different in later Swift versions. Don't forget to chec
 
 ### Reference
 
-[1] [Method Dispatch in Swift - by Brian King](https://www.raizlabs.com/dev/2016/12/swift-method-dispatch)<br>
-[2] [The Case for Message Passing in Swift - by Michael Buckley](http://www.buckleyisms.com/home/2014/6/16/the-case-for-message-passing-in-swift.html)<br>
-[3] [\[swift\] Dynamic keyword - by Srdan](https://dev.srdanstanic.com/ios/swift/2017/02/10/swift-dynamic-keyword)<br>
-[4] [Swift Intermediate Language (SIL)](https://github.com/apple/swift/blob/master/docs/SIL.rst)<br>
-[5] [Friday Q&A 2014-07-04: Secrets of Swift's Speed](https://www.mikeash.com/pyblog/friday-qa-2014-07-04-secrets-of-swifts-speed.html)<br>
-[6] [The Swift Programming Language (Swift 4): Declaration Modifiers](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/declaration-modifiers)<br>
+[1] [Method Dispatch in Swift - by Brian King](https://www.raizlabs.com/dev/2016/12/swift-method-dispatch){:.ga-link}<br>
+[2] [The Case for Message Passing in Swift - by Michael Buckley](http://www.buckleyisms.com/home/2014/6/16/the-case-for-message-passing-in-swift.html){:.ga-link}<br>
+[3] [\[swift\] Dynamic keyword - by Srdan](https://dev.srdanstanic.com/ios/swift/2017/02/10/swift-dynamic-keyword){:.ga-link}<br>
+[4] [Swift Intermediate Language (SIL)](https://github.com/apple/swift/blob/master/docs/SIL.rst){:.ga-link}<br>
+[5] [Friday Q&A 2014-07-04: Secrets of Swift's Speed](https://www.mikeash.com/pyblog/friday-qa-2014-07-04-secrets-of-swifts-speed.html){:.ga-link}<br>
+[6] [The Swift Programming Language (Swift 4): Declaration Modifiers](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/declaration-modifiers){:.ga-link}<br>
 
 

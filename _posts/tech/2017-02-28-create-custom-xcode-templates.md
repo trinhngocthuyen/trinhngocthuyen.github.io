@@ -78,4 +78,4 @@ final public class LoginViewController: UIViewController {
 ```
 
 #### Reference:
-[1] [http://swiftandpainless.com/creating-a-smart-file-template](http://swiftandpainless.com/creating-a-smart-file-template)
+[1] [http://swiftandpainless.com/creating-a-smart-file-template](http://swiftandpainless.com/creating-a-smart-file-template){:.ga-link}

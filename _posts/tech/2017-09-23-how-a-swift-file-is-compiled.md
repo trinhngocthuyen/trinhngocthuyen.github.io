@@ -20,7 +20,7 @@ categories:	[Tech]
 
 <!-- /TOC -->
 
-First of all, this is not "how an iOS/MacOS app is built". An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match. Besides, linking those modules is also another aspect. [The two terms *compiling* and *building* should not be confused!](https://stackoverflow.com/questions/15198725/build-or-compile)
+First of all, this is not "how an iOS/MacOS app is built". An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match. Besides, linking those modules is also another aspect. [The two terms *compiling* and *building* should not be confused!](https://stackoverflow.com/questions/15198725/build-or-compile){:.ga-link}
 
 This post is about how the compiler translates a single Swift file into lower-level code. In other words, we are interested in what happens when we run this command: 
 ```xcrun swiftc main.swift```
@@ -31,7 +31,7 @@ This post is about how the compiler translates a single Swift file into lower-le
 ![png](assets/ios/swift_build_pipeline.png)
 <figcaption>Source: http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf</figcaption>
 
-[1] **Parse**. First, the compiler parses the source code and build the [Abstract syntax tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree). We could see the AST by the option `-dump-ast`:
+[1] **Parse**. First, the compiler parses the source code and build the [Abstract syntax tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree){:.ga-link}. We could see the AST by the option `-dump-ast`:
 
 ```xcrun swiftc -dump-ast main.swift```
 
@@ -70,7 +70,7 @@ bb0(%0 : $Animal):
   return %2 : $()                                 // id: %3
 } // end sil function '_T04main6AnimalC9makeSoundyyF'
 ```
-***Name mangling*** is used to squash additional information of an entity into a single string. The encoded name could tell us its type (class/struct/enum), module, context... For example, in `_T04main6PersonVACycfC`, the letter `V` following `Person` implies that `Person` is a struct. We won't dive into the detail of this technique. For more info, you could read [here](https://github.com/apple/swift/blob/master/docs/ABI/Mangling.rst).
+***Name mangling*** is used to squash additional information of an entity into a single string. The encoded name could tell us its type (class/struct/enum), module, context... For example, in `_T04main6PersonVACycfC`, the letter `V` following `Person` implies that `Person` is a struct. We won't dive into the detail of this technique. For more info, you could read [here](https://github.com/apple/swift/blob/master/docs/ABI/Mangling.rst){:.ga-link}.
 
 #### Make SIL more readable
 We could trace a mangled string back to the originally readable text using `swift-demangle`
@@ -113,7 +113,7 @@ class Dog: Animal {
 }
 ```
 
-Let's look at the SIL and demystify some basic syntax. I strongly recommend this [official documentation](https://github.com/apple/swift/blob/master/docs/SIL.rst) for full details.
+Let's look at the SIL and demystify some basic syntax. I strongly recommend this [official documentation](https://github.com/apple/swift/blob/master/docs/SIL.rst){:.ga-link} for full details.
 
 ```
 // Animal.makeSound()
@@ -166,7 +166,7 @@ sil_vtable Dog {
   ......
 }
 ```
-- Each class has a [virtual table](https://en.wikipedia.org/wiki/Virtual_method_table) `vtable` in order for the compiler to lookup the correct method to execute in runtime (if it's dynamically dispatched). We will talk about method dispatch in the upcoming posts.
+- Each class has a [virtual table](https://en.wikipedia.org/wiki/Virtual_method_table){:.ga-link} `vtable` in order for the compiler to lookup the correct method to execute in runtime (if it's dynamically dispatched). We will talk about method dispatch in the upcoming posts.
 
 
 ### Conclusion
@@ -177,9 +177,9 @@ From the perspective of a practical developer, this topic does not help us write
 
 ### Reference
 
-[1] [Official documentation: Design of SIL](https://github.com/apple/swift/blob/master/docs/SIL.rst)<br>
-[2] [Swift's High-Level IR: A Case Study of Complementing LLVM IR with Language-Specific Optimization](https://llvm.org/devmtg/2015-10/#talk7)<br>
-[3] [Introduction to Swift Intermediate Language — Alex Blewitt](https://www.youtube.com/watch?v=NH-qIKOoKgA)
+[1] [Official documentation: Design of SIL](https://github.com/apple/swift/blob/master/docs/SIL.rst){:.ga-link}<br>
+[2] [Swift's High-Level IR: A Case Study of Complementing LLVM IR with Language-Specific Optimization](https://llvm.org/devmtg/2015-10/#talk7){:.ga-link}<br>
+[3] [Introduction to Swift Intermediate Language — Alex Blewitt](https://www.youtube.com/watch?v=NH-qIKOoKgA){:.ga-link}
 
 
 

@@ -10,7 +10,7 @@ categories: [Tech]
 
 
 In this post, we will have a look at an example on how to use
-[`ReactiveCocoa`](https://github.com/ReactiveCocoa/ReactiveCocoa) (v3.0) to handle
+[`ReactiveCocoa`](https://github.com/ReactiveCocoa/ReactiveCocoa){:.ga-link} (v3.0) to handle
 a simple Login workflow.
 
 ### An example
@@ -137,7 +137,7 @@ I think what make sense are the abstract types:
 #### A little explanation
 
 If you already heard of [FRP (Functional Reactive
-Programming)](https://www.coursera.org/course/reactive), this may help you
+Programming)](https://www.coursera.org/course/reactive){:.ga-link}, this may help you
 understand more straightforwardly:
 
 ```swift
@@ -152,7 +152,7 @@ understand more straightforwardly:
 * Don’t waste your time implementing Observer pattern or manually handling
 asynchronous tasks.
 * If you’re in favor of Java, a similar framework could be found as
-[RxJava](https://github.com/ReactiveX/RxJava).
+[RxJava](https://github.com/ReactiveX/RxJava){:.ga-link}.
 
 The next blog post, I will come up with a small comparison between RAC 2.0 and
 RAC 3.0.

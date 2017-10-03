@@ -107,8 +107,8 @@ let eventsViewModel = ViewModel(fetcher: EventsFetcher())
 P/s: I wish we would not need this trick any more in the near future.
 
 ### Reference
-- [1] [http://krakendev.io/blog/generic-protocols-and-their-shortcomings](http://krakendev.io/blog/generic-protocols-and-their-shortcomings)
-- [2] [https://milen.me/writings/swift-generic-protocols](https://milen.me/writings/swift-generic-protocols)
-- [3] [https://github.com/apple/swift-evolution/tree/master/proposals](https://milen.me/writings/swift-generic-protocols) (with keywords: generic, protocol :D)
+- [1] [http://krakendev.io/blog/generic-protocols-and-their-shortcomings](http://krakendev.io/blog/generic-protocols-and-their-shortcomings){:.ga-link}
+- [2] [https://milen.me/writings/swift-generic-protocols](https://milen.me/writings/swift-generic-protocols){:.ga-link}
+- [3] [https://github.com/apple/swift-evolution/tree/master/proposals](https://milen.me/writings/swift-generic-protocols){:.ga-link} (with keywords: generic, protocol :D)
 
 Have fun!

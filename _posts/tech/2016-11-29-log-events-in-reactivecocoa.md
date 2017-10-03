@@ -8,7 +8,7 @@ tags:   ios
 categories: [Tech]
 ---
 
-I used to spend a lot of time reading documentations of ReactiveCocoa (Framework overview, design guidlines, basic operators...) but, unfortunately, missed [this one](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DebuggingTechniques.md).
+I used to spend a lot of time reading documentations of ReactiveCocoa (Framework overview, design guidlines, basic operators...) but, unfortunately, missed [this one](https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DebuggingTechniques.md){:.ga-link}.
 
 I strongly agree that debugging is not quite easy in the async world. Printing log is my common way to deal with it :D. And yes, I didn't know that RAC provides such a built-in logger.
 
