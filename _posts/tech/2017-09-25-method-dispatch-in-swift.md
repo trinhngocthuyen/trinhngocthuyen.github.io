@@ -42,7 +42,7 @@ Method dispatch is a term referring to mechanisms by which the program determine
 
 #### Message dispatch
 
-- In fact, it is Objective-C that provides this mechanism (sometimes, it is referred as [*message passing*](https://en.wikipedia.org/wiki/Message_passing)){:.ga-link} and Swift code just uses the Objective-C runtime lib. Every time an Objective-C method is called, the invocation is passed to `objc_msgSend` which handles the look ups. Technically, the process starts from the given class and iterates the class hierarchy to pull out the implementation.
+- In fact, it is Objective-C that provides this mechanism (sometimes, it is referred as [*message passing*](https://en.wikipedia.org/wiki/Message_passing){:.ga-link}) and Swift code just uses the Objective-C runtime lib. Every time an Objective-C method is called, the invocation is passed to `objc_msgSend` which handles the look ups. Technically, the process starts from the given class and iterates the class hierarchy to pull out the implementation.
 - Unlike table dispatch, the *message passing dictionary* could be modified at runtime, enabling us to adjust the program behaviors while running. Method swizzling is one of the most popular technique, by taking advantage of this special feature.
 - *Message dispatch* is the most dynamic among the three. As a trade off, the cost of resolving implementation could be a little expensive though the lookup performance is guarded by caching mechanism.
 - This mechanism is a keystone of Cocoa frameworks. Looking at the source of code Swift, you will see that KVO is implemented using swizzling.
