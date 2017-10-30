@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-POST_DIR="_posts"
+POST_DIR="_posts/tech"
 
 POST_NAME="$1"
 DATE=`date +%Y-%m-%d`
@@ -18,6 +18,6 @@ title:  \"${POST_NAME}\"
 date:   ${DATE} 00:00:00
 summary:    \"\"
 tags:   
-categories:	[]
+categories:	[Tech]
 ---
 " > ${FILE}
