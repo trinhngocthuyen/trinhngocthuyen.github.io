@@ -21,7 +21,7 @@ categories:	[Tech]
 
 I always thought that *Tail call optimization (TCO)*, sometimes called *tail recursion optimization*, is supported in most languages by default. It turns out to be opposite.
 
-I happened to find it out when solving a Hackerrank problem (using Python). As a fan of functional programming, I used recursion for better readability. Of course, I wrote the code in *tail recusion* to avoid memory issues and let the system take care the rest. Yet, a `segmentation fault` exception was thrown as a potential evidence of the absence of TCO.
+I happened to find it out when solving a Hackerrank problem (using Python). As a fan of functional programming, I used recursion for better readability. Of course, I wrote the code in *tail recursion* to avoid memory issues and let the system take care the rest. Yet, a `segmentation fault` exception was thrown as a potential evidence of the absence of TCO.
 
 After a few minutes googling, I found that there is an approach to eliminate the memory issues without changing my code to while-loop style. Here is the [reference](http://chrispenner.ca/posts/python-tail-recursion). You don't need to understand it, just remember that in Python, there exist a solution to fix it.
 
