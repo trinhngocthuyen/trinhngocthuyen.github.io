@@ -4,7 +4,7 @@ comments:	true
 title:  "Method Swizzling: What, Why and How"
 date:   2017-10-20 00:00:00
 summary:    "Method swizzling is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs. Actually, this special feature is offered by the Objective-C runtime, via message dispatch."
-tags:   
+tags:   ios swift dynamism swizzle
 categories:	[Tech]
 ---
 

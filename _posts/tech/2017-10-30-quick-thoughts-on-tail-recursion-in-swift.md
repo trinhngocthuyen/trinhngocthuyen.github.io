@@ -4,7 +4,7 @@ comments:	true
 title:  "Quick thoughts on Tail recursion in Swift"
 date:   2017-10-30 00:00:00
 summary:    "I always thought that Tail call optimization (TCO), sometimes called tail recursion optimization, is supported in most languages by default. It turns out to be opposite."
-tags:   
+tags:   swift programming optimization
 categories:	[Tech]
 ---
 
