@@ -96,7 +96,7 @@ let x = mutualFriends["John"] ?? myDefaultValue
 ```
 <img src = "/assets/ios/operator_or_autoclosure.png">
 
-Now, with the `@autoclose` annotation, Swift is smart enough to map
+Now, with the `@autoclosure` annotation, Swift is smart enough to map
 `myDefaultValue` to a corresponding function. Everything seems quite natural so
 far.
 
