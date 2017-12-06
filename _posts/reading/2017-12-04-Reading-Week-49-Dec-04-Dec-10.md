@@ -8,6 +8,12 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 06, 2017
+- [Advice to aspiring data scientists: start a blog](http://varianceexplained.org/r/start-blog)<br>
+--> Typical advice. Not only for data scientists, but also for software engineers, designers, or anyone. I really love the [pic](https://twitter.com/AmeliaMN/status/926509282874585089/photo/1) in the post. My personal experience: blogging has brought me lots of joy. The moment when you publish a post after dayssss writing is so good.
+
+- [http://blogs.tedneward.com/patterns/builder](http://blogs.tedneward.com/patterns/builder)<br>
+--> In short, *Builder* design pattern is useful for create an object constructed by different parts, and the construction process of that object is non-trivial.
 
 ### Dec 04, 2017
 - [Đọc cái gì, và đọc ở đâu](https://thefullsnack.com/posts/the-source-of-knowledge.html)<br>
