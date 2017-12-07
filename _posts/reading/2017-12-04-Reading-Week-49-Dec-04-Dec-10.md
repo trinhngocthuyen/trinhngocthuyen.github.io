@@ -16,6 +16,9 @@ categories:	[Reading]
 --> Thật ra mình không đồng ý hẳn với quan điểm của tác giả bởi *"Ở đâu cũng có anh hùng, ở đâu cũng có người khùng người điên"*. Tuy nhiên, có một luận điểm mình thấy thuyết phục (bạn có thể thấy không thuyết phục):
 > The reason for this is that women have a greater intuitive understanding of what makes us all human. Women have a natural inclination to focus on the important things that make us human. To maximize the benefit of AI technology we must focus on how AI improves our humanity and therefore we need to understand, at the very least, what makes us human and not what makes us machines.
 
+- [Distance oracle – Truy vấn nhanh khoảng cách giữa hai điểm bất kỳ trên đồ thị](https://ongxuanhong.wordpress.com/2017/12/05/distance-oracle-truy-van-nhanh-khoang-cach-giua-hai-diem-bat-ky-tren-do-thi)<br>
+--> Post này có hàm lượng lý thuyết cao :). Bài này mình chọn hiểu phần mở đầu và kết luận của post, còn phần chi tiết trong slides thì mình chưa hiểu và cũng chưa định hiểu. Tóm váy lại là với bài toán truy vấn khoảng cách trên đồ thị thì việc những cấu trúc dữ liệu thông thường sẽ cho kém hiệu quả (thậm chí bất khả thi) đối với dữ liệu lớn. *Distance oracle* là một cấu trúc dữ liệu cho ra kết quả xấp xỉ nhưng đem lại lợi ích lớn về mặt không gian lưu trữ và thời gian truy vấn. Xấp xỉ này được kiểm chứng trên các dataset thực tế, và cho thấy sai lệch không đáng kể.
+
 
 ### Dec 06, 2017
 - [Advice to aspiring data scientists: start a blog](http://varianceexplained.org/r/start-blog)<br>
