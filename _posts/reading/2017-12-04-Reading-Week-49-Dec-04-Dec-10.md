@@ -8,6 +8,15 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 07, 2017
+- [Những câu chuyện trên máy bay](http://tapbut.ngochieu.com/nhung-cau-chuyen-tren-may-bay)<br>
+--> Lâu rồi mới thấy anh Hiếu viết bài. Đây là một bài viết nhẹ nhàng, nhưng mình đọc thấy rất thích. Có 2 thể loại viết khiến mình đọc vào có 1 cảm hứng dồi đào. Một là thể loại mind-blowing, giống như *Thinking fast and slow*, *Phi lý trí* và sách của thầy Phan Dũng. Thể loại thứ hai là những mẫu chuyện (nhỏ) xoay quanh cuộc sống thường nhật, được ghi lại bởi những cái nhìn tinh tế, như cái bài viết trên :D.
+
+- [Why Women Should Lead our A.I. Future](https://medium.com/intuitionmachine/why-women-should-lead-our-a-i-future-8a0b7085ffc5)<br>
+--> Thật ra mình không đồng ý hẳn với quan điểm của tác giả bởi *"Ở đâu cũng có anh hùng, ở đâu cũng có người khùng người điên"*. Tuy nhiên, có một luận điểm mình thấy thuyết phục (bạn có thể thấy không thuyết phục):
+> The reason for this is that women have a greater intuitive understanding of what makes us all human. Women have a natural inclination to focus on the important things that make us human. To maximize the benefit of AI technology we must focus on how AI improves our humanity and therefore we need to understand, at the very least, what makes us human and not what makes us machines.
+
+
 ### Dec 06, 2017
 - [Advice to aspiring data scientists: start a blog](http://varianceexplained.org/r/start-blog)<br>
 --> Typical advice. Not only for data scientists, but also for software engineers, designers, or anyone. I really love the [pic](https://twitter.com/AmeliaMN/status/926509282874585089/photo/1) in the post. My personal experience: blogging has brought me lots of joy. The moment when you publish a post after dayssss writing is so good.
