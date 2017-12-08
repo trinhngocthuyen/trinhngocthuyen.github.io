@@ -12,6 +12,9 @@ categories:	[Reading]
 - [When Not to Use an Enum](http://matt.diephouse.com/2017/12/when-not-to-use-an-enum) <post-content-tag>#enum #analytics #ios</post-content-tag><br>
 --> I share the same point with Matt that `enum` in this case is not a good choice. By using `struct` as Matt suggested, the code becomes more abstract. In the original post of Sundell, `AnalyticsManager` highly depends on concrete. Another option we could think of is to use `enum` is to use different analytics tracker for each workflow. For instance, for login flow, we have `LoginAnalyticsTracker` and `LoginAnalyticsEvent`. With this approach, we achieve both separation of responsibilities, and abstraction (protocol-based).
 
+- [Chasing Fermat’s Last Theorem](https://prateekvjoshi.com/2017/12/05/chasing-fermats-last-theorem) <post-content-tag>#math #history</post-content-tag><br>
+--> Đọc được post này trên wordpress. Nhớ đến bộ phim tài liệu hồi mấy tháng trước coi, kể về Fermat's Last Theorem và hành trình mà Andrew Wiles đi đến lời giải. Mình nghĩ là sẽ viết riêng 1 bài về topic này.
+
 
 ### Dec 07, 2017
 - [Những câu chuyện trên máy bay](http://tapbut.ngochieu.com/nhung-cau-chuyen-tren-may-bay) <post-content-tag>#tapbut</post-content-tag><br>
