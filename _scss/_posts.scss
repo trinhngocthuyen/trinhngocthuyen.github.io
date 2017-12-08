@@ -10,6 +10,13 @@
   line-height: 1;
 }
 
+post-content-tag {
+  color: #666;
+  font-size: 14px;
+  font-weight: lighter;
+  padding-left: 10px;
+}
+
 @media screen and (max-width: 800px) {
   .post-title {
     font-size: 36px;
