@@ -3,7 +3,7 @@ layout: post
 comments:	true
 title:  "Định lý cuối cùng của Fermat"
 date:   2017-12-08 00:00:00
-summary:    Khoảng 5-6 tháng trước mình xem một bộ phim tài liệu có tựa đề "BBC - Horizon - 1996 - Fermat’s Last Theorem". Đây là một câu chuyện về lịch sử toán học mà mình thấy rất hay nên muốn chia sẻ lại
+summary:    Khoảng 5-6 tháng trước mình xem một bộ phim tài liệu có tựa đề "BBC - Horizon - 1996 - Fermat’s Last Theorem". Đây là một câu chuyện về lịch sử toán học mà mình thấy rất hay nên muốn chia sẻ lại. Fermat là một nhà toán học người Pháp. Ông có nhiều đóng góp quan trọng trong lý thuyết số (number theory). Một trong số đó là định lý Fermat lớn, hay định lý cuối cùng của Fermat (Fermat’s Last Theorem).
 tags:   
 categories:	[Misc]
 ---
