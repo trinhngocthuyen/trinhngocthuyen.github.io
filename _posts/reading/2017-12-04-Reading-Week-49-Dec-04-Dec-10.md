@@ -8,6 +8,15 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 10, 2017
+- [Interactive visualizations of sampling and GP regression](http://andrewgelman.com/2017/12/09/interactive-visualizations-mcmc-gp) <post-content-tag>#probability #statistics #sampling</post-content-tag><br>
+--> Blog post này giới thiệu (open-source) interative demo về MCMC (Markov Chain Monte Carlo) và Gaussian Process. Mình chưa biết về Gaussian Process, nhưng đã có tìm hiểu về MCMC và thấy rất hay. Ok, sẽ tìm hiểu về Gaussian Process, và cũng sẽ thử viết 1 bài nhỏ về MCMC.
+
+- [Bắt đầu Big Data từ đâu và như thế nào?](https://ongxuanhong.wordpress.com/2017/12/09/vietnam-web-summit-2017)<post-content-tag>#talk #data-science</post-content-tag><br>
+
+- [https://twitter.com/cabel/status/931292107372838912](https://twitter.com/cabel/status/931292107372838912)<post-content-tag>#tip</post-content-tag><br>
+--> Đây là tip để sử dụng fingerprint để xác nhận sudo authorization, thay cho password. Nice tip! Nhưng cá nhân thì sẽ không đánh đổi *security* để lấy *convenience*. Nói chung: *you it at your own risk!*
+
 ### Dec 08, 2017
 - [When Not to Use an Enum](http://matt.diephouse.com/2017/12/when-not-to-use-an-enum) <post-content-tag>#enum #analytics #ios</post-content-tag><br>
 --> I share the same point with Matt that `enum` in this case is not a good choice. By using `struct` as Matt suggested, the code becomes more abstract. In the original post of Sundell, `AnalyticsManager` highly depends on concrete. Another option we could think of is to use `enum` is to use different analytics tracker for each workflow. For instance, for login flow, we have `LoginAnalyticsTracker` and `LoginAnalyticsEvent`. With this approach, we achieve both separation of responsibilities, and abstraction (protocol-based).
