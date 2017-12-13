@@ -5,7 +5,7 @@ title:  "Reading: Week 50, Dec 11 - Dec 17"
 date:   2017-12-11 00:00:00
 summary:    ""
 tags:   reading
-categories:	[Tech]
+categories:	[Reading]
 ---
 
 ### Dec 13, 2017
@@ -14,6 +14,8 @@ categories:	[Tech]
 --> Now I understand the name of `os_unfair_lock`. *Lock fairness* means that different threads could have some chances to acquire the lock. Otherwise, there could happend the situation in which a thread holds the lock (many times) for a long time. This lock, which is available since ios 10, is the replacement of `OSSpinlock`, to avoid thread priority issue.<br>
 --> The high performance of `os_unfair_lock` comes from the fact it constantly check if the lock has been released or not.<br>
 --> The author pointed out that `DispatchQueue` seems to be the right choice among those mentioned. I also run a benchmark and this is the result: `NSLock` ~< `pthread_mutex_t` < `DispatchQueue` ~< `DispatchSemaphore` < `os_unfair_lock`
+
+- [Meet the man behind the most important tool in data science](https://qz.com/1126615/the-story-of-the-most-important-tool-in-data-science/) <post-content-tag>#data-sience #story</post-content-tag><br>
 
 
 ### Dec 11, 2017
