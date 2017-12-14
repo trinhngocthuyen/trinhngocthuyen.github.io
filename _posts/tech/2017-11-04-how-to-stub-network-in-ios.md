@@ -63,13 +63,13 @@ We will talk about $H_1$ later because it involves a few cases that should be ta
 
 ```swift
 class CustomURLProtocol: URLProtocol {
-	private static var stubs: [URLRequest: CustomResponse] = [:]
+	private static var stubs: [String: CustomResponse] = [:]
 	override open class func canInit(with request: URLRequest) -> Bool {
-    	return stubs[request] != nil
+    	return url != nil && stubs[request.url!.absoluteString] != nil
 	}	
 
 	class func addStub(url: URL, response: CustomResponse) {
-		stubs[URLRequest(url: url)] = response
+		stubs[url.absoluteString] = response
 	}
 	...
 }
