@@ -8,6 +8,12 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 15, 2017
+
+[>> Swift Analytics: Comparing structs, enums and protocols](http://chris.eidhof.nl/post/swift-analytics)<post-content-tag>#ios #analytics</post-content-tag>
+- Well, the [original post](https://www.swiftbysundell.com/posts/building-an-enum-based-analytics-system-in-swift) by John has drawn lots of attention from the community. The way developers use to handle analytics diverges. Chris's post gives a fair comparison between the approaches mentioned. In short, each has both benefits and drawbacks. It's up to your needs to pick the most suitable implementation. Personally, I prefer Dave's approach.
+
+
 ### Dec 14, 2017
 
 [>> SourceKit and You](https://academy.realm.io/posts/appbuilders-jp-simard-sourcekit) <post-content-tag>#ios #talk</post-content-tag>
