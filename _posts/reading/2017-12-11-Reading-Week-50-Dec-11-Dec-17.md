@@ -8,6 +8,11 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 16, 2017
+
+[>> Diary of a Wimpy Kid (Diary of a Wimpy Kid, Book 1)](https://www.amazon.com/Diary-Wimpy-Kid-Book-ebook/dp/B005CRQ4OW)<post-content-tag>#books #reading</post-content-tag>
+- This book is increadibly fantastic. The story was written in a very distinctively witty manner. I really love the way the author portraited the Greg-Rowley friendship and how Greg learned from his hard lessons. Also, the differences in how children and parents normally conceive were described so vividly, which brought me lots of laugh... I'm gonna grab other books of the series :).
+
 ### Dec 15, 2017
 
 [>> Swift Analytics: Comparing structs, enums and protocols](http://chris.eidhof.nl/post/swift-analytics)<post-content-tag>#ios #analytics</post-content-tag>
