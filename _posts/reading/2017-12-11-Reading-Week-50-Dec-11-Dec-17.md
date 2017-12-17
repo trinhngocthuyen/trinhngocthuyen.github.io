@@ -8,6 +8,15 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 17, 2017
+[>> Friday Q&A 2017-12-08: Type Erasure in Swift](https://www.mikeash.com/pyblog/friday-qa-2017-12-08-type-erasure-in-swift.html)
+- This post discussed several approaches towards type-easure. The *underlying functions approach* is the same as what I blogged a while ago
+in *[Swift: Generic protocol (p.1)](https://trinhngocthuyen.github.io/2016-06-25-swift-generic-protocol-p1.html)*. 
+
+- We can recognize the noticeable presence of *Bridge* design pattern here because it is compatibility that motivates type erasure.
+
+- This article published recently also mentions type erasure, and a few more problems when working with associate types: [Patterns for Working With Associated Types](http://appventure.me/2017/12/10/patterns-for-working-with-associated-types). A nice-to-read!
+
 ### Dec 16, 2017
 
 [>> Diary of a Wimpy Kid (Diary of a Wimpy Kid, Book 1)](https://www.amazon.com/Diary-Wimpy-Kid-Book-ebook/dp/B005CRQ4OW)<post-content-tag>#books #reading</post-content-tag>
