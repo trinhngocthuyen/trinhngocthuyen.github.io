@@ -9,7 +9,7 @@ categories:	[Reading]
 ---
 
 ### Dec 17, 2017
-[>> Friday Q&A 2017-12-08: Type Erasure in Swift](https://www.mikeash.com/pyblog/friday-qa-2017-12-08-type-erasure-in-swift.html)
+[>> Friday Q&A 2017-12-08: Type Erasure in Swift](https://www.mikeash.com/pyblog/friday-qa-2017-12-08-type-erasure-in-swift.html)<post-content-tag>#ios #protocols #generic #type-safety</post-content-tag>
 - This post discussed several approaches towards type-easure. The *underlying functions approach* is the same as what I blogged a while ago
 in *[Swift: Generic protocol (p.1)](https://trinhngocthuyen.github.io/2016-06-25-swift-generic-protocol-p1.html)*. 
 
