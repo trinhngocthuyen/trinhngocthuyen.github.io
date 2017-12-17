@@ -17,6 +17,12 @@ in *[Swift: Generic protocol (p.1)](https://trinhngocthuyen.github.io/2016-06-25
 
 - This article published recently also mentions type erasure, and a few more problems when working with associate types: [Patterns for Working With Associated Types](http://appventure.me/2017/12/10/patterns-for-working-with-associated-types). A nice-to-read!
 
+[>> An Interactive Introduction To Quantum Computing Part 2](http://davidbkemp.github.io/QuantumComputingArticle/part2.html) <post-content-tag>#quantum-computing</post-content-tag>
+- I'm not from Physics background but I cannot resist my curiosity to get to know this trendy term. The article gave me a rough sense of how quantum search totally defeats the conventional one. Anw, need more exposure!
+
+[>> What if everyone jumped at once?](http://brainpump.net/video/what-if-everyone-jumped-at-once)<post-content-tag>#science</post-content-tag>
+- Rất thích cách đặt vấn đề của Vsauce. Có những câu hỏi tương tự, chẳng hạn như giả sử bất thình lình Trái Đất ngừng quay thì chuyện gì xảy ra? Những câu này làm mình nhớ đến [những thí nghiệm tưởng tượng của Einstein](https://www.youtube.com/watch?v=lgeB4b1WR0Y).
+
 ### Dec 16, 2017
 
 [>> Diary of a Wimpy Kid (Diary of a Wimpy Kid, Book 1)](https://www.amazon.com/Diary-Wimpy-Kid-Book-ebook/dp/B005CRQ4OW)<post-content-tag>#books #reading</post-content-tag>
