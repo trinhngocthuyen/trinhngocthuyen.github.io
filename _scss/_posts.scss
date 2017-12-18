@@ -17,6 +17,19 @@ post-content-tag {
   padding-left: 10px;
 }
 
+.post-link-reading {
+  color: #0067a7;
+  background-color: #eeeeee;
+  padding: 2px 5px 2px 5px;
+  border-radius: 3px;
+  &:visited, &:hover {
+    color: #0067a7;
+  }
+  &::before {
+    content: '» ';
+  }
+}
+
 @media screen and (max-width: 800px) {
   .post-title {
     font-size: 36px;
