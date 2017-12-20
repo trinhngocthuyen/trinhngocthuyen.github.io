@@ -8,6 +8,13 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 20, 2017
+
+[[2] No more rainbows!](https://agilescientific.com/blog/2017/12/14/no-more-rainbows){:.post-link-reading} <post-content-tag>#data #visualization</post-content-tag>
+- In short, despite that rainbow colomap is eye-catching, it has some drawbacks in terms of interpretation and readability. There's a good point to reason about solutions:
+> I think what people like is the colour variance — it acts like contours, highlighting subtle features in the surface
+
+
 ### Dec 19, 2017
 
 [[1] Why VIPER is a bad choice for your next application](https://medium.com/@Pr0Ger/why-viper-is-a-bad-choice-for-your-next-application-725f4e16fbee){:.post-link-reading} <post-content-tag>#ios #architecture #VIPER</post-content-tag>
