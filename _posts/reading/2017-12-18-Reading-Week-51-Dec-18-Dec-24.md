@@ -10,6 +10,11 @@ categories:	[Reading]
 
 ### Dec 20, 2017
 
+[[3] The Senior Engineer’s Guide to Helping Others Make Decisions](http://silverwraith.com/blog/2017/10/the-senior-engineers-guide-to-helping-others-make-decisions){:.post-link-reading} <post-content-tag>#soft-skills #problem-solving #mentor</post-content-tag>
+- I really enjoy this article. The way the senior engineer helped the junior one in the third conversation is awesome. Though I am not a senior engineer, this inter-personal skill is extremely necessary for collaboration with others.
+- A vital factor contributing to the power of this tip is how language is used: *"That's a good point", "That would be great"*.
+
+
 [[2] No more rainbows!](https://agilescientific.com/blog/2017/12/14/no-more-rainbows){:.post-link-reading} <post-content-tag>#data #visualization</post-content-tag>
 - In short, despite that rainbow colomap is eye-catching, it has some drawbacks in terms of interpretation and readability. There's a good point to reason about solutions:
 > I think what people like is the colour variance — it acts like contours, highlighting subtle features in the surface
