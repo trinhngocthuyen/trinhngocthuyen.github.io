@@ -8,6 +8,11 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 21, 2017
+
+[[4] Preventing UIVisualEffectView crash](https://dev.to/onmyway133/preventing-uivisualeffectview-crash-30gg)<post-content-tag>#ios #issue</post-content-tag>
+- An 📱-specific post. The solution suggested at the end is nice.
+
 ### Dec 20, 2017
 
 [[3] The Senior Engineer’s Guide to Helping Others Make Decisions](http://silverwraith.com/blog/2017/10/the-senior-engineers-guide-to-helping-others-make-decisions){:.post-link-reading} <post-content-tag>#soft-skills #problem-solving #mentor</post-content-tag>
