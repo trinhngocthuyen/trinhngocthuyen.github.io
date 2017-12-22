@@ -8,10 +8,20 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 22, 2017
+
+[[5] How to Fit UX/UI into Agile and Scrum](https://www.scrumalliance.org/community/articles/2016/november/agile-scrum-and-ux-ui){:.post-link-reading} <post-content-tag>#agile #scrum</post-content-tag>
+- I really enjoy this article. I always find collaborating with designers is kind of challenging due to their distintive nature. Sometimes, it was their side that held the project back. This is not a blame but my view on the bottleneck of the software process I've experienced.
+> In addition, UX is supposed to not only be inspired but also informed by user testing. Imagine the delays this could bring into a single vertically sliced story. Additionally, designers cannot create a design based on a single vertically sliced story, because they have to consider the whole user journey. For this reason, they tend to prefer designing on an epic level
+- At the end of the day, it's all about *working with people*. Learning to code is much easier than learning to collaborate with people since human is always UNPREDICTABLE.
+- Related: [What are the main differences between Scrum and Kanban?](https://www.quora.com/What-are-the-main-differences-between-Scrum-and-Kanban)
+
+
 ### Dec 21, 2017
 
-[[4] Preventing UIVisualEffectView crash](https://dev.to/onmyway133/preventing-uivisualeffectview-crash-30gg)<post-content-tag>#ios #issue</post-content-tag>
+[[4] Preventing UIVisualEffectView crash](https://dev.to/onmyway133/preventing-uivisualeffectview-crash-30gg){:.post-link-reading} <post-content-tag>#ios #issue</post-content-tag>
 - An 📱-specific post. The solution suggested at the end is nice.
+
 
 ### Dec 20, 2017
 
