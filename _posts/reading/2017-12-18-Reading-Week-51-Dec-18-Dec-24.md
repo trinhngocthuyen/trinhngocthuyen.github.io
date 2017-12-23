@@ -8,6 +8,11 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### Dec 23, 2017
+
+[[6] Apple Plans Combined iPhone, iPad & Mac Apps to Create One User Experience](https://www.bloomberg.com/news/articles/2017-12-20/apple-is-said-to-have-plan-to-combine-iphone-ipad-and-mac-apps){:.post-link-reading} <post-content-tag>#news #ios #macos</post-content-tag>
+- This is nothing a rumor. Dave Verwer (from iOS Dev Weekly) shared his thought on it. He thought that the future of MacOS and iOS won't probably go that way. 
+
 ### Dec 22, 2017
 
 [[5] How to Fit UX/UI into Agile and Scrum](https://www.scrumalliance.org/community/articles/2016/november/agile-scrum-and-ux-ui){:.post-link-reading} <post-content-tag>#agile #scrum</post-content-tag>
