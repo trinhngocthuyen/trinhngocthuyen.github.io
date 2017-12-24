@@ -15,7 +15,7 @@ categories:	[Reading]
 
 ### Dec 17, 2017
 
-[[11] Friday Q&A 2017-12-08: Type Erasure in Swift](https://www.mikeash.com/pyblog/friday-qa-2017-12-08-type-erasure-in-swift.html){:.post-link-reading} <post-content-tag>#ios #protocols #generic #type-safety</post-content-tag>
+[[11] Friday Q&A 2017-12-08: Type Erasure in Swift](https://www.mikeash.com/pyblog/friday-qa-2017-12-08-type-erasure-in-swift.html){:.post-link-reading} <post-meta>#ios #protocols #generic #type-safety</post-meta>
 - This post discussed several approaches towards type-easure. The *underlying functions approach* is the same as what I blogged a while ago
 in *[Swift: Generic protocol (p.1)](https://trinhngocthuyen.github.io/2016-06-25-swift-generic-protocol-p1.html)*. 
 
@@ -23,29 +23,29 @@ in *[Swift: Generic protocol (p.1)](https://trinhngocthuyen.github.io/2016-06-25
 
 - This article published recently also mentions type erasure, and a few more problems when working with associate types: [Patterns for Working With Associated Types](http://appventure.me/2017/12/10/patterns-for-working-with-associated-types). A nice-to-read!
 
-[[10] An Interactive Introduction To Quantum Computing Part 2](http://davidbkemp.github.io/QuantumComputingArticle/part2.html){:.post-link-reading} <post-content-tag>#quantum-computing</post-content-tag>
+[[10] An Interactive Introduction To Quantum Computing Part 2](http://davidbkemp.github.io/QuantumComputingArticle/part2.html){:.post-link-reading} <post-meta>#quantum-computing</post-meta>
 - I'm not from Physics background but I cannot resist my curiosity to get to know this trendy term. The article gave me a rough sense of how quantum search totally defeats the conventional one. Anw, need more exposure!
 
-[[9] What if everyone jumped at once?](http://brainpump.net/video/what-if-everyone-jumped-at-once){:.post-link-reading} <post-content-tag>#science</post-content-tag>
+[[9] What if everyone jumped at once?](http://brainpump.net/video/what-if-everyone-jumped-at-once){:.post-link-reading} <post-meta>#science</post-meta>
 - Rất thích cách đặt vấn đề của Vsauce. Có những câu hỏi tương tự, chẳng hạn như giả sử bất thình lình Trái Đất ngừng quay thì chuyện gì xảy ra? Những câu này làm mình nhớ đến [những thí nghiệm tưởng tượng của Einstein](https://www.youtube.com/watch?v=lgeB4b1WR0Y).
 
 ### Dec 16, 2017
 
-[[8] Diary of a Wimpy Kid (Diary of a Wimpy Kid, Book 1)](https://www.amazon.com/Diary-Wimpy-Kid-Book-ebook/dp/B005CRQ4OW){:.post-link-reading} <post-content-tag>#books #reading</post-content-tag>
+[[8] Diary of a Wimpy Kid (Diary of a Wimpy Kid, Book 1)](https://www.amazon.com/Diary-Wimpy-Kid-Book-ebook/dp/B005CRQ4OW){:.post-link-reading} <post-meta>#books #reading</post-meta>
 - This book is increadibly fantastic. The story was written in a very distinctively witty manner. I really love the way the author portraited the Greg-Rowley friendship and how Greg learned from his hard lessons. Also, the differences in how children and parents normally conceive were described so vividly, which brought me lots of laugh... I'm gonna grab other books of the series :).
 
-[[7] FluidDATA](https://www.producthunt.com/posts/fluiddata){:.post-link-reading} <post-content-tag>#podcasts #tools</post-content-tag>
+[[7] FluidDATA](https://www.producthunt.com/posts/fluiddata){:.post-link-reading} <post-meta>#podcasts #tools</post-meta>
 - Podcast lovers will be definitely into FluidDATA. The wonderful power of this site is that you can search podcasts based on your interests. This feature also provides you relevant sources whose contents meet your creteria.
 
 ### Dec 15, 2017
 
-[[6] Swift Analytics: Comparing structs, enums and protocols](http://chris.eidhof.nl/post/swift-analytics){:.post-link-reading} <post-content-tag>#ios #analytics</post-content-tag>
+[[6] Swift Analytics: Comparing structs, enums and protocols](http://chris.eidhof.nl/post/swift-analytics){:.post-link-reading} <post-meta>#ios #analytics</post-meta>
 - Well, the [original post](https://www.swiftbysundell.com/posts/building-an-enum-based-analytics-system-in-swift) by John has drawn lots of attention from the community. The way developers use to handle analytics diverges. Chris's post gives a fair comparison between the approaches mentioned. In short, each has both benefits and drawbacks. It's up to your needs to pick the most suitable implementation. Personally, I prefer Dave's approach.
 
 
 ### Dec 14, 2017
 
-[[5] SourceKit and You](https://academy.realm.io/posts/appbuilders-jp-simard-sourcekit){:.post-link-reading} <post-content-tag>#ios #talk</post-content-tag>
+[[5] SourceKit and You](https://academy.realm.io/posts/appbuilders-jp-simard-sourcekit){:.post-link-reading} <post-meta>#ios #talk</post-meta>
 - Đây là một bài nói, chứ hỏk phải bài đọc. Tóm lại bài nói là, `SourceKit` cho phép mình làm việc với language syntax, và giải quyết nhiều vấn đề thú vị như *code analysis*, *code generation*, *code refactoring*...<br>
 
 - Đã nghe nói về `SourceKit` và cũng thử qua các thư viện nổi tiếng xây dựng trên cái này như `SwiftLint`, `Sourcery` trong mấy cái projects thử nghiệm. Về cảm nhận cá nhân thì mình thấy `SwiftLint` cực kỳ hiệu quả. Nếu coding style là quan trọng đối với team thì nó hoàn toàn đáng thời gian để tích hợp. Mình nhớ lần đầu gắn thử vào project trên công ty (code base hơi lớn), mặc dù đã disable các rules, và chỉ enable 1 vài rules thôi mà số lượng warnings/errors bay nhảy lên 3 con số (999+). Lý tưởng nhất là tích hợp lúc đầu. Còn không thì chia theo pha mà tích hợp (mỗi pha enable 1 số rules tuỳ theo mức độ nghiêm trọng, và mức độ vi phạm của project hiện tại). Đây là cách làm trong đầu mình, chứ project trên công ty vẫn chưa có dấu chân của swiftlint đâu :)).<br>
@@ -58,22 +58,22 @@ in *[Swift: Generic protocol (p.1)](https://trinhngocthuyen.github.io/2016-06-25
 
 ### Dec 13, 2017
 
-[[4] Friday Q&A 2017-10-27: Locks, Thread Safety, and Swift: 2017 Edition](https://www.mikeash.com/pyblog/friday-qa-2017-10-27-locks-thread-safety-and-swift-2017-edition.html){:.post-link-reading} <post-content-tag>#ios #concurrency</post-content-tag>
+[[4] Friday Q&A 2017-10-27: Locks, Thread Safety, and Swift: 2017 Edition](https://www.mikeash.com/pyblog/friday-qa-2017-10-27-locks-thread-safety-and-swift-2017-edition.html){:.post-link-reading} <post-meta>#ios #concurrency</post-meta>
 - Now I understand the name of `os_unfair_lock`. *Lock fairness* means that different threads could have some chances to acquire the lock. Otherwise, there could happend the situation in which a thread holds the lock (many times) for a long time. This lock, which is available since ios 10, is the replacement of `OSSpinlock`, to avoid thread priority issue.
 
 - The high performance of `os_unfair_lock` comes from the fact it constantly check if the lock has been released or not.
 
 - The author pointed out that `DispatchQueue` seems to be the right choice among those mentioned. I also run a benchmark and this is the result: `NSLock` ~< `pthread_mutex_t` < `DispatchQueue` ~< `DispatchSemaphore` < `os_unfair_lock`
 
-[[3] Meet the man behind the most important tool in data science](https://qz.com/1126615/the-story-of-the-most-important-tool-in-data-science/){:.post-link-reading} <post-content-tag>#data-sience #story</post-content-tag>
+[[3] Meet the man behind the most important tool in data science](https://qz.com/1126615/the-story-of-the-most-important-tool-in-data-science/){:.post-link-reading} <post-meta>#data-sience #story</post-meta>
 
 
 ### Dec 11, 2017
 
-[[2] Can you solve the egg drop riddle? - Yossi Elran](https://ed.ted.com/lessons/can-you-solve-the-egg-drop-riddle-yossi-elran){:.post-link-reading} <post-content-tag>#ted #riddle</post-content-tag>
+[[2] Can you solve the egg drop riddle? - Yossi Elran](https://ed.ted.com/lessons/can-you-solve-the-egg-drop-riddle-yossi-elran){:.post-link-reading} <post-meta>#ted #riddle</post-meta>
 - Interesting riddle. Definitely worth a share.
 
-[[1] Doing Data Science at Twitter](https://medium.com/@rchang/my-two-year-journey-as-a-data-scientist-at-twitter-f0c13298aee6){:.post-link-reading} <post-content-tag>#data-science</post-content-tag>
+[[1] Doing Data Science at Twitter](https://medium.com/@rchang/my-two-year-journey-as-a-data-scientist-at-twitter-f0c13298aee6){:.post-link-reading} <post-meta>#data-science</post-meta>
 - The author mentioned two types of data scientists. One is particularly strong in statistics, other highly excels at programming skills.
 
 - Really enjoy Dan's comparison =]]

@@ -10,9 +10,9 @@
   line-height: 1;
 }
 
-post-content-tag {
+post-meta {
   color: #666;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: lighter;
   padding-left: 10px;
 }
@@ -22,12 +22,17 @@ post-content-tag {
   background-color: #eeeeee;
   padding: 2px 5px 2px 5px;
   border-radius: 3px;
+  font-weight: lighter;
   &:visited, &:hover {
     color: #0067a7;
   }
   &::before {
-    content: '» ';
+    content: '📝 ';
   }
+}
+
+ul blockquote {
+  font-size: 16px;
 }
 
 @media screen and (max-width: 800px) {
