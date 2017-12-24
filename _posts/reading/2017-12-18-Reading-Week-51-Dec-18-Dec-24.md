@@ -8,6 +8,10 @@ tags:   reading
 categories:	[Reading]
 ---
 
+### TL-DR
+A plenty of technical stuff, right 😄? [1], [3], [5] and [7] are good posts to read.<br>
+Short on time? Pick [3] and [5]. They are the best among this list.
+
 ### Dec 23, 2017
 
 [[8] Fowl Language: AI Decodes the Nuances of Chicken “Speech”](https://www.scientificamerican.com/article/fowl-language-ai-decodes-the-nuances-of-chicken-ldquo-speech-rdquo){:.post-link-reading}
