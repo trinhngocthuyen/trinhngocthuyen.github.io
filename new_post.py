@@ -25,9 +25,10 @@ def make_post_id(post_name, created_date=date.today().isoformat()):
 def main(argv):
     post_name = argv[0]
     category = argv[1] if len(argv) >= 2 else 'Tech'
+    is_draft = argv[2] if len(argv) >= 3 else False
     created_date = date.today().isoformat()
     post_id = make_post_id(post_name=post_name, created_date=created_date)
-    post_dir = post_category_to_dir[category.lower()]
+    post_dir = post_category_to_dir[category.lower()] if not is_draft else '_drafts'
     fname = '%s/%s.md' % (post_dir, post_id)
 
     prefilled_content = \
