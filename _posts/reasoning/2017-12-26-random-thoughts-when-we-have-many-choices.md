@@ -1,9 +1,9 @@
 ---
 layout: post
 comments:	true
-title:  "Tản mạn: Khi chúng ta có nhiều sự lựa chọn"
+title:  "Tản mạn: Khi chúng ta có nhiều lựa chọn"
 date:   2017-12-26 00:00:00
-summary:    ""
+summary:    "Khi nói đến giải quyết vấn đề, người ta đôi khi dùng một cụm dài hơn là giải quyết vấn đề và ra quyết định (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái: <br>(1) Từ không có lời giải -> có lời giải<br>(2) Từ có nhiều lời giải -> chọn ra lời giải tối ưu..."
 tags:   reasoning decision-making
 categories:	[Reasoning]
 ---
