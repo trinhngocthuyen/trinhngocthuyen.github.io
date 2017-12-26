@@ -2,15 +2,12 @@
 
 .post-header {
   margin-bottom: 30px;
+  h1 {
+    margin-bottom: 0;
+  }
 }
 
-.post-title {
-  font-size: 42px;
-  letter-spacing: -1px;
-  line-height: 1;
-}
-
-post-meta {
+content-meta {
   color: #666;
   font-size: 13px;
   font-weight: lighter;
@@ -33,12 +30,6 @@ post-meta {
 
 ul blockquote {
   font-size: 16px;
-}
-
-@media screen and (max-width: 800px) {
-  .post-title {
-    font-size: 36px;
-  }
 }
 
 .post-content {
