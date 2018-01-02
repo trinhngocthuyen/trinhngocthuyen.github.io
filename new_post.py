@@ -23,7 +23,7 @@ def make_post_id(post_name, created_date=date.today().isoformat()):
 
 
 def main(argv):
-    post_name = argv[0]
+    post_name = argv[0].lower()
     category = argv[1] if len(argv) >= 2 else 'Tech'
     is_draft = argv[2] if len(argv) >= 3 else False
     created_date = date.today().isoformat()
