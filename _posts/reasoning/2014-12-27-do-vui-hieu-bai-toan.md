@@ -4,7 +4,7 @@ comments:	true
 title:  "Đố vui: bài toán tính quãng đường và việc hiểu bài toán"
 date:   2014-12-27 00:00:00
 summary:    ""
-tags:   creative-thinking problem-solvingtriz triz
+tags:   creative-thinking problem-solving triz
 categories:	[Reasoning]
 ---
 

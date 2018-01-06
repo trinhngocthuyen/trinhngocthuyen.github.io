@@ -4,7 +4,7 @@ comments:	true
 title:  "Mô hình hoá bài toán bằng những người tý hon"
 date:   2015-01-17 00:00:00
 summary:    ""
-tags:   creative-thinking problem-solvingsolving triz
+tags:   creative-thinking problem-solving triz
 categories:	[Reasoning]
 ---
 
