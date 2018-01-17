@@ -8,6 +8,15 @@ tags:   reading
 categories:	[Reading]
 ---
 
+[[3] Huy Tran @ NASA](https://women.nasa.gov/huy-tran/){:.post-link-reading} <content-meta>#biography</content-meta>
+- Really into this biography. Profoundly inspired by her story, partly because she was a Vietnamese who left the country for freedom, for a better education, a better future. 
+- One particular point I really enjoyed is what her mentor consoled her (quoted at the end of the text).
+> One day, after months of doing research in a set of material compositions, I ran the tests and the samples failed miserably. I was frustrated that I had wasted so much time and funding. My mentor sat me down and told me, ***“This is research. Sometimes things work and sometimes they don’t. And you just need to understand what your results tell you and then you move on. If you get it right the first time, then we would have to call it ‘search’ rather than ‘re-search’!”***
+
+[[2] On being an Engineering Manager](http://codeplease.io/2018/01/15/on-being-an-engineering-manager){:.post-link-reading} <content-meta>#manager #retrospective</content-meta>
+- Fascinating! From the perspective of a reader, this reflection provides me a clear sense of *what it is like to be an engineering manager, or a team lead*.
+- Interpersonal skills matter as most of the problems a team lead deals with are about humans (who are unpredictable by nature). 
+- A reality of taking this role is that you have less time to get involved in coding tasks no matter how much you want it.
 
 [[1] Practical story about Trie and Prefix Search](https://huydx.com/post/169427855284/practical-story-about-trie-and-prefix-search){:.post-link-reading} <content-meta>#tech-solution #data-structure #trie</content-meta>
 - Bài viết đề cập đến bài toán *prefix matching*, xương sống của giải pháp cho tính năng *autocompletion*. Bài này tác giả viết khá dễ hiểu. Mình rất thích. Tuy nhiên, có một vài điểm mình hơi thắc mắc, chỗ ước lượng memory usage cho Trie. 
