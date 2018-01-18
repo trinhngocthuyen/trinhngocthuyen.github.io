@@ -51,6 +51,31 @@ ul blockquote {
   }
 }
 
+/* Rates */
+rate3 {
+  &::before {
+    content: "★★★☆☆";
+  }
+}
+
+rate4 {
+  &::before {
+    content: "★★★★☆";
+  }
+}
+
+rate5 {
+  &::before {
+    content: "★★★★★";
+  }
+}
+
+rate3, rate4, rate5 {
+  padding-left: 10px;
+  font-size: 13px;
+  color: #ffa500;
+}
+
 @media screen and (max-width: 800px) {
   .post-content h2 {
     font-size: 28px;
