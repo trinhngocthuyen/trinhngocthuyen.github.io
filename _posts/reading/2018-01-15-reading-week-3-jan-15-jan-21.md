@@ -8,6 +8,12 @@ tags:   reading
 categories:	[Reading]
 ---
 
+[[5] Spaced repitition in learning theory](https://www.youtube.com/watch?v=cVf38y07cfk){:.post-link-reading} <rate4/> <content-meta>#learning #methodology</content-meta>
+- Without revision, we tend to forget things not long after we have just learned it. The *forgetting curve* is set to drop dramatically then. So it's better to review when we start forgetting. Normally, the interval since the last revision extends. For example, 3 days after learning something new, review it. Then take the next review 5 days later, then 7 days later...
+- A difficulty of apply this technique is to determine *when to review*. We continuously acquire new knowledge (each at different time, and could be more farmiliar as compared to others), not to mention the influence of being driven by sentiments. An approach to deal with this difficulty which is mentioned in the video is *sorting info based on answers to questions*. This, in part, reminds me of the app *Duolingo*. It evaluates how well we memorize the words based on questions/answers. However, the vocabs are still lession-structured and hence not making use of this technique.
+
+[[4] Quora: *"When Google or Facebook rejects a candidate, why don’t they give him/her a simple explanation for the rejection to help the candidate work on the gaps in their knowledge?"*](https://www.quora.com/When-Google-or-Facebook-rejects-a-candidate-why-don%E2%80%99t-they-give-him-her-a-simple-explanation-for-the-rejection-to-help-the-candidate-work-on-the-gaps-in-their-knowledge){:.post-link-reading} <rate3/> <content-meta>#career #advice</content-meta>
+
 [[3] Huy Tran @ NASA](https://women.nasa.gov/huy-tran/){:.post-link-reading} <rate4/> <content-meta>#biography</content-meta>
 - Really into this biography. Profoundly inspired by her story, partly because she was a Vietnamese who left the country for freedom, for a better education, a better future. 
 - One particular point I really enjoyed is what her mentor consoled her (quoted at the end of the text).
