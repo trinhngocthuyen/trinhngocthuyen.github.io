@@ -8,7 +8,7 @@ tags:
 categories:	[Misc]
 ---
 
-[1] Suốt 2 cấp học cơ sở: tiểu học và trung học, tôi chưa hề có một ý niệm nào về thuật ngữ ***"thuyết trình"***. Hầu hết các bài giảng của các thầy cô mang nặng tính ghi chép. Dĩ nhiên đối với những môn Toán, Lý, Hóa... thì điều đó bình thấy vẫn không trở ngại lắm. Nhưng mấy môn Sử, Địa... thì tôi thấy chán ngán vì phải chép những thứ trong SGK đã có theo văn phong của người khác.
+[1] Suốt 2 cấp học cơ sở: tiểu học và trung học, tôi chưa hề có một ý niệm nào về thuật ngữ ***"thuyết trình"***. Hầu hết các bài giảng của các thầy cô mang nặng tính ghi chép. Dĩ nhiên đối với những môn Toán, Lý, Hóa... thì điều đó bình thường, thấy vẫn không trở ngại lắm. Nhưng mấy môn Sử, Địa... thì tôi thấy chán ngán vì phải chép những thứ trong SGK đã có, theo văn phong của người khác.
 
 [2] Bước vào cấp 3 là lúc tôi lần đầu tiên biết đến hình thức dạy-học này. Các bài giảng môn Sinh học, Lịch sử, Địa lý (nói chung là các môn xã hội) đều được giảng dạy theo hình thức chiếu slide. Tôi rất thích điều này, nhưng chủ yếu là vì tụi tôi không phải chép bài. Và thầy cô cũng không dò bài, một công cụ gây căng thẳng đầu giờ mà các thầy cô cấp 2 trường tôi rất ưa chuộng.
 
@@ -18,7 +18,7 @@ categories:	[Misc]
 
 [5] Về phong thái trình bày thì tôi dở tệ, không ăn nói lưu loát, tự tin như lũ bạn. Nhưng về kỹ năng soạn slides, nếu tự chấm điểm thì tôi sẽ cho tôi ở mức lân cận tốt. Thực tế là tôi rất chăm chút về hình thức trình bày slides. Nó không những phải hay mà còn phải đẹp, để toát lên vẻ chuyên nghiệp :)). 
 
-Slides thuyết trình không đơn giản chỉ là đưa mấy nội dung trong sách lên powerpoint. Làm vậy chẳng có tâm chút nào. Đôi lúc tụi tôi nhận được một đề tài thuyết trình nó mà trong SGK, nó chỉ được đề cập trong một mục (1-2 đoạn). Tụi tôi phải tìm cách mở rộng ra, thêm các phần so sánh - đánh giá, như thể nó phải xứng đáng cả chương sách.
+Slides thuyết trình không đơn giản chỉ là đưa mấy nội dung trong sách lên powerpoint. Làm vậy chẳng có tâm chút nào. Đôi lúc tụi tôi nhận được một đề tài thuyết trình mà trong SGK, nó chỉ được đề cập trong một mục (1-2 đoạn). Tụi tôi phải tìm cách mở rộng ra, thêm các phần so sánh - đánh giá, như thể nó phải xứng đáng cả chương sách.
 
 Việc tìm tư liệu cho bài thuyết trình rất quan trọng. Tư liệu phải dồi dào và gồm nhiều loại, từ text tới hình ảnh và clips... Tuy nhiên, thời đó nhà tôi chỉ có cái máy bàn, mà không có internet. Nên tôi phải ra tiệm net để tìm tư liệu. Thông thường tôi dành khoảng 1-2 tiếng ngoài quán để download hết tư liệu cần thiết, rồi mới về nhà trình bày nội dung, bố cục bài thuyết trình. Còn nhớ hồi đó có cái USB vài ba GB; mỗi lần ra quán net, việc đầu tiên làm là cắm USB vào, rồi cài IDM (Internet Download Manager - bản cracked); đôi lúc có cài thêm Opera nữa :))...
 
