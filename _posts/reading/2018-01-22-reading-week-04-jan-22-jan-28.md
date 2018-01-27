@@ -9,7 +9,7 @@ categories:	[Reading]
 ---
 
 [[5] Learning faster as an entrepreneur](https://qotoqot.com/blog/learning-faster/){:.post-link-reading} <rate3/> <content-meta>#learning #methodology</content-meta>
-- The mainstream point of the author is that we don't to fully understand pieces of a field. Instead of step-by-step learning, we could also just acquire 80% of a field (compenent enough) to significantly reduce the time needed.<br>
+- The mainstream point of the author is that we don't need to fully understand pieces of a field. Instead of step-by-step learning, we could also just acquire 80% of a field (compenent enough) to significantly reduce the time needed.<br>
 (1) *Finding*. Make use of available solutions.<br>
 (2) *Skimming*. General idea first, don't dive into details unless you need it.<br>
 (3) *Retaining*. Recognition is easier than recall. Note taking is necessary to recover the learned material. Use it in combination with *spaced repitition*. <br>
