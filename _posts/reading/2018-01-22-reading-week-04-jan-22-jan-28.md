@@ -8,6 +8,11 @@ tags:   reading
 categories:	[Reading]
 ---
 
+[[6] December Book – Flatland](https://lifethroughamathematicianseyes.wordpress.com/2018/01/27/december-book-flatland/){:.post-link-reading} <rate3/> <content-meta>#reading #books</content-meta>
+- Hồi lâu mình cũng đã có 1 bài viết về Flatland, nhưng đó là review của bộ phim hoạt hình. Bạn có thể xem bài viết [ở đây](https://trinhngocthuyen.github.io/2016-01-15-flatland-vung-dat-phang.html). Bộ phim khiến mình rất thích thú.
+- Về sách, thì [review trên goodreads](https://www.goodreads.com/book/show/433567.Flatland) không được tốt như mong đợi (~3.81/5) so với những cuốn khác (hầu hết đều trên 4.0/5). 
+- Review trong blog post trên nêu bật được nội dung chính, và khiến mình thấy hấp dẫn. Ah, có một điểm cần lưu ý đối với độc giả non-native English speaker: cuốn này văn phong chắc sẽ khó nhai chút xíu, vì nó được viết khá lâu rồi (1800s).
+
 [[5] Learning faster as an entrepreneur](https://qotoqot.com/blog/learning-faster/){:.post-link-reading} <rate3/> <content-meta>#learning #methodology</content-meta>
 - The mainstream point of the author is that we don't need to fully understand pieces of a field. Instead of step-by-step learning, we could also just acquire 80% of a field (compenent enough) to significantly reduce the time needed.<br>
 (1) *Finding*. Make use of available solutions.<br>
