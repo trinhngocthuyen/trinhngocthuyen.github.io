@@ -1,7 +1,7 @@
 ---
 layout: post
 comments:	true
-title:  "Reading: Week 2, Jan 08 - Jan 14"
+title:  "Reading: Week 02, Jan 08 - Jan 14"
 date:   2018-01-11 00:00:00
 summary:    ""
 tags:   reading
