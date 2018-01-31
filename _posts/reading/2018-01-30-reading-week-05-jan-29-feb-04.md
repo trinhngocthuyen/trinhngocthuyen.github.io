@@ -6,7 +6,9 @@ date:   2018-01-30 00:00:00
 summary:    ""
 tags:   reading
 categories:	[Reading]
----
+---  
+
+[[4] Scale or not scale](https://huydx.com/post/170305534289/scale-or-not-scale){:.post-link-reading} <rate5/> <content-meta>#scalability</content-meta>
 
 [[3] Nghe nhanh: Overlock đôi tai đến 400%](https://www.ptcn.me/nghe-nhanh/){:.post-link-reading} <rate4/> <content-meta>#productivity #advice #personal-development</content-meta>
 - Thú thật là mình không thường xuyên nghe sách nói hay podcasts, nên cũng ít xài kỹ thuật này. Nhưng khi xem video thì mình hay tua nhanh, 1.3x - 1.5x tuỳ video (nếu video Tiếng Việt thì có thể nhanh hơn). Nhờ cách này mà mình thấy bớt chán hơn, và xem video nhanh hơn. Chrome extension có thể hữu ích: [Video Speed Controller](https://github.com/igrigorik/videospeed).
