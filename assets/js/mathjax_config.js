@@ -19,6 +19,8 @@ MathJax.Hub.Config({
       		// http://docs.mathjax.org/en/latest/tex.html#defining-tex-macros
       		// abs: ['\\left\\lvert #2 \\right\\rvert_{\\text{#1}}', 2, ""],
       		txt: ['\\hspace{3pt}\\text{#1}\\hspace{3pt}', 1],
-      	}
+      		dim: ['{\\color{gray}#1}', 1]
+      	},
+      	extensions: ["color.js"]
       }
   });
