@@ -8,6 +8,10 @@ tags:   reading
 categories:	[Reading]
 ---  
 
+[[5] The 3 Laws of TDD: Focus on One Thing at a Time](https://qualitycoding.org/3-laws-tdd/){:.post-link-reading} <rate4/> <content-meta>#ios #testing #tdd</content-meta>
+- The core principle of these 3 laws is building software incrementally: do a bit of this, then a bit of that.
+- Doing one thing at a time is a good way to prevent yourself from messing up. The more code you write, the less control you have. P/s: how *"one"* in *"one thing"* is conveyed really differs.
+
 [[4] Scale or not scale](https://huydx.com/post/170305534289/scale-or-not-scale){:.post-link-reading} <rate5/> <content-meta>#scalability</content-meta>
 
 [[3] Nghe nhanh: Overlock đôi tai đến 400%](https://www.ptcn.me/nghe-nhanh/){:.post-link-reading} <rate4/> <content-meta>#productivity #advice #personal-development</content-meta>
