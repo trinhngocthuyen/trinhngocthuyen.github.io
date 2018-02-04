@@ -8,6 +8,18 @@ tags:   reading
 categories:	[Reading]
 ---  
 
+[[8] Một vài ghi chú về CMS GC](https://huydx.com/post/170457666224/m%E1%BB%99t-v%C3%A0i-ghi-ch%C3%BA-v%E1%BB%81-cms-gc){:.post-link-reading} <rate5/> <content-meta>#programming #gc</content-meta>
+- Bài viết rất hay. Thật ra đây là một concept chung cho các ngôn ngữ lập trình, không riêng gì Java. Mỗi ngôn ngữ có thể dùng các cơ chế dọn rác khác nhau... Cách tổ chức vùng nhớ ra các vùng *Eden, Survivor, Tenured* trong bài thì Java-specific. Tuy nhiên, cách phân hoạch và hành vi  như vậy giống như hành vi của *Copying collector* (cụ thể là *Generational collector*) nhỉ??
+- Mình cũng có 1 bài note về các thuật toán GC: [Garbage Collection (GC) algorithms](https://trinhngocthuyen.github.io/2017-02-25-gc-algorithms.html), chủ yếu ghi vắn tắt từ một cái bài viết khác: [Visualizing Garbage Collection Algorithms](https://spin.atomicobject.com/2014/09/03/visualizing-garbage-collection-algorithms/).
+
+[[7] Top mistakes in RxSwift you want to avoid](http://adamborek.com/top-7-rxswift-mistakes/){:.post-link-reading} <rate4/> <content-meta>#ios #rxswift</content-meta>
+- #3 should be noticed!
+
+[[6] Binary Frameworks in Swift](https://pspdfkit.com/blog/2018/binary-frameworks-swift/){:.post-link-reading} <rate4/> <content-meta>#ios #swift #ABI #compiler</content-meta>
+- A knowledge-rich article! The big picture is to achieve *Source compatibility*, *Binary framework & runtime compatibility* (including *Module format stability* and *ABI stability*)... ABI stability enables using different libraries with different Swift versions. Once ABI stability is offered, developers will suffer less from Swift migration. Or we could use a pre-built components/libraries to speed up compile time (like what Carthage does).
+- This feature (ABI stability) was supposed to introduced along with Swift 4. But it was deferred and very much expected in Swift 5.
+- Read more at [Swift ABI Stability Manifesto](https://github.com/apple/swift/blob/master/docs/ABIStabilityManifesto.md)
+
 [[5] The 3 Laws of TDD: Focus on One Thing at a Time](https://qualitycoding.org/3-laws-tdd/){:.post-link-reading} <rate4/> <content-meta>#ios #testing #tdd</content-meta>
 - The core principle of these 3 laws is building software incrementally: do a bit of this, then a bit of that.
 - Doing one thing at a time is a good way to prevent yourself from messing up. The more code you write, the less control you have. P/s: how *"one"* in *"one thing"* is conveyed really differs.
