@@ -8,8 +8,6 @@ tags:
 categories:	[Reading]
 ---
 
-*... In progress ...*
-
 [[5] Flavors of Engineering Management](http://blog.benjamin-encz.de/post/flavors-of-engineering-management/){:.post-link-reading} <rate4/> <content-meta>#software-engineering #management</content-meta>
 - Benjamin pointed out some different types of engineering management. The three mentioned varies from responsibilities, team size and coverage of expertise.
 - One key thing I take from the post is the potential risk of the combination of multiple roles in a single person.
