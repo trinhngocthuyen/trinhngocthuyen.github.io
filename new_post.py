@@ -1,4 +1,5 @@
 import sys
+import os
 import re
 from datetime import date
 
@@ -26,9 +27,14 @@ def main(argv):
     post_name = argv[0]
     category = argv[1] if len(argv) >= 2 else 'Tech'
     is_draft = argv[2] if len(argv) >= 3 else False
+    drafts_dir = '_drafts'
+
+    if is_draft and not os.path.exists(drafts_dir):
+        os.makedirs(drafts_dir)
+
     created_date = date.today().isoformat()
     post_id = make_post_id(post_name=post_name.lower(), created_date=created_date)
-    post_dir = post_category_to_dir[category.lower()] if not is_draft else '_drafts'
+    post_dir = post_category_to_dir[category.lower()] if not is_draft else drafts_dir
     fname = '%s/%s.md' % (post_dir, post_id)
 
     prefilled_content = \
