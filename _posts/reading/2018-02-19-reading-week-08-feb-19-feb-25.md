@@ -4,7 +4,7 @@ comments:	true
 title:  "Reading: Week 08, Feb 19 - Feb 25"
 date:   2018-02-19 00:00:00
 summary:    ""
-tags:   
+tags:   reading
 categories:	[Reading]
 ---
 

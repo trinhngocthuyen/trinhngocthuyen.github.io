@@ -23,7 +23,7 @@ struct Person {
 }
 ```
 
-To make this code work, we have to explicitly declare `getter` of `alias` as `mutating`. But personally, I would rather not make an object mutable just in order to access a specicic property.
+To make this code work, we have to explicitly declare `getter` of `alias` as `mutating`. But personally, I would rather not make an object mutable just in order to access a specific property.
 
 ```swift
 struct Person {
