@@ -20,7 +20,7 @@ $x^n + y^n = z^n$ với $n > 2$.*
 
 Mặc dù vậy, không có bản thảo chứng minh nào của Fermat được tìm thấy. Nhiều người cho đến bây giờ vẫn tin rằng Fermat đã thực sự không có lời giải cho định lý mà ông đã phát biểu.
 
-Trong suốt hai thế kỷ tiếp sau đó, bài toán này đã thách đố nhiều bộ óc của các nhà toán học trên thế giới. Nhưng chỉ có một vài trường hợp dặc biệt ($n=3,4,5,6,7$) được chứng minh. Bài toán ít được chú ý dần.
+Trong suốt hai thế kỷ tiếp sau đó, bài toán này đã thách đố nhiều bộ óc của các nhà toán học trên thế giới. Nhưng chỉ có một vài trường hợp đặc biệt ($n=3,4,5,6,7$) được chứng minh. Bài toán ít được chú ý dần.
 
 ### Tiền đề
 

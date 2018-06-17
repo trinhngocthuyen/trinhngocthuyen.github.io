@@ -5,7 +5,7 @@ blockquote {
   border-left: 4px solid #e8e8e8;
   margin: 15px 15px 15px 15px;
   padding-left: 15px;
-  font-size: 18px;
+  font-size: $font-size;
   letter-spacing: 0px;
   font-style: italic;
   > :last-child {

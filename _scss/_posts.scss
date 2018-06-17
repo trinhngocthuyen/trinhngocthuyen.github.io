@@ -9,19 +9,19 @@
 
 content-meta {
   color: #666;
-  font-size: 13px;
+  font-size: $smaller-font-size-2;
   font-weight: lighter;
   padding-left: 10px;
 }
 
 .post-link-reading {
-  color: #0067a7;
+  color: $blue-color;
   background-color: #eeeeee;
   padding: 2px 5px 2px 5px;
   border-radius: 3px;
   font-weight: lighter;
   &:visited, &:hover {
-    color: #0067a7;
+    color: $blue-color;
   }
   &::before {
     content: '📝 ';
@@ -34,20 +34,22 @@ content-meta {
 }
 
 ul blockquote {
-  font-size: 16px;
+  font-size: $smaller-font-size;
 }
 
 .post-content {
   font-weight: $font-weight;
   margin-bottom: 30px;
+  text-align: justify;
+  
   h2 {
     font-size: 32px;
   }
   h3 {
-    font-size: 26px;
+    font-size: 28px;
   }
   h4 {
-    font-size: 20px;
+    font-size: 22px;
   }
 }
 
@@ -97,16 +99,16 @@ rate3, rate4, rate5 {
 /* Post navigation: previous, upper level */
 .post-levels {
   padding-bottom: 10px;
-  font-size: 14px;
+  font-size: $smaller-font-size-2;
   font-weight: lighter;
   color: #888;
   a {
-    font-size: 14px;
+    font-size: $smaller-font-size-2;
     font-weight: normal;
     padding-right: 5px;
     color: $blue-color;
     &:after {
-      content: ' >';
+      content: ' ≫';
     }
   }
 }
