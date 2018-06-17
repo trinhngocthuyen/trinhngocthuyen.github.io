@@ -31,6 +31,8 @@
 .post-summary {
   font-weight: lighter;
   font-size: $smaller-font-size;
+  text-align: justify;
+  text-justify: inter-word;
   
   line-height: 1.5;
   color: #666;

@@ -38,9 +38,11 @@
   a {
     font-size: 13px;
     line-height: 1.5;
+    color: $navigation-text-color;
     &:not(:last-child) {
       margin-right: 20px;
     }
+
     &:hover {
       color: $navigation-text-color;
     }
