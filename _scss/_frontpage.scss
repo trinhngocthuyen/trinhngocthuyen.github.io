@@ -1,29 +1,44 @@
 /** Frontpage **/
 
-// .frontpage-cover {
-// 	margin-top: calc(-#{$page-content-padding-top} + 10px);
-// 	margin-bottom: 10px;
-// }
 
 body, html {
 	height: 100%;
 }
 
-.parallax {
-    /* The image used */
-    background-image: url('/assets/static/sea_cropped.png');
-    // background-image: url('/assets/static/sea.png');
-
-    /* Full height */
-    height: 40%; 
-    // position: relative;
-    // margin-top: 0;
-    // padding-top: 0;
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.parallax_wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 1px;
 }
+
+.parallax_section {
+	display: flex;
+  justify-content: center;
+}
+
+.parallax {
+	height: 45vh;
+}
+
+.parallax::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateZ(-1px) scale(2);
+  z-index: -1;
+  background-image: url('/assets/static/sea_cropped.png');
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.parallax_content {
+  height: 100vh;
+  background: #fdfdfd;
+}
+
+
 

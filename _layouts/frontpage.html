@@ -6,12 +6,15 @@
 <body>
 
 	{% include header.html %}
-
-	<div class="parallax"></div>
-
-	<div class="wrapper">
-		<div class="page-content">
-			{{ content }}
+	
+	<div class="parallax_wrapper">
+		<div class="parallax_section parallax"></div>
+		<div class="parallax_section parallax_content">
+			<div class="wrapper">
+				<div class="page-content">
+					{{ content }}
+				</div>
+			</div>	
 		</div>
 	</div>
 
