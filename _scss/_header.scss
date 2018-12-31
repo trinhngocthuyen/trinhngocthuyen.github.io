@@ -5,13 +5,17 @@
   /*border-bottom: 1px solid #e8e8e8;*/
   min-height: $header-height;
   position: relative;
+  margin-bottom: 10px;
+  /*background-color: #eee;*/
+}
+.site-header > .wrapper {
+  background-color: #eee;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.site-header.frontpage > .wrapper {
   background-color: #eee;
 }
-.site-header.frontpage {
-  /*background-color: #fdfdfd;*/
-}
-
-
 
 .site-title {
   font-size: 26px;
@@ -73,7 +77,8 @@
 }
 
 .header-nav-item .active {
-  font-weight: 500;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .header-nav-item:after {
@@ -85,7 +90,6 @@
 .header-nav-item:last-child:after {
   content: '';
 }
-
 
 @media screen and (max-width: 600px) {
   .site-nav {
