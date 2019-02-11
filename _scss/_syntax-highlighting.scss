@@ -11,10 +11,11 @@ pre {
 code {
   font-family: Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
   font-size: 13px;
-  border: 1px solid #e8e8e8;
+  /*border: 1px solid #e8e8e8;*/
   border-radius: 3px;
   background-color: #efefef;
   padding: 1px 5px;
+  color: #0000ff;
 }
 
 pre {
@@ -24,6 +25,7 @@ pre {
     border: 0;
     padding-right: 0;
     padding-left: 0;
+    color: $primary-text-color;
   }
 }
 
