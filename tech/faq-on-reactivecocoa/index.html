@@ -254,15 +254,17 @@ if (!doNotTrack) {
 
   
   
-
-  <div class='container entry-content'>
-  
-
-<h3 id="table-of-contents">Table of Contents</h3>
-
+<details class='container entry-toc'>
+  <summary class='title'>
+    <span>Table of Contents</span>
+  </summary>
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
 <ul>
 <li><a href="#fundamental-concepts">Fundamental Concepts</a>
-
 <ul>
 <li><a href="#q-what-is-reactivecocoa">Q: What is ReactiveCocoa?</a></li>
 <li><a href="#q-what-is-reactiveswift">Q: What is ReactiveSwift?</a></li>
@@ -274,19 +276,25 @@ if (!doNotTrack) {
 <li><a href="#q-when-should-we-use-it">Q: When should we use it?</a></li>
 </ul></li>
 <li><a href="#signal-and-signalproducer">Signal and SignalProducer</a>
-
 <ul>
 <li><a href="#q-what-is-signal-what-is-signalproducer">Q: What is Signal? What is SignalProducer?</a></li>
 <li><a href="#q-i-created-a-signalproducer-i-added-some-observers-but-none-of-them-are-executed-what-happened">Q: I created a SignalProducer, I added some observers, but none of them are executed. What happened?</a></li>
-<li><a href="#q-its-hard-to-debug-with-rac-how-to-troubleshoot-issues-effectively">Q: It&rsquo;s hard to debug with RAC. How to troubleshoot issues effectively?</a></li>
+<li><a href="#q-it-s-hard-to-debug-with-rac-how-to-troubleshoot-issues-effectively">Q: It&rsquo;s hard to debug with RAC. How to troubleshoot issues effectively?</a></li>
 </ul></li>
 <li><a href="#operators">Operators</a>
-
 <ul>
-<li><a href="#q-whats-the-difference-between-the-2-operators-then-and-flatmap">Q: What&rsquo;s the difference between the 2 operators &ldquo;then&rdquo; and &ldquo;flatMap&rdquo;?</a></li>
+<li><a href="#q-what-s-the-difference-between-the-2-operators-then-and-flatmap">Q: What&rsquo;s the difference between the 2 operators &ldquo;then&rdquo; and &ldquo;flatMap&rdquo;?</a></li>
 <li><a href="#q-how-to-cancel-a-signalproducer-from-the-outside">Q: How to cancel a SignalProducer (from the outside)?</a></li>
 </ul></li>
+</ul></li>
+</ul></li>
 </ul>
+</nav>
+</details>
+
+
+  <div class='container entry-content'>
+  
 
 <h3 id="fundamental-concepts">Fundamental Concepts</h3>
 

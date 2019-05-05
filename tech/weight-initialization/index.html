@@ -254,28 +254,39 @@ if (!doNotTrack) {
 
   
   
+<details class='container entry-toc'>
+  <summary class='title'>
+    <span>Table of Contents</span>
+  </summary>
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-covariate-shift">1. Covariate shift</a>
+<ul>
+<li><a href="#1-1-what-is-covariate-shift">1.1. What is Covariate shift?</a></li>
+<li><a href="#1-2-what-does-it-look-like">1.2 .What does it look like?</a></li>
+<li><a href="#1-3-impact-of-covariate-shift">1.3. Impact of Covariate shift?</a></li>
+</ul></li>
+<li><a href="#2-param-initialization">2. Param initialization</a>
+<ul>
+<li><a href="#2-1-setup">2.1. Setup</a></li>
+<li><a href="#2-2-trival-initialization">2.2. Trival initialization</a></li>
+<li><a href="#2-3-xavier-initialization-glorot-initialization">2.3. Xavier initialization (Glorot initialization)</a></li>
+</ul></li>
+<li><a href="#3-another-approaches">3. Another approaches</a></li>
+<li><a href="#4-conclusion">4. Conclusion</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</details>
+
 
   <div class='container entry-content'>
   
-
-<ul>
-<li><a href="#covariate-shift">1. Covariate shift</a>
-
-<ul>
-<li><a href="#what-is-covariate-shift">1.1. What is Covariate shift?</a></li>
-<li><a href="#what-does-it-look-like">1.2. What does it look like?</a></li>
-<li><a href="#impact-of-covariate-shift">1.3. Impact of Covariate shift?</a></li>
-</ul></li>
-<li><a href="#param-initialization">2. Param initialization</a>
-
-<ul>
-<li><a href="#setup">2.1. Setup</a></li>
-<li><a href="#trival-initialization">2.2. Trival initialization</a></li>
-<li><a href="#xavier-initialization-glorot-initialization">2.3. Xavier initialization (Glorot initialization)</a></li>
-</ul></li>
-<li><a href="#another-approaches">3. Another approaches</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ul>
 
 <p>In this post, I will carry out some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers. This was mentioned by Andrej in <a href="https://www.youtube.com/watch?v=hd_KFJ5ktUc&amp;index=6&amp;list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC">cs231n/lec6</a> as a motivation paving the way for batch normalization.</p>
 
