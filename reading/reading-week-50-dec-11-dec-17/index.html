@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='At a glance  You are interested in popular science and general knowledge: [2] and [9] are for you. You are an iOS developer: [4], [5], [6] and [11] are worth a look. Finally, the book in [8] is awesome!  Dec 17, 2017 [11] Friday Q&amp;A 2017-12-08: Type Erasure in Swift #ios #protocols #generic #type-safety - This post discussed several approaches towards type-easure. The underlying functions approach is the same as what I blogged a while ago in Swift: Generic protocol (p.'>
+<meta name='theme-color' content='#0067a7'>
+
+<meta property='og:title' content='Reading: Week 50, Dec 11 - Dec 17 • Thuyen&#39;s corner'>
+<meta property='og:description' content='At a glance  You are interested in popular science and general knowledge: [2] and [9] are for you. You are an iOS developer: [4], [5], [6] and [11] are worth a look. Finally, the book in [8] is awesome!  Dec 17, 2017 [11] Friday Q&amp;A 2017-12-08: Type Erasure in Swift #ios #protocols #generic #type-safety - This post discussed several approaches towards type-easure. The underlying functions approach is the same as what I blogged a while ago in Swift: Generic protocol (p.'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/reading/reading-week-50-dec-11-dec-17/'>
+<meta property='og:site_name' content='Thuyen&#39;s corner'>
+<meta property='og:type' content='article'><meta property='article:section' content='reading'><meta property='article:published_time' content='2017-12-11T00:00:00Z'/><meta property='article:modified_time' content='2017-12-11T00:00:00Z'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.55.3" />
+
+  <title>Reading: Week 50, Dec 11 - Dec 17 • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/reading/reading-week-50-dec-11-dec-17/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.d751652e.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#0067a7;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-reading layout-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      Thuyen&#39;s corner
+      </a>
+    </h2>
+    <div class='desc'>
+    
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud no-shuffle'><li>
+        <a href='/tags/algebra/' style='font-size:1em'>algebra</a>
+      </li><li>
+        <a href='/tags/architecture/' style='font-size:1em'>architecture</a>
+      </li><li>
+        <a href='/tags/astrology/' style='font-size:1em'>astrology</a>
+      </li><li>
+        <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
+      </li><li>
+        <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
+      </li><li>
+        <a href='/tags/compiler/' style='font-size:1em'>compiler</a>
+      </li><li>
+        <a href='/tags/config/' style='font-size:1em'>config</a>
+      </li><li>
+        <a href='/tags/creative-thinking/' style='font-size:1.0588235294117647em'>creative-thinking</a>
+      </li><li>
+        <a href='/tags/decision-making/' style='font-size:1em'>decision-making</a>
+      </li><li>
+        <a href='/tags/expectation/' style='font-size:1em'>expectation</a>
+      </li><li>
+        <a href='/tags/garbage-collection/' style='font-size:1em'>garbage-collection</a>
+      </li><li>
+        <a href='/tags/image-processing/' style='font-size:1em'>image-processing</a>
+      </li><li>
+        <a href='/tags/ios/' style='font-size:2em'>ios</a>
+      </li><li>
+        <a href='/tags/logic/' style='font-size:1.0588235294117647em'>logic</a>
+      </li><li>
+        <a href='/tags/markov-chain/' style='font-size:1em'>markov-chain</a>
+      </li><li>
+        <a href='/tags/maths/' style='font-size:1.1764705882352942em'>maths</a>
+      </li><li>
+        <a href='/tags/method-dispatch/' style='font-size:1em'>method-dispatch</a>
+      </li><li>
+        <a href='/tags/mvvm/' style='font-size:1em'>mvvm</a>
+      </li><li>
+        <a href='/tags/network/' style='font-size:1em'>network</a>
+      </li><li>
+        <a href='/tags/neural-networks/' style='font-size:1em'>neural-networks</a>
+      </li><li>
+        <a href='/tags/optimization/' style='font-size:1.0588235294117647em'>optimization</a>
+      </li><li>
+        <a href='/tags/paradox/' style='font-size:1em'>paradox</a>
+      </li><li>
+        <a href='/tags/probability/' style='font-size:1.2352941176470589em'>probability</a>
+      </li><li>
+        <a href='/tags/problem-solving/' style='font-size:1.1176470588235294em'>problem-solving</a>
+      </li><li>
+        <a href='/tags/programming/' style='font-size:1.1176470588235294em'>programming</a>
+      </li><li>
+        <a href='/tags/psychological-efffects/' style='font-size:1em'>psychological-efffects</a>
+      </li><li>
+        <a href='/tags/questioning/' style='font-size:1em'>questioning</a>
+      </li><li>
+        <a href='/tags/reading/' style='font-size:1em'>reading</a>
+      </li><li>
+        <a href='/tags/reasoning/' style='font-size:1.1176470588235294em'>reasoning</a>
+      </li><li>
+        <a href='/tags/resolution/' style='font-size:1em'>resolution</a>
+      </li><li>
+        <a href='/tags/retrospection/' style='font-size:1em'>retrospection</a>
+      </li><li>
+        <a href='/tags/retrospective/' style='font-size:1em'>retrospective</a>
+      </li><li>
+        <a href='/tags/science/' style='font-size:1.0588235294117647em'>science</a>
+      </li><li>
+        <a href='/tags/statistics/' style='font-size:1.1764705882352942em'>statistics</a>
+      </li><li>
+        <a href='/tags/stub/' style='font-size:1em'>stub</a>
+      </li><li>
+        <a href='/tags/swift/' style='font-size:1.3529411764705883em'>swift</a>
+      </li><li>
+        <a href='/tags/swizzle/' style='font-size:1em'>swizzle</a>
+      </li><li>
+        <a href='/tags/testing/' style='font-size:1em'>testing</a>
+      </li><li>
+        <a href='/tags/travel/' style='font-size:1.3529411764705883em'>travel</a>
+      </li><li>
+        <a href='/tags/triz/' style='font-size:1.0588235294117647em'>triz</a>
+      </li><li>
+        <a href='/tags/ux/' style='font-size:1em'>ux</a>
+      </li><li>
+        <a href='/tags/xcode/' style='font-size:1em'>xcode</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/tech/'>Tech</a>
+      </li><li class='item'>
+        <a href='/reasoning/'>Reasoning</a>
+      </li><li class='item'>
+        <a href='/misc/'>Misc</a>
+      </li><li class='item'>
+        <a href='/reading/'>Reading</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'>
+    
+    <style>.widget-breadcrumbs li:after{content:'≫'}</style>
+  <section class='widget widget-breadcrumbs sep-after'>
+    <nav id='breadcrumbs'>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/reading/'>Reading</a></li><li><span>Reading: Week 50, Dec 11 - Dec 17</span></li></ol>
+    </nav>
+  </section></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Thuyen&#39;s corner</p><p class='desc site-desc'></p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Reading: Week 50, Dec 11 - Dec 17</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2017-12-11T00:00:00Z'>2017, Dec 11</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<h3 id="at-a-glance">At a glance</h3>
+
+<ul>
+<li>You are interested in popular science and general knowledge: [2] and [9] are for you.</li>
+<li>You are an iOS developer: [4], [5], [6] and [11] are worth a look.</li>
+<li>Finally, the book in [8] is awesome!</li>
+</ul>
+
+<h3 id="dec-17-2017">Dec 17, 2017</h3>
+
+<p><a href="https://www.mikeash.com/pyblog/friday-qa-2017-12-08-type-erasure-in-swift.html">[11] Friday Q&amp;A 2017-12-08: Type Erasure in Swift</a> <content-meta>#ios #protocols #generic #type-safety</content-meta>
+- This post discussed several approaches towards type-easure. The <em>underlying functions approach</em> is the same as what I blogged a while ago
+in <em><a href="https://trinhngocthuyen.github.io/2016-06-25-swift-generic-protocol-p1.html">Swift: Generic protocol (p.1)</a></em>.</p>
+
+<ul>
+<li><p>We can recognize the noticeable presence of <em>Bridge</em> design pattern here because it is compatibility that motivates type erasure.</p></li>
+
+<li><p>This article published recently also mentions type erasure, and a few more problems when working with associate types: <a href="http://appventure.me/2017/12/10/patterns-for-working-with-associated-types">Patterns for Working With Associated Types</a>. A nice-to-read!</p></li>
+</ul>
+
+<p><a href="http://davidbkemp.github.io/QuantumComputingArticle/part2.html">[10] An Interactive Introduction To Quantum Computing Part 2</a> <content-meta>#quantum-computing</content-meta>
+- I&rsquo;m not from Physics background but I cannot resist my curiosity to get to know this trendy term. The article gave me a rough sense of how quantum search totally defeats the conventional one. Anw, need more exposure!</p>
+
+<p><a href="http://brainpump.net/video/what-if-everyone-jumped-at-once">[9] What if everyone jumped at once?</a> <content-meta>#science</content-meta>
+- Rất thích cách đặt vấn đề của Vsauce. Có những câu hỏi tương tự, chẳng hạn như giả sử bất thình lình Trái Đất ngừng quay thì chuyện gì xảy ra? Những câu này làm mình nhớ đến <a href="https://www.youtube.com/watch?v=lgeB4b1WR0Y">những thí nghiệm tưởng tượng của Einstein</a>.</p>
+
+<h3 id="dec-16-2017">Dec 16, 2017</h3>
+
+<p><a href="https://www.amazon.com/Diary-Wimpy-Kid-Book-ebook/dp/B005CRQ4OW">[8] Diary of a Wimpy Kid (Diary of a Wimpy Kid, Book 1)</a> <content-meta>#books #reading</content-meta>
+- This book is increadibly fantastic. The story was written in a very distinctively witty manner. I really love the way the author portraited the Greg-Rowley friendship and how Greg learned from his hard lessons. Also, the differences in how children and parents normally conceive were described so vividly, which brought me lots of laugh&hellip; I&rsquo;m gonna grab other books of the series :).</p>
+
+<p><a href="https://www.producthunt.com/posts/fluiddata">[7] FluidDATA</a> <content-meta>#podcasts #tools</content-meta>
+- Podcast lovers will be definitely into FluidDATA. The wonderful power of this site is that you can search podcasts based on your interests. This feature also provides you relevant sources whose contents meet your creteria.</p>
+
+<h3 id="dec-15-2017">Dec 15, 2017</h3>
+
+<p><a href="http://chris.eidhof.nl/post/swift-analytics">[6] Swift Analytics: Comparing structs, enums and protocols</a> <content-meta>#ios #analytics</content-meta>
+- Well, the <a href="https://www.swiftbysundell.com/posts/building-an-enum-based-analytics-system-in-swift">original post</a> by John has drawn lots of attention from the community. The way developers use to handle analytics diverges. Chris&rsquo;s post gives a fair comparison between the approaches mentioned. In short, each has both benefits and drawbacks. It&rsquo;s up to your needs to pick the most suitable implementation. Personally, I prefer Dave&rsquo;s approach.</p>
+
+<h3 id="dec-14-2017">Dec 14, 2017</h3>
+
+<p><a href="https://academy.realm.io/posts/appbuilders-jp-simard-sourcekit">[5] SourceKit and You</a> <content-meta>#ios #talk</content-meta>
+- Đây là một bài nói, chứ hỏk phải bài đọc. Tóm lại bài nói là, <code>SourceKit</code> cho phép mình làm việc với language syntax, và giải quyết nhiều vấn đề thú vị như <em>code analysis</em>, <em>code generation</em>, <em>code refactoring</em>&hellip;<br></p>
+
+<ul>
+<li><p>Đã nghe nói về <code>SourceKit</code> và cũng thử qua các thư viện nổi tiếng xây dựng trên cái này như <code>SwiftLint</code>, <code>Sourcery</code> trong mấy cái projects thử nghiệm. Về cảm nhận cá nhân thì mình thấy <code>SwiftLint</code> cực kỳ hiệu quả. Nếu coding style là quan trọng đối với team thì nó hoàn toàn đáng thời gian để tích hợp. Mình nhớ lần đầu gắn thử vào project trên công ty (code base hơi lớn), mặc dù đã disable các rules, và chỉ enable 1 vài rules thôi mà số lượng warnings/errors bay nhảy lên 3 con số (999+). Lý tưởng nhất là tích hợp lúc đầu. Còn không thì chia theo pha mà tích hợp (mỗi pha enable 1 số rules tuỳ theo mức độ nghiêm trọng, và mức độ vi phạm của project hiện tại). Đây là cách làm trong đầu mình, chứ project trên công ty vẫn chưa có dấu chân của swiftlint đâu :)).<br></p></li>
+
+<li><p>Sẵn tiện nhắc về <em>code analysis</em>, mình có một trải nghiệm cũng thú vị. Project mình tham gia lúc ấy khá đặc thù về mặt code base. Đó là một dòng các apps mà tụi chúng share gần hết 80% các features, (20% còn lại ngốn mất 80% thời gian và công sức của team đó LOL (jk)). Sau một thời gian quan sát, tôi thấy có nhiều classes/structs/enums mới ra đời, nhưng na na với những app khác. Đây hẳn là <em>code smell</em> - tôi nghĩ.</p>
+
+<ul>
+<li>Vì muốn đánh giá được mức độ phức tạp của project hiện tại, xem thử coi mức độ giãn nở của project ra sao theo thời gian, tôi quyết định viết 1 cái script rú-bì (ruby), xài chủ yếu là regex và đọc ghi file là chủ yếu (code chuối lắm =]]). Nó cho mình xem overview của project theo 1 vài thông số như: số lượng classes/structs/enums/protocols, trong đó có bao nhiêu thằng được xài chung, có bao nhiêu thằng chỉ xài ở 1 vài apps. Đại ý là vậy, sau này dự sẽ thêm tiêu chí khác vào.</li>
+<li>Tuy nhiên, vì dùng regex chứ không xài mấy cái hào nhoáng như <code>SourceKit</code>, có khá nhiều trường hợp biên phải xử lý, ví dụ như nested classes/structs/enums, comments, typealias. Cũng vì xử lý nhiều vậy nên thòi gian chạy không được nhanh lắm. Cực khổ vậy đó, nên mới cần ba cái frameworks này chớ :D.</li>
+<li>Đánh giá chung thì cái script tôi viết ra không đủ để phục vụ nhu cầu tương lai. Nhưng tôi không hối hận khi dành cuối tuần ngồi code thay vì đi chơi. Đơn giản vì cái mình viết ra giúp cho mình có 1 cái nhìn tổng quan, giúp đưa ra chẩn đoán sơ bộ về một đối tượng nào đó. Bước đầu tiên trong giải quyết vấn đề là nhận diện vấn đề! Ngoài ra, nó còn đem lại lợi ích về mặt học tập :).</li>
+</ul></li>
+</ul>
+
+<h3 id="dec-13-2017">Dec 13, 2017</h3>
+
+<p><a href="https://www.mikeash.com/pyblog/friday-qa-2017-10-27-locks-thread-safety-and-swift-2017-edition.html">[4] Friday Q&amp;A 2017-10-27: Locks, Thread Safety, and Swift: 2017 Edition</a> <content-meta>#ios #concurrency</content-meta>
+- Now I understand the name of <code>os_unfair_lock</code>. <em>Lock fairness</em> means that different threads could have some chances to acquire the lock. Otherwise, there could happend the situation in which a thread holds the lock (many times) for a long time. This lock, which is available since ios 10, is the replacement of <code>OSSpinlock</code>, to avoid thread priority issue.</p>
+
+<ul>
+<li><p>The high performance of <code>os_unfair_lock</code> comes from the fact it constantly check if the lock has been released or not.</p></li>
+
+<li><p>The author pointed out that <code>DispatchQueue</code> seems to be the right choice among those mentioned. I also run a benchmark and this is the result: <code>NSLock</code> ~&lt; <code>pthread_mutex_t</code> &lt; <code>DispatchQueue</code> ~&lt; <code>DispatchSemaphore</code> &lt; <code>os_unfair_lock</code></p></li>
+</ul>
+
+<p><a href="https://qz.com/1126615/the-story-of-the-most-important-tool-in-data-science/">[3] Meet the man behind the most important tool in data science</a> <content-meta>#data-sience #story</content-meta></p>
+
+<h3 id="dec-11-2017">Dec 11, 2017</h3>
+
+<p><a href="https://ed.ted.com/lessons/can-you-solve-the-egg-drop-riddle-yossi-elran">[2] Can you solve the egg drop riddle? - Yossi Elran</a> <content-meta>#ted #riddle</content-meta>
+- Interesting riddle. Definitely worth a share.</p>
+
+<p><a href="https://medium.com/@rchang/my-two-year-journey-as-a-data-scientist-at-twitter-f0c13298aee6">[1] Doing Data Science at Twitter</a> <content-meta>#data-science</content-meta>
+- The author mentioned two types of data scientists. One is particularly strong in statistics, other highly excels at programming skills.</p>
+
+<ul>
+<li>Really enjoy Dan&rsquo;s comparison =]]</li>
+</ul>
+
+<blockquote>
+<p>“Big data is like teenage sex: everyone talks about it, nobody really knows how to do it, everyone thinks everyone else is doing it, so everyone claims they are doing it” — Dan Ariely</p>
+</blockquote>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/reading/'>Reading</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/reading/reading-week-49-dec-04-dec-10/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Reading: Week 49, Dec 04 - Dec 10</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/reading/reading-week-51-dec-18-dec-24/'>
+        <span class='screen-reader-text'>Next post: </span>Reading: Week 51, Dec 18 - Dec 24<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:trinhngocthuyen@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/thuyen-trinh' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.69694257.js'></script>
+
+</body>
+
+</html>
+

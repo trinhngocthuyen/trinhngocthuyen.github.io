@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/</loc>
+    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/</loc>
+    <lastmod>2019-03-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/</loc>
+    <lastmod>2018-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/</loc>
+    <lastmod>2019-03-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
+    <lastmod>2019-03-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/sg-vs-sg-1/</loc>
+    <lastmod>2019-03-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/</loc>
+    <lastmod>2019-03-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/</loc>
+    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/retrospective/</loc>
+    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/2018-in-review/</loc>
+    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-the-downsides-of-lazy-var-part-2/</loc>
+    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
+    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
+    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/swift/</loc>
+    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-the-downsides-of-lazy-var-part-1/</loc>
+    <lastmod>2018-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/reasoning/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/toan-tuyen-sinh-ptnk-2018-p1/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/maths/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/config-run-shell-script-on-login/</loc>
+    <lastmod>2018-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/command-line/</loc>
+    <lastmod>2018-02-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/config/</loc>
+    <lastmod>2018-02-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/reading/</loc>
+    <lastmod>2018-02-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-08-feb-19-feb-25/</loc>
+    <lastmod>2018-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/markov-chain-part-1/</loc>
+    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/markov-chain/</loc>
+    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/probability/</loc>
+    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/statistics/</loc>
+    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-05-jan-29-feb-04/</loc>
+    <lastmod>2018-01-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-chung-ket-u23-chau-a/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</loc>
+    <lastmod>2018-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/problem-solving/</loc>
+    <lastmod>2018-01-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/questioning/</loc>
+    <lastmod>2018-01-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-04-jan-22-jan-28/</loc>
+    <lastmod>2018-01-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-chuyen-thuyet-trinh/</loc>
+    <lastmod>2018-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-03-jan-15-jan-21/</loc>
+    <lastmod>2018-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-02-jan-08-jan-14/</loc>
+    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/indicator-rvs-and-the-fundamental-bridge/</loc>
+    <lastmod>2018-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-01-jan-01-jan-07-2018/</loc>
+    <lastmod>2018-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/2017-in-review/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/resolution/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/retrospection/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-52-dec-25-dec-31/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/random-thoughts-when-we-have-many-choices/</loc>
+    <lastmod>2017-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/decision-making/</loc>
+    <lastmod>2017-12-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/reasoning/</loc>
+    <lastmod>2017-12-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/mvvm-best-practice-inputs-outputs/</loc>
+    <lastmod>2017-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/architecture/</loc>
+    <lastmod>2017-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/mvvm/</loc>
+    <lastmod>2017-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-51-dec-18-dec-24/</loc>
+    <lastmod>2017-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-50-dec-11-dec-17/</loc>
+    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/science/</loc>
+    <lastmod>2017-12-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/fermats-last-theorem/</loc>
+    <lastmod>2017-12-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-49-dec-04-dec-10/</loc>
+    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reading/reading-week-48-nov-27-dec-03/</loc>
+    <lastmod>2017-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/an-example-of-survey-with-privacy/</loc>
+    <lastmod>2017-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/how-to-stub-network-in-ios/</loc>
+    <lastmod>2017-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/network/</loc>
+    <lastmod>2017-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/stub/</loc>
+    <lastmod>2017-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/testing/</loc>
+    <lastmod>2017-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/quick-thoughts-on-tail-recursion-in-swift/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/optimization/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/programming/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/method-swizzling-what-why-and-how/</loc>
+    <lastmod>2017-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/swizzle/</loc>
+    <lastmod>2017-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/method-dispatch-in-swift/</loc>
+    <lastmod>2017-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/method-dispatch/</loc>
+    <lastmod>2017-09-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/how-a-swift-file-is-compiled/</loc>
+    <lastmod>2017-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/compiler/</loc>
+    <lastmod>2017-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/what-is-simpsons-paradox/</loc>
+    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/paradox/</loc>
+    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/brain-exercising-1/</loc>
+    <lastmod>2017-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/algebra/</loc>
+    <lastmod>2017-08-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/brain-exercises/</loc>
+    <lastmod>2017-08-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/a-misuse-of-expectation/</loc>
+    <lastmod>2017-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/expectation/</loc>
+    <lastmod>2017-07-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/weight-initialization/</loc>
+    <lastmod>2017-07-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/neural-networks/</loc>
+    <lastmod>2017-07-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/a-dive-into-hog/</loc>
+    <lastmod>2017-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/image-processing/</loc>
+    <lastmod>2017-07-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/dark-matter-dark-energy/</loc>
+    <lastmod>2017-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/astrology/</loc>
+    <lastmod>2017-07-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/thang-6-mua-thi/</loc>
+    <lastmod>2017-05-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-04-04-2017/</loc>
+    <lastmod>2017-04-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/create-custom-xcode-templates/</loc>
+    <lastmod>2017-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/xcode/</loc>
+    <lastmod>2017-02-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/faq-on-reactivecocoa/</loc>
+    <lastmod>2017-02-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/gc-algorithms/</loc>
+    <lastmod>2017-02-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/garbage-collection/</loc>
+    <lastmod>2017-02-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-ganh-tau-hu/</loc>
+    <lastmod>2017-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/chuyen-kfc/</loc>
+    <lastmod>2017-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-expressiblebystringliteral/</loc>
+    <lastmod>2016-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/log-events-in-reactivecocoa/</loc>
+    <lastmod>2016-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/a-freestyle-way-to-config-uiview/</loc>
+    <lastmod>2016-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/toan-tuoi-tho-toan-hoc-tuoi-tre/</loc>
+    <lastmod>2016-09-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-chuyen-cau-hoi/</loc>
+    <lastmod>2016-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-chuyen-khai-niem/</loc>
+    <lastmod>2016-07-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-generic-protocol-p1/</loc>
+    <lastmod>2016-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-concrete-types-in-protocol/</loc>
+    <lastmod>2016-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-chuyen-bun-bo/</loc>
+    <lastmod>2016-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-currying/</loc>
+    <lastmod>2016-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-optional-map/</loc>
+    <lastmod>2016-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/tan-man-mung-1-tet-2016/</loc>
+    <lastmod>2016-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/flatland-vung-dat-phang/</loc>
+    <lastmod>2016-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/review-sach-tren-duong-bang/</loc>
+    <lastmod>2016-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/book-review/</loc>
+    <lastmod>2016-01-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/reading/</loc>
+    <lastmod>2016-01-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/tap-luan-tiem-vs-kiem/</loc>
+    <lastmod>2016-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/logic/</loc>
+    <lastmod>2016-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/dong-nao-who-ate-the-cake/</loc>
+    <lastmod>2016-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/chuyen-mua/</loc>
+    <lastmod>2015-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/vai-dong-ve-cuon-so/</loc>
+    <lastmod>2015-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/hieu-ung-moi-priming-effect/</loc>
+    <lastmod>2015-11-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/psychological-efffects/</loc>
+    <lastmod>2015-11-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/dong-nao-alice-betrice-cynthia/</loc>
+    <lastmod>2015-10-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/luan-ux-ly-cafe/</loc>
+    <lastmod>2015-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/ux/</loc>
+    <lastmod>2015-10-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/swift-box-with-recursive-data-structure/</loc>
+    <lastmod>2015-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/chuyen-nang-khieu-co-lao-cong/</loc>
+    <lastmod>2015-10-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/chuyen-nang-khieu-yrmuptp/</loc>
+    <lastmod>2015-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/rac3-with-login-flow/</loc>
+    <lastmod>2015-08-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/topology/</loc>
+    <lastmod>2015-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/optional-functional/</loc>
+    <lastmod>2015-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</loc>
+    <lastmod>2015-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/creative-thinking/</loc>
+    <lastmod>2015-01-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/triz/</loc>
+    <lastmod>2015-01-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/reasoning/do-vui-hieu-bai-toan/</loc>
+    <lastmod>2014-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-0/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-1/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-2/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-3-4/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-5/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-6/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/ly-son-tap-7/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/travel/</loc>
+    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/page/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/search/</loc>
+  </url>
+  
+</urlset>

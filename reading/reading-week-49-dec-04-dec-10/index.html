@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Dec 10, 2017  Interactive visualizations of sampling and GP regression #probability #statistics #sampling
+&ndash;&gt; Blog post này giới thiệu (open-source) interative demo về MCMC (Markov Chain Monte Carlo) và Gaussian Process. Mình chưa biết về Gaussian Process, nhưng đã có tìm hiểu về MCMC và thấy rất hay. Ok, sẽ tìm hiểu về Gaussian Process, và cũng sẽ thử viết 1 bài nhỏ về MCMC.
+ Bắt đầu Big Data từ đâu và như thế nào?'>
+<meta name='theme-color' content='#0067a7'>
+
+<meta property='og:title' content='Reading: Week 49, Dec 04 - Dec 10 • Thuyen&#39;s corner'>
+<meta property='og:description' content='Dec 10, 2017  Interactive visualizations of sampling and GP regression #probability #statistics #sampling
+&ndash;&gt; Blog post này giới thiệu (open-source) interative demo về MCMC (Markov Chain Monte Carlo) và Gaussian Process. Mình chưa biết về Gaussian Process, nhưng đã có tìm hiểu về MCMC và thấy rất hay. Ok, sẽ tìm hiểu về Gaussian Process, và cũng sẽ thử viết 1 bài nhỏ về MCMC.
+ Bắt đầu Big Data từ đâu và như thế nào?'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/reading/reading-week-49-dec-04-dec-10/'>
+<meta property='og:site_name' content='Thuyen&#39;s corner'>
+<meta property='og:type' content='article'><meta property='article:section' content='reading'><meta property='article:published_time' content='2017-12-04T00:00:00Z'/><meta property='article:modified_time' content='2017-12-04T00:00:00Z'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.55.3" />
+
+  <title>Reading: Week 49, Dec 04 - Dec 10 • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/reading/reading-week-49-dec-04-dec-10/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.d751652e.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#0067a7;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-reading layout-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      Thuyen&#39;s corner
+      </a>
+    </h2>
+    <div class='desc'>
+    
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud no-shuffle'><li>
+        <a href='/tags/algebra/' style='font-size:1em'>algebra</a>
+      </li><li>
+        <a href='/tags/architecture/' style='font-size:1em'>architecture</a>
+      </li><li>
+        <a href='/tags/astrology/' style='font-size:1em'>astrology</a>
+      </li><li>
+        <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
+      </li><li>
+        <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
+      </li><li>
+        <a href='/tags/compiler/' style='font-size:1em'>compiler</a>
+      </li><li>
+        <a href='/tags/config/' style='font-size:1em'>config</a>
+      </li><li>
+        <a href='/tags/creative-thinking/' style='font-size:1.0588235294117647em'>creative-thinking</a>
+      </li><li>
+        <a href='/tags/decision-making/' style='font-size:1em'>decision-making</a>
+      </li><li>
+        <a href='/tags/expectation/' style='font-size:1em'>expectation</a>
+      </li><li>
+        <a href='/tags/garbage-collection/' style='font-size:1em'>garbage-collection</a>
+      </li><li>
+        <a href='/tags/image-processing/' style='font-size:1em'>image-processing</a>
+      </li><li>
+        <a href='/tags/ios/' style='font-size:2em'>ios</a>
+      </li><li>
+        <a href='/tags/logic/' style='font-size:1.0588235294117647em'>logic</a>
+      </li><li>
+        <a href='/tags/markov-chain/' style='font-size:1em'>markov-chain</a>
+      </li><li>
+        <a href='/tags/maths/' style='font-size:1.1764705882352942em'>maths</a>
+      </li><li>
+        <a href='/tags/method-dispatch/' style='font-size:1em'>method-dispatch</a>
+      </li><li>
+        <a href='/tags/mvvm/' style='font-size:1em'>mvvm</a>
+      </li><li>
+        <a href='/tags/network/' style='font-size:1em'>network</a>
+      </li><li>
+        <a href='/tags/neural-networks/' style='font-size:1em'>neural-networks</a>
+      </li><li>
+        <a href='/tags/optimization/' style='font-size:1.0588235294117647em'>optimization</a>
+      </li><li>
+        <a href='/tags/paradox/' style='font-size:1em'>paradox</a>
+      </li><li>
+        <a href='/tags/probability/' style='font-size:1.2352941176470589em'>probability</a>
+      </li><li>
+        <a href='/tags/problem-solving/' style='font-size:1.1176470588235294em'>problem-solving</a>
+      </li><li>
+        <a href='/tags/programming/' style='font-size:1.1176470588235294em'>programming</a>
+      </li><li>
+        <a href='/tags/psychological-efffects/' style='font-size:1em'>psychological-efffects</a>
+      </li><li>
+        <a href='/tags/questioning/' style='font-size:1em'>questioning</a>
+      </li><li>
+        <a href='/tags/reading/' style='font-size:1em'>reading</a>
+      </li><li>
+        <a href='/tags/reasoning/' style='font-size:1.1176470588235294em'>reasoning</a>
+      </li><li>
+        <a href='/tags/resolution/' style='font-size:1em'>resolution</a>
+      </li><li>
+        <a href='/tags/retrospection/' style='font-size:1em'>retrospection</a>
+      </li><li>
+        <a href='/tags/retrospective/' style='font-size:1em'>retrospective</a>
+      </li><li>
+        <a href='/tags/science/' style='font-size:1.0588235294117647em'>science</a>
+      </li><li>
+        <a href='/tags/statistics/' style='font-size:1.1764705882352942em'>statistics</a>
+      </li><li>
+        <a href='/tags/stub/' style='font-size:1em'>stub</a>
+      </li><li>
+        <a href='/tags/swift/' style='font-size:1.3529411764705883em'>swift</a>
+      </li><li>
+        <a href='/tags/swizzle/' style='font-size:1em'>swizzle</a>
+      </li><li>
+        <a href='/tags/testing/' style='font-size:1em'>testing</a>
+      </li><li>
+        <a href='/tags/travel/' style='font-size:1.3529411764705883em'>travel</a>
+      </li><li>
+        <a href='/tags/triz/' style='font-size:1.0588235294117647em'>triz</a>
+      </li><li>
+        <a href='/tags/ux/' style='font-size:1em'>ux</a>
+      </li><li>
+        <a href='/tags/xcode/' style='font-size:1em'>xcode</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/tech/'>Tech</a>
+      </li><li class='item'>
+        <a href='/reasoning/'>Reasoning</a>
+      </li><li class='item'>
+        <a href='/misc/'>Misc</a>
+      </li><li class='item'>
+        <a href='/reading/'>Reading</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'>
+    
+    <style>.widget-breadcrumbs li:after{content:'≫'}</style>
+  <section class='widget widget-breadcrumbs sep-after'>
+    <nav id='breadcrumbs'>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/reading/'>Reading</a></li><li><span>Reading: Week 49, Dec 04 - Dec 10</span></li></ol>
+    </nav>
+  </section></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Thuyen&#39;s corner</p><p class='desc site-desc'></p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Reading: Week 49, Dec 04 - Dec 10</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2017-12-04T00:00:00Z'>2017, Dec 04</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<h3 id="dec-10-2017">Dec 10, 2017</h3>
+
+<ul>
+<li><p><a href="http://andrewgelman.com/2017/12/09/interactive-visualizations-mcmc-gp">Interactive visualizations of sampling and GP regression</a> <content-meta>#probability #statistics #sampling</content-meta><br>
+&ndash;&gt; Blog post này giới thiệu (open-source) interative demo về MCMC (Markov Chain Monte Carlo) và Gaussian Process. Mình chưa biết về Gaussian Process, nhưng đã có tìm hiểu về MCMC và thấy rất hay. Ok, sẽ tìm hiểu về Gaussian Process, và cũng sẽ thử viết 1 bài nhỏ về MCMC.</p></li>
+
+<li><p><a href="https://ongxuanhong.wordpress.com/2017/12/09/vietnam-web-summit-2017">Bắt đầu Big Data từ đâu và như thế nào?</a><content-meta>#talk #data-science</content-meta><br></p></li>
+
+<li><p><a href="https://twitter.com/cabel/status/931292107372838912">https://twitter.com/cabel/status/931292107372838912</a><content-meta>#tip</content-meta><br>
+&ndash;&gt; Đây là tip để sử dụng fingerprint để xác nhận sudo authorization, thay cho password. Nice tip! Nhưng cá nhân thì sẽ không đánh đổi <em>security</em> để lấy <em>convenience</em>. Nói chung: <em>you it at your own risk!</em></p></li>
+</ul>
+
+<h3 id="dec-08-2017">Dec 08, 2017</h3>
+
+<ul>
+<li><p><a href="http://matt.diephouse.com/2017/12/when-not-to-use-an-enum">When Not to Use an Enum</a> <content-meta>#enum #analytics #ios</content-meta><br>
+&ndash;&gt; I share the same point with Matt that <code>enum</code> in this case is not a good choice. By using <code>struct</code> as Matt suggested, the code becomes more abstract. In the original post of Sundell, <code>AnalyticsManager</code> highly depends on concrete. Another option we could think of is to use <code>enum</code> is to use different analytics tracker for each workflow. For instance, for login flow, we have <code>LoginAnalyticsTracker</code> and <code>LoginAnalyticsEvent</code>. With this approach, we achieve both separation of responsibilities, and abstraction (protocol-based).</p></li>
+
+<li><p><a href="https://prateekvjoshi.com/2017/12/05/chasing-fermats-last-theorem">Chasing Fermat’s Last Theorem</a> <content-meta>#math #history</content-meta><br>
+&ndash;&gt; Đọc được post này trên wordpress. Nhớ đến bộ phim tài liệu hồi mấy tháng trước coi, kể về Fermat&rsquo;s Last Theorem và hành trình mà Andrew Wiles đi đến lời giải. Mình nghĩ là sẽ viết riêng 1 bài về topic này.</p></li>
+</ul>
+
+<h3 id="dec-07-2017">Dec 07, 2017</h3>
+
+<ul>
+<li><p><a href="http://tapbut.ngochieu.com/nhung-cau-chuyen-tren-may-bay">Những câu chuyện trên máy bay</a> <content-meta>#tapbut</content-meta><br>
+&ndash;&gt; Lâu rồi mới thấy anh Hiếu viết bài. Đây là một bài viết nhẹ nhàng, nhưng mình đọc thấy rất thích. Có 2 thể loại viết khiến mình đọc vào có 1 cảm hứng dồi đào. Một là thể loại mind-blowing, giống như <em>Thinking fast and slow</em>, <em>Phi lý trí</em> và sách của thầy Phan Dũng. Thể loại thứ hai là những mẫu chuyện (nhỏ) xoay quanh cuộc sống thường nhật, được ghi lại bởi những cái nhìn tinh tế, như cái bài viết trên :D.</p></li>
+
+<li><p><a href="https://medium.com/intuitionmachine/why-women-should-lead-our-a-i-future-8a0b7085ffc5">Why Women Should Lead our A.I. Future</a> <content-meta>#AI</content-meta><br>
+&ndash;&gt; Thật ra mình không đồng ý hẳn với quan điểm của tác giả bởi <em>&ldquo;Ở đâu cũng có anh hùng, ở đâu cũng có người khùng người điên&rdquo;</em>. Tuy nhiên, có một luận điểm mình thấy thuyết phục (bạn có thể thấy không thuyết phục):</p></li>
+</ul>
+
+<blockquote>
+<p>The reason for this is that women have a greater intuitive understanding of what makes us all human. Women have a natural inclination to focus on the important things that make us human. To maximize the benefit of AI technology we must focus on how AI improves our humanity and therefore we need to understand, at the very least, what makes us human and not what makes us machines.</p>
+</blockquote>
+
+<ul>
+<li><a href="https://ongxuanhong.wordpress.com/2017/12/05/distance-oracle-truy-van-nhanh-khoang-cach-giua-hai-diem-bat-ky-tren-do-thi">Distance oracle – Truy vấn nhanh khoảng cách giữa hai điểm bất kỳ trên đồ thị</a> <content-meta>#data-science</content-meta><br>
+&ndash;&gt; Post này có hàm lượng lý thuyết cao :). Bài này mình chọn hiểu phần mở đầu và kết luận của post, còn phần chi tiết trong slides thì mình chưa hiểu và cũng chưa định hiểu. Tóm váy lại là với bài toán truy vấn khoảng cách trên đồ thị thì việc những cấu trúc dữ liệu thông thường sẽ cho kém hiệu quả (thậm chí bất khả thi) đối với dữ liệu lớn. <em>Distance oracle</em> là một cấu trúc dữ liệu cho ra kết quả xấp xỉ nhưng đem lại lợi ích lớn về mặt không gian lưu trữ và thời gian truy vấn. Xấp xỉ này được kiểm chứng trên các dataset thực tế, và cho thấy sai lệch không đáng kể.</li>
+</ul>
+
+<h3 id="dec-06-2017">Dec 06, 2017</h3>
+
+<ul>
+<li><p><a href="http://varianceexplained.org/r/start-blog">Advice to aspiring data scientists: start a blog</a> <content-meta>#data-science #blogging #advice</content-meta><br>
+&ndash;&gt; Typical advice. Not only for data scientists, but also for software engineers, designers, or anyone. I really love the <a href="https://twitter.com/AmeliaMN/status/926509282874585089/photo/1">pic</a> in the post. My personal experience: blogging has brought me lots of joy. The moment when you publish a post after dayssss writing is so good.</p></li>
+
+<li><p><a href="http://blogs.tedneward.com/patterns/builder">http://blogs.tedneward.com/patterns/builder</a> <content-meta>#ios #design-pattern</content-meta><br>
+&ndash;&gt; In short, <em>Builder</em> design pattern is useful for create an object constructed by different parts, and the construction process of that object is non-trivial.</p></li>
+</ul>
+
+<h3 id="dec-04-2017">Dec 04, 2017</h3>
+
+<ul>
+<li><p><a href="https://thefullsnack.com/posts/the-source-of-knowledge.html">Đọc cái gì, và đọc ở đâu</a> <content-meta>#reading</content-meta><br>
+&ndash;&gt; Một cái post nhẹ nhàng, dí dỏm cho đầu tuần. Tóm lại cái post này nêu ra 2 luận điểm chính. Thứ nhất, các &ldquo;thánh&rdquo; đều có bí quyết của riêng mình. Bí quyết của thánh này có thể trái ngược với các thánh khác. Có người học theo kiểu giải trí, có người học theo lối cày quốc. <em>Quan trọng nhất là xác định cái mình muốn học</em>. Luận điểm thứ 2, tác giả nêu ra một số nguồn thông tin hữu ích, bao gồm blogs, wiki, sách, bài báo&hellip;<br></p></li>
+
+<li><p><a href="https://medium.com/@lemiorhan/the-story-behind-anyone-can-login-as-root-tweet-33731b5ded71">The Story Behind “anyone can login as root” Tweet</a><br>
+&ndash;&gt; The tweet went viral last week. The tweet poster was not the one who discovered it, just the one who spread the news. In fact, the issue had been around for more than a week.</p></li>
+</ul>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/reading/'>Reading</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/reading/reading-week-48-nov-27-dec-03/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Reading: Week 48, Nov 27 - Dec 03</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/reading/reading-week-50-dec-11-dec-17/'>
+        <span class='screen-reader-text'>Next post: </span>Reading: Week 50, Dec 11 - Dec 17<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:trinhngocthuyen@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/thuyen-trinh' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.69694257.js'></script>
+
+</body>
+
+</html>
+

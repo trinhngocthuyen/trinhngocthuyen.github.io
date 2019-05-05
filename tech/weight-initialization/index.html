@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='This post covers some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers.'>
+<meta name='theme-color' content='#0067a7'>
+
+<meta property='og:title' content='Weight initialization - impact on layer distribution • Thuyen&#39;s corner'>
+<meta property='og:description' content='This post covers some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers.'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/tech/weight-initialization/'>
+<meta property='og:site_name' content='Thuyen&#39;s corner'>
+<meta property='og:type' content='article'><meta property='article:section' content='tech'><meta property='article:tag' content='neural-networks'><meta property='article:published_time' content='2017-07-25T00:00:00Z'/><meta property='article:modified_time' content='2017-07-25T00:00:00Z'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.55.3" />
+
+  <title>Weight initialization - impact on layer distribution • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/tech/weight-initialization/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.d751652e.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#0067a7;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-tech layout-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      Thuyen&#39;s corner
+      </a>
+    </h2>
+    <div class='desc'>
+    
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud no-shuffle'><li>
+        <a href='/tags/algebra/' style='font-size:1em'>algebra</a>
+      </li><li>
+        <a href='/tags/architecture/' style='font-size:1em'>architecture</a>
+      </li><li>
+        <a href='/tags/astrology/' style='font-size:1em'>astrology</a>
+      </li><li>
+        <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
+      </li><li>
+        <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
+      </li><li>
+        <a href='/tags/compiler/' style='font-size:1em'>compiler</a>
+      </li><li>
+        <a href='/tags/config/' style='font-size:1em'>config</a>
+      </li><li>
+        <a href='/tags/creative-thinking/' style='font-size:1.0588235294117647em'>creative-thinking</a>
+      </li><li>
+        <a href='/tags/decision-making/' style='font-size:1em'>decision-making</a>
+      </li><li>
+        <a href='/tags/expectation/' style='font-size:1em'>expectation</a>
+      </li><li>
+        <a href='/tags/garbage-collection/' style='font-size:1em'>garbage-collection</a>
+      </li><li>
+        <a href='/tags/image-processing/' style='font-size:1em'>image-processing</a>
+      </li><li>
+        <a href='/tags/ios/' style='font-size:2em'>ios</a>
+      </li><li>
+        <a href='/tags/logic/' style='font-size:1.0588235294117647em'>logic</a>
+      </li><li>
+        <a href='/tags/markov-chain/' style='font-size:1em'>markov-chain</a>
+      </li><li>
+        <a href='/tags/maths/' style='font-size:1.1764705882352942em'>maths</a>
+      </li><li>
+        <a href='/tags/method-dispatch/' style='font-size:1em'>method-dispatch</a>
+      </li><li>
+        <a href='/tags/mvvm/' style='font-size:1em'>mvvm</a>
+      </li><li>
+        <a href='/tags/network/' style='font-size:1em'>network</a>
+      </li><li>
+        <a href='/tags/neural-networks/' style='font-size:1em'>neural-networks</a>
+      </li><li>
+        <a href='/tags/optimization/' style='font-size:1.0588235294117647em'>optimization</a>
+      </li><li>
+        <a href='/tags/paradox/' style='font-size:1em'>paradox</a>
+      </li><li>
+        <a href='/tags/probability/' style='font-size:1.2352941176470589em'>probability</a>
+      </li><li>
+        <a href='/tags/problem-solving/' style='font-size:1.1176470588235294em'>problem-solving</a>
+      </li><li>
+        <a href='/tags/programming/' style='font-size:1.1176470588235294em'>programming</a>
+      </li><li>
+        <a href='/tags/psychological-efffects/' style='font-size:1em'>psychological-efffects</a>
+      </li><li>
+        <a href='/tags/questioning/' style='font-size:1em'>questioning</a>
+      </li><li>
+        <a href='/tags/reading/' style='font-size:1em'>reading</a>
+      </li><li>
+        <a href='/tags/reasoning/' style='font-size:1.1176470588235294em'>reasoning</a>
+      </li><li>
+        <a href='/tags/resolution/' style='font-size:1em'>resolution</a>
+      </li><li>
+        <a href='/tags/retrospection/' style='font-size:1em'>retrospection</a>
+      </li><li>
+        <a href='/tags/retrospective/' style='font-size:1em'>retrospective</a>
+      </li><li>
+        <a href='/tags/science/' style='font-size:1.0588235294117647em'>science</a>
+      </li><li>
+        <a href='/tags/statistics/' style='font-size:1.1764705882352942em'>statistics</a>
+      </li><li>
+        <a href='/tags/stub/' style='font-size:1em'>stub</a>
+      </li><li>
+        <a href='/tags/swift/' style='font-size:1.3529411764705883em'>swift</a>
+      </li><li>
+        <a href='/tags/swizzle/' style='font-size:1em'>swizzle</a>
+      </li><li>
+        <a href='/tags/testing/' style='font-size:1em'>testing</a>
+      </li><li>
+        <a href='/tags/travel/' style='font-size:1.3529411764705883em'>travel</a>
+      </li><li>
+        <a href='/tags/triz/' style='font-size:1.0588235294117647em'>triz</a>
+      </li><li>
+        <a href='/tags/ux/' style='font-size:1em'>ux</a>
+      </li><li>
+        <a href='/tags/xcode/' style='font-size:1em'>xcode</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/tech/'>Tech</a>
+      </li><li class='item'>
+        <a href='/reasoning/'>Reasoning</a>
+      </li><li class='item'>
+        <a href='/misc/'>Misc</a>
+      </li><li class='item'>
+        <a href='/reading/'>Reading</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'>
+    
+    <style>.widget-breadcrumbs li:after{content:'≫'}</style>
+  <section class='widget widget-breadcrumbs sep-after'>
+    <nav id='breadcrumbs'>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/tech/'>Tech</a></li><li><span>Weight initialization - impact on layer distribution</span></li></ol>
+    </nav>
+  </section></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Thuyen&#39;s corner</p><p class='desc site-desc'></p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Weight initialization - impact on layer distribution</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2017-07-25T00:00:00Z'>2017, Jul 25</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<ul>
+<li><a href="#covariate-shift">1. Covariate shift</a>
+
+<ul>
+<li><a href="#what-is-covariate-shift">1.1. What is Covariate shift?</a></li>
+<li><a href="#what-does-it-look-like">1.2. What does it look like?</a></li>
+<li><a href="#impact-of-covariate-shift">1.3. Impact of Covariate shift?</a></li>
+</ul></li>
+<li><a href="#param-initialization">2. Param initialization</a>
+
+<ul>
+<li><a href="#setup">2.1. Setup</a></li>
+<li><a href="#trival-initialization">2.2. Trival initialization</a></li>
+<li><a href="#xavier-initialization-glorot-initialization">2.3. Xavier initialization (Glorot initialization)</a></li>
+</ul></li>
+<li><a href="#another-approaches">3. Another approaches</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<p>In this post, I will carry out some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers. This was mentioned by Andrej in <a href="https://www.youtube.com/watch?v=hd_KFJ5ktUc&amp;index=6&amp;list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC">cs231n/lec6</a> as a motivation paving the way for batch normalization.</p>
+
+<p>I will try to keep things simple with intuition. Mathematics will not be richly convered.</p>
+
+<h3 id="1-covariate-shift">1. Covariate shift</h3>
+
+<h4 id="1-1-what-is-covariate-shift">1.1. What is Covariate shift?</h4>
+
+<p><em>Covariate shift</em> refers to changes in the distribution of input variables. This shift is usually addressed as a problem causing poor performance in training neural networks.</p>
+
+<p>Note: In the context of neural networks, a layer takes the activations of the previous layer as its input. Therefore, it is also equivalent if we investigate the distribution of activations of a layer.</p>
+
+<h4 id="1-2-what-does-it-look-like">1.2 .What does it look like?</h4>
+
+<p>Consider a neural networks with 20 fully connected layers.
+- <em>Input shape</em>: 49000x3072 (reshape from 49000 CIFAR images of size 32x32) and was whitened (zero-centered &amp; normalized).
+- <em>Hidden layers</em>: 19 layers of shape (100, 100)
+- <em>Activation function</em>: ReLU.
+- <em>Biases</em>: all zeros.
+- <em>Weights</em>: normal distribution, scaled by factor 0.1.</p>
+
+<p>The distributions of layer ouputs are illustrated in the figure below. We can apparently see that the variance constantly decreases in deeper layers.</p>
+
+<p><img src="assets/notebooks/weight_initialization_5_0.png" alt="png" />
+<figcaption>Fig 1. Distribution of activations in layer 1, 3, 5, 7.</figcaption></p>
+
+<h4 id="1-3-impact-of-covariate-shift">1.3. Impact of Covariate shift?</h4>
+
+<p>When training a network, if the activations fall in a narrow range like above, the gradient on those activations could be relatively small, leading to <strong>gradient saturation/vanish</strong>. Training gets stuck as a result. We sometimes face the same problem with dispersing distribution.</p>
+
+<h3 id="2-param-initialization">2. Param initialization</h3>
+
+<p>Param initialization is a primary cause of covariate shift. We will focus on weight initialization, and let biases be all zeros.</p>
+
+<p>An initialization strategy is considered good if it maintains the same mean and variance (or standard deviation) throughout layers. Since the input data was whitened, we expect mean around zero (+/-1), std around 1 (+/-0.5).</p>
+
+<ul>
+<li>$\mu = 0.3, \sigma = 0.7$  &ndash;&gt; accepted ✅</li>
+<li>$\mu = 0.3, \sigma = 0.003$ &ndash;&gt; NOT accepted ❌</li>
+<li>$\mu = 15, \sigma = 320$ &ndash;&gt; NOT accepted ❌</li>
+</ul>
+
+<h4 id="2-1-setup">2.1. Setup</h4>
+
+<p>Some setup code for experiments:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">X_flat</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Feed forward.
+</span><span class="s2">     - X_flat: shape: N x D, where D = d1 x ... x dk.
+</span><span class="s2">     - hid_dims: 1D array.
+</span><span class="s2">     - weights: array of weights: W1, W2, ...
+</span><span class="s2">     - biases: array of biases: b1, b2, ...
+</span><span class="s2">     - activation: activation on each layer. None if no activation.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">biases</span><span class="p">),</span> <span class="s1">&#39;weights and biases must have the same length&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span> <span class="s1">&#39;len(weights) must equal len(hid_dims) + 1&#39;</span>
+    
+    <span class="n">all_layers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">X_flat</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="o">+</span> <span class="n">biases</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">activation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">all_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">all_layers</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">visualize_distribution</span><span class="p">(</span><span class="n">all_activations</span><span class="p">):</span>
+    <span class="n">n_layers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_activations</span><span class="p">)</span>
+    <span class="n">activations_mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">activations</span><span class="p">))</span> <span class="k">for</span> <span class="n">activations</span> <span class="ow">in</span> <span class="n">all_activations</span><span class="p">]</span>
+    <span class="n">activations_std</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">activations</span><span class="p">))</span> <span class="k">for</span> <span class="n">activations</span> <span class="ow">in</span> <span class="n">all_activations</span><span class="p">]</span>
+    
+    <span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">activations_mean</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0067a7&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;means by layer&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;layer&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">activations_std</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;std by layer&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;layer&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax3</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">all_activations</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of layer 15&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">all_activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of the layer </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">n_layers</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># Print mean and std of last 5 layer</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Layer </span><span class="si">%2d</span><span class="s1">. mean: </span><span class="si">%f</span><span class="se">\t</span><span class="s1">std: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">activations_mean</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">activations_std</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span>
+    
+<span class="k">def</span> <span class="nf">initialize_params</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span>
+                      <span class="n">weight_initializer</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">,</span>
+                      <span class="n">bias_initializer</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">):</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">in_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">hid_dims</span> <span class="o">+</span> <span class="p">[</span><span class="n">out_dim</span><span class="p">]</span>
+    <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">weight_initializer</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">bias_initializer</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">biases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span>
+
+<span class="k">def</span> <span class="nf">examine_distribution</span><span class="p">(</span><span class="n">weight_initializer</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">in_dim</span><span class="p">,</span> <span class="n">out_dim</span> <span class="o">=</span> <span class="mi">32</span><span class="o">*</span><span class="mi">32</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span>
+    <span class="n">hid_dims</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span> <span class="o">=</span> <span class="n">initialize_params</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span>
+        <span class="n">weight_initializer</span><span class="o">=</span><span class="n">weight_initializer</span><span class="p">)</span>
+    
+    <span class="n">_</span><span class="p">,</span> <span class="n">all_activations</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">X_train_normalized</span><span class="p">,</span> <span class="n">hid_dims</span><span class="o">=</span><span class="n">hid_dims</span><span class="p">,</span> 
+        <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="o">=</span><span class="n">biases</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">)</span>
+    
+    <span class="n">visualize_distribution</span><span class="p">(</span><span class="n">all_activations</span><span class="p">)</span></code></pre></div>
+<p>Now, lets examine some initialization schemes&hellip;</p>
+
+<h4 id="2-2-trival-initialization">2.2. Trival initialization</h4>
+
+<p>The common way is using normal randomization with a scale. This scale should equal the standard deviation of the random numbers.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight_scale</span><span class="p">,</span> <span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">))</span>
+
+<span class="n">examine_distribution</span><span class="p">(</span><span class="n">trivial_initializer</span><span class="p">)</span></code></pre></div>
+<p><img src="assets/notebooks/weight_initialization_6_0.png" alt="png" />{:height=&ldquo;600&rdquo; width=&ldquo;600&rdquo;}
+<figcaption>Fig 2. mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.1$.</figcaption></p>
+<div class="highlight"><pre class="chroma">Layer 16. mean: 0.009006    std: 0.016165
+Layer 17. mean: 0.005849    std: 0.009699
+Layer 18. mean: 0.004207    std: 0.007308
+Layer 19. mean: 0.002917    std: 0.004961
+Layer 20. mean: 0.005232    std: 0.006176</pre></div>
+<p>&ndash;&gt; Not accepted ❌</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">examine_distribution</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">:</span> <span class="n">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span></code></pre></div>
+<p><img src="assets/notebooks/weight_initialization_7_0.png" alt="png" />{:height=&ldquo;600&rdquo; width=&ldquo;600&rdquo;}
+<figcaption>Fig 3. mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.2$.</figcaption></p>
+<div class="highlight"><pre class="chroma">Layer 16. mean: 825.965548	std: 1394.566496
+Layer 17. mean: 1491.038728	std: 2237.786857
+Layer 18. mean: 2149.680649	std: 3300.200497
+Layer 19. mean: 3008.496905	std: 4961.155125
+Layer 20. mean: 2845.114905	std: 4381.190124</pre></div>
+<p>&ndash;&gt; Not accepted ❌</p>
+
+<p>Notice that after changing weight scale from 0.1 to 0.2, how output values are distributed changed radically. Quite sensitive to weight scale, huh?</p>
+
+<h4 id="2-3-xavier-initialization-glorot-initialization">2.3. Xavier initialization (Glorot initialization)</h4>
+
+<p>This scheme is based on the observation that:</p>
+
+<p>$$\begin{equation}
+var(s) = var(\sum_i^N{w_i.x_i}) = &hellip; = N.var(w).var(x)
+\end{equation}$$</p>
+
+<p>In order to keep the same variance, we need: $var(w) = 1/N$. So, the weight scale should be $\sqrt{1/N}$</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">xavier_initializer_1</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
+
+<span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span></code></pre></div>
+<p><img src="assets/notebooks/weight_initialization_8_0.png" alt="png" />{:height=&ldquo;600&rdquo; width=&ldquo;600&rdquo;}
+<figcaption>Fig 4. mean and std by layer. Initialized using xavier initialization, with no activation.</figcaption></p>
+<div class="highlight"><pre class="chroma">Layer 16. mean: 0.000000	std: 0.742681
+Layer 17. mean: -0.000000	std: 0.731260
+Layer 18. mean: -0.000000	std: 0.718502
+Layer 19. mean: 0.000000	std: 0.724088
+Layer 20. mean: -0.000000	std: 0.740663</pre></div>
+<p>&ndash;&gt; Accepted ✅</p>
+
+<p>We can see that xavier initialization gives a really nice distribution: <em>gaussian shape, reasonable mean and std</em>. However, this initialization strategy seems not to work well with non-linear activation. If we use ReLU as the activation function, we got a poor distribution.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">)</span></code></pre></div>
+<p><img src="assets/notebooks/weight_initialization_9_0.png" alt="png" />{:height=&ldquo;600&rdquo; width=&ldquo;600&rdquo;}
+<figcaption>Fig 5. mean and std by layer. With relu activation, normal distribution, $var(w) = 1/N$.</figcaption></p>
+<div class="highlight"><pre class="chroma">Layer 16. mean: 0.002048	std: 0.003093
+Layer 17. mean: 0.001338	std: 0.002246
+Layer 18. mean: 0.000834	std: 0.001481
+Layer 19. mean: 0.000434	std: 0.000776
+Layer 20. mean: 0.000440	std: 0.000590</pre></div>
+<p>&ndash;&gt; Not accepted ❌</p>
+
+<p>A recent paper by <a href="https://arxiv.org/pdf/1502.01852v1.pdf">He et al</a> dove into the analysis with ReLU activation and finally reached the conclusion that the variance of weights should be $2/N$. This is often used in practice.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">xavier_initializer_2</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
+
+<span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_2</span><span class="p">)</span></code></pre></div>
+<p><img src="assets/notebooks/weight_initialization_10_0.png" alt="png" />{:height=&ldquo;600&rdquo; width=&ldquo;600&rdquo;}
+<figcaption>Fig 6. mean and std by layer. With relu activation, normal distribution, $var(w) = 2/N$.</figcaption></p>
+<div class="highlight"><pre class="chroma">Layer 16. mean: 0.605864	std: 0.924794
+Layer 17. mean: 0.569898	std: 0.860651
+Layer 18. mean: 0.530719	std: 0.835036
+Layer 19. mean: 0.433965	std: 0.776518
+Layer 20. mean: 0.335705	std: 0.556218</pre></div>
+<p>&ndash;&gt; Accepted ✅</p>
+
+<h3 id="3-another-approaches">3. Another approaches</h3>
+
+<p>Another technique was recently developed called <strong>batch normalization</strong>. We will take a look at it later.
+P/s: A huge advantage of batch normalization is that it is more robust to bad initialization. In fact, using different values of weight scale does not produce much significant performance (and it&rsquo;s already good). Therefore, tuning hyperparams would be less painful.</p>
+
+<h3 id="4-conclusion">4. Conclusion</h3>
+
+<p>We have discussed <em>covariate shift</em> and its impact on training performance. With a proper scheme of initialization, the training could be less likely to get into this problem.
+We also have a look at some examples to see the distribution of activations corresponds to different schemes of initialization.</p>
+
+<p>Hope this post provides helpful visualization to help understand some problems of neural networks.</p>
+
+<p>Reference:</p>
+
+<p>[1] <a href="http://cs231n.github.io/neural-networks-2">CS231n course notes</a><br />
+[2] <a href="http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf">Understanding the difficulty of training deep feedforward neural networks</a><br />
+[3] <a href="https://arxiv.org/pdf/1502.01852v1.pdf">Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification</a></p>
+
+<p>Source code: <a href="https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/experiments/weight_initialization.ipynb">here</a></p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/tech/'>Tech</a></div>
+<div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/neural-networks/'>neural-networks</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/tech/a-dive-into-hog/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>A dive into Histogram of Oriented Gradients (HOG)</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/tech/a-misuse-of-expectation/'>
+        <span class='screen-reader-text'>Next post: </span>A misuse of Expectation<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:trinhngocthuyen@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/thuyen-trinh' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.69694257.js'></script>
+
+</body>
+
+</html>
+

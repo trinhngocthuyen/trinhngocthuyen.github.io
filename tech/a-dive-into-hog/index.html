@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&hellip; And then implement it in python (in order to comprehend it).'>
+<meta name='theme-color' content='#0067a7'>
+
+<meta property='og:title' content='A dive into Histogram of Oriented Gradients (HOG) • Thuyen&#39;s corner'>
+<meta property='og:description' content='In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&hellip; And then implement it in python (in order to comprehend it).'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/tech/a-dive-into-hog/'>
+<meta property='og:site_name' content='Thuyen&#39;s corner'>
+<meta property='og:type' content='article'><meta property='article:section' content='tech'><meta property='article:tag' content='image-processing'><meta property='article:published_time' content='2017-07-13T00:00:00Z'/><meta property='article:modified_time' content='2017-07-13T00:00:00Z'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.55.3" />
+
+  <title>A dive into Histogram of Oriented Gradients (HOG) • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/tech/a-dive-into-hog/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.d751652e.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#0067a7;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-tech layout-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      Thuyen&#39;s corner
+      </a>
+    </h2>
+    <div class='desc'>
+    
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud no-shuffle'><li>
+        <a href='/tags/algebra/' style='font-size:1em'>algebra</a>
+      </li><li>
+        <a href='/tags/architecture/' style='font-size:1em'>architecture</a>
+      </li><li>
+        <a href='/tags/astrology/' style='font-size:1em'>astrology</a>
+      </li><li>
+        <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
+      </li><li>
+        <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
+      </li><li>
+        <a href='/tags/compiler/' style='font-size:1em'>compiler</a>
+      </li><li>
+        <a href='/tags/config/' style='font-size:1em'>config</a>
+      </li><li>
+        <a href='/tags/creative-thinking/' style='font-size:1.0588235294117647em'>creative-thinking</a>
+      </li><li>
+        <a href='/tags/decision-making/' style='font-size:1em'>decision-making</a>
+      </li><li>
+        <a href='/tags/expectation/' style='font-size:1em'>expectation</a>
+      </li><li>
+        <a href='/tags/garbage-collection/' style='font-size:1em'>garbage-collection</a>
+      </li><li>
+        <a href='/tags/image-processing/' style='font-size:1em'>image-processing</a>
+      </li><li>
+        <a href='/tags/ios/' style='font-size:2em'>ios</a>
+      </li><li>
+        <a href='/tags/logic/' style='font-size:1.0588235294117647em'>logic</a>
+      </li><li>
+        <a href='/tags/markov-chain/' style='font-size:1em'>markov-chain</a>
+      </li><li>
+        <a href='/tags/maths/' style='font-size:1.1764705882352942em'>maths</a>
+      </li><li>
+        <a href='/tags/method-dispatch/' style='font-size:1em'>method-dispatch</a>
+      </li><li>
+        <a href='/tags/mvvm/' style='font-size:1em'>mvvm</a>
+      </li><li>
+        <a href='/tags/network/' style='font-size:1em'>network</a>
+      </li><li>
+        <a href='/tags/neural-networks/' style='font-size:1em'>neural-networks</a>
+      </li><li>
+        <a href='/tags/optimization/' style='font-size:1.0588235294117647em'>optimization</a>
+      </li><li>
+        <a href='/tags/paradox/' style='font-size:1em'>paradox</a>
+      </li><li>
+        <a href='/tags/probability/' style='font-size:1.2352941176470589em'>probability</a>
+      </li><li>
+        <a href='/tags/problem-solving/' style='font-size:1.1176470588235294em'>problem-solving</a>
+      </li><li>
+        <a href='/tags/programming/' style='font-size:1.1176470588235294em'>programming</a>
+      </li><li>
+        <a href='/tags/psychological-efffects/' style='font-size:1em'>psychological-efffects</a>
+      </li><li>
+        <a href='/tags/questioning/' style='font-size:1em'>questioning</a>
+      </li><li>
+        <a href='/tags/reading/' style='font-size:1em'>reading</a>
+      </li><li>
+        <a href='/tags/reasoning/' style='font-size:1.1176470588235294em'>reasoning</a>
+      </li><li>
+        <a href='/tags/resolution/' style='font-size:1em'>resolution</a>
+      </li><li>
+        <a href='/tags/retrospection/' style='font-size:1em'>retrospection</a>
+      </li><li>
+        <a href='/tags/retrospective/' style='font-size:1em'>retrospective</a>
+      </li><li>
+        <a href='/tags/science/' style='font-size:1.0588235294117647em'>science</a>
+      </li><li>
+        <a href='/tags/statistics/' style='font-size:1.1764705882352942em'>statistics</a>
+      </li><li>
+        <a href='/tags/stub/' style='font-size:1em'>stub</a>
+      </li><li>
+        <a href='/tags/swift/' style='font-size:1.3529411764705883em'>swift</a>
+      </li><li>
+        <a href='/tags/swizzle/' style='font-size:1em'>swizzle</a>
+      </li><li>
+        <a href='/tags/testing/' style='font-size:1em'>testing</a>
+      </li><li>
+        <a href='/tags/travel/' style='font-size:1.3529411764705883em'>travel</a>
+      </li><li>
+        <a href='/tags/triz/' style='font-size:1.0588235294117647em'>triz</a>
+      </li><li>
+        <a href='/tags/ux/' style='font-size:1em'>ux</a>
+      </li><li>
+        <a href='/tags/xcode/' style='font-size:1em'>xcode</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/tech/'>Tech</a>
+      </li><li class='item'>
+        <a href='/reasoning/'>Reasoning</a>
+      </li><li class='item'>
+        <a href='/misc/'>Misc</a>
+      </li><li class='item'>
+        <a href='/reading/'>Reading</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'>
+    
+    <style>.widget-breadcrumbs li:after{content:'≫'}</style>
+  <section class='widget widget-breadcrumbs sep-after'>
+    <nav id='breadcrumbs'>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/tech/'>Tech</a></li><li><span>A dive into Histogram of Oriented Gradients (HOG)</span></li></ol>
+    </nav>
+  </section></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Thuyen&#39;s corner</p><p class='desc site-desc'></p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>A dive into Histogram of Oriented Gradients (HOG)</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2017-07-13T00:00:00Z'>2017, Jul 13</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p>In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&hellip; And then implement it in python (in order to comprehend it).</p>
+
+<h3 id="feature-descriptor">Feature Descriptor</h3>
+
+<p>A <em>feature descriptor</em> is a representation of an image (or image patch) simplifying the image by extracting useful information and throwing away irrelevant information.</p>
+
+<p>A <em>feature descriptor</em> converts an image of size $W \times H \times 3$ to a feature vector of length $N$</p>
+
+<h4 id="what-is-considered-useful">What is considered <em>useful</em>?</h4>
+
+<p>It depends on purpose. For example, it might not be good for image viewing, but for classification since using it produces good results.</p>
+
+<p>In the HOG feature descriptor, the distribution (histograms) of directions of gradients (oriented gradients) are used as features. Gradients of an image are useful because the mangitude of gradients is large around edges and corners which contain a lot more information about object shape than flat regions.</p>
+
+<h3 id="how-to-calculate-hog">How to calculate HOG?</h3>
+
+<p>P/s: To make sure the calculation is correctly, we will compare the result of our manual implementation with that of <code>skimage</code>.</p>
+
+<h4 id="step1-preprocessing-images">Step1: Preprocessing images</h4>
+
+<ul>
+<li>Crop image (if needed). Here, I use an image of size 512 x 512 (from skimage)</li>
+<li>Convert to grayscale</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">color</span>
+
+<span class="n">original_image</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">astronaut</span><span class="p">()</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astronaut</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;original: </span><span class="si">%s</span><span class="s2"> --&gt; grayscale: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">original_image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">0.44195368474
+original: (512, 512, 3) --&gt; grayscale: (512, 512)</pre></div>
+<h4 id="step-2-compute-gradient-images">Step 2: Compute gradient images</h4>
+
+<ul>
+<li>The gradients involve gradients by x axis (indicating horizontal change) and gradients by y axis (vertical change)</li>
+<li>$g_x, g_y \in \mathbf{R}^{H \times W}$</li>
+</ul>
+
+<p>Note that we calculate the gradient using the approximation for discrete value:
+$f&rsquo;(x) \approx \frac{f(x+h) - f(x)}{h}$.</p>
+
+<p>The smallest value of $h$ is 1, corresponding to 1 pixel. In fact, this approximation is called <em>forward difference</em>. We also have other candidates to approximate the gradient as follows:
+- Backward difference: $f&rsquo;(x) = f(x) - f(x-1)$
+- Forward difference: $f&rsquo;(x) = f(x+1) - f(x)$ (like above)
+- Central difference: $f&rsquo;(x) = \frac{f(x+1) - f(x-1)}{2}$</p>
+
+<p>In this post, I will use three of them: backward/forward difference for the edge pixels, central difference for rest. Some approaches do not care about the 4 edges and set them to zero.</p>
+
+<p>However, I use the three approximations above because it is consistent with the implementation of <code>np.gradient()</code> which is a <em>standardly correct function</em> I can use to check my own code. Another reason is that <code>skimage.feature.hog</code> is implemented in the same way. I will be able to compare my result with that computed by <code>skimage</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">compute_gradient</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Compute gradient of an image by rows and columns
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">gx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">gy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  
+    <span class="c1"># Central difference</span>
+    <span class="n">gx</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">gy</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="c1"># Forward difference</span>
+    <span class="n">gx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">gy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+    
+    <span class="c1"># Backward difference</span>
+    <span class="n">gx</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">gy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+    
+    <span class="k">return</span> <span class="n">gx</span><span class="p">,</span> <span class="n">gy</span>
+
+<span class="n">gx</span><span class="p">,</span> <span class="n">gy</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="c1"># Check with np.gradient()</span>
+<span class="n">gy_check</span><span class="p">,</span> <span class="n">gx_check</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="c1"># Note that the result of np.gradient is in the reversed order</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;diff_gx:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gx</span> <span class="o">-</span> <span class="n">gx_check</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;diff_gy&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gy</span> <span class="o">-</span> <span class="n">gy_check</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">diff_gx: 0.0
+diff_gy 0.0</pre></div>
+<p>Now let&rsquo;s see what information $g_x$ and $g_y$ carry.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span> <span class="n">ax3</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span> <span class="n">ax4</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span> 
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gradient gx&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gy</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gradient gy&#39;</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">gx</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gradient abs(gx)&#39;</span><span class="p">)</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span> <span class="n">gy</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span> <span class="c1"># np.hypo(gx, gy) = np.sqrt(gx**2 + gy**2)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gradient sqrt(gx^2 + gy^2)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
+<p><img src="/images/notebooks/hog_8_0.png" alt="png" /></p>
+
+<p>Basically, $gx$ and $gy$ represent the edges of objects pretty well. We could intuitively think that changes in pixel values occur almost and significantly at object edges.</p>
+
+<p>We could understand the gradients as a set of vectors $\vec{d} = \vec{dx} + \vec{dy}$, each of which is associated with a pixel $(x, y)$.</p>
+
+<p><u>Note</u>:
+- The visualizations of $gx$ and $gy$ are almost gray because they have negative values which turn the regions with zero gradient to neutral gray. The unsigned gradient (ie. $\lvert g_x \lvert, \lvert g_y \lvert$) of them should produce the very similar results as the rightmost image.</p>
+
+<h4 id="step-3-compute-hog-in-each-cell">Step 3: Compute HOG in each cell</h4>
+
+<p>The edges above somehow resemble the sketch of the object, but quite smoother. In practice, <em>rough sketch</em> is good enough to classify objects. Therefore, we will only care just a few orientations of $\vec{d}$ and in local regions (rather than every pixel).</p>
+
+<p>We divide the image into many cells of size (8x8). These cells are also usually called <em><strong>patches</strong></em>. In this example, the size of the image is (512x512), so we have (64x64) patches in total. Oh, don&rsquo;t forget to divide the total magnitudes in each bin by the number of pixels per patch.</p>
+
+<figure>
+  <img src="/images/notebooks/hog_austronaut_patches.png" width="300px">
+  <figcaption>The yellow square is a cell (8x8). The red one is a block of 4 cells.</figcaption>
+</figure>
+
+<p>For each patch, we extract a vector of 9 bins (corresponding to angles $20^\circ, 40^\circ, &hellip;, 160^\circ$). A pixel that has orientation $95^\circ$, magnitude $1.5$ should add up an amount of $1.5$ to the bin $80^\circ$.</p>
+
+<figure>
+  <img src="/images/notebooks/hog_mag_ori.png" width="600px">
+  <figcaption>Magnitudes (upper values) and orientations in degree (in blue and white). In the right figure, the orientations are rounded to the pivot values of 9 bins (0, 20, 40, ..., 160)</figcaption>
+</figure>
+
+<p>This vector gives information about the statistic of the how popular each considered orientation is <em>(ie. the distribution of orientations)</em>. For example, a vector <em>v = (<strong>12</strong>, 0, 0.1, 0.7, 0.2, 0, 0, 0, 0.1)</em> indicates the frequent appearance of horizontal strokes.</p>
+
+<figure>
+  <img src="/images/notebooks/hog_patch_hist.png" width="300px">
+  <figcaption>From the histogram of the patch, we notice that distribution of orientation of 40 degree is high, indicating that most strokes are drawn diagonally</figcaption>
+</figure>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">compute_hog_cell</span><span class="p">(</span><span class="n">n_orientations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">magnitudes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">orientations</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Compute 1 HOG feature of a cell. Return a row vector of size `n_orientations`
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">bin_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">180</span> <span class="o">/</span> <span class="n">n_orientations</span><span class="p">)</span>
+    <span class="n">hog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_orientations</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">orientations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">orientations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">orientation</span> <span class="o">=</span> <span class="n">orientations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+            <span class="n">lower_bin_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">orientation</span> <span class="o">/</span> <span class="n">bin_width</span><span class="p">)</span>
+            <span class="n">hog</span><span class="p">[</span><span class="n">lower_bin_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">magnitudes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">hog</span> <span class="o">/</span> <span class="p">(</span><span class="n">magnitudes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">magnitudes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></code></pre></div>
+<h4 id="step-4-block-normalization">Step 4: Block normalization</h4>
+
+<p>Up to this step, we have created a histogram based on the gradients of the image. However, the gradients are sensitive to illumination. For example, if we darken the image by a half of light, the gradient magnitudes will decrease twice which means the histogram values change by half. A practical way to alleviate this dependence is normalizing the histogram.</p>
+
+<p>We could perform normalization in larger regions. This stage is called <em><strong>block normalization</strong></em>. For example, we could take a block of 4 (square aligned) cells to normalize and take the result as a final histogram feature. We slide to the right and then down to get histogram features for other blocks.</p>
+
+<p>Note:
+- These blocks could overlap each other.
+- Each histogram of a block is a row vector of size 36 (4 cells/block)</p>
+
+<p>In this examples, with 4 cells/block, there are 63x63 blocks. So, we 63x63 histogram vectors of size 36.</p>
+
+<p>&ndash;&gt; 63x63x36 = <strong>142884</strong> numbers</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">normalize_vector</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Return a normalized vector (which has norm2 as 1) 
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># eps is used to prevent zero divide exceptions (in case v is zero)</span>
+    <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">v</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> 
+    
+
+<span class="k">def</span> <span class="nf">compute_hog_features</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                         <span class="n">n_orientations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">pixels_per_cell</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+                         <span class="n">cells_per_block</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Compute HOG features of an image. Return a row vector
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">gx</span><span class="p">,</span> <span class="n">gy</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">sy</span><span class="p">,</span> <span class="n">sx</span> <span class="o">=</span> <span class="n">gx</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">pixels_per_cell</span>
+    <span class="n">bx</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="n">cells_per_block</span>
+    
+    <span class="n">magnitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span> <span class="n">gy</span><span class="p">)</span>   <span class="c1"># = np.sqrt(gx**2 + gy**2)</span>
+    <span class="n">orientations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">gy</span><span class="p">,</span> <span class="n">gx</span><span class="p">))</span> <span class="o">%</span> <span class="mi">180</span>
+    
+    <span class="n">n_cellsx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sx</span> <span class="o">/</span> <span class="n">cx</span><span class="p">)</span> <span class="c1"># Number of cells in x axis</span>
+    <span class="n">n_cellsy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sy</span> <span class="o">/</span> <span class="n">cy</span><span class="p">)</span> <span class="c1"># Number of cells in y axis</span>
+    <span class="n">n_blocksx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_cellsx</span> <span class="o">-</span> <span class="n">bx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">n_blocksy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_cellsy</span> <span class="o">-</span> <span class="n">by</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="n">hog_cells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_cellsx</span><span class="p">,</span> <span class="n">n_cellsy</span><span class="p">,</span> <span class="n">n_orientations</span><span class="p">))</span>
+    
+    <span class="n">prev_x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Compute HOG of each cell</span>
+    <span class="k">for</span> <span class="n">it_x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cellsx</span><span class="p">):</span>
+        <span class="n">prev_y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">it_y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cellsy</span><span class="p">):</span>
+            <span class="n">magnitudes_patch</span> <span class="o">=</span> <span class="n">magnitudes</span><span class="p">[</span><span class="n">prev_y</span><span class="p">:</span><span class="n">prev_y</span> <span class="o">+</span> <span class="n">cy</span><span class="p">,</span> <span class="n">prev_x</span><span class="p">:</span><span class="n">prev_x</span> <span class="o">+</span> <span class="n">cx</span><span class="p">]</span>
+            <span class="n">orientations_patch</span> <span class="o">=</span> <span class="n">orientations</span><span class="p">[</span><span class="n">prev_y</span><span class="p">:</span><span class="n">prev_y</span> <span class="o">+</span> <span class="n">cy</span><span class="p">,</span> <span class="n">prev_x</span><span class="p">:</span><span class="n">prev_x</span> <span class="o">+</span> <span class="n">cx</span><span class="p">]</span>
+            
+            <span class="n">hog_cells</span><span class="p">[</span><span class="n">it_y</span><span class="p">,</span> <span class="n">it_x</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_hog_cell</span><span class="p">(</span><span class="n">n_orientations</span><span class="p">,</span> <span class="n">magnitudes_patch</span><span class="p">,</span> <span class="n">orientations_patch</span><span class="p">)</span>
+            
+            <span class="n">prev_y</span> <span class="o">+=</span> <span class="n">cy</span>
+        <span class="n">prev_x</span> <span class="o">+=</span> <span class="n">cx</span>
+    
+    <span class="n">hog_blocks_normalized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_blocksx</span><span class="p">,</span> <span class="n">n_blocksy</span><span class="p">,</span> <span class="n">n_orientations</span><span class="p">))</span>
+    
+    <span class="c1"># Normalize HOG by block</span>
+    <span class="k">for</span> <span class="n">it_blocksx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_blocksx</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">it_blocky</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_blocksy</span><span class="p">):</span>
+            <span class="n">hog_block</span> <span class="o">=</span> <span class="n">hog_cells</span><span class="p">[</span><span class="n">it_blocky</span><span class="p">:</span><span class="n">it_blocky</span> <span class="o">+</span> <span class="n">by</span><span class="p">,</span> <span class="n">it_blocksx</span><span class="p">:</span><span class="n">it_blocksx</span> <span class="o">+</span> <span class="n">bx</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="n">hog_blocks_normalized</span><span class="p">[</span><span class="n">it_blocky</span><span class="p">,</span> <span class="n">it_blocksx</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize_vector</span><span class="p">(</span><span class="n">hog_block</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">hog_blocks_normalized</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Compare the results with skimage.feature.hog</span>
+<span class="n">hog_features</span> <span class="o">=</span> <span class="n">compute_hog_features</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span> <span class="n">n_orientations</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> 
+    <span class="n">pixels_per_cell</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> 
+    <span class="n">cells_per_block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">hog</span>
+
+<span class="n">hog_features_check</span> <span class="o">=</span> <span class="n">hog</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">pixels_per_cell</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">cells_per_block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">block_norm</span><span class="o">=</span><span class="s1">&#39;L2&#39;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">hog_features</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">hog_features_check</span><span class="o">.</span><span class="n">shape</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">hog_features</span><span class="p">,</span> <span class="n">hog_features_check</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">hog_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">True
+(36864,)</pre></div>
+<p>Now, visualize the HOG features. Actually, I do not implement it since it is a bit cumbersome to reconstruct the image from these histogram info. Instead, I use the available function <code>skimage.feature.hog</code> to plot the HOG image so that we could have a sense of its benefits.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">hog</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">hog_image</span> <span class="o">=</span> <span class="n">hog</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">pixels_per_cell</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="n">cells_per_block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">block_norm</span><span class="o">=</span><span class="s1">&#39;L2&#39;</span><span class="p">,</span>
+    <span class="n">visualise</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Input image&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hog_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;HOG&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
+<p><img src="/images/notebooks/hog_16_0.png" alt="png" /></p>
+
+<h3 id="reference">Reference</h3>
+
+<p>[1] <a href="http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf">http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf</a></p>
+
+<p>[2] <a href="http://www.learnopencv.com/histogram-of-oriented-gradients">http://www.learnopencv.com/histogram-of-oriented-gradients</a></p>
+
+<p>[3] <a href="http://mccormickml.com/2013/05/09/hog-person-detector-tutorial">http://mccormickml.com/2013/05/09/hog-person-detector-tutorial</a></p>
+
+<p>Jupyter notebook: <a href="https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/funda_ml/HOG.ipynb">here</a></p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/tech/'>Tech</a></div>
+<div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/image-processing/'>image-processing</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/tech/create-custom-xcode-templates/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Create custom Xcode templates</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/tech/weight-initialization/'>
+        <span class='screen-reader-text'>Next post: </span>Weight initialization - impact on layer distribution<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:trinhngocthuyen@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/thuyen-trinh' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.69694257.js'></script><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"HTML-CSS":{"availableFonts":["TeX"],"linebreaks":{"automatic":true},"scale":90},"TeX":{"Macros":{"dim":["{\\color{gray}#1}",1],"txt":["\\hspace{3pt}\\text{#1}\\hspace{3pt}",1]},"TagSide":"left","extensions":["color.js"]},"extensions":["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],"jax":["input/TeX","output/HTML-CSS"],"tex2jax":{"displayMath":[["$$","$$"],["\\[","\\]"]],"inlineMath":[["$","$"],["\\(","\\)"]],"processEnvironments":true,"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>config on Thuyen&#39;s corner</title>
+    <link>https://trinhngocthuyen.github.io/tags/config/</link>
+    <description>Recent content in config on Thuyen&#39;s corner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://trinhngocthuyen.github.io/tags/config/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Config: Run shell script on login</title>
+      <link>https://trinhngocthuyen.github.io/tech/config-run-shell-script-on-login/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/tech/config-run-shell-script-on-login/</guid>
+      <description>Sometimes, I got frustrated with the fact that my SSH keys were cleared from agents after rebooting. As a result, I had to manually add those keys to agents every time my computer restarted (although it&amp;rsquo;s not occasional)&amp;hellip; It&amp;rsquo;s best to automate such tasks - I thought. So, I asked &amp;ldquo;how to run a shell script on login?&amp;rdquo;. And here are some solutions</description>
+    </item>
+    
+  </channel>
+</rss>

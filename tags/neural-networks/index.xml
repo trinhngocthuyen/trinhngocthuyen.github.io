@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>neural-networks on Thuyen&#39;s corner</title>
+    <link>https://trinhngocthuyen.github.io/tags/neural-networks/</link>
+    <description>Recent content in neural-networks on Thuyen&#39;s corner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://trinhngocthuyen.github.io/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Weight initialization - impact on layer distribution</title>
+      <link>https://trinhngocthuyen.github.io/tech/weight-initialization/</link>
+      <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/tech/weight-initialization/</guid>
+      <description>This post covers some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Thuyen&#39;s corner</title>
+    <link>https://trinhngocthuyen.github.io/page/</link>
+    <description>Recent content in Pages on Thuyen&#39;s corner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://trinhngocthuyen.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://trinhngocthuyen.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/about/</guid>
+      <description>Welcome to Thuyen&amp;rsquo;s corner!
+I am Thuyen Trinh. I am currently based in Ho Chi Minh city, Vietnam. As a &amp;ldquo;young&amp;rdquo; developer, I find myself in a thirst of knowledge, not only about programming, but also other interesting stuffs.
+I believe sharing culture lies at the heart of spreading knowledge and acquiring more in return. Also, by writing down your understanding, we are challenging ourselves to become a self-teacher, which is a perfect mean of systematizing and reinforcing your knowledge.</description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://trinhngocthuyen.github.io/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

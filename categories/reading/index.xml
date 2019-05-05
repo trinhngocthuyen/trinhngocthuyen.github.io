@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reading on Thuyen&#39;s corner</title>
+    <link>https://trinhngocthuyen.github.io/categories/reading/</link>
+    <description>Recent content in Reading on Thuyen&#39;s corner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://trinhngocthuyen.github.io/categories/reading/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reading: Week 08, Feb 19 - Feb 25</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-08-feb-19-feb-25/</link>
+      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-08-feb-19-feb-25/</guid>
+      <description>[5] Flavors of Engineering Management  #software-engineering #management - Benjamin pointed out some different types of engineering management. The three mentioned varies from responsibilities, team size and coverage of expertise. - One key thing I take from the post is the potential risk of the combination of multiple roles in a single person.
+ One of the biggest risks is micromanagement because the manager still works as a contributor on the team.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 05, Jan 29 - Feb 04</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-05-jan-29-feb-04/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-05-jan-29-feb-04/</guid>
+      <description>[8] Một vài ghi chú về CMS GC  #programming #gc - Bài viết rất hay. Thật ra đây là một concept chung cho các ngôn ngữ lập trình, không riêng gì Java. Mỗi ngôn ngữ có thể dùng các cơ chế dọn rác khác nhau&amp;hellip; Cách tổ chức vùng nhớ ra các vùng Eden, Survivor, Tenured trong bài thì Java-specific. Tuy nhiên, cách phân hoạch và hành vi như vậy giống như hành vi của Copying collector (cụ thể là Generational collector) nhỉ?</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 04, Jan 22 - Jan 28</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-04-jan-22-jan-28/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-04-jan-22-jan-28/</guid>
+      <description>[6] December Book – Flatland  #reading #books - Hồi lâu mình cũng đã có 1 bài viết về Flatland, nhưng đó là review của bộ phim hoạt hình. Bạn có thể xem bài viết ở đây. Bộ phim khiến mình rất thích thú. - Về sách, thì review trên goodreads không được tốt như mong đợi (~3.81&amp;frasl;5) so với những cuốn khác (hầu hết đều trên 4.0/5). - Review trong blog post trên nêu bật được nội dung chính, và khiến mình thấy hấp dẫn.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 03, Jan 15 - Jan 21</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-03-jan-15-jan-21/</link>
+      <pubDate>Mon, 15 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-03-jan-15-jan-21/</guid>
+      <description>[5] Spaced repitition in learning theory  #learning #methodology - Without revision, we tend to forget things not long after we have just learned it. The forgetting curve is set to drop dramatically then. So it&amp;rsquo;s better to review when we start forgetting. Normally, the interval since the last revision extends. For example, 3 days after learning something new, review it. Then take the next review 5 days later, then 7 days later&amp;hellip; - A difficulty of applying this technique is to determine when to review.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 02, Jan 08 - Jan 14</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-02-jan-08-jan-14/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-02-jan-08-jan-14/</guid>
+      <description>[6] Artwork Personalization at Netflix  #netflix #technology #recommendation - I really 💛 this article. Selection recommendation is not only about suggesting items that match users&amp;rsquo; interests but also about personalizing suggestions based on their perferences. For example, it may be better if we display a romance scene as the artwork of a movie if users tend to watch romance movies. Another typical example is using an artwork that has a character of their interest in order to increase users&amp;rsquo; engagement.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 01, Jan 01 - Jan 07, 2018</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-01-jan-01-jan-07-2018/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-01-jan-01-jan-07-2018/</guid>
+      <description>Jan 07, 2018 [7] The 5 Problem-Solving Skills of Great Software Developers  #advice - I particularly enjoy the example of making coffee and how it demonstrates the similarity between software engineering and usual activities. Putting aside software engineering stuff, a typical person also attempts to achieve such ultimate goals (the skills mentioned).
+Jan 05, 2018 [6] MCE 2014: Jon Reid - Test Driven Development for iOS (and anything)  #testing - Great talk!</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 52, Dec 25 - Dec 31</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-52-dec-25-dec-31/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-52-dec-25-dec-31/</guid>
+      <description>Dec 30, 2017 [4] [Quora] I have a toddler. How should she prepare herself for the job market 15 years from now in the world of AI? Should I teach her Python as soon as she is willing to learn? - Interesting question! Early education is crucially important. Letting children get exposed to such materials is a very good mean of preparation for their future. This reminds me of a documentary I watched on Netflix last week: &amp;ldquo;The Mars generation&amp;rdquo;&amp;hellip; A generation of teenage scientists, explorers, and those who carries human&amp;rsquo;s quests for conquering the universe.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 51, Dec 18 - Dec 24</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-51-dec-18-dec-24/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-51-dec-18-dec-24/</guid>
+      <description>TL-DR A plenty of technical stuff, right 😄? [1], [3], [5] and [7] are good posts to read.
+Short on time? Pick [3] and [5]. They are the best among this list.
+Dec 23, 2017 [8] Fowl Language: AI Decodes the Nuances of Chicken “Speech” - Chicken chatter is not simply random noise. A 🐥&amp;rsquo;s sound typically follows specific patterns which express specific messages. By conveying these using machine learning, we could improve farming.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 50, Dec 11 - Dec 17</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-50-dec-11-dec-17/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-50-dec-11-dec-17/</guid>
+      <description>At a glance  You are interested in popular science and general knowledge: [2] and [9] are for you. You are an iOS developer: [4], [5], [6] and [11] are worth a look. Finally, the book in [8] is awesome!  Dec 17, 2017 [11] Friday Q&amp;amp;A 2017-12-08: Type Erasure in Swift #ios #protocols #generic #type-safety - This post discussed several approaches towards type-easure. The underlying functions approach is the same as what I blogged a while ago in Swift: Generic protocol (p.</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 49, Dec 04 - Dec 10</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-49-dec-04-dec-10/</link>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-49-dec-04-dec-10/</guid>
+      <description>Dec 10, 2017  Interactive visualizations of sampling and GP regression #probability #statistics #sampling
+&amp;ndash;&amp;gt; Blog post này giới thiệu (open-source) interative demo về MCMC (Markov Chain Monte Carlo) và Gaussian Process. Mình chưa biết về Gaussian Process, nhưng đã có tìm hiểu về MCMC và thấy rất hay. Ok, sẽ tìm hiểu về Gaussian Process, và cũng sẽ thử viết 1 bài nhỏ về MCMC.
+ Bắt đầu Big Data từ đâu và như thế nào?</description>
+    </item>
+    
+    <item>
+      <title>Reading: Week 48, Nov 27 - Dec 03</title>
+      <link>https://trinhngocthuyen.github.io/reading/reading-week-48-nov-27-dec-03/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/reading/reading-week-48-nov-27-dec-03/</guid>
+      <description>*Hola! Today witnessed the commencement of the Reading Corner. This column features a mixture of what I have read that I think is worth a look. Most of them will be like random thoughts on various topics (in brief), written in either English or Vietnamese. If you happen to read these posts and would like to share your own opinion, please feel free to leave your comment below. Will try to keep it constant :)*</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>architecture on Thuyen&#39;s corner</title>
+    <link>https://trinhngocthuyen.github.io/tags/architecture/</link>
+    <description>Recent content in architecture on Thuyen&#39;s corner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://trinhngocthuyen.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MVVM best practice: Inputs - Outputs</title>
+      <link>https://trinhngocthuyen.github.io/tech/mvvm-best-practice-inputs-outputs/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/tech/mvvm-best-practice-inputs-outputs/</guid>
+      <description>When it comes to iOS architecture, MVVM is one of the most favorable candidates. Not only does it provide higher testability than MVC but also this architecture is lightweight as compared to its counterparts such as VIPER. Despite that, proper approaches should be adopted to take advantage of MVVM. Otherwise, we could end up with an alike version of MVC with an additional component (ViewModel).</description>
+    </item>
+    
+  </channel>
+</rss>
