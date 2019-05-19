@@ -331,8 +331,7 @@ be the <strong><em>transition probability</em></strong> of going from state $i$ 
 
 <p>$$
 Q = \begin{pmatrix}
-0.7 &amp; 0.3 <br />
-0.5 &amp; 0.5
+0.7 &amp; 0.3 \\ 0.5 &amp; 0.5
 \end{pmatrix}
 $$</p>
 
@@ -351,9 +350,7 @@ $q_{ij}^{(n)} = P(X_{n}=j | X_0=i)$.</p>
 
 <p>$$
 \begin{aligned}
-q_{ij}^{(2)} &amp;= P(X_{2} = j | X_0 = i) <br />
-&amp;= \sum_{k=1}^M P(X_{2} = j | X_{1} = k, X_0 = i) P(X_{1} = k | X_0 = i) <br />
-&amp;= \sum_{k=1}^M q_{kj} q_{ik} = \txt{the} (i, j) \txt{entry of} Q^2
+q_{ij}^{(2)} &amp;= P(X_{2} = j | X_0 = i) \\ &amp;= \sum_{k=1}^M P(X_{2} = j | X_{1} = k, X_0 = i) P(X_{1} = k | X_0 = i) \\ &amp;= \sum_{k=1}^M q_{kj} q_{ik} = \txt{the} (i, j) \txt{entry of} Q^2
 \end{aligned}
 $$</p>
 
@@ -363,8 +360,7 @@ $$</p>
 
 <p>$$
 Q^2 = \begin{pmatrix}
-0.64 &amp; 0.36 <br />
-0.6 &amp; 0.4
+0.64 &amp; 0.36 \\ 0.6 &amp; 0.4
 \end{pmatrix}
 $$</p>
 
@@ -380,8 +376,7 @@ $$</p>
 
 <p>$$
 \begin{aligned}
-P(X_{n} = j) &amp;= \sum_{i=1}^M P(X_0 = i) P(X_{n} = j | X_{0} = i) <br />
-&amp;= \sum_{i=1}^M  t_i q_{ij}^{(n)} = \txt{the }i^{th} \txt{entry of} \mathbf{t}Q^n
+P(X_{n} = j) &amp;= \sum_{i=1}^M P(X_0 = i) P(X_{n} = j | X_{0} = i) \\ &amp;= \sum_{i=1}^M  t_i q_{ij}^{(n)} = \txt{the }i^{th} \txt{entry of} \mathbf{t}Q^n
 \end{aligned}
 $$</p>
 
