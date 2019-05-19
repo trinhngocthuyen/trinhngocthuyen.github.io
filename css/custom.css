@@ -92,10 +92,21 @@ a:hover {
 }
 
 /* TOC */
+.container.entry-toc {
+    padding: 8px 20px;
+    margin-bottom: 20px;
+}
+.container.entry-toc[open] {
+    background-color: var(--CODE-background-color);
+    border-radius: 8px;
+}
+.container.entry-toc ul:first-child {
+    margin-left: 8px;
+}
+
 .entry-toc a {
     font-family: var(--META-font);
     font-size: var(--META-font-size);
-    color: var(--META-color);
 }
 .entry-toc a:hover {
     color: var(--LINK-hover-color);
@@ -115,6 +126,7 @@ a:hover {
 blockquote {
     font-size: var(--BODY-font-size);
     color: var(--MAIN-secondary-color);
+    border-left-color: var(--MAIN-secondary-color);
 }
 
 /* Categories + Tags */
