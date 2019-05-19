@@ -306,7 +306,7 @@ if (!doNotTrack) {
     <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
 <p>Sadly, the closure is not generic enough to config a <code>UILabel</code> since it takes a <code>UIView</code> as the parameter
-<em>(&ndash;&gt; You cannot declare <code>$0.text = &quot;...&quot;</code> because <code>$0</code> is a <code>UIView</code>. Do not think of casting it to <code>UILabel</code> :D)</em></p>
+<em>(⟶ You cannot declare <code>$0.text = &quot;...&quot;</code> because <code>$0</code> is a <code>UIView</code>. Do not think of casting it to <code>UILabel</code> :D)</em></p>
 
 <p>You may think of the keyword <code>Self</code> to make the compiler infer the input&rsquo;s type. Yes, you&rsquo;re on the right way.
 However, it&rsquo;s a classic problem that <code>Self</code> is only valid for <code>protocol extensions</code>

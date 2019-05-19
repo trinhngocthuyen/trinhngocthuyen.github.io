@@ -279,7 +279,7 @@ if (!doNotTrack) {
 <h4 id="step1-preprocessing-images">Step1: Preprocessing images</h4>
 
 <ul>
-<li>Crop image (if needed). Here, I use an image of size 512 x 512 (from skimage)</li>
+<li>Crop image (if needed). Here, I use an image of size $512 \times 512$ (from skimage)</li>
 <li>Convert to grayscale</li>
 </ul>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -314,7 +314,7 @@ $f&rsquo;(x) \approx \frac{f(x+h) - f(x)}{h}$.</p>
 </span><span class="s2">    Compute gradient of an image by rows and columns
 </span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="n">gx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-    <span class="n">gy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  
+    <span class="n">gy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="c1"># Central difference</span>
     <span class="n">gx</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="n">gy</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> <span class="mi">2</span>
@@ -322,11 +322,11 @@ $f&rsquo;(x) \approx \frac{f(x+h) - f(x)}{h}$.</p>
     <span class="c1"># Forward difference</span>
     <span class="n">gx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">gy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
-    
+
     <span class="c1"># Backward difference</span>
     <span class="n">gx</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">gy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">image</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
-    
+
     <span class="k">return</span> <span class="n">gx</span><span class="p">,</span> <span class="n">gy</span>
 
 <span class="n">gx</span><span class="p">,</span> <span class="n">gy</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -369,10 +369,10 @@ diff_gy 0.0</pre></div>
 
 <p>The edges above somehow resemble the sketch of the object, but quite smoother. In practice, <em>rough sketch</em> is good enough to classify objects. Therefore, we will only care just a few orientations of $\vec{d}$ and in local regions (rather than every pixel).</p>
 
-<p>We divide the image into many cells of size (8x8). These cells are also usually called <em><strong>patches</strong></em>. In this example, the size of the image is (512x512), so we have (64x64) patches in total. Oh, don&rsquo;t forget to divide the total magnitudes in each bin by the number of pixels per patch.</p>
+<p>We divide the image into many cells of size ($8 \times 8$). These cells are also usually called <em><strong>patches</strong></em>. In this example, the size of the image is ($512 \times 512$), so we have ($64 \times 64$) patches in total. Oh, don&rsquo;t forget to divide the total magnitudes in each bin by the number of pixels per patch.</p>
 
 <p><img src="/images/notebooks/hog_austronaut_patches.png" width="300px"/>
-<figcaption>The yellow square is a cell (8x8). The red one is a block of 4 cells.</figcaption></p>
+<figcaption>The yellow square is a cell ($8 \times 8$). The red one is a block of 4 cells.</figcaption></p>
 
 <p>For each patch, we extract a vector of 9 bins (corresponding to angles $20^\circ, 40^\circ, &hellip;, 160^\circ$). A pixel that has orientation $95^\circ$, magnitude $1.5$ should add up an amount of $1.5$ to the bin $80^\circ$.</p>
 
@@ -409,9 +409,9 @@ diff_gy 0.0</pre></div>
 <li>Each histogram of a block is a row vector of size 36 (4 cells/block)</li>
 </ul>
 
-<p>In this examples, with 4 cells/block, there are 63x63 blocks. So, we 63x63 histogram vectors of size 36.</p>
+<p>In this examples, with 4 cells/block, there are $63 \times 63$ blocks. So, we $63 \times 63$ histogram vectors of size 36.</p>
 
-<p>&ndash;&gt; 63x63x36 = <strong>142884</strong> numbers</p>
+<p>$\implies 63 \times 63 \times 36 = 142884$ numbers</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">normalize_vector</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
     <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    Return a normalized vector (which has norm2 as 1) 
@@ -502,9 +502,11 @@ diff_gy 0.0</pre></div>
 
 <h3 id="reference">Reference</h3>
 
-<p>[1] <a href="http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf">http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf</a><br>
-[2] <a href="http://www.learnopencv.com/histogram-of-oriented-gradients">http://www.learnopencv.com/histogram-of-oriented-gradients</a><br>
-[3] <a href="http://mccormickml.com/2013/05/09/hog-person-detector-tutorial">http://mccormickml.com/2013/05/09/hog-person-detector-tutorial</a><br></p>
+<ol>
+<li><a href="http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf">http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf</a></li>
+<li><a href="http://www.learnopencv.com/histogram-of-oriented-gradients">http://www.learnopencv.com/histogram-of-oriented-gradients</a></li>
+<li><a href="http://mccormickml.com/2013/05/09/hog-person-detector-tutorial">http://mccormickml.com/2013/05/09/hog-person-detector-tutorial</a></li>
+</ol>
 
 <p>Jupyter notebook: <a href="https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/funda_ml/HOG.ipynb">here</a></p>
 

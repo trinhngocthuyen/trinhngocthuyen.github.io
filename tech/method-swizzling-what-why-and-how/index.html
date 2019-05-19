@@ -323,7 +323,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">NSObject</span> <span class="p">{</span>
     <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
     <span class="kd">var</span> <span class="nv">observation</span><span class="p">:</span> <span class="n">NSKeyValueObservation</span><span class="p">?</span>
-    
+
     <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
         <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
         <span class="n">observation</span> <span class="p">=</span> <span class="n">observe</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span> <span class="n">object</span><span class="p">,</span> <span class="n">change</span> <span class="k">in</span>

@@ -198,6 +198,7 @@ blockquote {
 /* Table */
 table {
     margin-bottom: 16px;
+    background-color: var(--CODE-background-color);
 }
 thead {
     background-color: var(--MAIN-secondary-color);

@@ -301,7 +301,7 @@ you need the value, just unwrap the box.</p>
 <span class="kd">enum</span> <span class="nc">List</span><span class="p">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="k">case</span> <span class="n">Cons</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="p">)</span>
     <span class="k">case</span> <span class="n">Nil</span>
-    
+
     <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">head</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="kc">_</span> <span class="n">tail</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">self</span> <span class="p">=</span> <span class="n">Cons</span><span class="p">(</span><span class="n">Box</span><span class="p">(</span><span class="n">head</span><span class="p">),</span> <span class="n">Box</span><span class="p">(</span><span class="n">tail</span><span class="p">))</span>
     <span class="p">}</span>
