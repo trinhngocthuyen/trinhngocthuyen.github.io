@@ -71,7 +71,11 @@ a:hover {
     font-family: var(--META-font);
     font-size: var(--META-font-size);
 }
+.menu.main-menu .item.current a {
+    color: var(--MAIN-primary-color);
+}
 .menu.main-menu .item a:hover {
+    color: var(--MAIN-secondary-color);
     text-decoration: underline;
 }
 
@@ -189,6 +193,26 @@ blockquote {
 }
 .search-submit {
     height: 100% !important;
+}
+
+/* Table */
+table {
+    margin-bottom: 16px;
+}
+thead {
+    background-color: var(--MAIN-secondary-color);
+    color: #ffffff;
+}
+thead th {
+    font-family: var(--MAIN-modern-font);
+    font-size: calc(var(--BODY-font-size) - 2px);
+    font-weight: normal;
+}
+figcaption {
+    color: var(--META-color);
+    font-family: var(--MAIN-modern-font);
+    font-size: var(--META-font-size);
+    margin-bottom: 20px;
 }
 
 /* ------------------------------- */

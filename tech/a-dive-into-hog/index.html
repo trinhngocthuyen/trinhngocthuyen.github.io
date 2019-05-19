@@ -359,8 +359,11 @@ diff_gy 0.0</pre></div>
 
 <p>We could understand the gradients as a set of vectors $\vec{d} = \vec{dx} + \vec{dy}$, each of which is associated with a pixel $(x, y)$.</p>
 
-<p><u>Note</u>:
-- The visualizations of $gx$ and $gy$ are almost gray because they have negative values which turn the regions with zero gradient to neutral gray. The unsigned gradient (ie. $\lvert g_x \lvert, \lvert g_y \lvert$) of them should produce the very similar results as the rightmost image.</p>
+<p>📝 Note:</p>
+
+<ul>
+<li>The visualizations of $gx$ and $gy$ are almost gray because they have negative values which turn the regions with zero gradient to neutral gray. The unsigned gradient (ie. $\lvert g_x \lvert, \lvert g_y \lvert$) of them should produce the very similar results as the rightmost image.</li>
+</ul>
 
 <h4 id="step-3-compute-hog-in-each-cell">Step 3: Compute HOG in each cell</h4>
 
@@ -368,24 +371,18 @@ diff_gy 0.0</pre></div>
 
 <p>We divide the image into many cells of size (8x8). These cells are also usually called <em><strong>patches</strong></em>. In this example, the size of the image is (512x512), so we have (64x64) patches in total. Oh, don&rsquo;t forget to divide the total magnitudes in each bin by the number of pixels per patch.</p>
 
-<figure>
-  <img src="/images/notebooks/hog_austronaut_patches.png" width="300px">
-  <figcaption>The yellow square is a cell (8x8). The red one is a block of 4 cells.</figcaption>
-</figure>
+<p><img src="/images/notebooks/hog_austronaut_patches.png" width="300px"/>
+<figcaption>The yellow square is a cell (8x8). The red one is a block of 4 cells.</figcaption></p>
 
 <p>For each patch, we extract a vector of 9 bins (corresponding to angles $20^\circ, 40^\circ, &hellip;, 160^\circ$). A pixel that has orientation $95^\circ$, magnitude $1.5$ should add up an amount of $1.5$ to the bin $80^\circ$.</p>
 
-<figure>
-  <img src="/images/notebooks/hog_mag_ori.png" width="600px">
-  <figcaption>Magnitudes (upper values) and orientations in degree (in blue and white). In the right figure, the orientations are rounded to the pivot values of 9 bins (0, 20, 40, ..., 160)</figcaption>
-</figure>
+<p><img src="/images/notebooks/hog_mag_ori.png" width="600px"/>
+<figcaption>Magnitudes (upper values) and orientations in degree (in blue and white). In the right figure, the orientations are rounded to the pivot values of 9 bins (0, 20, 40, &hellip;, 160).</figcaption></p>
 
-<p>This vector gives information about the statistic of the how popular each considered orientation is <em>(ie. the distribution of orientations)</em>. For example, a vector <em>v = (<strong>12</strong>, 0, 0.1, 0.7, 0.2, 0, 0, 0, 0.1)</em> indicates the frequent appearance of horizontal strokes.</p>
+<p>This vector gives information about the statistic of the how popular each considered orientation is <em>(ie. the distribution of orientations)</em>. For example, a vector $v = (12, 0, 0.1, 0.7, 0.2, 0, 0, 0, 0.1)$ indicates the frequent appearance of horizontal strokes.</p>
 
-<figure>
-  <img src="/images/notebooks/hog_patch_hist.png" width="300px">
-  <figcaption>From the histogram of the patch, we notice that distribution of orientation of 40 degree is high, indicating that most strokes are drawn diagonally</figcaption>
-</figure>
+<p><img src="/images/notebooks/hog_patch_hist.png" width="300px"/>
+<figcaption>From the histogram of the patch, we notice that distribution of orientation of 40 degree is high, indicating that most strokes are drawn diagonally.</figcaption></p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">compute_hog_cell</span><span class="p">(</span><span class="n">n_orientations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">magnitudes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">orientations</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    Compute 1 HOG feature of a cell. Return a row vector of size `n_orientations`
@@ -397,7 +394,7 @@ diff_gy 0.0</pre></div>
             <span class="n">orientation</span> <span class="o">=</span> <span class="n">orientations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
             <span class="n">lower_bin_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">orientation</span> <span class="o">/</span> <span class="n">bin_width</span><span class="p">)</span>
             <span class="n">hog</span><span class="p">[</span><span class="n">lower_bin_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">magnitudes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-    
+
     <span class="k">return</span> <span class="n">hog</span> <span class="o">/</span> <span class="p">(</span><span class="n">magnitudes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">magnitudes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></code></pre></div>
 <h4 id="step-4-block-normalization">Step 4: Block normalization</h4>
 
@@ -405,9 +402,12 @@ diff_gy 0.0</pre></div>
 
 <p>We could perform normalization in larger regions. This stage is called <em><strong>block normalization</strong></em>. For example, we could take a block of 4 (square aligned) cells to normalize and take the result as a final histogram feature. We slide to the right and then down to get histogram features for other blocks.</p>
 
-<p>Note:
-- These blocks could overlap each other.
-- Each histogram of a block is a row vector of size 36 (4 cells/block)</p>
+<p>📝 Note:</p>
+
+<ul>
+<li>These blocks could overlap each other.</li>
+<li>Each histogram of a block is a row vector of size 36 (4 cells/block)</li>
+</ul>
 
 <p>In this examples, with 4 cells/block, there are 63x63 blocks. So, we 63x63 histogram vectors of size 36.</p>
 
@@ -418,7 +418,7 @@ diff_gy 0.0</pre></div>
 </span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="c1"># eps is used to prevent zero divide exceptions (in case v is zero)</span>
     <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">v</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> 
-    
+
 
 <span class="k">def</span> <span class="nf">compute_hog_features</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                          <span class="n">n_orientations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">pixels_per_cell</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
@@ -430,17 +430,17 @@ diff_gy 0.0</pre></div>
     <span class="n">sy</span><span class="p">,</span> <span class="n">sx</span> <span class="o">=</span> <span class="n">gx</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">pixels_per_cell</span>
     <span class="n">bx</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="n">cells_per_block</span>
-    
+
     <span class="n">magnitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span> <span class="n">gy</span><span class="p">)</span>   <span class="c1"># = np.sqrt(gx**2 + gy**2)</span>
     <span class="n">orientations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">gy</span><span class="p">,</span> <span class="n">gx</span><span class="p">))</span> <span class="o">%</span> <span class="mi">180</span>
-    
+
     <span class="n">n_cellsx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sx</span> <span class="o">/</span> <span class="n">cx</span><span class="p">)</span> <span class="c1"># Number of cells in x axis</span>
     <span class="n">n_cellsy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sy</span> <span class="o">/</span> <span class="n">cy</span><span class="p">)</span> <span class="c1"># Number of cells in y axis</span>
     <span class="n">n_blocksx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_cellsx</span> <span class="o">-</span> <span class="n">bx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">n_blocksy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_cellsy</span> <span class="o">-</span> <span class="n">by</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-    
+
     <span class="n">hog_cells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_cellsx</span><span class="p">,</span> <span class="n">n_cellsy</span><span class="p">,</span> <span class="n">n_orientations</span><span class="p">))</span>
-    
+
     <span class="n">prev_x</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1"># Compute HOG of each cell</span>
     <span class="k">for</span> <span class="n">it_x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cellsx</span><span class="p">):</span>
@@ -448,24 +448,24 @@ diff_gy 0.0</pre></div>
         <span class="k">for</span> <span class="n">it_y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cellsy</span><span class="p">):</span>
             <span class="n">magnitudes_patch</span> <span class="o">=</span> <span class="n">magnitudes</span><span class="p">[</span><span class="n">prev_y</span><span class="p">:</span><span class="n">prev_y</span> <span class="o">+</span> <span class="n">cy</span><span class="p">,</span> <span class="n">prev_x</span><span class="p">:</span><span class="n">prev_x</span> <span class="o">+</span> <span class="n">cx</span><span class="p">]</span>
             <span class="n">orientations_patch</span> <span class="o">=</span> <span class="n">orientations</span><span class="p">[</span><span class="n">prev_y</span><span class="p">:</span><span class="n">prev_y</span> <span class="o">+</span> <span class="n">cy</span><span class="p">,</span> <span class="n">prev_x</span><span class="p">:</span><span class="n">prev_x</span> <span class="o">+</span> <span class="n">cx</span><span class="p">]</span>
-            
+
             <span class="n">hog_cells</span><span class="p">[</span><span class="n">it_y</span><span class="p">,</span> <span class="n">it_x</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_hog_cell</span><span class="p">(</span><span class="n">n_orientations</span><span class="p">,</span> <span class="n">magnitudes_patch</span><span class="p">,</span> <span class="n">orientations_patch</span><span class="p">)</span>
-            
+
             <span class="n">prev_y</span> <span class="o">+=</span> <span class="n">cy</span>
         <span class="n">prev_x</span> <span class="o">+=</span> <span class="n">cx</span>
-    
+
     <span class="n">hog_blocks_normalized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_blocksx</span><span class="p">,</span> <span class="n">n_blocksy</span><span class="p">,</span> <span class="n">n_orientations</span><span class="p">))</span>
-    
+
     <span class="c1"># Normalize HOG by block</span>
     <span class="k">for</span> <span class="n">it_blocksx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_blocksx</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">it_blocky</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_blocksy</span><span class="p">):</span>
             <span class="n">hog_block</span> <span class="o">=</span> <span class="n">hog_cells</span><span class="p">[</span><span class="n">it_blocky</span><span class="p">:</span><span class="n">it_blocky</span> <span class="o">+</span> <span class="n">by</span><span class="p">,</span> <span class="n">it_blocksx</span><span class="p">:</span><span class="n">it_blocksx</span> <span class="o">+</span> <span class="n">bx</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
             <span class="n">hog_blocks_normalized</span><span class="p">[</span><span class="n">it_blocky</span><span class="p">,</span> <span class="n">it_blocksx</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize_vector</span><span class="p">(</span><span class="n">hog_block</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">hog_blocks_normalized</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Compare the results with skimage.feature.hog</span>
 <span class="n">hog_features</span> <span class="o">=</span> <span class="n">compute_hog_features</span><span class="p">(</span>
-    <span class="n">image</span><span class="p">,</span> <span class="n">n_orientations</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> 
-    <span class="n">pixels_per_cell</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> 
+    <span class="n">image</span><span class="p">,</span> <span class="n">n_orientations</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">pixels_per_cell</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
     <span class="n">cells_per_block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">hog</span>

@@ -428,8 +428,7 @@ Assume we gonna create a template for MVVM. It should create 3 files: [Feature]M
       
       <guid>https://trinhngocthuyen.github.io/tech/gc-algorithms/</guid>
       <description>As an iOS developer, I am quite familiar with Reference Counting. It is considered a fundamental knowledge regarding memory manangement that every iOS developers must acknowledge. Today, I figured out a few more algorithms of garbage collection.
-Fig 1. From left to right: Reference Counting, Mark-Sweep, Mark-Compact, Copying
-Reference Counting (RC)  This is simple &amp;amp; easy to implement. However, it has some major drawbacks one of which is not being able to deal with retain cycles.</description>
+Fig 1. From left to right: Reference Counting, Mark-Sweep, Mark-Compact, Copying. Reference Counting (RC)  This is simple &amp;amp; easy to implement. However, it has some major drawbacks one of which is not being able to deal with retain cycles.</description>
     </item>
     
     <item>
