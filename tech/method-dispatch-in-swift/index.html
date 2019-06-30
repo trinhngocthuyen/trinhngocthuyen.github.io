@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Thuyen&#39;s corner'>
 <meta property='og:type' content='article'><meta property='article:section' content='tech'><meta property='article:tag' content='ios'><meta property='article:tag' content='swift'><meta property='article:tag' content='programming'><meta property='article:tag' content='method-dispatch'><meta property='article:tag' content='optimization'><meta property='article:published_time' content='2017-09-25T00:00:00Z'/><meta property='article:modified_time' content='2017-09-25T00:00:00Z'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.55.3" />
+<meta name="generator" content="Hugo 0.55.6" />
 
   <title>Method dispatch in Swift • Thuyen&#39;s corner</title>
   <link rel='canonical' href='https://trinhngocthuyen.github.io/tech/method-dispatch-in-swift/'>
@@ -83,6 +83,8 @@ if (!doNotTrack) {
         <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
       </li><li>
         <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/ci/' style='font-size:1em'>ci</a>
       </li><li>
         <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
       </li><li>
@@ -392,9 +394,11 @@ You may ask: <em>&ldquo;What if I make those extensions dynamic?&rdquo;</em>. Yo
 <span class="bp">print</span><span class="p">(</span><span class="n">animal2</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: true</span></code></pre></div>
 <ul>
 <li>On the other hand, <code>animal1.makeNoise()</code> and <code>animal2.makeNoise()</code> produce the same result because protocol requirements are resolved by table lookups.</li>
-<li>The <code>@objc</code> annotation in <code>@objc func sleep()</code> means that the function is visible to Objective-C. It does not necessarily imply that the process will choose the Objective-C method to execute. From the SIL of the function call (see below), we could see the term <code>$@convention(method)</code> which implies that the Swift method is chosen over the objc method.</li>
+
+<li><p>The <code>@objc</code> annotation in <code>@objc func sleep()</code> means that the function is visible to Objective-C. It does not necessarily imply that the process will choose the Objective-C method to execute. From the SIL of the function call (see below), we could see the term <code>$@convention(method)</code> which implies that the Swift method is chosen over the objc method.</p>
+<div class="highlight"><pre class="chroma">%9 = class_method %8 : $Animal, #Animal.sleep!1 : (Animal) -&gt; () -&gt; (), $@convention(method) (@guaranteed Animal) -&gt; () // user: %10</pre></div></li>
 </ul>
-<div class="highlight"><pre class="chroma">%9 = class_method %8 : $Animal, #Animal.sleep!1 : (Animal) -&gt; () -&gt; (), $@convention(method) (@guaranteed Animal) -&gt; () // user: %10</pre></div>
+
 <h4 id="what-are-the-principles">What are the principles?</h4>
 
 <ul>

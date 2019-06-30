@@ -6,10 +6,20 @@
     <description>Recent content in Tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://trinhngocthuyen.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Random thoughts on being a CI engineer</title>
+      <link>https://trinhngocthuyen.github.io/tech/random-thoughts-on-being-a-ci-engineer/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/tech/random-thoughts-on-being-a-ci-engineer/</guid>
+      <description>In this post, I am going to talk about my experiences when working with CI/CD for iOS applications and some valuable lessons I learned.
+[1] In the past few months, I have been intensively working on CI/CD features in my team. My teammates sometimes refer to me as &amp;ldquo;the CI guy&amp;rdquo;. Before me, &amp;ldquo;the CI guy&amp;rdquo; was someone else who is a bit composure, and quiet. After he left the company, I became the main PIC for CI/CD-related issues.</description>
+    </item>
     
     <item>
       <title>Swift: The downsides of lazy var (part 2)</title>

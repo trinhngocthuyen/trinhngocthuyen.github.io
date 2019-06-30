@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Thuyen&#39;s corner'>
 <meta property='og:type' content='article'><meta property='article:section' content='tech'><meta property='article:tag' content='ios'><meta property='article:tag' content='swift'><meta property='article:tag' content='testing'><meta property='article:tag' content='stub'><meta property='article:tag' content='network'><meta property='article:published_time' content='2017-11-04T00:00:00Z'/><meta property='article:modified_time' content='2017-11-04T00:00:00Z'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.55.3" />
+<meta name="generator" content="Hugo 0.55.6" />
 
   <title>How to stub network in iOS • Thuyen&#39;s corner</title>
   <link rel='canonical' href='https://trinhngocthuyen.github.io/tech/how-to-stub-network-in-ios/'>
@@ -83,6 +83,8 @@ if (!doNotTrack) {
         <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
       </li><li>
         <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/ci/' style='font-size:1em'>ci</a>
       </li><li>
         <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
       </li><li>
@@ -283,7 +285,6 @@ if (!doNotTrack) {
 <li><a href="#questions-remained">Questions remained</a></li>
 <li><a href="#bizarre-stuffs">Bizarre stuffs</a></li>
 </ul></li>
-<li><a href="#reference">Reference</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -441,18 +442,16 @@ if (!doNotTrack) {
 <code>swift
 	class func `init`(configuration: URLSessionConfiguration) -&gt; URLSession { ... }
 </code>
-I tried to simulate this situation with a custom class. The logs show a similar result. However, when subclassing that class, Xcode keeps failing to compile due to not being able to check the subclass type. So I think my suspicion is not quite correct, but it&rsquo;s still reasonable to me :). Anyway, that&rsquo;s not a big deal!</li>
+I tried to simulate this situation with a custom class. The logs show a similar result. However, when subclassing that class, Xcode keeps failing to compile due to not being able to check the subclass type. So I think my suspicion is not quite correct, but it&rsquo;s still reasonable to me :). Anyway, that&rsquo;s not a big deal!
+
+
+Finally, if a stubbing framework is what you are looking for, <a href="https://github.com/kylef/Mockingjay">Mockingjay</a> is my recommendation :D.
+
+### Reference
+1. <a href="https://github.com/kylef/Mockingjay">Mockingjay source code</a>
+2. <a href="https://www.raywenderlich.com/59982/nsurlprotocol-tutorial">NSURLProtocol Tutorial by Ray Wenderlich</a>
+3. <a href="https://github.com/apple/swift-corelibs-foundation">Swift core libraries: swift-corelibs-foundation</a></li>
 </ul>
-
-<p>Finally, if a stubbing framework is what you are looking for, <a href="https://github.com/kylef/Mockingjay">Mockingjay</a> is my recommendation :D.</p>
-
-<h3 id="reference">Reference</h3>
-
-<ol>
-<li><a href="https://github.com/kylef/Mockingjay">Mockingjay source code</a></li>
-<li><a href="https://www.raywenderlich.com/59982/nsurlprotocol-tutorial">NSURLProtocol Tutorial by Ray Wenderlich</a></li>
-<li><a href="https://github.com/apple/swift-corelibs-foundation">Swift core libraries: swift-corelibs-foundation</a></li>
-</ol>
 
 </div>
 
