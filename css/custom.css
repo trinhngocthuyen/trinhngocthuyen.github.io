@@ -4,8 +4,11 @@
 :root{
     --MAIN-classic-font: 'EB Garamond'; /* Used for body content */
     --MAIN-modern-font: 'Fira Sans';    /* Used for headings, metadata... */
-    --MAIN-primary-color: #0067a7;
-    --MAIN-secondary-color: #058324;
+    --MAIN-primary-color: #1492A0;
+    --MAIN-primary-color-lighter: #60d9e7;
+    --MAIN-primary-color-lighter2: #94e1e9;
+    --MAIN-primary-color-lighter3: #d3eef1;
+    --MAIN-secondary-color: #339966;
     --MAIN-dim-color: #666666;
 
     --BODY-font: var(--MAIN-classic-font);
@@ -36,12 +39,8 @@ h1, h2, h3, h4, h5 {
     font-family: var(--MAIN-modern-font) !important;
 }
 
-h1 {
+h1, h2, h3, h4 {
     color: var(--MAIN-primary-color) !important;
-}
-
-.main {
-    /* width: 778px; */
 }
 
 strong {
@@ -61,7 +60,7 @@ a:hover {
 
 /* Menu */
 .menu.main-menu {
-    background-color: #eeeeee;
+    background-color: var(--MAIN-primary-color-lighter3);
     font-family: var(--MAIN-modern-font);
 }
 .menu.main-menu .item {
@@ -101,7 +100,7 @@ a:hover {
     margin-bottom: 20px;
 }
 .container.entry-toc[open] {
-    background-color: var(--CODE-background-color);
+    background-color: var(--MAIN-primary-color-lighter3);
     border-radius: 8px;
 }
 .container.entry-toc ul:first-child {
