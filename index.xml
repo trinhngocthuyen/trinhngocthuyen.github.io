@@ -6,7 +6,7 @@
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://trinhngocthuyen.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>Welcome to Thuyen&amp;rsquo;s corner!
 I am Thuyen Trinh. I am currently based in Ho Chi Minh city, Vietnam. As a &amp;ldquo;young&amp;rdquo; developer, I find myself in a thirst of knowledge, not only about programming, but also other interesting stuffs.
 I believe sharing culture lies at the heart of spreading knowledge and acquiring more in return. Also, by writing down your understanding, we are challenging ourselves to become a self-teacher, which is a perfect mean of systematizing and reinforcing your knowledge.</description>
+    </item>
+    
+    <item>
+      <title>Tản mạn: chuyện Gitlab</title>
+      <link>https://trinhngocthuyen.github.io/tech/random-thoughts-on-gitlab/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/tech/random-thoughts-on-gitlab/</guid>
+      <description>[1] Khi mình join team, công ty mình host các projects trên Github. Một dev mới vào công ty sẽ được add tài khoản Github cá nhân mình vào tài khoản organization của công ty. Lúc ấy, trên Github profile của bạn sẽ hiển thị membership với công ty (bạn phải public cái membership thì người khác mới thấy được nha). Nếu bạn làm cho công ty nào ok, hoặc thuộc dạng top-notch trong nước/khu vực, thì Github profile của bạn sẽ có-vẻ đẹp hơn một tí.</description>
     </item>
     
     <item>
