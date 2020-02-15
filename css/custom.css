@@ -237,3 +237,6 @@ pre {
 .change.to {
     background-color: #d5f3e4;
 }
+.change.to::before {
+    content: " ";
+}

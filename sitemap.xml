@@ -14,7 +14,7 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/misc/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,14 +28,36 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/</loc>
-    <lastmod>2020-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/tags/</loc>
-    <lastmod>2020-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/misc/random-thoughts-on-eng-and-writing-1/</loc>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/writing/</loc>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/</loc>
+    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -52,17 +74,6 @@
   <url>
     <loc>https://trinhngocthuyen.github.io/tags/ci/</loc>
     <lastmod>2020-02-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/</loc>
-    <lastmod>2020-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

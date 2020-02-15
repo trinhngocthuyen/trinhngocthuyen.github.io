@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Là một kỹ sư công nghệ (software engineer), ắt hẳn ai cũng đã từng 😒, đang 😐, và sẽ 😟 phải viết những tài liệu kỹ thuật (technical docs) phục vụ cho công việc. Trong bài viết này, mình sẽ tâm tình cùng bạn những suy nghĩ cá nhân về việc viết lách liên quan đến công việc của một kỹ sư.
+[1] Thứ nhất, tại sao kỹ sư cần phải viết lách?'>
+<meta name='theme-color' content='#0067a7'>
+
+<meta property='og:title' content='Tản mạn: Kỹ sư và viết lách (1) • Thuyen&#39;s corner'>
+<meta property='og:description' content='Là một kỹ sư công nghệ (software engineer), ắt hẳn ai cũng đã từng 😒, đang 😐, và sẽ 😟 phải viết những tài liệu kỹ thuật (technical docs) phục vụ cho công việc. Trong bài viết này, mình sẽ tâm tình cùng bạn những suy nghĩ cá nhân về việc viết lách liên quan đến công việc của một kỹ sư.
+[1] Thứ nhất, tại sao kỹ sư cần phải viết lách?'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/misc/random-thoughts-on-eng-and-writing-1/'>
+<meta property='og:site_name' content='Thuyen&#39;s corner'>
+<meta property='og:type' content='article'><meta property='article:section' content='misc'><meta property='article:tag' content='writing'><meta property='article:published_time' content='2020-02-15T00:00:00Z'/><meta property='article:modified_time' content='2020-02-15T00:00:00Z'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+  <title>Tản mạn: Kỹ sư và viết lách (1) • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/misc/random-thoughts-on-eng-and-writing-1/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.d751652e.css'><link rel='stylesheet' href='/css/custom.css'><link rel='stylesheet' href='/css/syntax.css'><style>
+:root{--color-accent:#0067a7;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-misc layout-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      Thuyen&#39;s corner
+      </a>
+    </h2>
+    <div class='desc'>
+    
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud no-shuffle'><li>
+        <a href='/tags/algebra/' style='font-size:1em'>algebra</a>
+      </li><li>
+        <a href='/tags/architecture/' style='font-size:1em'>architecture</a>
+      </li><li>
+        <a href='/tags/astrology/' style='font-size:1em'>astrology</a>
+      </li><li>
+        <a href='/tags/book-review/' style='font-size:1em'>book-review</a>
+      </li><li>
+        <a href='/tags/brain-exercises/' style='font-size:1.1176470588235294em'>brain-exercises</a>
+      </li><li>
+        <a href='/tags/ci/' style='font-size:1.0588235294117647em'>ci</a>
+      </li><li>
+        <a href='/tags/command-line/' style='font-size:1em'>command-line</a>
+      </li><li>
+        <a href='/tags/compiler/' style='font-size:1em'>compiler</a>
+      </li><li>
+        <a href='/tags/config/' style='font-size:1em'>config</a>
+      </li><li>
+        <a href='/tags/creative-thinking/' style='font-size:1.0588235294117647em'>creative-thinking</a>
+      </li><li>
+        <a href='/tags/decision-making/' style='font-size:1em'>decision-making</a>
+      </li><li>
+        <a href='/tags/expectation/' style='font-size:1em'>expectation</a>
+      </li><li>
+        <a href='/tags/garbage-collection/' style='font-size:1em'>garbage-collection</a>
+      </li><li>
+        <a href='/tags/image-processing/' style='font-size:1em'>image-processing</a>
+      </li><li>
+        <a href='/tags/ios/' style='font-size:2em'>ios</a>
+      </li><li>
+        <a href='/tags/logic/' style='font-size:1.0588235294117647em'>logic</a>
+      </li><li>
+        <a href='/tags/markov-chain/' style='font-size:1em'>markov-chain</a>
+      </li><li>
+        <a href='/tags/maths/' style='font-size:1.1764705882352942em'>maths</a>
+      </li><li>
+        <a href='/tags/method-dispatch/' style='font-size:1em'>method-dispatch</a>
+      </li><li>
+        <a href='/tags/mvvm/' style='font-size:1em'>mvvm</a>
+      </li><li>
+        <a href='/tags/network/' style='font-size:1em'>network</a>
+      </li><li>
+        <a href='/tags/neural-networks/' style='font-size:1em'>neural-networks</a>
+      </li><li>
+        <a href='/tags/optimization/' style='font-size:1.0588235294117647em'>optimization</a>
+      </li><li>
+        <a href='/tags/paradox/' style='font-size:1em'>paradox</a>
+      </li><li>
+        <a href='/tags/probability/' style='font-size:1.2352941176470589em'>probability</a>
+      </li><li>
+        <a href='/tags/problem-solving/' style='font-size:1.1176470588235294em'>problem-solving</a>
+      </li><li>
+        <a href='/tags/programming/' style='font-size:1.1176470588235294em'>programming</a>
+      </li><li>
+        <a href='/tags/psychological-efffects/' style='font-size:1em'>psychological-efffects</a>
+      </li><li>
+        <a href='/tags/questioning/' style='font-size:1em'>questioning</a>
+      </li><li>
+        <a href='/tags/reading/' style='font-size:1em'>reading</a>
+      </li><li>
+        <a href='/tags/reasoning/' style='font-size:1.1176470588235294em'>reasoning</a>
+      </li><li>
+        <a href='/tags/resolution/' style='font-size:1em'>resolution</a>
+      </li><li>
+        <a href='/tags/retrospection/' style='font-size:1em'>retrospection</a>
+      </li><li>
+        <a href='/tags/retrospective/' style='font-size:1.0588235294117647em'>retrospective</a>
+      </li><li>
+        <a href='/tags/science/' style='font-size:1.0588235294117647em'>science</a>
+      </li><li>
+        <a href='/tags/statistics/' style='font-size:1.1764705882352942em'>statistics</a>
+      </li><li>
+        <a href='/tags/stub/' style='font-size:1em'>stub</a>
+      </li><li>
+        <a href='/tags/swift/' style='font-size:1.3529411764705883em'>swift</a>
+      </li><li>
+        <a href='/tags/swizzle/' style='font-size:1em'>swizzle</a>
+      </li><li>
+        <a href='/tags/testing/' style='font-size:1em'>testing</a>
+      </li><li>
+        <a href='/tags/travel/' style='font-size:1.3529411764705883em'>travel</a>
+      </li><li>
+        <a href='/tags/triz/' style='font-size:1.0588235294117647em'>triz</a>
+      </li><li>
+        <a href='/tags/ux/' style='font-size:1em'>ux</a>
+      </li><li>
+        <a href='/tags/writing/' style='font-size:1em'>writing</a>
+      </li><li>
+        <a href='/tags/xcode/' style='font-size:1em'>xcode</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/tech/'>Tech</a>
+      </li><li class='item'>
+        <a href='/reasoning/'>Reasoning</a>
+      </li><li class='item'>
+        <a href='/misc/'>Misc</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'>
+    
+    <style>.widget-breadcrumbs li:after{content:'≫'}</style>
+  <section class='widget widget-breadcrumbs sep-after'>
+    <nav id='breadcrumbs'>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/misc/'>Misc</a></li><li><span>Tản mạn: Kỹ sư và viết lách (1)</span></li></ol>
+    </nav>
+  </section></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Thuyen&#39;s corner</p><p class='desc site-desc'></p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Tản mạn: Kỹ sư và viết lách (1)</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2020-02-15T00:00:00Z'>2020, Feb 15</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p>Là một kỹ sư công nghệ (software engineer), ắt hẳn ai cũng đã từng 😒, đang 😐, và sẽ 😟 phải viết những tài liệu kỹ thuật (<em>technical docs</em>) phục vụ cho công việc. Trong bài viết này, mình sẽ tâm tình cùng bạn những suy nghĩ cá nhân về việc viết lách liên quan đến công việc của một kỹ sư.</p>
+
+<p>[1] Thứ nhất, tại sao kỹ sư cần phải <em>viết lách</em>?</p>
+
+<p><em>&ldquo;Mình thích thì mình viết thôi!&rdquo;</em>. Ai nói được câu này cho 10 điểm về chỗ liền. Nếu bạn nói <em>&ldquo;thích viết blog&rdquo;</em> thì mình sẽ gật đầu tấm tắc khen, còn nếu bạn nói là thích viết <em>technical docs</em> thì hẳn bạn đã ở một đẳng cấp nào đó khác (mình) rồi.</p>
+
+<p>Viết, nói chung, là một hình thức giao tiếp, truyền đạt thông tin. Viết <em>technical docs</em> là để truyền đạt thông tin về một chủ đề kỹ thuật nào đó. Dĩ nhiên còn nhiều hình thức truyền đạt thông tin khác như <em>thuyết trình</em>, <em>đồ hoạ thông tin (infographic)</em>, <em>mần Vlog</em>&hellip; Nhưng hình thức viết (tức, dưới dạng văn bản) tỏ ra rất thông dụng trong công việc của kỹ sư, bởi:</p>
+
+<ul>
+<li><em>Có tính tái sử dụng cao</em>.</li>
+<li><em>Có thể dễ dàng reference đến (còn lời nói thì gió bay mà)</em>. Thật ra đây là hệ quả của tính tái sử dụng.</li>
+<li><em>Có thể chỉnh sửa theo thời gian (nếu cần thiết)</em>. So với thuyết trình và Vlog, thì đây quả là một lợi thế lớn.</li>
+<li>&hellip;</li>
+</ul>
+
+<p>[2] Khi mình nói với sếp và đồng nghiệp rằng mình thích viết, câu này cắt nghĩa ra như sau:</p>
+
+<ul>
+<li>Mình thích chia sẻ ý tưởng, thông tin, và suy nghĩ với người khác. Và&hellip;</li>
+<li>Mình cảm thấy thoải mái nhất khi chia sẻ những ý tưởng, thông tin, và suy nghĩ này bằng hình thức viết.</li>
+</ul>
+
+<p>Thiệt, viết xàm xàm, tản mạn kiểu vầy thì mình thấy còn dễ chịu. Còn viết những tài liệu kỹ thuật thì mình chỉ thấy cực thôi 😂&hellip; Đôi khi mình thấy viết tản mạn vầy thôi mà đã phải vò đầu bứt tai rồi. Phải chi mà mình đẹp trai hơn một chút, nói chuyện lưu loát hơn một chút thì mình đã mần Vlog nói nhăng nói cuội cho rồi, đâu phải ngồi đây gõ một chữ rồi xoá hai chữ như bây giờ.</p>
+
+<p>[3] Viết tài liệu kỹ thuật&hellip; cũng chẳng qua là một dạng viết lách. Cho nên nó cũng theo một vài mô tuýp chung và đòi hỏi một số kỹ năng viết nói chung. Ví dụ, cần xác định viết về chủ đề gì, độc giả là ai&hellip; Từ đó mới có bố cục và cách viết phù hợp.</p>
+
+<p>Trong quá trình làm việc, sau nhiều lần viết docs này docs nọ, mình đúc kết một điều tâm đắc. Đó là, ngoài việc xác định chủ đề, độc giả, bước tiếp theo là xác định <em>thể loại tài liệu</em>. Các thể loại tài liệu thông dụng mà mình hay gặp phải là:</p>
+
+<ul>
+<li><em>Documentation</em></li>
+<li><em>Project plans/roadmaps</em></li>
+<li><em>Instructions &amp; procedures</em> (thường là <em>how-to articles</em>)</li>
+<li><em>Style guides</em></li>
+<li><em>Reports (báo cáo)</em></li>
+<li><em>Proposals (đề xuất)</em></li>
+<li><em>Announcements (thông báo)</em></li>
+<li>&hellip;</li>
+</ul>
+
+<p>Việc xác định thể loại tài liệu giúp chúng ta định hướng bố cục bài viết rất nhiều. Chẳng hạn:</p>
+
+<ul>
+<li>Đối với những thông báo của team đến các kỹ sư từ các <em>tech families</em> khác về một thay đổi nào đó, sau khi đọc nội dung thay đổi, người ta thường quan tâm là <em>&ldquo;tui có cần phải mần gì hông?&rdquo;</em>. Cho nên, nếu thông báo đó được viết bởi mình thì sẽ luôn có một mục là <strong>&ldquo;Action Required&rdquo;</strong>. Khi mình đọc thông báo của người ta mình cũng thường kiếm cái mục này mà đọc.</li>
+<li>Đối với <em>proposals</em> (đề xuất), thường thì mình sẽ viết theo cấu trúc <em>problems &amp; solutions</em>. Còn <em>documentation</em> thì chỉ thuần tuý là ghi chú lại một quy trình hoặc một chức năng nào đó, nên không bố cục theo kiểu <em>problems &amp; solutions</em>.</li>
+<li>Đối với <em>how-to articles</em>, mình thường cố gắng viết kiểu chỉ dẫn từng bước (step-by-step instructions). Kiểu như: <em>&ldquo;Bước 1: muốn luyện bộ kiếm pháp này, khổ chủ phải tự cung 👻&rdquo;</em>.</li>
+</ul>
+
+<p>[4] Viết tài liệu kỹ thuật không có giống IELTS writing. Đừng có lấy mindset IELTS ra mà viết nhé. Đây không phải là dịp để bạn phô trương vốn từ vựng học thuật và thi triển các cấu trúc ngữ pháp phức tạp. Đối với mình, một tài liệu kỹ thuật tốt là một tài liệu được trình bày một cách khoa học và dễ hiểu. Viết càng dễ hiểu, dễ đọc càng tốt. Mình nhớ có vài lần viết documentation, được <em>Technical Writer</em> review, chỉnh sửa. Sau hồi thấy bản sửa mấy cái câu kép dài dài của mình viết thành 2 câu đơn hết. Mà công nhận là sau khi sửa đọc dễ hơn nhiều 😄. Lesson learned!</p>
+
+<p>[5] Viết già, viết riết rồi quen thôi. Như mình không có khiếu viết lách thì tốn nhiều thời gian và công sức hơn thôi (chứ có khiếu thì đã thích cmn rồi 😐). Có mấy cái tasks nọ cần phải viết code và viết documentation. Mình viết code một ngày xong, còn viết documentation thì mất&hellip; 2-3 ngày 😞.</p>
+
+<p>Ấy mới thấy việc diễn giải suy nghĩ của mình (một cách logic) ra chữ viết nó khó nhường nào. Cơ mà <em>&ldquo;what doesn&rsquo;t kill you makes you stronger&rdquo;</em>. Bằng việc viết ra, suy nghĩ của bạn sẽ trở nên logic hơn, hiểu biết của bạn sẽ được củng cố hơn. (Mình đang tự an ủi vậy, để mai mốt còn chịu khó viết. Ai có bằng chứng phủ nhận luận điểm trên thì cứ làm thinh nha 😂)</p>
+
+<p>&hellip;</p>
+
+<p>Tản mạn đêm khuya đến đây thôi. Bye!</p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/misc/'>Misc</a></div>
+<div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/writing/'>writing</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/misc/2019-in-review/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>📝 2019 in review</a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    
+    
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/misc/random-thoughts-on-eng-and-writing-1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+    
+    
+    <div class='comments-area'>
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </div>
+  </div>
+</section>
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/trinhngocthuyen' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:trinhngocthuyen@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/thuyen-trinh' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.69694257.js'></script>
+
+</body>
+
+</html>
+
