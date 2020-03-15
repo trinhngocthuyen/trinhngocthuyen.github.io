@@ -6,7 +6,7 @@
     <description>Recent content in Tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://trinhngocthuyen.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>When iOS CI/CD config is not just a file or a dashboard</title>
       <link>https://trinhngocthuyen.github.io/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
-      <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://trinhngocthuyen.github.io/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
       <description>A while ago, when I heard the term &amp;ldquo;CI/CD&amp;rdquo;, I always thought of a dashboard to drag and drop, upload certificates and input the scheme&amp;hellip; blah blah. That&amp;rsquo;s all! And I was kinda believe that a good CI/CD platform must be like that: convenient, as few setups as possible. Now, I have a different viewpoint. What I very much expect in a CI/CD platform is the ability to customize workflow.</description>
