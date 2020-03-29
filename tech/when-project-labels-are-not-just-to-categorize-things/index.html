@@ -2,19 +2,21 @@
 <html lang='en'><head>
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='Khi nói đến giải quyết vấn đề, người ta đôi khi dùng một cụm dài hơn là giải quyết vấn đề và ra quyết định (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái: (1) Từ không có lời giải -&gt; có lời giải(2) Từ có nhiều lời giải -&gt; chọn ra lời giải tối ưu&hellip;'>
+<meta name='description' content='Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with project labels.
+Categorizing (messy) project issues A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀?'>
 <meta name='theme-color' content='#0067a7'>
 
-<meta property='og:title' content='Tản mạn: Khi chúng ta có nhiều lựa chọn • Thuyen&#39;s corner'>
-<meta property='og:description' content='Khi nói đến giải quyết vấn đề, người ta đôi khi dùng một cụm dài hơn là giải quyết vấn đề và ra quyết định (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái: (1) Từ không có lời giải -&gt; có lời giải(2) Từ có nhiều lời giải -&gt; chọn ra lời giải tối ưu&hellip;'>
-<meta property='og:url' content='https://trinhngocthuyen.github.io/reasoning/random-thoughts-when-we-have-many-choices/'>
+<meta property='og:title' content='When project labels are not just to categorize things • Thuyen&#39;s corner'>
+<meta property='og:description' content='Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with project labels.
+Categorizing (messy) project issues A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀?'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/tech/when-project-labels-are-not-just-to-categorize-things/'>
 <meta property='og:site_name' content='Thuyen&#39;s corner'>
-<meta property='og:type' content='article'><meta property='article:section' content='reasoning'><meta property='article:tag' content='reasoning'><meta property='article:tag' content='decision-making'><meta property='article:published_time' content='2017-12-26T00:00:00Z'/><meta property='article:modified_time' content='2017-12-26T00:00:00Z'/><meta name='twitter:card' content='summary'>
+<meta property='og:type' content='article'><meta property='article:section' content='tech'><meta property='article:tag' content='ci'><meta property='article:published_time' content='2020-03-29T00:00:00Z'/><meta property='article:modified_time' content='2020-03-29T00:00:00Z'/><meta name='twitter:card' content='summary'>
 
 <meta name="generator" content="Hugo 0.55.6" />
 
-  <title>Tản mạn: Khi chúng ta có nhiều lựa chọn • Thuyen&#39;s corner</title>
-  <link rel='canonical' href='https://trinhngocthuyen.github.io/reasoning/random-thoughts-when-we-have-many-choices/'>
+  <title>When project labels are not just to categorize things • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/tech/when-project-labels-are-not-just-to-categorize-things/'>
   
   
   <link rel='icon' href='/favicon.ico'>
@@ -36,7 +38,7 @@ if (!doNotTrack) {
   
 
 </head>
-<body class='page type-reasoning layout-post has-sidebar'>
+<body class='page type-tech layout-post has-sidebar'>
 
   <div class='site'><div id='sidebar' class='sidebar'>
   <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
@@ -209,7 +211,7 @@ if (!doNotTrack) {
     <style>.widget-breadcrumbs li:after{content:'≫'}</style>
   <section class='widget widget-breadcrumbs sep-after'>
     <nav id='breadcrumbs'>
-      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/reasoning/'>Reasoning</a></li><li><span>Tản mạn: Khi chúng ta có nhiều lựa chọn</span></li></ol>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/tech/'>Tech</a></li><li><span>When project labels are not just to categorize things</span></li></ol>
     </nav>
   </section></div>
       </div>
@@ -228,7 +230,7 @@ if (!doNotTrack) {
   <header class='header entry-header'>
   <div class='container sep-after'>
     <div class='header-info'>
-      <h1 class='title'>Tản mạn: Khi chúng ta có nhiều lựa chọn</h1>
+      <h1 class='title'>When project labels are not just to categorize things</h1>
       
 
     </div>
@@ -242,7 +244,7 @@ if (!doNotTrack) {
   
 </svg>
 <span class='screen-reader-text'>Posted on </span>
-  <time class='entry-date' datetime='2017-12-26T00:00:00Z'>2017, Dec 26</time>
+  <time class='entry-date' datetime='2020-03-29T00:00:00Z'>2020, Mar 29</time>
 </span>
 
   
@@ -258,40 +260,61 @@ if (!doNotTrack) {
   
 
   <div class='container entry-content'>
-  <p>[1] Khi nói đến <em>giải quyết vấn đề</em>, người ta đôi khi dùng một cụm dài hơn là <em>giải quyết vấn đề và ra quyết định</em> (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái:</p>
+  
+
+<p>Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with <strong><em>project labels</em></strong>.</p>
+
+<h2 id="categorizing-messy-project-issues">Categorizing (messy) project issues</h2>
+
+<p>A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀? The rest (usually long discussions) which involve more effort to explain one&rsquo;s points, we prefer to communicate via project issues.</p>
+
+<p>So, project issues are used not only for bug reporting but also for any kinds of discussions within our team. One can just create an issue to point out a <em>code smell</em> in the project and propose an idea to refactor it. Or, if you are a maintainer of an open source project, you probably received more than one issue submitted to request for certain supports.</p>
+
+<p>Now, as you see, project issues become a bit messy with various types of issues floating around. To organize them, engineers usually use labels to indicate:</p>
 
 <ul>
-<li>(1) Từ không có lời giải -&gt; có lời giải</li>
-<li>(2) Từ có nhiều lời giải -&gt; chọn ra lời giải tối ưu</li>
+<li>The <em>issue category</em> (is it issue is a bug fix, or a feature request, or just a general discussion&hellip;?)</li>
+<li>The <em>related topics</em> of an issue</li>
+<li>The <em>status</em> of an issue (is it in review, or being implemented/fixed?)</li>
+<li>The <em>priority</em> of an issue</li>
+<li>&hellip;</li>
 </ul>
 
-<p>Trường hợp thứ 2 chính là quá trình <em>ra quyết định</em>. Về cơ bản thì người ta sẽ cần một bộ <em>tiêu chuẩn đánh giá</em> để đưa ra quyết định. Mỗi tiêu chuẩn có một trọng số khác nhau, thể hiện mức độ quan trọng của tiêu chuẩn đó.</p>
+<p><img src="/images/misc/project_labels_1.png" alt="project label" />
+<figcaption>Fig. 1. An issue reported in <a href="https://github.com/fastlane/fastlane/issues?page=4&amp;q=is%3Aissue+is%3Aclosed">Fastlane repo</a> with 3 labels <em>tool:scan</em>, <em>tool:snapshot</em> and <em>type:feature</em></figcaption></p>
 
-<p>[2] Tuy nhiên, việc lựa chọn ra một giải pháp phù hợp trong số N giải pháp đã có không đơn giản như vậy.</p>
+<h2 id="labels-on-merge-requests">Labels on merge requests</h2>
+
+<p>For merge requests (MRs), we also use labels pretty much the same way we do with project issues. In our project, apart from the use cases above, labels also serve some CI/CD purposes.</p>
+
+<h3 id="label-based-configuration">Label-based configuration</h3>
+
+<p>This is the main use case for our CI/CD. For example, a merge request to fix a regression issue should be prioritized in order to unblock the release that is going to be live. With the label <code>regression</code> set on the MR, we expedite the CI pipelines running against that change by allocating more CI resources (5 UI test jobs, instead of 3).</p>
+
+<p>Another use case is the <a href="https://trunkbaseddevelopment.com/branch-for-release/">cherry-pick workflow in trunk based development</a> when fixing regression issues. We sometimes face the problem in which an engineer raised an MR to fix a bug, got it merged and then realized that the change was not cherry-pickable due to conflicts. In this case, he/she had waited for CI pipelines to finish in around 40 minutes&hellip; It was quite late to spot the cherry-pick issue (not to mention the time to address code review comments). To mitigate this, we added a job to <em>detect cherry-pick conflicts</em> on MRs that&rsquo;s labelled either <code>regression</code> or <code>need cherry-pick</code>.</p>
+
+<p>&hellip;</p>
+
+<p>Let me tell you a story about why we need label-based configuration. Sometime ago, we were migrating our project from Xcode 10 to Xcode 11. Due to many dependencies in the project, it is not something we could get done overnight. Migrating bit by bit seemed to be the right choice for us (and for other large-scale projects as well, I believe). We add extra jobs for Xcode 11 to bring visibility to the migration progress and spot issues as early as possible. The jobs we added are enabled to all pipelines running on protected branches and on merge requests. Engineers working on the migration could just check Xcode 11 related jobs to verify the <em>compatibility</em> in the <em>pre-merge flow</em>. Of course those jobs are allowed to fail (ie. whether they fail or not does not affect the pipeline status).</p>
+
+<p>Problems arised when engineers started to realized some newly added <em>manual jobs</em>. They, by instinct, triggered them. This wasted our CI resources and the jobs would fail eventually. Even worse, seeing those failures somehow triggered their <em>&ldquo;panic mode&rdquo;</em>. They asked us about the failures and it costed us more communication to explain that it was expected and everything was fine. We realized that the jobs we added for MRs only served dedicated engineers for the migration, but it caused more problems in the working process. This was like a bad UX.</p>
+
+<p>Therefore, we decided to slightly change the configuration:</p>
 
 <ul>
-<li>Thứ nhất, công đoạn đưa ra bộ tiêu chuẩn đánh giá đúng đắn có thể chiếm đến 80% thời gian và công sức. <em>Và một bộ tiêu chuẩn như thế nào thì được coi là đúng đắn?</em> Bản thân mình thấy rằng việc trả lời những câu hỏi dạng <em>&ldquo;như thế nào thì được coi là&hellip;?&rdquo;</em> có thể khiến bạn đắm chìm trong một đại dương các câu hỏi khác liên quan.</li>
-<li>Thứ hai, việc so sánh có thể không dễ dàng như so sánh toán học 1 &lt; 2. Nó cảm tính, và đôi khi khó định lượng.</li>
+<li>On <em>protected branches</em>: always enabled.</li>
+<li>On <em>merge requests</em>: disabled by default. They are only enabled when the label <code>xcode11</code> is set.</li>
 </ul>
 
-<p>[3] Vì vậy, đôi khi có nhiều sự lựa chọn lại gây nhiều khó khăn hơn so với khi có ít lựa chọn. Chi phí cho việc đưa ra quyết định không chỉ bao gồm thời gian và công sức để đưa ra bộ tiêu chuẩn đánh giá, quá trình so sánh các lựa chọn; mà còn bao gồm cả chi phí cơ hội ta bỏ qua, sự tiếc nuối nếu ta chọn phải một phương án đem lại ít lợi ích hơn.</p>
+<p>This way, it saved our CI resources and communication.</p>
 
-<p>[4] Để hạn chế tình trạng này, một cách đơn giản và rõ ràng là: <em>giới hạn số lượng lựa chọn, hoặc gán các chọn lựa mặc định</em>. Chẳng hạn, bạn cảm thấy mệt mỏi vì mỗi sáng thức dậy phải chọn một bộ quần áo thích hợp để đi làm, thì có thể khiến mình bớt nhọc óc hơn bằng cách mua ít quần áo lại. Hoặc mặc định là thứ hai sẽ mặc bộ đồ này, thứ ba mặc bộ đồ kia&hellip;</p>
+<h3 id="a-b-testing-in-ci-cd">A/B testing in CI/CD</h3>
 
-<p>Có lần mình đọc một <a href="http://labs.septeni-technology.jp/machine-learning/kham-pha-bo-oc-dang-sau-google-brain-andrew-ng-cuoc-doi-su-sang-tao-va-ca-nhung-that-bai/">bài phỏng vấn Andrew Ng</a>, một cây đại thụ trong lĩnh vực AI. Bài gốc bằng tiếng Anh có thể tìm thấy <a href="https://www.huffingtonpost.com/2015/05/13/andrew-ng_n_7267682.html">ở đây</a>. Ngoài những lời khuyên hữu ích mà Andrew chia sẻ, có một điểm mình rất ấn tượng; đó là thói quen mặc áo sơ mi xanh của ông. Thật ra, mình cũng để ý đến điều đó khi học khoá Machine Learning trên Coursera. Nhưng mình chỉ nghĩ rằng đó đơn thuần chỉ là sở thích cá nhân, hoặc do các videos được ghi trong cùng một (vài) ngày.</p>
+<p>Another example is when it comes to A/B testing in our CI/CD. There are some CI/CD features we enable by default, under certain conditions, to optimize our system. When there is any issue because of a CI/CD optimization, one can just force-disable it by labelling his/her merge request with a dedicated label - something like <code>ci-&lt;feature-name&gt;::disabled</code>.</p>
 
-<blockquote>
-<p>&ldquo;For myself, one of the habits I have is working out every morning for seven minutes with an app. I find it much easier to do the same thing every morning because it’s one less decision that you have to make. It’s the same reason that my closet is full of blue shirts. I used to have two color shirts actually, blue and magenta. I thought that’s just too many decisions. [Laughter] So now I only wear blue shirts.&rdquo;<br> - Andrew Ng -</p>
-</blockquote>
+<h2 id="conclusion">Conclusion</h2>
 
-<p>[5] Nói chung, cái post này ra đời do một lần mình so sánh hai thư viện mã nguồn mở (open-source libraries), gọi là A và B, cùng giải quyết chung một vấn đề. Cả hai đều khá phổ biến. A thì danh sách tính năng mà nó hỗ trợ ít hơn, trong khi cái kia (B) thì hỗ trợ tận răng. Hầu như những thứ mà bạn cần đều có sẵn, vấn đề còn lại chỉ là google đúng từ khoá, tìm đúng concept và sử dụng đúng cách. Do đó, nếu chọn B thì sẽ tốn thêm chi phí học concepts mới. Nếu project làm chung với nhiều người thì sẽ mất thêm thời gian, công sức để phổ cập cho họ những thứ mình đã học nữa. Ngoài ra, vì B hỗ trợ nhiều quá, nên nhiều trường hợp mình có N cách code khác nhau để cùng ra một kết quả. Khi đó, ta phải giải thêm 1 bài toán phụ là: đưa ra coding convention hay best practice cho nó. Cũng đau khổ tương tự việc đặt tên biến (lol).</p>
-
-<p>Dĩ nhiên, kết quả chọn A hay B sẽ còn phụ thuộc vào rất nhiều yếu tố khác. Nhưng ta có thể thấy rằng, bản thân việc lựa chọn đã là một vấn đề. Nhưng khi giải xong thì nội tại của nó lại phát sinh thêm những vấn đề khác nữa.</p>
-
-<blockquote>
-<p>&ldquo;Cuộc đời là một chuỗi các vấn đề cần giải quyết, một chuỗi các quyết định cần phải ra&rdquo;<br />
-- Thầy Phan Dũng -</p>
-</blockquote>
+<p>In this post, we&rsquo;ve gone through the most common use case of project labels which is to categorize issues, discussions, merge requests, etc.. We also know some use cases in which project labels play an interesting roles in our CI/CD setup, to manipulate certain actions. Hope you could make good use of them.</p>
 
 </div>
 
@@ -302,14 +325,14 @@ if (!doNotTrack) {
   <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
   
 </svg>
-<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/reasoning/'>Reasoning</a></div>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/tech/'>Tech</a></div>
 <div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
   <line x1="7" y1="7" x2="7" y2="7"/>
   
 </svg>
-<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/reasoning/'>reasoning</a> <a class='tag' href='/tags/decision-making/'>decision-making</a></div>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/ci/'>ci</a></div>
 
   </div>
 </footer>
@@ -319,7 +342,7 @@ if (!doNotTrack) {
 
 <nav class='entry-nav'>
   <div class='container'><div class='prev-entry sep-before'>
-      <a href='/reasoning/brain-exercising-1/'>
+      <a href='/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="20" y1="12" x2="4" y2="12"/>
@@ -327,17 +350,7 @@ if (!doNotTrack) {
   
 </svg>
  Previous</span>
-        <span class='screen-reader-text'>Previous post: </span>Brain exercising #1</a>
-    </div><div class='next-entry sep-before'>
-      <a href='/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/'>
-        <span class='screen-reader-text'>Next post: </span>Tản mạn: Câu hỏi tồi hay là sự hời hợt<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <line x1="4" y1="12" x2="20" y2="12"/>
-  <polyline points="14 6 20 12 14 18"/>
-  
-</svg>
-</span>
-      </a>
+        <span class='screen-reader-text'>Previous post: </span>When iOS CI/CD config is not just a file or a dashboard</a>
     </div></div>
 </nav>
 
@@ -349,7 +362,7 @@ if (!doNotTrack) {
     <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
 <div class="share">
-  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/reasoning/random-thoughts-when-we-have-many-choices/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/tech/when-project-labels-are-not-just-to-categorize-things/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
 </div>
 
     

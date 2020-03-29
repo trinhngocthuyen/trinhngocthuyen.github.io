@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/tech/</loc>
-    <lastmod>2020-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,35 +28,40 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/</loc>
-    <lastmod>2020-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/tags/</loc>
-    <lastmod>2020-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
-    <lastmod>2020-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://trinhngocthuyen.github.io/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</loc>
-    <lastmod>2020-03-15T00:00:00+00:00</lastmod>
+    <loc>https://trinhngocthuyen.github.io/tech/when-project-labels-are-not-just-to-categorize-things/</loc>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/tags/ci/</loc>
-    <lastmod>2020-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/</loc>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</loc>
     <lastmod>2020-03-15T00:00:00+00:00</lastmod>
   </url>
   

@@ -6,10 +6,20 @@
     <description>Recent content in Tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://trinhngocthuyen.github.io/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>When project labels are not just to categorize things</title>
+      <link>https://trinhngocthuyen.github.io/tech/when-project-labels-are-not-just-to-categorize-things/</link>
+      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
+      <description>Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with project labels.
+Categorizing (messy) project issues A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀?</description>
+    </item>
     
     <item>
       <title>When iOS CI/CD config is not just a file or a dashboard</title>
