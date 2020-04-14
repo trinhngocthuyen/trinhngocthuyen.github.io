@@ -222,7 +222,8 @@ code {
     border: none;
 }
 pre, code, pre code {
-    font-family: Menlo, Consolas, Monaco;
+    font-family: "Source Code Pro", Menlo, Consolas, Monaco;
+    font-weight: normal;
     font-size: 14px;
     line-height: 1.5;
 }
