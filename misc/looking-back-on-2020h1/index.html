@@ -2,19 +2,21 @@
 <html lang='en'><head>
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='It is a protocol in Swift 3 (which was StringLiteralConvertible in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string'>
+<meta name='description' content='June is coming to an end soon&hellip; It&rsquo;s the end of month, the end of quarter, and also the end of the first half. It&rsquo;s time to look back on what I have done so far. About future plans, I&rsquo;d like to leave it open.
+Work 1 My work interest gradually shifted away from iOS. I have to admit that after a few years working as an iOS engineer, I started to like iOS a little less.'>
 <meta name='theme-color' content='#0067a7'>
 
-<meta property='og:title' content='Swift: ExpressibleByStringLiteral • Thuyen&#39;s corner'>
-<meta property='og:description' content='It is a protocol in Swift 3 (which was StringLiteralConvertible in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string'>
-<meta property='og:url' content='https://trinhngocthuyen.github.io/tech/swift-expressiblebystringliteral/'>
+<meta property='og:title' content='📝 Looking back on 2020H1 • Thuyen&#39;s corner'>
+<meta property='og:description' content='June is coming to an end soon&hellip; It&rsquo;s the end of month, the end of quarter, and also the end of the first half. It&rsquo;s time to look back on what I have done so far. About future plans, I&rsquo;d like to leave it open.
+Work 1 My work interest gradually shifted away from iOS. I have to admit that after a few years working as an iOS engineer, I started to like iOS a little less.'>
+<meta property='og:url' content='https://trinhngocthuyen.github.io/misc/looking-back-on-2020h1/'>
 <meta property='og:site_name' content='Thuyen&#39;s corner'>
-<meta property='og:type' content='article'><meta property='article:section' content='tech'><meta property='article:tag' content='ios'><meta property='article:published_time' content='2016-12-03T00:00:00Z'/><meta property='article:modified_time' content='2016-12-03T00:00:00Z'/><meta name='twitter:card' content='summary'>
+<meta property='og:type' content='article'><meta property='article:section' content='misc'><meta property='article:tag' content='retrospective'><meta property='article:published_time' content='2020-06-28T00:00:00Z'/><meta property='article:modified_time' content='2020-06-28T00:00:00Z'/><meta name='twitter:card' content='summary'>
 
 <meta name="generator" content="Hugo 0.55.6" />
 
-  <title>Swift: ExpressibleByStringLiteral • Thuyen&#39;s corner</title>
-  <link rel='canonical' href='https://trinhngocthuyen.github.io/tech/swift-expressiblebystringliteral/'>
+  <title>📝 Looking back on 2020H1 • Thuyen&#39;s corner</title>
+  <link rel='canonical' href='https://trinhngocthuyen.github.io/misc/looking-back-on-2020h1/'>
   
   
   <link rel='icon' href='/favicon.ico'>
@@ -36,7 +38,7 @@ if (!doNotTrack) {
   
 
 </head>
-<body class='page type-tech layout-post has-sidebar'>
+<body class='page type-misc layout-post has-sidebar'>
 
   <div class='site'><div id='sidebar' class='sidebar'>
   <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
@@ -209,7 +211,7 @@ if (!doNotTrack) {
     <style>.widget-breadcrumbs li:after{content:'≫'}</style>
   <section class='widget widget-breadcrumbs sep-after'>
     <nav id='breadcrumbs'>
-      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/tech/'>Tech</a></li><li><span>Swift: ExpressibleByStringLiteral</span></li></ol>
+      <ol><li><a href='/'>🏡 Home</a></li><li><a href='/misc/'>Misc</a></li><li><span>📝 Looking back on 2020H1</span></li></ol>
     </nav>
   </section></div>
       </div>
@@ -228,7 +230,7 @@ if (!doNotTrack) {
   <header class='header entry-header'>
   <div class='container sep-after'>
     <div class='header-info'>
-      <h1 class='title'>Swift: ExpressibleByStringLiteral</h1>
+      <h1 class='title'>📝 Looking back on 2020H1</h1>
       
 
     </div>
@@ -242,7 +244,7 @@ if (!doNotTrack) {
   
 </svg>
 <span class='screen-reader-text'>Posted on </span>
-  <time class='entry-date' datetime='2016-12-03T00:00:00Z'>2016, Dec 03</time>
+  <time class='entry-date' datetime='2020-06-28T00:00:00Z'>2020, Jun 28</time>
 </span>
 
   
@@ -258,34 +260,47 @@ if (!doNotTrack) {
   
 
   <div class='container entry-content'>
-  <p>It is a protocol in Swift 3 (which was <code>StringLiteralConvertible</code>{.swift} in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">person</span><span class="p">:</span> <span class="n">Person</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>	<span class="c1">// Instead of: let person = Person(name: &#34;Thuyen&#34;)</span></code></pre></div>
-<p>To use it, the class must conform to <code>ExpressibleByStringLiteral</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+  
 
-	<span class="kd">init</span><span class="p">(</span><span class="n">stringLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
+<p>June is coming to an end soon&hellip; It&rsquo;s the end of month, the end of quarter, and also the end of the first half. It&rsquo;s time to look back on what I have done so far. About future plans, I&rsquo;d like to leave it open.</p>
 
-    <span class="kd">init</span><span class="p">(</span><span class="n">extendedGraphemeClusterLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
+<h3 id="work">Work</h3>
 
-    <span class="kd">init</span><span class="p">(</span><span class="n">unicodeScalarLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p><span class="round">1</span> My work interest gradually shifted away from iOS. I have to admit that after a few years working as an iOS engineer, I started to like iOS a little less. As of now, I still don&rsquo;t know how to use <a href="https://developer.apple.com/xcode/swiftui/">SwiftUI</a>, I still truggle with making a certain UI work as expected.</p>
 
-<span class="kd">let</span> <span class="nv">person</span><span class="p">:</span> <span class="n">Person</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span></code></pre></div>
-<p>A few examples in which we could use ExpressibleByStringLiteral:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">timezone</span><span class="p">:</span> <span class="n">TimeZone</span> <span class="p">=</span> <span class="s">&#34;GMT+03:00&#34;</span>
-<span class="kd">let</span> <span class="nv">date</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="s">&#34;2016-12-03T00:40:11+00:00&#34;</span>
-<span class="kd">let</span> <span class="nv">url</span><span class="p">:</span> <span class="n">URL</span> <span class="p">=</span> <span class="s">&#34;https://google.com&#34;</span>
-<span class="kd">let</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="n">Coordinate</span> <span class="p">=</span> <span class="s">&#34;123.5, 127.8&#34;</span></code></pre></div>
-<p>And, we have some more similar protocols: <code>ExpressibleByArrayLiteral, ExpressibleByNilLiteral, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral, ExpressibleByBooleanLiteral, ExpressibleByDictionaryLiteral</code>.</p>
+<p>To me, the world of iOS development is fairly small with some repetitive problems.</p>
 
-<p>P/s: Not until now do I know this protocol. Kind of late :)</p>
+<p>In the past six months, I have barely written any iOS code (Swift/Objective-C). Rather, I&rsquo;ve been working on some projects that involve more of scripting languages (Ruby, Python&hellip;). Although those projects are still intricately tied to iOS, it doesn&rsquo;t require much investment in keeping up-to-date with various <em>project architectures</em> and <em>trendy technologies</em>. I can find the right balance between iOS and non-iOS.</p>
+
+<p><span class="round">2</span> It&rsquo;s easier for me to get stressed than before. I usually feel burned out. I wonder at times if the negative emotion is a side effect of COVID-19 when we&rsquo;re isolated from others, or it actually comes from my work.</p>
+
+<p>I realize that in order to maintain healthy habits, I need to <strong><em>&ldquo;stop working&rdquo;</em></strong> at the right time. For example, I often clock off at 6:30pm and work out then. If I work a bit longer (7pm or even later), I&rsquo;ll feel tired that evening, even after the workout. Though I am fully aware of it, tackling it is a different matter. Sometimes, <em>It&rsquo;s hard to shut your brain off, keep yourself from thinking about it, put it in hibernation mode for temporary</em>&hellip;</p>
+
+<p><span class="round">3</span> I like things to be organized. When it comes to work, although dealing with code smell is normal to any software engineer, it&rsquo;s sometimes hard for me to embrace that truth. For instance, one day, I recognized a hack in the code which explained why certain things worked in certain ways. It freaked me out rather than filled me with joy that I knew something new :(. Then, that day I need to spend time calming me down instead of dealing with the code which is the source of my frustration. One of my co-workers describes that aspect of me as <a href="https://en.wikipedia.org/wiki/Obsessive-compulsive_disorder">OCD</a>. Hmmm&hellip; It&rsquo;s not that extreme, it&rsquo;s not OCD, but I do struggle with this matter.</p>
+
+<p><span class="round">4</span> You probably heard of the recent news about employees getting laid off as a consequence of COVID-19&rsquo;s impact. <a href="https://www.grab.com/sg/blog/grab-ceo-note">My company is no exception</a>. In fact, I&rsquo;ve never thought of that scenario and I believe some of those impacted employees also held the same belief&hellip; I am fortunate to continue contributing to the company&rsquo;s mission. But, apparently, I better be prepared for such a scenario as the health crisis and the recession are not yet over anytime soon.</p>
+
+<h3 id="life">Life</h3>
+
+<h4 id="health">Health</h4>
+
+<p><span class="round">5</span> It&rsquo;s a good sign that my health has been improved lately. I work out more regularly, either running outdoor or doing indoor exercises. Having a good outfit is a side effect that I don&rsquo;t expect much. Rather, I just want to build up a healthy habit. At first, it was a bit challenging to follow the schedule. But after a while, I gradually formed the habit and workout has been a part of my daily routine that I would have never thought I could have.</p>
+
+<h4 id="reading">Reading</h4>
+
+<p><span class="round">6</span> I have a resolution this ear about reading books in English. I tried to pick up some books and then gave up quickly. Even though some that are of my favorite genres (if written in Vietnamese) such as detective books, mind-blowing books&hellip; I find it difficult catching up on the author&rsquo;s storylines because of improficiency in English.</p>
+
+<h4 id="foreign-languages">Foreign languages</h4>
+
+<p><span class="round">7</span> I did not spend much time on improving my English in the first quarter. I have just resumed recently. I started to use Anki to learn and revise vocab. Overall, I find this app quite suitable for me&hellip; However, it takes me more effort to find new vocabs on my own and look them up again to find examples, and then input to Anki. To reduce this effort, I followed some English channels on Youtube and picked up new vocabs from those sources.</p>
+
+<p>A funny thing is: I am a kind of person who dislikes apps that do not have a fancy look. I can spend the whole day fine-tuning colors and fonts for my IDE(s) and I won&rsquo;t admit it&rsquo;s a waste of time. And&hellip; Definitely, this Anki app fails to meet my <em>aesthetic creteria</em>. It just looks <em>corny</em> to me. But somehow, its <em>needs-improvement</em> appearance (in my view) does not bother me when I use it at all&hellip; I come to realize that its <em>intuitiveness</em> really matters here. Therefore, for those English learners who underestimate this app because of its UI, what don&rsquo;t you give it a try first?</p>
+
+<p><span class="round">8</span> I haven&rsquo;t started learning Chinese (Mandarin, to be exact). I&rsquo;ve always made an excuse that I need to focus on English first. But I&rsquo;ve just realized that I cannot just wait until my English takes a good shape, coz that day would probably be 10 years later. And it would be a waste when I am surrounded by Mandarin speaking environment and I could not benefit from it. Thus, this is one area of growth that I am going to kick off in the next half.</p>
+
+<p>&hellip;</p>
+
+<p>Looking forward&hellip; Well, let the time answer it</p>
 
 </div>
 
@@ -296,14 +311,14 @@ if (!doNotTrack) {
   <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
   
 </svg>
-<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/tech/'>Tech</a></div>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/misc/'>Misc</a></div>
 <div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
   <line x1="7" y1="7" x2="7" y2="7"/>
   
 </svg>
-<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/ios/'>ios</a></div>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/retrospective/'>retrospective</a></div>
 
   </div>
 </footer>
@@ -313,7 +328,7 @@ if (!doNotTrack) {
 
 <nav class='entry-nav'>
   <div class='container'><div class='prev-entry sep-before'>
-      <a href='/tech/log-events-in-reactivecocoa/'>
+      <a href='/misc/tan-man-chuyen-tieng-anh-p2/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="20" y1="12" x2="4" y2="12"/>
@@ -321,17 +336,7 @@ if (!doNotTrack) {
   
 </svg>
  Previous</span>
-        <span class='screen-reader-text'>Previous post: </span>Log events in ReactiveCocoa</a>
-    </div><div class='next-entry sep-before'>
-      <a href='/tech/gc-algorithms/'>
-        <span class='screen-reader-text'>Next post: </span>Garbage Collection (GC) algorithms<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <line x1="4" y1="12" x2="20" y2="12"/>
-  <polyline points="14 6 20 12 14 18"/>
-  
-</svg>
-</span>
-      </a>
+        <span class='screen-reader-text'>Previous post: </span>Tản mạn: Chuyện Tiếng Anh (p2)</a>
     </div></div>
 </nav>
 
@@ -343,7 +348,7 @@ if (!doNotTrack) {
     <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
 <div class="share">
-  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/tech/swift-expressiblebystringliteral/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/misc/looking-back-on-2020h1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
 </div>
 
     
