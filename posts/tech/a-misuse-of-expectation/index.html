@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/a-misuse-of-expectation/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>A misuse of Expectation</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Jul 7</span>
+</div>
+  
+</header>
+  <p>This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/video-lectures/lecture-23-expectation-ii">lecture 23 of MIT6_042J</a> by Tom Leigton. For full understanding, I recommend you watch this informative and fascinating lecture.</p>
+<h3 id="example-risc-vs-z8002">Example: RISC vs Z8002</h3>
+<p>Data in table 1 is from a paper by some famous professors. They wanted to demonstrate that programs on a RISC processor are generally shorted than on a Z8002 processor. They performed some benchmarks and measured the code size of a problem on the 2 processors.</p>
+<p>P/s: Actually, Tom Leighton did not mention the source of this data. The most matched I can trace is <a href="https://courses.cs.washington.edu/courses/cse548/05wi/files/Patterson-A-VLSI-RISC.pdf">here</a> (a pretty long time ago).</p>
+<table>
+<thead>
+<tr>
+<th align="left">Benchmark</th>
+<th align="center">RISC</th>
+<th align="center">Z8002</th>
+<th align="center">Z8002/RISC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">E-string search</td>
+<td align="center">150</td>
+<td align="center">120</td>
+<td align="center">0.8</td>
+</tr>
+<tr>
+<td align="left">F-bit test</td>
+<td align="center">120</td>
+<td align="center">180</td>
+<td align="center">1.5</td>
+</tr>
+<tr>
+<td align="left">Ackerman</td>
+<td align="center">150</td>
+<td align="center">300</td>
+<td align="center">2.8</td>
+</tr>
+<tr>
+<td align="left">Rec 2-sort</td>
+<td align="center">2800</td>
+<td align="center">1400</td>
+<td align="center">0.5</td>
+</tr>
+<tr>
+<td align="left"><strong>Average</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>1.2</strong></td>
+</tr>
+</tbody>
+</table>
+<figcaption><em>Table 1.</em> Sample program lengths for benchmark problems using RISC and
+Z8002 compilers, with the ratio of Z8002/RISC.</figcaption>
+<p>A conclusion was drawn that <strong>programs on Z8002 processors were generally longer (by 20%) than on RISC processors</strong>. (*)</p>
+<p>However, some critics of the paper took the other ratio RISC/Z8002 (instead of Z8002/RISC) on the same data.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Benchmark</th>
+<th align="center">RISC</th>
+<th align="center">Z8002</th>
+<th align="center">RISC/Z8002</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">E-string search</td>
+<td align="center">150</td>
+<td align="center">120</td>
+<td align="center">1.25</td>
+</tr>
+<tr>
+<td align="left">F-bit test</td>
+<td align="center">120</td>
+<td align="center">180</td>
+<td align="center">0.67</td>
+</tr>
+<tr>
+<td align="left">Ackerman</td>
+<td align="center">150</td>
+<td align="center">300</td>
+<td align="center">0.5</td>
+</tr>
+<tr>
+<td align="left">Rec 2-sort</td>
+<td align="center">2800</td>
+<td align="center">1400</td>
+<td align="center">2.0</td>
+</tr>
+<tr>
+<td align="left"><strong>Average</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>1.1</strong></td>
+</tr>
+</tbody>
+</table>
+<figcaption><em>Table 2.</em> Sample program lengths for benchmark problems using RISC and
+Z8002 compilers, with the ratio of RISC/Z8002.</figcaption>
+<p>Another conclusion was made in the same way that <strong>RISC processors were 10% longer on average</strong>. (**)</p>
+<p>(*) and (**) obviously contradict each other.</p>
+<h4 id="whats-wrong">What&rsquo;s wrong?</h4>
+<p>The mistake lies in the way we interpret the average value 1.2. The false claim like above was:</p>
+<p>$$
+\begin{align}
+E(Y/X) &amp; = 1.2 \implies E(Y) = 1.2*E(X) \hspace{5pt} &amp; ❌ \\ E(X/Y) &amp; = 1.1 \implies E(X) = 1.1*E(Y) &amp; ❌
+\end{align}
+$$</p>
+<p>where $X, Y$ denote code size of a program on RISC and Z8002 respectively.</p>
+<p>In fact, $E(X/Y) \neq E(X) * E(Y)$</p>
+<p>A counterexample for this deduction:</p>
+<ul>
+<li>$X = 1$ with prob. 1 $\implies E(X) = 1$</li>
+<li>$Y = 1$ with prob. 0.5, and $Y = -1$ with prob. 0.5 $\implies E(Y) = 0$</li>
+</ul>
+<p>Then:</p>
+<ul>
+<li>$X/Y = 1$ with prob. 0.5 and $X/Y = -1$ with prob. 0.5 $\implies E(X/Y) = 0$</li>
+</ul>
+<p>$$\implies E(X/Y) = 0 \neq \frac{E(X)}{E(Y)} = \frac{1}{0}$$</p>
+<p>We have the <em>linearity rule</em> and <em>product rules</em> (if mutually independent) for expectation, but not the <del><em>quotation rule</em></del>.</p>
+<h4 id="discussion">Discussion</h4>
+<p>People reason this way all the time. The ratio helps us quickly assess whether one is superior. But it somehow gets us into a logical mistake without intention. This kind of false reasoning happens requently, not only to those with non-science background.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/probability" class="tag">probability</a>
+  
+  <a href="/tags/expectation" class="tag">expectation</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/weight-initialization/'>Weight initialization - impact on layer distribution</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/what-is-simpsons-paradox/'>What is Simpson&#39;s paradox?</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/a-misuse-of-expectation/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"HTML-CSS":{"availableFonts":["TeX"],"linebreaks":{"automatic":true},"scale":90},"TeX":{"Macros":{"dim":["{\\color{gray}#1}",1],"txt":["\\hspace{3pt}\\text{#1}\\hspace{3pt}",1]},"TagSide":"left","extensions":["color.js"]},"extensions":["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],"jax":["input/TeX","output/HTML-CSS"],"tex2jax":{"displayMath":[["$$","$$"]],"inlineMath":[["$","$"]],"processEnvironments":true,"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'></script></body>
+</html>

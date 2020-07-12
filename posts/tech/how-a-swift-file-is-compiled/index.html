@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/how-a-swift-file-is-compiled/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>How a Swift file is compiled</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Sep 9</span>
+</div>
+  
+</header>
+  <p>First of all, this is not &ldquo;how an iOS/MacOS app is built&rdquo;. An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match. Besides, linking those modules is also another aspect. <a href="https://stackoverflow.com/questions/15198725/build-or-compile">The two terms <em>compiling</em> and <em>building</em> should not be confused!</a></p>
+<p>This post is about how the compiler translates a single Swift file into lower-level code. In other words, we are interested in what happens when we run this command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc main.swift
+</code></pre></div><h3 id="compilation-pipeline">Compilation pipeline</h3>
+<p><img src="/images/ios/swift_build_pipeline.png" alt="png">
+<figcaption>Source: <a href="http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf">http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf</a></figcaption></p>
+<p>[1] <strong>Parse</strong>. First, the compiler parses the source code and build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract syntax tree (AST)</a>. We could see the AST by the option <code>-dump-ast</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc -dump-ast main.swift
+</code></pre></div><p>Semantic analysis could be performed when the AST is constructed.</p>
+<p>[2] <strong>SILGen</strong>. Generate the Swift intermediate language. To get the SIL after this phase:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc -emit-silgen main.swift
+</code></pre></div><p>[3] <strong>SIL Optimizations</strong>. Perform some performance optimizations on the SIL generated.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc -emit-sil main.swift
+</code></pre></div><p>[4] <strong>IR</strong>. Generate the LLVM Intermediate representation. You can examine the IR by:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc -emit-ir main.swift
+</code></pre></div><p>[5] <strong>Code Generation</strong>. LLVM generates the assembly code and finally produces lower-level code (.o, executable&hellip;). To view the assembly:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc -S main.swift
+</code></pre></div><h3 id="swift-intermediate-language-sil">Swift Intermediate Language (SIL)</h3>
+<h4 id="name-mangling">Name mangling</h4>
+<p>My first look at the SIL was like &ldquo;omg. what the heck is <code>_T04main6AnimalC9makeSoundyyF</code>?&rdquo;. But it&rsquo;s not as scary as you thought.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// Animal.makeSound()
+sil hidden @_T04main6AnimalC9makeSoundyyF : $@convention(method) (@guaranteed Animal) -&gt; () {
+// %0                                             // user: %1
+bb0(%0 : $Animal):
+  debug_value %0 : $Animal, let, name &#34;self&#34;, argno 1 // id: %1
+  %2 = tuple ()                                   // user: %3
+  return %2 : $()                                 // id: %3
+} // end sil function &#39;_T04main6AnimalC9makeSoundyyF&#39;
+</code></pre></div><p><em><strong>Name mangling</strong></em> is used to squash additional information of an entity into a single string. The encoded name could tell us its type (class/struct/enum), module, context&hellip; For example, in <code>_T04main6PersonVACycfC</code>, the letter <code>V</code> following <code>Person</code> implies that <code>Person</code> is a struct. We won&rsquo;t dive into the detail of this technique. For more info, you could read <a href="https://github.com/apple/swift/blob/master/docs/ABI/Mangling.rst">here</a>.</p>
+<h4 id="make-sil-more-readable">Make SIL more readable</h4>
+<p>We could trace a mangled string back to the originally readable text using <code>swift-demangle</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swift-demangle _T04main6AnimalC9makeSoundyyF
+// Output: _T04main6AnimalC9makeSoundyyF ---&gt; main.Animal.makeSound() -&gt; ()
+</code></pre></div><p>In short, more friendly SIL could be obtained by:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xcrun swiftc -emit-silgen main.swift | xcrun swift-demangle
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// Animal.makeSound()
+sil hidden @main.Animal.makeSound() -&gt; () : $@convention(method) (@guaranteed Animal) -&gt; () {
+// %0                                             // user: %1
+bb0(%0 : $Animal):
+  debug_value %0 : $Animal, let, name &#34;self&#34;, argno 1 // id: %1
+  %2 = tuple ()                                   // user: %3
+  return %2 : $()                                 // id: %3
+} // end sil function &#39;main.Animal.makeSound() -&gt; ()&#39;
+</code></pre></div><h4 id="a-walk-through-sil-syntax">A walk through SIL syntax</h4>
+<p>Consider this simple code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">makeSound</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">isEndangered</span><span class="p">(</span><span class="n">animal</span><span class="p">:</span> <span class="n">Animal</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span> <span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Dog</span><span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
+  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">makeSound</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="kd">func</span> <span class="nf">doSimpleMath</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="p">}</span>
+  <span class="kd">func</span> <span class="nf">makeFriends</span><span class="p">(</span><span class="n">animal</span><span class="p">:</span> <span class="n">Animal</span><span class="p">,</span> <span class="n">person</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>Let&rsquo;s look at the SIL and demystify some basic syntax. I strongly recommend this <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">official documentation</a> for full details.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// Animal.makeSound()
+sil hidden @main.Animal.makeSound() -&gt; () : $@convention(method) (@guaranteed Animal) -&gt; () {
+// %0                                             // user: %1
+bb0(%0 : $Animal):
+  debug_value %0 : $Animal, let, name &#34;self&#34;, argno 1 // id: %1
+  %2 = tuple ()                                   // user: %3
+  return %2 : $()                                 // id: %3
+} // end sil function &#39;main.Animal.makeSound() -&gt; ()&#39;
+</code></pre></div><ul>
+<li>A function starts with keyword <code>sil</code>.</li>
+<li>The keyword <code>hidden</code> corresponds to <code>internal</code> in Swift code, indicating that this function is only visible to objects in the same Swift module.</li>
+<li><code>@main.Animal.makeSound() -&gt; ()</code> is the demangled text of <code>_T04main6AnimalC9makeSoundyyF</code>, representing the function name.</li>
+<li><code>$@convention(method)</code> means: a call to this function requires a context. For example, in <code>self.makeSound()</code>, <code>self</code> is the context of the function call.</li>
+<li><code>$@convention(thin)</code> says: this is a free function. No context is needed to make an invocation.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">sil hidden @main.Dog.makeFriends(animal: main.Animal, person: main.Person) -&gt; () : $@convention(method) (@owned Animal, Person, @guaranteed Dog) -&gt; () {
+......
+</code></pre></div><ul>
+<li>If the argument is reference type, an annotation <code>@owned</code> is attached.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">......
+  debug_value %0 : $Int, let, name &#34;x&#34;, argno 1   // id: %3
+  debug_value %1 : $Int, let, name &#34;y&#34;, argno 2   // id: %4
+  debug_value %2 : $Dog, let, name &#34;self&#34;, argno 3 // id: %5
+  // function_ref static Int.+ infix(_:_:)
+  %6 = function_ref @static Swift.Int.+ infix(Swift.Int, Swift.Int) -&gt; Swift.Int : $@convention(method) (Int, Int, @thin Int.Type) -&gt; Int // user: %8
+  %7 = metatype $@thin Int.Type                   // user: %8
+  %8 = apply %6(%0, %1, %7) : $@convention(method) (Int, Int, @thin Int.Type) -&gt; Int // user: %9
+  return %8 : $Int                                // id: %9
+......
+</code></pre></div><ul>
+<li>A function call is made by taking the function pointer (<code>function_ref</code>) and applying it with arguments.</li>
+<li>Each instance method requires a metatype as an argument at the end of the invocation.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">sil_vtable Animal {
+  #Animal.makeSound!1: (Animal) -&gt; () -&gt; () : main.Animal.makeSound() -&gt; ()	// Animal.makeSound()
+  ......
+}
+
+sil_vtable Dog {
+  #Animal.makeSound!1: (Animal) -&gt; () -&gt; () : main.Dog.makeSound() -&gt; ()	// Dog.makeSound()
+  #Dog.doSimpleMath!1: (Dog) -&gt; (Int, Int) -&gt; Int : main.Dog.doSimpleMath(x: Swift.Int, y: Swift.Int) -&gt; Swift.Int	// Dog.doSimpleMath(x:y:)
+  #Dog.makeFriends!1: (Dog) -&gt; (Animal, Person) -&gt; () : main.Dog.makeFriends(animal: main.Animal, person: main.Person) -&gt; ()	// Dog.makeFriends(animal:person:)
+  ......
+}
+</code></pre></div><ul>
+<li>Each class has a <a href="https://en.wikipedia.org/wiki/Virtual_method_table">virtual table</a> <code>vtable</code> in order for the compiler to lookup the correct method to execute in runtime (if it&rsquo;s dynamically dispatched). We will talk about method dispatch in the upcoming posts.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>In this post, we took a glance into the pipeline in which Swift code is compiled. We also looked into the SIL, a high-level intermediate language Apple came up with for analysis and optimization of Swift code.</p>
+<p>From the perspective of a practical developer, this topic does not help us write clean code or overwhelming design patterns. Despite that, it helps you understand (just a tiny bit) what the code is actually going on under the hood, and&hellip; thereby less scared when reading lower-level interpretations of the code. By reading these stuffs, we could figure out some specific patterns that are at the core principles of the language.</p>
+<h3 id="reference">Reference</h3>
+<ol>
+<li><a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">Official documentation: Design of SIL</a></li>
+<li><a href="https://llvm.org/devmtg/2015-10/#talk7">Swift&rsquo;s High-Level IR: A Case Study of Complementing LLVM IR with Language-Specific Optimization</a></li>
+<li><a href="https://www.youtube.com/watch?v=NH-qIKOoKgA">Introduction to Swift Intermediate Language — Alex Blewitt</a></li>
+</ol>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/swift" class="tag">swift</a>
+  
+  <a href="/tags/compiler" class="tag">compiler</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/what-is-simpsons-paradox/'>What is Simpson&#39;s paradox?</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/method-dispatch-in-swift/'>Method dispatch in Swift</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/how-a-swift-file-is-compiled/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

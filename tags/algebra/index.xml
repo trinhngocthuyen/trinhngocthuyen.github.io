@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>algebra on Thuyen&#39;s corner</title>
@@ -13,13 +13,13 @@
     
     <item>
       <title>Brain exercising #1</title>
-      <link>https://trinhngocthuyen.github.io/reasoning/brain-exercising-1/</link>
+      <link>https://trinhngocthuyen.github.io/posts/reasoning/brain-exercising-1/</link>
       <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/reasoning/brain-exercising-1/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/reasoning/brain-exercising-1/</guid>
       <description>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&amp;hellip; I am thinking of a little corner of this blog for this sort of exercising.
 Claim: If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.
-If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</description>
+Equivalent claim: If $p$ is prime, $p \mid C^k_p$ for all $k, 0&amp;lt;k&amp;lt;p$.</description>
     </item>
     
   </channel>

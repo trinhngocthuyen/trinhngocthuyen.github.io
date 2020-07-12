@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>statistics on Thuyen&#39;s corner</title>
@@ -13,37 +13,37 @@
     
     <item>
       <title>Markov chain: What is a Markov chain?</title>
-      <link>https://trinhngocthuyen.github.io/tech/markov-chain-part-1/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/markov-chain-part-1/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/markov-chain-part-1/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/markov-chain-part-1/</guid>
       <description>Markov chain is a very important piece of probability and statistics. One application we could name is Markov Decision Process (MDP) used for decision making. Another one is Markov chain Monte Carlo (MCMC), a popular sampling method in statistics. You may also know Google PageRank algorithm, which is part of the ground of Google indexing technology. The algorithm is implemented on top of this concept&amp;hellip;</description>
     </item>
     
     <item>
       <title>Indicator r.v.s and the fundamental bridge</title>
-      <link>https://trinhngocthuyen.github.io/tech/indicator-rvs-and-the-fundamental-bridge/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/indicator-rvs-and-the-fundamental-bridge/</link>
       <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/indicator-rvs-and-the-fundamental-bridge/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/indicator-rvs-and-the-fundamental-bridge/</guid>
       <description>Expectation (also called expected value or mean) is a very important concept in probability and statistics. One usage we could name is estimation in statistics in which we try to infer the parameters of a statistical model. Another simple application is the step of sanity checks in training a nerual network: verify if the loss function gives a value which is acceptably around its expectation&amp;hellip;</description>
     </item>
     
     <item>
       <title>An example of Survey with privacy</title>
-      <link>https://trinhngocthuyen.github.io/tech/an-example-of-survey-with-privacy/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/an-example-of-survey-with-privacy/</link>
       <pubDate>Tue, 14 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/an-example-of-survey-with-privacy/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/an-example-of-survey-with-privacy/</guid>
       <description>A while ago, I read the book Probabilistic Programming and Bayesian Methods for Hackers written by Cam Davidson-Pilon and was really impressed by an example of carrying out surveys. Although it is not a standard method with wide scope of use, from the perspective of a software engineer who is not from statistics background, I think its idea is pretty beautiful and worth knowing</description>
     </item>
     
     <item>
       <title>What is Simpson&#39;s paradox?</title>
-      <link>https://trinhngocthuyen.github.io/tech/what-is-simpsons-paradox/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</link>
       <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/what-is-simpsons-paradox/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</guid>
       <description>If you&amp;rsquo;re from the world of statistics, you may have heard of it. Two doctors, Dr. Hibbert and Dr. Nick, both perform 2 types of surgeries: heart surgery and band-aid removal&amp;hellip;</description>
     </item>
     

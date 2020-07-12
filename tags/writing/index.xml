@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>writing on Thuyen&#39;s corner</title>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Tản mạn: Kỹ sư và viết lách (1)</title>
-      <link>https://trinhngocthuyen.github.io/misc/random-thoughts-on-eng-and-writing-1/</link>
+      <link>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-eng-and-writing-1/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/misc/random-thoughts-on-eng-and-writing-1/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-eng-and-writing-1/</guid>
       <description>Là một kỹ sư công nghệ (software engineer), ắt hẳn ai cũng đã từng 😒, đang 😐, và sẽ 😟 phải viết những tài liệu kỹ thuật (technical docs) phục vụ cho công việc. Trong bài viết này, mình sẽ tâm tình cùng bạn những suy nghĩ cá nhân về việc viết lách liên quan đến công việc của một kỹ sư.
 1 Thứ nhất, tại sao kỹ sư cần phải viết lách?</description>
     </item>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/method-dispatch-in-swift/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Method dispatch in Swift</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Sep 9</span>
+</div>
+  
+</header>
+  <p>Method dispatch is a term referring to mechanisms by which the program determines which operation should be executed (by operation, I mean a set of instructions). There are times we expect a method behavior to be determined only at runtime. This motivation give rise to different mechanisms of dispatching a method, each of which has its own pros and cons.</p>
+<h3 id="static-dispatch">Static dispatch</h3>
+<ul>
+<li>Sometimes called <em>direct dispatch</em>.</li>
+<li>If a method is statically dispatched, the compiler could be able to locate where the instructions are, at compile time. Therefore, when such function is called, the system jumps directly to the memory address of this function to perform the operation. This direct behavior results in very fast execution, and also allows the compiler to perform various kinds of optimizations such as inlining. In fact, due to the huge performance gains, there is a phase in the compilation pipeline in which the compiler attempts to make functions static if applicable. This optimization is known as <strong>devirtualization</strong>.</li>
+</ul>
+<h3 id="dynamic-dispatch">Dynamic dispatch</h3>
+<ul>
+<li>With this approach, the program does not know which implementation to choose until runtime.</li>
+<li>While <em>static dispatch</em> is super lightweight, it limits flexibility, especially when it comes to polymorphism. That is why <em>dynamic dispatch</em> is widely supported by OOP languages.</li>
+<li>Every language has its own mechanisms to support dynamic dispatch. Swift provides 2 ways to achieve dynamism: <strong>table dispatch</strong> and <strong>message dispatch</strong>.</li>
+</ul>
+<h4 id="table-dispatch">Table dispatch</h4>
+<ul>
+<li>This is the most common choice provided in compiled languages. With this method, a class is associated with a so-called <strong>virtual table</strong> which comprises an array of function pointers to the real implementation correponding to that class.</li>
+<li>Note that the vtable is constructed at compile time. Thus, there are only two additional instructions (read and jump) as compared to static dispatch. So the dispatch should be theoretically pretty fast.</li>
+</ul>
+<h4 id="message-dispatch">Message dispatch</h4>
+<ul>
+<li>In fact, it is Objective-C that provides this mechanism (sometimes, it is referred as <a href="https://en.wikipedia.org/wiki/Message_passing"><em>message passing</em></a>) and Swift code just uses the Objective-C runtime lib. Every time an Objective-C method is called, the invocation is passed to <code>objc_msgSend</code> which handles the look ups. Technically, the process starts from the given class and iterates the class hierarchy to pull out the implementation.</li>
+<li>Unlike table dispatch, the <em>message passing dictionary</em> could be modified at runtime, enabling us to adjust the program behaviors while running. Method swizzling is one of the most popular technique, by taking advantage of this special feature.</li>
+<li><em>Message dispatch</em> is the most dynamic among the three. As a trade off, the cost of resolving implementation could be a little expensive though the lookup performance is guarded by caching mechanism.</li>
+<li>This mechanism is a keystone of Cocoa frameworks. Looking at the source of code Swift, you will see that KVO is implemented using swizzling.</li>
+</ul>
+<h3 id="swift-what-is-what">Swift: What is what?</h3>
+<blockquote>
+<p>Given a function, what kind of dispatch is it using? Where is the proof?</p>
+</blockquote>
+<h4 id="methodology-to-determine-dispatch-mechanism">Methodology to determine dispatch mechanism</h4>
+<p>As a skeptic, I am more interested in the second part of the question. It is easy to come up with a hypothesis but testing it is not straightforward all the time. After hours googling, I happened to know the <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">SIL documentation</a> which reasonably explains the presence of dispatch strategies. Here is a brief summary:</p>
+<p>(1) If a function uses table dispatch, it appears in the <code>vtable</code> (or <code>witness_table</code> for protocols).</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">sil_vtable Animal {
+	#Animal.makeSound!1: (Animal) -&gt; () -&gt; () : main.Animal.makeSound() -&gt; ()	// Animal.makeSound()
+  ......
+}
+</code></pre></div><p>(2) If a function is dispatched via message, the keyword <code>volatile</code> should be present in the invocation. Also, you will find the two marker <code>foreign</code> and <code>objc_method</code>, indicating that the function is invoked using Objective-C runtime. Refer: <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">here</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">%14 = class_method [volatile] %13 : $Dog, #Dog.beWild!1.foreign : (Dog) -&gt; () -&gt; (), $@convention(objc_method) (Dog) -&gt; () // user: %15
+</code></pre></div><p>(3) If there is no evidence of the two cases above, the answer is <em>static dispatch</em>.</p>
+<!-- raw HTML omitted -->
+<h4 id="trivial-cases">Trivial cases</h4>
+<ul>
+<li>First of all, functions of structs or any value types must be statically dispatched. This makes sense because they could never be overriden.</li>
+<li>Explicitly enforced:
+<ul>
+<li>Functions with <code>final</code> keyword are also statically dispatched.</li>
+<li>Functions with <code>dynamic</code> are invoked via message passing. Piror to Swift 4, a function with <code>dynamic</code> modifier is implicitly visible to Objective-C. Meanwhile Swift 4 requires you to explicitly declare it with <code>@objc</code> attribute.</li>
+</ul>
+</li>
+<li>Ordinary extensions (without <code>final</code>, <code>dynamic</code>, <code>@objc</code>) are directly dispatched. Now, recall a compiled error you may once experienced: <em>declarations in extensions cannot override yet</em>. It&rsquo;s because those functions, of course, follow static dispatch.<!-- raw HTML omitted -->
+You may ask: <em>&ldquo;What if I make those extensions dynamic?&quot;</em>. You got the point! If an extension is dynamic, it can be overriden 😇.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
+	<span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+	<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Dog</span><span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
+	<span class="kr">override</span> <span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Compiled error!</span>
+	<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Ok :)</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="other-cases">Other cases</h4>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="nc">Noisy</span> <span class="p">{</span>
+	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span>	<span class="c1">// TABLE</span>
+<span class="p">}</span>
+<span class="kd">extension</span> <span class="nc">Noisy</span> <span class="p">{</span>
+	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span> <span class="p">}</span>	<span class="c1">// TABLE</span>
+	<span class="kd">func</span> <span class="nf">isAnnoying</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">}</span>	<span class="c1">// STATIC</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Animal</span><span class="p">:</span> <span class="n">Noisy</span> <span class="p">{</span>
+	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span> <span class="p">}</span>	<span class="c1">// TABLE</span>
+	<span class="kd">func</span> <span class="nf">isAnnoying</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span> <span class="p">}</span> <span class="c1">// TABLE</span>
+	<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">sleep</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Still TABLE</span>
+<span class="p">}</span>
+<span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
+	<span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// STATIC</span>
+	<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// MESSAGE</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li><code>Noisy.isAnnoying()</code>, and <code>Animal.getWild()</code> are statically dispatched since they are extensions.</li>
+<li><code>Noisy.makeNoise()</code> uses table dispatch despite having the default implementation.</li>
+<li>We have to be careful with <code>isAnnoying()</code>. Consider the two usages below. <code>animal2.isAnnoying()</code> picks the implementation of the protocol extension (because it&rsquo;s a direct method and no lookup is needed). Using in such way could be a source of bugs 😱.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">animal1</span> <span class="p">=</span> <span class="n">Animal</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">animal1</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: false</span>
+<span class="kd">let</span> <span class="nv">animal2</span><span class="p">:</span> <span class="n">Noisy</span> <span class="p">=</span> <span class="n">Animal</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">animal2</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: true</span>
+</code></pre></div><ul>
+<li>On the other hand, <code>animal1.makeNoise()</code> and <code>animal2.makeNoise()</code> produce the same result because protocol requirements are resolved by table lookups.</li>
+<li>The <code>@objc</code> annotation in <code>@objc func sleep()</code> means that the function is visible to Objective-C. It does not necessarily imply that the process will choose the Objective-C method to execute. From the SIL of the function call (see below), we could see the term <code>$@convention(method)</code> which implies that the Swift method is chosen over the objc method.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">%9 = class_method %8 : $Animal, #Animal.sleep!1 : (Animal) -&gt; () -&gt; (), $@convention(method) (@guaranteed Animal) -&gt; () // user: %10
+</code></pre></div><h4 id="what-are-the-principles">What are the principles?</h4>
+<ul>
+<li><em>Direct dispatch</em> is prioritized.</li>
+<li>If overriding is needed, <em>table dispatch</em> is the next candidate.</li>
+<li>Need both overriding and visibility to Objective-C? Then <em>message dispatch</em>.</li>
+</ul>
+<p>Another key take-away is that explicity is better. Implicit inference (like extensions with <code>@objc</code>) is subject to change.</p>
+<p>Here is the summary of some common cases. You are recommended to double check by reading the SIL generated.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Direct</th>
+<th align="center">Table</th>
+<th align="center">Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Explicitly enforced</strong></td>
+<td align="center"><code>final</code>, <code>static</code></td>
+<td align="center">&mdash;</td>
+<td align="center"><code>dynamic</code></td>
+</tr>
+<tr>
+<td><strong>Value type</strong></td>
+<td align="center">all methods</td>
+<td align="center">&mdash;</td>
+<td align="center">&mdash;</td>
+</tr>
+<tr>
+<td><strong>Protocols</strong></td>
+<td align="center">extensions</td>
+<td align="center">initial declaration</td>
+<td align="center">&mdash;</td>
+</tr>
+<tr>
+<td><strong>Class</strong></td>
+<td align="center">extensions</td>
+<td align="center">initial declaration</td>
+<td align="center">extensions with <code>@objc</code></td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<h3 id="conclusion">Conclusion</h3>
+<p>In this post, we got to know what method dispatch is and different types of dispatch in Swift. We dived into some examples to understand how Swift resolves a specific function. Also, by reading the SIL, we could be able to collect proofs for an assumption on which dispatch a function should follow.</p>
+<ul>
+<li><em>Static dispatch</em> is greate because of its performance. That is why Swift is swift (as compared to Objective-C, a dynamic language).</li>
+<li>While <em>message dispatch</em> seems to be less performant, it offers great flexibility enabling a bunch of cool techniques.</li>
+<li>Understanding <em>method dispatch</em> is vitally important. Not only does it help you write more optimized code but also you could avoid a few strange bugs.</li>
+<li>Among these mentioned above, we have put aside the optimization of the compiler. The capacity of the code to be optimized depends greatly on how we write code :).</li>
+</ul>
+<p>Finally, things might be different in later Swift versions. Don&rsquo;t forget to check the validity of this post 😇.</p>
+<h3 id="reference">Reference</h3>
+<ol>
+<li><a href="https://www.raizlabs.com/dev/2016/12/swift-method-dispatch">Method Dispatch in Swift - by Brian King</a></li>
+<li><a href="http://www.buckleyisms.com/home/2014/6/16/the-case-for-message-passing-in-swift.html">The Case for Message Passing in Swift - by Michael Buckley</a></li>
+<li><a href="https://dev.srdanstanic.com/ios/swift/2017/02/10/swift-dynamic-keyword">[swift] Dynamic keyword - by Srdan</a></li>
+<li><a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">Swift Intermediate Language (SIL)</a></li>
+<li><a href="https://www.mikeash.com/pyblog/friday-qa-2014-07-04-secrets-of-swifts-speed.html">Friday Q&amp;A 2014-07-04: Secrets of Swift&rsquo;s Speed</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/declaration-modifiers">The Swift Programming Language (Swift 4): Declaration Modifiers</a></li>
+</ol>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/swift" class="tag">swift</a>
+  
+  <a href="/tags/programming" class="tag">programming</a>
+  
+  <a href="/tags/method-dispatch" class="tag">method-dispatch</a>
+  
+  <a href="/tags/optimization" class="tag">optimization</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/how-a-swift-file-is-compiled/'>How a Swift file is compiled</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/method-swizzling-what-why-and-how/'>Method Swizzling: What, Why and How</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

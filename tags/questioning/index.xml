@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>questioning on Thuyen&#39;s corner</title>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Tản mạn: Câu hỏi tồi hay là sự hời hợt</title>
-      <link>https://trinhngocthuyen.github.io/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</link>
+      <link>https://trinhngocthuyen.github.io/posts/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</link>
       <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</guid>
       <description>Có nhiều lần mình thấy có người hỏi những câu hỏi khiến mình đọc vào chẳng muốn trả lời (nếu có khả năng trả lời). Một ví dụ điển hình là “anh ơi, sao cái này em build không được?”. Bản thân mình cảm thấy đây là một câu hỏi rất chung chung và thiếu thông tin. Nếu bạn là dev thì hẳn là bạn đã phải sấp mặt với những cái bugs mà ta phải chửi bới cả tiếng đồng hồ con bọ (bugs) mới nghe điếc lỗ tai mà chui ra ngoài. Đó là khi ta có đầy đủ thông tin. Còn thiếu thông tin như trên thì… ta chỉ biết cách ra ngoài vườn bắt con bọ mà tra khỏi xem đồng bọn của nó ở đâu trong cái mớ code của mình.</description>
     </item>
     

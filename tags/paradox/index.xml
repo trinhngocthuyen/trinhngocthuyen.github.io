@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>paradox on Thuyen&#39;s corner</title>
@@ -13,10 +13,10 @@
     
     <item>
       <title>What is Simpson&#39;s paradox?</title>
-      <link>https://trinhngocthuyen.github.io/tech/what-is-simpsons-paradox/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</link>
       <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/what-is-simpsons-paradox/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</guid>
       <description>If you&amp;rsquo;re from the world of statistics, you may have heard of it. Two doctors, Dr. Hibbert and Dr. Nick, both perform 2 types of surgeries: heart surgery and band-aid removal&amp;hellip;</description>
     </item>
     

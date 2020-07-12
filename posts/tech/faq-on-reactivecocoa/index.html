@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/faq-on-reactivecocoa/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>FAQ on ReactiveCocoa</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Feb 2</span>
+</div>
+  
+</header>
+  <h3 id="fundamental-concepts">Fundamental Concepts</h3>
+<h4 id="q-what-is-reactivecocoa">Q: What is ReactiveCocoa?</h4>
+<p>ReactiveCocoa is an FRP (Functional Reactive Programming) framework particularly used for iOS. FRP = <strong>reactive programming</strong> built on the components of <strong>functional concepts</strong>.</p>
+<ul>
+<li>Reactive programming is <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">programming with asynchronous data streams</a>.</li>
+<li>Functional concepts: <em>high-order functions, monads, functors, function compositions, natural transformation (map, filter, reduce&hellip;)&hellip; (You do not need to digest &amp; comprehend it now)</em>.</li>
+</ul>
+<p>References:</p>
+<ul>
+<li>Github: ReactiveCocoa: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa">https://github.com/ReactiveCocoa/ReactiveCocoa</a></li>
+<li>Github: ReactiveSwift: <a href="https://github.com/ReactiveCocoa/ReactiveSwift">https://github.com/ReactiveCocoa/ReactiveSwift</a></li>
+<li>Framework overview: <a href="https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/FrameworkOverview.md">https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/FrameworkOverview.md</a></li>
+<li>Design guidelines: <a href="https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DesignGuidelines.md">https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DesignGuidelines.md</a></li>
+</ul>
+<p>P/s: For convenience, we sometimes use the abbreviation RAC to refer to ReactiveCocoa.</p>
+<h4 id="q-what-is-reactiveswift">Q: What is ReactiveSwift?</h4>
+<p>Prior to RAC 5.0, there had been only 1 module ReactiveCocoa to contain the whole source code. In RAC 5.0, they separated the <strong>core components</strong> to a new module called ReactiveSwift. And ReactiveCocoa now acts as a <strong>wrapper</strong> of reactive concepts with Cocoa frameworks (in order to work with NSObject, UI classes, binding stuff&hellip;).</p>
+<p>P/s: In this page, when I mention RAC, I implicitly mean the 2 modules (ReactiveCocoa &amp; ReactiveSwift) as a whole. Just forget the separation in this FAQ.</p>
+<h4 id="q-what-can-we-do-with-reactivecocoa">Q: What can we do with ReactiveCocoa?</h4>
+<p>Using RAC, we could eliminate some old-fashioned technology stacks/programming patterns:</p>
+<ul>
+<li>Observer pattern</li>
+<li>Delegate pattern</li>
+<li>Closures/callbacks</li>
+</ul>
+<p>Additionally, RAC could help us save a lot effort to implement:</p>
+<ul>
+<li>Binding</li>
+<li>Task management</li>
+</ul>
+<h4 id="q-what-is-a-stream">Q: What is a stream?</h4>
+<blockquote>
+<p><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">A stream is a sequence of ongoing events ordered in time</a>.</p>
+</blockquote>
+<h4 id="q-what-can-be-considered-a-stream">Q: What can be considered a stream?</h4>
+<p><strong>Anything!</strong> From now on, you have to keep in mind that <strong>everything can be a stream</strong>.</p>
+<ul>
+<li>The data downloaded from server</li>
+<li>The state of DB</li>
+<li>The event user taps on the screen</li>
+<li>&hellip;</li>
+</ul>
+<p>Again, remember, everything can be a stream. Let your mind free (big grin)</p>
+<h4 id="q-what-aspects-of-streams-should-we-care-about">Q: What aspects of streams should we care about?</h4>
+<p>We should care about the life cycle of a stream:</p>
+<ul>
+<li>Stream is created &amp; <strong>started</strong></li>
+<li>Stream received a success with a <strong>value</strong></li>
+<li>Stream received a <strong>failure</strong></li>
+<li>Stream <strong>completed</strong></li>
+<li>Stream is <strong>disposed</strong></li>
+</ul>
+<p><img src="https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67" alt="Alt text"></p>
+<p>Besides, we should acknowledge some operations on streams:</p>
+<ul>
+<li>Transform a stream</li>
+<li>Compose streams: combine/zip/merge 2 streams, forward events of a stream to another stream, start a new stream on an event</li>
+</ul>
+<p>Note that streams are immutable (a basic principle in Functional Programming). Therefore, operations on streams always return a new stream. For ex: the code bellow will return another <code>SignalProducer</code>: <code>stringProducer.filter { !$0.isEmpty }</code></p>
+<h4 id="q-what-alternatives-could-we-have-for-rac">Q: What alternatives could we have for RAC?</h4>
+<p>RxSwift is a really qualified candidate. It commenced later than RAC but it has been drawing much attention. From my observation, brand new projects tend to adopt RxSwift due to the active community. Besides, this community also ports the FRP to other platforms (Go, Android, .NET&hellip;), therefore, the contribution is more actively.</p>
+<p>Btw, there is an article explaining why they upgrade their project from RAC 2.x → RxSwift. It&rsquo;s worth a look: <a href="http://artsy.github.io/blog/2015/12/08/reactive-cocoa-to-rxswift/">http://artsy.github.io/blog/2015/12/08/reactive-cocoa-to-rxswift/</a></p>
+<h4 id="q-when-should-we-use-it">Q: When should we use it?</h4>
+<p>We could use it aggressively in different use cases. Here are some that I always prefer RAC:</p>
+<ul>
+<li>Async tasks with <strong>callbacks</strong></li>
+<li>Handle <strong>complicated workflows</strong> that need <em>retry, timeout, cancellation</em>&hellip;</li>
+<li>Get tired using <strong>delegates</strong></li>
+<li><strong>Binding</strong> things</li>
+</ul>
+<h3 id="signal-and-signalproducer">Signal and SignalProducer</h3>
+<h4 id="q-what-is-signal-what-is-signalproducer">Q: What is Signal? What is SignalProducer?</h4>
+<p><code>Singal</code> and <code>SignalProducer</code> are 2 implementations of streams. The bare difference between them is that <code>Signal</code> represents <strong>hot observable</strong> while <code>SignalProducer</code> refers to <strong>cold observable</strong>. I personally prefer <code>SignalProducer</code> over <code>Signal</code>.</p>
+<h4 id="q-i-created-a-signalproducer-i-added-some-observers-but-none-of-them-are-executed-what-happened">Q: I created a SignalProducer, I added some observers, but none of them are executed. What happened?</h4>
+<p>Perhaps you forgot to start the producer. We need to start it manually, it&rsquo;s cold observable, remember?</p>
+<h4 id="q-its-hard-to-debug-with-rac-how-to-troubleshoot-issues-effectively">Q: It&rsquo;s hard to debug with RAC. How to troubleshoot issues effectively?</h4>
+<p>The easiest way which I often use is printing log to verify if a value arrived, (or) the stream completed, (or) any error occurred&hellip; Well, RAC provides a built-in function <code>logEvents</code> for debugging. You could also write your own functions :D</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">loginProducer</span> <span class="p">=</span> <span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="n">password</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">logEvents</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;--- Login&#34;</span><span class="p">,</span> <span class="n">events</span><span class="p">:</span> <span class="p">[.</span><span class="n">started</span><span class="p">,</span> <span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="p">.</span><span class="n">completed</span><span class="p">,</span> <span class="p">.</span><span class="n">failed</span><span class="p">])</span>
+<span class="kd">let</span> <span class="nv">signupProducer</span> <span class="p">=</span> <span class="n">signup</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="n">password</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">logWhenStarted</span><span class="p">(</span><span class="s">&#34;--- Signup. Started&#34;</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">logWhenNext</span><span class="p">({</span><span class="s">&#34;--- Signup. Next: </span><span class="si">\(</span><span class="nv">$0</span><span class="si">)</span><span class="s">&#34;</span><span class="p">})</span>
+  <span class="p">.</span><span class="n">logWhenFailed</span><span class="p">({</span><span class="s">&#34;--- Signup. Failed with error: </span><span class="si">\(</span><span class="nv">$0</span><span class="si">)</span><span class="s">&#34;</span><span class="p">})</span>
+</code></pre></div><h3 id="operators">Operators</h3>
+<h4 id="q-whats-the-difference-between-the-2-operators-then-and-flatmap">Q: What&rsquo;s the difference between the 2 operators &ldquo;then&rdquo; and &ldquo;flatMap&rdquo;?</h4>
+<p>Now we compare the 2 implementations. Assume that we do not care about the returned values of the producer. Given that: <code>downloadUrl1()</code> and <code>downloadUrl2()</code> is of type <code>SignalProducer&lt;Void, NSError&gt;</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Impl 1:	// Using `then`
+    downloadUrl1().then(downloadUrl2())	
+Impl 2:	// Using `flatMap`
+    downloadUrl1.flatMap(.latest) { _ in downloadUrl2() }
+</code></pre></div><ul>
+<li>The operator <code>then</code> triggers on event completed: <code>downloadUrl2()</code> starts  when <code>downloadUrl1()</code> completes</li>
+<li>The operator <code>flatMap</code> triggers on event value: <code>downloadUrl2()</code> starts when <code>downloadUrl1()</code> receives a value</li>
+</ul>
+<p>Discussion: As a best practice, for this kind of download, we often call <code>sendCompleted()</code> immediately after <code>sendNext()</code>. So basically, the 2 implementations above are considered the same.</p>
+<h4 id="q-how-to-cancel-a-signalproducer-from-the-outside">Q: How to cancel a SignalProducer (from the outside)?</h4>
+<p>Manually dispose of the producer</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">disposable</span> <span class="p">=</span> <span class="n">producer</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>	<span class="c1">// Starting a producer returns a disposable</span>
+<span class="p">...</span>
+<span class="c1">// You manually dispose it by calling .dispose()</span>
+<span class="n">disposable</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>	
+<span class="p">...</span>
+<span class="c1">// You could also add it to a parent composite disposable.</span>
+<span class="c1">// When the parent is disposed, it triggers disposing of the attached disposables</span>
+<span class="n">parentCompositeDisposable</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">disposable</span><span class="p">)</span>	
+</code></pre></div><p>Or trigger by another signal/producer, like this</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">producer</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="n">until</span><span class="p">:</span> <span class="n">cancelProducer</span><span class="p">)</span>	<span class="c1">// cancelProducer = cancelButton.rac_tap</span>
+</code></pre></div>
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/gc-algorithms/'>Garbage Collection (GC) algorithms</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/create-custom-xcode-templates/'>Create custom Xcode templates</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/faq-on-reactivecocoa/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

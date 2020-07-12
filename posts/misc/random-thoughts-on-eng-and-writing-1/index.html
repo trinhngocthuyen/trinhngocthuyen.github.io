@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/random-thoughts-on-eng-and-writing-1/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Tản mạn: Kỹ sư và viết lách (1)</h1>
+  
+  
+  <div class="metadata">
+  <span>2020, Feb 2</span>
+</div>
+  
+</header>
+  <p>Là một kỹ sư công nghệ (software engineer), ắt hẳn ai cũng đã từng 😒, đang 😐, và sẽ 😟 phải viết những tài liệu kỹ thuật (<em>technical docs</em>) phục vụ cho công việc. Trong bài viết này, mình sẽ tâm tình cùng bạn những suy nghĩ cá nhân về việc viết lách liên quan đến công việc của một kỹ sư.</p>
+<p><span class="point">1</span> Thứ nhất, tại sao kỹ sư cần phải <em>viết lách</em>?</p>
+<p><em>&ldquo;Mình thích thì mình viết thôi!&quot;</em>. Ai nói được câu này cho 10 điểm về chỗ liền. Nếu bạn nói <em>&ldquo;thích viết blog&rdquo;</em> thì mình sẽ gật đầu tấm tắc khen, còn nếu bạn nói là thích viết <em>technical docs</em> thì hẳn bạn đã ở một đẳng cấp nào đó khác (mình) rồi.</p>
+<p>Viết, nói chung, là một hình thức giao tiếp, truyền đạt thông tin. Viết <em>technical docs</em> là để truyền đạt thông tin về một chủ đề kỹ thuật nào đó. Dĩ nhiên còn nhiều hình thức truyền đạt thông tin khác như <em>thuyết trình</em>, <em>đồ hoạ thông tin (infographic)</em>, <em>mần Vlog</em>&hellip; Nhưng hình thức viết (tức, dưới dạng văn bản) tỏ ra rất thông dụng trong công việc của kỹ sư, bởi:</p>
+<ul>
+<li><em>Có tính tái sử dụng cao</em>.</li>
+<li><em>Có thể dễ dàng reference đến (còn lời nói thì gió bay mà)</em>. Thật ra đây là hệ quả của tính tái sử dụng.</li>
+<li><em>Có thể chỉnh sửa theo thời gian (nếu cần thiết)</em>. So với thuyết trình và Vlog, thì đây quả là một lợi thế lớn.</li>
+<li>&hellip;</li>
+</ul>
+<p><span class="point">2</span> Khi mình nói với sếp và đồng nghiệp rằng mình thích viết, câu này cắt nghĩa ra như sau:</p>
+<ul>
+<li>Mình thích chia sẻ ý tưởng, thông tin, và suy nghĩ với người khác. Và&hellip;</li>
+<li>Mình cảm thấy thoải mái nhất khi chia sẻ những ý tưởng, thông tin, và suy nghĩ này bằng hình thức viết.</li>
+</ul>
+<p>Thiệt, viết xàm xàm, tản mạn kiểu vầy thì mình thấy còn dễ chịu. Còn viết những tài liệu kỹ thuật thì mình chỉ thấy cực thôi 😂&hellip; Đôi khi mình thấy viết tản mạn vầy thôi mà đã phải vò đầu bứt tai rồi. Phải chi mà mình đẹp trai hơn một chút, nói chuyện lưu loát hơn một chút thì mình đã mần Vlog nói nhăng nói cuội cho rồi, đâu phải ngồi đây gõ một chữ rồi xoá hai chữ như bây giờ.</p>
+<p><span class="point">3</span> Viết tài liệu kỹ thuật&hellip; cũng chẳng qua là một dạng viết lách. Cho nên nó cũng theo một vài mô tuýp chung và đòi hỏi một số kỹ năng viết nói chung. Ví dụ, cần xác định viết về chủ đề gì, độc giả là ai&hellip; Từ đó mới có bố cục và cách viết phù hợp.</p>
+<p>Trong quá trình làm việc, sau nhiều lần viết docs này docs nọ, mình đúc kết một điều tâm đắc. Đó là, ngoài việc xác định chủ đề, độc giả, bước tiếp theo là xác định <em>thể loại tài liệu</em>. Các thể loại tài liệu thông dụng mà mình hay gặp phải là:</p>
+<ul>
+<li><em>Documentation</em></li>
+<li><em>Project plans/roadmaps</em></li>
+<li><em>Instructions &amp; procedures</em> (thường là <em>how-to articles</em>)</li>
+<li><em>Style guides</em></li>
+<li><em>Reports (báo cáo)</em></li>
+<li><em>Proposals (đề xuất)</em></li>
+<li><em>Announcements (thông báo)</em></li>
+<li>&hellip;</li>
+</ul>
+<p>Việc xác định thể loại tài liệu giúp chúng ta định hướng bố cục bài viết rất nhiều. Chẳng hạn:</p>
+<ul>
+<li>Đối với những thông báo của team đến các kỹ sư từ các <em>tech families</em> khác về một thay đổi nào đó, sau khi đọc nội dung thay đổi, người ta thường quan tâm là <em>&ldquo;tui có cần phải mần gì hông?&quot;</em>. Cho nên, nếu thông báo đó được viết bởi mình thì sẽ luôn có một mục là <strong>&ldquo;Action Required&rdquo;</strong>. Khi mình đọc thông báo của người ta mình cũng thường kiếm cái mục này mà đọc.</li>
+<li>Đối với <em>proposals</em> (đề xuất), thường thì mình sẽ viết theo cấu trúc <em>problems &amp; solutions</em>. Còn <em>documentation</em> thì chỉ thuần tuý là ghi chú lại một quy trình hoặc một chức năng nào đó, nên không bố cục theo kiểu <em>problems &amp; solutions</em>.</li>
+<li>Đối với <em>how-to articles</em>, mình thường cố gắng viết kiểu chỉ dẫn từng bước (step-by-step instructions). Kiểu như: <em>&ldquo;Bước 1: muốn luyện bộ kiếm pháp này, khổ chủ phải tự cung 👻&rdquo;</em>.</li>
+</ul>
+<p><span class="point">4</span> Viết tài liệu kỹ thuật không có giống IELTS writing. Đừng có lấy mindset IELTS ra mà viết nhé. Đây không phải là dịp để bạn phô trương vốn từ vựng học thuật và thi triển các cấu trúc ngữ pháp phức tạp. Đối với mình, một tài liệu kỹ thuật tốt là một tài liệu được trình bày một cách khoa học và dễ hiểu. Viết càng dễ hiểu, dễ đọc càng tốt. Mình nhớ có vài lần viết documentation, được <em>Technical Writer</em> review, chỉnh sửa. Sau hồi thấy bản sửa mấy cái câu kép dài dài của mình viết thành 2 câu đơn hết. Mà công nhận là sau khi sửa đọc dễ hơn nhiều 😄. Lesson learned!</p>
+<p><span class="point">5</span> Viết già, viết riết rồi quen thôi. Như mình không có khiếu viết lách thì tốn nhiều thời gian và công sức hơn thôi (chứ có khiếu thì đã thích cmn rồi 😐). Có mấy cái tasks nọ cần phải viết code và viết documentation. Mình viết code một ngày xong, còn viết documentation thì mất&hellip; 2-3 ngày 😞.</p>
+<p>Ấy mới thấy việc diễn giải suy nghĩ của mình (một cách logic) ra chữ viết nó khó nhường nào. Cơ mà <em>&ldquo;what doesn&rsquo;t kill you makes you stronger&rdquo;</em>. Bằng việc viết ra, suy nghĩ của bạn sẽ trở nên logic hơn, hiểu biết của bạn sẽ được củng cố hơn. (Mình đang tự an ủi vậy, để mai mốt còn chịu khó viết. Ai có bằng chứng phủ nhận luận điểm trên thì cứ làm thinh nha 😂)</p>
+<p>&hellip;</p>
+<p>Tản mạn đêm khuya đến đây thôi. Bye!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/writing" class="tag">writing</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/2019-in-review/'>📝 2019 in review</a>
+  </div><div class='next-entry'>
+    <a href='/posts/misc/random-thoughts-on-cooking/'>Tản mạn: Chuyện nấu ăn</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-eng-and-writing-1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

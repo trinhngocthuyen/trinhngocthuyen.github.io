@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>image-processing on Thuyen&#39;s corner</title>
@@ -13,10 +13,10 @@
     
     <item>
       <title>A dive into Histogram of Oriented Gradients (HOG)</title>
-      <link>https://trinhngocthuyen.github.io/tech/a-dive-into-hog/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/a-dive-into-hog/</link>
       <pubDate>Thu, 13 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/a-dive-into-hog/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/a-dive-into-hog/</guid>
       <description>In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&amp;hellip; And then implement it in python (in order to comprehend it).</description>
     </item>
     

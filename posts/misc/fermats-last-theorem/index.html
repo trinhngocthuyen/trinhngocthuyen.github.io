@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/fermats-last-theorem/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Định lý cuối cùng của Fermat</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Dec 12</span>
+</div>
+  
+</header>
+  <p>Khoảng 5-6 tháng trước mình xem một bộ phim tài liệu có tựa đề <a href="http://www.dailymotion.com/video/x223gx8"><em>BBC - Horizon - 1996 - Fermat&rsquo;s Last Theorem</em></a>. Đây là một câu chuyện về lịch sử toán học mà mình thấy rất hay nên muốn chia sẻ lại.</p>
+<p><a href="https://en.wikipedia.org/wiki/Pierre_de_Fermat">Fermat</a> là một nhà toán học người Pháp. Ông có nhiều đóng góp quan trọng trong lý thuyết số (number theory). Một trong số đó là định lý Fermat lớn, hay định lý cuối cùng của Fermat (Fermat&rsquo;s Last Theorem). Để cho tiện, mình sẽ gọi nó là định lý Fermat.</p>
+<p>Trong cuốn sách <em>Arithmetica</em> của Diophantus, Fermat đã ghi trên đó phát biểu định lý như sau:</p>
+<blockquote>
+<p>It is impossible to separate a cube into two cubes, or a bigquadrate into two bigquadrates, or in general any power higher than the second into two powers of like degree; I have discovered a truly remarkable proof which this margin is two small to contain.\</p>
+<ul>
+<li>Dịch từ bản gốc, viết bằng chữ Latin -</li>
+</ul>
+</blockquote>
+<p>Diễn đạt theo công thức toán học của định lý này rất đơn giản: <em>không tồn tại nghiệm nguyên dương cho phương trình
+$x^n + y^n = z^n$ với $n &gt; 2$.</em></p>
+<p>Mặc dù vậy, không có bản thảo chứng minh nào của Fermat được tìm thấy. Nhiều người cho đến bây giờ vẫn tin rằng Fermat đã thực sự không có lời giải cho định lý mà ông đã phát biểu.</p>
+<p>Trong suốt hai thế kỷ tiếp sau đó, bài toán này đã thách đố nhiều bộ óc của các nhà toán học trên thế giới. Nhưng chỉ có một vài trường hợp đặc biệt ($n=3,4,5,6,7$) được chứng minh. Bài toán ít được chú ý dần.</p>
+<h3 id="tiền-đề">Tiền đề</h3>
+<p>Một cột mốc quan trọng trong quá trình chứng minh định lý hóc búa này là khi <a href="http://mathworld.wolfram.com/Taniyama-ShimuraConjecture.html">giả thuyết Shimura-Taniyama</a> (Shimura-Taniyama conjecture) được đề xuất vào năm 1955. Giả thuyết này xây dựng cầu nối giữa 2 dòng nghiên cứu tách biệt nhau: đường cong elliptic (elliptic curves) và dạng modular (modular forms). Mặc dù các nhà toán học bấy giờ tin rằng giả thuyết này đúng, vẫn chưa có ai chứng minh được.</p>
+<p>Đến năm 1986, <a href="https://en.wikipedia.org/wiki/Ken_Ribet">Ken Ribet</a>, một nhà toán học người Mỹ, công bố một chứng minh dựa trên nghiên cứu của Gerhard Frey (người Đức) trước đó. Kết quả này đưa đến một mối liên hệ giữa giả thuyết Shimura-Taniyama và bài toán Fermat. Một cách cụ thể, nếu giả thuyết Shimura-Taniyama được chứng minh thì định lý Fermat cũng được chứng minh.</p>
+<h3 id="andrew-wiles">Andrew Wiles</h3>
+<p><a href="https://en.wikipedia.org/wiki/Andrew_Wiles">Andrew Wiles</a> (1953) là một nhà toán học người Anh. Ông lần đầu biết đến định lý Fermat lúc mới 10 tuổi, ở một thư viện địa phương. Ông cũng đã bỏ công ra chứng minh, nhưng tạm gác lại vì không đủ công cụ.</p>
+<p>Mãi về sau, khi Andrew Wiles khi nghe tin về công bố của Ribet, ông đã bỏ nghiên cứu hiện tại và dành 7 năm tiếp theo cho bài toán này. Ông giữ công việc này bí mật, và chẳng ai biết ông đang nghiên cứu về cái gì.</p>
+<p>Cuối cùng, vào năm 1993, Wiles đã hoàn tất bản chứng minh của mình. Trong một hội nghị toán học ở Cambridge, Wiles có 3 buổi thuyết trình về lý thuyết số. Buổi cuối cùng, sau khi giới thiệu về một kỹ thuật sử dụng trong chứng minh của mình, ông ghi trên bảng phát biểu của định lý Fermat, và nói <em>&ldquo;Tôi nghĩ là tôi đã chứng minh được nó rồi&rdquo;</em>.</p>
+<p>Những ngày sau đó, báo giới đồng loạt đưa tin về sự kiện này. Cuối cùng thì sau ba thế kỷ, bài toán của Fermat cũng đã có lời giải.</p>
+<p>Tuy nhiên&hellip;</p>
+<p>Bài báo của Wiles được gửi cho các chuyên gia phản biện. Trong quá trình đọc và dò xét, <a href="https://en.wikipedia.org/wiki/Nick_Katz">Nick Katz</a>, 1 trong số những người phản biện, phát hiện ra một lỗi cơ bản trong bản chứng minh. Wiles đã dành cả mùa thu đó để chỉnh sửa, nhưng không thành. Đã có nhiều lời kêu gọi giúp đỡ nhưng ông từ chối công bố bản chứng minh (có lỗi) của mình. Cuối cùng, vào tháng 9 năm 1994, trước khi quyết định công bố bản chứng minh chưa hoàn thiện này, ông đã giải được nút thắt vấn đề. Lời giải lại chính là cách tiếp cận mà ông đã bỏ mặc 3 năm trước đó. Bài báo của Wiles được xuất bản vào năm 1995.</p>
+<h3 id="bình-luận">Bình luận</h3>
+<p>Đây được xem là một thành tựu to lớn trong lý thuyết số lúc bấy giờ, không phải bởi ứng dụng của định lý Fermat, mà bởi những công cụ toán học ra đời để chứng minh nó. Thật đáng tiếc khi Wiles đã không sửa chửa được bản chứng minh lỗi sớm hơn vì khi hoàn thành xong bản chứng minh đúng của mình, ông đã bước qua tuổi 41 và quá hạn về độ tuổi cho giải thưởng Fields. Nếu không thì có lẽ ông đã dành được giải thưởng cao quý này rồi.</p>
+<p>Một bài toán với phát biểu đơn giản đến thế, nhưng mãi tới ba trăm năm sau mới giải được. Riêng đối với Andrew Wiles thì đã dành ngót nghét chục năm cho bài toán được xem là không giải được này.</p>
+<p>Chứng minh của Andrew Wiles bao gồm nhiều công cụ toán học, nhiều khái niệm mà thời của Fermat lúc bấy giờ không có. Do đó, mặc dù có người nghĩ rằng có thể Fermat đã giải được bài toán bằng một cách nào đó, nhiều người vẫn đặt dấu chấm hỏi cho tuyên bố của Fermat rằng ông đã thực sự chứng minh được nó.</p>
+<h3 id="tham-khảo">Tham khảo</h3>
+<p>[1] <a href="www.dailymotion.com/video/x223gx8">BBC - Horizon - 1996 - Fermat&rsquo;s Last Theorem</a><!-- raw HTML omitted -->
+[2] <a href="https://simonsingh.net/books/fermats-last-theorem/the-whole-story">Fermat&rsquo;s Last Theorem: The Whole Story</a></p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/maths" class="tag">maths</a>
+  
+  <a href="/tags/science" class="tag">science</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/dark-matter-dark-energy/'>Dark matter, Dark energy là gì?</a>
+  </div><div class='next-entry'>
+    <a href='/posts/misc/2017-in-review/'>2017 in review</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/fermats-last-theorem/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"HTML-CSS":{"availableFonts":["TeX"],"linebreaks":{"automatic":true},"scale":90},"TeX":{"Macros":{"dim":["{\\color{gray}#1}",1],"txt":["\\hspace{3pt}\\text{#1}\\hspace{3pt}",1]},"TagSide":"left","extensions":["color.js"]},"extensions":["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],"jax":["input/TeX","output/HTML-CSS"],"tex2jax":{"displayMath":[["$$","$$"]],"inlineMath":[["$","$"]],"processEnvironments":true,"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'></script></body>
+</html>

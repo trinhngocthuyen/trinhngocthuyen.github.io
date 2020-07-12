@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>optimization on Thuyen&#39;s corner</title>
@@ -13,19 +13,19 @@
     
     <item>
       <title>Quick thoughts on Tail recursion in Swift</title>
-      <link>https://trinhngocthuyen.github.io/tech/quick-thoughts-on-tail-recursion-in-swift/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/quick-thoughts-on-tail-recursion-in-swift/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</guid>
       <description>I always thought that Tail call optimization (TCO), sometimes called tail recursion optimization, is supported in most languages by default. It turns out to be opposite.</description>
     </item>
     
     <item>
       <title>Method dispatch in Swift</title>
-      <link>https://trinhngocthuyen.github.io/tech/method-dispatch-in-swift/</link>
+      <link>https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/</link>
       <pubDate>Mon, 25 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/tech/method-dispatch-in-swift/</guid>
+      <guid>https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/</guid>
       <description>Method dispatch is a term referring to mechanisms by which the program determines which operation should be executed (by operation, I mean a set of instructions). There are times we expect a method behavior to be determined only at runtime. This motivation give rise to different mechanisms of dispatching a method, each of which has its own pros and cons.</description>
     </item>
     

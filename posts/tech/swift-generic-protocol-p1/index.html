@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/swift-generic-protocol-p1/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Swift: Generic protocol (p.1)</h1>
+  
+  
+  <div class="metadata">
+  <span>2016, Jun 6</span>
+</div>
+  
+</header>
+  <p>In this article, we would look into how to implement a generic protocol. A few lacks of language support (Swift version prior to 3.0) would be also pointed out for discussion.</p>
+<p>Let&rsquo;s get started with an example. We are writing a bunch of code to implement data fetching used for a specific screen. We expect to use the same behavior for different types of data, different screens. Here&rsquo;s the protocol:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="nc">DataFetchingType</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">DataType</span>
+    <span class="kd">func</span> <span class="nf">fetchFromLocal</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">fetchFromServer</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>The protocol should have an associated type <code>DataType</code> which is particular for an api service.</p>
+<p>OK! The next step is to create concrete classes that implement this protocol.</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">EventsFetcher</span><span class="p">:</span> <span class="n">DataFetchingType</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">DataType</span> <span class="p">=</span> <span class="n">Event</span>
+    <span class="kd">func</span> <span class="nf">fetchFromLocal</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation goes here</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">fetchFromServer</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation goes here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">OrdersFetcher</span><span class="p">:</span> <span class="n">DataFetchingType</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">DataType</span> <span class="p">=</span> <span class="n">Event</span>
+    <span class="kd">func</span> <span class="nf">fetchFromLocal</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation goes here</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">fetchFromServer</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation goes here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>So far, it&rsquo;s good. Now we put a data fetcher in a view model which is also generic.</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">ViewModel</span><span class="p">&lt;</span><span class="n">DataType</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetcher</span><span class="p">:</span> <span class="n">DataFetchingType</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div><p>Actually, XCode yields an error, complaining that <code>DataFetchingType</code> is a generic protocol and thus cannot be used in such a way like that. More painfully, the current version of Swift does not yet support writing it similarly to generic class</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">var</span> <span class="nv">fetcher</span><span class="p">:</span> <span class="n">DataFetchingType</span><span class="p">&lt;</span><span class="n">DataType</span><span class="p">&gt;</span>
+</code></pre></div><h3 id="solution">Solution</h3>
+<p>Here comes the trick to overcome this problem. The idea is simple, we use a generic class to wrap the protocol.</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">GenericDataFetcher</span><span class="p">&lt;</span><span class="n">DT</span><span class="p">&gt;:</span> <span class="n">DataFetchingType</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">DataType</span> <span class="p">=</span> <span class="n">DT</span>
+    <span class="p">............</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">ViewModel</span><span class="p">&lt;</span><span class="n">DataType</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetcher</span><span class="p">:</span> <span class="n">GenericDataFetcher</span><span class="p">&lt;</span><span class="n">DataType</span><span class="p">&gt;</span>
+<span class="p">}</span>
+
+</code></pre></div><p>It&rsquo;s still generic and the compiler would not complain. And the hard part remaining is to make <code>GenericDataFetcher</code> flexible that we WOULD NOT write <code>EventFetcher</code> as a subclass of <code>GenericDataFetcher</code> (subclassing is not really a good idea here).</p>
+<p>A solution: <em><strong>init GenericDataFetcher from a protocol, store the required functions, properties of that protocol.</strong></em></p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">GenericDataFetchingType</span><span class="p">&lt;</span><span class="n">DT</span><span class="p">&gt;:</span> <span class="n">DataFetchingType</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">DataType</span> <span class="p">=</span> <span class="n">DT</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_fetchFromLocal</span><span class="p">:</span> <span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DT</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_fetchFromServer</span><span class="p">:</span> <span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DT</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+
+    <span class="kd">init</span><span class="p">&lt;</span><span class="n">DF</span><span class="p">:</span> <span class="n">DataFetchingType</span> <span class="k">where</span> <span class="n">DF</span><span class="p">.</span><span class="n">DataType</span> <span class="p">==</span> <span class="n">DT</span><span class="p">&gt;(</span><span class="n">fetcher</span><span class="p">:</span> <span class="n">DF</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">_fetchFromLocal</span> <span class="p">=</span> <span class="n">fetcher</span><span class="p">.</span><span class="n">fetchFromLocal</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="n">to</span><span class="p">:</span><span class="n">completion</span><span class="p">:)</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">_fetchFromServer</span> <span class="p">=</span> <span class="n">fetcher</span><span class="p">.</span><span class="n">fetchFromServer</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="n">to</span><span class="p">:</span><span class="n">completion</span><span class="p">:)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetchFromLocal</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_fetchFromLocal</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">to</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="n">completion</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetchFromServer</span><span class="p">(</span><span class="n">from</span> <span class="n">from</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">NSDate</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">[</span><span class="n">DataType</span><span class="p">]?</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_fetchFromServer</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">to</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="n">completion</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">ViewModel</span><span class="p">&lt;</span><span class="n">DataType</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetcher</span><span class="p">:</span> <span class="n">GenericDataFetcher</span><span class="p">&lt;</span><span class="n">DataType</span><span class="p">&gt;</span>
+    <span class="kd">init</span><span class="p">&lt;</span><span class="n">DF</span><span class="p">:</span> <span class="n">DataFetchingType</span> <span class="k">where</span> <span class="n">DF</span><span class="p">.</span><span class="n">DataType</span> <span class="p">==</span> <span class="n">DataType</span><span class="p">&gt;(</span><span class="n">fetcher</span><span class="p">:</span> <span class="n">DF</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">fetcher</span> <span class="p">=</span> <span class="n">GenericDataFetcher</span><span class="p">(</span><span class="n">fetcher</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">eventsViewModel</span> <span class="p">=</span> <span class="n">ViewModel</span><span class="p">(</span><span class="n">fetcher</span><span class="p">:</span> <span class="n">EventsFetcher</span><span class="p">())</span>
+</code></pre></div><p>P/s: I wish we would not need this trick any more in the near future.</p>
+<h3 id="reference">Reference</h3>
+<ol>
+<li><a href="http://krakendev.io/blog/generic-protocols-and-their-shortcomings">http://krakendev.io/blog/generic-protocols-and-their-shortcomings</a></li>
+<li><a href="https://milen.me/writings/swift-generic-protocols">https://milen.me/writings/swift-generic-protocols</a></li>
+<li><a href="https://milen.me/writings/swift-generic-protocols">https://github.com/apple/swift-evolution/tree/master/proposals</a> (with keywords: generic, protocol :D)</li>
+</ol>
+<p>Have fun!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/swift-concrete-types-in-protocol/'>Swift: Concrete types in Protocol</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/a-freestyle-way-to-config-uiview/'>A freestyle way to config UIView</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/swift-generic-protocol-p1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

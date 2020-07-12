@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/reasoning/dong-nao-alice-betrice-cynthia/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Động não: Alice, Betrice or Cynthia?</h1>
+  
+  
+  <div class="metadata">
+  <span>2015, Oct 10</span>
+</div>
+  
+</header>
+  <p><em>Một người đi kén vợ, và định chọn một trong ba cô gái Alice, Beatrice và Cynthia rồi cưới. Biết rằng mỗi cô gái đều luôn nói dối hoặc luôn nói thật. Một trong ba cô gái là phù thủy nhưng không biết rằng phù thủy luôn nói dối hay luôn nói thật. Dưới đây là những điều mà các cô gái nói với chàng trai.</em></p>
+<p><em>- Alice: Cynthia là phù thủy.</em><br>
+<em>- Betrice: Tôi không là phù thủy.</em><br>
+<em>- Cynthia: Nhiều nhất là một người trong ba chúng tôi nói thật.</em></p>
+<p><em>Hỏi chàng trai phải chọn ai (trong số ba người trên) làm cô dâu để không cưới phải phù thủy?</em></p>
+<p><em>&mdash; Trích Mathematical Young Talent Search 2015 (MYTS) &mdash;</em></p>
+<hr>
+<h4 id="tóm-tắt">Tóm tắt</h4>
+<p>– Trong 3 cô gái, có 1 cô là phù thuỷ, 2 cô còn lại là người thường.<!-- raw HTML omitted -->
+– Mỗi cô đều có thể nói thật hoặc nói dối.<!-- raw HTML omitted -->
+– Cần chọn cô nào chắc chắn là người thường.<!-- raw HTML omitted --></p>
+<h4 id="phân-tích">Phân tích</h4>
+<p>Xuất phát từ giả thiết 3:</p>
+<p><em><strong>(1) TH1: Nếu Cynthia nói thật</strong></em></p>
+<p>&ndash;&gt; “Nhiều nhất 1 người nói thật”, và đó cũng chính là Cynthia &ndash;&gt; Alice và Betrice nói dối<!-- raw HTML omitted -->
+&ndash;&gt; Suy ra:<!-- raw HTML omitted --></p>
+<ul>
+<li>Cynthia không phải phù thuỷ<!-- raw HTML omitted --></li>
+<li>Betrice là phù thuỷ<!-- raw HTML omitted --></li>
+</ul>
+<p><em><strong>(2) TH2: Nếu Cynthia nói dối</strong></em></p>
+<p>&ndash;&gt; “Có &gt;= 2 người nói thật” &ndash;&gt; Cả Alice và Betrice nói thật<!-- raw HTML omitted -->
+&ndash;&gt; Suy ra:<!-- raw HTML omitted --></p>
+<ul>
+<li>Cynthia là phù thuỷ<!-- raw HTML omitted --></li>
+<li>Betrice không phải phù thuỷ<!-- raw HTML omitted --></li>
+</ul>
+<h4 id="tổng-hợp">Tổng hợp</h4>
+<p>– TH1: Betrice là phù thuỷ. Alice và Cynthia là người thường<!-- raw HTML omitted -->
+– TH2: Cynthia là phù thuỷ. Alice và Betrice là người thường<!-- raw HTML omitted --></p>
+<p>Trong cả 2 trường hợp thì Alice đều là người thường.<!-- raw HTML omitted -->
+<em><strong>&ndash;&gt; Cưới Alice là lựa chọn tốt nhất.</strong></em></p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/reasoning" class="category">reasoning</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/logic" class="tag">logic</a>
+  
+  <a href="/tags/brain-exercises" class="tag">brain-exercises</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/reasoning/luan-ux-ly-cafe/'>Luận UX: Ly cafe take-away</a>
+  </div><div class='next-entry'>
+    <a href='/posts/reasoning/hieu-ung-moi-priming-effect/'>Hiệu ứng mồi (Priming effect)</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/reasoning/dong-nao-alice-betrice-cynthia/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

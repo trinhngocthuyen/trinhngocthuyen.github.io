@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Tản mạn: Câu hỏi tồi hay là sự hời hợt</h1>
+  
+  
+  <div class="metadata">
+  <span>2018, Jan 1</span>
+</div>
+  
+</header>
+  <p>Có nhiều lần mình thấy có người hỏi những câu hỏi khiến mình đọc vào chẳng muốn trả lời (nếu có khả năng trả lời). Một ví dụ điển hình là <em>&ldquo;anh ơi, sao cái này em build không được?&quot;</em>. Bản thân mình cảm thấy đây là một câu hỏi rất chung chung và thiếu thông tin. Nếu bạn là dev thì hẳn là bạn đã phải sấp mặt với những cái bugs mà ta phải chửi bới cả tiếng đồng hồ con bọ (bugs) mới nghe điếc lỗ tai mà chui ra ngoài. Đó là khi ta có đầy đủ thông tin. Còn thiếu thông tin như trên thì&hellip; ta chỉ biết cách ra ngoài vườn bắt con bọ mà tra khỏi xem đồng bọn của nó ở đâu trong cái mớ code của mình.</p>
+<p>[1] Trong giải quyết vấn đề, <em>nếu bạn phát biểu rõ vấn đề của mình là đã giải được 50% bài toán rồi</em>. Nói vậy là để cho thấy tầm quan trọng của việc hiểu và trình bày vấn đề. Giống như Toán học, việc phát biểu phải nêu bật được 2 phần <em><strong>giả thiết</strong></em> và <em><strong>kết luận</strong></em>.</p>
+<ul>
+<li><em><strong>Kết luận</strong></em> chính là mục đích cần đạt (mà bạn không đạt được). Ví dụ, bạn muốn chương trình được build thành công, nhưng thực tế trình biên dịch lại báo lỗi.</li>
+<li><em><strong>Giả thiết</strong></em> là những thông tin cho sẵn, là ngữ cảnh của bài toán. Ví dụ, để chạy được thành công bạn phải làm <code>A -&gt; B -&gt; C</code>, nhưng trên thực tế bạn chỉ làm <code>A -&gt; C</code>.</li>
+</ul>
+<p>Như vậy, câu hỏi <em>&ldquo;anh ơi, sao cái này em build không được?&quot;</em> chỉ mới nêu lên được kết luận, chứ chưa nêu đầy đủ giả thiết của bài toán. Dĩ nhiên trong một số trường hợp, ta không cần phải nêu ra giả thiết vì nó được ngầm hiểu. Ví dụ, <em>&ldquo;một cộng một bằng mấy?&quot;</em> thì ta ngầm định rằng <em>một</em> ở đây là con số 1 trong Toán, chứ không phải thằng nào hay con nào có tên là Một cả.</p>
+<p>[2] Đặt trong ngữ cảnh bạn đi hỏi để tìm kiếm sự giúp đỡ từ bên ngoài, thì việc truyền đạt thông tin đến người khác một cách đầy đủ lại càng quan trọng hơn. Những thông tin ấy có để được truyền đạt thông qua text (mô tả xem nó bị gì), hình ảnh (chụp hình cái mà bạn cho là lỗi), clip (quay lại quá trình reproduce lỗi)&hellip;</p>
+<p>Nên nhớ rằng, trong trường hợp này bạn đang ở vị thế thấp hơn so với những người có thể giúp bạn. Không giống như loại câu hỏi chỉ quan tâm đến kết luận của sếp (vì sếp có vị thế cao hơn). Việc hỏi những câu như trên chỉ tổ khiến người ta có ít thiện cảm với mình hơn.</p>
+<p>[3] Thông thường, khi nhờ người khác hỗ trợ, bạn giao tiếp với người đó thông qua một cuộc hội thoại face-to-face, hoặc offline discussion (cái comment thread của Facebook là một ví dụ điển hình).</p>
+<ul>
+<li><em><strong>Face-to-face conversation</strong></em> thì nhanh và tức thời, nên người ta có thể hỏi lại bạn dần dần để làm rõ thông tin. Giống như bác sỹ bắt mạch cho bệnh nhân; nếu bệnh nhân trả lời chung chung kiểu <em>&ldquo;tôi thấy mệt trong người&rdquo;</em> thì ổng sẽ không gằn dọng nói <em>&ldquo;không mệt thì đi khám chi!&quot;</em>, mà ổng sẽ hỏi thêm <em>&ldquo;mệt chỗ nào? bị lâu chưa?&quot;</em>.</li>
+<li>Trái lại, <em><strong>Offline conversation</strong></em> thì chậm và có độ trễ (ví dụ 3 tiếng sau người ta mới phản hồi). Cho nên cố gắng trong một lần, bạn truyền tải đầy đủ thông tin chút xíu.</li>
+</ul>
+<p>[4] Ở một công ty nọ mình làm, nhiều lần bạn bè hay mấy đứa em mình hay nhờ mình support (ví dụ: debug giùm), mình luôn luôn hỏi: <em>&ldquo;anh/em/mày/ông đã điều tra được gì rồi&rdquo;</em> mà câu trả lời có thể tóm tắt lại thành <em>&quot;(dạ) chưa&rdquo;</em>, thì cả nguồn sống sẽ bỗng chốc thu bé lại thành một nếp nhăn trên trán mình (Đùa thôi chứ mình không khó ưa đến thế đâu). Một câu trả lời mình muốn nghe nhất sẽ có dạng như sau:</p>
+<blockquote>
+<p>&ldquo;Mình expect là [&hellip;] nhưng thực tế thì [&hellip;].<!-- raw HTML omitted -->
+Mình đã thử [&hellip;] nhưng [&hellip;].<!-- raw HTML omitted -->
+Search stackoverflow/google thì [&hellip;].<!-- raw HTML omitted -->
+À, có một điểm kỳ lạ là [&hellip;].<!-- raw HTML omitted -->
+Mình có dùng [&hellip;], không biết có ảnh hưởng ko.<!-- raw HTML omitted -->
+Mặc dù chưa có căn cứ cụ thể, nhưng mình phán đoán rằng [&hellip;]&rdquo;</p>
+</blockquote>
+<p>Tương tự, có một cái FB group kia, lâu lâu mình thấy có một vài thanh niên post lên <em>&ldquo;Mọi người giúp với, em build cái này bị lỗi hoài.&quot;</em>. Cho năm trăm đồng hình ảnh cái lỗi đó là gì có phải hơn ko 😤.</p>
+<p>[5] Vì sao lại có sự hời hợt này?</p>
+<ul>
+<li><em>Lười</em>: Có tâm thì chịu mất sức/thời gian.</li>
+<li><em>Được nuông chiều</em>: Có thể một phần do bạn thường nhận được câu trả lời cho những trường hợp như vậy nên cứ thế mà hỏi.</li>
+<li><em>Bị &ldquo;lây nhiễm&rdquo;</em>: Bạn thấy người khác hay hỏi vậy, nên bạn cũng làm tương tự.</li>
+</ul>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/reasoning" class="category">reasoning</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/problem-solving" class="tag">problem-solving</a>
+  
+  <a href="/tags/questioning" class="tag">questioning</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/reasoning/random-thoughts-when-we-have-many-choices/'>Tản mạn: Khi chúng ta có nhiều lựa chọn</a>
+  </div><div class='next-entry'>
+    <a href='/posts/reasoning/toan-tuyen-sinh-ptnk-2018-p1/'>Toán: Tuyển sinh PTNK 2018 (p1)</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

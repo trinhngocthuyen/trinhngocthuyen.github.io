@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/what-is-simpsons-paradox/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>What is Simpson&#39;s paradox?</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Sep 9</span>
+</div>
+  
+</header>
+  <p>If you&rsquo;re from the world of statistics, you may have heard of it&hellip;</p>
+<p><em>Two doctors, Dr. Hibbert and Dr. Nick, both perform 2 types of surgeries: heart surgery and band-aid removal. The table below displays records for 100 surgeries, each of which can be either a success or a failure.</em></p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center">Heart</th>
+<th align="center">Band-aid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Success</strong></td>
+<td align="center">70</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="left"><strong>Failures</strong></td>
+<td align="center">20</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="left">Total</td>
+<td align="center">90</td>
+<td align="center">10</td>
+</tr>
+</tbody>
+</table>
+<figcaption><em>Fig 1.</em> Dr. Hibbert</figcaption>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center">Heart</th>
+<th align="center">Band-aid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Success</strong></td>
+<td align="center">2</td>
+<td align="center">81</td>
+</tr>
+<tr>
+<td align="left"><strong>Failures</strong></td>
+<td align="center">9</td>
+<td align="center">9</td>
+</tr>
+<tr>
+<td align="left">Total</td>
+<td align="center">11</td>
+<td align="center">90</td>
+</tr>
+</tbody>
+</table>
+<figcaption><em>Fig 2.</em> Dr. Nick</figcaption>
+<p>From the table, we can see that Dr. Hibbert is better than Dr. Nick with respect to each type of surgery:</p>
+<ul>
+<li>Heart surgery: Hibbert: 70/90 &gt; Nick: 2/11</li>
+<li>Band-aid removal: Hibbert 10/10 &gt; Nick: 81/90</li>
+</ul>
+<p>However, comparing the total successes and failures shows the opposite relationship. Nick, on average, turns out to have more successful surgeries than Hibbert (80 out of 100 as compared to 83/100).</p>
+<p>Now you got the paradox, right? :D</p>
+<p>Intuitively, the paradox could be described <a href="https://brilliant.org/wiki/simpsons-paradox">like this</a></p>
+<blockquote>
+<p>Simpson&rsquo;s paradox occurs when some groups of data show a certain relationship in each group, but when the data is combined, that relationship is reversed</p>
+</blockquote>
+<p>Looking from mathematical view:</p>
+<p>Let $A_1, A_2$ respectively denote the numbers of Dr. Hibbert&rsquo;s heart surgeries and band-aid removals. The numbers of successes with responds to these 2 types are $a_1, a_2$ $(0 \le a_i \le A_i)$.</p>
+<p>Let $B_1, B_2$ respectively denote the numbers of heart surgeries and band-aid removals held by Dr. Nick. The numbers of successes with responds to these 2 types are $b_1, b_2$ $(0 \le b_i \le B_i)$.</p>
+<p>The paradox wee see in the tables above is given by:</p>
+<p>$$\frac{a_i}{A_i} \ge \frac{b_i}{B_i}, \txt{for} i = 1, 2. \txt{but} \frac{\sum_i a_i}{\sum_i A_i} \le \frac{\sum_i b_i}{\sum_i B_i}$$</p>
+<p>Here is another case that satisfies this expression:</p>
+<p>$$\frac{2}{2} &gt; \frac{7}{8} \txt{and} \frac{5}{8} &gt; \frac{1}{2} \txt{but} \frac{2+5}{2+8} &lt; \frac{7+1}{8+2}$$</p>
+<p>The paradox takes place due to the imbalance between the number of surgeries of each type. Dr. Hibbert obviously held more heart surgeries which are typically more risky than band-aid removals. The large fraction of such surgeries turns the overall stats on its head.</p>
+<p>So, we have to be careful when aggregating data especially when data is not equally distributed among groups. And as I said earlier in the <a href="/tech/a-misuse-of-expectation">previous post</a>, it&rsquo;s convenient to use the ratio as a measure of comparison in statistics. However, it wipes out the information about the number of trials in which the ratio is calculated. This could present some misleading pictures, and fallacious conclusions could be made as a results.</p>
+<h3 id="read-more">Read more</h3>
+<ol>
+<li><a href="https://www.amazon.com/Introduction-Probability-Chapman-Statistical-Science/dp/1466575573">Blitzstein, Joseph K., and Jessica Hwang. “Conditional Probability.” <em>Introduction to Probability</em>, CRC Press/Taylor &amp; Francis Group, 2015.</a></li>
+<li><a href="https://brilliant.org/wiki/simpsons-paradox">https://brilliant.org/wiki/simpsons-paradox</a><!-- raw HTML omitted --></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880329">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880329</a></li>
+</ol>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/probability" class="tag">probability</a>
+  
+  <a href="/tags/statistics" class="tag">statistics</a>
+  
+  <a href="/tags/paradox" class="tag">paradox</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/a-misuse-of-expectation/'>A misuse of Expectation</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/how-a-swift-file-is-compiled/'>How a Swift file is compiled</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"HTML-CSS":{"availableFonts":["TeX"],"linebreaks":{"automatic":true},"scale":90},"TeX":{"Macros":{"dim":["{\\color{gray}#1}",1],"txt":["\\hspace{3pt}\\text{#1}\\hspace{3pt}",1]},"TagSide":"left","extensions":["color.js"]},"extensions":["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],"jax":["input/TeX","output/HTML-CSS"],"tex2jax":{"displayMath":[["$$","$$"]],"inlineMath":[["$","$"]],"processEnvironments":true,"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'></script></body>
+</html>

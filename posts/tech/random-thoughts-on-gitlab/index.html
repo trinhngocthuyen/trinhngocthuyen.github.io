@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/random-thoughts-on-gitlab/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Tản mạn: chuyện Gitlab</h1>
+  
+  
+  <div class="metadata">
+  <span>2020, Feb 2</span>
+</div>
+  
+</header>
+  <p><span class="point">1</span> Khi mình join team, công ty mình host các projects trên Github. Một dev mới vào công ty sẽ được add tài khoản Github cá nhân mình vào tài khoản organization của công ty.
+Lúc ấy, trên Github profile của bạn sẽ hiển thị membership với công ty (bạn phải public cái membership thì người khác mới thấy được nha). Nếu bạn làm cho công ty nào ok, hoặc thuộc dạng top-notch trong nước/khu vực, thì Github profile của bạn sẽ có-vẻ đẹp hơn một tí.</p>
+<p>Ngoài ra, cái biểu đồ contribution trên Github cá nhân của bạn nhìn sẽ xanh xanh, đẹp hơn chút. Nhớ vào <em>contribution settings</em> chỉnh để tính luôn cả <em>private contributions</em> (tức là contribution vào các <em>private repo</em>) nha. Dưới đây là <a href="https://github.com/trinhngocthuyen?tab=overview&amp;from=2018-01-01&amp;to=2018-12-31">contribution của mình trong năm 2018</a>:
+<img src="/images/misc/github-contribution-2018.png" alt="2018 contribution"></p>
+<p>Như bạn thấy đấy, thứ 7 cũng có màu xanh xanh nha, thấy làm việc cần mẫn chưa 😆!? Mình join công ty là cuối tháng 2, đến cuối tháng 8 là hết probation (ừm, probation có 6 tháng chớ mấy 😜). Xong tới cuối tháng 9 thì mấy ô xanh vơi hết. Hổng phải do pass probation rồi nên mình phè phỡn đâu mọi người. Lúc này là thời điểm migrate sang Gitlab xong. Team vẫn  miệt mài push code và đi review code&hellip; nhưng trên Gitlab. Vì Gitlab công ty xài là self-hosted domain, cần VPN để truy cập, và mỗi người xài theo email account của công ty; nên ai cũng mong là <em>&ldquo;con ong làm mật yêu hoa&rdquo;</em>, chứ không kỳ vọng sẽ để lại dấu ấn trên public profile. Sau khi migrate sang Gitlab thì <a href="https://github.com/trinhngocthuyen?tab=overview&amp;from=2019-01-01&amp;to=2019-12-31">contributions của mình trong năm 2019</a> như thế này đây 😂:
+<img src="/images/misc/github-contribution-2019.png" alt="2019 contribution"></p>
+<p><span class="point">2</span> Là một Github user, mới đầu chuyển sang dùng Gitlab mình thấy rất khó chịu vì cái UI/UX của nó. Cho đến thời điểm hiện tại, mình đã bớt khó chịu hơn. Tuy nhiên, cá nhân mình nghĩ là nó có thể làm tốt hơn. Lấy ví dụ về <strong>call to action (CTA)</strong> giữa Github và Gitlab:</p>
+<ul>
+<li>Đối với mình, thiết kế của Github có <em>call to action</em> rất rõ ràng. Ví dụ, khi bạn review 1 cái <em>pull request (PR)</em> của người khác, ngoài việc để lại comment trên code của người ta, hành động sau chót thường là <em>approve PR</em> hoặc <em>request changes</em>. Cái nút <strong>&ldquo;Review changes&rdquo;</strong> màu xanh lè nằm ở góc phải, vẫn cố định (sticky) ở đó khi scroll xuống, rất tiện lợi cho cả 2 chức năng trên vì có độ chú ý cao.
+<img src="/images/misc/github-cta-review-changes.png" alt="Github CTA"></li>
+<li>Khi mới đầu chuyển sang Gitlab, mình gặp 3 khó khăn chính:
+<ul>
+<li><em>Không kiếm ra cái nút để approve merge request (MR)</em>: nhiều thông tin quá 😞. Mà mấy cái nút này nó không có cố định (sticky) khi scroll nên kéo lên kéo xuống một hồi là phải đi kiếm lại cái nút.</li>
+<li><em>Cái nút để approve 1 cái merge request nó thay đổi trạng thái hoài</em>: Lúc chưa có ai approve thì nó có màu nền xanh dương; còn lúc có người khác approve rồi thì nó nền trắng, viền xanh dương, ghi chữ <em>&ldquo;approve additionally&rdquo;</em>. Đứng dưới góc nhìn người dùng, mình méo quan tâm là &ldquo;additionally&rdquo; hay không. Mình chỉ muốn approve cái merge request và muốn đảm bảo là mình đã bấm đúng nút.
+<img src="/images/misc/gitlab-cta-states.png" alt="Gitlab CTA"></li>
+<li><em>Nhấn nhầm nút</em>: khi đã có người approve MR rồi, cái nút approve nó chuyển sang nền trắng viền xanh, còn cái nút <em>merge</em> lúc đó có nền xanh lá cây. Lướt qua xung quanh thì cái nút <em>merge</em> đó là có CTA mạnh nhất. Mình theo thói quen, cứ đinh ninh cái nút xanh xanh là cái nút approve. Nhấn cái phập, thế là merge cái MR của người ta luôn 😂. Cái này mình bị 1-2 lần mới quen ak&hellip;<br>
+&ldquo;Ba cái đồ cẩu thả&rdquo; - Ừm, mấy người cứ phán xét tui đi 👊. Nhưng làm theo quán tính mà bị sai như thế này ngụ ý rằng cái UX chưa được tự nhiên cho lắm.</li>
+</ul>
+</li>
+</ul>
+<p><span class="point">3</span> Điều mình khá hài lòng về Gitlab chính là CI/CD support. Bản thân mình thấy Gitlab CI/CD khá là xịn xò. Hồi trước khi project được host trên Github thì team xài Jenkins. Khi chuyển qua Gitlab thì thấy khả năng customization cao hơn hẳn. Mình cũng sẽ cho feedback tương tự khi so sánh giữa một bên thứ 3 như Bitrise và Gitlab. Mặc dù chưa dùng hết những tính năng của Gitlab CI/CD mình thấy cũng đã làm được đủ thứ rồi. Đấy là chưa kể do đặc thù platform (iOS) nên mình chưa khai thác nhiều tính năng &ldquo;thông dụng&rdquo; (vd. hổng xài được Docker flow cho mấy jobs liên quan đến iOS vì các tác vụ này chạy trên <code>darwin</code> kernel còn Docker thì yêu cầu <code>linux</code> kernel). Vì khả năng hỗ trợ cao của Gitlab CI/CD nên mình rất hay nghía mấy trang documentation của mấy bản. Trang mà mình hay tới lui nhất là <a href="https://docs.gitlab.com/ee/ci/yaml/">https://docs.gitlab.com/ee/ci/yaml/</a>. Lâu lâu coi xem bản release mới của Gitlab có cái nào hay.</p>
+<p><span class="point">4</span> Nói về preferences về CI/CD setup thì cũng có 2 trường phái chính:</p>
+<ul>
+<li>Trường phái thứ nhất thích những setup dạng <em>kéo thả</em> (drag-and-drop). Thường sẽ có 1 cái web interface để config workflow. Ví dụ đối với iOS thì nhập upload cái certificate và provisioning profiles lên cái web đó,rồi nhập cái build configuration vào là <code>Debug</code> hay <code>Release</code>&hellip;</li>
+<li>Trường phái thứ nhì thích những setup đòi hỏi mình phải định nghĩa workflow bằng code mà không có web interface kéo thả như trên. Thường với những trường hợp này cần viết thêm tí xíu code.</li>
+</ul>
+<p>Cái này cũng tương tự như 2 trường phái mần UI trong iOS: bằng <em>code thuần</em> hay bằng <em>interface builder</em> (tức storyboard/xib). Vấn đề tương tự nên câu trả lời cho câu hỏi &ldquo;chọn cái nào bây giờ?&rdquo; cũng tương tự: <em>tuỳ quy mô dự án, quy mô team, yêu cầu phần mềm&hellip;</em>. Riêng mình, mặc dù không chê bai hay phán xét trường phái nào nhưng mình có xu hướng theo trường phái thứ nhì. Vì sao? Vì code như vậy đem lại cho mình cảm giác là mình đang chơi với nó hơn&hellip; Và với code thì dễ customize hơn, dễ <span class="change from">cheat</span><span class="change to"> hack</span> hơn.</p>
+<p>&hellip;</p>
+<p>Thôi tản mạn đến đây thôi&hellip; Về CI/CD (cho iOS) thì sẽ có những bài viết khác.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/random-thoughts-on-being-a-ci-engineer/'>Random thoughts on being a CI engineer</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/'>When iOS CI/CD config is not just a file or a dashboard</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

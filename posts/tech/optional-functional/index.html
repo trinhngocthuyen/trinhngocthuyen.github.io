@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/optional-functional/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Optional - Functional</h1>
+  
+  
+  <div class="metadata">
+  <span>2015, Jun 6</span>
+</div>
+  
+</header>
+  <p>I have just read the chapter 5 of the book <a href="http://www.objc.io/books/fpinswift/">&ldquo;Functional programming in
+Swift&rdquo;</a>. This chapter is about
+<strong>&ldquo;Optionals&rdquo;</strong>. And there are some interesting things I want to share.</p>
+<p>First of all, one of the most frustrating problem that developers have been
+experiencing is working with <code>nil</code> (or <code>null</code>). Intuitively, <code>nil</code> (or <code>null</code>) implicitly means
+<strong>&ldquo;failure&rdquo;</strong>. For instance, you look up in a dictionary but cannot find it,
+then you got <code>nil</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">mutualFriends</span><span class="p">=</span> <span class="p">[</span>
+    <span class="s">&#34;Anna&#34;</span><span class="p">:</span> <span class="mi">137</span><span class="p">,</span>
+    <span class="s">&#34;Chris&#34;</span><span class="p">:</span> <span class="mi">222</span><span class="p">,</span>
+    <span class="s">&#34;Dan&#34;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="s">&#34;Fred&#34;</span><span class="p">:</span> <span class="mi">152</span><span class="p">]</span>   <span class="c1">// mutualFriends: &lt;String, Int?&gt;</span>
+<span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span>      <span class="c1">// x = nil</span>
+</code></pre></div><p>As usual, we want to assign x a <em>default value</em> instead of <code>nil</code>. We can customize
+it in this way:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="n">defaultValue</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">y</span><span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="n">y</span>
+<span class="p">}</span>
+</code></pre></div><p>In fact, Swift supports an operator <code>??</code> to make this sort of declaration
+more concise:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="n">defaultValue</span>
+</code></pre></div><p>This means: If the left of <code>??</code> is <code>nil</code>, then return the value of the right.
+Let’s dive a little bit into the operator <code>??</code>. Roughly speaking it can be
+defined as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Custom ?? function</span>
+<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="kr">optional</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">defaultValue</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>This function works perfectly despite one problem: <code>defaultValue</code> is always
+computed even if the optional is not <code>nil</code>. Generally, the reason is that it is
+computed before passing in the function parameters. What we desire is that the
+computation of the defaultValue is only executed inside the else branch.</p>
+<p>We can resolve it by passing <strong>&ldquo;HOW&rdquo; defaultValue is computed</strong> instead of the
+value computed already. Intuitively, it reminds us of using a <strong>function</strong> as a
+parameter. And see what it leads to:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Custom ?? function</span>
+<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">computeDefaultValue</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="kr">optional</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">computeDefaultValue</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>Come back to our example, we can use the operator <code>??</code> like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="p">{</span> <span class="n">myDefaultValue</span> <span class="p">}</span>
+</code></pre></div><p>A little ugly with the closure, right? Fortunately, Swift does support
+<em>&ldquo;autoclosure type attribute&rdquo;</em> to deal with with. Let’s look at the official
+function of <code>??</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Swift 1.2 ?? function</span>
+<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="kr">@autoclosure</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+    <span class="p">......</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="n">myDefaultValue</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>Now, with the <code>@autoclosure</code> annotation, Swift is smart enough to map
+<code>myDefaultValue</code> to a corresponding function. Everything seems quite natural so
+far.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='next-entry'>
+    <a href='/posts/tech/rac3-with-login-flow/'>RAC 3.0 with Login workflow</a>
+  </div></nav>
+
+
+
+</main></body>
+</html>

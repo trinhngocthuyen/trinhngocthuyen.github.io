@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.cb5d538b74191fc8728568cb39c239ff6ce28ab807a1acea56486ad5c4134249.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/method-swizzling-what-why-and-how/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Method Swizzling: What, Why and How</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Oct 10</span>
+</div>
+  
+</header>
+  <h3 id="what-is-method-swizzling">What is Method swizzling?</h3>
+<p><em>Method swizzling</em> is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs.</p>
+<p>Actually, this special feature is offered by the Objective-C runtime, via message dispatch. You could read my <a href="/tech/method-dispatch-in-swift">previous post</a> to have a clear picture of method dispatch in Swift.</p>
+<h3 id="why-does-it-matter">Why does it matter?</h3>
+<p>A very common case study of this is integrating analytics in your app. Take Google Analytics (GA) for example, each time user enters a screen, the app should call the GA APIs for page views tracking.</p>
+<p>One could implement it simply by making GA requests once the method <code>viewWillAppear</code> of each view controllers is invoked.</p>
+<p>However, there could be up to hundreds of view controllers in the app. Manually calling GA APIs in each controller is apparently ineffective although it only costs just a single line of code. Another drawback is that it is hard to control which one is missing. Also, you have limited ability to hook into the code of 3rd party libraries if necessary.</p>
+<p>The problem appears to be quite simple with <em>method swizzling</em>. All you have to do is to write a custom function <code>_tracked_viewWillAppear</code> then swap it with the original function <code>viewWillAppear</code>. I will talk in detail later.</p>
+<h3 id="how-to-swizzle-a-method">How to swizzle a method?</h3>
+<p>The magic function you need to remember is <a href="https://developer.apple.com/documentation/objectivec/1418769-method_exchangeimplementations"><code>method_exchangeImplementations</code></a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">method_exchangeImplementations</span><span class="p">(</span><span class="kc">_</span> <span class="n">m1</span><span class="p">:</span> <span class="n">Method</span><span class="p">,</span> <span class="kc">_</span> <span class="n">m2</span><span class="p">:</span> <span class="n">Method</span><span class="p">)</span>
+</code></pre></div><p>As the name reflects, the implementations of <code>m1</code> and <code>m2</code> get swapped after calling this function (if the exchange is successful). It means that an invocation to <code>m1</code> actually executes the code inside <code>m2</code> and vice versa.</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">selector1</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="n">viewWillAppear</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
+<span class="kd">let</span> <span class="nv">selector2</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="n">_swizzled_viewWillAppear</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
+<span class="kd">let</span> <span class="nv">method1</span> <span class="p">=</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector1</span><span class="p">)</span><span class="o">!</span>
+<span class="kd">let</span> <span class="nv">method2</span> <span class="p">=</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector2</span><span class="p">)</span><span class="o">!</span>
+<span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">method1</span><span class="p">,</span> <span class="n">method2</span><span class="p">)</span>
+</code></pre></div><p>This is what the function <code>_swizzled_viewWillAppear</code> looks like:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">UIViewController</span> <span class="p">{</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">func</span> <span class="nf">_swizzled_viewWillAppear</span><span class="p">(</span><span class="kc">_</span> <span class="n">animated</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">&#34;Enter screen: </span><span class="si">\(</span><span class="n">type</span><span class="si">(</span><span class="n">of</span><span class="p">:</span> <span class="kc">self</span><span class="si">))</span><span class="s">&#34;</span><span class="p">)</span>
+        <span class="n">_swizzled_viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>When <code>viewWillAppear</code> is called, the system runs the code inside <code>_swizzled_viewWillAppear</code> instead. In this function, a recursive call is made which ends up executing the implementation of the original <code>viewWillAppear</code>. In short, when the view is about to be displayed, the program prints a log, for example, <code>Enter screen: LoginViewController</code> and does what it is supposed to do.</p>
+<p>Notice:</p>
+<ul>
+<li>In order to swizzle successfully, the methods must be dynamically dispatched via message. So, we explicit declare it with <code>dynamic</code> keyword. Of course, at times you don&rsquo;t necessarily need that keyword to make it dynamic :D.</li>
+<li>The swizzling action for a pair of methods should only run once.</li>
+</ul>
+<h3 id="a-look-at-nskeyvalueobservation">A look at NSKeyValueObservation</h3>
+<p>Look at the implementation of <a href="https://github.com/apple/swift/blob/master/stdlib/public/SDK/Foundation/NSObject.swift"><code>NSKeyValueObservation</code></a>. Have you seen any swizzling 😎?</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">NSObject</span> <span class="p">{</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+    <span class="kd">var</span> <span class="nv">observation</span><span class="p">:</span> <span class="n">NSKeyValueObservation</span><span class="p">?</span>
+
+    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+        <span class="n">observation</span> <span class="p">=</span> <span class="n">observe</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span> <span class="n">object</span><span class="p">,</span> <span class="n">change</span> <span class="k">in</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Observe a change. Name: </span><span class="si">\(</span><span class="n">object</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span>
+<span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
+<span class="c1">// Console: </span>
+<span class="c1">// Observe a change. Name: Thuyen</span>
+</code></pre></div><p>Though the function <code>_swizzle_me_observeValue</code> is not exposed, we know that the swizzle method must be dynamically dispatched. So, if we create a method with the exactly same name, our function will be called when an observed change is triggered.</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">NSKeyValueObservation</span> <span class="p">{</span>
+    <span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">_swizzle_me_observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="n">keyPath</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span> <span class="n">of</span> <span class="n">object</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?,</span> <span class="n">change</span><span class="p">:</span> <span class="p">[</span><span class="n">NSString</span> <span class="p">:</span> <span class="nb">Any</span><span class="p">]?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;_swizzle_me_observeValue gets called&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span>
+<span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
+<span class="c1">// Console:</span>
+<span class="c1">// _swizzle_me_observeValue gets called</span>
+</code></pre></div><p>Have fun!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/swift" class="tag">swift</a>
+  
+  <a href="/tags/swizzle" class="tag">swizzle</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/method-dispatch-in-swift/'>Method dispatch in Swift</a>
+  </div><div class='next-entry'>
+    <a href='/posts/tech/quick-thoughts-on-tail-recursion-in-swift/'>Quick thoughts on Tail recursion in Swift</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/method-swizzling-what-why-and-how/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>
