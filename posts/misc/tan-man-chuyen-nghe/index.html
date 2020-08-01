@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.5dee7968ae2c42891286f459715e77f40168d2931e9b6339a942320ae1a2f94f.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/tan-man-chuyen-nghe/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Tản mạn: Chuyện nghề</h1>
+  
+  
+  <div class="metadata">
+  <span>2020, Aug 1</span>
+</div>
+  
+</header>
+  <p>Tuần này sẵn có một ngày lễ (public holiday) nên mình xin nghỉ luôn 4 ngày còn lại cho đủ nguyên tuần. Cộng thêm mấy ngày cuối tuần nữa thành ra mình nghỉ nguyên một lèo 9 ngày. <em>What a long holiday!</em> Tưởng là dài vậy mà nó trôi qua nhanh cái rẹt, chuẩn bị quay lại mần việc rồi. Mình tranh thủ viết chút xíu nhân dịp đầu óc vẫn còn thư thái, thoải mái.</p>
+<p>&hellip;</p>
+<p><span class="point">1</span> Mình từng đề cập trong <a href="/posts/misc/looking-back-on-2020h1">review nửa năm đầu 2020</a> là trong 6 tháng rồi, mình rất ít khi viết dòng code iOS (Swift/Objective-C) nào. Vai trò của mình trong team là đi mua vui cho đồng nghiệp. Ủa lộn, đó là công việc mình thích làm mà không ai muốn mình làm. Nói chung lâu lắm rồi mình không làm product features nên có ai ping hỏi thì đoạn hội thoại nó sẽ kiểu như thế này đây:</p>
+<ul>
+<li><em>&ldquo;Ê mày, cái flow này, nếu fail thì behavior của app như thế nào?&quot;</em></li>
+<li><em>&ldquo;Hmm&hellip; Thiệt chứ tao không nhớ cái mô tê gì hết&rdquo;</em></li>
+<li><em>&ldquo;Ủa xưa mày làm cái này mà&rdquo;</em></li>
+<li><em>&ldquo;Ủa&hellip; Tao code hả&rdquo;</em></li>
+</ul>
+<p>Thú thật mình không thích làm <em>product features</em> cho lắm bởi một vài lý do:</p>
+<ul>
+<li>Thứ nhất, làm product features thường liên quan nhiều đến giao diện (UI), mà mình thì code UI hơi bị dở. Nhiều lúc code mấy cái scrollView hay tableView mà content động và có animation thì mình thấy chán ngán. Bỏ ra 2 tiếng đồng hồ để code và unit tests một cái logic nào đó thì thấy đáng, còn bỏ ra 2 tiếng đồng hồ chỉ để chỉnh cho content của scrollView nó hiển thị, animate cho đúng thì mình thấy hơi lãng phí thời gian. Điều này không có nghĩa là mình cho rằng UI không quan trọng, mà đơn giản là app UI đối với mình không có độ ưu tiên cao.</li>
+<li>Thứ nhì, làm product features cần giao tiếp (communicate) với nhiều bên liên quan (stakeholders). Những stakeholders này thường là product managers (PM), testers (QA/QC), và những kỹ sư team khác. Nhiều lúc discussion với những stakeholders, đặc biệt là những người không phải kỹ sư, rất dễ khiến mình nổi quạo. Dev-QA là câu chuyện nghìn lẻ một đêm trong nghề kỹ sư mà. À, không phải ai cũng có mức độ gây-khó-chịu ở mức cao. Nói chung cũng có người &ldquo;this&rdquo; người &ldquo;that&rdquo;.</li>
+</ul>
+<p>Mà <em>&ldquo;ghét của nào trời cho của đó&rdquo;</em>. Vì một vài thay đổi nên team thiếu resources, mai mốt mình bị hốt về làm product features lại, mặc dù không phải làm full-time về products. Nếu hỏi mình thích thay đổi này hông thì câu trả lời dĩ nhiên là hông rồi :). Nhưng mà zao ôi, con người khó hiểu lắm, đôi khi cái mình không thích lại là cái cần thiết. Tự do quá cũng không tốt, áp đặt quá cũng không tốt. Cân bằng giữa cả 2 luôn là tốt nhất&hellip; Nhìn về mặt tích cực thì: khi tôi luyện chữ <strong>&ldquo;nghệ&rdquo;</strong> thì cũng phải tôi luyện chữ <strong>&ldquo;nhẫn&rdquo;</strong> một chút.</p>
+<p>&hellip;</p>
+<p><span class="point">2</span> Ngoài product features còn có engineering work. Engineering work thì gồm nhiều loại, có thể:</p>
+<ul>
+<li>Liên quan tới product features như: refactor code liên quan, viết tests (unit tests + UI tests)&hellip;</li>
+<li>Hoặc là platform work như xây dựng/đề xuất/cải thiện: app architecture, testing solution (viết test ra sao), build time improvement, CI/CD&hellip;</li>
+</ul>
+<p>Đối với project hiện tại, kỹ sư từ các tech families khác thì làm chủ yếu về product features liên quan đến tech family (TF) đó, hoặc engineering work liên quan đến các features đó. Còn về platform work thì hiện giờ do team mình làm.</p>
+<p>Làm platform work, khách hàng mà tụi mình phục vụ không ai khác, chính là các kỹ sư trong team và từ các tech families khác. Như vậy, với một kỹ sư iOS bình thường, có một số cái work tinh xảo ở phía sau (trong một bức tranh tổng thể nào đó) mà bạn không nhất thiết phải biết đến. Hệ quả của điều này là, khi có issues hoặc có khúc mắc gì đó về platform work, team mình sẽ support để unblock issues hoặc giải đáp thắc mắc nếu có thể. Team có tạo cái slack channel riêng <code>#ask-dax-ios</code> cho mụch đích hỗ trợ này. Trên thực tế thì không chỉ có developers mà QA hay PM cũng hay lên đây hỏi nữa.</p>
+<p>Khi một kỹ sư từ tech families khác ping mình hỏi về một issue nào đó, hết 9 trên 10 trường hợp mình sẽ bảo bản lên cái slack channel kia để hỏi rồi mình vào đó trả lời. Trừ phi bạn hỏi về cái gì đó đặc biệt mà người khác không gặp thì ok. Còn nếu là một issue gì đó mà người khác có thể cũng sẽ gặp phải thì hỏi trên group sẽ có tính tái sử dụng cao hơn. Cụ thể, nếu một người thứ 2 hỏi cùng vấn đề, mình chỉ cần loop người ta vào cái thread của người hỏi trước đó&hellip; Bạn bè của mình &ldquo;được&rdquo; người ta ping hỏi gì đó, xong ping hỏi lại mình, thì mình cũng hay bảo <em>&ldquo;anh/em ơi, làm ơn bảo nó hỏi trên group đi, rồi em vào đó trả lời&rdquo;</em>.</p>
+<p>Nói về chuyện hỏi, hồi xưa mình có viết bài <a href="/posts/reasoning/tan-man-cau-hoi-toi-hay-la-su-hoi-hot">&ldquo;Tản mạn: Câu hỏi tồi hay là sự hời hợt&rdquo;</a>. Chắc 50 năm sau, bài này cũng không cũ đi chút nào. Có nhiều trường hợp hỏi nhờ hỗ trợ mà thấy thiếu thông tin ghê gớm. Ví dụ như <em>&ldquo;hổng biết sao trên CI, tao bị fail lỗi này hoài &laquo;blah blah&raquo;&rdquo;</em> &ndash;&gt; Làm ơn cho xin cái link tới cái CI job bị lỗi 😐. Giả tỉ QA báo bug cho bạn mà không có log, screenshot gì đính kèm, bạn có muốn cào mặt nó hông? Sao lại đi tạo nghiệp cho nhau như vậy chứ.</p>
+<p>&hellip;</p>
+<p>Còn tiếp&hellip;</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/looking-back-on-2020h1/'>📝 Looking back on 2020H1</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-nghe/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>
