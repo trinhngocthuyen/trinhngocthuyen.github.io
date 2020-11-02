@@ -6,7 +6,7 @@
     <description>Recent content in ci on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://trinhngocthuyen.github.io/tags/ci/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>CI: Thinning iOS build artifacts</title>
       <link>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</link>
-      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</guid>
       <description>1. Introduction 1.1. Pipeline time improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).
