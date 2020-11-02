@@ -6,7 +6,7 @@
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 17 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://trinhngocthuyen.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,16 @@
       <description>Welcome to Thuyen&amp;rsquo;s corner!
 I am Thuyen Trinh. I am currently based in Ho Chi Minh city, Vietnam. As a &amp;ldquo;young&amp;rdquo; developer, I find myself in a thirst of knowledge, not only about programming, but also other interesting stuffs.
 I believe sharing culture lies at the heart of spreading knowledge and acquiring more in return. Also, by writing down your understanding, we are challenging ourselves to become a self-teacher, which is a perfect mean of systematizing and reinforcing your knowledge.</description>
+    </item>
+    
+    <item>
+      <title>CI: Thinning iOS build artifacts</title>
+      <link>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</link>
+      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</guid>
+      <description>1. Introduction 1.1. Pipeline time improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).
+For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests.</description>
     </item>
     
     <item>

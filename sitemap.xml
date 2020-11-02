@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/tech/</loc>
-    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -23,16 +23,46 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/</loc>
-    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
-    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
+    <loc>https://trinhngocthuyen.github.io/tags/ci/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/</loc>
+    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -42,17 +72,7 @@
   </url>
   
   <url>
-    <loc>https://trinhngocthuyen.github.io/</loc>
-    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://trinhngocthuyen.github.io/tags/retrospective/</loc>
-    <lastmod>2020-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/tags/</loc>
     <lastmod>2020-06-28T00:00:00+00:00</lastmod>
   </url>
   
@@ -69,16 +89,6 @@
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-tieng-anh-p1/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/tags/ci/</loc>
-    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
-    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -139,11 +149,6 @@
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/misc/2018-in-review/</loc>
     <lastmod>2018-12-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
-    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
