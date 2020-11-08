@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="CI: Heuristically extracting test methods before runtime">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.79911a71aeffcc94044c53b86cc8d09de7ad3a06bb8441ecd8222aad307cf3b7.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/ci-extract-test-methods/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>CI: Heuristically extracting test methods before runtime</h1>
+  
+  
+  <div class="metadata">
+  <span>2020, Nov 8</span>
+</div>
+  
+</header>
+  <h2 id="1-introduction">1. Introduction</h2>
+<p>Reducing pipeline time is a key problem in the <em>pipeline time reduction</em> epic. As mentioned in <a href="/posts/tech/ci-ios-artifacts-optimization/">the previous post</a>, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called <em>runners</em>). The assignment of <em>what tests to what jobs</em> usually takes place at the end of the <code>build</code> job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have. A test, in this context, can be either:</p>
+<ul>
+<li>A test target, for ex. <code>AppUnitTests</code>, <code>AppUITests</code>.</li>
+<li>A test class (subclass of <code>XCTestCase</code>) in a test target.</li>
+<li>A test method inside a test class. A test method is a non-private method, prefixed with <code>test</code>, and has no arguments, no return value.</li>
+</ul>
+<img src="/images/ci/extract_tests_steps.png" width="450"/>
+<p>Usually, there are only a few test targets in the project. Those targets can be easily derived from the scheme, or from the <code>*.xctestrun</code> file after building the project successfully. However, splitting tests by target is not a good choice because:</p>
+<ul>
+<li>A target might finish in a really long time. In our project, it takes approximately 50 mins to run all tests in  UI test target.</li>
+<li>There could be a significant imbalance in test time between targets. One could take only 5 mins to finish while another takes up to 30 mins.</li>
+</ul>
+<p>Therefore, splitting tests by <em>test class</em> or <em>test method</em> is a key to the efficiency of the infrastructure. Unfortunately, it&rsquo;s not trivial to extract test classes and test methods in the project before runtime. This blog post introduces 2 approaches to heuristically detect test classes and test methods of a test target.</p>
+<h2 id="2-heuristic-approaches">2. Heuristic approaches</h2>
+<h3 id="21-using-sourcery">2.1. Using Sourcery</h3>
+<p><a href="https://github.com/krzysztofzablocki/Sourcery">Sourcery</a> is a code generator for Swift. It&rsquo;s built on top of <a href="https://github.com/apple/swift/tree/main/tools/SourceKit">SourceKit</a>. For those who did not know, SourceKit is the magic behind Xcode indexing which brings Xcode auto-completion to life. When Xcode indexes source files of a project, you can notice a running process called <code>SourceKitService</code>. Basically, what it does is to build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree (AST)</a> from the source files. From then, you can query information about avalaible classes, structs, protocols, methods and so forth.</p>
+<img src="/images/ci/extract_tests_sourcery.png" width="450"/>
+<p>For example, the following <a href="https://stencil.fuller.li">stencil</a> template would generate a list of test methods of classes inheriting from <code>BaseUITestCase</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-django" data-lang="django"><span class="cp">{%</span> <span class="k">for</span> <span class="nv">type</span> <span class="k">in</span> <span class="nv">types.inheriting.BaseUITestCase</span> <span class="cp">%}</span><span class="x">
+</span><span class="x"></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">method</span> <span class="k">in</span> <span class="nv">type.methods</span> <span class="nv">where</span> <span class="nv">method.accessLevel</span> <span class="p">!</span><span class="o">=</span> <span class="s2">&#34;private&#34;</span> <span class="cp">%}</span><span class="x">
+</span><span class="x"></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">method.selectorName</span><span class="o">|</span><span class="nf">hasPrefix</span><span class="s2">:&#34;test&#34;</span> <span class="k">and</span> <span class="nv">method.parameters.count</span> <span class="o">==</span> <span class="m">0</span> <span class="cp">%}</span><span class="x">
+</span><span class="x"></span><span class="cp">{{</span><span class="nv">type.name</span><span class="cp">}}</span><span class="x">.</span><span class="cp">{{</span><span class="nv">method.selectorName</span><span class="cp">}}</span><span class="x">
+</span><span class="x"></span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">
+</span><span class="x"></span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x">
+</span><span class="x"></span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x">
+</span></code></pre></div><p>What the above template does is simple:</p>
+<ul>
+<li>For each subclass of <code>BaseUITestCase</code>, look for methods prefixed with <code>test</code> that is not private and does not have any argument, then print its class and method.</li>
+</ul>
+<p>When running the CLI, we need to specify the source folder/files and the stencil templates we&rsquo;re using. Then, Sourcery scans code in the given source folder/files, and generates data based on the given templates.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ sourcery --sources AppUITests --templates all_ui_tests.stencil
+</code></pre></div><p>The output would look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">TestCaseA.testA1
+TestCaseA.testA2
+TestCaseB.testB1
+</code></pre></div><p>Now, let&rsquo;s talk about pros and cons.</p>
+<p>One big advantage of this approach is that it does <em>not require any build products</em>. This tests extraction step can be done as early as you wish. Also, it&rsquo;s easy to adopt this solution as the setup is lightweight.</p>
+<p>However, this approach has some drawbacks:</p>
+<ul>
+<li>It does NOT work well with <em><strong>pre-processing flags</strong></em>. Following is the example in which we encounter the issue while migrating from <a href="https://github.com/kif-framework/KIF">KIF tests</a> to XCUITests. Since Sourcery has no idea about pre-processing flags and it just scans code from top to bottom, the type of <code>BaseUITestCase</code> can be wrongly resolved to <code>BaseKIFTestCase</code> while it should be <code>BaseXCUITestCase</code>.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#if XCUITEST
+typealias BaseUITestCase = BaseXCUITestCase
+#else
+typealias BaseUITestCase = BaseKIFTestCase
+#end
+</code></pre></div><ul>
+<li>It might take a fairly long time to finish if there are a lot of source files to be scanned. With our project, it took around 10 secs to run with the template above.</li>
+<li>Moreover, your source files should be well structured to give an accurate output.</li>
+</ul>
+<h3 id="22-parsing-symbols-of-target-binaries">2.2. Parsing symbols of target binaries</h3>
+<p>Another approach is to parse the symbols of a test target binary.
+Assume we have a UI test target <code>AppUITests</code> with a test class <code>UITestCaseX</code> of which the declaration is as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">UITestCaseX</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">testX1</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="kd">func</span> <span class="nf">testX2</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="kd">func</span> <span class="nf">testX000</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// &lt;-- Not a test method b/c of having arguments</span>
+  <span class="kd">private</span> <span class="kd">func</span> <span class="nf">testX999</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// &lt;-- Not a test method b/c of being private</span>
+<span class="p">}</span>
+</code></pre></div><p>In this class, there are 2 test methods <code>testX1</code> and <code>testX2</code>. Meanwhile, <code>testX000</code> and <code>test999</code> are not test methods, meaning, they won&rsquo;t be picked up when running <code>UITestCaseX</code>.</p>
+<p>&hellip;</p>
+<p>After compiling the project, the symbols of this class will be merged into the target executable (or target binary). As <code>AppUITests</code> is a UI test target, its binary locates inside the <code>Plugins</code> folder of the runner app bundle: <code>AppUITests-Runner.app/Plugins/AppUITests.xctest/AppUITests</code>.</p>
+<p>We can look up the symbols of this binary using the <code>nm</code> (or, <code>xcrun nm</code>) command. Since the symbols were obfuscated, we&rsquo;re gonna pipe the output to <code>xcrun swift-demangle</code> to make it more readble:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ xcrun nm <span class="si">${</span><span class="nv">DERIVED_DATA_PATH</span><span class="si">}</span>/AppUITests-Runner.app/PlugIns/AppUITests.xctest/AppUITests <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xcrun swift-demangle
+</code></pre></div><p>Let&rsquo;s take a quick look at the output.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">...
+0000000000001740 t @objc SpecExtractorUITests.UITestCaseX.init(invocation: __C.NSInvocation?) -&gt; SpecExtractorUITests.UITestCaseX
+00000000000014b0 T SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
+00000000000014d0 t @objc SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
+0000000000001d04 S method descriptor for SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
+0000000000001510 T SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
+0000000000001530 t @objc SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
+0000000000001d0c S method descriptor for SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
+0000000000001780 T SpecExtractorUITests.UITestCaseX.__allocating_init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
+00000000000017b0 T SpecExtractorUITests.UITestCaseX.init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
+0000000000001840 t @objc SpecExtractorUITests.UITestCaseX.init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
+0000000000001570 T SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
+0000000000001590 t @objc SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
+0000000000001d14 S method descriptor for SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
+00000000000015e0 T SpecExtractorUITests.UITestCaseX.(testX999 in _52DD9D513BE9E5B52CB47DED7BE88AA3)() -&gt; ()
+0000000000001d1c s method descriptor for SpecExtractorUITests.UITestCaseX.(testX999 in _52DD9D513BE9E5B52CB47DED7BE88AA3)() -&gt; ()
+...
+</code></pre></div><ul>
+<li>Each row in the output represent the <a href="https://developer.apple.com/documentation/kernel/nlist"><code>nlist</code></a> entry in the symbol table.</li>
+<li>The second column in each entry is a letter representing the segment type in the binary. <code>T</code> and <code>t</code> refer to <code>__TEXT</code> and <code>__text</code> which translates to the segments containing the compiled code to be run. These letters being in uppercase or lowercase means the symbol is <em>external</em> or <em>non-external</em> respectively. <em>Non-external</em>, in this context, means <code>private</code>.</li>
+</ul>
+<p>For our case, we only need to extract symbols with type <code>T</code> that end with <code>.test&lt;BlahBlah&gt;() -&gt; ()</code>. A simple regex could help with the extraction: <code>\S+ T (\S+\.\S+\.test\S+)\(\) -&gt; \(\)</code>.</p>
+<p>As compared to the previous approach (using Sourcery), this solution provides a <em><strong>more accurate output</strong></em> since it parses symbols from the target binary. We won&rsquo;t face the issue with pre-processing flags mentioned earlier. Moreover, the time to extract tests is pretty fast as it depends solely on the binaries (not the source files).</p>
+<h2 id="3-discussion">3. Discussion</h2>
+<p>In this post, we have got to know 2 different techniques to heuristically extract test methods of the project. Each has its own pros and cons. Which one to use really depends on your project. If your project has a lightweight and consistent codebase, using Sourcery probably suffices. Otherwise, you can consider the second approach which requires some additional efforts to search for the binaries, then extract the symbols of interest from them. In our project, we initially used the former approach and then migrated to the latter due to some issues mentioned before. Kudos to my colleague <a href="https://www.linkedin.com/in/alexander-apriamashvili/">Alex</a> for coming up with this approach.</p>
+<p>There is one case we have not yet covered. If you use <a href="https://github.com/Quick/Quick">Quick</a> to write tests, then extracting test methods does not make sense anymore because Quick swizzles to make up tests of a test class in a different way. To be  more specific, a test method of a test class will not be picked up to run if that test class is a subclass of <code>QuickSpec</code>. In this case, what you can do is to <strong>extract test classes</strong> instead.</p>
+<p>&hellip;</p>
+<p>Stay tuned for more tips ahead!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/Tech" class="category">Tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/ci-ios-artifacts-optimization/'>CI: Thinning iOS build artifacts</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>
