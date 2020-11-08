@@ -87,7 +87,7 @@ lot of advantages, there are several limitations remaining. In particular:</p>
 with an example: <em>implementing a very familiar data struct: <code>LIST</code></em>.</p>
 <p>A list could consist of a head and a tail, which is also a list. A list could be
 nothing as well.</p>
-<!-- raw HTML omitted -->
+<img src = "/images/ios/list_recursive_ds.png">
 <p>Unfortunately, this code throws a compiler error. In fact, when XCode allocates
 memory for <code>List&lt;Int&gt;</code> — for example, it couldn’t estimate how much is enough
 for <code>Cons(Int, List&lt;Int&gt;)</code> because it does not yet figure out the memory
@@ -141,7 +141,7 @@ micro framework also use <code>Box</code>, too.</p>
 <span class="p">}</span>
 </code></pre></div><p>Now you can define your own recursive data structure using this trick.</p>
 <p>The full demonstration can be found <a href="https://gist.github.com/trinhngocthuyen/11a6b08f103999f352da">here</a>.</p>
-<p><!-- raw HTML omitted -->Updated:<!-- raw HTML omitted -->
+<p><u>Updated:</u>
 Swift 2.1 has come with the support for recursive enums. Bravo! <a href="%5Bhttps://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html">Checkout the keyword: <code>indirect</code></a>.</p>
 <p>Have fun!</p>
 

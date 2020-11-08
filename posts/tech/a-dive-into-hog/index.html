@@ -170,11 +170,14 @@ diff_gy 0.0
 <h4 id="step-3-compute-hog-in-each-cell">Step 3: Compute HOG in each cell</h4>
 <p>The edges above somehow resemble the sketch of the object, but quite smoother. In practice, <em>rough sketch</em> is good enough to classify objects. Therefore, we will only care just a few orientations of $\vec{d}$ and in local regions (rather than every pixel).</p>
 <p>We divide the image into many cells of size ($8 \times 8$). These cells are also usually called <em><strong>patches</strong></em>. In this example, the size of the image is ($512 \times 512$), so we have ($64 \times 64$) patches in total. Oh, don&rsquo;t forget to divide the total magnitudes in each bin by the number of pixels per patch.</p>
-<!-- raw HTML omitted -->
+<img src="/images/notebooks/hog_austronaut_patches.png" width="300px"/>
+<figcaption>The yellow square is a cell ($8 \times 8$). The red one is a block of 4 cells.</figcaption>
 <p>For each patch, we extract a vector of 9 bins (corresponding to angles $20^\circ, 40^\circ, &hellip;, 160^\circ$). A pixel that has orientation $95^\circ$, magnitude $1.5$ should add up an amount of $1.5$ to the bin $80^\circ$.</p>
-<!-- raw HTML omitted -->
+<img src="/images/notebooks/hog_mag_ori.png" width="600px"/>
+<figcaption>Magnitudes (upper values) and orientations in degree (in blue and white). In the right figure, the orientations are rounded to the pivot values of 9 bins (0, 20, 40, &hellip;, 160).</figcaption>
 <p>This vector gives information about the statistic of the how popular each considered orientation is <em>(ie. the distribution of orientations)</em>. For example, a vector $v = (12, 0, 0.1, 0.7, 0.2, 0, 0, 0, 0.1)$ indicates the frequent appearance of horizontal strokes.</p>
-<!-- raw HTML omitted -->
+<img src="/images/notebooks/hog_patch_hist.png" width="300px"/>
+<figcaption>From the histogram of the patch, we notice that distribution of orientation of 40 degree is high, indicating that most strokes are drawn diagonally.</figcaption>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">compute_hog_cell</span><span class="p">(</span><span class="n">n_orientations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">magnitudes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">orientations</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    Compute 1 HOG feature of a cell. Return a row vector of size `n_orientations`

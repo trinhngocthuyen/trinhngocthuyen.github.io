@@ -75,30 +75,30 @@ if (!doNotTrack) {
   
 </header>
   <p><em>One day, a piece of cake meant for Eric went missing. His parents, Mr. and Mrs. Tan, suspected that one of his siblings ate the piece of cake and so questioned them. Here were their answers:</em></p>
-<p><em>Alfred said,</em> ***“It wasn’t Charles. It was Darius.”***<!-- raw HTML omitted -->
-<em>Brenda said,</em> ***“It wasn’t Darius. It was Alfred.”***<!-- raw HTML omitted -->
-<em>Charles said,</em> ***“It wasn’t Brenda. It was Darius.”***<!-- raw HTML omitted -->
+<p><em>Alfred said,</em> ***“It wasn’t Charles. It was Darius.”***<br>
+<em>Brenda said,</em> ***“It wasn’t Darius. It was Alfred.”***<br>
+<em>Charles said,</em> ***“It wasn’t Brenda. It was Darius.”***<br>
 <em>Darius said,</em> <em><strong>“It wasn’t Alfred. It wasn’t Charles.”</strong></em></p>
 <p><em>Exactly four of the eight statements were true. Who ate the piece of cake?</em></p>
 <p><em>Trích: <a href="https://brilliant.org/problems/greedy-pig-detective-you-have-a-harder-time-now">https://brilliant.org/problems/greedy-pig-detective-you-have-a-harder-time-now</a></em></p>
 <hr>
-<!-- raw HTML omitted -->
+<br>
 <p>Để đơn giản, ta đặt tên các mệnh đề như sau:</p>
-<p>*A = “It was Charles” –&gt; “It wasn’t Charles” = not(A) (phủ định của A)*<!-- raw HTML omitted -->
-*B = “It was Darius” –&gt;  “It wasn’t Darius” = not(B)*<!-- raw HTML omitted -->
-*C = “It was Alfred” –&gt;  “It wasn’t Alfred” = not(C)*<!-- raw HTML omitted -->
+<p>*A = “It was Charles” –&gt; “It wasn’t Charles” = not(A) (phủ định của A)*<br>
+*B = “It was Darius” –&gt;  “It wasn’t Darius” = not(B)*<br>
+*C = “It was Alfred” –&gt;  “It wasn’t Alfred” = not(C)*<br>
 <em>D = “It was Brenda” –&gt;  “It wasn’t Brenda” = not(D)</em></p>
 <p>Ở đây, trong 4 mệnh đề <em><strong>A, B, C, D</strong></em>, chỉ có 1 mệnh đề đúng vì chỉ có một người đã ăn miếng bánh.</p>
-<p>Theo đề, 4 trong tập 8 mệnh đề sau là đúng, 4 mệnh đề còn lại là sai:<!-- raw HTML omitted -->
+<p>Theo đề, 4 trong tập 8 mệnh đề sau là đúng, 4 mệnh đề còn lại là sai:<br>
 <em><strong>S = { not(A), B, not(B), C, not(D), B, not(C), not(A) }</strong></em></p>
-<p>S có thể chia thành 2 tập con:<!-- raw HTML omitted -->
-***S1 = { B, not(B), C, not(C) }***<!-- raw HTML omitted -->
+<p>S có thể chia thành 2 tập con:<br>
+***S1 = { B, not(B), C, not(C) }***<br>
 <em><strong>S2 = { not(A), not(A), not(D), B }</strong></em></p>
 <p>Dễ dàng nhận thấy, tập <em><strong>S1</strong></em> có đúng 2 mệnh đề đùng và 2 mệnh đề sai. Do đó tập <em><strong>S2</strong></em> cũng phải có đúng 2 mệnh đề đúng, 2 mệnh đề sai.</p>
 <p>Ngoài ra, <em><strong>not(A)</strong></em> và <em><strong>not(A)</strong></em> cùng chân trị (cùng đúng hoặc cùng sai)–&gt; <em><strong>not(D)</strong></em> và <em><strong>B</strong></em> cũng cùng chân trị.</p>
 <p>Vì <em><strong>not(D)</strong></em> và <em><strong>B</strong></em> có cùng chân trị nên 1 trong 2 mệnh đề <em><strong>B, D</strong></em> sẽ có 1 mệnh đề đúng, 1 mệnh đề sai. Suy ra, <em><strong>A</strong></em> không thể đúng (theo điều kiện ở trên)</p>
-<p>–&gt; <em><strong>not(A) = Đúng</strong></em><!-- raw HTML omitted -->
-–&gt; <em><strong>not(D) = B = Sai</strong></em> –&gt; <em><strong>D = Đúng</strong></em><!-- raw HTML omitted -->
+<p>–&gt; <em><strong>not(A) = Đúng</strong></em><br>
+–&gt; <em><strong>not(D) = B = Sai</strong></em> –&gt; <em><strong>D = Đúng</strong></em><br>
 –&gt; Brenda là người đã ăn miếng bánh.</p>
 
   <div class="entry-footer">

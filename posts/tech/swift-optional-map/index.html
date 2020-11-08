@@ -77,9 +77,9 @@ if (!doNotTrack) {
   <p>There are a number of cases in which we would like to initialize an object with
 some parameters but what we currently have (i.e. these parameters),
 unfortunately, are <em>Optional Type</em>. For instance, we have a <strong>urlString</strong> with
-the type <strong>String?</strong> (or <em>Optional<!-- raw HTML omitted --></em>), and we want to get a <strong>url</strong> from
+the type <strong>String?</strong> (or <em>Optional<String></em>), and we want to get a <strong>url</strong> from
 <em>urlString</em>.</p>
-<p>Basically, we expect to get a <em>url</em> of <strong>NSURL?</strong> (or <em>Optional<!-- raw HTML omitted --></em>). If
+<p>Basically, we expect to get a <em>url</em> of <strong>NSURL?</strong> (or <em>Optional<NSURL></em>). If
 <strong>urlString == nil</strong>, the <em>url</em> should be <em>nil</em> as well.</p>
 <p>However, the initialization of <strong>NSURL</strong> requires a <strong>string</strong> of <strong>String</strong>
 (which is already unwrapped).</p>

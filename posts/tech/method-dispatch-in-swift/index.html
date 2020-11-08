@@ -112,7 +112,7 @@ if (!doNotTrack) {
 </code></pre></div><p>(2) If a function is dispatched via message, the keyword <code>volatile</code> should be present in the invocation. Also, you will find the two marker <code>foreign</code> and <code>objc_method</code>, indicating that the function is invoked using Objective-C runtime. Refer: <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">here</a>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">%14 = class_method [volatile] %13 : $Dog, #Dog.beWild!1.foreign : (Dog) -&gt; () -&gt; (), $@convention(objc_method) (Dog) -&gt; () // user: %15
 </code></pre></div><p>(3) If there is no evidence of the two cases above, the answer is <em>static dispatch</em>.</p>
-<!-- raw HTML omitted -->
+<!-- As the SIL is usually lengthy, you are recommended to read it yourself. -->
 <h4 id="trivial-cases">Trivial cases</h4>
 <ul>
 <li>First of all, functions of structs or any value types must be statically dispatched. This makes sense because they could never be overriden.</li>
@@ -122,7 +122,7 @@ if (!doNotTrack) {
 <li>Functions with <code>dynamic</code> are invoked via message passing. Piror to Swift 4, a function with <code>dynamic</code> modifier is implicitly visible to Objective-C. Meanwhile Swift 4 requires you to explicitly declare it with <code>@objc</code> attribute.</li>
 </ul>
 </li>
-<li>Ordinary extensions (without <code>final</code>, <code>dynamic</code>, <code>@objc</code>) are directly dispatched. Now, recall a compiled error you may once experienced: <em>declarations in extensions cannot override yet</em>. It&rsquo;s because those functions, of course, follow static dispatch.<!-- raw HTML omitted -->
+<li>Ordinary extensions (without <code>final</code>, <code>dynamic</code>, <code>@objc</code>) are directly dispatched. Now, recall a compiled error you may once experienced: <em>declarations in extensions cannot override yet</em>. It&rsquo;s because those functions, of course, follow static dispatch.<br>
 You may ask: <em>&ldquo;What if I make those extensions dynamic?&quot;</em>. You got the point! If an extension is dynamic, it can be overriden 😇.</li>
 </ul>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
@@ -208,7 +208,7 @@ You may ask: <em>&ldquo;What if I make those extensions dynamic?&quot;</em>. You
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<figcaption><em>Table 1</em>. Summary of method dispatch in Swift (reading from top to bottom). Note that some cases such as <em>class extensions with</em> <code>@objc dynamic</code> is already mentioned aboved in <em>explicitly enforced</em>. Many blog posts divide classes into 2 groups: NSObject subclasses vs. (regular) classes. Though NSObject inherits a number of methods that were written on top of Objective-C runtime, I see no reason to separate them.</figcaption>
 <h3 id="conclusion">Conclusion</h3>
 <p>In this post, we got to know what method dispatch is and different types of dispatch in Swift. We dived into some examples to understand how Swift resolves a specific function. Also, by reading the SIL, we could be able to collect proofs for an assumption on which dispatch a function should follow.</p>
 <ul>
