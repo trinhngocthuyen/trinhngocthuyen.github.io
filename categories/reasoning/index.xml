@@ -6,11 +6,7 @@
     <description>Recent content in reasoning on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://trinhngocthuyen.github.io/categories/reasoning/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/categories/reasoning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Toán: Tuyển sinh PTNK 2018 (p1)</title>
       <link>https://trinhngocthuyen.github.io/posts/reasoning/toan-tuyen-sinh-ptnk-2018-p1/</link>
@@ -65,9 +61,9 @@ If p is prime, all the coefficients in (a+b)^p except the first and last are div
       
       <guid>https://trinhngocthuyen.github.io/posts/reasoning/dong-nao-who-ate-the-cake/</guid>
       <description>One day, a piece of cake meant for Eric went missing. His parents, Mr. and Mrs. Tan, suspected that one of his siblings ate the piece of cake and so questioned them. Here were their answers:
-Alfred said, ***“It wasn’t Charles. It was Darius.”***
-Brenda said, ***“It wasn’t Darius. It was Alfred.”***
-Charles said, ***“It wasn’t Brenda. It was Darius.”***
+Alfred said, “It wasn’t Charles. It was Darius.”
+Brenda said, “It wasn’t Darius. It was Alfred.”
+Charles said, “It wasn’t Brenda. It was Darius.”
 Darius said, “It wasn’t Alfred. It wasn’t Charles.”
 Exactly four of the eight statements were true.</description>
     </item>

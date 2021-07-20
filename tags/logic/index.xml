@@ -6,11 +6,7 @@
     <description>Recent content in logic on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://trinhngocthuyen.github.io/tags/logic/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/tags/logic/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Động não: Who ate the cake?</title>
       <link>https://trinhngocthuyen.github.io/posts/reasoning/dong-nao-who-ate-the-cake/</link>
@@ -18,9 +14,9 @@
       
       <guid>https://trinhngocthuyen.github.io/posts/reasoning/dong-nao-who-ate-the-cake/</guid>
       <description>One day, a piece of cake meant for Eric went missing. His parents, Mr. and Mrs. Tan, suspected that one of his siblings ate the piece of cake and so questioned them. Here were their answers:
-Alfred said, ***“It wasn’t Charles. It was Darius.”***
-Brenda said, ***“It wasn’t Darius. It was Alfred.”***
-Charles said, ***“It wasn’t Brenda. It was Darius.”***
+Alfred said, “It wasn’t Charles. It was Darius.”
+Brenda said, “It wasn’t Darius. It was Alfred.”
+Charles said, “It wasn’t Brenda. It was Darius.”
 Darius said, “It wasn’t Alfred. It wasn’t Charles.”
 Exactly four of the eight statements were true.</description>
     </item>

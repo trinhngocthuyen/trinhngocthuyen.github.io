@@ -113,16 +113,16 @@ This seems trivial but in iOS, it&rsquo;s a bit troublesome. First, you need to 
 <h2 id="ab-testing-for-cicd">A/B testing for CI/CD</h2>
 <p>In our project, we not only have AB testing for features in the app, but also for CI/CD features. Changes related to CI/CD usually affects other engineers. I need to emphasize again that there are many engineers contributing to the project, not just 3-4 engineers. To avoid blocking others, we always think of a safe rollout for important CI/CD changes. If there is any unexpected issue that block others, we can just roll back the change at ease.</p>
 <p>A rollout config is just simply a <code>yaml</code> file (hosted somewhere), like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;A feature&#39;</span><span class="w">
-</span><span class="w"></span><span class="k">description</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Description of the feature&#39;</span><span class="w">
-</span><span class="w"></span><span class="k">rollout</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;XCODE_VERSION&#39;</span><span class="w">
-</span><span class="w">    </span><span class="k">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;11&#39;</span><span class="w">
-</span><span class="w">    </span><span class="k">then</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span><span class="w">  </span>- <span class="k">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CI_COMMIT_REF_NAME&#39;</span><span class="w">
-</span><span class="w">    </span><span class="k">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;(master|release)&#39;</span><span class="w">
-</span><span class="w">    </span><span class="k">then</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
-</span><span class="w">  </span>- <span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="c"># 👈 use this value in CI/CD code</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;A feature&#39;</span><span class="w">
+</span><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Description of the feature&#39;</span><span class="w">
+</span><span class="w"></span><span class="nt">rollout</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;XCODE_VERSION&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;11&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CI_COMMIT_REF_NAME&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;(master|release)&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="c"># 👈 use this value in CI/CD code</span><span class="w">
 </span></code></pre></div><h2 id="automation">Automation</h2>
 <p>In our project, we try to automate tasks/chores as much as possible. Those automated tasks are usually non-standard problems and, of course, are something we need to code on our own.</p>
 <h2 id="conclusion">Conclusion</h2>
