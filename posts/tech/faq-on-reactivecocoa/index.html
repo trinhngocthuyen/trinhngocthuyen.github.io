@@ -160,11 +160,11 @@ if (!doNotTrack) {
 </code></pre></div><h3 id="operators">Operators</h3>
 <h4 id="q-whats-the-difference-between-the-2-operators-then-and-flatmap">Q: What&rsquo;s the difference between the 2 operators &ldquo;then&rdquo; and &ldquo;flatMap&rdquo;?</h4>
 <p>Now we compare the 2 implementations. Assume that we do not care about the returned values of the producer. Given that: <code>downloadUrl1()</code> and <code>downloadUrl2()</code> is of type <code>SignalProducer&lt;Void, NSError&gt;</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">Impl</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w">	</span><span class="o">//</span><span class="w"> </span><span class="k">Using</span><span class="w"> </span><span class="o">`</span><span class="k">then</span><span class="o">`</span><span class="w">
-</span><span class="w">    </span><span class="nf">downloadUrl1</span><span class="p">().</span><span class="k">then</span><span class="p">(</span><span class="nf">downloadUrl2</span><span class="p">())</span><span class="w">	
-</span><span class="w"></span><span class="n">Impl</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w">	</span><span class="o">//</span><span class="w"> </span><span class="k">Using</span><span class="w"> </span><span class="o">`</span><span class="n">flatMap</span><span class="o">`</span><span class="w">
-</span><span class="w">    </span><span class="n">downloadUrl1</span><span class="p">.</span><span class="nf">flatMap</span><span class="p">(.</span><span class="n">latest</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nf">downloadUrl2</span><span class="p">()</span><span class="w"> </span><span class="err">}</span><span class="w">
-</span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Impl 1:	// Using `then`
+    downloadUrl1().then(downloadUrl2())	
+Impl 2:	// Using `flatMap`
+    downloadUrl1.flatMap(.latest) { _ in downloadUrl2() }
+</code></pre></div><ul>
 <li>The operator <code>then</code> triggers on event completed: <code>downloadUrl2()</code> starts  when <code>downloadUrl1()</code> completes</li>
 <li>The operator <code>flatMap</code> triggers on event value: <code>downloadUrl2()</code> starts when <code>downloadUrl1()</code> receives a value</li>
 </ul>

@@ -88,14 +88,14 @@ if (!doNotTrack) {
 <li>Crop image (if needed). Here, I use an image of size $512 \times 512$ (from skimage)</li>
 <li>Convert to grayscale</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">color</span>
 
 <span class="n">original_image</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">astronaut</span><span class="p">()</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astronaut</span><span class="p">())</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;original: </span><span class="si">%s</span><span class="s2"> --&gt; grayscale: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">original_image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;original: </span><span class="si">%s</span><span class="s2"> --&gt; grayscale: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">original_image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 </code></pre></div><pre><code>0.44195368474
 original: (512, 512, 3) --&gt; grayscale: (512, 512)
 </code></pre>
@@ -139,8 +139,8 @@ $f'(x) \approx \frac{f(x+h) - f(x)}{h}$.</p>
 <span class="c1"># Check with np.gradient()</span>
 <span class="n">gy_check</span><span class="p">,</span> <span class="n">gx_check</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="c1"># Note that the result of np.gradient is in the reversed order</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;diff_gx:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gx</span> <span class="o">-</span> <span class="n">gx_check</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;diff_gy&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gy</span> <span class="o">-</span> <span class="n">gy_check</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;diff_gx:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gx</span> <span class="o">-</span> <span class="n">gx_check</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;diff_gy&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gy</span> <span class="o">-</span> <span class="n">gy_check</span><span class="p">))</span>
 </code></pre></div><pre><code>diff_gx: 0.0
 diff_gy 0.0
 </code></pre>
@@ -266,20 +266,20 @@ diff_gy 0.0
     <span class="n">block_norm</span><span class="o">=</span><span class="s1">&#39;L2&#39;</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="n">hog_features</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">hog_features_check</span><span class="o">.</span><span class="n">shape</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">hog_features</span><span class="p">,</span> <span class="n">hog_features_check</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hog_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">hog_features</span><span class="p">,</span> <span class="n">hog_features_check</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">hog_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </code></pre></div><pre><code>True
 (36864,)
 </code></pre>
 <p>Now, visualize the HOG features. Actually, I do not implement it since it is a bit cumbersome to reconstruct the image from these histogram info. Instead, I use the available function <code>skimage.feature.hog</code> to plot the HOG image so that we could have a sense of its benefits.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">hog</span>
 
 <span class="n">_</span><span class="p">,</span> <span class="n">hog_image</span> <span class="o">=</span> <span class="n">hog</span><span class="p">(</span>
     <span class="n">image</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">pixels_per_cell</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
     <span class="n">cells_per_block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">block_norm</span><span class="o">=</span><span class="s1">&#39;L2&#39;</span><span class="p">,</span>
-    <span class="n">visualise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">visualise</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
