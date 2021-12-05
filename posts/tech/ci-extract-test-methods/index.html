@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta property="og:title" content="CI: Heuristically extracting test methods before runtime">
+      <meta property="og:title" content="CI: Heuristically Extracting Test Methods Before Runtime">
       <title>Thuyen&#39;s corner</title>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -66,7 +66,7 @@ if (!doNotTrack) {
 <article class="page">
   <header>
   
-  <h1>CI: Heuristically extracting test methods before runtime</h1>
+  <h1>CI: Heuristically Extracting Test Methods Before Runtime</h1>
   
   
   <div class="metadata">
@@ -88,7 +88,7 @@ if (!doNotTrack) {
 <li>There could be a significant imbalance in test time between targets. One could take only 5 mins to finish while another takes up to 30 mins.</li>
 </ul>
 <p>Therefore, splitting tests by <em>test class</em> or <em>test method</em> is a key to the efficiency of the infrastructure. Unfortunately, it&rsquo;s not trivial to extract test classes and test methods in the project before runtime. This blog post introduces 2 approaches to heuristically detect test classes and test methods of a test target.</p>
-<h2 id="2-heuristic-approaches">2. Heuristic approaches</h2>
+<h2 id="2-heuristic-approaches">2. Heuristic Approaches</h2>
 <h3 id="21-using-sourcery">2.1. Using Sourcery</h3>
 <p><a href="https://github.com/krzysztofzablocki/Sourcery">Sourcery</a> is a code generator for Swift. It&rsquo;s built on top of <a href="https://github.com/apple/swift/tree/main/tools/SourceKit">SourceKit</a>. For those who did not know, SourceKit is the magic behind Xcode indexing which brings Xcode auto-completion to life. When Xcode indexes source files of a project, you can notice a running process called <code>SourceKitService</code>. Basically, what it does is to build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree (AST)</a> from the source files. From then, you can query information about avalaible classes, structs, protocols, methods and so forth.</p>
 <img src="/images/ci/extract_tests_sourcery.png" width="450"/>
@@ -125,7 +125,7 @@ typealias BaseUITestCase = BaseKIFTestCase
 <li>It might take a fairly long time to finish if there are a lot of source files to be scanned. With our project, it took around 10 secs to run with the template above.</li>
 <li>Moreover, your source files should be well structured to give an accurate output.</li>
 </ul>
-<h3 id="22-parsing-symbols-of-target-binaries">2.2. Parsing symbols of target binaries</h3>
+<h3 id="22-parsing-symbols-of-target-binaries">2.2. Parsing Symbols of Target Binaries</h3>
 <p>Another approach is to parse the symbols of a test target binary.
 Assume we have a UI test target <code>AppUITests</code> with a test class <code>UITestCaseX</code> of which the declaration is as follows:</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">UITestCaseX</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
@@ -205,7 +205,7 @@ Assume we have a UI test target <code>AppUITests</code> with a test class <code>
 
 
 <nav class='entry-nav'><div class='prev-entry'>
-    <a href='/posts/tech/ci-ios-artifacts-optimization/'>CI: Thinning iOS build artifacts</a>
+    <a href='/posts/tech/ci-ios-artifacts-optimization/'>CI: Thinning iOS Build Artifacts</a>
   </div></nav>
 
 

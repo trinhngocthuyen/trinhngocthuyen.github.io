@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta property="og:title" content="CI: Thinning iOS build artifacts">
+      <meta property="og:title" content="CI: Thinning iOS Build Artifacts">
       <title>Thuyen&#39;s corner</title>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -66,7 +66,7 @@ if (!doNotTrack) {
 <article class="page">
   <header>
   
-  <h1>CI: Thinning iOS build artifacts</h1>
+  <h1>CI: Thinning iOS Build Artifacts</h1>
   
   
   <div class="metadata">
@@ -75,10 +75,10 @@ if (!doNotTrack) {
   
 </header>
   <h2 id="1-introduction">1. Introduction</h2>
-<h3 id="11-pipeline-time-improvement">1.1. Pipeline time improvement</h3>
+<h3 id="11-pipeline-time-improvement">1.1. Pipeline Time Improvement</h3>
 <p>As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the <strong>CI pipeline time</strong> (ie. the time it takes for a CI pipeline to run against certain changes).</p>
 <p>For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests. Therefore, the engineering work to reduce pipeline time can be broken down into 2 major problems: <em>build time improvement</em> and <em>test time improvement</em>. While build time improvement is a classic problem that is tackled by many initiatives (mostly driven by community&rsquo;s efforts), there are still many rooms for test time improvement.</p>
-<h3 id="12-separation-of-build-and-test-jobs-in-ios">1.2. Separation of build and test jobs in iOS</h3>
+<h3 id="12-separation-of-build-and-test-jobs-in-ios">1.2. Separation of Build and Test Jobs in iOS</h3>
 <p>I once shared a tip to utilize test parallelism within one single CI job (see: <a href="https://engineering.grab.com/tackling-ui-test-execution-time-imbalance-for-xcode-parallel-testing">Tackling UI tests execution time imbalance for Xcode parallel testing</a>). Regarding parallelism among CI jobs, it can be done by splitting tests into smaller sets and run them in multiple CI jobs. As following is the form of pipelines we desire to have:
 <img src="/images/ci/pipeline.png" alt="png"></p>
 <p>However, the separation of build and test jobs in iOS is not that straightforward because of 2 prominent factors:</p>
@@ -89,7 +89,7 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 <li>As of Oct 2020, there are 340 targets in our project, including 323 pod targets (aka. framework targets) and 17 executable targets (1 app target + 16 test targets). The artifacts size of our project is around 3.6GB which exceeds the size limit.</li>
 </ul>
 <p>This post introduces a tip to overcome the artifacts size constraint in (F2).</p>
-<h2 id="2-a-closer-look-at-ios-build-artifacts">2. A closer look at iOS build artifacts</h2>
+<h2 id="2-a-closer-look-at-ios-build-artifacts">2. A Closer Look at iOS Build Artifacts</h2>
 <p>Now, let&rsquo;s take a look at a project that has both <em>hosted test targets</em> and <em>non-hosted test targets</em>. Assume we&rsquo;re using CocoaPods to manage dependencies in your project. When building the project, the build products folder would be in the following structure.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">|-- App.app / -- App (*)
 |           |
@@ -107,8 +107,8 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 <li>The <code>Plugins</code> folder contains the <code>.xctest</code> bundles of the app&rsquo;s hosted test targets (ie. test targets that use this app as its host app). Meanwhile, <code>.xctest</code> bundles of non-hosted test targets reside in the same folder of the <code>.app</code> bundles.</li>
 <li>The resources and resource bundles (in form of <code>.bunlde</code> packages) of static frameworks are located under the root of the executable bundles.</li>
 </ul>
-<h2 id="3-duplicated-contents">3. Duplicated contents</h2>
-<h3 id="31-dynamic-frameworks">3.1. Dynamic frameworks</h3>
+<h2 id="3-duplicated-contents">3. Duplicated Contents</h2>
+<h3 id="31-dynamic-frameworks">3.1. Dynamic Frameworks</h3>
 <p>From the structure above, we can easily spot the duplication that if a dynamic framework is used in both the app and a test target, that framework exists in 2 places:</p>
 <ul>
 <li>Under the <code>Frameworks</code> folder of the <code>.app</code> bundle</li>
@@ -129,14 +129,14 @@ The growth in size of an iOS project is propotional to not only <em>the number o
   rsync --delete -av <span class="s2">&#34;</span><span class="si">${</span><span class="nv">RSYNC_PROTECT_TMP_FILES</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> --links --filter <span class="s2">&#34;- CVS/&#34;</span> --filter <span class="s2">&#34;- .svn/&#34;</span> --filter <span class="s2">&#34;- .git/&#34;</span> --filter <span class="s2">&#34;- .hg/&#34;</span> --filter <span class="s2">&#34;- Headers&#34;</span> --filter <span class="s2">&#34;- PrivateHeaders&#34;</span> --filter <span class="s2">&#34;- Modules&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">source</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">destination</span><span class="si">}</span><span class="s2">&#34;</span>
   ...
 <span class="o">}</span>
-</code></pre></div><h3 id="32-resourcesresource-bundles-of-static-frameworks">3.2. Resources/resource bundles of static frameworks</h3>
+</code></pre></div><h3 id="32-resourcesresource-bundles-of-static-frameworks">3.2. Resources/Resource Bundles of Static Frameworks</h3>
 <p>For pods integrated as static frameworks, their resources and resource bundles will be copied to the executable bundles. And the duplication of these contents takes place the same way dynamics frameworks getting duplicated.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">App.app / -- App (*)
          |
          |-- StaticFW_C.bundle
          |
          |-- ResourcesOfStaticFW_D / -- an_image.png
-</code></pre></div><h2 id="4-reducing-artifacts-based-on-duplications">4. Reducing artifacts based on duplications</h2>
+</code></pre></div><h2 id="4-reducing-artifacts-based-on-duplications">4. Reducing Artifacts Based on Duplications</h2>
 <p>Based on the observations above, we can thin the artifacts by storing the bundle contents in a storage. Each bundle is unique by its checksum.</p>
 <p><img src="/images/ci/artifacts_opt_storage.png" alt="png"></p>
 <p>To keep track of the original location of a bundle inside the storage, we need a mapping that maps the original location of a bundle to its place in the storage. This way, after thinning the artifacts, we can easily recover the artifacts to its original state. The contents integrity remains unchanged.</p>
@@ -208,7 +208,7 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 <nav class='entry-nav'><div class='prev-entry'>
     <a href='/posts/tech/when-project-labels-are-not-just-to-categorize-things/'>When project labels are not just to categorize things</a>
   </div><div class='next-entry'>
-    <a href='/posts/tech/ci-extract-test-methods/'>CI: Heuristically extracting test methods before runtime</a>
+    <a href='/posts/tech/ci-extract-test-methods/'>CI: Heuristically Extracting Test Methods Before Runtime</a>
   </div></nav>
 
 
