@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta property="og:title" content="When project labels are not just to categorize things">
+      <meta property="og:title" content="When Project Labels are not Just to Categorize Things">
       <title>Thuyen&#39;s corner</title>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -66,7 +66,7 @@ if (!doNotTrack) {
 <article class="page">
   <header>
   
-  <h1>When project labels are not just to categorize things</h1>
+  <h1>When Project Labels are not Just to Categorize Things</h1>
   
   
   <div class="metadata">
@@ -75,7 +75,7 @@ if (!doNotTrack) {
   
 </header>
   <p>Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with <em><strong>project labels</strong></em>.</p>
-<h2 id="categorizing-messy-project-issues">Categorizing (messy) project issues</h2>
+<h2 id="categorizing-messy-project-issues">Categorizing (Messy) Project Issues</h2>
 <p>A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀? The rest (usually long discussions) which involve more effort to explain one&rsquo;s points, we prefer to communicate via project issues.</p>
 <p>So, project issues are used not only for bug reporting but also for any kinds of discussions within our team. One can just create an issue to point out a <em>code smell</em> in the project and propose an idea to refactor it. Or, if you are a maintainer of an open source project, you probably received more than one issue submitted to request for certain supports.</p>
 <p>Now, as you see, project issues become a bit messy with various types of issues floating around. To organize them, engineers usually use labels to indicate:</p>
@@ -88,9 +88,9 @@ if (!doNotTrack) {
 </ul>
 <p><img src="/images/misc/project_labels_1.png" alt="project label">
 <figcaption>Fig. 1. An issue reported in <a href="https://github.com/fastlane/fastlane/issues?page=4&amp;q=is%3Aissue+is%3Aclosed">Fastlane repo</a> with 3 labels <em>tool:scan</em>, <em>tool:snapshot</em> and <em>type:feature</em></figcaption></p>
-<h2 id="labels-on-merge-requests">Labels on merge requests</h2>
+<h2 id="labels-on-merge-requests">Labels on Merge Requests</h2>
 <p>For merge requests (MRs), we also use labels pretty much the same way we do with project issues. In our project, apart from the use cases above, labels also serve some CI/CD purposes.</p>
-<h3 id="label-based-configuration">Label-based configuration</h3>
+<h3 id="label-based-configuration">Label-based Configuration</h3>
 <p>This is the main use case for our CI/CD. For example, a merge request to fix a regression issue should be prioritized in order to unblock the release that is going to be live. With the label <code>regression</code> set on the MR, we expedite the CI pipelines running against that change by allocating more CI resources (5 UI test jobs, instead of 3).</p>
 <p>Another use case is the <a href="https://trunkbaseddevelopment.com/branch-for-release/">cherry-pick workflow in trunk based development</a> when fixing regression issues. We sometimes face the problem in which an engineer raised an MR to fix a bug, got it merged and then realized that the change was not cherry-pickable due to conflicts. In this case, he/she had waited for CI pipelines to finish in around 40 minutes&hellip; It was quite late to spot the cherry-pick issue (not to mention the time to address code review comments). To mitigate this, we added a job to <em>detect cherry-pick conflicts</em> on MRs that&rsquo;s labelled either <code>regression</code> or <code>need cherry-pick</code>.</p>
 <p>&hellip;</p>
@@ -102,7 +102,7 @@ if (!doNotTrack) {
 <li>On <em>merge requests</em>: disabled by default. They are only enabled when the label <code>xcode11</code> is set.</li>
 </ul>
 <p>This way, it saved our CI resources and communication.</p>
-<h3 id="ab-testing-in-cicd">A/B testing in CI/CD</h3>
+<h3 id="ab-testing-in-cicd">A/B Testing in CI/CD</h3>
 <p>Another example is when it comes to A/B testing in our CI/CD. There are some CI/CD features we enable by default, under certain conditions, to optimize our system. When there is any issue because of a CI/CD optimization, one can just force-disable it by labelling his/her merge request with a dedicated label - something like <code>ci-&lt;feature-name&gt;::disabled</code>.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this post, we&rsquo;ve gone through the most common use case of project labels which is to categorize issues, discussions, merge requests, etc.. We also know some use cases in which project labels play an interesting roles in our CI/CD setup, to manipulate certain actions. Hope you could make good use of them.</p>
@@ -140,7 +140,7 @@ if (!doNotTrack) {
 
 
 <nav class='entry-nav'><div class='prev-entry'>
-    <a href='/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/'>When iOS CI/CD config is not just a file or a dashboard</a>
+    <a href='/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/'>When iOS CI/CD Config is not Just a File or a Dashboard</a>
   </div><div class='next-entry'>
     <a href='/posts/tech/ci-ios-artifacts-optimization/'>CI: Thinning iOS Build Artifacts</a>
   </div></nav>

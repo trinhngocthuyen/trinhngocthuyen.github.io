@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta property="og:title" content="When iOS CI/CD config is not just a file or a dashboard">
+      <meta property="og:title" content="When iOS CI/CD Config is not Just a File or a Dashboard">
       <title>Thuyen&#39;s corner</title>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -66,7 +66,7 @@ if (!doNotTrack) {
 <article class="page">
   <header>
   
-  <h1>When iOS CI/CD config is not just a file or a dashboard</h1>
+  <h1>When iOS CI/CD Config is not Just a File or a Dashboard</h1>
   
   
   <div class="metadata">
@@ -76,7 +76,7 @@ if (!doNotTrack) {
 </header>
   <p>A while ago, when I heard the term &ldquo;CI/CD&rdquo;, I always thought of a dashboard to drag and drop, upload certificates and input the scheme&hellip; blah blah. That&rsquo;s all! And I was kinda believe that a good CI/CD platform must be like that: <em>convenient, as few setups as possible</em>. Now, I have a different viewpoint. What I very much expect in a CI/CD platform is the <em>ability to customize workflow</em>. This does not mean those drag-and-drop platforms are inadequate. It depends on the scale of your project and the problems you want to solve.</p>
 <p>In this post, I will talk about those problems on a general level. Details about how to tackle each will be discussed later in the upcoming posts.</p>
-<h2 id="a-large-code-base">A large code base</h2>
+<h2 id="a-large-code-base">A Large Code Base</h2>
 <p>In my project, there are many engineers contributing to a fairly large code base. <em>How large is it?</em> - you may wonder. Well, let&rsquo;s imagine there are a lot of product features in the project. Each feature has its A/B testing logic, making our code base even bigger. Apart from product features, we also have engineering work. Some of them need A/B testing as well, in order to safely roll out to users. And of course, we do cover unit tests and UI tests for both features and engineering work. In addition to A/B testing, we have <a href="https://martinfowler.com/articles/feature-toggles.html"><em>features toggles</em></a> (as part of <a href="https://www.thoughtworks.com/insights/blog/enabling-trunk-based-development-deployment-pipelines"><em>trunk-based development</em></a>) which means more code than needed is added per feature.</p>
 <p>Therefore, our code base has been growing over time. With our project, it takes:</p>
 <ul>
@@ -86,7 +86,7 @@ if (!doNotTrack) {
 </ul>
 <p>Those are the required steps to run on CI against a change in a merge request. Doing a simple math and you will realize that a developer has to wait for nearly an hour to land his/her change on <code>master</code> (assume other checks such as approvals and code linting are already satisfied).</p>
 <p>With such an increasingly large code base, CI/CD configuration is not just to <em>make things work</em>, but to <em><strong>make things work efficiently</strong></em>.</p>
-<h2 id="build-time">Build time</h2>
+<h2 id="build-time">Build Time</h2>
 <p>iOS <em>build time improvement</em> is a classic problem of large code base projects. There are some tips to improve the project build time including:</p>
 <ul>
 <li>Changing some build settings</li>
@@ -96,7 +96,7 @@ if (!doNotTrack) {
 <li>&hellip;</li>
 </ul>
 <p>Those approaches are not much related to CI/CD configuration. Some tips are suitable for local runs but not for CI/CD runs. For example, changing some optimization flags would reduce build time but it screws up code coverage generation. We have to alternate build settings for CI/CD in such cases.</p>
-<h2 id="a-tale-of-ui-tests">A tale of UI tests</h2>
+<h2 id="a-tale-of-ui-tests">A Tale of UI Tests</h2>
 <p>We are pretty proud of our UI tests. Not only do they cover a lot of features in the app but also they are very useful for feature development/bug fixes (especially when we want to simulate complicated workflows without Staging backend). However, the more tests we write, the longer time it takes to execute all test suites. <em><strong>Reducing the overall test execution time</strong></em> is definitely a CI/CD work that drag-and-drop is not capable of.</p>
 <p>A simple idea is to split UI tests and run them in parallel jobs. Then you need to answer the following questions:</p>
 <ul>
@@ -107,10 +107,10 @@ You cannot split them in a way that one job takes $30_m$ to finish while the oth
 This seems trivial but in iOS, it&rsquo;s a bit troublesome. First, you need to know what in <code>DerivedData</code> that are needed to run tests, and pass them via job artifacts. With a large code base project, the build artifacts needed is really big (up to 2GB) and exceeds the artifacts limits set by your CI/CD platform. We will talk about how to tackle this problem in upcoming posts.</li>
 </ul>
 <p>Another problem with UI tests is that they seem to be more unstable than unit tests. <em><strong>Dealing with unstable tests</strong></em> is not just iOS work, but also a CI/CD work. For example, you need to design your CI/CD pipelines so that it&rsquo;s less vulnerable to unstable tests and the time it takes to retry (tests or jobs) is as fast as possible. And you need to track those unstable tests (not manually) so that you could revisit to investigate them.</p>
-<h2 id="ci-resources">CI resources</h2>
+<h2 id="ci-resources">CI Resources</h2>
 <p>Making good use of CI resources is also a key to make our CI/CD system work at its best. When there are more available runners, try to use them. However, determining CI resources status is not always easy. It usually involves sending api requests to the CI/CD platform (for ex. Gitlab).</p>
 <p>Also, when we allocate resources differently, the number of CI jobs are dynamic. How to configure that?</p>
-<h2 id="ab-testing-for-cicd">A/B testing for CI/CD</h2>
+<h2 id="ab-testing-for-cicd">A/B Testing for CI/CD</h2>
 <p>In our project, we not only have AB testing for features in the app, but also for CI/CD features. Changes related to CI/CD usually affects other engineers. I need to emphasize again that there are many engineers contributing to the project, not just 3-4 engineers. To avoid blocking others, we always think of a safe rollout for important CI/CD changes. If there is any unexpected issue that block others, we can just roll back the change at ease.</p>
 <p>A rollout config is just simply a <code>yaml</code> file (hosted somewhere), like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;A feature&#39;</span><span class="w">
@@ -165,7 +165,7 @@ This seems trivial but in iOS, it&rsquo;s a bit troublesome. First, you need to 
 <nav class='entry-nav'><div class='prev-entry'>
     <a href='/posts/tech/random-thoughts-on-gitlab/'>Tản mạn: chuyện Gitlab</a>
   </div><div class='next-entry'>
-    <a href='/posts/tech/when-project-labels-are-not-just-to-categorize-things/'>When project labels are not just to categorize things</a>
+    <a href='/posts/tech/when-project-labels-are-not-just-to-categorize-things/'>When Project Labels are not Just to Categorize Things</a>
   </div></nav>
 
 
