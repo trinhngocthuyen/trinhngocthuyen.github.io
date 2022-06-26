@@ -216,7 +216,7 @@ if (!doNotTrack) {
 <li>In certain iOS versions, the accessibility IDs/labels of some components are not deterministics. For example, when scrolling a component, the element type of its contents might change (see: <a href="https://developer.apple.com/forums/thread/106681">here</a>). This kind of weird issues seems to happen more with table views and collection views which have the built-in resuable behavior.</li>
 <li>Some system UI components might change. Examples would be <em>notification banners</em>, or <em>permission alerts</em>.</li>
 </ul>
-<p>Similar to the approach to device/OS variants, we can <strong>agree on a fixed device model and iOS version</strong>. Yet, it is a bit difficult to stick to an iOS version on CI for all Xcode versions because:</p>
+<p>Similar to the approach to different timezones, we can <strong>agree on a fixed device model and iOS version</strong>. Yet, it is a bit difficult to stick to an iOS version on CI for all Xcode versions because:</p>
 <ul>
 <li>By default, we only have an iOS runtime that is shipped together with Xcode. For example, with Xcode 12.0 we get iOS 14.0, with Xcode 13.0 we get iOS 15.0.</li>
 <li>Installing other iOS runtimes for CI runners is not straightforward especially when the team does not have full control over the runners.</li>
