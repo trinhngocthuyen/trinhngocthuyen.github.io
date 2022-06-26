@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/tech/</loc>
-    <lastmod>2020-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -23,16 +23,46 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/</loc>
-    <lastmod>2021-07-20T00:00:00+00:00</lastmod>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
-    <lastmod>2021-07-20T00:00:00+00:00</lastmod>
+    <loc>https://trinhngocthuyen.github.io/tags/ci/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/</loc>
+    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
     <lastmod>2021-07-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -42,17 +72,7 @@
   </url>
   
   <url>
-    <loc>https://trinhngocthuyen.github.io/tags/</loc>
-    <lastmod>2021-07-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://trinhngocthuyen.github.io/posts/misc/tan-man-2021h1/</loc>
-    <lastmod>2021-07-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/</loc>
     <lastmod>2021-07-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -62,22 +82,7 @@
   </url>
   
   <url>
-    <loc>https://trinhngocthuyen.github.io/tags/ci/</loc>
-    <lastmod>2020-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</loc>
-    <lastmod>2020-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
-    <lastmod>2020-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
     <lastmod>2020-11-08T00:00:00+00:00</lastmod>
   </url>
   
