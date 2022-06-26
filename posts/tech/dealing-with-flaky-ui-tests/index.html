@@ -286,7 +286,7 @@ Test Case &#39;-[EXUITests.EXUITests testX2]&#39; passed (3.528 seconds).
 Benchmark: MyTestTarget/MyTestClass/testFunction1 x10
 Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
 </code></pre></div><p>In the sample merge request description above, the line <code>Benchmark: MyTestTarget/MyTestClass/testFunction1 x10</code> directs CI to benchmark the test <code>testFunction1</code> 10 times.</p>
-<p>To get the list of tests to benchmark in this example, we can send an API request to get the merge request description, then apply some regexes. The benchmark can be done simply by running <code>xcodebuild</code> multiple times with the given tests.</p>
+<p>To get the list of tests to benchmark in this example, we can send an API request to get the merge request description, then apply some regexes. The benchmark can be done with <a href="https://www.avanderlee.com/debugging/flaky-tests-test-repetitions/">test repetitions</a> (introduced since Xcode 13), or simply by running <code>xcodebuild</code> multiple times with the given tests.</p>
 <h3 id="44-living-with-flakiness">4.4. Living With Flakiness</h3>
 <p>As mentioned ealier, flakiness is always part of the system. Zero-tolerance against flakiness would lead to a very bad developer experience. Consider the following scenario:</p>
 <ul>
