@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Chuyện Nghề: Một Dự Án Nọ (1)">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/chuyen-nghe-mot-du-an-no-1/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/reasoning">Reasoning</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Chuyện Nghề: Một Dự Án Nọ (1)</h1>
+  
+  
+  <div class="metadata">
+  <span>2022, Nov 12</span>
+</div>
+  
+</header>
+  <p>Hồi quý 2 - 2021, tui có tham gia một dự án nọ. Đại ý công việc của dự án là ingest crashlytics data của mobile apps vào data lake của công ty, từ đó thực hiện những truy vấn dữ liệu cần thiết phục vụ nhiều mục đích (vd. monitoring, troubleshoot crashes…). Như các bạn có thể hình dung, phẩn lớn công việc là về data engineering. Nhưng team làm dự án này không có data engineer hay những người đã từng kinh qua công việc tương tự. Điều này có nghĩa là tất cả mọi người tham gia dự án đều không có một cái sense ban đầu tốt về dự án, từ việc có những dependencies gì, cho đến có những cách tiếp cận khả dĩ nào.</p>
+<p><span class="point">1</span> Nói sơ về hoàn cảnh ra đời của dự án. Có một thực tế hơi buồn là tại thời điểm đó, team PAX (làm passenger app) và team DAX (làm driver app) có một sự khác biệt lớn về mặt công nghệ. Hai bên có những practices riêng và share chung khá ít công nghệ, frameworks, components. Chính vì vậy, các sếp lớn thúc giục ý tưởng chuẩn hoá công nghệ các bên. Ban đầu, các sáng kiến (initiatives) được kỹ sư đề xuất và chọn lọc. Sau đó, kỹ sư từ các tech families, các teams khác nhau tình nguyện đăng ký vào những sáng kiến mà mình hứng thú. Một dự án được các kỹ sư khởi xướng, dẫn dắt từ đầu đến cuối, với sứ mạng chuẩn hoá công nghệ như vậy gọi là <em><strong>consolidation project</strong></em>. Dòng đời đưa đẩy mình tham gia vào một cái consolidation project như vậy. Và “zui” hơn nữa là giữa chừng thì mình được bán cái làm <em>engineering owner (EO)</em> của dự án này.</p>
+<p><span class="point">2</span> Cái ý tưởng consolidation projects nghe thì rất hào nhoáng. Nếu thành công thì tạo được cross-tech-family impacts. Nhưng khi thực hiện thì cá nhân mình thấy có khá nhiều bất cập.</p>
+<p>Thứ nhất, các thành viên đến từ nhiều team khác nhau nên sẽ tốn nhiều chi phí giao tiếp (communication cost) hơn bình thường. Như ở các bài lần trước tui có nhắc, khác team là khác process làm việc, dung hoà được cũng tốn calo không ít.</p>
+<p>Thứ nhì, cũng vì đến từ nhiều team nên commitment và sự phân bố capacity của các kỹ sư là khác nhau. Chẳng hạn, nếu 1 kỹ sư nọ phụ trách phần mà 1 số người khác phụ thuộc vào, nhưng kỹ sư này chỉ có thể dành thời gian 2h cho riêng tuần đó vì bận với những dự án quan trọng hơn của team, của tech family. Lúc này, tiến độ dự án bị chậm lại một cách không cần thiết. Để yêu cầu điều chỉnh capacity, lại một lần nữa tốn communication cost của EO. Mà communication cost này không chỉ là nói chuyện với những kỹ sư đó, mà còn đi nói chuyện với sếp của các bạn đó. Điều này rất tốn thời gian và công sức. Đặc biệt, vị thế của bạn không bằng sếp họ thì khả năng cao sẽ rơi vào kết quả là không được chấp thuận thêm capacity. Nhiều lúc nghĩ, thay vì đi chuẩn bị một mớ thứ để hỏi xin capacity, rồi xin không được, nuốt một mớ ậm ực trong người, chi bằng tui làm mịe luôn phần người ta cho rồi, còn nhanh hơn. Một lần nữa, cái lý thuyết của tui về làm việc nhóm của kỹ sư lại ứng nghiệm: nếu 1 kỹ sư mất 1h để làm xong 1 công việc thì 2 kỹ sư làm công việc đó phải mất tới 2h mới xong… Bạn biết hông, lúc tui xin thêm capacity của bạn backend kia, sếp bển bày tỏ lập trường không chịu, bảo tui làm rõ một cách chi tiết ra là cần làm task gì task gì nhỏ ra, độ ưu tiên ra như thế nào, estimated effort ra sao&hellip; rồi mới xem xét lại. Với đặc thù dự án cần research nhiều, nếu mà tui chẻ nhỏ task ra tới mức 1-2 point như vậy thì hoá ra dự án đã chậm, nay sẽ còn chậm hơn hay sao… Trong meeting đó có sếp tui, sếp bển, và sếp của sếp (tức là head của tech family), thêm 1 vài kỹ sư khác… Cảm giác của tui lúc ấy, quả thực không khác gì cảm giác của mấy bị cáo bị công tố viên chất vấn đến cứng họng giữa phiên toà trong mấy bộ phim Hàn Xẻng. Ức!</p>
+<p>Một bất cập khác của consolidation project là không có sàng lọc đầu vào của dự án. Vì kỹ sư đăng ký tham gia một cách tình nguyện, không có cơ cấu phân bổ chủ chốt, nên không có sự đảm bảo sẽ có những người có chuyên môn tham gia vào dự án. Đối với một số dự án chẳng hạn như chuẩn hoá coding practices, ít nhiều trong team cũng có những thành viên nòng cốt, đủ giỏi để đảm bảo chất lượng đầu ra. Nhưng đối với dự án của tui, ai cũng tham gia với tinh thần học hỏi là chính, ai cũng chưa từng kinh qua những công việc kiểu data engineering như vậy. Cho nên khi mới take over vai trò EO của dự án này, tui như ăn cái combo đắng chát nhất, xì chét hơi bị nhiều. Khi ấy, tui luôn bị “imposter syndrome” (hội chứng kẻ giả mạo), cho rằng bản thân mình không đủ năng lực để làm: không biết nửa chữ data engineering, sao dẫn dắt dự án được, sao ra quyết định kỹ thuật được. Thời điểm đó mà được đi hát karaoke là tui sẽ bấm bài <em>“Nếu em được chọn lựa”</em>, hát đi hát lại cho nhớ đời… <em>“Nếu bây giờ được chọn lựa một lần nữa, thì chắc có lẽ… <del>em sẽ không chọn như vậy đâu</del>”</em> 😏.</p>
+<p><span class="point">3</span> Không biết lúc ông trời nặn ra hình hài của tui có bỏ lố chất “cô đơn” gì vào hông mà nó ám tui quá, mần việc gì cũng toàn độc hành. Ban đầu dự án có 1 iOS dev, 1 Android dev, và 2 backend dev. Giữa chừng thì 2 bạn backend kia không tham gia nữa vì không đủ capacity. Còn lại 2 chàng mobile. Bạn Android kia thì chủ yếu tham gia viết queries thôi (tức là sau khi data được ingested). Còn tui thì lo phần lõi còn lại (vd. setup Airflow jobs, setup roles, optimize cost, backfill data…). Và một lần nữa, theo một cách không mong muốn, tui trở thành một single-point-of-failure… Đính chính là không phải tui phủ nhận công lao của 2 bạn backend đâu nha. Hai bản đóng góp lớn lúc research ban đầu. Nếu là dân data engineer thì nhìn vào sẽ biết là xài cái này cái nọ. Nhưng đối với một team ngoại đạo tụi tui thì nhờ 2 bản mà tụi tui biết là phải dùng cái gì, và có những bước setup nền nhất định.</p>
+<p>…</p>
+<p><span class="point">4</span> Nói chung dự án này cho tui nhiều bài học. Một trong số đó là phải tiên lượng vấn đề kỹ càng để set kỳ vọng tốt hơn. Phần còn lại thì <em>“có công mài sắt, có ngày đau tay”</em>, ủa lộn, <em>“có công mài sắt, có ngày nên miếng sắt nhẵn hơn”</em>.</p>
+<p>…</p>
+<p><span class="point">5</span> Nói chút về cơ duyên ra đời dự án này. Chuyện là ở app một team nọ, có 1 vài cái crash thần bí diễn ra trên một feature quan trọng sắp launch. Kỹ sư team đó đã bỏ ra nhiều nỗ lực debug trong một thời gian nhưng không có được kết quả như mong đợi. Cuối cùng, nhờ việc truy vấn dữ liệu crashlytics trên BigQuery, mấy bản có hướng đi đúng đắn và fix được issue, giúp unblock việc release của feature ấy. Sau sự kiện này, một câu hỏi đặt ra là làm thế nào để việc kết xuất, truy vấn thông tin crashlytics của mobile apps một cách phức tạp như vậy có thể accessible hơn cho các kỹ sư mobile… Câu hỏi đó đu theo làn sóng consolidation projects mà cho ra đời dự án này đây.</p>
+<p>Cho đến nay, sau khi dự án này xong cả năm trời, tui vẫn thấy rất hiếm người thực sự dùng. Tức là kỹ sư, ai ai cũng chỉ xem trên Firebase crashlytics dashboard để debug/troubleshoot crash thôi. Nhiều lần trong weekly sync-up, khi bàn gì liên quan tới crash, tui hay lộ liễu PR cho cái “crashlytics data in data lake” này. Mà đồng nghiệp tui nghe xong chỉ cười thoy hà 😂. Crash app này đơn giản quá nên hông chịu xài, đúng hông mấy bạn đồng nghiệp thương mến?!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/chuy%e1%bb%87n-ngh%e1%bb%81" class="tag">chuyện-nghề</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/'>Chuyện Nghề: Lược Sử 4 Năm Nghề</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-mot-du-an-no-1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main></body>
+</html>

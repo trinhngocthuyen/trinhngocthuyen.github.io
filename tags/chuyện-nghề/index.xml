@@ -6,7 +6,16 @@
     <description>Recent content in chuyện-nghề on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/tags/chuy%E1%BB%87n-ngh%E1%BB%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/tags/chuy%E1%BB%87n-ngh%E1%BB%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chuyện Nghề: Một Dự Án Nọ (1)</title>
+      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-mot-du-an-no-1/</link>
+      <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-mot-du-an-no-1/</guid>
+      <description>Hồi quý 2 - 2021, tui có tham gia một dự án nọ. Đại ý công việc của dự án là ingest crashlytics data của mobile apps vào data lake của công ty, từ đó thực hiện những truy vấn dữ liệu cần thiết phục vụ nhiều mục đích (vd. monitoring, troubleshoot crashes…). Như các bạn có thể hình dung, phẩn lớn công việc là về data engineering. Nhưng team làm dự án này không có data engineer hay những người đã từng kinh qua công việc tương tự.</description>
+    </item>
+    
     <item>
       <title>Chuyện Nghề: Lược Sử 4 Năm Nghề</title>
       <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</link>
