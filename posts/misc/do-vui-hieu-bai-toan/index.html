@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Đố vui: bài toán tính quãng đường và việc hiểu bài toán">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/do-vui-hieu-bai-toan/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Đố vui: bài toán tính quãng đường và việc hiểu bài toán</h1>
+  
+  
+  <div class="metadata">
+  <span>2014, Dec 27</span>
+</div>
+  
+</header>
+  <p><em>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem)</em>.</p>
+<p>&hellip;</p>
+<p>Bạn nào thích động não, phân tích vấn đề, hãy cùng nhau thảo luận thử nhé!</p>
+<p>Mục đích (thuật ngữ môn học PPLST&amp;DM gọi là &ldquo;tính hệ thống&rdquo;) của post:
+<em>Chỉ ra những khả năng có thể ảnh hưởng đến kết quả bài toán.</em></p>
+<h3 id="phát-biểu-bài-toán">Phát biểu bài toán</h3>
+<blockquote>
+<p>Giả sử Lực đi bộ với vận tốc 1 bước/giây (tương ứng với 0.5m/s). Giả sử đoạn đường AB dài 30m. Hỏi sau thời gian bao lâu kể từ lúc xuất phát tại vị trí A, thì Lực đi đến đích B?</p>
+</blockquote>
+<p>Ghi chú:</p>
+<ul>
+<li><em>Nếu thông tin nào không được phát biểu mà bạn cần đến, hãy &ldquo;giả định&rdquo;.</em></li>
+<li><em>Vì mỗi người có một cách nhìn khác nhau đối với cùng vấn đề, nên hy vọng các bạn không phán xét phê bình câu trả lời của nhau. Hãy học hỏi lẫn nhau!</em></li>
+<li><em>Khuyến khích sử dụng hình vẽ minh họa. Nếu cmt của bạn dài, khuyến khích bạn upload file word/google docs và tô đậm, in nghiêng những chỗ cần thiết để tiện cho việc theo dõi.</em></li>
+</ul>
+<h3 id="hiểu-bài-toán">Hiểu bài toán</h3>
+<p>Trước khi giải bài toán, ta cần phải hiểu bài toán. Việc hiểu bài toán bao gồm: xác định mục đích cần đạt, xác định những giả thiết sẵn có, xác định rõ <em><strong>&ldquo;định nghĩa&rdquo;</strong></em> và các <em><strong>&ldquo;nghĩa có thể có&rdquo;</strong></em> của các thuật ngữ&hellip;</p>
+<h4 id="mục-đích-cần-đạt">Mục đích cần đạt</h4>
+<p>Đưa ra những khả năng ảnh hưởng đến kết quả.</p>
+<h4 id="giả-thiết">Giả thiết</h4>
+<ul>
+<li>Vận tốc đi độ: 1 bước/giây = 0.5m/s.</li>
+<li>Vị trí xuất phát: A</li>
+<li>Vị trí đích đến: B</li>
+<li>Chiều dài quãng đường: AB = 30m.</li>
+</ul>
+<h4 id="định-nghĩa---nghĩa-có-thể-có">Định nghĩa - nghĩa có thể có</h4>
+<p>Ở đây mình sẽ đặt ra những câu  hỏi để giúp ta tránh hiểu thuật ngữ dưới một cái nhìn <em>&ldquo;mặc định&rdquo;</em>:</p>
+<ul>
+<li><em><strong>&ldquo;Đi bộ&rdquo;</strong></em> là gì?</li>
+<li><em><strong>&ldquo;Vận tốc&rdquo;</strong></em> là gì? Ở đây có hiểu <em>&ldquo;vận tốc&rdquo;</em> là <em>&ldquo;tốc độ&rdquo;</em> không?</li>
+<li><em><strong>&ldquo;Quãng đường&rdquo;</strong></em> là gì?</li>
+<li>Có thể có nghĩa nào của <em><strong>&ldquo;đi bộ&rdquo;</strong></em> (hay có những kiểu đi bộ nào)?
+<ul>
+<li><em><strong>&ldquo;Phương&rdquo;</strong></em> di chuyển như thế nào?<br>
+&ndash;&gt; Vuông góc với AB, song song với AB, tạo thành góc 30 độ so với mặt đường, nằm trên mặt đường nhưng đi xéo góc 30 độ (không phải đi giữa đường), đi hình zig zag<br>
+&hellip;&hellip;&hellip;</li>
+<li><em><strong>&ldquo;Hướng&rdquo;</strong></em> di chuyển như thế nào?<br>
+&ndash;&gt; Gần dần so với B, xa dần so với B, đổi hướng ngược lại sau 10 giây</li>
+</ul>
+</li>
+<li>Có thể có nghĩa nào của <em><strong>&ldquo;vận tốc&rdquo;</strong></em>?
+<ul>
+<li>Vận tốc đề cập đến là <em><strong>&ldquo;vận tốc đều&rdquo;</strong></em> hay <em><strong>&ldquo;vận tốc trung bình&rdquo;</strong></em>?</li>
+</ul>
+</li>
+<li>Có thể có nghĩa nào của <em><strong>&ldquo;quãng đường&rdquo;</strong></em>?
+<ul>
+<li>Quãng đường là đường thẳng</li>
+<li>Quãng đường là đường cong: đường núi</li>
+<li>Quãng đường là một băng chuyền (thang cuốn) đang di chuyển cùng/ngược chiều<br>
+&hellip;&hellip;&hellip;</li>
+</ul>
+</li>
+<li>Các trường hợp có thể có của A và B?
+<ul>
+<li>A là nóc nhà cao tầng, B là nóc nhà cao tầng đối diện</li>
+<li>A là một con thuyền dài đang xuôi/ngược dòng, B là một điểm cố định<br>
+&hellip;&hellip;&hellip;</li>
+</ul>
+</li>
+<li>Có thể có nghĩa nào của <em><strong>&ldquo;đến đích&rdquo;</strong></em>?
+<ul>
+<li>Cả người qua hẳn vệt đích hay là chỉ cần một bộ phận cơ thể người chạm qua vệt đích?</li>
+</ul>
+</li>
+</ul>
+<p>Chắc các bạn cũng hình dung trong mỗi trường hợp trên thì kết quả bị ảnh hưởng như thế nào rồi :)</p>
+<h3 id="bàn-luận">Bàn luận</h3>
+<ul>
+<li>
+<p>Trong notes mình cũng đã phát biểu sẵn mục đích cần đạt là <em><strong>&ldquo;đưa ra những khả năng ảnh hưởng đến kết quả&rdquo;</strong></em>, chứ không phải đi tìm lời giải cho bài toán đi bộ này (thời gian đi đến đích). Một lỗi hay mắc phải của chúng ta, khi gặp một bài toán, vấn đề nào đó, ta hay lao vào đi tìm lời giải, coi thường bước <em><strong>&ldquo;xác định mục đích cần đạt&rdquo;</strong></em>.</p>
+</li>
+<li>
+<p>Vì trong trường học, ta quen giải những bài toán với giả thiết và kết luận đều rất rõ ràng. Tất cả những thông tin khác đều được mặc định theo ngữ cảnh bài toán (chẳng hạn, những việc di chuyển nêu trên ta mặc định hiểu là di chuyển trên Trái Đất, hoặc Lực luôn sống sót trong lúc di chuyển). Do đó, ta thường hay hiểu &ldquo;định nghĩa&rdquo; và &ldquo;các nghĩa có thể có&rdquo;  theo những cách &ldquo;mặc định&rdquo;. Và như các bạn thấy, việc làm rõ nghĩa của các thuật ngữ đã giúp chỉ ra những khả năng có của bài toán một cách logic và đầy đủ hơn, hạn chế được <em><strong>&ldquo;tính ỳ tâm lý&rdquo;</strong></em> (psychological inertia). Có thể hiểu <em><strong>&ldquo;tính ý tâm lý&rdquo;</strong></em> bằng một thuật ngữ bình dân (nhưng không phản ánh hết nghĩa của nó) là <em><strong>&ldquo;suy nghĩ lối mòn&rdquo;</strong></em> hay <em><strong>&ldquo;tư duy lối mòn&rdquo;</strong></em>.</p>
+</li>
+</ul>
+<h3 id="kết-luận">Kết luận</h3>
+<ul>
+<li>Trong giải quyết vấn đề (bài toán), việc hiểu bài toán là rất quan trọng.</li>
+<li>Luôn nhớ xác định <em><strong>&ldquo;mục đích cần đạt&rdquo;</strong></em> của bài toán trước.</li>
+<li>Xem xét các <em><strong>&ldquo;định nghĩa&rdquo;</strong></em> của các thuật ngữ và các <em><strong>&ldquo;nghĩa có thể có&rdquo;</strong></em> của nó để thu thập thông tin có hiệu quả hơn.</li>
+</ul>
+<p>P/s: Trong ví dụ này, tầm quan trọng của mức hiểu &ldquo;định nghĩa&rdquo; chưa được thể hiện rõ. Thuyên xin đưa ra một tình huống để các bạn cùng suy ngẫm.</p>
+<p>Một số công ty hiện nay xem xét &ldquo;sáng tạo&rdquo; là tiêu chí quan trọng để tuyển dụng nhân viên, thậm chí có công ty đặt nó lên trên hàng đầu trong &ldquo;core values&rdquo; của môi trường doanh nghiệp mà công ty hướng tới. Họ đã hiểu sáng tạo như thế nào? Theo các bạn, &ldquo;SÁNG TẠO là gì?&rdquo;. Nó không phải chỉ liên quan đến &ldquo;trí tưởng tượng&rdquo; chứ! :D</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/creative-thinking" class="tag">creative-thinking</a>
+  
+  <a href="/tags/problem-solving" class="tag">problem-solving</a>
+  
+  <a href="/tags/triz" class="tag">triz</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/ly-son-tap-7/'>[Lý Sơn v1] Tập cuối: Hội đua thuyền Tứ linh</a>
+  </div><div class='next-entry'>
+    <a href='/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/'>Mô hình hoá bài toán bằng những người tý hon</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/do-vui-hieu-bai-toan/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main></body>
+</html>

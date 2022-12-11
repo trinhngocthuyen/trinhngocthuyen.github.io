@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Brain exercising #1">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/brain-exercising-1/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Brain exercising #1</h1>
+  
+  
+  <div class="metadata">
+  <span>2017, Aug 30</span>
+</div>
+  
+</header>
+  <p>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&hellip; I am thinking of a little corner of this blog for this sort of exercising.</p>
+<p>Claim: <em>If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.</em></p>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</p>&mdash; Algebra Fact (@AlgebraFact) <a href="https://twitter.com/AlgebraFact/status/902629585828945923">August 29, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Equivalent claim: <em>If $p$ is prime, $p \mid C^k_p$ for all $k, 0&lt;k&lt;p$</em>.</p>
+<p><em>Proof.</em></p>
+<p>$$C^k_p = \frac{p!}{k! (p-k)!} = \frac{p(p-1)!}{k! (p-k)!}$$</p>
+<p>Let $x = (p-1)!, y = k!(p-k)!$. Then $C^k_p = \frac{px}{y}$</p>
+<p>$C^k_p \in \mathbb{Z} \implies y \mid px \hspace{5pt} (*)$</p>
+<p>We know that $\forall z&lt;p: gcd(p, z) = 1$. So, $\forall z&lt;p: gcd(p, z!) = 1$.</p>
+<p>Because $k, p-k &lt; p$, we have $gcd(p, k!) = gcd(p, (p-k)!) = 1$</p>
+<p>$\implies gcd(p, y) = 1 \hspace{5pt} (**)$</p>
+<p>From $(*)$, $(**)$ $\implies y \mid x \implies p \mid p ;\frac{x}{y} = C^k_p$ ■</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/maths" class="tag">maths</a>
+  
+  <a href="/tags/algebra" class="tag">algebra</a>
+  
+  <a href="/tags/brain-exercises" class="tag">brain-exercises</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/dark-matter-dark-energy/'>Dark matter, Dark energy là gì?</a>
+  </div><div class='next-entry'>
+    <a href='/posts/misc/fermats-last-theorem/'>Định lý cuối cùng của Fermat</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/brain-exercising-1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"HTML-CSS":{"availableFonts":["TeX"],"linebreaks":{"automatic":true},"scale":90},"TeX":{"Macros":{"dim":["{\\color{gray}#1}",1],"txt":["\\hspace{3pt}\\text{#1}\\hspace{3pt}",1]},"TagSide":"left","extensions":["color.js"]},"extensions":["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],"jax":["input/TeX","output/HTML-CSS"],"tex2jax":{"displayMath":[["$$","$$"]],"inlineMath":[["$","$"]],"processEnvironments":true,"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'></script></body>
+</html>

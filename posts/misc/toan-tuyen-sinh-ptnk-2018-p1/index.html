@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Toán: Tuyển sinh PTNK 2018 (p1)">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Toán: Tuyển sinh PTNK 2018 (p1)</h1>
+  
+  
+  <div class="metadata">
+  <span>2018, May 30</span>
+</div>
+  
+</header>
+  <p>Cùng giải đề thi tuyển sinh (vào lớp 10 chuyên Toán) Phổ Thông Năng Khiếu, năm 2018 nào. Trong đề có một câu bất đẳng thức như sau:</p>
+<blockquote>
+<p>Bài 2 (2đ): Cho $a, b$ là 2 số nguyên thỏa mãn $a^3 + b^3 &gt; 0$\<br>
+a) Chứng minh rằng $a^3 + b^3 \geq a + b &gt; 0$\<br>
+b) Chứng minh rằng $a^3 + b^3 \geq a^2 + b^2$\<br>
+c) Tìm tất cả các bộ số nguyên $x, y, z, t$ sao cho $x^3 + y^3 = z^2 + t^2$ và $z^3 + t^3 = x^2 + y^2$</p>
+</blockquote>
+<h4 id="lời-giải">Lời giải</h4>
+<p>a) Điều kiện $a^3 + b^3 &gt; 0 $ tương đương với $a^3 &gt; (-b)^3$ $\implies a &gt; -b \implies a + b &gt; 0$</p>
+<p>Giờ ta cần chứng minh $a^3 + b^3 \geq a + b$, hay $S = a^3 + b^3 - (a + b) \geq 0$.</p>
+<p>Vai trò của $a$ và $b$ như nhau nên bài toán không mất tính tổng quát khi ta giả sử $a \geq b$.</p>
+<p>- TH1: Nếu $b \geq 0$ thì $a^3 \geq a, b^3 \geq b$ (vì $a$, $b$ là 2 số nguyên không âm). Suy ra $a^3 + b^3 \geq a + b$.</p>
+<p>Dấu bằng xảy ra khi $a, b \in \{0, \pm 1\}$</p>
+<p>- TH2: Nếu $b &lt; 0$. Đặt $c = -b$ với $a \geq c \geq 1$.</p>
+<p>Khi đó $S = a^3 - c^3 - (a - c) = (a - c)(a^2 + c^2 + ac - 1) = (a - c) P$</p>
+<p>Vì $(a - c + 1)^2 \geq 0$ nên $a^2 + c^2 + 1 - 2ac + 2a - 2c \geq 0$\<br>
+$\implies (a^2 + c^2 + ac - 1) - 3ac + 2a - 2c + 2 \geq 0$\<br>
+$\implies P \geq 3ac - 2a + 2c - 2 = ac + 2(a + 1)(c - 1)$\<br>
+$\implies P &gt; 0 \txt{(vì } a \geq c \geq 1 \txt{)}$</p>
+<p>Suy ra $S \geq 0$. Dấu bằng xảy ra khi $a = c$. Lúc này $a^3 = a \implies a = c = 0, \pm 1$</p>
+<p>Gộp cả hai điều kiện ta rút ra kết luận: bất đằng thức được chứng minh và dấu bằng xảy ra khi $a, b \in \{0, \pm 1\}$ $\quad\blacksquare$.</p>
+<p>&hellip;</p>
+<p>b) Lập luận tương tự câu a). Đối với trường hợp $b &lt; 0$ thì xét $(a - c)^2 + (a - c) \geq 0$.</p>
+<p>Dấu đẳng thức xảy ra khi $a, b \in \{0, 1\}$.</p>
+<p>&hellip;</p>
+<p>c) Sử dụng kết quả của câu b), ta có:</p>
+<p>$x^3 + y^3 \geq x^2 + y^2= z^3 + t^3 \geq z^2 + t^2$</p>
+<p>Dấu bằng xảy ra khi $x, y \in \{0, 1\}$ và $z, t \in \{0, 1\}$. Thế vào được các nghiệm:</p>
+<p>$(0, 0, 0, 0), (1, 1, 1, 1), (0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0)$.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/maths" class="tag">maths</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/tan-man-chung-ket-u23-chau-a/'>Tản mạn: Chung kết U23 Châu Á</a>
+  </div><div class='next-entry'>
+    <a href='/posts/misc/2018-in-review/'>📝 Tổng kết năm 2018</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"HTML-CSS":{"availableFonts":["TeX"],"linebreaks":{"automatic":true},"scale":90},"TeX":{"Macros":{"dim":["{\\color{gray}#1}",1],"txt":["\\hspace{3pt}\\text{#1}\\hspace{3pt}",1]},"TagSide":"left","extensions":["color.js"]},"extensions":["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],"jax":["input/TeX","output/HTML-CSS"],"tex2jax":{"displayMath":[["$$","$$"]],"inlineMath":[["$","$"]],"processEnvironments":true,"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'></script></body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Mô hình hoá bài toán bằng những người tý hon">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Mô hình hoá bài toán bằng những người tý hon</h1>
+  
+  
+  <div class="metadata">
+  <span>2015, Jan 17</span>
+</div>
+  
+</header>
+  <p><em>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem)</em>.</p>
+<p>&hellip;</p>
+<p>Một lần, mình đọc phương pháp <em><strong>“Mô hình hóa bài toán bằng những người tý hon”</strong></em> trong sách của thầy Phan Dũng, thấy cách giải khá độc đáo nên share cùng mọi người. Bài viết này hầu như là viết lại nội dung mà thầy Phan Dũng đã trình bày trong sách [1]. Trong bài viết này, mình sử dụng cụm từ “người lùn” thay vì “người tý hon” để tiện cho việc đặt tên, nhưng về ý nghĩa thì vẫn giống nhau.</p>
+<h3 id="bài-toán">Bài toán</h3>
+<blockquote>
+<p>“Dụng cụ định lượng chất lỏng có dạng cái bập bênh (xem hình). Phần bên trái là phần đựng chất lỏng. Khi phần đựng được đổ đầy chất lỏng, dụng cụ định lượng nghiêng về bên trái và chất lỏng được đổ ra. Lúc này phần bên trái trở nên nhẹ hơn và dụng cụ định lượng trở về vị trí ban đầu.</p>
+<p>Rất tiếc, dụng cụ định lượng nói trên làm việc không thật chính xác. Chất lỏng không đổ ra hết. Bởi vì, chỉ cần một lượng chất lỏng nào đó được đổ ra, phẩn đựng của dụng cụ định lượng đã đủ nhẹ để chuyển động về vị trí ban đầu, giữ chất lỏng còn lại không cho chảy ra hết”
+Hỏi: làm thế nào để khắc phục vấn đề trên?</p>
+</blockquote>
+<p><img src="/images/misc/triz_mohinhhoa_1.jpg" alt="jpg"></p>
+<h3 id="tiếp-thu-thông-tin">Tiếp thu thông tin</h3>
+<p>Có nhiều loại chất lỏng khác nhau về khối lượng riêng, công dụng, độ nhớt… Vậy lời giải của bài toán phải dùng được cho các loại chất lỏng khác nhau, chứ không chỉ riêng một loại chất lỏng như nước, rượu.</p>
+<p><em><strong>“Hỏi làm thế nào?”</strong></em> có nghĩa là đưa ra giải pháp để dụng cụ định lượng hoạt động chính xác: Đổ chất lỏng ra hết khỏi phần đựng, trừ lớp bám vào thành và đáy của phần đựng (vì lớp bám này là như nhau cho mỗi lần đổ nên không ảnh hưởng đến độ chính xác).</p>
+<h3 id="mục-đích-cần-đạt">Mục đích cần đạt</h3>
+<p>Phần đựng của dụng cụ chỉ bắt đầu chuyển động về vị trí ban đầu khi giọt chất lỏng cuối cùng rơi ra khỏi phần đựng.</p>
+<h3 id="mô-hình-hóa-bài-toán">Mô hình hóa bài toán</h3>
+<p>Dụng cụ định lượng chất lỏng có 2 phần khác nhau với các chức năng khác nhau:
+- Phần bên trái đựng chất lỏng
+- Phần bên phải đóng vai trò đối trọng của cái bấp bênh</p>
+<p>Ta biểu diễn 2 phần lần lượt bằng 2 chủng người lùn khác nhau: <strong>Hobbit</strong> và <strong>Dwarf</strong> (trong phim <em>“The Lord of the Rings”</em> (Chúa tể những chiếc nhẫn)). Giả sử những người lùn này cùng vóc dáng, kích thước, trí tuệ…</p>
+<p>Mô hình lại bài toán:</p>
+<p><img src="/images/misc/triz_mohinhhoa_2.jpg" alt="jpg"></p>
+<blockquote>
+<p>Khi những người Hobbit nhiều hơn những người Dwarf, cái bập bênh nghiêng về bên trái. Những người Hobbit bắt đầu nhảy ra ngoài. Khi những người Hobbit ít hơn những người Dwarf, cái bấp bênh bắt đầu chuyển động về vị trí ban đầu, mang theo cả những người Hobbit chưa kịp nhảy ra ngoài (xem hình).</p>
+</blockquote>
+<h3 id="phát-các-ý-tưởng-bằng-ngôn-ngữ-của-những-người-tý-hon">Phát các ý tưởng bằng ngôn ngữ của những người tý hon</h3>
+<h4 id="ý-tưởng-1">Ý tưởng 1</h4>
+<p>Những người Hobbit suy nghĩ một lát rồi bảo nhau: <em><strong>“Tại sao chúng ta không khoác tay nhau thật chặt để không ai bị tụt lại trên cái bập bênh. Lúc đó, tất cả mọi người đều nhảy ra ngoài được”</strong></em>.</p>
+<p><img src="/images/misc/triz_mohinhhoa_3.jpg" alt="jpg"></p>
+<h4 id="ý-tưởng-2">Ý tưởng 2</h4>
+<p>Những người Hobbit nhảy không kịp ra ngoài lên tiếng: <em><strong>“Chúng tôi không nhảy ra được. Cao quá! Các anh giúp chúng tôi được không, hỡi người Dwarf?”</strong></em>.</p>
+<p>Người Dwarf phía bên kia sốt sắng: <em><strong>“Chúng tôi sẽ chạy vào giữa cái bập bênh. Các anh tranh thủ lúc cái bập bênh nghiêng về phía anh mà nhảy ra ngoài. Xong việc thì chúng tôi phải trở về vị trí cũ của mình”</strong></em>.</p>
+<p><img src="/images/misc/triz_mohinhhoa_4.jpg" alt="jpg"></p>
+<h4 id="ý-tưởng-3">Ý tưởng 3</h4>
+<p>Người Dwarf: <em><strong>“Chúng ta có thể chờ những người Hobbit leo hết lên cái bập bênh rồi tất cả chúng ta cùng nhảy xuống đất. Không còn đối trọng nữa, tất cả những người Hobbit tụt xuống đất dễ dàng. Lúc đó, ta nhảy lại lên cái bập bênh”</strong></em>.</p>
+<h3 id="phiên-dịch-ý-tưởng-sang-ngôn-ngữ-thông-thường-của-người-giải-bài-toán">Phiên dịch ý tưởng sang ngôn ngữ thông thường của người giải bài toán</h3>
+<h4 id="ý-tưởng-1-1">Ý tưởng 1</h4>
+<p><em><strong>“Khoác tay nhau thật chặt”</strong></em> có thể phiên dịch là: <em><strong>“chất lỏng biến thành chất rắn”</strong></em>.</p>
+<p>Làm cho chất lỏng trong phần đựng trở thành chất rắn trong chớp mắt rồi đổ cả nguyên khối chất rắn đó ra ngoài. Khi ra ngoài, chất rắn lại trở thành chất lỏng.</p>
+<h4 id="ý-tưởng-2-1">Ý tưởng 2</h4>
+<p>Làm cho phần đối trọng chuyển động chứ không cố định. Khi dụng cụ định lượng nghiêng sang trái, phần đối trọng chạy về phía tâm. Khi đổ chất lỏng ra hết, phần đối trọng trở về vị trí ban đầu. Đơn giản nhất là, phần đối trọn có dạng <em><strong>“quả cầu bị chứa trong”</strong></em> phần bên phải của cái định lượng và lăn theo độ nghiêng của dụng cụ định lượng.</p>
+<p><img src="/images/misc/triz_mohinhhoa_5.jpg" alt="jpg"></p>
+<h4 id="ý-tưởng-3-1">Ý tưởng 3</h4>
+<p><em><strong>“Khi phần đựng chất lỏng đầy, đối trọng bên tay phải không còn nữa. Dụng cụ định lượng nghiêng nhanh về bên trái và dễ dàng đổ chất lỏng ra ngoài. Vừa đổ xong thì đối trọng bên tay phải xuất hiện trở lại, dụng cụ định lượng quay trở về vị trí ban đầu.”</strong></em></p>
+<p>Đối trọng biến mất và xuất hiện dễ dàng như vậy có thể là lực hút từ trường, chứ không phải lực trọng trường: Dùng nam châm điện hút phần bên phải cái bập bênh. Khi phần đựng chất lỏng đầy, ngắt dòng điện (đối trọng biến mất). Khi chất lỏng đổ ra hết, bật điện trở lại (đối trọng xuất hiện), dụng cụ định lượng quay về vị trí ban đầu.</p>
+<h3 id="tham-khảo">Tham khảo</h3>
+<p>[1] Phan Dũng. Các phương pháp sáng tạo (quyển 6 của bộ sách “Sáng tạo và đổi mới”). NXB Trẻ. TpHCM. 2010.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/creative-thinking" class="tag">creative-thinking</a>
+  
+  <a href="/tags/problem-solving" class="tag">problem-solving</a>
+  
+  <a href="/tags/triz" class="tag">triz</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/do-vui-hieu-bai-toan/'>Đố vui: bài toán tính quãng đường và việc hiểu bài toán</a>
+  </div><div class='next-entry'>
+    <a href='/posts/misc/topology/'>Topology</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main></body>
+</html>
