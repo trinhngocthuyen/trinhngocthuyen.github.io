@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/tech/</loc>
-    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -18,7 +18,42 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/</loc>
-    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/cocoapods/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/posts/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/tags/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://trinhngocthuyen.github.io/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,21 +68,6 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/categories/misc/</loc>
-    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/posts/</loc>
-    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/tags/</loc>
-    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/</loc>
     <lastmod>2022-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -68,16 +88,6 @@
   
   <url>
     <loc>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</loc>
-    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/tags/ios/</loc>
-    <lastmod>2022-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.github.io/categories/tech/</loc>
     <lastmod>2022-06-25T00:00:00+00:00</lastmod>
   </url>
   

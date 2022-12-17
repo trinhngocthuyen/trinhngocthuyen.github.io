@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="CocoaPods Explained: Podfile">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/cocoapods-explained-podfile/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>CocoaPods Explained: Podfile</h1>
+  
+  
+  <div class="metadata">
+  <span>2022, Dec 17</span>
+</div>
+  
+</header>
+  <p>In iOS development, CocoaPods has become one of the must-know tools. In a team where CocoaPods is adopted, engineers run <code>pod install</code> as often as <code>git checkout</code>. They know how to properly set up a project with CocoaPods, declare dependencies in Podfile, and update dependencies if needed. However, some have little understanding of what happens under the hood. This prevents them from troubleshooting CocoaPods issues if occurred or extending its usage. The “CocoaPods Explained” series I am writing aims to fill that gap.</p>
+<p>In this post, we take a look at Podfile and try to understand it a little bit more.</p>
+<h3 id="declaration-in-podfile">Declaration in Podfile</h3>
+<p>Podfile is where we declare dependencies of the project. This file is just a snippet of ruby code on top of provided methods (reference: <a href="https://guides.cocoapods.org/syntax/podfile.html">Podfile syntax</a>).</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s2">&#34;14.0&#34;</span>
+<span class="n">use_frameworks!</span>
+
+<span class="n">target</span> <span class="s2">&#34;App&#34;</span> <span class="k">do</span>
+  <span class="n">pod</span> <span class="s2">&#34;RxSwift&#34;</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre></div><p>In Podfile, we declare a dependency using the <code>pod</code> function. Such a dependency could be from CocoaPods-managed repos, a git repo, or a local directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">pod</span> <span class="s2">&#34;RxSwift&#34;</span><span class="p">,</span> <span class="s2">&#34;6.1.0&#34;</span>
+<span class="n">pod</span> <span class="s2">&#34;Moya&#34;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&#34;https://github.com/Moya/Moya.git&#34;</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="s2">&#34;15.0.3&#34;</span>
+<span class="n">pod</span> <span class="s2">&#34;Services&#34;</span><span class="p">,</span> <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s2">&#34;LocalPods/Services&#34;</span>
+</code></pre></div><h3 id="when-is-podfile-loaded">When is Podfile loaded?</h3>
+<p>Not all pod commands load this Podfile. We can easily verify this hypothesis by printing a log message at the beginning of Podfile (ex. prepending this line <code>puts &quot;Load Podfile&quot;</code>). The message appears in the logs when running <code>pod install</code> while it does not when running some other commands like <code>pod repo list</code>.</p>
+<p>This behavior makes sense because Podfile is meant for dependencies declaration. CLI usages related to dependencies should load Podfile. Otherwise, loading Podfile is not necessary. Looking at the pod subcommand descriptions (ie. running <code>pod --help</code>), one may intuitively tell that <code>pod install</code>, <code>pod update</code>, and <code>pod outdated</code> do load Podfile.</p>
+<p><img src="/images/ios/cli_pod_help.png" alt="cli_pod_help.png"></p>
+<p>Looking at the code of <a href="https://github.com/CocoaPods/CocoaPods">cocoapods</a> and <a href="https://github.com/CocoaPods/Core">cocoapods-core</a>, Podfile is loaded when we first access <code>Pod::Config.instance.podfile</code> (ie. the attribute <code>podfile</code> of the config singleton).</p>
+<p><a href="https://github.com/CocoaPods/CocoaPods/blob/1.11.0/lib/cocoapods/config.rb#L204-L206">https://github.com/CocoaPods/CocoaPods/blob/1.11.0/lib/cocoapods/config.rb#L204-L206</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Pod</span>
+  <span class="k">class</span> <span class="nc">Config</span>
+    <span class="k">def</span> <span class="nf">podfile</span>
+	    <span class="vi">@podfile</span> <span class="o">||=</span> <span class="no">Podfile</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">podfile_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">podfile_path</span>
+    <span class="k">end</span>
+    <span class="o">...</span>
+ <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><p>We can verify this easily by executing a one-line ruby code that accesses the value. The log <code>Load Podfile</code> should appear in the console.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ruby -e <span class="s1">&#39;require &#34;cocoapods&#34;; Pod::Config.instance.podfile&#39;</span>
+
+Load Podfile
+</code></pre></div><h3 id="methods-in-podfile">Methods in Podfile</h3>
+<p>Podfile content is <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile.rb#L327-L338">evaluated within <code>Pod::Podfile</code> context</a>. This gives us code access to <code>Pod::Podfile</code>&rsquo;s instance variables and private methods. Therefore, what we can do in Podfile is much more than just dependencies declaration.</p>
+<p>Have you ever got annoyed by the Podfile checksum changing all the time? This change causes a high chance of merge conflicts in Podfile.lock, especially when there are many contributors to the project.</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">-PODFILE CHECKSUM: ad5874f24bb0dbffd1e9bb8443604e3578796c7a
+</span><span class="gd"></span><span class="gi">+PODFILE CHECKSUM: ab71b2c6800abc9eba8a3500b110eccf4e33e7f4
+</span></code></pre></div><p>We can tackle this problem by setting the <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile.rb#L259-L268"><code>@checksum</code> attribute</a> right in Podfile. After running <code>pod install</code>, we should see the dummy checksum being reflected in Podfile.lock.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># In Podfile</span>
+<span class="vi">@checksum</span> <span class="o">=</span> <span class="s2">&#34;dummy-text-to-reduce-merge-conflicts&#34;</span>
+</code></pre></div><p>&hellip;</p>
+<p>As mentioned, we have access to <a href="https://www.rubydoc.info/gems/cocoapods-core/Pod/Podfile"><code>Pod::Podfile</code></a>&rsquo;s methods in Podfile. Those commonly used in Podfile are <code>use_frameworks!</code>, <code>platform :ios, &quot;14.0&quot;</code>, <code>target &quot;...&quot;</code>, <code>pod &quot;...&quot;</code>. In fact, those methods are <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile/dsl.rb#L35">defined in <code>Pod::Podfile::DSL</code></a> and <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile.rb#L16">included in <code>Pod::Podfile</code></a>.</p>
+<p>We can patch those methods to add more customizations. This could be done using <code>alias_method</code> with the corresponding method in <code>Pod::Podfile</code> or <code>Pod::Podfile::DSL</code>. Using <code>alias_method</code> is similar to the <a href="https://trinhngocthuyen.github.io/posts/tech/method-swizzling-what-why-and-how/">method swizzling technique in Swift</a>. Some CocoaPods plugins alter CocoaPods’s behaviors this way to interfere with the pod installation process.</p>
+<p>The following code demonstrates how we introduce the <code>:xcode_migration</code> option to the <code>pod</code> syntax. This option helps eliminate many if/else checks in Podfile, making the usage more declarative.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># In Podfile</span>
+<span class="n">require_relative</span> <span class="s2">&#34;patch&#34;</span> <span class="c1"># &lt;-- Load patch.rb</span>
+<span class="o">...</span>
+<span class="n">pod</span> <span class="s2">&#34;RxSwift&#34;</span><span class="p">,</span> <span class="ss">:xcode_migration</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="s2">&#34;6.1.0&#34;</span><span class="p">,</span>
+  <span class="ss">:xcode14</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&#34;link/to/fork&#34;</span><span class="p">,</span>
+    <span class="ss">:branch</span> <span class="o">=&gt;</span> <span class="s2">&#34;xcode14&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># In patch.rb</span>
+<span class="k">module</span> <span class="nn">Pod</span>
+  <span class="k">class</span> <span class="nc">Podfile</span>
+	  <span class="n">alias_method</span> <span class="ss">:original_pod</span><span class="p">,</span> <span class="ss">:pod</span>
+	  <span class="k">def</span> <span class="nf">pod</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">opts</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">[</span><span class="ss">:xcode_migration</span><span class="o">]</span><span class="p">)</span>
+        <span class="c1"># Process opts &amp; update args/kwargs to use the version/branch accordingly</span>
+        <span class="o">...</span>
+        <span class="k">if</span> <span class="n">xcode14?</span>
+          <span class="o">...</span>
+        <span class="k">end</span>
+			<span class="k">end</span>
+	    <span class="n">original_pod</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="c1"># &lt;-- call the original method with the processed args/kwargs</span>
+		<span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><p>&hellip;</p>
+<p>Above are some explanations of how Podfile works. More topics will be covered in the upcoming posts. Stay tuned!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/cocoapods" class="tag">cocoapods</a>
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/dealing-with-flaky-ui-tests/'>Dealing With Flaky UI Tests in iOS</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main></body>
+</html>
