@@ -6,7 +6,17 @@
     <description>Recent content in misc on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chuyện Nghề: Đi Đêm Có Ngày Gặp Ma, Direct Push Có Ngày Gặp Quả Báo</title>
+      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-direct-push/</link>
+      <pubDate>Wed, 21 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-direct-push/</guid>
+      <description>Ở một bài viết trước đó, tui có đề cập đến một dự án về ingest crashlytics data. Mẫu chuyện hôm nay tui kể liên quan đến dự án đó.
+Giới thiệu ngắn gọn cái ingestion đã được setup. Khi users sử dụng app mà gặp crash hoặc một số lỗi nhất định thì những trường hợp này sẽ được ghi nhận trên hệ thống của Firebase. Đoạn ingestion là làm sao để mà những data này được đổ vào data lake của công ty.</description>
+    </item>
+    
     <item>
       <title>Chuyện Nghề: Một Dự Án Nọ (1)</title>
       <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-mot-du-an-no-1/</link>
