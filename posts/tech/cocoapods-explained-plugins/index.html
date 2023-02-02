@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Cocoapods Explained: Plugins">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="https://trinhngocthuyen.github.io/sass/main.b40b969ef4f51c2f573d6d176069e0286faecc71953ee0c2f7786bd56b145215.css">
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69597239-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </head>
+  <body class="" data-url="/posts/tech/cocoapods-explained-plugins/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Cocoapods Explained: Plugins</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Feb 2</span>
+</div>
+  
+</header>
+  <p>In the previous post, we talked about Podfile. In this post, we will look into CocoaPods plugins.</p>
+<p>Back in <a href="https://blog.cocoapods.org/CocoaPods-0.28/">early days</a>, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.</p>
+<p>Instead of rejecting them, CocoaPods provided the support for plugins. With the plugin architecture, one can extend CocoaPods usage on their own. This helps not only ease the burden on the maintainers but also gives more freedom to community.</p>
+<h3 id="what-is-a-cocoapods-plugin">What is a CocoaPods plugin?</h3>
+<p>A plugin is a just a ruby gem having a file <code>cocoapods_plugin.rb</code> in its <a href="https://github.com/trinhngocthuyen/cocoapods-xcconfig-hooks/tree/main/lib">gem’s lib</a> directory. This file is loaded when running any pod command such as <code>pod install</code> or <code>pod --help</code>.</p>
+<p>For example, <a href="https://github.com/CocoaPods/cocoapods-search">cocoapods-search</a> is a CocoaPods plugin to search multiple pod spec repos for specific pods matching a query. Its directory is as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">--- lib --- cocoapods-search ---
+       |--- cocoapods-search.rb
+       |--- cocoapods_plugin.rb     # &lt;-- HERE
+</code></pre></div><p>This <code>cocoapods_plugin.rb</code> file is the entrypoint to load the actual implementation of the plugin. Therefore, most of the time you will see the content just like <a href="https://github.com/CocoaPods/cocoapods-search/blob/master/lib/cocoapods_plugin.rb">this</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&#34;cocoapods-search/command&#34;</span> <span class="c1"># &lt;-- Actual implementation resides in cocoapods-search/command.rb</span>
+</code></pre></div><p>To list the installed plugins, you can run <code>pod plugins installed</code>.</p>
+<p><img src="/images/ios/cli_pod_plugins.png" alt="Figure 1. Listing installed plugins"></p>
+<figcaption>Figure 1. Listing installed plugins</figcaption>
+<p>With a normal gem (ex. <code>xcodeproj</code>), you can magically turn it into a plugin by creating a <code>cocoapods_plugin.rb</code> file under its lib directory. Then, this gem should appear in the console when listing the installed plugins.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create a file in /Users/thuyen/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/xcodeproj-1.22.0/lib/cocoapods_plugin.rb</span>
+$ touch <span class="k">$(</span>dirname <span class="k">$(</span>gem which xcodeproj<span class="k">))</span>/cocoapods_plugin.rb
+
+$ pod plugins installed
+
+Installed CocoaPods Plugins:
+    - cocoapods-deintegrate    : 1.0.5
+    - cocoapods-plugins        : 1.0.0
+    - cocoapods-search         : 1.0.1
+    - cocoapods-trunk          : 1.6.0
+    - cocoapods-try            : 1.2.0
+    - cocoapods-xcconfig-hooks : 0.0.1 <span class="o">(</span>post_install hook<span class="o">)</span>
+    - slather                  : 2.7.2 <span class="o">(</span>post_install hook<span class="o">)</span>
+    - xcodeproj                : 1.22.0     <span class="c1"># &lt;--- 👈 👈 👈</span>
+</code></pre></div><h3 id="what-can-a-cocoapods-plugin-do">What can a CocoaPods plugin do?</h3>
+<p>First, you can tweak CocoaPods’s implementation. In the previous post, we mentioned the tweak in order to <a href="https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile#methods-in-podfile">add the <code>:xcode_migration</code> option to the <code>pod</code> declaration</a>. You can place the tweak in the plugin code instead.</p>
+<p>Second, you can add new commands to the <code>pod</code> command. This is done by subclassing the <code>Pod::Command</code> class. For example, the following code allows the usage of <code>pod analyze</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Pod</span>
+  <span class="k">class</span> <span class="nc">Command</span>
+    <span class="k">class</span> <span class="nc">Analyze</span> <span class="o">&lt;</span> <span class="no">Command</span> <span class="c1"># &lt;-- Corresponding to the new command: pod analyze</span>
+      <span class="nb">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="s2">&#34;Analyze dependencies&#34;</span>
+
+      <span class="k">def</span> <span class="nf">run</span>
+        <span class="c1"># &lt;-- Implementation goes here</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><p>Finally, a plugin can hook into the pod installation process via <code>pre_install</code>/<code>post_install</code> hooks. A hook is registered using the <a href="https://github.com/CocoaPods/CocoaPods/blob/1.10.0/lib/cocoapods/hooks_manager.rb#L73"><code>Pod::HooksManager.register</code></a> method.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># In cocoapods_plugin.rb</span>
+
+<span class="no">Pod</span><span class="o">::</span><span class="no">HooksManager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&#34;&lt;gem_name&gt;&#34;</span><span class="p">,</span> <span class="ss">:post_install</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">installer</span><span class="o">|</span>
+  <span class="c1"># &lt;-- Implementation goes here</span>
+<span class="k">end</span>
+</code></pre></div><p>Such plugin hooks are similar to the hooks declared in Podfile using <code>pre_install</code>/<code>post_install</code> methods. However, they are slightly different in terms of execution order and scope. We’ll cover more of this matter in another post about pod installation.</p>
+<p>…</p>
+<p>As you can see in figure 1, <code>cocoapods-xcconfig-hooks</code> and <code>slather</code> are shipped with the hooks. However, a plugin’s hook can only be executed if that plugin is declared in Podfile as follows.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># In Podfile</span>
+<span class="n">plugin</span> <span class="s2">&#34;cocoapods-xcconfigs-hooks&#34;</span>
+</code></pre></div><p>Note that this <code>plugin</code> method only affects the registered hooks. The plugin code is always loaded regardless of whether this method is called or not.</p>
+<h3 id="how-to-create-a-plugin">How to create a plugin?</h3>
+<p>Working with CocoaPods plugins is just like working with gems. Just take a glance at the guides at <a href="https://guides.rubygems.org/">https://guides.rubygems.org</a> during development. While writing plugin code, you might want to reference to <a href="https://www.rubydoc.info/gems/cocoapods/">cocoapods&rsquo;s rubydoc</a> and <a href="https://www.rubydoc.info/gems/cocoapods-core">cocoapods-core’s rubydoc</a>.</p>
+<p>There are many CLIs that help create a gem at hand, for example, <code>bundle gem cocoapods-foo</code> or <code>pod plugins create foo</code>. Then, you just need to fill in some metadata.</p>
+<p>Engineers sometimes place the gem code in the same project with iOS code for convenience. However, not all project contributors understand gem folder structure. They might get distracted by a scatter of non-iOS files even when only one of those files is of interest. In that case, you might consider using <a href="https://github.com/trinhngocthuyen/cocoapods-ezplugin">cocoapods-ezplugin</a> without caring much about versioning, gemspec, and so forth.</p>
+<h3 id="when-to-consider-writing-a-plugin">When to consider writing a plugin?</h3>
+<p>Following are some examples:</p>
+<ul>
+<li>You want to collect stats about dependencies in the project (how many dependencies including transitive ones, how many vendor frameworks…)</li>
+<li>You want to enforce some rules for dependencies. For example, testing pods should not be imported to the main target.</li>
+<li>You write a tool for Bazel adoption that generates <a href="https://bazel.build/concepts/build-files">BUILD files</a> based on a CocoaPods-based project.</li>
+<li>You want to alter CocoaPods behaviors. For example, turning pods into static frameworks by default.</li>
+<li>…</li>
+</ul>
+<p>For upcoming explanations for CocoaPods, stay tuned!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/cocoapods" class="tag">cocoapods</a>
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/cocoapods-explained-podfile/'>CocoaPods Explained: Podfile</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  
+  <div class="container">
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-plugins/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  
+  <div class="container">
+    
+  </div>
+</section>
+
+
+</main></body>
+</html>
