@@ -6,7 +6,7 @@
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://trinhngocthuyen.github.io/about/</link>
@@ -16,6 +16,15 @@
       <description>Welcome to Thuyen&amp;rsquo;s corner!
 I am Thuyen Trinh. I am currently based in Ho Chi Minh city, Vietnam. As a &amp;ldquo;young&amp;rdquo; developer, I find myself in a thirst of knowledge, not only about programming, but also other interesting stuffs.
 I believe sharing culture lies at the heart of spreading knowledge and acquiring more in return. Also, by writing down your understanding, we are challenging ourselves to become a self-teacher, which is a perfect mean of systematizing and reinforcing your knowledge.</description>
+    </item>
+    
+    <item>
+      <title>50 Shades of Git: Remotes and Authentication</title>
+      <link>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
+      <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
+      <description>Introduction Git is a software development tool that almost all engineers use in their work. This source control tool enables us to make changes to a project code base collaboratively. However, Git can be a headache at times. When running on CI environment, it sometimes does not work the way it does locally. Moreover, we sometimes follow best practices without knowing much about how it works. This gap together with the limited debug capabilities on CI make it even harder to resolve issues.</description>
     </item>
     
     <item>
