@@ -102,7 +102,7 @@ Installed CocoaPods Plugins:
     - slather                  : 2.7.2 <span class="o">(</span>post_install hook<span class="o">)</span>
     - xcodeproj                : 1.22.0     <span class="c1"># &lt;--- 👈 👈 👈</span>
 </code></pre></div><h3 id="what-can-a-cocoapods-plugin-do">What can a CocoaPods plugin do?</h3>
-<p>First, you can tweak CocoaPods’s implementation. In the previous post, we mentioned the tweak in order to <a href="https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile#methods-in-podfile">add the <code>:xcode_migration</code> option to the <code>pod</code> declaration</a>. You can place the tweak in the plugin code instead.</p>
+<p>First, you can tweak CocoaPods’s implementation. In the previous post, we mentioned the tweak in order to <a href="/posts/tech/cocoapods-explained-podfile#methods-in-podfile">add the <code>:xcode_migration</code> option to the <code>pod</code> declaration</a>. You can place the tweak in the plugin code instead.</p>
 <p>Second, you can add new commands to the <code>pod</code> command. This is done by subclassing the <code>Pod::Command</code> class. For example, the following code allows the usage of <code>pod analyze</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Pod</span>
   <span class="k">class</span> <span class="nc">Command</span>
