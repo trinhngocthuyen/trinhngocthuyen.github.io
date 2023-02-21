@@ -2,82 +2,82 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ci on Thuyen&#39;s corner</title>
-    <link>https://trinhngocthuyen.github.io/tags/ci/</link>
+    <link>https://trinhngocthuyen.com/tags/ci/</link>
     <description>Recent content in ci on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>50 Shades of Git: Remotes and Authentication</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
       <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
       <description>Introduction Git is a software development tool that almost all engineers use in their work. This source control tool enables us to make changes to a project code base collaboratively. However, Git can be a headache at times. When running on CI environment, it sometimes does not work the way it does locally. Moreover, we sometimes follow best practices without knowing much about how it works. This gap together with the limited debug capabilities on CI make it even harder to resolve issues.</description>
     </item>
     
     <item>
       <title>Dealing With Flaky UI Tests in iOS</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</link>
       <pubDate>Sat, 25 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</guid>
       <description>1. Introduction UI testing is a test technique, besides unit testing, to ensure product quality. While unit testing focuses on small portions (or units) of the system, UI testing aims to cover a wider user journey in the app. This testing technique helps engineers gain more confidence when developing, refactoring, and shipping the products to users. In the context of iOS development, UI testing plays a key role in product quality as the form of a feature shipped to users is usually through what they see on the app.</description>
     </item>
     
     <item>
       <title>CI: Heuristically Extracting Test Methods Before Runtime</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</link>
       <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</guid>
       <description>1. Introduction Reducing pipeline time is a key problem in the pipeline time reduction epic. As mentioned in the previous post, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called runners). The assignment of what tests to what jobs usually takes place at the end of the build job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have.</description>
     </item>
     
     <item>
       <title>CI: Thinning iOS Build Artifacts</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</guid>
       <description>1. Introduction 1.1. Pipeline Time Improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).
 For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests.</description>
     </item>
     
     <item>
       <title>When Project Labels are not Just to Categorize Things</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/when-project-labels-are-not-just-to-categorize-things/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</link>
       <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
       <description>Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with project labels.
 Categorizing (Messy) Project Issues A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀?</description>
     </item>
     
     <item>
       <title>When iOS CI/CD Config is not Just a File or a Dashboard</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
       <description>A while ago, when I heard the term &amp;ldquo;CI/CD&amp;rdquo;, I always thought of a dashboard to drag and drop, upload certificates and input the scheme&amp;hellip; blah blah. That&amp;rsquo;s all! And I was kinda believe that a good CI/CD platform must be like that: convenient, as few setups as possible. Now, I have a different viewpoint. What I very much expect in a CI/CD platform is the ability to customize workflow. This does not mean those drag-and-drop platforms are inadequate.</description>
     </item>
     
     <item>
       <title>Tản mạn: chuyện Gitlab</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</link>
       <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</guid>
       <description>1 Khi mình join team, công ty mình host các projects trên Github. Một dev mới vào công ty sẽ được add tài khoản Github cá nhân mình vào tài khoản organization của công ty. Lúc ấy, trên Github profile của bạn sẽ hiển thị membership với công ty (bạn phải public cái membership thì người khác mới thấy được nha). Nếu bạn làm cho công ty nào ok, hoặc thuộc dạng top-notch trong nước/khu vực, thì Github profile của bạn sẽ có-vẻ đẹp hơn một tí.</description>
     </item>
     
     <item>
       <title>Random thoughts on being a CI engineer</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-being-a-ci-engineer/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-being-a-ci-engineer/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</guid>
       <description>In this post, I am going to talk about my experiences when working with CI/CD for iOS applications and some valuable lessons I learned.
 1 In the past few months, I have been intensively working on CI/CD features in my team. My teammates sometimes refer to me as &amp;ldquo;the CI guy&amp;rdquo;. Before me, &amp;ldquo;the CI guy&amp;rdquo; was someone else who is humble, and quiet. After he left the company, I became the main PIC for CI/CD-related issues.</description>
     </item>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>🏡 Home on Thuyen&#39;s corner</title>
-    <link>https://trinhngocthuyen.github.io/</link>
+    <link>https://trinhngocthuyen.com/</link>
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>https://trinhngocthuyen.github.io/about/</link>
+      <link>https://trinhngocthuyen.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/about/</guid>
+      <guid>https://trinhngocthuyen.com/about/</guid>
       <description>Welcome to Thuyen&amp;rsquo;s corner!
 My name is Thuyen (aka. Chris). I&amp;rsquo;m an iOS Engineer.
 As a young developeran engineer, I am curious about how things work and why it works the way it does.
@@ -21,29 +21,29 @@ In this little corner, I do blog about tech (mainly related to iOS, CI, engineer
     
     <item>
       <title>Cắt Nghĩa &#34;Khủng Hoảng Tuổi...&#34; (1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/cat-nghia-khung-hoang-tuoi-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/cat-nghia-khung-hoang-tuoi-1/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/cat-nghia-khung-hoang-tuoi-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/cat-nghia-khung-hoang-tuoi-1/</guid>
       <description>Hôm qua thấy Youtube recommend một hai video tựa đề “khủng hoảng tuổi…”. Trong dấu ba chấm thường là 22 rồi 25 rồi 27, 30. Những mốc thời gian này mình đều đã đi qua. Nên cũng muốn chia sẻ lại cùng mọi người, mình cùng nhau nhìn lại những góc khuất của cuộc đời 😄.
 Đầu tiên, tại sao có con số 22 ở đây? Bình thường nếu bạn học bậc đại học 4 năm thì 22 tuổi là khi bạn mới ra trường.</description>
     </item>
     
     <item>
       <title>50 Shades of Git: Remotes and Authentication</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
       <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
       <description>Introduction Git is a software development tool that almost all engineers use in their work. This source control tool enables us to make changes to a project code base collaboratively. However, Git can be a headache at times. When running on CI environment, it sometimes does not work the way it does locally. Moreover, we sometimes follow best practices without knowing much about how it works. This gap together with the limited debug capabilities on CI make it even harder to resolve issues.</description>
     </item>
     
     <item>
       <title>Cocoapods Explained: Plugins</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-plugins/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</link>
       <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-plugins/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</guid>
       <description>In the previous post, we talked about Podfile. In this post, we will look into CocoaPods plugins.
 Back in early days, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.
 Instead of rejecting them, CocoaPods provided the support for plugins.</description>
@@ -51,38 +51,38 @@ Instead of rejecting them, CocoaPods provided the support for plugins.</descript
     
     <item>
       <title>Chuyện Nghề: Đi Đêm Có Ngày Gặp Ma, Direct Push Có Ngày Gặp Quả Báo</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-direct-push/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-direct-push/</link>
       <pubDate>Wed, 21 Dec 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-direct-push/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-direct-push/</guid>
       <description>Ở một bài viết trước đó, tui có đề cập đến một dự án về ingest crashlytics data. Mẫu chuyện hôm nay tui kể liên quan đến dự án đó.
 Giới thiệu ngắn gọn cái ingestion đã được setup. Khi users sử dụng app mà gặp crash hoặc một số lỗi nhất định thì những trường hợp này sẽ được ghi nhận trên hệ thống của Firebase. Đoạn ingestion là làm sao để mà những data này được đổ vào data lake của công ty.</description>
     </item>
     
     <item>
       <title>CocoaPods Explained: Podfile</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</link>
       <pubDate>Sat, 17 Dec 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</guid>
       <description>In iOS development, CocoaPods has become one of the must-know tools. In a team where CocoaPods is adopted, engineers run pod install as often as git checkout. They know how to properly set up a project with CocoaPods, declare dependencies in Podfile, and update dependencies if needed. However, some have little understanding of what happens under the hood. This prevents them from troubleshooting CocoaPods issues if occurred or extending its usage.</description>
     </item>
     
     <item>
       <title>Chuyện Nghề: Một Dự Án Nọ (1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-mot-du-an-no-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-1/</link>
       <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-mot-du-an-no-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-1/</guid>
       <description>Hồi quý 2 - 2021, tui có tham gia một dự án nọ. Đại ý công việc của dự án là ingest crashlytics data của mobile apps vào data lake của công ty, từ đó thực hiện những truy vấn dữ liệu cần thiết phục vụ nhiều mục đích (vd. monitoring, troubleshoot crashes…). Như các bạn có thể hình dung, phẩn lớn công việc là về data engineering. Nhưng team làm dự án này không có data engineer hay những người đã từng kinh qua công việc tương tự.</description>
     </item>
     
     <item>
       <title>Chuyện Nghề: Lược Sử 4 Năm Nghề</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</link>
       <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</guid>
       <description>Tui viết bài này để giới thiệu lược sử công việc của mình (ở Grab) theo thời gian. Mục đích của bài viết là cho mọi người có cái nhìn sơ bộ, khái quát về mặt thời gian của series chuyện nghề này. Ai hóng drama thì ráng kiên nhẫn nha.
 …
 1 Tui gia nhập công ty từ tháng 2 năm 2018 vào một team gọi là “DAX iOS”. Team này trực thuộc một tech family tên là “Driver Experience (DEX)”.</description>
@@ -90,390 +90,390 @@ Giới thiệu ngắn gọn cái ingestion đã được setup. Khi users sử d
     
     <item>
       <title>Chuyện Nghề: Áp Lực là Hàm sin Theo Thời Gian (1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</link>
       <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</guid>
       <description>Áp lực là hàm sin theo thời gian 1 Nhiều lần bạn bè, người thân hỏi tui “làm bển cực hông?”. Tui không ngần ngại đáp “cực, cực hơn ở Việt Nam nhiều”. Thật ra trả lời vậy có phần không thoả đáng vì ngữ cảnh so sánh hơi khập khiễng. Nhưng nó phần nào phản ánh mức độ áp lực ở công ty nớ (bên Sing) so với các công ty cũ của tui ở VN.</description>
     </item>
     
     <item>
       <title>Dealing With Flaky UI Tests in iOS</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</link>
       <pubDate>Sat, 25 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</guid>
       <description>1. Introduction UI testing is a test technique, besides unit testing, to ensure product quality. While unit testing focuses on small portions (or units) of the system, UI testing aims to cover a wider user journey in the app. This testing technique helps engineers gain more confidence when developing, refactoring, and shipping the products to users. In the context of iOS development, UI testing plays a key role in product quality as the form of a feature shipped to users is usually through what they see on the app.</description>
     </item>
     
     <item>
       <title>Tản Mạn - 2021H1</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-2021h1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-2021h1/</link>
       <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-2021h1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-2021h1/</guid>
       <description>Chuyện là hồi xưa lên Google gõ tên mình thì cái blog của mình sẽ xuất hiện đầu tiên trên danh mục kết quả tìm kiếm. Nhưng hôm hổm gõ mãi mà không thấy Thuyen&amp;rsquo;s Corner đâu hết. Ấy là khi tui biết đã quá lâu chưa ghé qua phủi bụi cái góc này&amp;hellip;
 Hôm qua có ông anh chụp hình một bài viết của mình ở trển, gửi cho mình, ngụ ý nhắc nhẹ là &amp;ldquo;ê, sao hổng viết tiếp đi&amp;rdquo;.</description>
     </item>
     
     <item>
       <title>Tản Mạn: Những Trăn Trở Nghề</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-nhung-tran-tro-nghe/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-nhung-tran-tro-nghe/</link>
       <pubDate>Sun, 15 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-nhung-tran-tro-nghe/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-nhung-tran-tro-nghe/</guid>
       <description>Nhiều người thấy mình dạo này có vẻ chill, chơi môn này môn nọ, tham gia thử thách này thử thách kia, tưởng rằng mình đang tận hưởng cuộc sống. Nhưng thật ra mình, cũng như bao người khác, luôn có những trăn trở nhất định. Bỏ qua những trăn trở về gia đình và cuộc sống riêng tư, nay mình xin trải lòng với mọi người những trăn trở của mình về nghề nghiệp.</description>
     </item>
     
     <item>
       <title>CI: Heuristically Extracting Test Methods Before Runtime</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</link>
       <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</guid>
       <description>1. Introduction Reducing pipeline time is a key problem in the pipeline time reduction epic. As mentioned in the previous post, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called runners). The assignment of what tests to what jobs usually takes place at the end of the build job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have.</description>
     </item>
     
     <item>
       <title>CI: Thinning iOS Build Artifacts</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</guid>
       <description>1. Introduction 1.1. Pipeline Time Improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).
 For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests.</description>
     </item>
     
     <item>
       <title>Tản Mạn: Chuyện Nghề</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-nghe/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-nghe/</link>
       <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-nghe/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-nghe/</guid>
       <description>Tuần này sẵn có một ngày lễ (public holiday) nên mình xin nghỉ luôn 4 ngày còn lại cho đủ nguyên tuần. Cộng thêm mấy ngày cuối tuần nữa thành ra mình nghỉ nguyên một lèo 9 ngày. What a long holiday! Tưởng là dài vậy mà nó trôi qua nhanh cái rẹt, chuẩn bị quay lại mần việc rồi. Mình tranh thủ viết chút xíu nhân dịp đầu óc vẫn còn thư thái, thoải mái.</description>
     </item>
     
     <item>
       <title>📝 Looking Back on 2020H1</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/looking-back-on-2020h1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/looking-back-on-2020h1/</link>
       <pubDate>Sun, 28 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/looking-back-on-2020h1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/looking-back-on-2020h1/</guid>
       <description>June is coming to an end soon&amp;hellip; It&amp;rsquo;s the end of month, the end of quarter, and also the end of the first half. It&amp;rsquo;s time to look back on what I have done so far. About future plans, I&amp;rsquo;d like to leave it open.
 Work 1 My work interest gradually shifted away from iOS. I have to admit that after a few years working as an iOS engineer, I started to like iOS a little less.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện Tiếng Anh (p2)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-tieng-anh-p2/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-tieng-anh-p2/</link>
       <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-tieng-anh-p2/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-tieng-anh-p2/</guid>
       <description>Ở post lần trước, mình có tản mạn sương sương với mọi người về chuyện học tiếng Anh. Trong bài viết lần này mình sẽ nói chút xíu về tiếng Anh sử dụng trong cuộc sống của mình ở Sing.
 1 Lúc mình mới qua, mình hơi bối rối với tiếng Anh của người Sing. Vì chưa quen accent bên này nên đôi lúc không biết người ta đang nói tiếng Anh hay tiếng Hoa.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện Tiếng Anh (p1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-tieng-anh-p1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-tieng-anh-p1/</link>
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-tieng-anh-p1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-tieng-anh-p1/</guid>
       <description>Một ngày đẹp trời (thật ra trời không đẹp cho lắm, mà đẹp cũng không ai ngắm), lướt FB, coi youtube thấy tràn ngập những chia sẻ, bình luận về một vụ việc làm dậy sóng cộng đồng IELTS. Sự việc, tuy đọc vào thấy kì khôi thiệt, nhưng cũng chẳng ảnh hưởng nhiều tới mình&amp;hellip; Duy có điều là, tự dưng thấy người ta quan tâm nhiều, kế tự ngẫm nghĩ về cái sự học tiếng Anh của bản thân, kế thấy hơi chột dạ chút xíu.</description>
     </item>
     
     <item>
       <title>When Project Labels are not Just to Categorize Things</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/when-project-labels-are-not-just-to-categorize-things/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</link>
       <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
       <description>Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with project labels.
 Categorizing (Messy) Project Issues A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀?</description>
     </item>
     
     <item>
       <title>When iOS CI/CD Config is not Just a File or a Dashboard</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
       <description>A while ago, when I heard the term &amp;ldquo;CI/CD&amp;rdquo;, I always thought of a dashboard to drag and drop, upload certificates and input the scheme&amp;hellip; blah blah. That&amp;rsquo;s all! And I was kinda believe that a good CI/CD platform must be like that: convenient, as few setups as possible. Now, I have a different viewpoint. What I very much expect in a CI/CD platform is the ability to customize workflow. This does not mean those drag-and-drop platforms are inadequate.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện chạy bộ</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-running/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-running/</link>
       <pubDate>Sat, 07 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-running/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-running/</guid>
       <description>Nếu bạn tưởng mình viết những dòng này vì mình là tay chạy bộ cự phách, hoặc chỉ đơn giản là một tay chuyên chạy bộ, thì bạn nhầm rồi. Nếu bạn cần kinh nghiệm chạy bộ thì có thể ping mình, mình sẽ chỉ cho bạn&amp;hellip; cần phải ping ai 😂.
 1 Mình xách giày chạy lần đầu tiên là năm 4 đại học. Lúc ấy kiểu như quyết tâm lắm, định bụng sáng sớm ngày hôm sau sẽ dậy chạy.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện nấu ăn</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-cooking/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-cooking/</link>
       <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-cooking/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-cooking/</guid>
       <description>0 Ngoài lề. Đáng nhẽ ra bạn đang xem 1 cái vlog, hoặc nghe đoạn audio podcast thay vì phải đọc bài viết này. Mình có thử record audio đoạn intro bài viết rồi nghe thử và thấy nó fail toàn tập. Chỉ có thu câu &amp;ldquo;Hiii&amp;hellip; Chào mừng các bạn đã đến với Thuyên&amp;rsquo;s corner&amp;rdquo;, rồi &amp;ldquo;Welcome to Chris&amp;rsquo;s corner&amp;rdquo; thôi mà lần nào nghe cũng chẳng ưng tai. Xong kế mình vòng lên youtube coi người ta mần sao.</description>
     </item>
     
     <item>
       <title>Tản mạn: Kỹ sư và viết lách (1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-eng-and-writing-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-eng-and-writing-1/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-on-eng-and-writing-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-eng-and-writing-1/</guid>
       <description>Là một kỹ sư công nghệ (software engineer), ắt hẳn ai cũng đã từng 😒, đang 😐, và sẽ 😟 phải viết những tài liệu kỹ thuật (technical docs) phục vụ cho công việc. Trong bài viết này, mình sẽ tâm tình cùng bạn những suy nghĩ cá nhân về việc viết lách liên quan đến công việc của một kỹ sư.
 1 Thứ nhất, tại sao kỹ sư cần phải viết lách?</description>
     </item>
     
     <item>
       <title>Tản mạn: chuyện Gitlab</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</link>
       <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</guid>
       <description>1 Khi mình join team, công ty mình host các projects trên Github. Một dev mới vào công ty sẽ được add tài khoản Github cá nhân mình vào tài khoản organization của công ty. Lúc ấy, trên Github profile của bạn sẽ hiển thị membership với công ty (bạn phải public cái membership thì người khác mới thấy được nha). Nếu bạn làm cho công ty nào ok, hoặc thuộc dạng top-notch trong nước/khu vực, thì Github profile của bạn sẽ có-vẻ đẹp hơn một tí.</description>
     </item>
     
     <item>
       <title>📝 2019 in review</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/2019-in-review/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/2019-in-review/</link>
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/2019-in-review/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/2019-in-review/</guid>
       <description>Năm hết, Tết đến&amp;hellip; Thật ra ban đầu mình tính nhắm mắt ngó lơ, không tính tổng kết gì cả. Nhưng nghĩ lại, nếu ai đó đang rầu rĩ đọc bài này xong thấy phấn chấn hơn vì có thấy có thằng năm nay còn nhàm chán hơn. Âu cũng là giúp ích cho đời.
 Công việc Nếu bạn đã từng đọc tổng kết năm ngoái, mình có tóm tắt rằng &amp;ldquo;2018 đối với mình là năm của công việc&amp;rdquo;.</description>
     </item>
     
     <item>
       <title>Random thoughts on being a CI engineer</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-being-a-ci-engineer/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-being-a-ci-engineer/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</guid>
       <description>In this post, I am going to talk about my experiences when working with CI/CD for iOS applications and some valuable lessons I learned.
 1 In the past few months, I have been intensively working on CI/CD features in my team. My teammates sometimes refer to me as &amp;ldquo;the CI guy&amp;rdquo;. Before me, &amp;ldquo;the CI guy&amp;rdquo; was someone else who is humble, and quiet. After he left the company, I became the main PIC for CI/CD-related issues.</description>
     </item>
     
     <item>
       <title>SG vs. SG (p2)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/sg-vs-sg-2/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/sg-vs-sg-2/</link>
       <pubDate>Sun, 05 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/sg-vs-sg-2/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/sg-vs-sg-2/</guid>
       <description>Tiếp nối những so sánh vui giữa Singapore và Việt Nam (duới góc nhìn chủ quan của bạn) ở post lần trước, bài viết này sẽ đề cập một số khía cạnh về công việc. Mình viết ngẫu nhiên, không theo một hệ thống nào cả. Nên nếu bạn thấy ý tứ lộn xộn thì&amp;hellip; à mà thôi&amp;hellip; cứ đọc đi nhé 😉.
 Giờ làm việc Thường thì các công ty ở VN, dù là tech hay non-tech, dù là nhà nước hay tư nhân, đều có giờ nghỉ trưa.</description>
     </item>
     
     <item>
       <title>SG vs. SG (p1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/sg-vs-sg-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/sg-vs-sg-1/</link>
       <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/sg-vs-sg-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/sg-vs-sg-1/</guid>
       <description>Mình sang Singapore làm việc kể từ cuối tháng 2/2018. Đến nay đã ngót nghét một năm… Nhiều bạn hay hỏi mình mấy câu hỏi như “sống bên đó ra sao?”, “có gì khác so với VN?”, “công việc bển có gì khác ở VN không?”. Mình trả lời những câu hỏi này cũng nhiều lần nên chắc viết cái post cho mọi người đọc. Mốt ai hỏi thì quăng link đọc cho lẹ 😂.</description>
     </item>
     
     <item>
       <title>📝 Tổng kết năm 2018</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/2018-in-review/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/2018-in-review/</link>
       <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/2018-in-review/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/2018-in-review/</guid>
       <description>Nhìn chung, 2018 đối với mình là năm của công việc. Đây là năm đầu tiên mình sống ở nước ngoài&amp;hellip;</description>
     </item>
     
     <item>
       <title>Swift: The downsides of lazy var (part 2)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-2/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</link>
       <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-2/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</guid>
       <description>Continue from the previous post, we will look into a few problems when working with lazy var&amp;hellip;</description>
     </item>
     
     <item>
       <title>Swift: The downsides of lazy var (part 1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-1/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</link>
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</guid>
       <description>Lazy evaluation is a really powerful technique which enhances app performance by avoiding unecessary computation. In Swift, apart from this advantage, it also brings convenience when it comes to coding style&amp;hellip;</description>
     </item>
     
     <item>
       <title>Toán: Tuyển sinh PTNK 2018 (p1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</guid>
       <description>Cùng giải đề thi tuyển sinh (vào lớp 10 chuyên Toán) Phổ Thông Năng Khiếu, năm 2018 nào. Trong đề có một câu bất đẳng thức như sau&amp;hellip;</description>
     </item>
     
     <item>
       <title>Config: Run shell script on login</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/config-run-shell-script-on-login/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/config-run-shell-script-on-login/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/config-run-shell-script-on-login/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/config-run-shell-script-on-login/</guid>
       <description>Sometimes, I got frustrated with the fact that my SSH keys were cleared from agents after rebooting. As a result, I had to manually add those keys to agents every time my computer restarted (although it&amp;rsquo;s not occasional)&amp;hellip; It&amp;rsquo;s best to automate such tasks - I thought. So, I asked &amp;ldquo;how to run a shell script on login?&amp;rdquo;. And here are some solutions</description>
     </item>
     
     <item>
       <title>Markov chain: What is a Markov chain?</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/markov-chain-part-1/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/markov-chain-part-1/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/markov-chain-part-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/markov-chain-part-1/</guid>
       <description>Markov chain is a very important piece of probability and statistics. One application we could name is Markov Decision Process (MDP) used for decision making. Another one is Markov chain Monte Carlo (MCMC), a popular sampling method in statistics. You may also know Google PageRank algorithm, which is part of the ground of Google indexing technology. The algorithm is implemented on top of this concept&amp;hellip;</description>
     </item>
     
     <item>
       <title>Tản mạn: Chung kết U23 Châu Á</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chung-ket-u23-chau-a/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chung-ket-u23-chau-a/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chung-ket-u23-chau-a/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chung-ket-u23-chau-a/</guid>
       <description>Mặc dù không phải fan bóng đá, nhưng tôi đã cho mình một cơ hội để xem trận đấu được mong đợi này. Tiếc thật, bàn thua ở những giây phút cuối cùng luôn luôn đắng nhất. Như đã xác định rõ, bóng đá không bà con gì nhiều đến tôi. Nhưng chứng kiến màn thua như thế này quả khiến cho tôi thấy có chút buồn.</description>
     </item>
     
     <item>
       <title>Tản mạn: Câu hỏi tồi hay là sự hời hợt</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</link>
       <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</guid>
       <description>Có nhiều lần mình thấy có người hỏi những câu hỏi khiến mình đọc vào chẳng muốn trả lời (nếu có khả năng trả lời). Một ví dụ điển hình là “anh ơi, sao cái này em build không được?”. Bản thân mình cảm thấy đây là một câu hỏi rất chung chung và thiếu thông tin. Nếu bạn là dev thì hẳn là bạn đã phải sấp mặt với những cái bugs mà ta phải chửi bới cả tiếng đồng hồ con bọ (bugs) mới nghe điếc lỗ tai mà chui ra ngoài. Đó là khi ta có đầy đủ thông tin. Còn thiếu thông tin như trên thì… ta chỉ biết cách ra ngoài vườn bắt con bọ mà tra khỏi xem đồng bọn của nó ở đâu trong cái mớ code của mình.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện thuyết trình</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-thuyet-trinh/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-thuyet-trinh/</link>
       <pubDate>Sat, 20 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-thuyet-trinh/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-thuyet-trinh/</guid>
       <description>Suốt 2 cấp học cơ sở: tiểu học và trung học, tôi chưa hề có một ý niệm nào về thuật ngữ thuyết trình. Hầu hết các bài giảng của các thầy cô mang nặng tính ghi chép. Dĩ nhiên đối với những môn Toán, Lý, Hóa&amp;hellip; thì điều đó bình thấy vẫn không trở ngại lắm. Nhưng mấy môn Sử, Địa&amp;hellip; thì tôi thấy chán ngán vì phải chép những thứ trong SGK đã có theo văn phong của người khác.</description>
     </item>
     
     <item>
       <title>Indicator r.v.s and the fundamental bridge</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/indicator-rvs-and-the-fundamental-bridge/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/indicator-rvs-and-the-fundamental-bridge/</link>
       <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/indicator-rvs-and-the-fundamental-bridge/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/indicator-rvs-and-the-fundamental-bridge/</guid>
       <description>Expectation (also called expected value or mean) is a very important concept in probability and statistics. One usage we could name is estimation in statistics in which we try to infer the parameters of a statistical model. Another simple application is the step of sanity checks in training a nerual network: verify if the loss function gives a value which is acceptably around its expectation&amp;hellip;</description>
     </item>
     
     <item>
       <title>2017 in review</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/2017-in-review/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/2017-in-review/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/2017-in-review/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/2017-in-review/</guid>
       <description>P/s: Vietnamese below.
  Unemployed. After leaving Fossil, I lost my balance. There was a time I had not seen any of my friends. I missed them as much as I missed my work :). Acquired some new knowledge. While being out of work, I took part in a few courses in Coursera, MIT Opencourseware and so on. Some courses did bring me plenty of interests, headaches, and mind-blowing moments as well.</description>
     </item>
     
     <item>
       <title>Tản mạn: Khi chúng ta có nhiều lựa chọn</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-when-we-have-many-choices/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/random-thoughts-when-we-have-many-choices/</link>
       <pubDate>Tue, 26 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/random-thoughts-when-we-have-many-choices/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/random-thoughts-when-we-have-many-choices/</guid>
       <description>Khi nói đến giải quyết vấn đề, người ta đôi khi dùng một cụm dài hơn là giải quyết vấn đề và ra quyết định (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái: &lt;br&gt;(1) Từ không có lời giải -&amp;gt; có lời giải&lt;br&gt;(2) Từ có nhiều lời giải -&amp;gt; chọn ra lời giải tối ưu&amp;hellip;</description>
     </item>
     
     <item>
       <title>MVVM best practice: Inputs - Outputs</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/mvvm-best-practice-inputs-outputs/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/mvvm-best-practice-inputs-outputs/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</guid>
       <description>When it comes to iOS architecture, MVVM is one of the most favorable candidates. Not only does it provide higher testability than MVC but also this architecture is lightweight as compared to its counterparts such as VIPER. Despite that, proper approaches should be adopted to take advantage of MVVM. Otherwise, we could end up with an alike version of MVC with an additional component (ViewModel).</description>
     </item>
     
     <item>
       <title>Định lý cuối cùng của Fermat</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/fermats-last-theorem/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/fermats-last-theorem/</link>
       <pubDate>Fri, 08 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/fermats-last-theorem/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/fermats-last-theorem/</guid>
       <description>Khoảng 5-6 tháng trước mình xem một bộ phim tài liệu có tựa đề &amp;ldquo;BBC - Horizon - 1996 - Fermat’s Last Theorem&amp;rdquo;. Đây là một câu chuyện về lịch sử toán học mà mình thấy rất hay nên muốn chia sẻ lại. Fermat là một nhà toán học người Pháp. Ông có nhiều đóng góp quan trọng trong lý thuyết số (number theory). Một trong số đó là định lý Fermat lớn, hay định lý cuối cùng của Fermat (Fermat’s Last Theorem).</description>
     </item>
     
     <item>
       <title>An example of Survey with privacy</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/an-example-of-survey-with-privacy/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/an-example-of-survey-with-privacy/</link>
       <pubDate>Tue, 14 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/an-example-of-survey-with-privacy/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/an-example-of-survey-with-privacy/</guid>
       <description>A while ago, I read the book Probabilistic Programming and Bayesian Methods for Hackers written by Cam Davidson-Pilon and was really impressed by an example of carrying out surveys. Although it is not a standard method with wide scope of use, from the perspective of a software engineer who is not from statistics background, I think its idea is pretty beautiful and worth knowing</description>
     </item>
     
     <item>
       <title>How to stub network in iOS</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/how-to-stub-network-in-ios/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</link>
       <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/how-to-stub-network-in-ios/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</guid>
       <description>There are times we wish to fake a network event, for example, a network error. However, integrating a 3rd party stub library just for this purpose is not really worthy. This post aims at demonstrating how to stub network.</description>
     </item>
     
     <item>
       <title>Quick thoughts on Tail recursion in Swift</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</guid>
       <description>I always thought that Tail call optimization (TCO), sometimes called tail recursion optimization, is supported in most languages by default. It turns out to be opposite.</description>
     </item>
     
     <item>
       <title>Method Swizzling: What, Why and How</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/method-swizzling-what-why-and-how/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</link>
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/method-swizzling-what-why-and-how/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</guid>
       <description>Method swizzling is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs. Actually, this special feature is offered by the Objective-C runtime, via message dispatch.</description>
     </item>
     
     <item>
       <title>Method dispatch in Swift</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</link>
       <pubDate>Mon, 25 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</guid>
       <description>Method dispatch is a term referring to mechanisms by which the program determines which operation should be executed (by operation, I mean a set of instructions). There are times we expect a method behavior to be determined only at runtime. This motivation give rise to different mechanisms of dispatching a method, each of which has its own pros and cons.</description>
     </item>
     
     <item>
       <title>How a Swift file is compiled</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/how-a-swift-file-is-compiled/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/how-a-swift-file-is-compiled/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</guid>
       <description>First of all, this is not &amp;ldquo;how an iOS/MacOS app is built&amp;rdquo;. An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match&amp;hellip;</description>
     </item>
     
     <item>
       <title>What is Simpson&#39;s paradox?</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/what-is-simpsons-paradox/</link>
       <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/what-is-simpsons-paradox/</guid>
       <description>If you&amp;rsquo;re from the world of statistics, you may have heard of it. Two doctors, Dr. Hibbert and Dr. Nick, both perform 2 types of surgeries: heart surgery and band-aid removal&amp;hellip;</description>
     </item>
     
     <item>
       <title>Brain exercising #1</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/brain-exercising-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</link>
       <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/brain-exercising-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</guid>
       <description>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&amp;hellip; I am thinking of a little corner of this blog for this sort of exercising.
 Claim: If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.
 If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</description>
@@ -481,64 +481,64 @@ If p is prime, all the coefficients in (a+b)^p except the first and last are div
     
     <item>
       <title>A misuse of Expectation</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/a-misuse-of-expectation/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/a-misuse-of-expectation/</link>
       <pubDate>Sun, 30 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/a-misuse-of-expectation/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/a-misuse-of-expectation/</guid>
       <description>This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from lecture 23 of MIT6_042J</description>
     </item>
     
     <item>
       <title>Weight initialization - impact on layer distribution</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/weight-initialization/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/weight-initialization/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/weight-initialization/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/weight-initialization/</guid>
       <description>This post covers some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers.</description>
     </item>
     
     <item>
       <title>A dive into Histogram of Oriented Gradients (HOG)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/a-dive-into-hog/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</link>
       <pubDate>Thu, 13 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/a-dive-into-hog/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</guid>
       <description>In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&amp;hellip; And then implement it in python (in order to comprehend it).</description>
     </item>
     
     <item>
       <title>Dark matter, Dark energy là gì?</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/dark-matter-dark-energy/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/dark-matter-dark-energy/</link>
       <pubDate>Wed, 05 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/dark-matter-dark-energy/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/dark-matter-dark-energy/</guid>
       <description>Cách đây không lâu, tôi tình cờ xem 1 video trên TED talk về chủ đề Vũ trụ học &amp;ldquo;Shedding light on dark matter&amp;rdquo;, rồi sau đó coi 1 loạt các phim tài liệu về chủ đề này&amp;hellip; Post này tóm tắt lại những gì mình hiểu ở mức ý niệm (nên có thể có những chỗ hiểu chưa chính xác)</description>
     </item>
     
     <item>
       <title>Tháng 6 mùa thi...</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/thang-6-mua-thi/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/thang-6-mua-thi/</link>
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/thang-6-mua-thi/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/thang-6-mua-thi/</guid>
       <description>Tháng 5 mùa chia tay, tháng 6 mùa thi&amp;hellip; Những ký ức chợt ùa về. Các bạn học sinh lớp 9 đã bước vào những ngày thi vào lớp 10. Đúng chục năm trước, tôi cũng đã trải qua cảm giác tương tự&amp;hellip;</description>
     </item>
     
     <item>
       <title>Tản mạn 04/04/2017</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-04-04-2017/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-04-04-2017/</link>
       <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-04-04-2017/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-04-04-2017/</guid>
       <description>Hôm nay tiếp tục là 1 ngày trong quãng thời gian lang thang quán cafe, mần bậy mần bạ đến cuối ngày. Nghe cứ như 1 thằng tào lao đi giết thời gian nhỉ.</description>
     </item>
     
     <item>
       <title>Create custom Xcode templates</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/create-custom-xcode-templates/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/create-custom-xcode-templates/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/create-custom-xcode-templates/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/create-custom-xcode-templates/</guid>
       <description>Everytime we create a new file, Xcode suggests some built-in templates that may be useful. Luckily, we could also create our own templates.
 Technically, Xcode looks for templates in ~/Library/Developer/Xcode/Templates and /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates. Let&amp;rsquo;s call the first path P1 and the second path P2. A template could be iferred by a folder MY_TEMPLATE.xctemplate.
 Assume we gonna create a template for MVVM. It should create 3 files: [Feature]Model.swift, [Feature]ViewModel.swift and [Feature]ViewController.swift. Ex: LoginModel.</description>
@@ -546,182 +546,182 @@ Assume we gonna create a template for MVVM. It should create 3 files: [Feature]M
     
     <item>
       <title>FAQ on ReactiveCocoa</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/faq-on-reactivecocoa/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/faq-on-reactivecocoa/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</guid>
       <description>This post highlights some Q&amp;amp;A related to ReactiveCocoa - a FRP framework specifically built for iOS.</description>
     </item>
     
     <item>
       <title>Garbage Collection (GC) algorithms</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/gc-algorithms/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/gc-algorithms/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/gc-algorithms/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/gc-algorithms/</guid>
       <description>As an iOS developer, I am quite familiar with Reference Counting. It is considered a fundamental knowledge regarding memory manangement that every iOS developers must acknowledge. Today, I figured out a few more algorithms of garbage collection.
 Fig 1. From left to right: Reference Counting, Mark-Sweep, Mark-Compact, Copying. Reference Counting (RC)  This is simple &amp;amp; easy to implement. However, it has some major drawbacks one of which is not being able to deal with retain cycles.</description>
     </item>
     
     <item>
       <title>Tản mạn: Gánh tàu hũ</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-ganh-tau-hu/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-ganh-tau-hu/</link>
       <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-ganh-tau-hu/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-ganh-tau-hu/</guid>
       <description>Thong dong rãi bước đi từ trong hẻm ra, bên kia đường, biển dậy sóng. - &amp;ldquo;Ăn đậu hũ nóng đi em&amp;rdquo;. - &amp;ldquo;Hmm&amp;hellip; làm em 1 chén, nóng nghen chị&amp;rdquo;</description>
     </item>
     
     <item>
       <title>Chuyện KFC - order</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-kfc/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-kfc/</link>
       <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-kfc/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-kfc/</guid>
       <description>Tôi rất ít khi đi ra ngoài ăn vặt bởi ăn uống không nằm trong top những thứ tôi quan tâm. (Nên khi đi đâu chơi, tôi không đặt nặng vấn đề ẩm thực, mà là trải nghiệm)&amp;hellip; Hôm qua tôi cao hứng đi ăn KFC. Là ngày đầu năm, lại rơi vào chủ nhật, nên lượng khách ở KFC Âu Cơ cũng đông hơn ngày thường.</description>
     </item>
     
     <item>
       <title>Swift: ExpressibleByStringLiteral</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-expressiblebystringliteral/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-expressiblebystringliteral/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</guid>
       <description>It is a protocol in Swift 3 (which was StringLiteralConvertible in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string</description>
     </item>
     
     <item>
       <title>Log events in ReactiveCocoa</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/log-events-in-reactivecocoa/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/log-events-in-reactivecocoa/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</guid>
       <description>I used to spend a lot of time reading documentations of ReactiveCocoa (Framework overview, design guidlines, basic operators&amp;hellip;) but, unfortunately, missed this one&amp;hellip;</description>
     </item>
     
     <item>
       <title>A freestyle way to config UIView</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/a-freestyle-way-to-config-uiview/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</link>
       <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/a-freestyle-way-to-config-uiview/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</guid>
       <description>This article is to introduce a freestyle way to set up views in iOS (by code).</description>
     </item>
     
     <item>
       <title>Chuyện học: Toán tuổi thơ - Toán học tuổi trẻ</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/toan-tuoi-tho-toan-hoc-tuoi-tre/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/toan-tuoi-tho-toan-hoc-tuoi-tre/</link>
       <pubDate>Sun, 04 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/toan-tuoi-tho-toan-hoc-tuoi-tre/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/toan-tuoi-tho-toan-hoc-tuoi-tre/</guid>
       <description>Giờ nghe tới chữ Toán là đầu óc loạn cào cào lên với hình ảnh dấu tích phân, luỹ thừa, logarit&amp;hellip; chứ hồi cấp 2 tôi thích học Toán vô cùng 😀. Thuở đó, mấy đứa học sinh trường huyện tụi tôi không có điều kiện để tiếp xúc với nhiều nguồn tài liệu. Mỗi lần ba chở tôi xuống nhà sách thị xã mua sách, tôi hầu như chỉ lựa có mỗi cuốn sách “Nâng cao và phát triển Toán” (hình học và đại số) của Vũ Hữu Bình. Sự thật là, đứa nào học Toán cũng đều xem đây là cuốn sách gối đầu giường. Vì hơi kén chọn sách (1 phần cũng là do gu chọn sách, không thích mấy cuốn giấy màu trắng, dày, bìa sáng loáng&amp;hellip;), tôi thấy rất đói sách. (Àh, mấy sách Tiếng anh, Ngữ văn&amp;hellip; tôi không mua đâu :v)</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện câu hỏi</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-cau-hoi/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-cau-hoi/</link>
       <pubDate>Sat, 30 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-cau-hoi/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-cau-hoi/</guid>
       <description>Dạo này cứ cách vài tuần, công ty có thêm vài người mới. Có một anh bạn (nhỏ hơn mình 1 tuổi) cũng mới vào nhưng ở team khác. Ku cậu là người hoạt khẩu, miệng nói liếng thoắng. Mình ngồi đối diện nhiều lúc cũng cảm thấy hơi ngộp tai.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện khái niệm</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-khai-niem/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-khai-niem/</link>
       <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-khai-niem/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-khai-niem/</guid>
       <description>Gần đây, trên công ty thường hay xảy ra những cuộc tranh luận trong dự án mà đa số các trường hợp là do không thống nhất trong việc hiểu một khái niệm. Làm mình nhớ lại, thấm thía những câu chữ của thầy Phan Dũng viết về &amp;ldquo;Định nghĩa khái niệm&amp;rdquo; trong cuốn &amp;ldquo;Tư duy Logic, biện chứng và hệ thống&amp;rdquo;.</description>
     </item>
     
     <item>
       <title>Swift: Generic protocol (p.1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-generic-protocol-p1/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</link>
       <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-generic-protocol-p1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</guid>
       <description>In this article, we would look into how to implement a generic protocol. A few lacks of language support (Swift version prior to 3.0) would be also pointed out for discussion.</description>
     </item>
     
     <item>
       <title>Swift: Concrete types in Protocol</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-concrete-types-in-protocol/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</link>
       <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-concrete-types-in-protocol/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</guid>
       <description>A specific use case that we are unable to use concrete types in protocol, and how to fix it.</description>
     </item>
     
     <item>
       <title>Tản mạn: Chuyện bún bò</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-bun-bo/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-bun-bo/</link>
       <pubDate>Wed, 15 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-chuyen-bun-bo/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-bun-bo/</guid>
       <description>Sáng nay là một buổi sáng đẹp trời. Chắc vì cơn mưa đêm đã rửa sach bầu trời mùa hạ. Sáng nay tôi đạp xe đi làm. Một dịp tốt để quất 1 tô bún bò trước khi đạp gần chục cây số đến công ty.</description>
     </item>
     
     <item>
       <title>Swift: Currying</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-currying/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-currying/</link>
       <pubDate>Sun, 17 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-currying/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-currying/</guid>
       <description>This topic has been mentioned as a part of Functional programming. Though it’s kind of fun to use currying, we often see it on the list along with functors, applicative, monads&amp;hellip; In this article, I’ll show you a couple of ways to have fun with currying.</description>
     </item>
     
     <item>
       <title>Swift: Optional — map</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-optional-map/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</link>
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-optional-map/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</guid>
       <description>A few experiments with optionals in Swift.</description>
     </item>
     
     <item>
       <title>Tản mạn mùng 1 tết 2016</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tan-man-mung-1-tet-2016/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tan-man-mung-1-tet-2016/</link>
       <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tan-man-mung-1-tet-2016/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tan-man-mung-1-tet-2016/</guid>
       <description>Suy nghĩ bâng quơ những ngày tết &amp;amp; cận tết Bính Thân&amp;hellip; Có lẽ một trong những những đề tài được nhắc đến nhiều nhất năm nay là cái thời tiết lạnh buốt dịp tết.</description>
     </item>
     
     <item>
       <title>Flatland (Vùng đất phẳng)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/flatland-vung-dat-phang/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/flatland-vung-dat-phang/</link>
       <pubDate>Fri, 15 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/flatland-vung-dat-phang/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/flatland-vung-dat-phang/</guid>
       <description>Đây là một bộ phim hoạt hình dựa trên tiểu thuyết “Flatland: A Romance of Many Dimensions” của Edwin Abbot. Bộ phim này về mặt kỹ xảo thì không có gì đáng kể (nếu không muốn nói là hơi xấu), nhưng cái lôi cuốn người xem chính là cái ý tưởng độc đáo của phim. Đúng ra thì lời khen này nên dành tặng cho Abbot, tác giả cuốn sách.</description>
     </item>
     
     <item>
       <title>Review sách: Trên đường băng</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/review-sach-tren-duong-bang/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/review-sach-tren-duong-bang/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/review-sach-tren-duong-bang/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/review-sach-tren-duong-bang/</guid>
       <description>Tony Buổi Sáng không còn là cái tên xa lạ gì với các bạn trẻ. Mình cũng là một người rất thích phong cách viết của dượng mặc dù không thường xuyên đọc mấy post của dượng trên fanpage.</description>
     </item>
     
     <item>
       <title>Tạp luận: tìm vs. kiếm</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/tap-luan-tiem-vs-kiem/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/tap-luan-tiem-vs-kiem/</link>
       <pubDate>Sat, 09 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/tap-luan-tiem-vs-kiem/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/tap-luan-tiem-vs-kiem/</guid>
       <description>Năm 2 Đại học, tui có học môn Cơ sở trí tuệ nhân tạo. Buổi học đầu tiên, thầy giáo có nêu ra một câu hỏi như sau “tìm và kiếm khác nhau như thế nào?”. Sự thật là không có ai trong số lũ sinh viên tụi tui trả lời câu hỏi đó. Có thể có đứa biết câu trả lời hay ít nhất có một nhận định nào đó, còn tui thì mặt thộn ra, giống như khi bị hỏi về định nghĩa của những khái niệm trừu tượng kiểu như: “tình yêu là gì?”, “ý thức là gì?”.</description>
     </item>
     
     <item>
       <title>Động não: Who ate the cake?</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/dong-nao-who-ate-the-cake/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/dong-nao-who-ate-the-cake/</link>
       <pubDate>Tue, 05 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/dong-nao-who-ate-the-cake/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/dong-nao-who-ate-the-cake/</guid>
       <description>One day, a piece of cake meant for Eric went missing. His parents, Mr. and Mrs. Tan, suspected that one of his siblings ate the piece of cake and so questioned them. Here were their answers:
 Alfred said, “It wasn’t Charles. It was Darius.”
 Brenda said, “It wasn’t Darius. It was Alfred.”
@@ -732,110 +732,110 @@ Exactly four of the eight statements were true.</description>
     
     <item>
       <title>Chuyện mưa</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-mua/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-mua/</link>
       <pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-mua/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-mua/</guid>
       <description>Có lẽ ai cũng đều có 1 chút kỷ niệm nho nhỏ với mưa. Tôi cũng không phải một ngoại lệ&amp;hellip; Hôm nay trời mưa to. Trên đường chạy về nhà, tôi nhớ đến Quảng Ngãi.</description>
     </item>
     
     <item>
       <title>Vài dòng về cuốn sổ</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/vai-dong-ve-cuon-so/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/vai-dong-ve-cuon-so/</link>
       <pubDate>Sun, 08 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/vai-dong-ve-cuon-so/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/vai-dong-ve-cuon-so/</guid>
       <description>Chúng ta thường hay được khuyên rằng nên có 1 cuốn sổ ghi chú bên mình phòng khi có 1 ý tưởng rồ dại nào chợt đến. Tôi cũng đã theo lời khuyên ấy, cũng có cuốn sổ của riêng mình, mà thật ra là nhiều cuốn sổ.</description>
     </item>
     
     <item>
       <title>Hiệu ứng mồi (Priming effect)</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/hieu-ung-moi-priming-effect/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/hieu-ung-moi-priming-effect/</link>
       <pubDate>Sun, 01 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/hieu-ung-moi-priming-effect/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/hieu-ung-moi-priming-effect/</guid>
       <description>Hiệu ứng mồi (priming effect) là một hiệu ứng tâm lý diễn ra trong não bộ con người, khi kết quả hành động của một người bị ảnh hưởng bởi một vài thông tin người đó tiếp nhận được trước đó</description>
     </item>
     
     <item>
       <title>Động não: Alice, Betrice or Cynthia?</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/dong-nao-alice-betrice-cynthia/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/dong-nao-alice-betrice-cynthia/</link>
       <pubDate>Thu, 29 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/dong-nao-alice-betrice-cynthia/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/dong-nao-alice-betrice-cynthia/</guid>
       <description>Một người đi kén vợ, và định chọn một trong ba cô gái Alice, Beatrice và Cynthia rồi cưới. Biết rằng mỗi cô gái đều luôn nói dối hoặc luôn nói thật. Một trong ba cô gái là phù thủy nhưng không biết rằng phù thủy luôn nói dối hay luôn nói thật. Dưới đây là những điều mà các cô gái nói với chàng trai.
 - Alice: Cynthia là phù thủy.</description>
     </item>
     
     <item>
       <title>Luận UX: Ly cafe take-away</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/luan-ux-ly-cafe/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/luan-ux-ly-cafe/</link>
       <pubDate>Sun, 25 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/luan-ux-ly-cafe/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/luan-ux-ly-cafe/</guid>
       <description>Mình rất thích đi cafe mặc dù đa số những trường hợp đều chỉ có 1 thân 1 cõi :D. Mình cũng là đứa tò mò, hay có câu hỏi về những thứ xung quanh như “sao cánh cửa này kỳ kỳ?”, “sao cái biển hiệu này lại treo ở đây?” hay “sao lúc đi thang cuốn người ta hay vịn tay vào thang” &amp;hellip; Tình cờ một hôm đi cafe với đứa bạn, mình có 1 phát hiện nhỏ về việc branding trên ly cafe take-away&amp;hellip;</description>
     </item>
     
     <item>
       <title>Swift: Box with recursive data structure</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-box-with-recursive-data-structure/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</link>
       <pubDate>Sat, 17 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-box-with-recursive-data-structure/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</guid>
       <description>A workaround to model recursive data structure with enum</description>
     </item>
     
     <item>
       <title>Chuyện Năng Khiếu: cô lao công</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nang-khieu-co-lao-cong/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nang-khieu-co-lao-cong/</link>
       <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nang-khieu-co-lao-cong/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nang-khieu-co-lao-cong/</guid>
       <description>Năng Khiếu, ngoài những câu chuyện “Olympic Toán quốc tế”, “Cầu truyền hình Olympia”&amp;hellip; còn có những câu chuyện đời thường – về những người bình thường – và được viết bởi những người tầm thường.</description>
     </item>
     
     <item>
       <title>Chuyện Năng Khiếu: YRMUPTP</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/chuyen-nang-khieu-yrmuptp/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nang-khieu-yrmuptp/</link>
       <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/chuyen-nang-khieu-yrmuptp/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nang-khieu-yrmuptp/</guid>
       <description>Đã 6 năm kể từ lúc lớp Toán 0710 bước sang niên học cuối cấp. Hầu như ai cũng tất bật cho kỳ thi đại học&amp;hellip; Hồi đó trong lớp có một hình thức học nhóm tự phát rất hay. Khởi đầu là một nhóm (của tổ 3) với ý tưởng soạn đề thi và tổ chức thi thử để mọi người quen dần với kỳ thi đại học.</description>
     </item>
     
     <item>
       <title>RAC 3.0 with Login workflow</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/rac3-with-login-flow/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</link>
       <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/rac3-with-login-flow/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</guid>
       <description>A particular example of RAC 3.0, applied in Login workflow.</description>
     </item>
     
     <item>
       <title>Topology</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/topology/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/topology/</link>
       <pubDate>Sat, 15 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/topology/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/topology/</guid>
       <description>I hadn’t known Topology until a friend of mine gave me a quiz related to it. Though I still have no idea about the mathematical stuff, it has been drawing my attention due to some of its interesting facts&amp;hellip;</description>
     </item>
     
     <item>
       <title>Optional - Functional</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/optional-functional/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/optional-functional/</link>
       <pubDate>Tue, 16 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/optional-functional/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/optional-functional/</guid>
       <description>A demonstration of lazy evaluation using a simple trick</description>
     </item>
     
     <item>
       <title>Mô hình hoá bài toán bằng những người tý hon</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</link>
       <pubDate>Sat, 17 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</guid>
       <description>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem).
 &amp;hellip;
 Một lần, mình đọc phương pháp “Mô hình hóa bài toán bằng những người tý hon” trong sách của thầy Phan Dũng, thấy cách giải khá độc đáo nên share cùng mọi người. Bài viết này hầu như là viết lại nội dung mà thầy Phan Dũng đã trình bày trong sách [1].</description>
@@ -843,10 +843,10 @@ Một lần, mình đọc phương pháp “Mô hình hóa bài toán bằng nh�
     
     <item>
       <title>Đố vui: bài toán tính quãng đường và việc hiểu bài toán</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/do-vui-hieu-bai-toan/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/do-vui-hieu-bai-toan/</link>
       <pubDate>Sat, 27 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/do-vui-hieu-bai-toan/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/do-vui-hieu-bai-toan/</guid>
       <description>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem).
 &amp;hellip;
 Bạn nào thích động não, phân tích vấn đề, hãy cùng nhau thảo luận thử nhé!
@@ -856,73 +856,73 @@ Phát biểu bài toán  Giả sử Lực đi bộ với vận tốc 1 bước/g
     
     <item>
       <title>[Lý Sơn v1] Tập cuối: Hội đua thuyền Tứ linh</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-7/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-7/</link>
       <pubDate>Fri, 07 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-7/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-7/</guid>
       <description>Trời nắng oi bức… Đang giữa trưa. Tôi chưa thấy đường hoa nào ở các tỉnh, thành phố trong dịp tết lại đông và nhộn nhịp hơn người dân đi xem đua thuyền. Ở đây đông như đi xem pháo hoa 30 tết vậy. Hầu như tất cả dân đảo đều đến xem ngày đua cuối cùng (mùng 8 tết).</description>
     </item>
     
     <item>
       <title>[Lý Sơn v1] Tập 6: Chùa Hang</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-6/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-6/</link>
       <pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-6/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-6/</guid>
       <description>Nơi đây cũng có 1 vách đá dựng đứng cao như ở Hang Câu. Nếu ở Hang Câu, vách đá được nước biển bào mòn nhẵn thì ở chùa Hang, ta thấy đá nhô ra từng phiến. Phần chân vách đá lõm sâu vào bên trong hơn nhiều so với ở Hang Câu. Chùa nằm trong hang, được tạo ra từ phần lõm đó.</description>
     </item>
     
     <item>
       <title>[Lý Sơn v1] Tập 5: Bình minh trên núi Thới Lới</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-5/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-5/</link>
       <pubDate>Wed, 05 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-5/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-5/</guid>
       <description>Sau một đêm ngủ ở chùa Vĩnh Ân, 5h20 chúng tôi xuất phát bằng xe máy. Trời lờ mờ, những con thuyền neo đậu gần những bãi đá đứng lặng yên. Không gian tĩnh mịch, không có tiếng sóng, chỉ có tiếng xe máy chạy bon bon đi về phía núi Thới Lới…</description>
     </item>
     
     <item>
       <title>[Lý Sơn v1] Tập 3,4: Chùa Đục, sự thú vị của dân đảo &amp; hoàng hôn</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-3-4/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-3-4/</link>
       <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-3-4/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-3-4/</guid>
       <description>Chúng tôi tiếp tục cuộc hành trình với đích đến là chùa Đục và đỉnh Liêm Tự. Chùa Đục tọa lạc ở thôn Tây, xã An Vĩnh, cách Cảng Lý Sơn không xa, chưa tới 1km. Chùa nằm trên giữa sườn núi. Ta phải leo men theo sườn núi đúng 100 bậc thang thì gặp chùa. Ắt hẳn những bạn trẻ đi với sự háo hức trong người khi lên các bậc thềm đều giống như tôi: vừa leo vừa đếm số bậc thang…</description>
     </item>
     
     <item>
       <title>[Lý Sơn v1] Tập 2: Hang Câu và bữa tiệc sinh nhật</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-2/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-2/</link>
       <pubDate>Mon, 03 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-2/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-2/</guid>
       <description>Có 2 may mắn rất lớn trong chuyến đi của mình. Thứ nhất, mình có 1 đứa bạn tên Phụng, là người dân ở đây, đã giúp đỡ mình suốt 2 ngày trong vai trò là 1 hướng dẫn viên. May mắn thứ hai là, mình được quen với những người bạn của Phụng: Trạch, Thừa, Có, Hồng, Tí Nị, Mỹ, Tuyết. Thật tình cờ, hôm ấy là sinh nhật Trach. Mọi người rủ nhau đi Hang Câu, và dĩ nhiên mình cũng nhập bọn…</description>
     </item>
     
     <item>
       <title>[Lý Sơn v1] Tập 1: Âm Linh Tự</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-1/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-1/</link>
       <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-1/</guid>
       <description>Âm Linh Tự cách cảng Lý Sơn không xa, khoảng chừng 100m. Ban đầu đoàn không định sẽ ghé thăm Âm Linh Tự, nhưng khi đi ngang qua thấy kiến trúc tự hơi lại nên vào xem thử. Ấn tượng đầu tiên khtraveli bước vào Âm Linh Tự: cái này không giống chùa ở Nghĩa Hành, hay bất cứ 1 cái chùa nào mình từng thấy. Nó giống như 1 cái đình thờ ở miền Bắc hơn. Và sự thật, nó không phải là chùa. Người ta gọi đây là “lăng”.</description>
     </item>
     
     <item>
       <title>[Lý Sơn v1] Tập 0: Tàu cao tốc An Vĩnh</title>
-      <link>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-0/</link>
+      <link>https://trinhngocthuyen.com/posts/misc/ly-son-tap-0/</link>
       <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/misc/ly-son-tap-0/</guid>
+      <guid>https://trinhngocthuyen.com/posts/misc/ly-son-tap-0/</guid>
       <description>Xuất phát từ Cảng Sa Kỳ, đoàn của mình gồm có 2 người là: mình và chính mình. Mình gặp 3 thanh niên đi du lịch với những dụng cụ đồ nghề nhìn rất chuyên nghiệp. Được biết họ đến từ Hà Nội và đi Lý Sơn lần đầu tiên sau chuyến đi ở Huế. Mình rất vui và háo hức, vì nơi đây được nhiều người biết đến và người ta cứ kháo nhau rằng “Lý Sơn đẹp lắm”…</description>
     </item>
     
     <item>
       <title>Search</title>
-      <link>https://trinhngocthuyen.github.io/search/</link>
+      <link>https://trinhngocthuyen.com/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/search/</guid>
+      <guid>https://trinhngocthuyen.com/search/</guid>
       <description></description>
     </item>
     

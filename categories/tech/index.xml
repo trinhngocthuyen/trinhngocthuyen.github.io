@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tech on Thuyen&#39;s corner</title>
-    <link>https://trinhngocthuyen.github.io/categories/tech/</link>
+    <link>https://trinhngocthuyen.com/categories/tech/</link>
     <description>Recent content in tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>50 Shades of Git: Remotes and Authentication</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</link>
       <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</guid>
       <description>Introduction Git is a software development tool that almost all engineers use in their work. This source control tool enables us to make changes to a project code base collaboratively. However, Git can be a headache at times. When running on CI environment, it sometimes does not work the way it does locally. Moreover, we sometimes follow best practices without knowing much about how it works. This gap together with the limited debug capabilities on CI make it even harder to resolve issues.</description>
     </item>
     
     <item>
       <title>Cocoapods Explained: Plugins</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-plugins/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</link>
       <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-plugins/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</guid>
       <description>In the previous post, we talked about Podfile. In this post, we will look into CocoaPods plugins.
 Back in early days, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.
 Instead of rejecting them, CocoaPods provided the support for plugins.</description>
@@ -29,229 +29,229 @@ Instead of rejecting them, CocoaPods provided the support for plugins.</descript
     
     <item>
       <title>CocoaPods Explained: Podfile</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</link>
       <pubDate>Sat, 17 Dec 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/cocoapods-explained-podfile/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</guid>
       <description>In iOS development, CocoaPods has become one of the must-know tools. In a team where CocoaPods is adopted, engineers run pod install as often as git checkout. They know how to properly set up a project with CocoaPods, declare dependencies in Podfile, and update dependencies if needed. However, some have little understanding of what happens under the hood. This prevents them from troubleshooting CocoaPods issues if occurred or extending its usage.</description>
     </item>
     
     <item>
       <title>Dealing With Flaky UI Tests in iOS</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</link>
       <pubDate>Sat, 25 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/dealing-with-flaky-ui-tests/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</guid>
       <description>1. Introduction UI testing is a test technique, besides unit testing, to ensure product quality. While unit testing focuses on small portions (or units) of the system, UI testing aims to cover a wider user journey in the app. This testing technique helps engineers gain more confidence when developing, refactoring, and shipping the products to users. In the context of iOS development, UI testing plays a key role in product quality as the form of a feature shipped to users is usually through what they see on the app.</description>
     </item>
     
     <item>
       <title>CI: Heuristically Extracting Test Methods Before Runtime</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</link>
       <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-extract-test-methods/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</guid>
       <description>1. Introduction Reducing pipeline time is a key problem in the pipeline time reduction epic. As mentioned in the previous post, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called runners). The assignment of what tests to what jobs usually takes place at the end of the build job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have.</description>
     </item>
     
     <item>
       <title>CI: Thinning iOS Build Artifacts</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/ci-ios-artifacts-optimization/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</guid>
       <description>1. Introduction 1.1. Pipeline Time Improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).
 For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests.</description>
     </item>
     
     <item>
       <title>When Project Labels are not Just to Categorize Things</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/when-project-labels-are-not-just-to-categorize-things/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</link>
       <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</guid>
       <description>Whether you are a fan of Github, Gitlab, BitBucket, or any git-based repo hosting platform, I am sure you must be farmiliar with project labels.
 Categorizing (Messy) Project Issues A common use case of project labels is to categorize project issues of a repo. For engineering discussion, we use Slack (or any alternative for instant messaging platform) only for quick discussions. Those usually end shortly. If such a discussion become lengthy, probably you used the wrong communication channel 😀?</description>
     </item>
     
     <item>
       <title>When iOS CI/CD Config is not Just a File or a Dashboard</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</link>
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</guid>
       <description>A while ago, when I heard the term &amp;ldquo;CI/CD&amp;rdquo;, I always thought of a dashboard to drag and drop, upload certificates and input the scheme&amp;hellip; blah blah. That&amp;rsquo;s all! And I was kinda believe that a good CI/CD platform must be like that: convenient, as few setups as possible. Now, I have a different viewpoint. What I very much expect in a CI/CD platform is the ability to customize workflow. This does not mean those drag-and-drop platforms are inadequate.</description>
     </item>
     
     <item>
       <title>Tản mạn: chuyện Gitlab</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</link>
       <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-gitlab/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</guid>
       <description>1 Khi mình join team, công ty mình host các projects trên Github. Một dev mới vào công ty sẽ được add tài khoản Github cá nhân mình vào tài khoản organization của công ty. Lúc ấy, trên Github profile của bạn sẽ hiển thị membership với công ty (bạn phải public cái membership thì người khác mới thấy được nha). Nếu bạn làm cho công ty nào ok, hoặc thuộc dạng top-notch trong nước/khu vực, thì Github profile của bạn sẽ có-vẻ đẹp hơn một tí.</description>
     </item>
     
     <item>
       <title>Random thoughts on being a CI engineer</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-being-a-ci-engineer/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/random-thoughts-on-being-a-ci-engineer/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</guid>
       <description>In this post, I am going to talk about my experiences when working with CI/CD for iOS applications and some valuable lessons I learned.
 1 In the past few months, I have been intensively working on CI/CD features in my team. My teammates sometimes refer to me as &amp;ldquo;the CI guy&amp;rdquo;. Before me, &amp;ldquo;the CI guy&amp;rdquo; was someone else who is humble, and quiet. After he left the company, I became the main PIC for CI/CD-related issues.</description>
     </item>
     
     <item>
       <title>Swift: The downsides of lazy var (part 2)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-2/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</link>
       <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-2/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</guid>
       <description>Continue from the previous post, we will look into a few problems when working with lazy var&amp;hellip;</description>
     </item>
     
     <item>
       <title>Swift: The downsides of lazy var (part 1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-1/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</link>
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-the-downsides-of-lazy-var-part-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</guid>
       <description>Lazy evaluation is a really powerful technique which enhances app performance by avoiding unecessary computation. In Swift, apart from this advantage, it also brings convenience when it comes to coding style&amp;hellip;</description>
     </item>
     
     <item>
       <title>Config: Run shell script on login</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/config-run-shell-script-on-login/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/config-run-shell-script-on-login/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/config-run-shell-script-on-login/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/config-run-shell-script-on-login/</guid>
       <description>Sometimes, I got frustrated with the fact that my SSH keys were cleared from agents after rebooting. As a result, I had to manually add those keys to agents every time my computer restarted (although it&amp;rsquo;s not occasional)&amp;hellip; It&amp;rsquo;s best to automate such tasks - I thought. So, I asked &amp;ldquo;how to run a shell script on login?&amp;rdquo;. And here are some solutions</description>
     </item>
     
     <item>
       <title>Markov chain: What is a Markov chain?</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/markov-chain-part-1/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/markov-chain-part-1/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/markov-chain-part-1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/markov-chain-part-1/</guid>
       <description>Markov chain is a very important piece of probability and statistics. One application we could name is Markov Decision Process (MDP) used for decision making. Another one is Markov chain Monte Carlo (MCMC), a popular sampling method in statistics. You may also know Google PageRank algorithm, which is part of the ground of Google indexing technology. The algorithm is implemented on top of this concept&amp;hellip;</description>
     </item>
     
     <item>
       <title>Indicator r.v.s and the fundamental bridge</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/indicator-rvs-and-the-fundamental-bridge/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/indicator-rvs-and-the-fundamental-bridge/</link>
       <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/indicator-rvs-and-the-fundamental-bridge/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/indicator-rvs-and-the-fundamental-bridge/</guid>
       <description>Expectation (also called expected value or mean) is a very important concept in probability and statistics. One usage we could name is estimation in statistics in which we try to infer the parameters of a statistical model. Another simple application is the step of sanity checks in training a nerual network: verify if the loss function gives a value which is acceptably around its expectation&amp;hellip;</description>
     </item>
     
     <item>
       <title>MVVM best practice: Inputs - Outputs</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/mvvm-best-practice-inputs-outputs/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/mvvm-best-practice-inputs-outputs/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</guid>
       <description>When it comes to iOS architecture, MVVM is one of the most favorable candidates. Not only does it provide higher testability than MVC but also this architecture is lightweight as compared to its counterparts such as VIPER. Despite that, proper approaches should be adopted to take advantage of MVVM. Otherwise, we could end up with an alike version of MVC with an additional component (ViewModel).</description>
     </item>
     
     <item>
       <title>An example of Survey with privacy</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/an-example-of-survey-with-privacy/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/an-example-of-survey-with-privacy/</link>
       <pubDate>Tue, 14 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/an-example-of-survey-with-privacy/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/an-example-of-survey-with-privacy/</guid>
       <description>A while ago, I read the book Probabilistic Programming and Bayesian Methods for Hackers written by Cam Davidson-Pilon and was really impressed by an example of carrying out surveys. Although it is not a standard method with wide scope of use, from the perspective of a software engineer who is not from statistics background, I think its idea is pretty beautiful and worth knowing</description>
     </item>
     
     <item>
       <title>How to stub network in iOS</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/how-to-stub-network-in-ios/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</link>
       <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/how-to-stub-network-in-ios/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</guid>
       <description>There are times we wish to fake a network event, for example, a network error. However, integrating a 3rd party stub library just for this purpose is not really worthy. This post aims at demonstrating how to stub network.</description>
     </item>
     
     <item>
       <title>Quick thoughts on Tail recursion in Swift</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</guid>
       <description>I always thought that Tail call optimization (TCO), sometimes called tail recursion optimization, is supported in most languages by default. It turns out to be opposite.</description>
     </item>
     
     <item>
       <title>Method Swizzling: What, Why and How</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/method-swizzling-what-why-and-how/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</link>
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/method-swizzling-what-why-and-how/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</guid>
       <description>Method swizzling is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs. Actually, this special feature is offered by the Objective-C runtime, via message dispatch.</description>
     </item>
     
     <item>
       <title>Method dispatch in Swift</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</link>
       <pubDate>Mon, 25 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/method-dispatch-in-swift/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</guid>
       <description>Method dispatch is a term referring to mechanisms by which the program determines which operation should be executed (by operation, I mean a set of instructions). There are times we expect a method behavior to be determined only at runtime. This motivation give rise to different mechanisms of dispatching a method, each of which has its own pros and cons.</description>
     </item>
     
     <item>
       <title>How a Swift file is compiled</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/how-a-swift-file-is-compiled/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/how-a-swift-file-is-compiled/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</guid>
       <description>First of all, this is not &amp;ldquo;how an iOS/MacOS app is built&amp;rdquo;. An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match&amp;hellip;</description>
     </item>
     
     <item>
       <title>What is Simpson&#39;s paradox?</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/what-is-simpsons-paradox/</link>
       <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/what-is-simpsons-paradox/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/what-is-simpsons-paradox/</guid>
       <description>If you&amp;rsquo;re from the world of statistics, you may have heard of it. Two doctors, Dr. Hibbert and Dr. Nick, both perform 2 types of surgeries: heart surgery and band-aid removal&amp;hellip;</description>
     </item>
     
     <item>
       <title>A misuse of Expectation</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/a-misuse-of-expectation/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/a-misuse-of-expectation/</link>
       <pubDate>Sun, 30 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/a-misuse-of-expectation/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/a-misuse-of-expectation/</guid>
       <description>This post is to demonstrate a common use of expectation that is not correct. The example is excerpted from lecture 23 of MIT6_042J</description>
     </item>
     
     <item>
       <title>Weight initialization - impact on layer distribution</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/weight-initialization/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/weight-initialization/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/weight-initialization/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/weight-initialization/</guid>
       <description>This post covers some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers.</description>
     </item>
     
     <item>
       <title>A dive into Histogram of Oriented Gradients (HOG)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/a-dive-into-hog/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</link>
       <pubDate>Thu, 13 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/a-dive-into-hog/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</guid>
       <description>In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&amp;hellip; And then implement it in python (in order to comprehend it).</description>
     </item>
     
     <item>
       <title>Create custom Xcode templates</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/create-custom-xcode-templates/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/create-custom-xcode-templates/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/create-custom-xcode-templates/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/create-custom-xcode-templates/</guid>
       <description>Everytime we create a new file, Xcode suggests some built-in templates that may be useful. Luckily, we could also create our own templates.
 Technically, Xcode looks for templates in ~/Library/Developer/Xcode/Templates and /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates. Let&amp;rsquo;s call the first path P1 and the second path P2. A template could be iferred by a folder MY_TEMPLATE.xctemplate.
 Assume we gonna create a template for MVVM. It should create 3 files: [Feature]Model.swift, [Feature]ViewModel.swift and [Feature]ViewController.swift. Ex: LoginModel.</description>
@@ -259,110 +259,110 @@ Assume we gonna create a template for MVVM. It should create 3 files: [Feature]M
     
     <item>
       <title>FAQ on ReactiveCocoa</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/faq-on-reactivecocoa/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/faq-on-reactivecocoa/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</guid>
       <description>This post highlights some Q&amp;amp;A related to ReactiveCocoa - a FRP framework specifically built for iOS.</description>
     </item>
     
     <item>
       <title>Garbage Collection (GC) algorithms</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/gc-algorithms/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/gc-algorithms/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/gc-algorithms/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/gc-algorithms/</guid>
       <description>As an iOS developer, I am quite familiar with Reference Counting. It is considered a fundamental knowledge regarding memory manangement that every iOS developers must acknowledge. Today, I figured out a few more algorithms of garbage collection.
 Fig 1. From left to right: Reference Counting, Mark-Sweep, Mark-Compact, Copying. Reference Counting (RC)  This is simple &amp;amp; easy to implement. However, it has some major drawbacks one of which is not being able to deal with retain cycles.</description>
     </item>
     
     <item>
       <title>Swift: ExpressibleByStringLiteral</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-expressiblebystringliteral/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-expressiblebystringliteral/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</guid>
       <description>It is a protocol in Swift 3 (which was StringLiteralConvertible in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string</description>
     </item>
     
     <item>
       <title>Log events in ReactiveCocoa</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/log-events-in-reactivecocoa/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/log-events-in-reactivecocoa/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</guid>
       <description>I used to spend a lot of time reading documentations of ReactiveCocoa (Framework overview, design guidlines, basic operators&amp;hellip;) but, unfortunately, missed this one&amp;hellip;</description>
     </item>
     
     <item>
       <title>A freestyle way to config UIView</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/a-freestyle-way-to-config-uiview/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</link>
       <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/a-freestyle-way-to-config-uiview/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</guid>
       <description>This article is to introduce a freestyle way to set up views in iOS (by code).</description>
     </item>
     
     <item>
       <title>Swift: Generic protocol (p.1)</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-generic-protocol-p1/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</link>
       <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-generic-protocol-p1/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</guid>
       <description>In this article, we would look into how to implement a generic protocol. A few lacks of language support (Swift version prior to 3.0) would be also pointed out for discussion.</description>
     </item>
     
     <item>
       <title>Swift: Concrete types in Protocol</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-concrete-types-in-protocol/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</link>
       <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-concrete-types-in-protocol/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</guid>
       <description>A specific use case that we are unable to use concrete types in protocol, and how to fix it.</description>
     </item>
     
     <item>
       <title>Swift: Currying</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-currying/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-currying/</link>
       <pubDate>Sun, 17 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-currying/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-currying/</guid>
       <description>This topic has been mentioned as a part of Functional programming. Though it’s kind of fun to use currying, we often see it on the list along with functors, applicative, monads&amp;hellip; In this article, I’ll show you a couple of ways to have fun with currying.</description>
     </item>
     
     <item>
       <title>Swift: Optional — map</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-optional-map/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</link>
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-optional-map/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</guid>
       <description>A few experiments with optionals in Swift.</description>
     </item>
     
     <item>
       <title>Swift: Box with recursive data structure</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/swift-box-with-recursive-data-structure/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</link>
       <pubDate>Sat, 17 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/swift-box-with-recursive-data-structure/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</guid>
       <description>A workaround to model recursive data structure with enum</description>
     </item>
     
     <item>
       <title>RAC 3.0 with Login workflow</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/rac3-with-login-flow/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</link>
       <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/rac3-with-login-flow/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</guid>
       <description>A particular example of RAC 3.0, applied in Login workflow.</description>
     </item>
     
     <item>
       <title>Optional - Functional</title>
-      <link>https://trinhngocthuyen.github.io/posts/tech/optional-functional/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/optional-functional/</link>
       <pubDate>Tue, 16 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.github.io/posts/tech/optional-functional/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/optional-functional/</guid>
       <description>A demonstration of lazy evaluation using a simple trick</description>
     </item>
     
