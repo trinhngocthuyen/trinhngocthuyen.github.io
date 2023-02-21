@@ -75,28 +75,28 @@ if (!doNotTrack) {
   <p>I used to spend a lot of time reading documentations of ReactiveCocoa (Framework overview, design guidlines, basic operators&hellip;) but, unfortunately, missed <a href="https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DebuggingTechniques.md">this one</a>.</p>
 <p>I strongly agree that debugging is not quite easy in the async world. Printing log is my common way to deal with it :D. And yes, I didn&rsquo;t know that RAC provides such a built-in logger.</p>
 <p>Actually, I also have my own extensions (<code>logWhenStarted</code>, <code>logWhenNext</code>, <code>logWhenFailed</code>, <code>logWhenCompleted</code>&hellip;) to log events. But I have to call N functions instead. Ex:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">producer</span>
-  <span class="p">.</span><span class="n">logWhenStarted</span><span class="p">(</span><span class="s">&#34;Started&#34;</span><span class="p">)</span>
-	<span class="p">.</span><span class="n">logWhenCompleted</span><span class="p">(</span><span class="s">&#34;Completed&#34;</span><span class="p">)</span>
-	<span class="p">.</span><span class="n">logWhenFailed</span><span class="p">(</span><span class="s">&#34;Failed&#34;</span><span class="p">)</span>
-</code></pre></div><p>Let&rsquo;s look at that of RAC</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">producer</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="n">logWhenStarted</span><span class="p">(</span><span class="s">&#34;Started&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">logWhenCompleted</span><span class="p">(</span><span class="s">&#34;Completed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">logWhenFailed</span><span class="p">(</span><span class="s">&#34;Failed&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Let&rsquo;s look at that of RAC</p>
 <h3 id="how-to-use-it">How to use it?</h3>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">racLog</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">fileName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">functionName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">lineNumber</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">NSLog</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> --&gt; event: </span><span class="si">\(</span><span class="n">event</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="n">loginProducer</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-	<span class="p">.</span><span class="n">logEvents</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;DemoLogEvent&#34;</span><span class="p">,</span> <span class="n">events</span><span class="p">:</span> <span class="p">[.</span><span class="n">Started</span><span class="p">,</span> <span class="p">.</span><span class="n">Next</span><span class="p">,</span> <span class="p">.</span><span class="n">Completed</span><span class="p">,</span> <span class="p">.</span><span class="n">Failed</span><span class="p">],</span> <span class="n">logger</span><span class="p">:</span> <span class="n">racLog</span><span class="p">)</span>
-	<span class="p">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></div><p>For more convenience, we could make a default logEvents function (nt_logEvents) that uses other parameters as of RACLog</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">loginProducer</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-	<span class="p">.</span><span class="n">nt_logEvents</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;LoginViewModel&#34;</span><span class="p">)</span>
-	<span class="p">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></div><h3 id="well-perfect-except">Well, perfect except&hellip;</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">racLog</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">fileName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">functionName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">lineNumber</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NSLog</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> --&gt; event: </span><span class="si">\(</span><span class="n">event</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">loginProducer</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">logEvents</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;DemoLogEvent&#34;</span><span class="p">,</span> <span class="n">events</span><span class="p">:</span> <span class="p">[.</span><span class="n">Started</span><span class="p">,</span> <span class="p">.</span><span class="n">Next</span><span class="p">,</span> <span class="p">.</span><span class="n">Completed</span><span class="p">,</span> <span class="p">.</span><span class="n">Failed</span><span class="p">],</span> <span class="n">logger</span><span class="p">:</span> <span class="n">racLog</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</span></span></code></pre></div><p>For more convenience, we could make a default logEvents function (nt_logEvents) that uses other parameters as of RACLog</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">loginProducer</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">nt_logEvents</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;LoginViewModel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="well-perfect-except">Well, perfect except&hellip;</h3>
 <p>Sometimes we desire to print the next value in a custom way. I think the event <code>Next</code> should be treated as a special case and need a closure to turn a next value into a string. It seems my function (<code>logWhenNext</code>) is more handy in this case</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">logWhenNext</span><span class="p">(</span><span class="n">logText</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">,</span> <span class="n">Error</span><span class="p">&gt;</span>
-<span class="kd">func</span> <span class="nf">logWhenNext</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">Value</span> <span class="p">-&gt;</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">,</span> <span class="n">Error</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">logWhenNext</span><span class="p">(</span><span class="n">logText</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">,</span> <span class="n">Error</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">logWhenNext</span><span class="p">(</span><span class="n">log</span><span class="p">:</span> <span class="n">Value</span> <span class="p">-&gt;</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">,</span> <span class="n">Error</span><span class="p">&gt;</span>
+</span></span></code></pre></div>
   <div class="entry-footer">
   
 <div class="categories">
@@ -154,7 +154,7 @@ if (!doNotTrack) {
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

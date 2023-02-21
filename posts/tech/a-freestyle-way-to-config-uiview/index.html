@@ -74,83 +74,82 @@ if (!doNotTrack) {
 </header>
   <p>This article is to introduce a freestyle way to set up views in iOS (by code).</p>
 <p>Normally, a view is set up like this</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">label</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
-<span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;Hello, It&#39;s raining outside. Enjoy?&#34;</span>
-<span class="n">label</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">Center</span>
-<span class="n">label</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerFont</span><span class="p">()</span>
-<span class="n">label</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerColor</span><span class="p">()</span>
-<span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-</code></pre></div><p>Configuring a view sometimes includes a sequence of steps. We can rougly call it &ldquo;chaining actions&rdquo;. &ldquo;Chaining actions&rdquo;, in the general perception, is the execution of multiple actions on the same actor.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">actor</span><span class="p">.</span><span class="n">doSomething</span><span class="p">()</span>
-     <span class="p">.</span><span class="n">doNextStep</span><span class="p">()</span>
-     <span class="p">.</span><span class="n">doFinalStep</span><span class="p">()</span>	
-</code></pre></div><p>Based on that premise, we could think of this implementation</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">label</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
-	<span class="p">.</span><span class="n">config</span> <span class="p">{</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;Hello, It&#39;s raining outside. Enjoy?&#34;</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">Center</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerFont</span><span class="p">()</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerColor</span><span class="p">()</span>
-	<span class="p">}</span>
-	<span class="p">.</span><span class="n">addTo</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
-</code></pre></div><p>And</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">withConfig</span><span class="p">:</span> <span class="p">{</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;Hello, It&#39;s raining outside. Enjoy?&#34;</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">Center</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerFont</span><span class="p">()</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerColor</span><span class="p">()</span>
-	<span class="p">})</span>
-	<span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">withConfig</span><span class="p">:</span> <span class="p">{</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&#34;Enjoy&#34;</span><span class="p">,</span> <span class="n">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
-		<span class="nv">$0</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">tapYes</span><span class="p">),</span> <span class="n">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
-	<span class="p">})</span>
-</code></pre></div><p>In fact, this style consumes more lines of code than the conventional approach. Yet, it reflects the idea more clearly. Those inside a closure <code>config</code> implicitly mean they are in the same context, making the code more structured and readable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">label</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;Hello, It&#39;s raining outside. Enjoy?&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">label</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">Center</span>
+</span></span><span class="line"><span class="cl"><span class="n">label</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerFont</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">label</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerColor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</span></span></code></pre></div><p>Configuring a view sometimes includes a sequence of steps. We can rougly call it &ldquo;chaining actions&rdquo;. &ldquo;Chaining actions&rdquo;, in the general perception, is the execution of multiple actions on the same actor.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">actor</span><span class="p">.</span><span class="n">doSomething</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">     <span class="p">.</span><span class="n">doNextStep</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">     <span class="p">.</span><span class="n">doFinalStep</span><span class="p">()</span>	
+</span></span></code></pre></div><p>Based on that premise, we could think of this implementation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">label</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">config</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;Hello, It&#39;s raining outside. Enjoy?&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">Center</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerFont</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerColor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">addTo</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+</span></span></code></pre></div><p>And</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">withConfig</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;Hello, It&#39;s raining outside. Enjoy?&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">Center</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerFont</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">headerColor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">withConfig</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&#34;Enjoy&#34;</span><span class="p">,</span> <span class="n">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$0</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">tapYes</span><span class="p">),</span> <span class="n">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span></code></pre></div><p>In fact, this style consumes more lines of code than the conventional approach. Yet, it reflects the idea more clearly. Those inside a closure <code>config</code> implicitly mean they are in the same context, making the code more structured and readable.</p>
 <p>Now, let&rsquo;s codeeee</p>
 <p>Basically, we would make some extensions over <code>UIView</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">UIView</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">config</span><span class="p">(@</span><span class="n">noescape</span> <span class="n">closure</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UIView</span> <span class="p">{</span>
-        <span class="n">closure</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">self</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">addTo</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
-        <span class="n">parent</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">nt_view</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">self</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>Sadly, the closure is not generic enough to config a <code>UILabel</code> since it takes a <code>UIView</code> as the parameter
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">config</span><span class="p">(@</span><span class="n">noescape</span> <span class="n">closure</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">closure</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">addTo</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parent</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">nt_view</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Sadly, the closure is not generic enough to config a <code>UILabel</code> since it takes a <code>UIView</code> as the parameter
 <em>(⟶ You cannot declare <code>$0.text = &quot;...&quot;</code> because <code>$0</code> is a <code>UIView</code>. Do not think of casting it to <code>UILabel</code> :D)</em></p>
 <p>You may think of the keyword <code>Self</code> to make the compiler infer the input&rsquo;s type. Yes, you&rsquo;re on the right way.
 However, it&rsquo;s a classic problem that <code>Self</code> is only valid for <code>protocol extensions</code>
 <em>(Remember: implementing extensions with so-called generic things is kind of limited)</em></p>
 <p>To overcome this issue, we create a protocol <code>NTViewType</code> which requires a properties <code>nt_view: UIView</code>. The idea is quite simple. We <strong>perform extensions on this protocol</strong> and the <strong>detail implementation operates on <code>nt_view</code></strong>. And the value <code>nt_view</code> of <code>UIView</code> is <strong>just itself</strong>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="nc">NTViewType</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">nt_view</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">extension</span> <span class="nc">UIView</span><span class="p">:</span> <span class="n">NTViewType</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">nt_view</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">extension</span> <span class="nc">NTViewType</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">config</span><span class="p">(@</span><span class="n">noescape</span> <span class="n">closure</span><span class="p">:</span> <span class="kc">Self</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
-		<span class="n">closure</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">self</span>
-	<span class="p">}</span>
-
-	<span class="kd">func</span> <span class="nf">addTo</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
-        <span class="n">parent</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">nt_view</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">self</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">addSubview</span><span class="p">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">NTViewType</span><span class="p">&gt;(</span><span class="n">subview</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="p">@</span><span class="n">noescape</span> <span class="n">config</span><span class="p">:</span> <span class="n">T</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
-        <span class="n">nt_view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">subview</span><span class="p">.</span><span class="n">nt_view</span><span class="p">)</span>
-        <span class="n">config</span><span class="p">(</span><span class="n">subview</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">self</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div><p>Have fun and make your own styleeeee</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">NTViewType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">nt_view</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">UIView</span><span class="p">:</span> <span class="n">NTViewType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">nt_view</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">NTViewType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">config</span><span class="p">(@</span><span class="n">noescape</span> <span class="n">closure</span><span class="p">:</span> <span class="kc">Self</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">closure</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">addTo</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parent</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">nt_view</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">addSubview</span><span class="p">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">NTViewType</span><span class="p">&gt;(</span><span class="n">subview</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="p">@</span><span class="n">noescape</span> <span class="n">config</span><span class="p">:</span> <span class="n">T</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nt_view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">subview</span><span class="p">.</span><span class="n">nt_view</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span><span class="p">(</span><span class="n">subview</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Have fun and make your own styleeeee</p>
 
   <div class="entry-footer">
   
@@ -209,7 +208,7 @@ However, it&rsquo;s a classic problem that <code>Self</code> is only valid for <
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

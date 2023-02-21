@@ -82,21 +82,21 @@ if (!doNotTrack) {
 <p>The problem appears to be quite simple with <em>method swizzling</em>. All you have to do is to write a custom function <code>_tracked_viewWillAppear</code> then swap it with the original function <code>viewWillAppear</code>. I will talk in detail later.</p>
 <h3 id="how-to-swizzle-a-method">How to swizzle a method?</h3>
 <p>The magic function you need to remember is <a href="https://developer.apple.com/documentation/objectivec/1418769-method_exchangeimplementations"><code>method_exchangeImplementations</code></a>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">method_exchangeImplementations</span><span class="p">(</span><span class="kc">_</span> <span class="n">m1</span><span class="p">:</span> <span class="n">Method</span><span class="p">,</span> <span class="kc">_</span> <span class="n">m2</span><span class="p">:</span> <span class="n">Method</span><span class="p">)</span>
-</code></pre></div><p>As the name reflects, the implementations of <code>m1</code> and <code>m2</code> get swapped after calling this function (if the exchange is successful). It means that an invocation to <code>m1</code> actually executes the code inside <code>m2</code> and vice versa.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">selector1</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="n">viewWillAppear</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
-<span class="kd">let</span> <span class="nv">selector2</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="n">_swizzled_viewWillAppear</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
-<span class="kd">let</span> <span class="nv">method1</span> <span class="p">=</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector1</span><span class="p">)</span><span class="o">!</span>
-<span class="kd">let</span> <span class="nv">method2</span> <span class="p">=</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector2</span><span class="p">)</span><span class="o">!</span>
-<span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">method1</span><span class="p">,</span> <span class="n">method2</span><span class="p">)</span>
-</code></pre></div><p>This is what the function <code>_swizzled_viewWillAppear</code> looks like:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">UIViewController</span> <span class="p">{</span>
-    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">func</span> <span class="nf">_swizzled_viewWillAppear</span><span class="p">(</span><span class="kc">_</span> <span class="n">animated</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">NSLog</span><span class="p">(</span><span class="s">&#34;Enter screen: </span><span class="si">\(</span><span class="n">type</span><span class="si">(</span><span class="n">of</span><span class="p">:</span> <span class="kc">self</span><span class="si">))</span><span class="s">&#34;</span><span class="p">)</span>
-        <span class="n">_swizzled_viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>When <code>viewWillAppear</code> is called, the system runs the code inside <code>_swizzled_viewWillAppear</code> instead. In this function, a recursive call is made which ends up executing the implementation of the original <code>viewWillAppear</code>. In short, when the view is about to be displayed, the program prints a log, for example, <code>Enter screen: LoginViewController</code> and does what it is supposed to do.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">method_exchangeImplementations</span><span class="p">(</span><span class="kc">_</span> <span class="n">m1</span><span class="p">:</span> <span class="n">Method</span><span class="p">,</span> <span class="kc">_</span> <span class="n">m2</span><span class="p">:</span> <span class="n">Method</span><span class="p">)</span>
+</span></span></code></pre></div><p>As the name reflects, the implementations of <code>m1</code> and <code>m2</code> get swapped after calling this function (if the exchange is successful). It means that an invocation to <code>m1</code> actually executes the code inside <code>m2</code> and vice versa.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">selector1</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="n">viewWillAppear</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">selector2</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="n">_swizzled_viewWillAppear</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">method1</span> <span class="p">=</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector1</span><span class="p">)</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">method2</span> <span class="p">=</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="n">UIViewController</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector2</span><span class="p">)</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">method1</span><span class="p">,</span> <span class="n">method2</span><span class="p">)</span>
+</span></span></code></pre></div><p>This is what the function <code>_swizzled_viewWillAppear</code> looks like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">UIViewController</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">func</span> <span class="nf">_swizzled_viewWillAppear</span><span class="p">(</span><span class="kc">_</span> <span class="n">animated</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">NSLog</span><span class="p">(</span><span class="s">&#34;Enter screen: </span><span class="si">\(</span><span class="n">type</span><span class="si">(</span><span class="n">of</span><span class="p">:</span> <span class="kc">self</span><span class="si">))</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_swizzled_viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>When <code>viewWillAppear</code> is called, the system runs the code inside <code>_swizzled_viewWillAppear</code> instead. In this function, a recursive call is made which ends up executing the implementation of the original <code>viewWillAppear</code>. In short, when the view is about to be displayed, the program prints a log, for example, <code>Enter screen: LoginViewController</code> and does what it is supposed to do.</p>
 <p>Notice:</p>
 <ul>
 <li>In order to swizzle successfully, the methods must be dynamically dispatched via message. So, we explicit declare it with <code>dynamic</code> keyword. Of course, at times you don&rsquo;t necessarily need that keyword to make it dynamic :D.</li>
@@ -104,34 +104,34 @@ if (!doNotTrack) {
 </ul>
 <h3 id="a-look-at-nskeyvalueobservation">A look at NSKeyValueObservation</h3>
 <p>Look at the implementation of <a href="https://github.com/apple/swift/blob/master/stdlib/public/SDK/Foundation/NSObject.swift"><code>NSKeyValueObservation</code></a>. Have you seen any swizzling 😎?</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">NSObject</span> <span class="p">{</span>
-    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
-    <span class="kd">var</span> <span class="nv">observation</span><span class="p">:</span> <span class="n">NSKeyValueObservation</span><span class="p">?</span>
-
-    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
-        <span class="n">observation</span> <span class="p">=</span> <span class="n">observe</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span> <span class="n">object</span><span class="p">,</span> <span class="n">change</span> <span class="k">in</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Observe a change. Name: </span><span class="si">\(</span><span class="n">object</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nv">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span>
-<span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
-<span class="c1">// Console: </span>
-<span class="c1">// Observe a change. Name: Thuyen</span>
-</code></pre></div><p>Though the function <code>_swizzle_me_observeValue</code> is not exposed, we know that the swizzle method must be dynamically dispatched. So, if we create a method with the exactly same name, our function will be called when an observed change is triggered.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">NSKeyValueObservation</span> <span class="p">{</span>
-    <span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">_swizzle_me_observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="n">keyPath</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span> <span class="n">of</span> <span class="n">object</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?,</span> <span class="n">change</span><span class="p">:</span> <span class="p">[</span><span class="n">NSString</span> <span class="p">:</span> <span class="nb">Any</span><span class="p">]?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;_swizzle_me_observeValue gets called&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nv">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span>
-<span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
-<span class="c1">// Console:</span>
-<span class="c1">// _swizzle_me_observeValue gets called</span>
-</code></pre></div><p>Have fun!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">NSObject</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">observation</span><span class="p">:</span> <span class="n">NSKeyValueObservation</span><span class="p">?</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">observation</span> <span class="p">=</span> <span class="n">observe</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span> <span class="n">object</span><span class="p">,</span> <span class="n">change</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Observe a change. Name: </span><span class="si">\(</span><span class="n">object</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Console: </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Observe a change. Name: Thuyen</span>
+</span></span></code></pre></div><p>Though the function <code>_swizzle_me_observeValue</code> is not exposed, we know that the swizzle method must be dynamically dispatched. So, if we create a method with the exactly same name, our function will be called when an observed change is triggered.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">NSKeyValueObservation</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">_swizzle_me_observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="n">keyPath</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span> <span class="n">of</span> <span class="n">object</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?,</span> <span class="n">change</span><span class="p">:</span> <span class="p">[</span><span class="n">NSString</span> <span class="p">:</span> <span class="nb">Any</span><span class="p">]?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;_swizzle_me_observeValue gets called&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">person</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Console:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// _swizzle_me_observeValue gets called</span>
+</span></span></code></pre></div><p>Have fun!</p>
 
   <div class="entry-footer">
   
@@ -194,7 +194,7 @@ if (!doNotTrack) {
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

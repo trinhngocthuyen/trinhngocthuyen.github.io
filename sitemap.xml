@@ -1,768 +1,462 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://trinhngocthuyen.com/posts/tech/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/</loc>
     <lastmod>2023-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/about/</loc>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.com/categories/</loc>
-    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.com/posts/misc/cat-nghia-khung-hoang-tuoi-1/</loc>
-    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.com/categories/misc/</loc>
-    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.com/posts/</loc>
-    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/</loc>
     <lastmod>2023-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/misc/cat-nghia-khung-hoang-tuoi-1/</loc>
+    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/categories/</loc>
+    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/categories/misc/</loc>
+    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/</loc>
+    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/ci/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/git/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/categories/tech/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/cocoapods/</loc>
     <lastmod>2023-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</loc>
     <lastmod>2023-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/ios/</loc>
     <lastmod>2023-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-direct-push/</loc>
     <lastmod>2022-12-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/chuy%E1%BB%87n-ngh%E1%BB%81/</loc>
     <lastmod>2022-12-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</loc>
     <lastmod>2022-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-1/</loc>
     <lastmod>2022-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</loc>
     <lastmod>2022-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</loc>
     <lastmod>2022-10-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</loc>
     <lastmod>2022-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/retrospective/</loc>
     <lastmod>2021-07-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-2021h1/</loc>
     <lastmod>2021-07-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-nhung-tran-tro-nghe/</loc>
     <lastmod>2020-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</loc>
     <lastmod>2020-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</loc>
     <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-nghe/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/looking-back-on-2020h1/</loc>
     <lastmod>2020-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-tieng-anh-p2/</loc>
     <lastmod>2020-05-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-tieng-anh-p1/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/when-project-labels-are-not-just-to-categorize-things/</loc>
     <lastmod>2020-03-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/when-cicd-config-is-not-just-a-file-or-a-dashboard/</loc>
     <lastmod>2020-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-running/</loc>
     <lastmod>2020-03-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-cooking/</loc>
     <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/random-thoughts-on-eng-and-writing-1/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/writing/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-gitlab/</loc>
     <lastmod>2020-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/2019-in-review/</loc>
     <lastmod>2019-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/random-thoughts-on-being-a-ci-engineer/</loc>
     <lastmod>2019-06-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/sg-vs-sg-2/</loc>
     <lastmod>2019-05-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/sg-vs-sg-1/</loc>
     <lastmod>2019-03-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/2018-in-review/</loc>
     <lastmod>2018-12-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/swift/</loc>
     <lastmod>2018-06-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</loc>
     <lastmod>2018-06-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</loc>
     <lastmod>2018-05-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/maths/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/command-line/</loc>
     <lastmod>2018-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/config/</loc>
     <lastmod>2018-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/config-run-shell-script-on-login/</loc>
     <lastmod>2018-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/markov-chain-part-1/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/markov-chain/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/probability/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/statistics/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chung-ket-u23-chau-a/</loc>
     <lastmod>2018-01-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/problem-solving/</loc>
     <lastmod>2018-01-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/questioning/</loc>
     <lastmod>2018-01-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</loc>
     <lastmod>2018-01-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-thuyet-trinh/</loc>
     <lastmod>2018-01-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/indicator-rvs-and-the-fundamental-bridge/</loc>
     <lastmod>2018-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/2017-in-review/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/resolution/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/decision-making/</loc>
     <lastmod>2017-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/reasoning/</loc>
     <lastmod>2017-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/random-thoughts-when-we-have-many-choices/</loc>
     <lastmod>2017-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/architecture/</loc>
     <lastmod>2017-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/mvvm/</loc>
     <lastmod>2017-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</loc>
     <lastmod>2017-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.com/tags/science/</loc>
-    <lastmod>2017-12-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/fermats-last-theorem/</loc>
     <lastmod>2017-12-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/science/</loc>
+    <lastmod>2017-12-08T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/an-example-of-survey-with-privacy/</loc>
     <lastmod>2017-11-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</loc>
     <lastmod>2017-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/network/</loc>
     <lastmod>2017-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/stub/</loc>
     <lastmod>2017-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/testing/</loc>
     <lastmod>2017-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/optimization/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/programming/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/quick-thoughts-on-tail-recursion-in-swift/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/swizzle/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</loc>
     <lastmod>2017-09-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/method-dispatch/</loc>
     <lastmod>2017-09-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/compiler/</loc>
     <lastmod>2017-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</loc>
     <lastmod>2017-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/paradox/</loc>
     <lastmod>2017-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/what-is-simpsons-paradox/</loc>
     <lastmod>2017-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/algebra/</loc>
     <lastmod>2017-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</loc>
     <lastmod>2017-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/brain-exercises/</loc>
     <lastmod>2017-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/a-misuse-of-expectation/</loc>
     <lastmod>2017-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/expectation/</loc>
     <lastmod>2017-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/neural-networks/</loc>
     <lastmod>2017-07-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/weight-initialization/</loc>
     <lastmod>2017-07-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</loc>
     <lastmod>2017-07-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/image-processing/</loc>
     <lastmod>2017-07-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/astrology/</loc>
     <lastmod>2017-07-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/dark-matter-dark-energy/</loc>
     <lastmod>2017-07-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/thang-6-mua-thi/</loc>
     <lastmod>2017-05-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-04-04-2017/</loc>
     <lastmod>2017-04-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/create-custom-xcode-templates/</loc>
     <lastmod>2017-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/xcode/</loc>
     <lastmod>2017-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</loc>
     <lastmod>2017-02-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/gc-algorithms/</loc>
     <lastmod>2017-02-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/garbage-collection/</loc>
     <lastmod>2017-02-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-ganh-tau-hu/</loc>
     <lastmod>2017-01-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-kfc/</loc>
     <lastmod>2017-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</loc>
     <lastmod>2016-12-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</loc>
     <lastmod>2016-11-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</loc>
     <lastmod>2016-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/toan-tuoi-tho-toan-hoc-tuoi-tre/</loc>
     <lastmod>2016-09-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-cau-hoi/</loc>
     <lastmod>2016-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-khai-niem/</loc>
     <lastmod>2016-07-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</loc>
     <lastmod>2016-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</loc>
     <lastmod>2016-06-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-bun-bo/</loc>
     <lastmod>2016-06-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-currying/</loc>
     <lastmod>2016-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</loc>
     <lastmod>2016-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-mung-1-tet-2016/</loc>
     <lastmod>2016-02-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/flatland-vung-dat-phang/</loc>
     <lastmod>2016-01-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/book-review/</loc>
     <lastmod>2016-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/reading/</loc>
     <lastmod>2016-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/review-sach-tren-duong-bang/</loc>
     <lastmod>2016-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tap-luan-tiem-vs-kiem/</loc>
     <lastmod>2016-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://trinhngocthuyen.com/tags/logic/</loc>
-    <lastmod>2016-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/dong-nao-who-ate-the-cake/</loc>
     <lastmod>2016-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/logic/</loc>
+    <lastmod>2016-01-05T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-mua/</loc>
     <lastmod>2015-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/vai-dong-ve-cuon-so/</loc>
     <lastmod>2015-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/hieu-ung-moi-priming-effect/</loc>
     <lastmod>2015-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/psychological-efffects/</loc>
     <lastmod>2015-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/dong-nao-alice-betrice-cynthia/</loc>
     <lastmod>2015-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/luan-ux-ly-cafe/</loc>
     <lastmod>2015-10-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/ux/</loc>
     <lastmod>2015-10-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</loc>
     <lastmod>2015-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nang-khieu-co-lao-cong/</loc>
     <lastmod>2015-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nang-khieu-yrmuptp/</loc>
     <lastmod>2015-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</loc>
     <lastmod>2015-08-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/topology/</loc>
     <lastmod>2015-08-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/optional-functional/</loc>
     <lastmod>2015-06-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/creative-thinking/</loc>
     <lastmod>2015-01-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</loc>
     <lastmod>2015-01-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/triz/</loc>
     <lastmod>2015-01-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/do-vui-hieu-bai-toan/</loc>
     <lastmod>2014-12-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-7/</loc>
     <lastmod>2014-02-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/tags/travel/</loc>
     <lastmod>2014-02-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-6/</loc>
     <lastmod>2014-02-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-5/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-3-4/</loc>
     <lastmod>2014-02-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-2/</loc>
     <lastmod>2014-02-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-1/</loc>
     <lastmod>2014-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-0/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://trinhngocthuyen.com/search/</loc>
   </url>
-  
 </urlset>

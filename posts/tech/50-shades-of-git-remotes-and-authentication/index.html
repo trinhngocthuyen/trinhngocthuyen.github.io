@@ -89,24 +89,24 @@ if (!doNotTrack) {
 <p>Depending on preference, some may use <code>git pull</code> in their workflow in step (1). Under the hood, <code>git pull</code> is just <code>git fetch</code> followed up with <code>git merge</code>.</p>
 <h3 id="configuring-a-remote">Configuring a Remote</h3>
 <p>A remote is denoted by a URL. This URL contains information about the transport protocol (SSH, HTTP/HTTPS, FTP…). Below are some valid examples:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ssh://git@github.com/trinhngocthuyen/cocoapods-ezplugin.git
-git@github.com:trinhngocthuyen/cocoapods-ezplugin.git
-https://github.com/trinhngocthuyen/cocoapods-ezplugin.git
-</code></pre></div><p>To view remotes of a repo, run <code>git remove -v</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git remote -v
-origin  https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>fetch<span class="o">)</span>
-origin 	https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>push<span class="o">)</span>
-</code></pre></div><p>We can configure different URLs for the push action. This is done by running <code>git remote set-url --push</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git remote set-url --push origin https://github/trinhngocthuyen/foo.git
-$ git remote -v
-origin  https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  https://github.com/trinhngocthuyen/foo.git <span class="o">(</span>push<span class="o">)</span>
-</code></pre></div><p>Alternatively, we can use <code>git config remote.&lt;origin_name&gt;.pushurl</code> to alter the push URL.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config remote.origin.pushurl https://github/trinhngocthuyen/bar.git
-$ git remote -v
-origin  https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  https://github.com/trinhngocthuyen/bar.git <span class="o">(</span>push<span class="o">)</span>
-</code></pre></div><p>We can configure more than one remote per repo. This is usually the case for <em>open-source projects</em> where each engineer forks the repo. He/she pushes changes to his/her forked repo but still desires to keep his/her fork up to date with the main repo. This case is also useful when you work with mirrors (for example, one public repo on Github/Gitlab, and one private repo on your company server). However, we shall not dive into details for that topic.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh://git@github.com/trinhngocthuyen/cocoapods-ezplugin.git
+</span></span><span class="line"><span class="cl">git@github.com:trinhngocthuyen/cocoapods-ezplugin.git
+</span></span><span class="line"><span class="cl">https://github.com/trinhngocthuyen/cocoapods-ezplugin.git
+</span></span></code></pre></div><p>To view remotes of a repo, run <code>git remove -v</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git remote -v
+</span></span><span class="line"><span class="cl">origin  https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl">origin 	https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>push<span class="o">)</span>
+</span></span></code></pre></div><p>We can configure different URLs for the push action. This is done by running <code>git remote set-url --push</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git remote set-url --push origin https://github/trinhngocthuyen/foo.git
+</span></span><span class="line"><span class="cl">$ git remote -v
+</span></span><span class="line"><span class="cl">origin  https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl">origin  https://github.com/trinhngocthuyen/foo.git <span class="o">(</span>push<span class="o">)</span>
+</span></span></code></pre></div><p>Alternatively, we can use <code>git config remote.&lt;origin_name&gt;.pushurl</code> to alter the push URL.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config remote.origin.pushurl https://github/trinhngocthuyen/bar.git
+</span></span><span class="line"><span class="cl">$ git remote -v
+</span></span><span class="line"><span class="cl">origin  https://github.com/trinhngocthuyen/ezactions.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl">origin  https://github.com/trinhngocthuyen/bar.git <span class="o">(</span>push<span class="o">)</span>
+</span></span></code></pre></div><p>We can configure more than one remote per repo. This is usually the case for <em>open-source projects</em> where each engineer forks the repo. He/she pushes changes to his/her forked repo but still desires to keep his/her fork up to date with the main repo. This case is also useful when you work with mirrors (for example, one public repo on Github/Gitlab, and one private repo on your company server). However, we shall not dive into details for that topic.</p>
 <p>A fetch/push/clone is associated with a remote. Prior to this action, Git authenticates with the server (ex. Github) and then performs further steps if applicable. Therefore, the credentials used for authentication is adjacent to the remote configuration. Those credentials could be an SSH key, a tuple of username/password, or an access token. In the following section, we’ll look into how such credentials play role in the authentication.</p>
 <h2 id="remotes-and-credentials-for-authentication">Remotes and Credentials for Authentication</h2>
 <p>Authentication with a Git server when cloning/fetching from/pushing to a remote is similar.  For convenience, we take the fetch action as a typical example. If you take a closer look at how Gitlab CI/CD or Github Actions implements their checkout, you should see the order like this:</p>
@@ -118,39 +118,39 @@ origin  https://github.com/trinhngocthuyen/bar.git <span class="o">(</span>push<
 </ul>
 <h3 id="ssh">SSH</h3>
 <p>Using SSH to connect with a Git server is a common practice. A remote used with SSH is like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git@github.com/trinhngocthuyen/cocoapods-ezplugin.git
-</code></pre></div><p>When fetching such a remote, Git opens an SSH connection to the server under the hood. This is when the authentication jumps in. As you know, it requires a pair of public &amp; private keys. The public key is added to the server (ex. Github). The private one is owned by the user and used for authentication. This key, in OpenSSH, is known as “Identity Key” and is located in a file called IdentifyFile. By default, the following files are used</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">~/.ssh/id_rsa,
-~/.ssh/id_ecdsa
-~/.ssh/id_ed25519
-...
-</code></pre></div><p>If you have them configured, you can test the connection by running: <code>ssh -T git@&lt;server&gt;</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@github.com
-Hi trinhngocthuyen! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-$ ssh -T git@gitlab.com
-Welcome to GitLab, @trinhngocthuyen!
-</code></pre></div><h4 id="using-different-keys-for-different-servers">Using different keys for different servers</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git@github.com/trinhngocthuyen/cocoapods-ezplugin.git
+</span></span></code></pre></div><p>When fetching such a remote, Git opens an SSH connection to the server under the hood. This is when the authentication jumps in. As you know, it requires a pair of public &amp; private keys. The public key is added to the server (ex. Github). The private one is owned by the user and used for authentication. This key, in OpenSSH, is known as “Identity Key” and is located in a file called IdentifyFile. By default, the following files are used</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">~/.ssh/id_rsa,
+</span></span><span class="line"><span class="cl">~/.ssh/id_ecdsa
+</span></span><span class="line"><span class="cl">~/.ssh/id_ed25519
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>If you have them configured, you can test the connection by running: <code>ssh -T git@&lt;server&gt;</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh -T git@github.com
+</span></span><span class="line"><span class="cl">Hi trinhngocthuyen! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</span></span><span class="line"><span class="cl">$ ssh -T git@gitlab.com
+</span></span><span class="line"><span class="cl">Welcome to GitLab, @trinhngocthuyen!
+</span></span></code></pre></div><h4 id="using-different-keys-for-different-servers">Using different keys for different servers</h4>
 <p>Some choose to use different keys for Github, Gitlab, or your company server.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">~/.ssh/id_rsa_github
-~/.ssh/id_rsa_gitlab
-~/.ssh/id_rsa_company
-</code></pre></div><p>To add a key to the authentication agent, use <code>ssh-add</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa_github
-$ ssh -T git@github.com
-Hi trinhngocthuyen! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre></div><p>Manually loading keys like this has two downsides:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/.ssh/id_rsa_github
+</span></span><span class="line"><span class="cl">~/.ssh/id_rsa_gitlab
+</span></span><span class="line"><span class="cl">~/.ssh/id_rsa_company
+</span></span></code></pre></div><p>To add a key to the authentication agent, use <code>ssh-add</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-add ~/.ssh/id_rsa_github
+</span></span><span class="line"><span class="cl">$ ssh -T git@github.com
+</span></span><span class="line"><span class="cl">Hi trinhngocthuyen! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</span></span></code></pre></div><p>Manually loading keys like this has two downsides:</p>
 <ul>
 <li>First, those keys are wiped upon system restart, or when the SSH agent is restarted. And we need to load them again. There are <a href="https://gist.github.com/echo-dave/0d1ee6951c4e3bf00d738e84868e7d59">some tips</a> to automate this task (ie. loading keys) upon Mac login. Yet, the workaround is not quite universal.</li>
 <li>Second, more than one key may work. And the one to be used is not one that should be used. For example, if the above three keys work for Github, the chosen one might be the one you do not expect. I know this example seems a bit extreme but my point is it increases management costs.</li>
 </ul>
 <p>A more proper approach is to use the <a href="https://www.ssh.com/academy/ssh/config">SSH config</a> (located in <code>~/.ssh/config</code>). This way, you can configure what key is used for what server.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Host github.com
-	IdentityFile ~/.ssh/id_rsa_github
-Host gitlab.com
-	IdentityFile ~/.ssh/id_rsa_gitlab
-Host gitlab.company.com
-	IdentityFile ~/.ssh/id_rsa_company
-</code></pre></div><h4 id="using-different-keys-for-different-repos">Using different keys for different repos</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Host github.com
+</span></span><span class="line"><span class="cl">	IdentityFile ~/.ssh/id_rsa_github
+</span></span><span class="line"><span class="cl">Host gitlab.com
+</span></span><span class="line"><span class="cl">	IdentityFile ~/.ssh/id_rsa_gitlab
+</span></span><span class="line"><span class="cl">Host gitlab.company.com
+</span></span><span class="line"><span class="cl">	IdentityFile ~/.ssh/id_rsa_company
+</span></span></code></pre></div><h4 id="using-different-keys-for-different-repos">Using different keys for different repos</h4>
 <p>This is usually the case for CI. When running on CI, you should be mindful of what to write outside of the project directory. For self-hosted runners, files you write outside of these directories might retain. This issue happens a lot for Shell (MacOS) runners.</p>
 <p>Two main drawbacks when such files are not properly cleaned up are:</p>
 <ul>
@@ -159,21 +159,21 @@ Host gitlab.company.com
 </ul>
 <p>Therefore, a best practice is to stick to the project directory or any directory that is guaranteed to be cleaned up by the CI/CD infra.</p>
 <p>Then, in this case, we can instruct git to use the key by the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresshCommand"><code>core.sshCommand</code> config</a> (see: <a href="https://docs.gitlab.com/ee/user/ssh.html#use-different-keys-for-different-repositories">reference</a>):</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config core.sshCommand <span class="s2">&#34;ssh -o IdentitiesOnly=yes -i &lt;path/to/key&gt; -F /dev/null&#34;</span>
-</code></pre></div><h3 id="httphttps">HTTP/HTTPS</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config core.sshCommand <span class="s2">&#34;ssh -o IdentitiesOnly=yes -i &lt;path/to/key&gt; -F /dev/null&#34;</span>
+</span></span></code></pre></div><h3 id="httphttps">HTTP/HTTPS</h3>
 <p>There is no problem if the repo is public. The remote URL is just like the web URL to the repo. For convenience, let’s call this kind of URL “bare URL”.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">https://github.com/trinhngocthuyen/public-repo
-</code></pre></div><p>Now, we only care about how to fetch from a private repo.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://github.com/trinhngocthuyen/public-repo
+</span></span></code></pre></div><p>Now, we only care about how to fetch from a private repo.</p>
 <p>Git authenticates with the server using a username &amp; password, or a token. We can see a token as a username/password tuple where the password is the token and the username is just anything you want (ex. <code>x-access-token</code>, <code>gitlab-token</code>…). Therefore, we can treat these two roughly the same.</p>
 <h4 id="using-usernamepassword-in-the-remote-url">Using username/password in the remote URL</h4>
 <p>An HTTP/HTTPS remote that allows us to fetch successfully looks like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">https://&lt;username&gt;:&lt;password&gt;@github.com/trinhngocthuyen/private-repo
-</code></pre></div><p>This turns out to be the approach Gitlab CI/CD adopts. If you run <code>git remote -v</code> in a Gitlab job, you should see the URL as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://&lt;username&gt;:&lt;password&gt;@github.com/trinhngocthuyen/private-repo
+</span></span></code></pre></div><p>This turns out to be the approach Gitlab CI/CD adopts. If you run <code>git remote -v</code> in a Gitlab job, you should see the URL as follows:</p>
 <p><img src="/images/misc/gitlab_remote.png" alt="gitlab_remote.png"></p>
 <h4 id="using-httpextraheader-config">Using <code>http.extraheader</code> config</h4>
 <p><a href="https://github.com/actions/checkout">Github Checkout Action</a> adopts a different approach. They use the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpextraHeader"><code>http.extraheader</code></a> config to carry the credentials for authentication. And the remote URL is just a bare URL.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">https://github.com/trinhngocthuyen/private-repo
-</code></pre></div><p>Below are the logs from the checkout step. Taking a closer look, we notice the command that sets up the authentication. The masked content <code>***</code> is actually the base64 encoded string of <code>x-access-token:&lt;token&gt;</code> (see: <a href="https://github.com/actions/checkout/blob/v3/src/git-auth-helper.ts#L57-L60">src/git-auth-helper.ts#L57-L60</a>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://github.com/trinhngocthuyen/private-repo
+</span></span></code></pre></div><p>Below are the logs from the checkout step. Taking a closer look, we notice the command that sets up the authentication. The masked content <code>***</code> is actually the base64 encoded string of <code>x-access-token:&lt;token&gt;</code> (see: <a href="https://github.com/actions/checkout/blob/v3/src/git-auth-helper.ts#L57-L60">src/git-auth-helper.ts#L57-L60</a>).</p>
 <p><img src="/images/misc/github_extraheader.png" alt="github_extraheader.png"></p>
 <p>You can easily try out this approach on your local by:</p>
 <ul>
@@ -181,75 +181,75 @@ Host gitlab.company.com
 <li>Configure <code>http.extraheader</code></li>
 <li>Then try fetching a private repo</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config http.extraheader <span class="s2">&#34;Authorization: Basic </span><span class="k">$(</span><span class="nb">echo</span> -n x-access-token:&lt;TOKEN&gt; <span class="p">|</span> base64<span class="k">)</span><span class="s2">&#34;</span>
-$ git fetch https://github.com/trinhngocthuyen/private-repo
-</code></pre></div><p>Note: If you’re using Bash to encode <code>&lt;username&gt;:&lt;password&gt;</code>, be careful with the trailing newlines. It should be <code>echo -n &lt;username&gt;:&lt;password&gt; | base64</code> instead of <code>echo &lt;username&gt;:&lt;password&gt; | base64</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config http.extraheader <span class="s2">&#34;Authorization: Basic </span><span class="k">$(</span><span class="nb">echo</span> -n x-access-token:&lt;TOKEN&gt; <span class="p">|</span> base64<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">$ git fetch https://github.com/trinhngocthuyen/private-repo
+</span></span></code></pre></div><p>Note: If you’re using Bash to encode <code>&lt;username&gt;:&lt;password&gt;</code>, be careful with the trailing newlines. It should be <code>echo -n &lt;username&gt;:&lt;password&gt; | base64</code> instead of <code>echo &lt;username&gt;:&lt;password&gt; | base64</code>.</p>
 <p>In case you want to configure for Github only, then use <code>http.https://github.com/.extraheader</code> instead of <code>http.extraheader</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config http.https://github.com/.extraheader <span class="s2">&#34;Authorization: Basic &lt;base64(username:password)&gt;&#34;</span>
-</code></pre></div><p>This approach also works for other servers (Gitlab, Bitbucket…) as long as they support basic authentication.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config http.https://github.com/.extraheader <span class="s2">&#34;Authorization: Basic &lt;base64(username:password)&gt;&#34;</span>
+</span></span></code></pre></div><p>This approach also works for other servers (Gitlab, Bitbucket…) as long as they support basic authentication.</p>
 <h4 id="usernamepassword-prompts">Username/password prompts</h4>
 <p>If you fetch a remote with a bare URL (without a username/password), Git prompts you to ask for a username and password. Let&rsquo;s say, we input <code>x-access-token</code> for the username and the access token for the password. Then, it successfully fetches from this remote.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git fetch https://github.com/trinhngocthuyen/private-repo
-Username <span class="k">for</span> <span class="s1">&#39;https://github.com&#39;</span>: x-access-token
-Password <span class="k">for</span> <span class="s1">&#39;https://x-access-token@github.com&#39;</span>: my-token-goes-here
-From https://github.com/trinhngocthuyen/private-repo
- * branch            HEAD       -&gt; FETCH_HEAD
-</code></pre></div><p>Let say, you are a MacOS user. Now, you fetch from this remote again. Then, you are able to perform the fetch without seeing the username/password prompts again.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git fetch https://github.com/trinhngocthuyen/private-repo
-From https://github.com/trinhngocthuyen/private-repo
- * branch            HEAD       -&gt; FETCH_HEAD
-</code></pre></div><p>This behavior is due to the fact that Git caches the credentials. When enabling git traces by setting variable <code>GIT_TRACE=1</code>, you should see what handles the credentials cache.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">GIT_TRACE</span><span class="o">=</span><span class="m">1</span> git fetch https://github.com/trinhngocthuyen/private-repo
-09:22:03.977378 git.c:460               trace: built-in: git fetch https://github.com/trinhngocthuyen/private-repo
-09:22:03.978347 run-command.c:655       trace: run_command: <span class="nv">GIT_DIR</span><span class="o">=</span>.git git remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
-09:22:03.992273 git.c:750               trace: exec: git-remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
-09:22:03.992846 run-command.c:655       trace: run_command: git-remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
-09:22:04.464215 run-command.c:655       trace: run_command: <span class="s1">&#39;git credential-osxkeychain get&#39;</span>
-09:22:04.509220 git.c:750               trace: exec: git-credential-osxkeychain get
-09:22:04.510059 run-command.c:655       trace: run_command: git-credential-osxkeychain get
-09:22:04.993732 run-command.c:655       trace: run_command: <span class="s1">&#39;git credential-osxkeychain store&#39;</span>
-09:22:05.038985 git.c:750               trace: exec: git-credential-osxkeychain store
-09:22:05.039730 run-command.c:655       trace: run_command: git-credential-osxkeychain store
-09:22:05.506154 run-command.c:655       trace: run_command: git rev-list --objects --stdin --not --all --quiet --alternate-refs
-From https://github.com/trinhngocthuyen/private-repo
- * branch            HEAD       -&gt; FETCH_HEAD
-09:22:05.547164 run-command.c:1524      run_processes_parallel: preparing to run up to <span class="m">1</span> tasks
-09:22:05.547195 run-command.c:1551      run_processes_parallel: <span class="k">done</span>
-09:22:05.547216 run-command.c:655       trace: run_command: git maintenance run --auto --no-quiet
-09:22:05.565672 git.c:460               trace: built-in: git maintenance run --auto --no-quiet
-</code></pre></div><p>It is <code>git credential-osxkeychain</code> that does the magic in MacOS. In the first successful fetch, the command <code>git credential-osxkeychain store</code> saves the credentials to Keychain. In subsequent uses, it runs <code>git credential-osxkeychain get</code> to retrieve the credentials for authentication.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git fetch https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">Username <span class="k">for</span> <span class="s1">&#39;https://github.com&#39;</span>: x-access-token
+</span></span><span class="line"><span class="cl">Password <span class="k">for</span> <span class="s1">&#39;https://x-access-token@github.com&#39;</span>: my-token-goes-here
+</span></span><span class="line"><span class="cl">From https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl"> * branch            HEAD       -&gt; FETCH_HEAD
+</span></span></code></pre></div><p>Let say, you are a MacOS user. Now, you fetch from this remote again. Then, you are able to perform the fetch without seeing the username/password prompts again.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git fetch https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">From https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl"> * branch            HEAD       -&gt; FETCH_HEAD
+</span></span></code></pre></div><p>This behavior is due to the fact that Git caches the credentials. When enabling git traces by setting variable <code>GIT_TRACE=1</code>, you should see what handles the credentials cache.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">GIT_TRACE</span><span class="o">=</span><span class="m">1</span> git fetch https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">09:22:03.977378 git.c:460               trace: built-in: git fetch https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">09:22:03.978347 run-command.c:655       trace: run_command: <span class="nv">GIT_DIR</span><span class="o">=</span>.git git remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">09:22:03.992273 git.c:750               trace: exec: git-remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">09:22:03.992846 run-command.c:655       trace: run_command: git-remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl">09:22:04.464215 run-command.c:655       trace: run_command: <span class="s1">&#39;git credential-osxkeychain get&#39;</span>
+</span></span><span class="line"><span class="cl">09:22:04.509220 git.c:750               trace: exec: git-credential-osxkeychain get
+</span></span><span class="line"><span class="cl">09:22:04.510059 run-command.c:655       trace: run_command: git-credential-osxkeychain get
+</span></span><span class="line"><span class="cl">09:22:04.993732 run-command.c:655       trace: run_command: <span class="s1">&#39;git credential-osxkeychain store&#39;</span>
+</span></span><span class="line"><span class="cl">09:22:05.038985 git.c:750               trace: exec: git-credential-osxkeychain store
+</span></span><span class="line"><span class="cl">09:22:05.039730 run-command.c:655       trace: run_command: git-credential-osxkeychain store
+</span></span><span class="line"><span class="cl">09:22:05.506154 run-command.c:655       trace: run_command: git rev-list --objects --stdin --not --all --quiet --alternate-refs
+</span></span><span class="line"><span class="cl">From https://github.com/trinhngocthuyen/private-repo
+</span></span><span class="line"><span class="cl"> * branch            HEAD       -&gt; FETCH_HEAD
+</span></span><span class="line"><span class="cl">09:22:05.547164 run-command.c:1524      run_processes_parallel: preparing to run up to <span class="m">1</span> tasks
+</span></span><span class="line"><span class="cl">09:22:05.547195 run-command.c:1551      run_processes_parallel: <span class="k">done</span>
+</span></span><span class="line"><span class="cl">09:22:05.547216 run-command.c:655       trace: run_command: git maintenance run --auto --no-quiet
+</span></span><span class="line"><span class="cl">09:22:05.565672 git.c:460               trace: built-in: git maintenance run --auto --no-quiet
+</span></span></code></pre></div><p>It is <code>git credential-osxkeychain</code> that does the magic in MacOS. In the first successful fetch, the command <code>git credential-osxkeychain store</code> saves the credentials to Keychain. In subsequent uses, it runs <code>git credential-osxkeychain get</code> to retrieve the credentials for authentication.</p>
 <p><img src="/images/misc/git_keychain_cache.png" alt="git_keychain_cache.png"></p>
 <p>You can easily verify this by checking the corresponding item in Keychain Access, or by running <code>git credential-osxkeychain get</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">echo</span> <span class="s2">&#34;host=github.com\nprotocol=https&#34;</span> <span class="p">|</span> git credential-osxkeychain get
-<span class="nv">password</span><span class="o">=</span>ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-<span class="nv">username</span><span class="o">=</span>x-access-token
-</code></pre></div><h4 id="git-credential-storage">Git credential storage</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;host=github.com\nprotocol=https&#34;</span> <span class="p">|</span> git credential-osxkeychain get
+</span></span><span class="line"><span class="cl"><span class="nv">password</span><span class="o">=</span>ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</span></span><span class="line"><span class="cl"><span class="nv">username</span><span class="o">=</span>x-access-token
+</span></span></code></pre></div><h4 id="git-credential-storage">Git credential storage</h4>
 <p>What happened in the precedent section is the credentials are handled by “<a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">credential storage</a>”. In MacOS, Git comes with the <code>osxkeychain</code> mode which allows caching such info to Keychain.</p>
 <p>If you also observe the same behavior (ie. Git remembers your credentials), then maybe you have the cache in place. To see the current credential storage:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config credential.helper
-osxkeychain
-</code></pre></div><p>In fact, for me, <code>osxkeychain</code> is set as the credential storage by the system git config (located in <code>/System/Volumes/Data/usr/local/etc/gitconfig</code>)</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config --system --list
-credential.helper<span class="o">=</span>osxkeychain
-</code></pre></div><p>There are several built-in options besides <code>osxkeychain</code> (see: <a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">reference</a>):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config credential.helper
+</span></span><span class="line"><span class="cl">osxkeychain
+</span></span></code></pre></div><p>In fact, for me, <code>osxkeychain</code> is set as the credential storage by the system git config (located in <code>/System/Volumes/Data/usr/local/etc/gitconfig</code>)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --system --list
+</span></span><span class="line"><span class="cl">credential.helper<span class="o">=</span>osxkeychain
+</span></span></code></pre></div><p>There are several built-in options besides <code>osxkeychain</code> (see: <a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">reference</a>):</p>
 <ul>
 <li><code>cache</code>: short-lived cache in memory (for 15m)</li>
 <li><code>store</code>: the cache persists in a text file <code>~/.git-credentials</code></li>
 <li>…</li>
 </ul>
 <p>You can try out these options by overriding the config:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config credential.helper cache
-</code></pre></div><h3 id="using-urlbaseinsteadof-config">Using <code>url.&lt;base&gt;.insteadOf</code> config</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config credential.helper cache
+</span></span></code></pre></div><h3 id="using-urlbaseinsteadof-config">Using <code>url.&lt;base&gt;.insteadOf</code> config</h3>
 <p><a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf">This config</a> is really useful, especially for CI environment.</p>
 <p>For Git-based dependencies in the project (declared in Gemfile, Podfile, etc.), engineers may choose to use SSH URLs because those work for them on their local. When running on CI environment, those URLs possibly won’t work if the CI provider does not use SSH for authentication (ex. Github, Gitlab). Changing those URLs to HTTP/HTTPS format, unfortunately, might cause the issue on their local.</p>
 <p>A simple solution to mitigate this issue is using the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf"><code>url.&lt;base&gt;.insteadOf</code> config</a>. This way, a URL format can be translated into the expected one.</p>
 <p>Using this config is a very common practice to make your CI executions robust. Therefore, sometimes you might see the code like this on CI:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># For Github Actions</span>
-$ git config --global url.<span class="s2">&#34;https://x-access-token:</span><span class="si">${</span><span class="p">{ secrets.GITHUB_TOKEN </span><span class="si">}</span><span class="s2">}@github.com/&#34;</span>.insteadOf <span class="s2">&#34;git@github.com:&#34;</span>
-
-<span class="c1"># For Gitlab CI</span>
-$ git config --global url.<span class="s2">&#34;https://gitlab-ci-token:</span><span class="si">${</span><span class="nv">CI_JOB_TOKEN</span><span class="si">}</span><span class="s2">@gitlab.com/&#34;</span>.insteadOf <span class="s2">&#34;git@gitlab.com:&#34;</span>
-</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># For Github Actions</span>
+</span></span><span class="line"><span class="cl">$ git config --global url.<span class="s2">&#34;https://x-access-token:</span><span class="si">${</span><span class="p">{ secrets.GITHUB_TOKEN </span><span class="si">}</span><span class="s2">}@github.com/&#34;</span>.insteadOf <span class="s2">&#34;git@github.com:&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># For Gitlab CI</span>
+</span></span><span class="line"><span class="cl">$ git config --global url.<span class="s2">&#34;https://gitlab-ci-token:</span><span class="si">${</span><span class="nv">CI_JOB_TOKEN</span><span class="si">}</span><span class="s2">@gitlab.com/&#34;</span>.insteadOf <span class="s2">&#34;git@gitlab.com:&#34;</span>
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
 <p>In this blog post, we covered some areas of how Git authenticates with the server. We also mentioned some best practices when working with SSH and HTTP/HTTPS remotes. Although some practices are not really the case for local development, they are quite common for CI integration. Given that different CI providers may adopt different approaches (ex. Github using the <code>.extraheader</code> config, Gitlab using token-based remotes, CircleCI using SSH), knowing how they work helps you be less confused with the workflows.</p>
 <p>At the end of the day, good engineering quality comes from not only excelling at domain knowledge but also being proficient in your day-to-day tools, in my opinion.</p>
 
@@ -310,7 +310,7 @@ $ git config --global url.<span class="s2">&#34;https://gitlab-ci-token:</span><
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

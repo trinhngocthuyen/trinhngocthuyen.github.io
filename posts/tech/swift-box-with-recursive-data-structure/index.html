@@ -96,48 +96,48 @@ capacity for <code>List&lt;Int&gt;</code> in <code>Cons(Int, List&lt;Int&gt;)</c
 non-recursive, non-type-paramaterized</em> by using another data structure.
 The new data structure’s responsibility is wrapping the value in a box. And when
 you need the value, just unwrap the box.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span>
-    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">enum</span> <span class="nc">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="n">Cons</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span><span class="o">&gt;</span><span class="p">)</span>
-    <span class="k">case</span> <span class="n">Nil</span>
-
-    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">head</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="kc">_</span> <span class="n">tail</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span> <span class="p">{</span>
-        <span class="kc">self</span> <span class="p">=</span> <span class="n">Cons</span><span class="p">(</span><span class="n">Box</span><span class="p">(</span><span class="n">head</span><span class="p">),</span> <span class="n">Box</span><span class="p">(</span><span class="n">tail</span><span class="p">))</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>By this, <code>List&lt;T&gt;</code> is not recursive anymore. <em>But of course, it’s still
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">enum</span> <span class="nc">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">Cons</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span><span class="o">&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">Nil</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">head</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="kc">_</span> <span class="n">tail</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span> <span class="p">=</span> <span class="n">Cons</span><span class="p">(</span><span class="n">Box</span><span class="p">(</span><span class="n">head</span><span class="p">),</span> <span class="n">Box</span><span class="p">(</span><span class="n">tail</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>By this, <code>List&lt;T&gt;</code> is not recursive anymore. <em>But of course, it’s still
 logically a recursion :D</em>. The compiler won’t complain about the memory
 allocation problem because it can estimate how much memory a box takes.</p>
 <h3 id="other-examples">Other examples</h3>
 <p>If you use <code>ReactiveCocoa 3.0</code>, you will see <code>Box</code> as a submodule
 of it. In fact, <code>RAC 3.0</code> includes another submodule called <code>Result</code>. This
 micro framework also use <code>Box</code>, too.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">/// This is excerpted from the framework Result</span>
-<span class="c1">/// Ref: https://github.com/antitypical/Result/blob/swift1.2/Result/Result.swift</span>
-
-<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Result</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Error</span><span class="p">&gt;:</span> <span class="nb">Printable</span><span class="p">,</span> <span class="nb">DebugPrintable</span> <span class="p">{</span>
-	<span class="k">case</span> <span class="n">Success</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span>
-	<span class="k">case</span> <span class="n">Failure</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">Error</span><span class="p">&gt;)</span>
-	<span class="p">...</span>
-<span class="p">}</span>
-
-<span class="c1">/// This is excerpted from the framework ReactiveCocoa</span>
-<span class="c1">/// Ref: https://github.com/ReactiveCocoa/ReactiveCocoa/blob/swift-1.2/ReactiveCocoa/Swift/Event.swift</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Event</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">&gt;</span> <span class="p">{</span>
-	<span class="c1">/// A value provided by the signal.</span>
-	<span class="k">case</span> <span class="n">Next</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span>
-	<span class="k">case</span> <span class="n">Error</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">E</span><span class="p">&gt;)</span>
-	<span class="k">case</span> <span class="n">Completed</span>
-	<span class="k">case</span> <span class="n">Interrupted</span>
-  <span class="p">...</span>
-<span class="p">}</span>
-</code></pre></div><p>Now you can define your own recursive data structure using this trick.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// This is excerpted from the framework Result</span>
+</span></span><span class="line"><span class="cl"><span class="c1">/// Ref: https://github.com/antitypical/Result/blob/swift1.2/Result/Result.swift</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Result</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Error</span><span class="p">&gt;:</span> <span class="nb">Printable</span><span class="p">,</span> <span class="nb">DebugPrintable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">Success</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">Failure</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">Error</span><span class="p">&gt;)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">/// This is excerpted from the framework ReactiveCocoa</span>
+</span></span><span class="line"><span class="cl"><span class="c1">/// Ref: https://github.com/ReactiveCocoa/ReactiveCocoa/blob/swift-1.2/ReactiveCocoa/Swift/Event.swift</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Event</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">/// A value provided by the signal.</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">Next</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">Error</span><span class="p">(</span><span class="n">Box</span><span class="p">&lt;</span><span class="n">E</span><span class="p">&gt;)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">Completed</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">Interrupted</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Now you can define your own recursive data structure using this trick.</p>
 <p>The full demonstration can be found <a href="https://gist.github.com/trinhngocthuyen/11a6b08f103999f352da">here</a>.</p>
 <p><u>Updated:</u>
 Swift 2.1 has come with the support for recursive enums. Bravo! <a href="%5Bhttps://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html">Checkout the keyword: <code>indirect</code></a>.</p>
@@ -200,7 +200,7 @@ Swift 2.1 has come with the support for recursive enums. Bravo! <a href="%5Bhttp
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

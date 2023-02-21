@@ -89,17 +89,17 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 <p>This post introduces a tip to overcome the artifacts size constraint in (F2).</p>
 <h2 id="2-a-closer-look-at-ios-build-artifacts">2. A Closer Look at iOS Build Artifacts</h2>
 <p>Now, let&rsquo;s take a look at a project that has both <em>hosted test targets</em> and <em>non-hosted test targets</em>. Assume we&rsquo;re using CocoaPods to manage dependencies in your project. When building the project, the build products folder would be in the following structure.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">|-- App.app / -- App (*)
-|           |
-|           |-- Frameworks / -- DynamicFW_A.framework
-|           |               |-- DynamicFW_B.framework / -- DynamicFW_B.bundle
-|           |
-|           |-- Plugins / -- HostedTestTarget.xctest
-|           |
-|           |-- StaticFW_C.bundle
-|
-|-- NonHostedTestTarget.xctest
-</code></pre></div><p>The <code>.app</code> bundles and <code>.xctest</code> bundles are both <strong>executable bundles</strong>. They have the same folder structure. Inside such a bundle:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">|-- App.app / -- App (*)
+</span></span><span class="line"><span class="cl">|           |
+</span></span><span class="line"><span class="cl">|           |-- Frameworks / -- DynamicFW_A.framework
+</span></span><span class="line"><span class="cl">|           |               |-- DynamicFW_B.framework / -- DynamicFW_B.bundle
+</span></span><span class="line"><span class="cl">|           |
+</span></span><span class="line"><span class="cl">|           |-- Plugins / -- HostedTestTarget.xctest
+</span></span><span class="line"><span class="cl">|           |
+</span></span><span class="line"><span class="cl">|           |-- StaticFW_C.bundle
+</span></span><span class="line"><span class="cl">|
+</span></span><span class="line"><span class="cl">|-- NonHostedTestTarget.xctest
+</span></span></code></pre></div><p>The <code>.app</code> bundles and <code>.xctest</code> bundles are both <strong>executable bundles</strong>. They have the same folder structure. Inside such a bundle:</p>
 <ul>
 <li>The <code>Frameworks</code> folder contains the <code>.framework</code> bundles of frameworks built as dynamic. Note that some system dynamic libraries such as <code>libswiftCore.dylib</code>, <code>libswiftFoundation.dylib</code>&hellip; also reside in this folder.</li>
 <li>The <code>Plugins</code> folder contains the <code>.xctest</code> bundles of the app&rsquo;s hosted test targets (ie. test targets that use this app as its host app). Meanwhile, <code>.xctest</code> bundles of non-hosted test targets reside in the same folder of the <code>.app</code> bundles.</li>
@@ -117,33 +117,33 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 <p>For dynamic frameworks added to a target, CocoaPods adds a build phase called <code>[CP] Embed Pods Frameworks</code> at the end of the target build phases.
 <img src="/images/ci/cp_build_phase.png" alt="png"></p>
 <p>This build phase actually executes a script <code>&quot;${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks.sh&quot;</code> to copy all dynamic frameworks (managed by CocoaPods) belonging to the target to the <code>Frameworks</code> folder inside the executable bundle of that target. Those frameworks were copied from the framework build products located at the same folder as the executable bundle.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Debug-iphonesimulator / -- App.app / -- Frameworks / -- Dynamic_A.framework
-                       |
-                       |-- Dynamic_A / -- Dynamic_A.framework 👈 👈 👈
-</code></pre></div><p>One thing that&rsquo;s worth a mention is that the checksum of the framework in the framework build products (ex. <code>Debug-iphonesimulator/Dynamic_A</code>) is different from the one in the <code>Frameworks</code> folder of the app bundle. This is because CocoaPods strips some unnecessary info of frameworks while copying them to the app bundles. The stripped info includes <code>Headers</code>, <code>PrivateHeaders</code>, <code>Modules</code> folder inside the <code>.framework</code> bundle and so forth.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">install_framework<span class="o">()</span>
-<span class="o">{</span>
-  ...
-  rsync --delete -av <span class="s2">&#34;</span><span class="si">${</span><span class="nv">RSYNC_PROTECT_TMP_FILES</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> --links --filter <span class="s2">&#34;- CVS/&#34;</span> --filter <span class="s2">&#34;- .svn/&#34;</span> --filter <span class="s2">&#34;- .git/&#34;</span> --filter <span class="s2">&#34;- .hg/&#34;</span> --filter <span class="s2">&#34;- Headers&#34;</span> --filter <span class="s2">&#34;- PrivateHeaders&#34;</span> --filter <span class="s2">&#34;- Modules&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">source</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">destination</span><span class="si">}</span><span class="s2">&#34;</span>
-  ...
-<span class="o">}</span>
-</code></pre></div><h3 id="32-resourcesresource-bundles-of-static-frameworks">3.2. Resources/Resource Bundles of Static Frameworks</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Debug-iphonesimulator / -- App.app / -- Frameworks / -- Dynamic_A.framework
+</span></span><span class="line"><span class="cl">                       |
+</span></span><span class="line"><span class="cl">                       |-- Dynamic_A / -- Dynamic_A.framework 👈 👈 👈
+</span></span></code></pre></div><p>One thing that&rsquo;s worth a mention is that the checksum of the framework in the framework build products (ex. <code>Debug-iphonesimulator/Dynamic_A</code>) is different from the one in the <code>Frameworks</code> folder of the app bundle. This is because CocoaPods strips some unnecessary info of frameworks while copying them to the app bundles. The stripped info includes <code>Headers</code>, <code>PrivateHeaders</code>, <code>Modules</code> folder inside the <code>.framework</code> bundle and so forth.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">install_framework<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  rsync --delete -av <span class="s2">&#34;</span><span class="si">${</span><span class="nv">RSYNC_PROTECT_TMP_FILES</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> --links --filter <span class="s2">&#34;- CVS/&#34;</span> --filter <span class="s2">&#34;- .svn/&#34;</span> --filter <span class="s2">&#34;- .git/&#34;</span> --filter <span class="s2">&#34;- .hg/&#34;</span> --filter <span class="s2">&#34;- Headers&#34;</span> --filter <span class="s2">&#34;- PrivateHeaders&#34;</span> --filter <span class="s2">&#34;- Modules&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">source</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">destination</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="32-resourcesresource-bundles-of-static-frameworks">3.2. Resources/Resource Bundles of Static Frameworks</h3>
 <p>For pods integrated as static frameworks, their resources and resource bundles will be copied to the executable bundles. And the duplication of these contents takes place the same way dynamics frameworks getting duplicated.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">App.app / -- App (*)
-         |
-         |-- StaticFW_C.bundle
-         |
-         |-- ResourcesOfStaticFW_D / -- an_image.png
-</code></pre></div><h2 id="4-reducing-artifacts-based-on-duplications">4. Reducing Artifacts Based on Duplications</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">App.app / -- App (*)
+</span></span><span class="line"><span class="cl">         |
+</span></span><span class="line"><span class="cl">         |-- StaticFW_C.bundle
+</span></span><span class="line"><span class="cl">         |
+</span></span><span class="line"><span class="cl">         |-- ResourcesOfStaticFW_D / -- an_image.png
+</span></span></code></pre></div><h2 id="4-reducing-artifacts-based-on-duplications">4. Reducing Artifacts Based on Duplications</h2>
 <p>Based on the observations above, we can thin the artifacts by storing the bundle contents in a storage. Each bundle is unique by its checksum.</p>
 <p><img src="/images/ci/artifacts_opt_storage.png" alt="png"></p>
 <p>To keep track of the original location of a bundle inside the storage, we need a mapping that maps the original location of a bundle to its place in the storage. This way, after thinning the artifacts, we can easily recover the artifacts to its original state. The contents integrity remains unchanged.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">storage/ -- &lt;hash_a&gt;-A.framework
-        |-- &lt;hash_b&gt;-B.framework
-        |-- &lt;hash_c&gt;-C.framework
-        |-- ...
-        |-- storage.json # Contains the mapping
-</code></pre></div><p>With this storage mapping solution, there are 2 additional steps running on CI:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">storage/ -- &lt;hash_a&gt;-A.framework
+</span></span><span class="line"><span class="cl">        |-- &lt;hash_b&gt;-B.framework
+</span></span><span class="line"><span class="cl">        |-- &lt;hash_c&gt;-C.framework
+</span></span><span class="line"><span class="cl">        |-- ...
+</span></span><span class="line"><span class="cl">        |-- storage.json # Contains the mapping
+</span></span></code></pre></div><p>With this storage mapping solution, there are 2 additional steps running on CI:</p>
 <p><img src="/images/ci/artifacts_opt_build_test.png" alt="png"></p>
 <ul>
 <li>In the <code>build</code> job, run the <strong><code>optimize</code></strong> step at the end of the job.
@@ -164,9 +164,9 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 <li>About a year ago, we maintained a duo linking strategies. If build for testing, we turn all frameworks into dynamic frameworks (except some cases). Otherwise, make them static. Making the majority of them dynamic is to resolve a code coverage issue which has been now resolved. Back then, this technique was proven to be powerful. The <em>optimize</em> step reduced the artifacts from arounnd 3GB to only 800MB. However, after shifting from dynamic frameworks to static frameworks, we have seen a decrease in the thinning performance. At the moment, the artifacts are thinned from 3.6GB to 2.1GB after the <em>optimize</em> step.</li>
 </ul>
 <p>In some cases, we observe 2 frameworks with the same name but having different checksums in the storage.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">storage / -- &lt;hash_1&gt;-A.framework
-         |-- &lt;hash_2&gt;-A.framework
-</code></pre></div><p>This sometimes happens when you declare pods with different forms in different targets. For example, one target is using a pod with subspec <code>A/Child_1</code> and another target is using <code>A/Child_2</code>. Another scenario this might happen is when you use a different dependencies manager that strips framework bundles differently. In such cases, you can run another round of optimization on the storage.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">storage / -- &lt;hash_1&gt;-A.framework
+</span></span><span class="line"><span class="cl">         |-- &lt;hash_2&gt;-A.framework
+</span></span></code></pre></div><p>This sometimes happens when you declare pods with different forms in different targets. For example, one target is using a pod with subspec <code>A/Child_1</code> and another target is using <code>A/Child_2</code>. Another scenario this might happen is when you use a different dependencies manager that strips framework bundles differently. In such cases, you can run another round of optimization on the storage.</p>
 <p>Last, does this work if we don&rsquo;t use CocoaPods as the dependencies manager in the project? Actually, what other dependencies managers do is similar in essence. This tip is based on the duplications (in executable bundles structure) when we have more targets in the project. It should be general and independent of what dependencies manager we&rsquo;re using.</p>
 
   <div class="entry-footer">
@@ -228,7 +228,7 @@ The growth in size of an iOS project is propotional to not only <em>the number o
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

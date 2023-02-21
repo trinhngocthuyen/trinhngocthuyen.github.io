@@ -72,7 +72,7 @@ if (!doNotTrack) {
 </div>
   
 </header>
-  <p>Sometimes, I got frustrated with the fact that my SSH keys were cleared from agents after rebooting. As a result, I had to manually add those keys to agents every time my computer restarted (although it&rsquo;s not occasional)&hellip; It&rsquo;s best to automate such tasks - I thought. So, I asked <em>&ldquo;how to run a shell script on login?&quot;</em>. And here are some solutions.</p>
+  <p>Sometimes, I got frustrated with the fact that my SSH keys were cleared from agents after rebooting. As a result, I had to manually add those keys to agents every time my computer restarted (although it&rsquo;s not occasional)&hellip; It&rsquo;s best to automate such tasks - I thought. So, I asked <em>&ldquo;how to run a shell script on login?&rdquo;</em>. And here are some solutions.</p>
 <h3 id="option-1-automator">Option 1: Automator</h3>
 <ul>
 <li>Open <em><strong>Automator</strong></em>. Choose <em><strong>Application</strong></em> from the templates.</li>
@@ -86,28 +86,28 @@ if (!doNotTrack) {
 <ul>
 <li>Create a plist file in <code>~/Library/LaunchAgents</code> (ex. <code>com.thuyen.loginscript.plist</code>):</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple Computer//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
-<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;dict&gt;</span>
-		<span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-		<span class="nt">&lt;string&gt;</span>com.thuyen.loginscript<span class="nt">&lt;/string&gt;</span>
-		<span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-		<span class="nt">&lt;array&gt;&lt;string&gt;</span>/Users/thuyentrinh/scripts/on_login.sh<span class="nt">&lt;/string&gt;&lt;/array&gt;</span>
-		<span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
-		<span class="nt">&lt;true/&gt;</span>
-	<span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/plist&gt;</span>
-</code></pre></div><p>🔖 <em><u>Note</u></em>: For some reasons, the plist does not work with the executable path like <code>~/scripts/on_login.sh</code> (<code>~</code> for HOME directory). Explicit path <code>/Users/thuyentrinh/scripts/on_login.sh</code> solves the problems&hellip; My MacOS is 10.13; maybe that matters 🙄. I did not test it in earlier MacOS versions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple Computer//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;dict&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;string&gt;</span>com.thuyen.loginscript<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;array&gt;&lt;string&gt;</span>/Users/thuyentrinh/scripts/on_login.sh<span class="nt">&lt;/string&gt;&lt;/array&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;true/&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/dict&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plist&gt;</span>
+</span></span></code></pre></div><p>🔖 <em><u>Note</u></em>: For some reasons, the plist does not work with the executable path like <code>~/scripts/on_login.sh</code> (<code>~</code> for HOME directory). Explicit path <code>/Users/thuyentrinh/scripts/on_login.sh</code> solves the problems&hellip; My MacOS is 10.13; maybe that matters 🙄. I did not test it in earlier MacOS versions.</p>
 <ul>
 <li>Load the daemon:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">launchctl load ~/Library/LaunchAgents/com.thuyen.loginscript.plist
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">launchctl load ~/Library/LaunchAgents/com.thuyen.loginscript.plist
+</span></span></code></pre></div><ul>
 <li>You could verify if the daemon is loaded by listing out services</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">launchctl list | grep loginscript
-</code></pre></div><h3 id="reference">Reference</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">launchctl list | grep loginscript
+</span></span></code></pre></div><h3 id="reference">Reference</h3>
 <ol>
 <li><a href="http://developernotes.com/archive/2011/04/06/169.aspx">Launch shell script silently at login</a></li>
 <li><a href="https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html#//apple_ref/doc/uid/10000172i-SW7-BCIEDDBJ">Daemons and Services Programming Guide</a></li>
@@ -173,7 +173,7 @@ if (!doNotTrack) {
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

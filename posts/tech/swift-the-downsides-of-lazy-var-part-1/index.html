@@ -73,42 +73,42 @@ if (!doNotTrack) {
   
 </header>
   <p>Lazy evaluation is a really powerful technique which enhances app performance by avoiding unecessary computation. In Swift, apart from this advantage, it also brings convenience when it comes to coding style. For instance, I usually place the setup of a UI element in a closure instead of putting a whole bunch of code in <code>viewDidLoad()</code>. And when we need <code>self</code> for that setup, <code>lazy</code> comes to the rescue.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">nameLabel</span><span class="p">:</span> <span class="n">UILabel</span> <span class="p">=</span> <span class="p">{</span>
-	<span class="kd">let</span> <span class="nv">label</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
-	<span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">person</span><span class="p">.</span><span class="n">name</span>
-	<span class="c1">// ... Further setup</span>
-	<span class="k">return</span> <span class="n">label</span>
-<span class="p">}()</span>
-</code></pre></div><p>Putting aside the overhead complexity it adds to the compilation process, there are some more cases we need to pay attention.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">nameLabel</span><span class="p">:</span> <span class="n">UILabel</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">let</span> <span class="nv">label</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">person</span><span class="p">.</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ... Further setup</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">label</span>
+</span></span><span class="line"><span class="cl"><span class="p">}()</span>
+</span></span></code></pre></div><p>Putting aside the overhead complexity it adds to the compilation process, there are some more cases we need to pay attention.</p>
 <p>Consider this code:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">ViewController</span> <span class="p">{</span>
-	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">progressView</span><span class="p">:</span> <span class="n">ProgressView</span> <span class="p">=</span> <span class="p">{</span>
-		<span class="kd">let</span> <span class="nv">_progressView</span> <span class="p">=</span> <span class="n">ProgressView</span><span class="p">(</span><span class="n">delegate</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-		<span class="c1">// Further setup</span>
-		<span class="k">return</span> <span class="n">_progressView</span>
-	<span class="p">}()</span>
-	<span class="p">...</span>
-<span class="p">}</span>
-
-<span class="kd">extension</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">ProgressViewDelegate</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">progressViewUpdateProgress</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">let</span> <span class="nv">value</span> <span class="p">=</span> <span class="n">progressView</span><span class="p">.</span><span class="n">value</span>
-		<span class="p">...</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>Everything seems pretty normal. But taking a closer look, we notice that there&rsquo;s a chance that while <code>progressView</code> is being configured, it may be called which ends up executing the closure twice. This introduces some critical issues as the second call will overwrite the value in the first setup.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// 1. execute closure</span>
-<span class="c1">// --&gt; create, not yet return </span>
-<span class="c1">// --&gt; still marked progressView as &#34;not yet initialized&#34;</span>
-<span class="kd">let</span> <span class="nv">_progressView</span> <span class="p">=</span> <span class="n">ProgressView</span><span class="p">(</span><span class="n">delegate</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> 
-
-<span class="c1">// 2. delegate is called</span>
-<span class="n">progressViewUpdateProgress</span><span class="p">()</span> 
-
-<span class="c1">// 3. access progressView, but it is marked as &#34;not yet initialized&#34; since we didn&#39;t reach the return</span>
-<span class="c1">// --&gt; execute closure (again)</span>
-<span class="kd">let</span> <span class="nv">value</span> <span class="p">=</span> <span class="n">progressView</span><span class="p">.</span><span class="n">value</span> 
-</code></pre></div><p>This twice execution can lead to a few issues as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">ViewController</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">progressView</span><span class="p">:</span> <span class="n">ProgressView</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">let</span> <span class="nv">_progressView</span> <span class="p">=</span> <span class="n">ProgressView</span><span class="p">(</span><span class="n">delegate</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Further setup</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">_progressView</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">ProgressViewDelegate</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">progressViewUpdateProgress</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">let</span> <span class="nv">value</span> <span class="p">=</span> <span class="n">progressView</span><span class="p">.</span><span class="n">value</span>
+</span></span><span class="line"><span class="cl">		<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Everything seems pretty normal. But taking a closer look, we notice that there&rsquo;s a chance that while <code>progressView</code> is being configured, it may be called which ends up executing the closure twice. This introduces some critical issues as the second call will overwrite the value in the first setup.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// 1. execute closure</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// --&gt; create, not yet return </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// --&gt; still marked progressView as &#34;not yet initialized&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">_progressView</span> <span class="p">=</span> <span class="n">ProgressView</span><span class="p">(</span><span class="n">delegate</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 2. delegate is called</span>
+</span></span><span class="line"><span class="cl"><span class="n">progressViewUpdateProgress</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 3. access progressView, but it is marked as &#34;not yet initialized&#34; since we didn&#39;t reach the return</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// --&gt; execute closure (again)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">value</span> <span class="p">=</span> <span class="n">progressView</span><span class="p">.</span><span class="n">value</span> 
+</span></span></code></pre></div><p>This twice execution can lead to a few issues as follows:</p>
 <ul>
 <li>The creation may take forever, then the app crashes.</li>
 <li>The second <code>progressView</code> is not set up properly. For example, if we first use <code>progressView</code> in <code>view.addSubview(progressView)</code>, the first one is added to <code>view</code> but the second one does not have <code>superview</code> at all 😱. The assumption that <code>progressView</code> has <code>superview</code> is not true anymore.</li>
@@ -178,7 +178,7 @@ However, by using <code>lazy var</code>, the problem seems to hide quite cleverl
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

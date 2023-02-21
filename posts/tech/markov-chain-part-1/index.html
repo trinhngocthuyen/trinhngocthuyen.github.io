@@ -125,7 +125,7 @@ $$</p>
 <p>which implies given that today is sunny, there is 36% chance it will rain two days later.</p>
 <p>Note that, in this example, we assume that the transition probability does not change along with time. Such Markov chain is called <em><strong>homogeneous</strong></em> or <em>time-homogeneous</em>.</p>
 <h4 id="marginal-distribution-of-x_n">Marginal distribution of $X_n$</h4>
-<p>One may ask <em>&ldquo;What is the probability the system arrives at a specific state at certain time?&quot;</em>. Or what is $P(X_n = j)$?</p>
+<p>One may ask <em>&ldquo;What is the probability the system arrives at a specific state at certain time?&rdquo;</em>. Or what is $P(X_n = j)$?</p>
 <p>To calculate this marginal distribution, we need to know the <em>initial conditions</em> of the system. Let $\mathbf{t} = (t_1, &hellip;, t_M)$ be the probability vector where $t_i = P(X_0 = i)$, denoting the probability that the system starts at state $i$. Then,</p>
 <p>$$
 \begin{aligned}
@@ -197,7 +197,7 @@ $$</p>
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

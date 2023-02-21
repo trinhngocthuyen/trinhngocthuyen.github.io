@@ -375,7 +375,7 @@ Giờ làm việc Thường thì các công ty ở VN, dù là tech hay non-tech
       
       <guid>https://trinhngocthuyen.com/posts/misc/2017-in-review/</guid>
       <description>P/s: Vietnamese below.
- Unemployed. After leaving Fossil, I lost my balance. There was a time I had not seen any of my friends. I missed them as much as I missed my work :). Acquired some new knowledge. While being out of work, I took part in a few courses in Coursera, MIT Opencourseware and so on. Some courses did bring me plenty of interests, headaches, and mind-blowing moments as well.</description>
+Unemployed. After leaving Fossil, I lost my balance. There was a time I had not seen any of my friends. I missed them as much as I missed my work :). Acquired some new knowledge. While being out of work, I took part in a few courses in Coursera, MIT Opencourseware and so on. Some courses did bring me plenty of interests, headaches, and mind-blowing moments as well.</description>
     </item>
     
     <item>
@@ -560,7 +560,7 @@ Assume we gonna create a template for MVVM. It should create 3 files: [Feature]M
       
       <guid>https://trinhngocthuyen.com/posts/tech/gc-algorithms/</guid>
       <description>As an iOS developer, I am quite familiar with Reference Counting. It is considered a fundamental knowledge regarding memory manangement that every iOS developers must acknowledge. Today, I figured out a few more algorithms of garbage collection.
-Fig 1. From left to right: Reference Counting, Mark-Sweep, Mark-Compact, Copying. Reference Counting (RC)  This is simple &amp;amp; easy to implement. However, it has some major drawbacks one of which is not being able to deal with retain cycles.</description>
+Fig 1. From left to right: Reference Counting, Mark-Sweep, Mark-Compact, Copying. Reference Counting (RC) This is simple &amp;amp; easy to implement. However, it has some major drawbacks one of which is not being able to deal with retain cycles.</description>
     </item>
     
     <item>
@@ -851,7 +851,7 @@ Một lần, mình đọc phương pháp “Mô hình hóa bài toán bằng nh�
 &amp;hellip;
 Bạn nào thích động não, phân tích vấn đề, hãy cùng nhau thảo luận thử nhé!
 Mục đích (thuật ngữ môn học PPLST&amp;amp;DM gọi là &amp;ldquo;tính hệ thống&amp;rdquo;) của post: Chỉ ra những khả năng có thể ảnh hưởng đến kết quả bài toán.
-Phát biểu bài toán  Giả sử Lực đi bộ với vận tốc 1 bước/giây (tương ứng với 0.</description>
+Phát biểu bài toán Giả sử Lực đi bộ với vận tốc 1 bước/giây (tương ứng với 0.</description>
     </item>
     
     <item>

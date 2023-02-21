@@ -81,23 +81,23 @@ the type <strong>String?</strong> (or <em>Optional<String></em>), and we want to
 <strong>urlString == nil</strong>, the <em>url</em> should be <em>nil</em> as well.</p>
 <p>However, the initialization of <strong>NSURL</strong> requires a <strong>string</strong> of <strong>String</strong>
 (which is already unwrapped).</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">NSURL</span> <span class="p">{</span>
-   <span class="kd">init</span><span class="p">?(</span><span class="n">string</span> <span class="n">URLString</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div><p>Here comes a very popular way to deal with this <em>type-incompatibility</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// let urlString: String? = &#34;www.myurl.com&#34;</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="n">urlString</span> <span class="p">{</span>
-   <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">NSURL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)</span>
-   <span class="c1">// Do stuff</span>
-<span class="p">}</span>
-</code></pre></div><p>In case we wish to use the <em>url</em> outside the <em>if-let block</em>, it’s quite common
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">NSURL</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">init</span><span class="p">?(</span><span class="n">string</span> <span class="n">URLString</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Here comes a very popular way to deal with this <em>type-incompatibility</em>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// let urlString: String? = &#34;www.myurl.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="n">urlString</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">NSURL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// Do stuff</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>In case we wish to use the <em>url</em> outside the <em>if-let block</em>, it’s quite common
 that we make <em>url</em> mutable and assign its value inside the condition block.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// let urlString: String? = &#34;www.myurl.com&#34;</span>
-<span class="kd">var</span> <span class="nv">url</span><span class="p">:</span> <span class="n">NSURL</span><span class="p">?</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="n">urlString</span> <span class="p">{</span>
-   <span class="n">url</span> <span class="p">=</span> <span class="n">NSURL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div><p>This looks acceptable but:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// let urlString: String? = &#34;www.myurl.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">url</span><span class="p">:</span> <span class="n">NSURL</span><span class="p">?</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="n">urlString</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">url</span> <span class="p">=</span> <span class="n">NSURL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This looks acceptable but:</p>
 <ul>
 <li><em>A few lines of code should have not been added for such a circumstance like this</em></li>
 <li><em>The only reason to change url from immutable to mutable (from let … to var …)
@@ -109,38 +109,38 @@ we could define it :D). I am quite sure you also have used <strong>map</strong> 
 <strong>Array</strong> a lot, right?</p>
 <p>For the sake of better understanding, I removed some unnecessary keywords that
 are not directly relevant to this topic.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">enum</span> <span class="nc">Optional</span><span class="p">&lt;</span><span class="n">Wrapped</span><span class="p">&gt;</span> <span class="p">{</span>
-   <span class="bp">map</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;(</span><span class="n">f</span><span class="p">:</span> <span class="p">(</span><span class="n">Wrapped</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">U</span><span class="p">?</span>
-<span class="p">}</span>
-</code></pre></div><p>Now, we could init an object with a parameter of <em>Optional</em>, like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// let urlString: String? = &#34;www.myurl.com&#34;
-let url = urlString.map { NSURL(string: $0 }
-</code></pre></div><p>Of course we could use this tip with other functions apart from initializations</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// let urlString: String? = &#34;www.myurl.com&#34;
-let data = urlString.map { fetchDataFromPath($0 }   // data: NSData?
-</code></pre></div><h4 id="how-about-a-function-with-2-parameters">How about a function with 2 parameters?</h4>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">fetchDataFromPath</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">withToken</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
-</code></pre></div><p>We can come up with the idea to turn a 2 optionals into an optional of
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">enum</span> <span class="nc">Optional</span><span class="p">&lt;</span><span class="n">Wrapped</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="bp">map</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;(</span><span class="n">f</span><span class="p">:</span> <span class="p">(</span><span class="n">Wrapped</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">U</span><span class="p">?</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Now, we could init an object with a parameter of <em>Optional</em>, like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// let urlString: String? = &#34;www.myurl.com&#34;
+</span></span><span class="line"><span class="cl">let url = urlString.map { NSURL(string: $0 }
+</span></span></code></pre></div><p>Of course we could use this tip with other functions apart from initializations</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// let urlString: String? = &#34;www.myurl.com&#34;
+</span></span><span class="line"><span class="cl">let data = urlString.map { fetchDataFromPath($0 }   // data: NSData?
+</span></span></code></pre></div><h4 id="how-about-a-function-with-2-parameters">How about a function with 2 parameters?</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">fetchDataFromPath</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">withToken</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+</span></span></code></pre></div><p>We can come up with the idea to turn a 2 optionals into an optional of
 <strong>Tuple</strong>. Lets define an *operator *<strong>&lt;&amp;&gt;</strong> to combine 2 optionals</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">infix</span> <span class="kd">operator</span> <span class="o">&lt;&amp;&gt;</span> <span class="p">{</span> <span class="kr">associativity</span> <span class="kr">left</span> <span class="p">}</span>
-
-<span class="kd">func</span> <span class="o">&lt;&amp;&gt;&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">&gt;</span> <span class="p">(</span><span class="kr">left</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="kr">right</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Optional</span><span class="o">&lt;</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{</span>
-   <span class="k">if</span> <span class="kd">let</span> <span class="nv">left</span> <span class="p">=</span> <span class="kr">left</span><span class="p">,</span> <span class="kr">right</span> <span class="p">=</span> <span class="kr">right</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="p">(</span><span class="kr">left</span><span class="p">,</span> <span class="kr">right</span><span class="p">)</span>
-   <span class="p">}</span>
-   <span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
-</code></pre></div><p>Or we could define it in a more concise way using <em>flatMap</em> on <em>Optional</em>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">infix</span> <span class="kd">operator</span> <span class="o">&lt;&amp;&gt;</span> <span class="p">{</span> <span class="kr">associativity</span> <span class="kr">left</span> <span class="p">}</span>
-
-<span class="kd">func</span> <span class="o">&lt;&amp;&gt;&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">&gt;</span> <span class="p">(</span><span class="kr">left</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="kr">right</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Optional</span><span class="o">&lt;</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="kr">left</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="kr">right</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">y</span> <span class="k">in</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>And this is how we use it:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// let urlString: String? = &#34;www.myurl.com&#34;</span>
-<span class="c1">// let token: String? = &#34;token&#34;</span>
-<span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="p">(</span><span class="n">urlString</span> <span class="o">&lt;&amp;&gt;</span> <span class="n">token</span><span class="p">).</span><span class="bp">map</span> <span class="p">{</span> <span class="n">fetchDataFromPath</span><span class="p">(</span><span class="nv">$0</span><span class="p">,</span> <span class="n">withToken</span><span class="p">:</span> <span class="nv">$1</span><span class="p">)</span> <span class="p">}</span>
-</code></pre></div><p>Have fun!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">infix</span> <span class="kd">operator</span> <span class="o">&lt;&amp;&gt;</span> <span class="p">{</span> <span class="kr">associativity</span> <span class="kr">left</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="o">&lt;&amp;&gt;&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">&gt;</span> <span class="p">(</span><span class="kr">left</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="kr">right</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Optional</span><span class="o">&lt;</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="kd">let</span> <span class="nv">left</span> <span class="p">=</span> <span class="kr">left</span><span class="p">,</span> <span class="kr">right</span> <span class="p">=</span> <span class="kr">right</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="p">(</span><span class="kr">left</span><span class="p">,</span> <span class="kr">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Or we could define it in a more concise way using <em>flatMap</em> on <em>Optional</em>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">infix</span> <span class="kd">operator</span> <span class="o">&lt;&amp;&gt;</span> <span class="p">{</span> <span class="kr">associativity</span> <span class="kr">left</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="o">&lt;&amp;&gt;&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">&gt;</span> <span class="p">(</span><span class="kr">left</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="kr">right</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Optional</span><span class="o">&lt;</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kr">left</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="kr">right</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">y</span> <span class="k">in</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>And this is how we use it:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// let urlString: String? = &#34;www.myurl.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// let token: String? = &#34;token&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="p">(</span><span class="n">urlString</span> <span class="o">&lt;&amp;&gt;</span> <span class="n">token</span><span class="p">).</span><span class="bp">map</span> <span class="p">{</span> <span class="n">fetchDataFromPath</span><span class="p">(</span><span class="nv">$0</span><span class="p">,</span> <span class="n">withToken</span><span class="p">:</span> <span class="nv">$1</span><span class="p">)</span> <span class="p">}</span>
+</span></span></code></pre></div><p>Have fun!</p>
 
   <div class="entry-footer">
   
@@ -199,7 +199,7 @@ let data = urlString.map { fetchDataFromPath($0 }   // data: NSData?
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

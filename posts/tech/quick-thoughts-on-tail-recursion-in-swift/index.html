@@ -79,50 +79,50 @@ if (!doNotTrack) {
 <p>How about Swift?</p>
 <h3 id="investigation">Investigation</h3>
 <p>Consider this code:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">sumPrefix</span><span class="p">(</span><span class="kc">_</span> <span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="n">n</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span> <span class="k">return</span> <span class="n">acc</span> <span class="p">}</span>
-  <span class="k">return</span> <span class="n">sumPrefix</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="kc">_</span> <span class="p">=</span> <span class="n">sumPrefix</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</code></pre></div><p>Build this code with <code>-Onone</code> (no optimization), and run the program. You will get a crash!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">sumPrefix</span><span class="p">(</span><span class="kc">_</span> <span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">n</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span> <span class="k">return</span> <span class="n">acc</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">sumPrefix</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kc">_</span> <span class="p">=</span> <span class="n">sumPrefix</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></div><p>Build this code with <code>-Onone</code> (no optimization), and run the program. You will get a crash!</p>
 <p><code>xcrun swiftc -Onone main.swift; ./main</code></p>
 <p>When turning on the optimization, the program executes properly.</p>
 <p><code>xcrun swiftc -O main.swift; ./main</code></p>
 <p>Clearly, the tail recursion optimization was not supported in the <code>-Onone</code> build. Otherwise, it would have not crashed. About the <code>-O</code> build, the tail call was optimized. A nice way to inspect it is looking at the <code>asm</code> file: <code>xcrun swiftc -O -S main.swift &gt; main.asm</code>.</p>
 <p>No <code>callq</code> instruction was found! That means, the recursive instruction which expands the stack frame is replaced by jump instructions.</p>
 <p>But wait! No <code>callq</code> indicates that the invocation <code>_ = sumPrefix(1000000, 0)</code> was inlined. How do we know that the exception was not raised as a result of inlining or TCO? Let&rsquo;s force Swift not to inline this function:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="p">@</span><span class="n">inline</span><span class="p">(</span><span class="n">never</span><span class="p">)</span>
-<span class="kd">func</span> <span class="nf">sumPrefix</span><span class="p">(</span><span class="kc">_</span> <span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
-	<span class="p">...</span>
-<span class="p">}</span>
-</code></pre></div><p>Now, <code>callq</code> is back! And there is only one function call.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">...
-_main:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	movl	$1000000, %edi
-	xorl	%esi, %esi
-	callq	_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int
-	xorl	%eax, %eax
-	popq	%rbp
-	retq
-
-	.private_extern	_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int
-	.globl	_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int
-	.p2align	4, 0x90
-_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	testq	%rdi, %rdi
-	je	LBB1_4
-	.p2align	4, 0x90
-...
-LBB1_4:
-	movq	%rsi, %rax
-	popq	%rbp
-	retq
-...
-</code></pre></div><h3 id="discussion">Discussion</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="p">@</span><span class="n">inline</span><span class="p">(</span><span class="n">never</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">sumPrefix</span><span class="p">(</span><span class="kc">_</span> <span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Now, <code>callq</code> is back! And there is only one function call.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">_main:
+</span></span><span class="line"><span class="cl">	pushq	%rbp
+</span></span><span class="line"><span class="cl">	movq	%rsp, %rbp
+</span></span><span class="line"><span class="cl">	movl	$1000000, %edi
+</span></span><span class="line"><span class="cl">	xorl	%esi, %esi
+</span></span><span class="line"><span class="cl">	callq	_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int
+</span></span><span class="line"><span class="cl">	xorl	%eax, %eax
+</span></span><span class="line"><span class="cl">	popq	%rbp
+</span></span><span class="line"><span class="cl">	retq
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	.private_extern	_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int
+</span></span><span class="line"><span class="cl">	.globl	_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int
+</span></span><span class="line"><span class="cl">	.p2align	4, 0x90
+</span></span><span class="line"><span class="cl">_main.sumPrefix(Swift.Int, Swift.Int) -&gt; Swift.Int:
+</span></span><span class="line"><span class="cl">	pushq	%rbp
+</span></span><span class="line"><span class="cl">	movq	%rsp, %rbp
+</span></span><span class="line"><span class="cl">	testq	%rdi, %rdi
+</span></span><span class="line"><span class="cl">	je	LBB1_4
+</span></span><span class="line"><span class="cl">	.p2align	4, 0x90
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">LBB1_4:
+</span></span><span class="line"><span class="cl">	movq	%rsi, %rax
+</span></span><span class="line"><span class="cl">	popq	%rbp
+</span></span><span class="line"><span class="cl">	retq
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><h3 id="discussion">Discussion</h3>
 <p>Although the problem does not happen in optimized builds, I expect the TCO support to be available in any level of optimization. You cannot write readable code that crashes on Debug builds.</p>
 <p>As recursion is a crucial piece of functional programming, I believe this is definitely a lack of support and a limitation of language. Take Scala as an example, you could instruct the program to optimize the tail call using <a href="https://www.scala-exercises.org/scala_tutorial/tail_recursion">@tailrec</a>. Or at least, in Python, we could fix it with <em>decorators</em> and achieve the same result.</p>
 <p>In fact, there was a proposal for TCO. You could find it <a href="https://lists.swift.org/pipermail/swift-evolution/2015-December/000370.html">here</a>. But it was a pretty long time ago&hellip; And I think it will keep staying there for a while.</p>
@@ -189,7 +189,7 @@ LBB1_4:
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

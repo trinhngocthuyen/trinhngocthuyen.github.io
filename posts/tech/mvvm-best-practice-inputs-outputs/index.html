@@ -83,83 +83,83 @@ if (!doNotTrack) {
 <li>Behaviors defined in <code>inputs</code> should not be expressed as <code>Variable</code> because we don&rsquo;t need the inputs to be obseravable.</li>
 </ul>
 <h3 id="how-to">How-to</h3>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="nc">LoginViewModelInputsType</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span>
-	<span class="kd">func</span> <span class="nf">tapSubmit</span><span class="p">()</span>
-	<span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
-	<span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">protocol</span> <span class="nc">LoginViewModelOutputsType</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">validInput</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-	<span class="kd">var</span> <span class="nv">isLoading</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-	<span class="kd">var</span> <span class="nv">loginSuccess</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-	<span class="kd">var</span> <span class="nv">loginFailure</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="n">ErrorMessage</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">protocol</span> <span class="nc">LoginViewModelType</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">inputs</span><span class="p">:</span> <span class="n">LoginViewModelInputsType</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-	<span class="kd">var</span> <span class="nv">ouputs</span><span class="p">:</span> <span class="n">LoginViewModelOutputsType</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>This is what <code>LoginViewModel</code> looks like:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LoginViewModel</span><span class="p">:</span> <span class="n">LoginViewModelType</span><span class="p">,</span> <span class="n">LoginViewModelInputsType</span><span class="p">,</span> <span class="n">LoginViewModelOutputsType</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">inputs</span><span class="p">:</span> <span class="n">LoginViewModelInputsType</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
-	<span class="kd">var</span> <span class="nv">ouputs</span><span class="p">:</span> <span class="n">LoginViewModelOutputsType</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
-
-	<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Inputs</span>
-	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_tapSubmit</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;(())</span>
-	<span class="kd">func</span> <span class="nf">tapSubmit</span><span class="p">()</span> <span class="p">{</span> 
-		<span class="n">_tapSubmit</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="p">()</span>
-	<span class="p">}</span>
-
-	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_email</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;(</span><span class="s">&#34;&#34;</span><span class="p">)</span>
-	<span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">_email</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">email</span>
-	<span class="p">}</span>
-	<span class="p">...</span>
-
-	<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Ouputs</span>
-	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_loginSuccess</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;(())</span>
-	<span class="kd">var</span> <span class="nv">loginSuccess</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_loginSuccess</span><span class="p">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
-	<span class="p">...</span>
-
-	<span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">let</span> <span class="nv">loginObservable</span> <span class="p">=</span> <span class="n">_tapSubmit</span><span class="p">.</span><span class="n">asObservable</span><span class="p">().</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-			<span class="p">.</span><span class="n">flatMapLatest</span><span class="p">(</span><span class="n">login</span><span class="p">)</span>
-			<span class="p">.</span><span class="n">share</span><span class="p">()</span>
-
-		<span class="n">loginObservable</span>
-			<span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">_loginSuccess</span><span class="p">)</span>
-			<span class="p">.</span><span class="n">diposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
-
-		<span class="c1">// Binding for `_loginFailure` and `isLoading` goes here</span>
-		<span class="p">...</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="why-inputs---outputs">Why Inputs - Outputs?</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">LoginViewModelInputsType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">tapSubmit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">LoginViewModelOutputsType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">validInput</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">isLoading</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">loginSuccess</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">loginFailure</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="n">ErrorMessage</span><span class="p">&gt;</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">LoginViewModelType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">inputs</span><span class="p">:</span> <span class="n">LoginViewModelInputsType</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">ouputs</span><span class="p">:</span> <span class="n">LoginViewModelOutputsType</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This is what <code>LoginViewModel</code> looks like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LoginViewModel</span><span class="p">:</span> <span class="n">LoginViewModelType</span><span class="p">,</span> <span class="n">LoginViewModelInputsType</span><span class="p">,</span> <span class="n">LoginViewModelOutputsType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">inputs</span><span class="p">:</span> <span class="n">LoginViewModelInputsType</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">ouputs</span><span class="p">:</span> <span class="n">LoginViewModelOutputsType</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Inputs</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_tapSubmit</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;(())</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">tapSubmit</span><span class="p">()</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">		<span class="n">_tapSubmit</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_email</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;(</span><span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">_email</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">email</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Ouputs</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_loginSuccess</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;(())</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">loginSuccess</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_loginSuccess</span><span class="p">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">let</span> <span class="nv">loginObservable</span> <span class="p">=</span> <span class="n">_tapSubmit</span><span class="p">.</span><span class="n">asObservable</span><span class="p">().</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">.</span><span class="n">flatMapLatest</span><span class="p">(</span><span class="n">login</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">.</span><span class="n">share</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">loginObservable</span>
+</span></span><span class="line"><span class="cl">			<span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">_loginSuccess</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">.</span><span class="n">diposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Binding for `_loginFailure` and `isLoading` goes here</span>
+</span></span><span class="line"><span class="cl">		<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="why-inputs---outputs">Why Inputs - Outputs?</h3>
 <p>First of all, by using protocols like this, we achieve higher level of abstraction. Therefore, our code is more behavior-oriented and easier to test.</p>
 <p>Another advantage of this protocol-based convention is readability in unit tests. Let&rsquo;s take a look at the two simple tests below:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">test_When_PasswordIsEmpty_Then_InputIsInvalid</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
-	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="s">&#34;abc@xyz.com&#34;</span><span class="p">)</span>
-
-	<span class="c1">// `grabLatestValue` is just an utility function we can write to retrieve</span>
-	<span class="c1">// the latest value in the stream (during a specific period of time).</span>
-	<span class="c1">// `RxBlocking` comes for the rescue.</span>
-	<span class="kd">let</span> <span class="nv">validInput</span> <span class="p">=</span> <span class="n">grabLatestValue</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">validInput</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="n">expect</span><span class="p">(</span><span class="n">validInput</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">beFalse</span><span class="p">())</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">test_When_Submitting_Then_ShouldShowLoadingAndThenHideWhenCompleted</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
-	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="s">&#34;abc@xyz.com&#34;</span><span class="p">)</span>
-	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="s">&#34;Password0&#34;</span><span class="p">)</span>
-	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">tapSubmit</span><span class="p">()</span>
-
-	<span class="kd">let</span> <span class="nv">loadingStates</span> <span class="p">=</span> <span class="n">grabLatestValue</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">isLoading</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="n">expect</span><span class="p">(</span><span class="n">loadingStates</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">beEqual</span><span class="p">([</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">]))</span>
-<span class="p">}</span>
-</code></pre></div><p>By looking at the codes related to <code>inputs</code> calls, we quickly have a sense of the scenarios we are trying to simulate. Similarly, what we expect to see are reflected upon <code>outputs</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">test_When_PasswordIsEmpty_Then_InputIsInvalid</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="s">&#34;abc@xyz.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// `grabLatestValue` is just an utility function we can write to retrieve</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// the latest value in the stream (during a specific period of time).</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// `RxBlocking` comes for the rescue.</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">let</span> <span class="nv">validInput</span> <span class="p">=</span> <span class="n">grabLatestValue</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">validInput</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">expect</span><span class="p">(</span><span class="n">validInput</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">beFalse</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">test_When_Submitting_Then_ShouldShowLoadingAndThenHideWhenCompleted</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="s">&#34;abc@xyz.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="s">&#34;Password0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">viewModel</span><span class="p">.</span><span class="n">inputs</span><span class="p">.</span><span class="n">tapSubmit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">let</span> <span class="nv">loadingStates</span> <span class="p">=</span> <span class="n">grabLatestValue</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">isLoading</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">expect</span><span class="p">(</span><span class="n">loadingStates</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">beEqual</span><span class="p">([</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>By looking at the codes related to <code>inputs</code> calls, we quickly have a sense of the scenarios we are trying to simulate. Similarly, what we expect to see are reflected upon <code>outputs</code>.</p>
 <h3 id="reference">Reference</h3>
 <ol>
 <li><a href="https://github.com/kickstarter/native-docs/blob/master/vm-structure.md">https://github.com/kickstarter/native-docs/blob/master/vm-structure.md</a></li>
@@ -227,7 +227,7 @@ if (!doNotTrack) {
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

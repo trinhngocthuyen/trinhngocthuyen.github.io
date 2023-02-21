@@ -107,21 +107,21 @@ if (!doNotTrack) {
 <p>Some UI test actions such as querying elements, or tapping/scrolling/toggling elements are supported by the XCTest framework. To perform more complicated actions such as triggering a database cleanup, we might need to implement the inter-process communication ourselves. Using TCP socket is a common choice for this purpose.</p>
 <h3 id="24-polling-checks-in-ui-testing">2.4. Polling-Checks in UI Testing</h3>
 <p>UI elements do not immediately show up on the screen. The delayed display could be due to animations, or network. Therefore, it is a common practice to do polling-checks in UI testing. The pseudo-implementation would be like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">waitForExistence</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">XCUIElement</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">XCUIElement</span><span class="p">?</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nv">found</span><span class="p">:</span> <span class="n">XCUIElement</span><span class="p">?</span>
-  <span class="k">while</span> <span class="n">notExceedTimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">element</span><span class="p">.</span><span class="n">exist</span> <span class="p">{</span>
-      <span class="n">found</span> <span class="p">=</span> <span class="n">element</span>
-      <span class="k">break</span>
-    <span class="p">}</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">pollingFrequency</span><span class="p">)</span> <span class="c1">// &lt;-- wait a bit (ex. 0.1s), then check again</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">found</span>
-<span class="p">}</span>
-</code></pre></div><p>In each iteration, we check the presence of an element. If not found, we wait a bit then check again. If the condition does not satisfy within a certain timeout, we throw a test failure.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">waitForExistence</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">XCUIElement</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">XCUIElement</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nv">found</span><span class="p">:</span> <span class="n">XCUIElement</span><span class="p">?</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="n">notExceedTimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">element</span><span class="p">.</span><span class="n">exist</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">found</span> <span class="p">=</span> <span class="n">element</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="n">pollingFrequency</span><span class="p">)</span> <span class="c1">// &lt;-- wait a bit (ex. 0.1s), then check again</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">found</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>In each iteration, we check the presence of an element. If not found, we wait a bit then check again. If the condition does not satisfy within a certain timeout, we throw a test failure.</p>
 <h3 id="25-end-to-end-testing-vs-workflow-ui-testing">2.5. End-To-End Testing vs. Workflow UI Testing</h3>
 <p>Testing mobile app flows usually includes both backend (BE) and frontend (FE). The system under testing (SUT) in mobile testing is the frontend, ie. the mobile app.</p>
-<p>When using the real backend in UI testing, this approach is called &ldquo;<strong>end-to-end (E2E) testing</strong>&rdquo;. It involves testing the system from beginning to end (both backend and frontend). Usually, E2E testing is under automation QAs' maintenance. Meanwhile, UI testing with a mock backend just cares about the frontend. This approach is to ensure app behaves correctly given a stable mock backend. To avoid the ambiguity, let&rsquo;s call this approach &ldquo;<strong>workflow UI testing</strong>&rdquo;.</p>
+<p>When using the real backend in UI testing, this approach is called &ldquo;<strong>end-to-end (E2E) testing</strong>&rdquo;. It involves testing the system from beginning to end (both backend and frontend). Usually, E2E testing is under automation QAs&rsquo; maintenance. Meanwhile, UI testing with a mock backend just cares about the frontend. This approach is to ensure app behaves correctly given a stable mock backend. To avoid the ambiguity, let&rsquo;s call this approach &ldquo;<strong>workflow UI testing</strong>&rdquo;.</p>
 <p>In this post, we scope the discussion to workflow UI testing only. We will talk about E2E testing in some upcoming posts. Note that the flakiness we are going to discuss also persists in E2E testing.</p>
 <h2 id="3-contributing-factors-to-flakiness">3. Contributing Factors to Flakiness</h2>
 <h3 id="31-shared-environments">3.1. Shared Environments</h3>
@@ -134,34 +134,34 @@ if (!doNotTrack) {
 <figcaption>Fig. Auto-dismissable banner.</figcaption>
 <p>There are a few actions we can take to tackle this problem.</p>
 <p>First, we can <strong>inject the display duration</strong> of those components when running UI tests. For example, instead of showing snackbars for 1s, we can increase the duration to 3s.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// In the app target</span>
-<span class="kd">func</span> <span class="nf">showSnackBar</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="kd">let</span> <span class="nv">defaultDuration</span> <span class="p">=</span> <span class="mf">1.0</span>
-  <span class="kd">let</span> <span class="nv">injectedDuration</span> <span class="p">=</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;SNACKBAR_DURATION&#34;</span><span class="p">].</span><span class="n">flatMap</span> <span class="p">{</span> <span class="nb">Double</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
-  <span class="kd">let</span> <span class="nv">duration</span> <span class="p">=</span> <span class="n">injectedDuration</span> <span class="p">??</span> <span class="n">defaultDuration</span>
-  <span class="n">_show</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="n">duration</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// In the test target</span>
-<span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="n">XCUIApplication</span><span class="p">()</span>
-  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">launchEnvironment</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;SNACKBAR_DURATION&#34;</span><span class="p">:</span> <span class="s">&#34;4] // &lt;-- inject the value
-</span><span class="s">    app.launch()
-</span><span class="s">  }
-</span><span class="s">}
-</span></code></pre></div><p>Second, if there are many checks in a UI component, we can <strong>combine several checks</strong> in one query. Let say, we wish to see 10 elements on the screen. Instead of sequentially checking each element, we can check all elements together in one poll iteration. The polling-check above can be justified for the multiple elements as follows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">waitForExistence</span><span class="p">(</span><span class="kc">_</span> <span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="n">XCUIElement</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">XCUIElement</span><span class="p">]</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="k">while</span> <span class="n">notExceedTimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">elements</span><span class="p">.</span><span class="n">allSatisfy</span><span class="p">({</span> <span class="nv">$0</span><span class="p">.</span><span class="n">exist</span> <span class="p">})</span> <span class="p">{</span> <span class="c1">// &lt;-- combine the checks</span>
-      <span class="p">...</span>
-      <span class="k">break</span>
-    <span class="p">}</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">pollFrequency</span><span class="p">)</span>
-  <span class="p">}</span>
-</code></pre></div><img src="/images/ios/ui_test_combine_checks.png" width=600>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// In the app target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">showSnackBar</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">defaultDuration</span> <span class="p">=</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">injectedDuration</span> <span class="p">=</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;SNACKBAR_DURATION&#34;</span><span class="p">].</span><span class="n">flatMap</span> <span class="p">{</span> <span class="nb">Double</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">duration</span> <span class="p">=</span> <span class="n">injectedDuration</span> <span class="p">??</span> <span class="n">defaultDuration</span>
+</span></span><span class="line"><span class="cl">  <span class="n">_show</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="n">duration</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// In the test target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="n">XCUIApplication</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">launchEnvironment</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;SNACKBAR_DURATION&#34;</span><span class="p">:</span> <span class="s">&#34;4] // &lt;-- inject the value
+</span></span></span><span class="line"><span class="cl"><span class="s">    app.launch()
+</span></span></span><span class="line"><span class="cl"><span class="s">  }
+</span></span></span><span class="line"><span class="cl"><span class="s">}
+</span></span></span></code></pre></div><p>Second, if there are many checks in a UI component, we can <strong>combine several checks</strong> in one query. Let say, we wish to see 10 elements on the screen. Instead of sequentially checking each element, we can check all elements together in one poll iteration. The polling-check above can be justified for the multiple elements as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">waitForExistence</span><span class="p">(</span><span class="kc">_</span> <span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="n">XCUIElement</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">XCUIElement</span><span class="p">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="n">notExceedTimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">elements</span><span class="p">.</span><span class="n">allSatisfy</span><span class="p">({</span> <span class="nv">$0</span><span class="p">.</span><span class="n">exist</span> <span class="p">})</span> <span class="p">{</span> <span class="c1">// &lt;-- combine the checks</span>
+</span></span><span class="line"><span class="cl">      <span class="p">...</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="n">pollFrequency</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></div><img src="/images/ios/ui_test_combine_checks.png" width=600>
 <figcaption>Fig. Combining several checks to reduce the total wait time.</figcaption>
 <h3 id="33-animations">3.3. Animations</h3>
 <p>Regarding overhead time of an animation, it is not that much as one normally takes less than 2s to finish. We just need to increase the timeout (ex. to 10s) for element checks to gain better stability.</p>
@@ -172,25 +172,25 @@ if (!doNotTrack) {
 <p>Another problematic case is when we have animations on auto-dismissable components. The animations prolong the wait time mentioned above. As a result, by the time we check elements on such a component, they are already dismissed.</p>
 <p>There are two common approaches to overcome this problem.</p>
 <p>First, we can just <strong>disable animations</strong> when running UI tests.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// In the app target</span>
-<span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">UIResponder</span><span class="p">,</span> <span class="n">UIApplicationDelegate</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="n">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIApplication</span><span class="p">.</span><span class="n">LaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;IS_UI_TEST&#34;</span><span class="p">]</span> <span class="p">==</span> <span class="s">&#34;YES&#34;</span> <span class="p">{</span>
-      <span class="n">UIView</span><span class="p">.</span><span class="n">setAnimationsEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="p">...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// In the test target</span>
-<span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="n">XCUIApplication</span><span class="p">()</span>
-  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">launchEnvironment</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;IS_UI_TEST&#34;</span><span class="p">:</span> <span class="s">&#34;YES&#34;</span><span class="p">]</span> <span class="c1">// &lt;-- inject the value</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">launch</span><span class="p">()</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>This approach has 2 major drawbacks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// In the app target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">UIResponder</span><span class="p">,</span> <span class="n">UIApplicationDelegate</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="n">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIApplication</span><span class="p">.</span><span class="n">LaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;IS_UI_TEST&#34;</span><span class="p">]</span> <span class="p">==</span> <span class="s">&#34;YES&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">UIView</span><span class="p">.</span><span class="n">setAnimationsEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// In the test target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="n">XCUIApplication</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">launchEnvironment</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;IS_UI_TEST&#34;</span><span class="p">:</span> <span class="s">&#34;YES&#34;</span><span class="p">]</span> <span class="c1">// &lt;-- inject the value</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">launch</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This approach has 2 major drawbacks:</p>
 <ul>
 <li>Somewhere in the app code might have <code>UIView.setAnimationsEnabled(true)</code> to enable animations. Then, the problem happens again.</li>
 <li>Many things in the app simply do not work without animations.</li>
@@ -235,55 +235,55 @@ if (!doNotTrack) {
 <h4 id="segregating-per-test-data">Segregating per-Test Data</h4>
 <p>On CI, many tests are executed in the same session. Some data such as app logs are consolidated for all tests.</p>
 <p>It is best to have <strong>artifacts of each test</strong> separately. This way, we only care about what happened for the test of interest only.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">artifacts / MyTestTarget / MyTestClass / testFunction1 / -- screenshot.png
-                                                         -- host_app_hierarchy.txt
-                                                         -- host_app.txt
-                                                         -- runner_app.txt
-                                       / testFunction2
-</code></pre></div><p>Logs in the runner app are well structured. With some regexes, we can easily extract logs of a specific test from the consolidated logs.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Test Case &#39;-[EXUITests.EXUITests testX1]&#39; started.
-...
-Test Case &#39;-[EXUITests.EXUITests testX1]&#39; failed (4.568 seconds).
-...
-Test Case &#39;-[EXUITests.EXUITests testX2]&#39; started.
-...
-Test Case &#39;-[EXUITests.EXUITests testX2]&#39; passed (3.528 seconds).
-</code></pre></div><p>Meanwhile, logs in the host app do not indicate what test it is running against. One trick to have that info is to <strong>pass the test name via launch environment</strong> when launching the app. After that, we can use regexes to extract relevant logs.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// In the app target</span>
-<span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">UIResponder</span><span class="p">,</span> <span class="n">UIApplicationDelegate</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="n">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIApplication</span><span class="p">.</span><span class="n">LaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="kd">let</span> <span class="nv">testName</span> <span class="p">=</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;TEST_NAME&#34;</span><span class="p">]</span> <span class="p">{</span>
-      <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Test started: </span><span class="si">\(</span><span class="n">testName</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="p">...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// In the test target</span>
-<span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="n">XCUIApplication</span><span class="p">()</span>
-  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">launchEnvironment</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;TEST_NAME&#34;</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">name</span><span class="p">]</span> <span class="c1">// &lt;-- inject the value</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">launch</span><span class="p">()</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>Regarding attachments and screenshots, xcparse does not group them by test. Extra effort (patching xcparse/wrapping xcresulttool) is needed to place them in the respective test dirs. One trick to avoid this effort is to manually collect the screenshot and UI hierarchy in the <a href="https://developer.apple.com/documentation/xctest/xctestcase/3546549-record"><code>record(_:)</code> function</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">record</span><span class="p">(</span><span class="kc">_</span> <span class="n">issue</span><span class="p">:</span> <span class="n">XCTIssue</span><span class="p">)</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Host app:</span><span class="se">\n</span><span class="si">\(</span><span class="n">app</span><span class="p">.</span><span class="n">debugDescription</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>           <span class="c1">// &lt;-- Dump App UI hierarchy to the console</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">screenshot</span><span class="p">().</span><span class="n">pngRepresentation</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">testDir</span><span class="p">)</span> <span class="c1">// &lt;-- Save screenshot to the test dir</span>
-    <span class="kc">super</span><span class="p">.</span><span class="n">record</span><span class="p">(</span><span class="n">issue</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="43-fixing-flakiness">4.3. Fixing Flakiness</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">artifacts / MyTestTarget / MyTestClass / testFunction1 / -- screenshot.png
+</span></span><span class="line"><span class="cl">                                                         -- host_app_hierarchy.txt
+</span></span><span class="line"><span class="cl">                                                         -- host_app.txt
+</span></span><span class="line"><span class="cl">                                                         -- runner_app.txt
+</span></span><span class="line"><span class="cl">                                       / testFunction2
+</span></span></code></pre></div><p>Logs in the runner app are well structured. With some regexes, we can easily extract logs of a specific test from the consolidated logs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Test Case &#39;-[EXUITests.EXUITests testX1]&#39; started.
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Test Case &#39;-[EXUITests.EXUITests testX1]&#39; failed (4.568 seconds).
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Test Case &#39;-[EXUITests.EXUITests testX2]&#39; started.
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Test Case &#39;-[EXUITests.EXUITests testX2]&#39; passed (3.528 seconds).
+</span></span></code></pre></div><p>Meanwhile, logs in the host app do not indicate what test it is running against. One trick to have that info is to <strong>pass the test name via launch environment</strong> when launching the app. After that, we can use regexes to extract relevant logs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// In the app target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">UIResponder</span><span class="p">,</span> <span class="n">UIApplicationDelegate</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="n">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIApplication</span><span class="p">.</span><span class="n">LaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="kd">let</span> <span class="nv">testName</span> <span class="p">=</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;TEST_NAME&#34;</span><span class="p">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Test started: </span><span class="si">\(</span><span class="n">testName</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// In the test target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">app</span> <span class="p">=</span> <span class="n">XCUIApplication</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">launchEnvironment</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;TEST_NAME&#34;</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">name</span><span class="p">]</span> <span class="c1">// &lt;-- inject the value</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">launch</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Regarding attachments and screenshots, xcparse does not group them by test. Extra effort (patching xcparse/wrapping xcresulttool) is needed to place them in the respective test dirs. One trick to avoid this effort is to manually collect the screenshot and UI hierarchy in the <a href="https://developer.apple.com/documentation/xctest/xctestcase/3546549-record"><code>record(_:)</code> function</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">BaseTestCase</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">override</span> <span class="kd">func</span> <span class="nf">record</span><span class="p">(</span><span class="kc">_</span> <span class="n">issue</span><span class="p">:</span> <span class="n">XCTIssue</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Host app:</span><span class="se">\n</span><span class="si">\(</span><span class="n">app</span><span class="p">.</span><span class="n">debugDescription</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>           <span class="c1">// &lt;-- Dump App UI hierarchy to the console</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="p">.</span><span class="n">screenshot</span><span class="p">().</span><span class="n">pngRepresentation</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">testDir</span><span class="p">)</span> <span class="c1">// &lt;-- Save screenshot to the test dir</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">super</span><span class="p">.</span><span class="n">record</span><span class="p">(</span><span class="n">issue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="43-fixing-flakiness">4.3. Fixing Flakiness</h3>
 <h4 id="benchmarking-tests">Benchmarking Tests</h4>
 <p>When fixing a flaky test, we need to ensure the test is stable enough before merging the fix. Therefore, it is useful to <strong>benchmark the test on CI</strong>.</p>
 <p>We have a CI feature that an engineer can benchmark tests on his/her merge requests by specifying the instructions in the merge request description.</p>
-<div class="highlight"><pre class="chroma"><code class="language-md" data-lang="md">This merge request aims to fix <span class="sb">`testFunction1`</span> and <span class="sb">`testFunction2`</span>.
-
-Benchmark: MyTestTarget/MyTestClass/testFunction1 x10
-Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
-</code></pre></div><p>In the sample merge request description above, the line <code>Benchmark: MyTestTarget/MyTestClass/testFunction1 x10</code> directs CI to benchmark the test <code>testFunction1</code> 10 times.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">This merge request aims to fix <span class="sb">`testFunction1`</span> and <span class="sb">`testFunction2`</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Benchmark: MyTestTarget/MyTestClass/testFunction1 x10
+</span></span><span class="line"><span class="cl">Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
+</span></span></code></pre></div><p>In the sample merge request description above, the line <code>Benchmark: MyTestTarget/MyTestClass/testFunction1 x10</code> directs CI to benchmark the test <code>testFunction1</code> 10 times.</p>
 <p>To get the list of tests to benchmark in this example, we can send an API request to get the merge request description, then apply some regexes. The benchmark can be done with <a href="https://www.avanderlee.com/debugging/flaky-tests-test-repetitions/">test repetitions</a> (introduced since Xcode 13), or simply by running <code>xcodebuild</code> multiple times with the given tests.</p>
 <h3 id="44-living-with-flakiness">4.4. Living With Flakiness</h3>
 <p>As mentioned ealier, flakiness is always part of the system. Zero-tolerance against flakiness would lead to a very bad developer experience. Consider the following scenario:</p>
@@ -312,9 +312,9 @@ Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
 </ul>
 <h4 id="test-quarantine-logic">Test quarantine Logic</h4>
 <p>A flaky test is <strong>quarantined</strong> if its result (success/failure) does not affect the overall result of the job. If all failed tests are quarantined, we are good to go.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">--[execute &amp; retry]--&gt; failed --[quarantine] --&gt; all quarantined --&gt; passed
-                                           | --&gt; otherwise --&gt; failed
-</code></pre></div><p>To integrate this quarantine logic, we need to have the stats (test success rates&hellip;) of all tests in the project for the past N days. Such stats data is generated from the executions from the project.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--[execute &amp; retry]--&gt; failed --[quarantine] --&gt; all quarantined --&gt; passed
+</span></span><span class="line"><span class="cl">                                           | --&gt; otherwise --&gt; failed
+</span></span></code></pre></div><p>To integrate this quarantine logic, we need to have the stats (test success rates&hellip;) of all tests in the project for the past N days. Such stats data is generated from the executions from the project.</p>
 <img src="/images/ios/quarantine.png" width=600>
 <figcaption>Fig. How quarantine logic is involved in deciding the overall result.</figcaption>
 <p>By introducing the quarantine logic, we create an auto feedback loop into the development process:</p>
@@ -323,12 +323,12 @@ Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
 <li>When this test stabilizes, it success rate increases. Then the quarantine is lifted for this test.</li>
 </ul>
 <p>The stats used in the quarantine logic can just be a json file hosted anywhere as long as we can download it. The storage could be an S3 bucket, or a git repo.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;MyTestTarget/MyTestClass/testFunction1&#34;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
-  <span class="nt">&#34;MyTestTarget/MyTestClass/testFunction2&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nt">&#34;MyTestTarget/MyTestClass/testFunction3&#34;</span><span class="p">:</span> <span class="mi">1</span>
-<span class="p">}</span>
-</code></pre></div><p>The whole process from test data submission to stats generation is pretty much like an <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">ETL pipeline</a>. So, you can choose any implementation that fits your need. For us, we use a git repo to reduce the effort for <a href="https://en.wikipedia.org/wiki/Identity_management">Identity Access Management (IAM)</a>. Let&rsquo;s discuss the detailed setup with a git repo in the upcoming posts.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;MyTestTarget/MyTestClass/testFunction1&#34;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;MyTestTarget/MyTestClass/testFunction2&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;MyTestTarget/MyTestClass/testFunction3&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The whole process from test data submission to stats generation is pretty much like an <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">ETL pipeline</a>. So, you can choose any implementation that fits your need. For us, we use a git repo to reduce the effort for <a href="https://en.wikipedia.org/wiki/Identity_management">Identity Access Management (IAM)</a>. Let&rsquo;s discuss the detailed setup with a git repo in the upcoming posts.</p>
 <h2 id="5-conclusion">5. Conclusion</h2>
 <p>In this post, we cover some background of UI testing and what contributes to test flakiness. Some flakiness can be prevented in the early stage when writing tests and developing features. Despite our prevention measures, flakiness will always persist. Therefore, a long term approach to cope with flakiness should focus on improving troubleshoot experiences, bug fixing experiences, and making flakiness tolerated.</p>
 
@@ -391,7 +391,7 @@ Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

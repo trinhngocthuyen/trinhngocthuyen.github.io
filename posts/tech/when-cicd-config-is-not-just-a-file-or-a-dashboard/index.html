@@ -99,9 +99,9 @@ if (!doNotTrack) {
 <p>A simple idea is to split UI tests and run them in parallel jobs. Then you need to answer the following questions:</p>
 <ul>
 <li><em>How to merge code coverage of those parallel jobs?</em></li>
-<li><em>How to split tests in a good way?</em><br>
+<li><em>How to split tests in a good way?</em> <br>
 You cannot split them in a way that one job takes $30_m$ to finish while the other takes only $10_m$.</li>
-<li><em>How to split build and test to 2 different jobs?</em><br>
+<li><em>How to split build and test to 2 different jobs?</em> <br>
 This seems trivial but in iOS, it&rsquo;s a bit troublesome. First, you need to know what in <code>DerivedData</code> that are needed to run tests, and pass them via job artifacts. With a large code base project, the build artifacts needed is really big (up to 2GB) and exceeds the artifacts limits set by your CI/CD platform. We will talk about how to tackle this problem in upcoming posts.</li>
 </ul>
 <p>Another problem with UI tests is that they seem to be more unstable than unit tests. <em><strong>Dealing with unstable tests</strong></em> is not just iOS work, but also a CI/CD work. For example, you need to design your CI/CD pipelines so that it&rsquo;s less vulnerable to unstable tests and the time it takes to retry (tests or jobs) is as fast as possible. And you need to track those unstable tests (not manually) so that you could revisit to investigate them.</p>
@@ -111,17 +111,17 @@ This seems trivial but in iOS, it&rsquo;s a bit troublesome. First, you need to 
 <h2 id="ab-testing-for-cicd">A/B Testing for CI/CD</h2>
 <p>In our project, we not only have AB testing for features in the app, but also for CI/CD features. Changes related to CI/CD usually affects other engineers. I need to emphasize again that there are many engineers contributing to the project, not just 3-4 engineers. To avoid blocking others, we always think of a safe rollout for important CI/CD changes. If there is any unexpected issue that block others, we can just roll back the change at ease.</p>
 <p>A rollout config is just simply a <code>yaml</code> file (hosted somewhere), like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;A feature&#39;</span><span class="w">
-</span><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Description of the feature&#39;</span><span class="w">
-</span><span class="w"></span><span class="nt">rollout</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;XCODE_VERSION&#39;</span><span class="w">
-</span><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;11&#39;</span><span class="w">
-</span><span class="w">    </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CI_COMMIT_REF_NAME&#39;</span><span class="w">
-</span><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;(master|release)&#39;</span><span class="w">
-</span><span class="w">    </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="c"># 👈 use this value in CI/CD code</span><span class="w">
-</span></code></pre></div><h2 id="automation">Automation</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;A feature&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Description of the feature&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rollout</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;XCODE_VERSION&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;11&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CI_COMMIT_REF_NAME&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;(master|release)&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="c"># 👈 use this value in CI/CD code</span><span class="w">
+</span></span></span></code></pre></div><h2 id="automation">Automation</h2>
 <p>In our project, we try to automate tasks/chores as much as possible. Those automated tasks are usually non-standard problems and, of course, are something we need to code on our own.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>With some use cases mentioned above, you can imagine that CI/CD work for iOS is not just integrating to CI/CD platform so that we can build and test our project. It&rsquo;s not that simple, or your project is not complicated enough 🤔. It&rsquo;s not just about a config dashboard or a config file&hellip; To me, it requires more implementation code to get things done in an appropriate way. The advantage of building them instead of relying on a 3rd party platform support is that you have more control and can customize them based on your needs. And it&rsquo;s sometimes fun.</p>
@@ -185,7 +185,7 @@ This seems trivial but in iOS, it&rsquo;s a bit troublesome. First, you need to 
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

@@ -75,47 +75,47 @@ if (!doNotTrack) {
   <p>Suppose you are writing a language-translation app. The requirement is quite
 simple: <em>Given a word, translate it from a language into another language.</em></p>
 <p>Here’s a simple approach. We define a protocol <code>TranslatorType</code> as follows</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">Language</span> <span class="p">{</span>
-   <span class="kd">var</span> <span class="nv">words</span><span class="p">:</span> <span class="p">[</span><span class="nb">Word</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
-<span class="p">}</span>
-<span class="kd">class</span> <span class="nc">VI_Language</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="p">}</span>
-<span class="kd">class</span> <span class="nc">EN_Language</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="p">}</span>
-<span class="kd">protocol</span> <span class="nc">TranslatorType</span> <span class="p">{</span>
-   <span class="kd">var</span> <span class="nv">sourceLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-   <span class="kd">var</span> <span class="nv">destLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
-   <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">Word</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Word</span>
-<span class="p">}</span>
-</code></pre></div><p>The <code>VI_EN_Translator</code> (which translates Vietnamese into English) should
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Language</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nv">words</span><span class="p">:</span> <span class="p">[</span><span class="nb">Word</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">VI_Language</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">EN_Language</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">TranslatorType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nv">sourceLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nv">destLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">Word</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Word</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The <code>VI_EN_Translator</code> (which translates Vietnamese into English) should
 conform to that protocol with <code>sourceLanguage</code> as <code>VI_Language</code> and
 <code>destLanguage</code> as <code>EN_Language</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">VI_EN_Translator</span><span class="p">:</span> <span class="n">TranslatorType</span> <span class="p">{</span>
-   <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">sourceLanguage</span> <span class="p">=</span> <span class="n">VI_Language</span><span class="p">()</span>
-   <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">destLanguage</span> <span class="p">=</span> <span class="n">EN_Language</span><span class="p">()</span>
-   <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">Word</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Word</span> <span class="p">{</span>
-      <span class="p">...</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>It seems reasonable. Unfortunately, I got an error from XCode: <em>“Type
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">VI_EN_Translator</span><span class="p">:</span> <span class="n">TranslatorType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">sourceLanguage</span> <span class="p">=</span> <span class="n">VI_Language</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">destLanguage</span> <span class="p">=</span> <span class="n">EN_Language</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">Word</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Word</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="p">...</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>It seems reasonable. Unfortunately, I got an error from XCode: <em>“Type
 VI_EN_Translator does not conform to protocol TranslatorType”</em> despite the fact
 that <code>VI_Language</code> is a subclass of <code>Language</code>. I don’t want to change
 sourceLanguage to Language and cast it to <code>VI_Language</code> every I use it.</p>
 <img src = "/images/ios/concrete_type_protocol_error.png">
 <p>Not sure wheter we should blame Swift/XCode/Apple for that. Here’s a tip to
 overcome this issue:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">VI_EN_Translator</span><span class="p">:</span> <span class="n">TranslatorType</span> <span class="p">{</span>
-   <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_sourceLanguage</span> <span class="p">=</span> <span class="n">VI_Language</span><span class="p">()</span>
-   <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_destLanguage</span> <span class="p">=</span> <span class="n">EN_Language</span><span class="p">()</span>
-   <span class="kd">var</span> <span class="nv">sourceLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">_sourceLanguage</span>
-   <span class="p">}</span>
-   <span class="kd">var</span> <span class="nv">destLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">_destLanguage</span>
-   <span class="p">}</span>
-   <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">Word</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Word</span> <span class="p">{</span>
-      <span class="p">...</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>This code still satisfies the protocol requirements and also allows us to use
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">VI_EN_Translator</span><span class="p">:</span> <span class="n">TranslatorType</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_sourceLanguage</span> <span class="p">=</span> <span class="n">VI_Language</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_destLanguage</span> <span class="p">=</span> <span class="n">EN_Language</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nv">sourceLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">_sourceLanguage</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nv">destLanguage</span><span class="p">:</span> <span class="n">Language</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">_destLanguage</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">Word</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Word</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="p">...</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This code still satisfies the protocol requirements and also allows us to use
 particular properties/functions of the concrete types via <code>_sourceLanguage</code>,
 <code>_destLanguage</code>.</p>
 
@@ -176,7 +176,7 @@ particular properties/functions of the concrete types via <code>_sourceLanguage<
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

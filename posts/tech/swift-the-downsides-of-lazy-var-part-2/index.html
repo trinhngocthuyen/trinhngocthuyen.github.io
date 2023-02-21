@@ -76,97 +76,97 @@ if (!doNotTrack) {
 <h3 id="problems">Problems</h3>
 <h4 id="problem-1-not-working-smoothly-with-structs">Problem 1: not working smoothly with structs</h4>
 <p>Since the getter of lazy var is mutating, using it with structs sometimes requires extra work. For example, this code below does not compile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
-	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">name</span> <span class="p">=</span> <span class="s">&#34;thuyen&#34;</span>
-	<span class="kd">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span> <span class="p">}</span> 	<span class="c1">// error: Cannot use mutating getter on immutable</span>
-<span class="p">}</span>
-</code></pre></div><p>To make this code work, we have to explicitly declare <code>getter</code> of <code>alias</code> as <code>mutating</code>. But personally, I would rather not make an object mutable just in order to access a specific property.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
-	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">name</span> <span class="p">=</span> <span class="s">&#34;thuyen&#34;</span>
-	<span class="kd">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
-		<span class="kr">mutating</span> <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span> <span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>Another approach is to wrap lazy var inside a class <code>LazyBox</code>, like in <a href="https://oleb.net/blog/2015/12/lazy-properties-in-structs-swift">this article</a>. We will later use this approach as we can handle more issues such as concurrency.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-	<span class="kd">private</span> <span class="kd">var</span> <span class="nv">_value</span><span class="p">:</span> <span class="n">T</span><span class="p">?</span>
-	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">compute</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span>
-	<span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">compute</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kc">self</span><span class="p">.</span><span class="n">compute</span> <span class="p">=</span> <span class="n">compute</span>
-	<span class="p">}</span>
-
-	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
-		<span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">compute</span><span class="p">()</span>
-		<span class="n">_value</span> <span class="p">=</span> <span class="n">v</span>
-		<span class="k">return</span> <span class="n">v</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
-	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_name</span> <span class="p">=</span> <span class="n">LazyBox</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&#34;thuyen&#34;</span> <span class="p">}</span>
-	<span class="kd">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_name</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h4 id="problem-2-concurrency">Problem 2: concurrency</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">name</span> <span class="p">=</span> <span class="s">&#34;thuyen&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span> <span class="p">}</span> 	<span class="c1">// error: Cannot use mutating getter on immutable</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>To make this code work, we have to explicitly declare <code>getter</code> of <code>alias</code> as <code>mutating</code>. But personally, I would rather not make an object mutable just in order to access a specific property.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">name</span> <span class="p">=</span> <span class="s">&#34;thuyen&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kr">mutating</span> <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Another approach is to wrap lazy var inside a class <code>LazyBox</code>, like in <a href="https://oleb.net/blog/2015/12/lazy-properties-in-structs-swift">this article</a>. We will later use this approach as we can handle more issues such as concurrency.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">var</span> <span class="nv">_value</span><span class="p">:</span> <span class="n">T</span><span class="p">?</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">compute</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">compute</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kc">self</span><span class="p">.</span><span class="n">compute</span> <span class="p">=</span> <span class="n">compute</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">compute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="n">_value</span> <span class="p">=</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">_name</span> <span class="p">=</span> <span class="n">LazyBox</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&#34;thuyen&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_name</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="problem-2-concurrency">Problem 2: concurrency</h4>
 <p>Another problem is that <code>lazy var</code> is not thread-safe which means the closure can get executed multiple times due to accesses from different threads. This is also mentioned in the Apple documentation:</p>
 <blockquote>
 <p>If a property marked with the <code>lazy</code> modifier is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.</p>
 </blockquote>
 <p>To prevent race condition, a simple implementation is to lock every read to the value:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">lock</span><span class="p">:</span> <span class="n">Synchronizing</span> <span class="p">=</span> <span class="n">NSLock</span><span class="p">()</span>
-	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">_lazyValue</span><span class="p">:</span> <span class="n">T</span> <span class="p">=</span> <span class="n">compute</span><span class="p">()</span>
-	<span class="p">...</span>
-	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="n">lock</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span> <span class="n">_lazyValue</span> <span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">Locking</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">lock</span><span class="p">()</span>
-	<span class="kd">func</span> <span class="nf">unlock</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">protocol</span> <span class="nc">Synchronizing</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">sync</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">execute</span><span class="p">:</span> <span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="kr">rethrows</span> <span class="p">-&gt;</span> <span class="n">T</span>
-<span class="p">}</span>
-
-<span class="kd">extension</span> <span class="nc">Locking</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">sync</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">execute</span><span class="p">:</span> <span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="kr">rethrows</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
-		<span class="k">defer</span> <span class="p">{</span> <span class="n">unlock</span><span class="p">()</span> <span class="p">}</span>
-		<span class="n">lock</span><span class="p">()</span>
-		<span class="k">return</span> <span class="k">try</span> <span class="n">execute</span><span class="p">()</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Let&#39;s use NSLock for simplicity. Alternatives: DispatchQueue, pthread_mutex_t, semaphore...</span>
-<span class="kd">extension</span> <span class="nc">NSLock</span><span class="p">:</span> <span class="n">Locking</span><span class="p">,</span> <span class="n">Synchronizing</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></div><p>Now, it works as expected. However, the computation should only occur in the first read access. Locking every read will hurt performance a bit. Therefore, a better implementation is to lock the computation instead.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-	<span class="p">...</span>
-	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
-		<span class="k">return</span> <span class="n">lock</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span>
-			<span class="c1">// Perform computation here</span>
-			<span class="p">...</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>Note that performing computation more than once is still fine as long as they are synchronous and later computation reuses the result of previous ones.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">let</span> <span class="nv">lock</span><span class="p">:</span> <span class="n">Synchronizing</span> <span class="p">=</span> <span class="n">NSLock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">_lazyValue</span><span class="p">:</span> <span class="n">T</span> <span class="p">=</span> <span class="n">compute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">lock</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span> <span class="n">_lazyValue</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">Locking</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">Synchronizing</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">sync</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">execute</span><span class="p">:</span> <span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="kr">rethrows</span> <span class="p">-&gt;</span> <span class="n">T</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">Locking</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">sync</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">execute</span><span class="p">:</span> <span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="kr">rethrows</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">defer</span> <span class="p">{</span> <span class="n">unlock</span><span class="p">()</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">try</span> <span class="n">execute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Let&#39;s use NSLock for simplicity. Alternatives: DispatchQueue, pthread_mutex_t, semaphore...</span>
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">NSLock</span><span class="p">:</span> <span class="n">Locking</span><span class="p">,</span> <span class="n">Synchronizing</span> <span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></div><p>Now, it works as expected. However, the computation should only occur in the first read access. Locking every read will hurt performance a bit. Therefore, a better implementation is to lock the computation instead.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">lock</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// Perform computation here</span>
+</span></span><span class="line"><span class="cl">			<span class="p">...</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Note that performing computation more than once is still fine as long as they are synchronous and later computation reuses the result of previous ones.
 We know for sure that in the next execution inside <code>lock.sync</code>, we definitely have <code>_value</code> computed. Then we can reuse that result, like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-	<span class="p">...</span>
-	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
-		<span class="k">return</span> <span class="n">lock</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span>
-			<span class="c1">// Check again if the value is already computed (from the first one get called)</span>
-			<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
-			<span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">compute</span><span class="p">()</span>
-			<span class="n">_value</span> <span class="p">=</span> <span class="n">v</span>
-			<span class="k">return</span> <span class="n">v</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="benchmark">Benchmark</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">LazyBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">lock</span><span class="p">.</span><span class="n">sync</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// Check again if the value is already computed (from the first one get called)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="kd">let</span> <span class="nv">_value</span> <span class="p">=</span> <span class="n">_value</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_value</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">compute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="n">_value</span> <span class="p">=</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="benchmark">Benchmark</h3>
 <p>I ran a performance test for the two implementations (locking computation only vs. locking every read).
 The result shows a significant performance gain for the former one (0.002s as compared to 0.065s). The code for the benchmark can be found <a href="https://gist.github.com/trinhngocthuyen/c51e4025658510b63f28b30596714f55">here</a>.</p>
 
@@ -229,7 +229,7 @@ The result shows a significant performance gain for the former one (0.002s as co
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

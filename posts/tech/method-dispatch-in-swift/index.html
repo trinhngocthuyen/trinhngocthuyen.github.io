@@ -103,13 +103,13 @@ if (!doNotTrack) {
 <h4 id="methodology-to-determine-dispatch-mechanism">Methodology to determine dispatch mechanism</h4>
 <p>As a skeptic, I am more interested in the second part of the question. It is easy to come up with a hypothesis but testing it is not straightforward all the time. After hours googling, I happened to know the <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">SIL documentation</a> which reasonably explains the presence of dispatch strategies. Here is a brief summary:</p>
 <p>(1) If a function uses table dispatch, it appears in the <code>vtable</code> (or <code>witness_table</code> for protocols).</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">sil_vtable Animal {
-	#Animal.makeSound!1: (Animal) -&gt; () -&gt; () : main.Animal.makeSound() -&gt; ()	// Animal.makeSound()
-  ......
-}
-</code></pre></div><p>(2) If a function is dispatched via message, the keyword <code>volatile</code> should be present in the invocation. Also, you will find the two marker <code>foreign</code> and <code>objc_method</code>, indicating that the function is invoked using Objective-C runtime. Refer: <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">here</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">%14 = class_method [volatile] %13 : $Dog, #Dog.beWild!1.foreign : (Dog) -&gt; () -&gt; (), $@convention(objc_method) (Dog) -&gt; () // user: %15
-</code></pre></div><p>(3) If there is no evidence of the two cases above, the answer is <em>static dispatch</em>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sil_vtable Animal {
+</span></span><span class="line"><span class="cl">	#Animal.makeSound!1: (Animal) -&gt; () -&gt; () : main.Animal.makeSound() -&gt; ()	// Animal.makeSound()
+</span></span><span class="line"><span class="cl">  ......
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>(2) If a function is dispatched via message, the keyword <code>volatile</code> should be present in the invocation. Also, you will find the two marker <code>foreign</code> and <code>objc_method</code>, indicating that the function is invoked using Objective-C runtime. Refer: <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">here</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%14 = class_method [volatile] %13 : $Dog, #Dog.beWild!1.foreign : (Dog) -&gt; () -&gt; (), $@convention(objc_method) (Dog) -&gt; () // user: %15
+</span></span></code></pre></div><p>(3) If there is no evidence of the two cases above, the answer is <em>static dispatch</em>.</p>
 <!-- As the SIL is usually lengthy, you are recommended to read it yourself. -->
 <h4 id="trivial-cases">Trivial cases</h4>
 <ul>
@@ -121,48 +121,48 @@ if (!doNotTrack) {
 </ul>
 </li>
 <li>Ordinary extensions (without <code>final</code>, <code>dynamic</code>, <code>@objc</code>) are directly dispatched. Now, recall a compiled error you may once experienced: <em>declarations in extensions cannot override yet</em>. It&rsquo;s because those functions, of course, follow static dispatch.<br>
-You may ask: <em>&ldquo;What if I make those extensions dynamic?&quot;</em>. You got the point! If an extension is dynamic, it can be overriden 😇.</li>
+You may ask: <em>&ldquo;What if I make those extensions dynamic?&rdquo;</em>. You got the point! If an extension is dynamic, it can be overriden 😇.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-	<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">class</span> <span class="nc">Dog</span><span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
-	<span class="kr">override</span> <span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Compiled error!</span>
-	<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Ok :)</span>
-<span class="p">}</span>
-</code></pre></div><h4 id="other-cases">Other cases</h4>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="nc">Noisy</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span>	<span class="c1">// TABLE</span>
-<span class="p">}</span>
-<span class="kd">extension</span> <span class="nc">Noisy</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span> <span class="p">}</span>	<span class="c1">// TABLE</span>
-	<span class="kd">func</span> <span class="nf">isAnnoying</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">}</span>	<span class="c1">// STATIC</span>
-<span class="p">}</span>
-<span class="kd">class</span> <span class="nc">Animal</span><span class="p">:</span> <span class="n">Noisy</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span> <span class="p">}</span>	<span class="c1">// TABLE</span>
-	<span class="kd">func</span> <span class="nf">isAnnoying</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span> <span class="p">}</span> <span class="c1">// TABLE</span>
-	<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">sleep</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Still TABLE</span>
-<span class="p">}</span>
-<span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
-	<span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// STATIC</span>
-	<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// MESSAGE</span>
-<span class="p">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Dog</span><span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">override</span> <span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Compiled error!</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Ok :)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="other-cases">Other cases</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">Noisy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span>	<span class="c1">// TABLE</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">Noisy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span> <span class="p">}</span>	<span class="c1">// TABLE</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">isAnnoying</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">}</span>	<span class="c1">// STATIC</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Animal</span><span class="p">:</span> <span class="n">Noisy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">makeNoise</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span> <span class="p">}</span>	<span class="c1">// TABLE</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">isAnnoying</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span> <span class="p">}</span> <span class="c1">// TABLE</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">sleep</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// Still TABLE</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="nf">eat</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// STATIC</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">getWild</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>	<span class="c1">// MESSAGE</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
 <li><code>Noisy.isAnnoying()</code>, and <code>Animal.getWild()</code> are statically dispatched since they are extensions.</li>
 <li><code>Noisy.makeNoise()</code> uses table dispatch despite having the default implementation.</li>
 <li>We have to be careful with <code>isAnnoying()</code>. Consider the two usages below. <code>animal2.isAnnoying()</code> picks the implementation of the protocol extension (because it&rsquo;s a direct method and no lookup is needed). Using in such way could be a source of bugs 😱.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">animal1</span> <span class="p">=</span> <span class="n">Animal</span><span class="p">()</span>
-<span class="bp">print</span><span class="p">(</span><span class="n">animal1</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: false</span>
-<span class="kd">let</span> <span class="nv">animal2</span><span class="p">:</span> <span class="n">Noisy</span> <span class="p">=</span> <span class="n">Animal</span><span class="p">()</span>
-<span class="bp">print</span><span class="p">(</span><span class="n">animal2</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: true</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">animal1</span> <span class="p">=</span> <span class="n">Animal</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="bp">print</span><span class="p">(</span><span class="n">animal1</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: false</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">animal2</span><span class="p">:</span> <span class="n">Noisy</span> <span class="p">=</span> <span class="n">Animal</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="bp">print</span><span class="p">(</span><span class="n">animal2</span><span class="p">.</span><span class="n">isAnnoying</span><span class="p">())</span>	<span class="c1">// Value: true</span>
+</span></span></code></pre></div><ul>
 <li>On the other hand, <code>animal1.makeNoise()</code> and <code>animal2.makeNoise()</code> produce the same result because protocol requirements are resolved by table lookups.</li>
 <li>The <code>@objc</code> annotation in <code>@objc func sleep()</code> means that the function is visible to Objective-C. It does not necessarily imply that the process will choose the Objective-C method to execute. From the SIL of the function call (see below), we could see the term <code>$@convention(method)</code> which implies that the Swift method is chosen over the objc method.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">%9 = class_method %8 : $Animal, #Animal.sleep!1 : (Animal) -&gt; () -&gt; (), $@convention(method) (@guaranteed Animal) -&gt; () // user: %10
-</code></pre></div><h4 id="what-are-the-principles">What are the principles?</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%9 = class_method %8 : $Animal, #Animal.sleep!1 : (Animal) -&gt; () -&gt; (), $@convention(method) (@guaranteed Animal) -&gt; () // user: %10
+</span></span></code></pre></div><h4 id="what-are-the-principles">What are the principles?</h4>
 <ul>
 <li><em>Direct dispatch</em> is prioritized.</li>
 <li>If overriding is needed, <em>table dispatch</em> is the next candidate.</li>
@@ -291,7 +291,7 @@ You may ask: <em>&ldquo;What if I make those extensions dynamic?&quot;</em>. You
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

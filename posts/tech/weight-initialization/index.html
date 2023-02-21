@@ -102,104 +102,104 @@ if (!doNotTrack) {
 </ul>
 <h4 id="21-setup">2.1. Setup</h4>
 <p>Some setup code for experiments:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">X_flat</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Feed forward.
-</span><span class="s2">     - X_flat: shape: N x D, where D = d1 x ... x dk.
-</span><span class="s2">     - hid_dims: 1D array.
-</span><span class="s2">     - weights: array of weights: W1, W2, ...
-</span><span class="s2">     - biases: array of biases: b1, b2, ...
-</span><span class="s2">     - activation: activation on each layer. None if no activation.
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">biases</span><span class="p">),</span> <span class="s1">&#39;weights and biases must have the same length&#39;</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span> <span class="s1">&#39;len(weights) must equal len(hid_dims) + 1&#39;</span>
-
-    <span class="n">all_layers</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">X_flat</span>
-    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="o">+</span> <span class="n">biases</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">activation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-        <span class="n">all_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">all_layers</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">visualize_distribution</span><span class="p">(</span><span class="n">all_activations</span><span class="p">):</span>
-    <span class="n">n_layers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_activations</span><span class="p">)</span>
-    <span class="n">activations_mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">activations</span><span class="p">))</span> <span class="k">for</span> <span class="n">activations</span> <span class="ow">in</span> <span class="n">all_activations</span><span class="p">]</span>
-    <span class="n">activations_std</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">activations</span><span class="p">))</span> <span class="k">for</span> <span class="n">activations</span> <span class="ow">in</span> <span class="n">all_activations</span><span class="p">]</span>
-
-    <span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-    <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">activations_mean</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0067a7&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;means by layer&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;layer&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">activations_std</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;std by layer&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;layer&#39;</span><span class="p">)</span>
-
-    <span class="n">ax3</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">all_activations</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
-    <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of layer 15&#39;</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">all_activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of the layer </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">n_layers</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-    <span class="c1"># Print mean and std of last 5 layer</span>
-    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Layer </span><span class="si">%2d</span><span class="s1">. mean: </span><span class="si">%f</span><span class="se">\t</span><span class="s1">std: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">activations_mean</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">activations_std</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span>
-
-<span class="k">def</span> <span class="nf">initialize_params</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span>
-                      <span class="n">weight_initializer</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">,</span>
-                      <span class="n">bias_initializer</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">):</span>
-    <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">in_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">hid_dims</span> <span class="o">+</span> <span class="p">[</span><span class="n">out_dim</span><span class="p">]</span>
-    <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="n">weight_initializer</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">bias_initializer</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">biases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span>
-
-<span class="k">def</span> <span class="nf">examine_distribution</span><span class="p">(</span><span class="n">weight_initializer</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-    <span class="n">in_dim</span><span class="p">,</span> <span class="n">out_dim</span> <span class="o">=</span> <span class="mi">32</span><span class="o">*</span><span class="mi">32</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span>
-    <span class="n">hid_dims</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
-
-    <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span> <span class="o">=</span> <span class="n">initialize_params</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span>
-        <span class="n">weight_initializer</span><span class="o">=</span><span class="n">weight_initializer</span><span class="p">)</span>
-
-    <span class="n">_</span><span class="p">,</span> <span class="n">all_activations</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">X_train_normalized</span><span class="p">,</span> <span class="n">hid_dims</span><span class="o">=</span><span class="n">hid_dims</span><span class="p">,</span> 
-        <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="o">=</span><span class="n">biases</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">)</span>
-
-    <span class="n">visualize_distribution</span><span class="p">(</span><span class="n">all_activations</span><span class="p">)</span>
-</code></pre></div><p>Now, lets examine some initialization schemes&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">X_flat</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Feed forward.
+</span></span></span><span class="line"><span class="cl"><span class="s2">     - X_flat: shape: N x D, where D = d1 x ... x dk.
+</span></span></span><span class="line"><span class="cl"><span class="s2">     - hid_dims: 1D array.
+</span></span></span><span class="line"><span class="cl"><span class="s2">     - weights: array of weights: W1, W2, ...
+</span></span></span><span class="line"><span class="cl"><span class="s2">     - biases: array of biases: b1, b2, ...
+</span></span></span><span class="line"><span class="cl"><span class="s2">     - activation: activation on each layer. None if no activation.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">biases</span><span class="p">),</span> <span class="s1">&#39;weights and biases must have the same length&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span> <span class="s1">&#39;len(weights) must equal len(hid_dims) + 1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">all_layers</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span> <span class="o">=</span> <span class="n">X_flat</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="o">+</span> <span class="n">biases</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">activation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">out</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">all_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">all_layers</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">visualize_distribution</span><span class="p">(</span><span class="n">all_activations</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_layers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_activations</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">activations_mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">activations</span><span class="p">))</span> <span class="k">for</span> <span class="n">activations</span> <span class="ow">in</span> <span class="n">all_activations</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">activations_std</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">activations</span><span class="p">))</span> <span class="k">for</span> <span class="n">activations</span> <span class="ow">in</span> <span class="n">all_activations</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">activations_mean</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0067a7&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;means by layer&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;layer&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">activations_std</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;std by layer&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;layer&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ax3</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">all_activations</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of layer 15&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">all_activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of the layer </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">n_layers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Print mean and std of last 5 layer</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Layer </span><span class="si">%2d</span><span class="s1">. mean: </span><span class="si">%f</span><span class="se">\t</span><span class="s1">std: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">activations_mean</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">activations_std</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">initialize_params</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">weight_initializer</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">bias_initializer</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">in_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">hid_dims</span> <span class="o">+</span> <span class="p">[</span><span class="n">out_dim</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hid_dims</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">w</span> <span class="o">=</span> <span class="n">weight_initializer</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">=</span> <span class="n">bias_initializer</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">biases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">examine_distribution</span><span class="p">(</span><span class="n">weight_initializer</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">in_dim</span><span class="p">,</span> <span class="n">out_dim</span> <span class="o">=</span> <span class="mi">32</span><span class="o">*</span><span class="mi">32</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hid_dims</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span> <span class="o">=</span> <span class="n">initialize_params</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hid_dims</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">weight_initializer</span><span class="o">=</span><span class="n">weight_initializer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_</span><span class="p">,</span> <span class="n">all_activations</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">X_train_normalized</span><span class="p">,</span> <span class="n">hid_dims</span><span class="o">=</span><span class="n">hid_dims</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="o">=</span><span class="n">biases</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">visualize_distribution</span><span class="p">(</span><span class="n">all_activations</span><span class="p">)</span>
+</span></span></code></pre></div><p>Now, lets examine some initialization schemes&hellip;</p>
 <h4 id="22-trival-initialization">2.2. Trival initialization</h4>
 <p>The common way is using normal randomization with a scale. This scale should equal the standard deviation of the random numbers.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight_scale</span><span class="p">,</span> <span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">))</span>
-
-<span class="n">examine_distribution</span><span class="p">(</span><span class="n">trivial_initializer</span><span class="p">)</span>
-</code></pre></div><img src="/images/notebooks/weight_initialization_6_0.png" width="600"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight_scale</span><span class="p">,</span> <span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">trivial_initializer</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/images/notebooks/weight_initialization_6_0.png" width="600"/>
 <figcaption><em>Fig 2.</em> mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.1$.</figcaption>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Layer 16. mean: 0.009006    std: 0.016165
-Layer 17. mean: 0.005849    std: 0.009699
-Layer 18. mean: 0.004207    std: 0.007308
-Layer 19. mean: 0.002917    std: 0.004961
-Layer 20. mean: 0.005232    std: 0.006176
-</code></pre></div><p>⟶ Not accepted ❌</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">examine_distribution</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">:</span> <span class="n">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
-</code></pre></div><img src="/images/notebooks/weight_initialization_7_0.png" width="600"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.009006    std: 0.016165
+</span></span><span class="line"><span class="cl">Layer 17. mean: 0.005849    std: 0.009699
+</span></span><span class="line"><span class="cl">Layer 18. mean: 0.004207    std: 0.007308
+</span></span><span class="line"><span class="cl">Layer 19. mean: 0.002917    std: 0.004961
+</span></span><span class="line"><span class="cl">Layer 20. mean: 0.005232    std: 0.006176
+</span></span></code></pre></div><p>⟶ Not accepted ❌</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">:</span> <span class="n">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
+</span></span></code></pre></div><img src="/images/notebooks/weight_initialization_7_0.png" width="600"/>
 <figcaption><em>Fig 3.</em> mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.2$.</figcaption>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Layer 16. mean: 825.965548	std: 1394.566496
-Layer 17. mean: 1491.038728	std: 2237.786857
-Layer 18. mean: 2149.680649	std: 3300.200497
-Layer 19. mean: 3008.496905	std: 4961.155125
-Layer 20. mean: 2845.114905	std: 4381.190124
-</code></pre></div><p>⟶ Not accepted ❌</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 825.965548	std: 1394.566496
+</span></span><span class="line"><span class="cl">Layer 17. mean: 1491.038728	std: 2237.786857
+</span></span><span class="line"><span class="cl">Layer 18. mean: 2149.680649	std: 3300.200497
+</span></span><span class="line"><span class="cl">Layer 19. mean: 3008.496905	std: 4961.155125
+</span></span><span class="line"><span class="cl">Layer 20. mean: 2845.114905	std: 4381.190124
+</span></span></code></pre></div><p>⟶ Not accepted ❌</p>
 <p>Notice that after changing weight scale from 0.1 to 0.2, how output values are distributed changed radically. Quite sensitive to weight scale, huh?</p>
 <h4 id="23-xavier-initialization-glorot-initialization">2.3. Xavier initialization (Glorot initialization)</h4>
 <p>This scheme is based on the observation that:</p>
@@ -207,41 +207,41 @@ Layer 20. mean: 2845.114905	std: 4381.190124
 var(s) = var(\sum_i^N{w_i.x_i}) = &hellip; = N.var(w).var(x)
 \end{equation}$$</p>
 <p>In order to keep the same variance, we need: $var(w) = 1/N$. So, the weight scale should be $\sqrt{1/N}$</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">xavier_initializer_1</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
-
-<span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-</code></pre></div><img src="/images/notebooks/weight_initialization_8_0.png" width="600"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">xavier_initializer_1</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/images/notebooks/weight_initialization_8_0.png" width="600"/>
 <figcaption><em>Fig 4.</em> mean and std by layer. Initialized using xavier initialization, with no activation.</figcaption>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Layer 16. mean: 0.000000	std: 0.742681
-Layer 17. mean: -0.000000	std: 0.731260
-Layer 18. mean: -0.000000	std: 0.718502
-Layer 19. mean: 0.000000	std: 0.724088
-Layer 20. mean: -0.000000	std: 0.740663
-</code></pre></div><p>⟶ Accepted ✅</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.000000	std: 0.742681
+</span></span><span class="line"><span class="cl">Layer 17. mean: -0.000000	std: 0.731260
+</span></span><span class="line"><span class="cl">Layer 18. mean: -0.000000	std: 0.718502
+</span></span><span class="line"><span class="cl">Layer 19. mean: 0.000000	std: 0.724088
+</span></span><span class="line"><span class="cl">Layer 20. mean: -0.000000	std: 0.740663
+</span></span></code></pre></div><p>⟶ Accepted ✅</p>
 <p>We can see that xavier initialization gives a really nice distribution: <em>gaussian shape, reasonable mean and std</em>. However, this initialization strategy seems not to work well with non-linear activation. If we use ReLU as the activation function, we got a poor distribution.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">)</span>
-</code></pre></div><img src="/images/notebooks/weight_initialization_9_0.png" width="600"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/images/notebooks/weight_initialization_9_0.png" width="600"/>
 <figcaption><em>Fig 5.</em> mean and std by layer. With relu activation, normal distribution, $var(w) = 1/N$.</figcaption>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Layer 16. mean: 0.002048	std: 0.003093
-Layer 17. mean: 0.001338	std: 0.002246
-Layer 18. mean: 0.000834	std: 0.001481
-Layer 19. mean: 0.000434	std: 0.000776
-Layer 20. mean: 0.000440	std: 0.000590
-</code></pre></div><p>⟶ Not accepted ❌</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.002048	std: 0.003093
+</span></span><span class="line"><span class="cl">Layer 17. mean: 0.001338	std: 0.002246
+</span></span><span class="line"><span class="cl">Layer 18. mean: 0.000834	std: 0.001481
+</span></span><span class="line"><span class="cl">Layer 19. mean: 0.000434	std: 0.000776
+</span></span><span class="line"><span class="cl">Layer 20. mean: 0.000440	std: 0.000590
+</span></span></code></pre></div><p>⟶ Not accepted ❌</p>
 <p>A recent paper by <a href="https://arxiv.org/pdf/1502.01852v1.pdf">He et al</a> dove into the analysis with ReLU activation and finally reached the conclusion that the variance of weights should be $2/N$. This is often used in practice.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">xavier_initializer_2</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
-
-<span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_2</span><span class="p">)</span>
-</code></pre></div><img src="/images/notebooks/weight_initialization_10_0.png" width="600"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">xavier_initializer_2</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_2</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/images/notebooks/weight_initialization_10_0.png" width="600"/>
 <figcaption><em>Fig 6.</em> mean and std by layer. With relu activation, normal distribution, $var(w) = 2/N$.</figcaption>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Layer 16. mean: 0.605864	std: 0.924794
-Layer 17. mean: 0.569898	std: 0.860651
-Layer 18. mean: 0.530719	std: 0.835036
-Layer 19. mean: 0.433965	std: 0.776518
-Layer 20. mean: 0.335705	std: 0.556218
-</code></pre></div><p>⟶ Accepted ✅</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.605864	std: 0.924794
+</span></span><span class="line"><span class="cl">Layer 17. mean: 0.569898	std: 0.860651
+</span></span><span class="line"><span class="cl">Layer 18. mean: 0.530719	std: 0.835036
+</span></span><span class="line"><span class="cl">Layer 19. mean: 0.433965	std: 0.776518
+</span></span><span class="line"><span class="cl">Layer 20. mean: 0.335705	std: 0.556218
+</span></span></code></pre></div><p>⟶ Accepted ✅</p>
 <h3 id="3-another-approaches">3. Another approaches</h3>
 <p>Another technique was recently developed called <strong>batch normalization</strong>. We will take a look at it later.
 P/s: A huge advantage of batch normalization is that it is more robust to bad initialization. In fact, using different values of weight scale does not produce much significant performance (and it&rsquo;s already good). Therefore, tuning hyperparams would be less painful.</p>
@@ -314,7 +314,7 @@ We also have a look at some examples to see the distribution of activations corr
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

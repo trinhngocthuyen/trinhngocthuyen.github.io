@@ -79,57 +79,57 @@ Swift&rdquo;</a>. This chapter is about
 experiencing is working with <code>nil</code> (or <code>null</code>). Intuitively, <code>nil</code> (or <code>null</code>) implicitly means
 <strong>&ldquo;failure&rdquo;</strong>. For instance, you look up in a dictionary but cannot find it,
 then you got <code>nil</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">mutualFriends</span><span class="p">=</span> <span class="p">[</span>
-    <span class="s">&#34;Anna&#34;</span><span class="p">:</span> <span class="mi">137</span><span class="p">,</span>
-    <span class="s">&#34;Chris&#34;</span><span class="p">:</span> <span class="mi">222</span><span class="p">,</span>
-    <span class="s">&#34;Dan&#34;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
-    <span class="s">&#34;Fred&#34;</span><span class="p">:</span> <span class="mi">152</span><span class="p">]</span>   <span class="c1">// mutualFriends: &lt;String, Int?&gt;</span>
-<span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span>      <span class="c1">// x = nil</span>
-</code></pre></div><p>As usual, we want to assign x a <em>default value</em> instead of <code>nil</code>. We can customize
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">mutualFriends</span><span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Anna&#34;</span><span class="p">:</span> <span class="mi">137</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Chris&#34;</span><span class="p">:</span> <span class="mi">222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Dan&#34;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Fred&#34;</span><span class="p">:</span> <span class="mi">152</span><span class="p">]</span>   <span class="c1">// mutualFriends: &lt;String, Int?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span>      <span class="c1">// x = nil</span>
+</span></span></code></pre></div><p>As usual, we want to assign x a <em>default value</em> instead of <code>nil</code>. We can customize
 it in this way:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="n">defaultValue</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">y</span><span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">{</span>
-    <span class="n">x</span> <span class="p">=</span> <span class="n">y</span>
-<span class="p">}</span>
-</code></pre></div><p>In fact, Swift supports an operator <code>??</code> to make this sort of declaration
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="n">defaultValue</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="kd">let</span> <span class="nv">y</span><span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="p">=</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>In fact, Swift supports an operator <code>??</code> to make this sort of declaration
 more concise:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="n">defaultValue</span>
-</code></pre></div><p>This means: If the left of <code>??</code> is <code>nil</code>, then return the value of the right.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="n">defaultValue</span>
+</span></span></code></pre></div><p>This means: If the left of <code>??</code> is <code>nil</code>, then return the value of the right.
 Let’s dive a little bit into the operator <code>??</code>. Roughly speaking it can be
 defined as follows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Custom ?? function</span>
-<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="kr">optional</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">x</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">defaultValue</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>This function works perfectly despite one problem: <code>defaultValue</code> is always
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Custom ?? function</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="kr">optional</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">defaultValue</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This function works perfectly despite one problem: <code>defaultValue</code> is always
 computed even if the optional is not <code>nil</code>. Generally, the reason is that it is
 computed before passing in the function parameters. What we desire is that the
 computation of the defaultValue is only executed inside the else branch.</p>
 <p>We can resolve it by passing <strong>&ldquo;HOW&rdquo; defaultValue is computed</strong> instead of the
 value computed already. Intuitively, it reminds us of using a <strong>function</strong> as a
 parameter. And see what it leads to:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Custom ?? function</span>
-<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">computeDefaultValue</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="kr">optional</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">x</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">computeDefaultValue</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div><p>Come back to our example, we can use the operator <code>??</code> like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="p">{</span> <span class="n">myDefaultValue</span> <span class="p">}</span>
-</code></pre></div><p>A little ugly with the closure, right? Fortunately, Swift does support
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Custom ?? function</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">computeDefaultValue</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="kr">optional</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">computeDefaultValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Come back to our example, we can use the operator <code>??</code> like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="p">{</span> <span class="n">myDefaultValue</span> <span class="p">}</span>
+</span></span></code></pre></div><p>A little ugly with the closure, right? Fortunately, Swift does support
 <em>&ldquo;autoclosure type attribute&rdquo;</em> to deal with with. Let’s look at the official
 function of <code>??</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Swift 1.2 ?? function</span>
-<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="kr">@autoclosure</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
-    <span class="p">......</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="n">myDefaultValue</span>
-</code></pre></div><img src = "/images/ios/operator_or_autoclosure.png">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Swift 1.2 ?? function</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="kr">@autoclosure</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">mutualFriends</span><span class="p">[</span><span class="s">&#34;John&#34;</span><span class="p">]</span> <span class="p">??</span> <span class="n">myDefaultValue</span>
+</span></span></code></pre></div><img src = "/images/ios/operator_or_autoclosure.png">
 <p>Now, with the <code>@autoclosure</code> annotation, Swift is smart enough to map
 <code>myDefaultValue</code> to a corresponding function. Everything seems quite natural so
 far.</p>

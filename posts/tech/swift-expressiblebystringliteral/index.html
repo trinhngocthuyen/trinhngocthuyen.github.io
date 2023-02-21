@@ -73,31 +73,31 @@ if (!doNotTrack) {
   
 </header>
   <p>It is a protocol in Swift 3 (which was <code>StringLiteralConvertible</code>{.swift} in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">person</span><span class="p">:</span> <span class="n">Person</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>	<span class="c1">// Instead of: let person = Person(name: &#34;Thuyen&#34;)</span>
-</code></pre></div><p>To use it, the class must conform to <code>ExpressibleByStringLiteral</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
-
-	<span class="kd">init</span><span class="p">(</span><span class="n">stringLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
-
-    <span class="kd">init</span><span class="p">(</span><span class="n">extendedGraphemeClusterLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
-
-    <span class="kd">init</span><span class="p">(</span><span class="n">unicodeScalarLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nv">person</span><span class="p">:</span> <span class="n">Person</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
-</code></pre></div><p>A few examples in which we could use ExpressibleByStringLiteral:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">timezone</span><span class="p">:</span> <span class="n">TimeZone</span> <span class="p">=</span> <span class="s">&#34;GMT+03:00&#34;</span>
-<span class="kd">let</span> <span class="nv">date</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="s">&#34;2016-12-03T00:40:11+00:00&#34;</span>
-<span class="kd">let</span> <span class="nv">url</span><span class="p">:</span> <span class="n">URL</span> <span class="p">=</span> <span class="s">&#34;https://google.com&#34;</span>
-<span class="kd">let</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="n">Coordinate</span> <span class="p">=</span> <span class="s">&#34;123.5, 127.8&#34;</span>
-</code></pre></div><p>And, we have some more similar protocols: <code>ExpressibleByArrayLiteral, ExpressibleByNilLiteral, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral, ExpressibleByBooleanLiteral, ExpressibleByDictionaryLiteral</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">person</span><span class="p">:</span> <span class="n">Person</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>	<span class="c1">// Instead of: let person = Person(name: &#34;Thuyen&#34;)</span>
+</span></span></code></pre></div><p>To use it, the class must conform to <code>ExpressibleByStringLiteral</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">Person</span><span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">init</span><span class="p">(</span><span class="n">stringLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">(</span><span class="n">extendedGraphemeClusterLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">(</span><span class="n">unicodeScalarLiteral</span> <span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">person</span><span class="p">:</span> <span class="n">Person</span> <span class="p">=</span> <span class="s">&#34;Thuyen&#34;</span>
+</span></span></code></pre></div><p>A few examples in which we could use ExpressibleByStringLiteral:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">timezone</span><span class="p">:</span> <span class="n">TimeZone</span> <span class="p">=</span> <span class="s">&#34;GMT+03:00&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">date</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="s">&#34;2016-12-03T00:40:11+00:00&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">url</span><span class="p">:</span> <span class="n">URL</span> <span class="p">=</span> <span class="s">&#34;https://google.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="n">Coordinate</span> <span class="p">=</span> <span class="s">&#34;123.5, 127.8&#34;</span>
+</span></span></code></pre></div><p>And, we have some more similar protocols: <code>ExpressibleByArrayLiteral, ExpressibleByNilLiteral, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral, ExpressibleByBooleanLiteral, ExpressibleByDictionaryLiteral</code>.</p>
 <p>P/s: Not until now do I know this protocol. Kind of late :)</p>
 
   <div class="entry-footer">
@@ -157,7 +157,7 @@ if (!doNotTrack) {
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

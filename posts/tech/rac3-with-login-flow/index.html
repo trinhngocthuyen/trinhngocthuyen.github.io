@@ -85,25 +85,25 @@ task may fail”</em>. This leads to the fact that sometimes we <em>spend more t
 handling failures than successful cases</em>. These failures include
 network failures and server-interaction failures.</p>
 <h4 id="traditional-version">Traditional version</h4>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">tapLoginButton</span><span class="p">()</span> <span class="p">{</span>
-   <span class="p">...</span>
-   <span class="n">YourAPI</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">loginParameters</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
-      <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-         <span class="k">switch</span> <span class="n">error</span><span class="p">.</span><span class="n">type</span> <span class="p">{</span>
-         <span class="k">case</span> <span class="p">.</span><span class="n">NetworkError</span><span class="p">:</span>
-            <span class="c1">// Handle network failure</span>
-         <span class="k">case</span> <span class="p">.</span><span class="n">IncorrectEmailOrPassword</span><span class="p">:</span>
-            <span class="c1">// Handle failure</span>
-         <span class="k">case</span> <span class="p">.</span><span class="n">InvalidInformation</span><span class="p">:</span>
-            <span class="c1">// Handle failure</span>
-            <span class="c1">// …</span>
-         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">// Handle success</span>
-         <span class="p">}</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>This code has a few disadvantages:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tapLoginButton</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="p">...</span>
+</span></span><span class="line"><span class="cl">   <span class="n">YourAPI</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">loginParameters</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="k">switch</span> <span class="n">error</span><span class="p">.</span><span class="n">type</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="k">case</span> <span class="p">.</span><span class="n">NetworkError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Handle network failure</span>
+</span></span><span class="line"><span class="cl">         <span class="k">case</span> <span class="p">.</span><span class="n">IncorrectEmailOrPassword</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Handle failure</span>
+</span></span><span class="line"><span class="cl">         <span class="k">case</span> <span class="p">.</span><span class="n">InvalidInformation</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Handle failure</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// …</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Handle success</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This code has a few disadvantages:</p>
 <ul>
 <li>The handling implementation is put inside a closure. If we have 10 tasks that
 need to be executed immediately after logging in, they have to be placed in this
@@ -111,64 +111,64 @@ closure. Ugly and hard to debug, right?</li>
 <li>Assume we need chaining tasks: If login task is done → execute task 1. If task 1
 is done → execute task 2… In that case, each task need a closure:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">task1</span><span class="p">(</span><span class="n">completion</span><span class="p">:</span> <span class="p">(</span><span class="n">SuccessType</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span>
-<span class="kd">func</span> <span class="nf">task2</span><span class="p">(</span><span class="n">completion</span><span class="p">:</span> <span class="p">(</span><span class="n">SuccessType</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">task1</span><span class="p">(</span><span class="n">completion</span><span class="p">:</span> <span class="p">(</span><span class="n">SuccessType</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">task2</span><span class="p">(</span><span class="n">completion</span><span class="p">:</span> <span class="p">(</span><span class="n">SuccessType</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span>
+</span></span></code></pre></div><ul>
 <li>Errors and successful results don’t exist simultaneously. The parameters
 declaration (result, error) seems redundant.</li>
 </ul>
 <h4 id="how-to-refactor">How to refactor?</h4>
 <p>Replace closures by <code>Signals</code> or <code>SignalProducers</code>. We will discuss the
 differences between <code>Signal</code> and <code>SignalProducer</code> later.</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">API</span> <span class="p">{</span>
-   <span class="kd">static</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="n">loginParameters</span><span class="p">:</span> <span class="n">LoginParameters</span><span class="p">)</span> <span class="p">-&gt;</span> 
-                         <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span> <span class="p">{</span>
-      <span class="kd">let</span> <span class="nv">signalProducer</span> <span class="p">=</span> <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span> <span class="p">{</span>
-         <span class="n">sink</span><span class="p">,</span> <span class="n">disposable</span> <span class="k">in</span>
-         <span class="c1">// For now, dont care much about `sink` and `disposable`</span>
-         <span class="c1">// Send request</span>
-         <span class="c1">// Validate request</span>
-         <span class="k">if</span> <span class="n">networkErrorOccured</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">makeUpNetworkError</span><span class="p">()</span>
-            <span class="n">sendError</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">serverErrorOccured</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">makeUpServerError</span><span class="p">()</span>
-            <span class="n">sendError</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">successResult</span> <span class="p">=</span> <span class="n">parseJsonAndGetSuccessResult</span><span class="p">()</span>
-            <span class="n">sendNext</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">successResult</span><span class="p">)</span>
-            <span class="n">sendCompleted</span><span class="p">(</span><span class="n">sink</span><span class="p">)</span>
-         <span class="p">}</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">func</span> <span class="nf">tapLoginButton</span><span class="p">()</span> <span class="p">{</span>
-   <span class="kd">let</span> <span class="nv">loginParameters</span> <span class="p">=</span> <span class="n">LoginParameters</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-   <span class="kd">let</span> <span class="nv">loginSignalProducer</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">loginParameters</span><span class="p">)</span>
-   <span class="c1">// Task 1</span>
-   <span class="n">loginSignalProducer</span>
-   <span class="o">|&gt;</span> <span class="n">start</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-      <span class="n">handleErrorTask1</span><span class="p">()</span>
-   <span class="p">},</span> <span class="n">next</span> <span class="p">{</span> <span class="n">successfulResult</span> <span class="k">in</span>
-      <span class="n">handleSuccessTask1</span><span class="p">()</span>
-   <span class="p">})</span>
-   <span class="c1">// Task 2</span>
-   <span class="n">loginSignalProducer</span>
-   <span class="o">|&gt;</span> <span class="n">observe</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-      <span class="n">handleErrorTask2</span><span class="p">()</span>
-   <span class="p">},</span> <span class="n">next</span> <span class="p">{</span> <span class="n">successfulResult</span> <span class="k">in</span>
-      <span class="n">handleSuccessTask2</span><span class="p">()</span>
-   <span class="p">})</span>
-   <span class="err">…</span>
-   <span class="c1">// Task 10</span>
-   <span class="n">loginSignalProducer</span>
-   <span class="o">|&gt;</span> <span class="n">observe</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-      <span class="n">handleErrorTask10</span><span class="p">()</span>
-   <span class="p">},</span> <span class="n">next</span> <span class="p">{</span> <span class="n">successfulResult</span> <span class="k">in</span>
-      <span class="n">handleSuccessTask10</span><span class="p">()</span>
-   <span class="p">})</span>
-<span class="p">}</span>
-</code></pre></div><p>This implementation looks more elegant since:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">API</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">static</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="n">loginParameters</span><span class="p">:</span> <span class="n">LoginParameters</span><span class="p">)</span> <span class="p">-&gt;</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nv">signalProducer</span> <span class="p">=</span> <span class="n">SignalProducer</span><span class="p">&lt;</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="n">sink</span><span class="p">,</span> <span class="n">disposable</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">// For now, dont care much about `sink` and `disposable`</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">// Send request</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">// Validate request</span>
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="n">networkErrorOccured</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">makeUpNetworkError</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sendError</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">serverErrorOccured</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">makeUpServerError</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sendError</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">let</span> <span class="nv">successResult</span> <span class="p">=</span> <span class="n">parseJsonAndGetSuccessResult</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sendNext</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">successResult</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sendCompleted</span><span class="p">(</span><span class="n">sink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tapLoginButton</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">let</span> <span class="nv">loginParameters</span> <span class="p">=</span> <span class="n">LoginParameters</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">let</span> <span class="nv">loginSignalProducer</span> <span class="p">=</span> <span class="n">API</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">loginParameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// Task 1</span>
+</span></span><span class="line"><span class="cl">   <span class="n">loginSignalProducer</span>
+</span></span><span class="line"><span class="cl">   <span class="o">|&gt;</span> <span class="n">start</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="n">handleErrorTask1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span> <span class="n">next</span> <span class="p">{</span> <span class="n">successfulResult</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="n">handleSuccessTask1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="p">})</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// Task 2</span>
+</span></span><span class="line"><span class="cl">   <span class="n">loginSignalProducer</span>
+</span></span><span class="line"><span class="cl">   <span class="o">|&gt;</span> <span class="n">observe</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="n">handleErrorTask2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span> <span class="n">next</span> <span class="p">{</span> <span class="n">successfulResult</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="n">handleSuccessTask2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="p">})</span>
+</span></span><span class="line"><span class="cl">   <span class="err">…</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// Task 10</span>
+</span></span><span class="line"><span class="cl">   <span class="n">loginSignalProducer</span>
+</span></span><span class="line"><span class="cl">   <span class="o">|&gt;</span> <span class="n">observe</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="n">handleErrorTask10</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span> <span class="n">next</span> <span class="p">{</span> <span class="n">successfulResult</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">      <span class="n">handleSuccessTask10</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This implementation looks more elegant since:</p>
 <ul>
 <li>Failure and success are handled separately</li>
 <li>Each observation is handled separately</li>
@@ -185,11 +185,11 @@ differences between <code>Signal</code> and <code>SignalProducer</code> later.</
 <p>If you already heard of <a href="https://www.coursera.org/course/reactive">FRP (Functional Reactive
 Programming)</a>, this may help you
 understand more straightforwardly:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="o">-</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span>  <span class="p">=</span> <span class="n">Try</span><span class="p">[</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">]</span>
-<span class="o">-</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span>      <span class="p">=</span> <span class="n">Future</span><span class="p">[</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">]</span>
-<span class="o">-</span> <span class="n">Signal</span><span class="p">&lt;</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span>     <span class="p">=</span> <span class="n">Observable</span><span class="p">[</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">]</span>
-                                  <span class="p">=</span> <span class="n">a</span> <span class="n">series</span> <span class="n">of</span> <span class="n">Events</span>
-</code></pre></div><h3 id="conclusion">Conclusion</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="o">-</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span>  <span class="p">=</span> <span class="n">Try</span><span class="p">[</span><span class="n">SuccessType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span>      <span class="p">=</span> <span class="n">Future</span><span class="p">[</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">Signal</span><span class="p">&lt;</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">&gt;</span>     <span class="p">=</span> <span class="n">Observable</span><span class="p">[</span><span class="n">SomeType</span><span class="p">,</span> <span class="n">ErrorType</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                                  <span class="p">=</span> <span class="n">a</span> <span class="n">series</span> <span class="n">of</span> <span class="n">Events</span>
+</span></span></code></pre></div><h3 id="conclusion">Conclusion</h3>
 <ul>
 <li>Don’t waste your time implementing Observer pattern or manually handling
 asynchronous tasks.</li>
@@ -256,7 +256,7 @@ RAC 3.0.</p>
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

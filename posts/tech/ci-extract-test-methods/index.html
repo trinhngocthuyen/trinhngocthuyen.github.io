@@ -91,72 +91,72 @@ if (!doNotTrack) {
 <p><a href="https://github.com/krzysztofzablocki/Sourcery">Sourcery</a> is a code generator for Swift. It&rsquo;s built on top of <a href="https://github.com/apple/swift/tree/main/tools/SourceKit">SourceKit</a>. For those who did not know, SourceKit is the magic behind Xcode indexing which brings Xcode auto-completion to life. When Xcode indexes source files of a project, you can notice a running process called <code>SourceKitService</code>. Basically, what it does is to build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree (AST)</a> from the source files. From then, you can query information about avalaible classes, structs, protocols, methods and so forth.</p>
 <img src="/images/ci/extract_tests_sourcery.png" width="450"/>
 <p>For example, the following <a href="https://stencil.fuller.li">stencil</a> template would generate a list of test methods of classes inheriting from <code>BaseUITestCase</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-django" data-lang="django"><span class="cp">{%</span> <span class="k">for</span> <span class="nv">type</span> <span class="k">in</span> <span class="nv">types.inheriting.BaseUITestCase</span> <span class="cp">%}</span><span class="x">
-</span><span class="x"></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">method</span> <span class="k">in</span> <span class="nv">type.methods</span> <span class="nv">where</span> <span class="nv">method.accessLevel</span> <span class="p">!</span><span class="o">=</span> <span class="s2">&#34;private&#34;</span> <span class="cp">%}</span><span class="x">
-</span><span class="x"></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">method.selectorName</span><span class="o">|</span><span class="nf">hasPrefix</span><span class="s2">:&#34;test&#34;</span> <span class="k">and</span> <span class="nv">method.parameters.count</span> <span class="o">==</span> <span class="m">0</span> <span class="cp">%}</span><span class="x">
-</span><span class="x"></span><span class="cp">{{</span><span class="nv">type.name</span><span class="cp">}}</span><span class="x">.</span><span class="cp">{{</span><span class="nv">method.selectorName</span><span class="cp">}}</span><span class="x">
-</span><span class="x"></span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">
-</span><span class="x"></span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x">
-</span><span class="x"></span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x">
-</span></code></pre></div><p>What the above template does is simple:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-django" data-lang="django"><span class="line"><span class="cl"><span class="cp">{%</span> <span class="k">for</span> <span class="nv">type</span> <span class="k">in</span> <span class="nv">types.inheriting.BaseUITestCase</span> <span class="cp">%}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">method</span> <span class="k">in</span> <span class="nv">type.methods</span> <span class="nv">where</span> <span class="nv">method.accessLevel</span> <span class="p">!</span><span class="o">=</span> <span class="s2">&#34;private&#34;</span> <span class="cp">%}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">method.selectorName</span><span class="o">|</span><span class="nf">hasPrefix</span><span class="s2">:&#34;test&#34;</span> <span class="k">and</span> <span class="nv">method.parameters.count</span> <span class="o">==</span> <span class="m">0</span> <span class="cp">%}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="nv">type.name</span><span class="cp">}}</span><span class="x">.</span><span class="cp">{{</span><span class="nv">method.selectorName</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x">
+</span></span></span></code></pre></div><p>What the above template does is simple:</p>
 <ul>
 <li>For each subclass of <code>BaseUITestCase</code>, look for methods prefixed with <code>test</code> that is not private and does not have any argument, then print its class and method.</li>
 </ul>
 <p>When running the CLI, we need to specify the source folder/files and the stencil templates we&rsquo;re using. Then, Sourcery scans code in the given source folder/files, and generates data based on the given templates.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ sourcery --sources AppUITests --templates all_ui_tests.stencil
-</code></pre></div><p>The output would look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">TestCaseA.testA1
-TestCaseA.testA2
-TestCaseB.testB1
-</code></pre></div><p>Now, let&rsquo;s talk about pros and cons.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sourcery --sources AppUITests --templates all_ui_tests.stencil
+</span></span></code></pre></div><p>The output would look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TestCaseA.testA1
+</span></span><span class="line"><span class="cl">TestCaseA.testA2
+</span></span><span class="line"><span class="cl">TestCaseB.testB1
+</span></span></code></pre></div><p>Now, let&rsquo;s talk about pros and cons.</p>
 <p>One big advantage of this approach is that it does <em>not require any build products</em>. This tests extraction step can be done as early as you wish. Also, it&rsquo;s easy to adopt this solution as the setup is lightweight.</p>
 <p>However, this approach has some drawbacks:</p>
 <ul>
 <li>It does NOT work well with <em><strong>pre-processing flags</strong></em>. Following is the example in which we encounter the issue while migrating from <a href="https://github.com/kif-framework/KIF">KIF tests</a> to XCUITests. Since Sourcery has no idea about pre-processing flags and it just scans code from top to bottom, the type of <code>BaseUITestCase</code> can be wrongly resolved to <code>BaseKIFTestCase</code> while it should be <code>BaseXCUITestCase</code>.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#if XCUITEST
-typealias BaseUITestCase = BaseXCUITestCase
-#else
-typealias BaseUITestCase = BaseKIFTestCase
-#end
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#if XCUITEST
+</span></span><span class="line"><span class="cl">typealias BaseUITestCase = BaseXCUITestCase
+</span></span><span class="line"><span class="cl">#else
+</span></span><span class="line"><span class="cl">typealias BaseUITestCase = BaseKIFTestCase
+</span></span><span class="line"><span class="cl">#end
+</span></span></code></pre></div><ul>
 <li>It might take a fairly long time to finish if there are a lot of source files to be scanned. With our project, it took around 10 secs to run with the template above.</li>
 <li>Moreover, your source files should be well structured to give an accurate output.</li>
 </ul>
 <h3 id="22-parsing-symbols-of-target-binaries">2.2. Parsing Symbols of Target Binaries</h3>
 <p>Another approach is to parse the symbols of a test target binary.
 Assume we have a UI test target <code>AppUITests</code> with a test class <code>UITestCaseX</code> of which the declaration is as follows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">UITestCaseX</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-  <span class="kd">func</span> <span class="nf">testX1</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-  <span class="kd">func</span> <span class="nf">testX2</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-  <span class="kd">func</span> <span class="nf">testX000</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// &lt;-- Not a test method b/c of having arguments</span>
-  <span class="kd">private</span> <span class="kd">func</span> <span class="nf">testX999</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// &lt;-- Not a test method b/c of being private</span>
-<span class="p">}</span>
-</code></pre></div><p>In this class, there are 2 test methods <code>testX1</code> and <code>testX2</code>. Meanwhile, <code>testX000</code> and <code>test999</code> are not test methods, meaning, they won&rsquo;t be picked up when running <code>UITestCaseX</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">UITestCaseX</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">testX1</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">testX2</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">testX000</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// &lt;-- Not a test method b/c of having arguments</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">func</span> <span class="nf">testX999</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// &lt;-- Not a test method b/c of being private</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>In this class, there are 2 test methods <code>testX1</code> and <code>testX2</code>. Meanwhile, <code>testX000</code> and <code>test999</code> are not test methods, meaning, they won&rsquo;t be picked up when running <code>UITestCaseX</code>.</p>
 <p>&hellip;</p>
 <p>After compiling the project, the symbols of this class will be merged into the target executable (or target binary). As <code>AppUITests</code> is a UI test target, its binary locates inside the <code>Plugins</code> folder of the runner app bundle: <code>AppUITests-Runner.app/Plugins/AppUITests.xctest/AppUITests</code>.</p>
 <p>We can look up the symbols of this binary using the <code>nm</code> (or, <code>xcrun nm</code>) command. Since the symbols were obfuscated, we&rsquo;re gonna pipe the output to <code>xcrun swift-demangle</code> to make it more readble:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ xcrun nm <span class="si">${</span><span class="nv">DERIVED_DATA_PATH</span><span class="si">}</span>/AppUITests-Runner.app/PlugIns/AppUITests.xctest/AppUITests <span class="se">\
-</span><span class="se"></span>  <span class="p">|</span> xcrun swift-demangle
-</code></pre></div><p>Let&rsquo;s take a quick look at the output.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">...
-0000000000001740 t @objc SpecExtractorUITests.UITestCaseX.init(invocation: __C.NSInvocation?) -&gt; SpecExtractorUITests.UITestCaseX
-00000000000014b0 T SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
-00000000000014d0 t @objc SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
-0000000000001d04 S method descriptor for SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
-0000000000001510 T SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
-0000000000001530 t @objc SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
-0000000000001d0c S method descriptor for SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
-0000000000001780 T SpecExtractorUITests.UITestCaseX.__allocating_init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
-00000000000017b0 T SpecExtractorUITests.UITestCaseX.init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
-0000000000001840 t @objc SpecExtractorUITests.UITestCaseX.init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
-0000000000001570 T SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
-0000000000001590 t @objc SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
-0000000000001d14 S method descriptor for SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
-00000000000015e0 T SpecExtractorUITests.UITestCaseX.(testX999 in _52DD9D513BE9E5B52CB47DED7BE88AA3)() -&gt; ()
-0000000000001d1c s method descriptor for SpecExtractorUITests.UITestCaseX.(testX999 in _52DD9D513BE9E5B52CB47DED7BE88AA3)() -&gt; ()
-...
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ xcrun nm <span class="si">${</span><span class="nv">DERIVED_DATA_PATH</span><span class="si">}</span>/AppUITests-Runner.app/PlugIns/AppUITests.xctest/AppUITests <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> xcrun swift-demangle
+</span></span></code></pre></div><p>Let&rsquo;s take a quick look at the output.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">0000000000001740 t @objc SpecExtractorUITests.UITestCaseX.init(invocation: __C.NSInvocation?) -&gt; SpecExtractorUITests.UITestCaseX
+</span></span><span class="line"><span class="cl">00000000000014b0 T SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
+</span></span><span class="line"><span class="cl">00000000000014d0 t @objc SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001d04 S method descriptor for SpecExtractorUITests.UITestCaseX.testX1() -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001510 T SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001530 t @objc SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001d0c S method descriptor for SpecExtractorUITests.UITestCaseX.testX2() -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001780 T SpecExtractorUITests.UITestCaseX.__allocating_init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
+</span></span><span class="line"><span class="cl">00000000000017b0 T SpecExtractorUITests.UITestCaseX.init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
+</span></span><span class="line"><span class="cl">0000000000001840 t @objc SpecExtractorUITests.UITestCaseX.init(selector: ObjectiveC.Selector) -&gt; SpecExtractorUITests.UITestCaseX
+</span></span><span class="line"><span class="cl">0000000000001570 T SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001590 t @objc SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001d14 S method descriptor for SpecExtractorUITests.UITestCaseX.testX000(Swift.Int) -&gt; ()
+</span></span><span class="line"><span class="cl">00000000000015e0 T SpecExtractorUITests.UITestCaseX.(testX999 in _52DD9D513BE9E5B52CB47DED7BE88AA3)() -&gt; ()
+</span></span><span class="line"><span class="cl">0000000000001d1c s method descriptor for SpecExtractorUITests.UITestCaseX.(testX999 in _52DD9D513BE9E5B52CB47DED7BE88AA3)() -&gt; ()
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><ul>
 <li>Each row in the output represent the <a href="https://developer.apple.com/documentation/kernel/nlist"><code>nlist</code></a> entry in the symbol table.</li>
 <li>The second column in each entry is a letter representing the segment type in the binary. <code>T</code> and <code>t</code> refer to <code>__TEXT</code> and <code>__text</code> which translates to the segments containing the compiled code to be run. These letters being in uppercase or lowercase means the symbol is <em>external</em> or <em>non-external</em> respectively. <em>Non-external</em>, in this context, means <code>private</code>.</li>
 </ul>
@@ -227,7 +227,7 @@ Assume we have a UI test target <code>AppUITests</code> with a test class <code>
   <div class="container">
     <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
