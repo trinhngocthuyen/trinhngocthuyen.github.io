@@ -6,7 +6,7 @@
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://trinhngocthuyen.com/about/</link>
@@ -17,6 +17,16 @@
 My name is Thuyen (aka. Chris). I&amp;rsquo;m an iOS Engineer.
 As a young developeran engineer, I am curious about how things work and why it works the way it does.
 In this little corner, I do blog about tech (mainly related to iOS, CI, engineering practices or any stack I happened to work with). If you&amp;rsquo;re also a geek, check out the Tech category for technical blog posts.</description>
+    </item>
+    
+    <item>
+      <title>Chuyện Nghề: Một Dự Án Nọ (2)</title>
+      <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-2/</link>
+      <pubDate>Sun, 05 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-2/</guid>
+      <description>Hôm nay, mình kể mọi người về dự án cuối cùng mà mình tham gia, trước khi nghỉ Grab. Đó là E2E testing. Sorry mọi người, mình quên mất các mốc thời gian cụ thể, nên giờ nhớ gì kể nấy.
+Mục tiêu của dự án là làm thế nào để cắt giảm thời gian regression tests của QA. Mình giải thích sơ về quy trình phần mềm cho mọi người cùng hiểu rõ.</description>
     </item>
     
     <item>

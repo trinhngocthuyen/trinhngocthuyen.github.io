@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Chuyện Nghề: Một Dự Án Nọ (2)">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.2bd0f22cb2c20c3f024945e0332d6cf75853dde04c37baf237d7c0e897b5cbb5.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/misc/chuyen-nghe-mot-du-an-no-2/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Chuyện Nghề: Một Dự Án Nọ (2)</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Mar 5</span>
+</div>
+  
+</header>
+  <p>Hôm nay, mình kể mọi người về dự án cuối cùng mà mình tham gia, trước khi nghỉ Grab. Đó là E2E testing. Sorry mọi người, mình quên mất các mốc thời gian cụ thể, nên giờ nhớ gì kể nấy.</p>
+<p>Mục tiêu của dự án là làm thế nào để cắt giảm thời gian regression tests của QA. Mình giải thích sơ về quy trình phần mềm cho mọi người cùng hiểu rõ. Ở Grab, mỗi tuần sẽ release Driver app một lần. Ở mỗi lần release, QA có thời gian là 3 ngày (quy ra thành 24h làm việc) để test app. Test ở đây là test thủ công theo những kịch bản test đã được thiết kế.</p>
+<p>Ở thời điểm đó, thời gian test thực tế trung bình tầm khoảng 12h. Câu hỏi là <em><strong>làm thế nào để giảm thời gian test này xuống?</strong></em> Đây là động lực cho ra đời dự án E2E testing.</p>
+<p>Mình sẽ có một bài viết kỹ thuật khác nói về E2E testing. Trong bài viết này, mình sẽ tập trung vào những khía cạnh về con người và quy trình của dự án.</p>
+<p>Trước khi mình tiếp quản, dự án này cũng được sang tay qua 1-2 người. Nhưng cách tiếp cận trước đó có rất nhiều bất cập. Cho nên khi bắt tay vào làm thì, như mọi người có thể đoán được, mình đã đập hết xây lại từ đầu 😅, theo cách tiếp cận khác. Và dĩ nhiên mình đã làm 1 cái POC (proof of concept), chứng tỏ tính khả thi của giải pháp, để thuyết phục các bên liên quan.</p>
+<h3 id="manual-qa-vs-automation-qa-hay-vấn-đề-về-sự-cam-kết">Manual QA vs. automation QA, hay vấn đề về sự cam kết</h3>
+<p>Có một điểm mình thấy khá khập khiểng khi chạy dự án, đó là ownership. Trên danh nghĩa, dự án này gọi là <strong>“driven by QA, supported by dev”</strong>.</p>
+<p>Thật ra, hết 80% khối lượng công việc là do dev làm rồi. Về mặt trách nhiệm, team dev phụ trách cung cấp giải pháp, set up phần core. Còn QA là người viết tests và bảo trì những tests đó. Nhưng trên thật tế thì không phải vậy…</p>
+<p>Để mị kể cho mà nghe…</p>
+<p>Đúng ra team QA phụ trách E2E testing phải là những người có background về automation. Nhưng team QA này đều là manual tester và không có background về automation. Vì vậy, ngoài việc thiết kế giải pháp, viết nhiều tests giùm, mình còn làm một việc ngoài lề khác là <strong>train cho QA về automation</strong>.</p>
+<p>Các bạn cứ hình dung mình là thầy cô ở đại học, dạy cho tân sinh viên môn “lập trình với Python” khi các bạn này chưa học qua các môn tiên quyết như “nhập môn lập trình”. Có rất nhiều lỗ hổng mà chỉ có bản thân họ tự thân nỗ lực mới có thể vá lại được. Tháng đó mình cứ phải zoom meeting để hỗ trợ QA khi có issue mà không biết cách giải quyết.</p>
+<p>Có một điều khác khiến mình mệt mỏi là khi QA hỏi những câu hỏi cơ bản về git, chẳng hạn như:</p>
+<blockquote>
+<p>Để sync với remote thì chạy <code>git pull</code> đúng hok?</p>
+</blockquote>
+<p>Đối với những câu hỏi về git như thế này thì câu trả lời luôn là <strong>“it depends”</strong>. Còn tuỳ thuộc vào branch bạn đang làm việc là branch nào, có clean hay không nữa. Vì đã từng trải qua cảm giác lúng túng với git hay svn (đọc thêm ở <a href="/posts/misc/cat-nghia-khung-hoang-tuoi-1/">post nọ</a>) nên mình rất thông cảm cho các bạn. Do đó, mình hay nhấn mạnh là git rất quan trọng, nên kiếm 1 cái crash course nào đó học cho nó bài bản, không thì thấy nó rất đáng sợ và chắc chắn sẽ đau khổ vì nó. Mình còn kiếm link gửi cho các bạn. Nhưng chao ôi, lời nói của một thằng dev quèn nặng được bao nhiêu kí lô?!</p>
+<p>Ban đầu mình có chuẩn bị tinh thần trước và cam kết sẽ đồng hành cùng QA trong việc onboard cho các bạn ấy. Nhưng đôi lúc mình cũng thấy lung lay thật sự. Cảm giác thất vọng không phải từ việc các bạn không có tiến bộ như kỳ vọng, mà từ việc không có cam kết, nỗ lực như mong đợi.</p>
+<p>Lúc bấy giờ, công ty mình không còn tuyển manual QA nữa với định hướng chuyển dịch sang automation. Và phần đông QA tham gia dự án này đều còn rất xa so với vai trò automation QA. Mình không thể move fast được trong khi đồng đội của mình lại move (fricking) slow. Trong nhiều lần sync-up, mình rất hay đánh tiếng là “mấy bạn có viết thêm test nữa hok mà dạo nào không thấy có update gì vậy?” để nhắc nhở. Một số thì kêu đang bận dự án nọ nên tuần này chỉ có thể dành ra khoảng x% capacity cho E2E testing thôi. Vấn đề về cam kết (commitment), mình than hoài với sếp, nhờ sếp tác động lên QA để có tiến độ phù hợp. Và bạn biết không, việc theo dõi, đốc thúc tiến độ như thế này vốn dĩ là trách nhiệm của EO (engineering owner) chứ không phải mình.</p>
+<h3 id="staging-testing-vs-production-testing">Staging testing vs. production testing</h3>
+<p>Có một vấn đề nổi cộm trong các cuộc thảo luận đôi bên giữa dev và QA là production testing. QA thì luôn muốn thúc đẩy production testing, còn dev - tức là mình - luôn muốn gác production testing qua một bên và tập trung vào staging testing.</p>
+<p>Nói sơ về các bước chạy cơ bản của một test trong dự án:</p>
+<p>Với một test cơ bản, khi chạy, hệ thống sẽ tạo resources tương ứng gồm bao nhiêu tài xế, bao nhiêu hành khách. Rồi tiến hành đăng nhập cho tài xế và hành khách này. Test nào liên quan tới booking thì test chạy giả lập việc hành khách đặt booking. Tài xế nhận được booking, rồi hoàn thành cuốc.</p>
+<p>Ở môi trường staging, mọi thứ đều rất đơn giản. Mọi sai sót, nếu có, đều không phải là vấn đề lớn. Nhưng khi chạy trên production, bức tranh trở nên khác hẳn. Câu hỏi lúc này không phải là “How to make it work?” mà là:</p>
+<blockquote>
+<p>How to make it work <strong>safely</strong>?</p>
+</blockquote>
+<p>Như vậy, nếu nỗ lực để chạy được một test trên staging là x thì nỗ lực cần thiết chạy được nó trên production phải cỡ 20x. Vì vậy, mình luôn nêu rõ quan điểm <strong>“đây chưa phải là thời điểm chín muồi cho production testing”</strong>. Thay vào đó, hãy dành nỗ lực để tối đa hoá kết quả từ staging testing. Và mình thấy rất mệt khi mấy buổi họp cứ đem chủ đề này ra bàn lại.</p>
+<p>Một phần lý do khác khiến mình cho rằng đầu tư vào production testing ở thời điểm đó là không hợp lý, chính là QA chưa đủ giỏi để <strong>sử dụng giải pháp một cách có trách nhiệm</strong>. Như đã đề cập, test bất cứ thứ gì trên production đều phải thận trọng. Giả sử khi giả lập việc hành khách đặt cuốc xe, hệ thống gán cuốc xe này cho tài xế thiệt thì sẽ như thế nào? Một nguyên tắc tiên quyết của mình là, khi giới thiệu một giải pháp để cải thiện vấn đề, <strong>ít nhất không được làm mọi thứ tệ thêm</strong>. Cho dù dùng nhiều biện pháp phòng ngừa, sai sót vẫn không thể tránh khỏi. Và giải pháp đưa ra cần phải nêu rõ một cách thuyết phục rằng có những sai sót nào xảy ra, phương án giải quyết như thế nào… Với tiềm lực mỏng manh của team ở thời điểm bấy giờ, việc đầu tư vào production testing là quá xa xỉ, chẳng khác nào lấy trứng chọi đá.</p>
+<p>Về production testing, mình với sếp không cùng quan điểm cho lắm. Mình thì không muốn nỗ lực trở nên vô ích, còn sếp mình thì muốn thử hướng này. Lần cuối trước khi mình rời Grab, người tiếp quản dự án này tự mình sẽ lo luôn phần production testing. Không biết bây giờ ra sao rồi 😅!? Nói nghe hơi mất dạy chớ đôi lúc mình cũng muốn hát câu này trong bài “Sáng Mắt Chưa” của Trúc Nhân:</p>
+<blockquote>
+<p>Phí quá chời luôn á!<br>
+Hình như anh cần vitamin A để cho mình sáng mắt ra.</p>
+</blockquote>
+<p>(Mấy anh ơi, nếu có đọc tới đây, em hy vọng mấy anh cười chứ đừng có nổi đoá với em 😂)</p>
+<p>&hellip;</p>
+<p>p/s: Đánh giá một cách công tâm thì đây là một dự án thú vị, tạo ra impacts lớn.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/misc" class="category">misc</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/chuy%e1%bb%87n-ngh%e1%bb%81" class="tag">chuyện-nghề</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/misc/cat-nghia-khung-hoang-tuoi-1/'>Cắt Nghĩa &#34;Khủng Hoảng Tuổi...&#34; (1)</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-2/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>
