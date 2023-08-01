@@ -6,7 +6,7 @@
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://trinhngocthuyen.com/about/</link>
@@ -17,6 +17,17 @@
 My name is Thuyen (aka. Chris). I&amp;rsquo;m an iOS Engineer.
 As a young developeran engineer, I am curious about how things work and why it works the way it does.
 In this little corner, I do blog about tech (mainly related to iOS, CI, engineering practices or any stack I happened to work with). If you&amp;rsquo;re also a geek, check out the Tech category for technical blog posts.</description>
+    </item>
+    
+    <item>
+      <title>Code Signing on CI</title>
+      <link>https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/</link>
+      <pubDate>Tue, 01 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/</guid>
+      <description>1. Introduction Code signing in iOS refers to the process of digitally signing an app&amp;rsquo;s executable code to ensure its authenticity and integrity.
+During feature development, developers usually do not have to worry about code signing because Xcode handles the complicated work. Most of the time, we build and run the app on simulators that do not require special code signing settings.
+However, distributing the app requires code signing. While working locally, you can rely on the &amp;ldquo;Automatically manage signing&amp;rdquo; option in the project settings.</description>
     </item>
     
     <item>

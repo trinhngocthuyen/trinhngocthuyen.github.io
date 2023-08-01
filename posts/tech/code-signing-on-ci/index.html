@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Code Signing on CI">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.2bd0f22cb2c20c3f024945e0332d6cf75853dde04c37baf237d7c0e897b5cbb5.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/code-signing-on-ci/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Code Signing on CI</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Aug 1</span>
+</div>
+  
+</header>
+  <h2 id="1-introduction">1. Introduction</h2>
+<p>Code signing in iOS refers to the process of digitally signing an app&rsquo;s executable code to ensure its authenticity and integrity.</p>
+<p>During feature development, developers usually do not have to worry about code signing because Xcode handles the complicated work. Most of the time, we build and run the app on simulators that do not require special code signing settings.</p>
+<p>However, distributing the app requires code signing. While working locally, you can rely on the <em>&ldquo;Automatically manage signing&rdquo;</em> option in the project settings. But, this option is not sufficient for medium/large-scale teams. Problems arise when integrating the distribution with CI/CD. You cannot log into your developer account on CI runners, and even if you could, it would be considered a security risk.</p>
+<p>This article focuses on how to make code signing work in a CI/CD environment.</p>
+<h2 id="2-background">2. Background</h2>
+<h3 id="21-distributing-an-app">2.1. Distributing an App</h3>
+<p>In this article, &ldquo;distributing an app&rdquo; refers to the process of converting the code base of a project into an <code>.ipa</code> file that can be sent to a distribution channel. Such a channel could be:</p>
+<ul>
+<li>TestFlight/App Store (for those enrolled in the Apple Developer Program)</li>
+<li>Third-party channels (such as Firebase App Distribution, Visual Studio App Center, etc.) or in-house channels (for those enrolled in the Apple Developer Enterprise Program)</li>
+</ul>
+<p>To obtain the <code>.ipa</code>, a developer must do the following:</p>
+<ul>
+<li>Step 1: Archive the project. This can be done by selecting Products &gt; Archive in Xcode, or by running <code>xcodebuild</code> with the <code>archive</code> action. The output of this step is an <code>.xcarchive</code> bundle.</li>
+<li>Step 2: Export this <code>.xcarchive</code> to the <code>.ipa</code>. This step is done by running <code>xcodebuild</code> with the <code>-exportArchive</code> option. If you are using Xcode, you can choose <code>Distribute App</code> and follow some additional steps to obtain the <code>.ipa</code> or even upload it to TestFlight/App Store.</li>
+</ul>
+<p>In the two steps mentioned above, the code signing process occurs during step 1. In fact, code signing is also involved when we build the project. In the Xcode build/archive logs, you can locate the code signing step at the very end.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ /usr/bin/codesign --force --sign ECED04E29B6BF995A54ED871F657D8CB0AEDC3F6 ......
+</span></span></code></pre></div><img src="/images/ios/codesign_xcodebuild.png">
+<figcaption>Figure 2.1.1: The <code>codesign</code> step in Xcode build/archive logs.</figcaption>
+<p>Even when we perform a normal debug build (for simulators), Xcode still executes this step. In this case, you should see the log stating <code>Signing Identity: &quot;-”</code>. This implies that Xcode performs ad-hoc signing, which does not use any identities at all.</p>
+<h3 id="22-code-signing-components">2.2. Code Signing Components</h3>
+<p>Code signing requires two essential components:</p>
+<ul>
+<li><strong>A certificate</strong> (associated with a private key), which is stored in Keychain. Sometimes, the term <em>&ldquo;identity&rdquo;</em> is used to refer to the private key (similar to &ldquo;identity&rdquo; in SSH). The <em>&ldquo;code sign identity&rdquo;</em> in Xcode build settings refers to the identity (stored in Keychain) being used for the signing process.</li>
+<li><strong>A provisioning profile</strong>, which indicates which apps to sign (based on the app ID), and who is allowed to sign (ie. those with the private key corresponding to the certificate). The provisioning profile must match the given certificate. Therefore, if we update the certificate for code signing, the corresponding profile must also be regenerated.<br>
+When packaging the app, Xcode searches for a matching provisioning profile under <code>~/Library/MobileDevice/Provisioning Profiles</code>. Therefore, importing a provisioning profile generally involves copying that <code>.mobileprovision</code> file to this directory.<br>
+<img src="/images/ios/provisioning_profile_previewed.png" width=600>
+<figcaption>Figure 2.2.1: Previewed data of a provisioning profile.</figcaption></li>
+</ul>
+<p>To archive successfully, the corresponding build settings must be configured properly.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CODE_SIGN_IDENTITY = &lt;identity name or uuid&gt; // Ex: Apple Distribution
+</span></span><span class="line"><span class="cl">DEVELOPMENT_TEAM = &lt;team id&gt;
+</span></span><span class="line"><span class="cl">PROVISIONING_PROFILE_SPECIFIER = &lt;name or uuid&gt;
+</span></span></code></pre></div><h2 id="3-demystifying-code-signing">3. Demystifying Code Signing</h2>
+<h3 id="31-the-role-of-keychain">3.1. The Role of Keychain</h3>
+<p>Code signing uses the MacOS keychain to store and manage cryptographic keys and certificates.</p>
+<p>According to the <a href="https://www.unix.com/man-page/osx/1/codesign/"><code>codesign</code> man page</a>:</p>
+<blockquote>
+<p>To be used for code signing, a digital identity must be stored in a keychain that is on the calling user&rsquo;s keychain search list.</p>
+</blockquote>
+<p>You can find those identities under the Certificates tab in Keychain Access.</p>
+<img src="/images/ios/keychain_identity.png">
+<figcaption>Figure 3.1.1: Private key of a certificate in Keychain Access.</figcaption>
+<p>By default, Xcode automatically manages certificates according to your developer account. However, there may be cases where you need to import a certificate to Keychain. For instance, if the certificate was created by another engineer, it may not be synchronized with Xcode managed certificates. Another example is when your developer account is not logged in, which is often the case for CI/CD execution.</p>
+<p>To import an identity to a keychain, simply double click on the <code>.p12</code> file and enter the password (if required). Alternatively, you can run the <a href="https://ss64.com/osx/security-export.html"><code>security import</code></a> command.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ security import &lt;path/to/p12&gt; -P &lt;cert-passphrase&gt;
+</span></span></code></pre></div><h3 id="32-keychain-prompt">3.2. Keychain Prompt</h3>
+<p>When code signing is attempted, a prompt may appear asking for permission to access keychain items. The codesign awaits users’ action on the prompt.</p>
+<img src="/images/ios/keychain_prompt.png" width=375>
+<figcaption>Figure 3.2.1: Keychain prompt asking for permissions to access keychain items.</figcaption>
+<p>If choosing “Always Allow”, the prompt will not display again. Once this option is selected, you can find <code>codesign</code> being whitelisted under the Access Control settings of the corresponding identity in the Keychain Access (right-click on the private key, choose “Get Info”, and navigate to the “Access Control” tab).</p>
+<img src="/images/ios/codesign_access_control.png" width=500>
+<figcaption>Figure 3.2.2: <code>codesign</code> in the whitelist</figcaption>
+<p>When we remove <code>codesign</code> from this whitelist, archiving the app will trigger the prompt again.</p>
+<h3 id="33-bypassing-the-prompt">3.3. Bypassing the Prompt</h3>
+<p>The main question is: <em>&ldquo;How to suppress the prompt without using a GUI?”</em></p>
+<p>To the best of my knowledge, the <code>security</code> CLI does not offer a direct waty to grant access to a Keychain identity. Nevertheless, when importing a certificate to a Keychain using the <code>security</code> CLI, we can set the whitelist using the <code>-T</code> option.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ security import &lt;path/to/p12&gt; -P &lt;passphrase&gt; -T /usr/bin/codesign
+</span></span></code></pre></div><p>After running the above command, you will notice that <code>codesign</code> is added to the whitelist under the Access Control settings of this specific identity (see: Figure 3.2.1).</p>
+<h2 id="4-solution-for-cicd">4. Solution for CI/CD</h2>
+<h3 id="41-fastlane-match">4.1. Fastlane Match</h3>
+<p>A common choice for code signing solution on CI is <a href="https://docs.fastlane.tools/actions/match">Fastlane Match</a>. With this solution, code signing identities and profiles are shared across your team using various storage options such as Git repo, Google Cloud, Amazon S3. Those files are securely encrypted with a passphrase.</p>
+<p>While this is a powerful tool, it introduces additional maintenance costs. First, you need to align yourself with Fastlane ecosystem. Second, when using a Git repo for Fastland Match, there might be some concerns when scaling for different projects. Having separate repos for N projects, each for each project, would be too many to maintain. Whereas, if we use a centralized repo for certificates and profiles, access control would be a problem. For instance, an engineer should have access to project A only, not project B. Then there is no trivial way to set up the access control this way (given that certificates and profiles of project A and B are stored in the same Git repo).</p>
+<p>It would be great if Fastlane Match supports storing certificates and profiles directly in a directory inside the project repo. In that scenario, the certificates and profiles are encrypted and committed to the project repo, where they are utilized.</p>
+<h3 id="42-handling-code-signing-on-ci">4.2. Handling Code Signing on CI</h3>
+<p>From what we have discussed in section (3), we can easily unveil the core logic that handles the code signing in Fastlane Match. Let’s create our own tool that handle code signing process.</p>
+<p>Assume that you already have valid certificates and profiles necessary for archiving the app. It is now up to you to decide how and where to store those files.</p>
+<p>Below are the general instructions for CI/CD setup. The provided steps are in Bash. You may rewrite the logic in your preferred language.</p>
+<p><strong>Step 1: Prepare a custom keychain</strong></p>
+<p>First, create a keychain. By having a dedicated keychain, it&rsquo;s easier to do the cleanup. Also, you can avoid compromisising the login password (if using the login keychain).</p>
+<p>Then, you need to add this keychain to user’s search list.</p>
+<p>To suppress the prompt asking for keychain password when importing certificates, we unlock the keychain in advance.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Create keychain</span>
+</span></span><span class="line"><span class="cl">$ security create-keychain -p &lt;keychain-password&gt; cicd
+</span></span><span class="line"><span class="cl"><span class="c1"># Add to user&#39;s search list</span>
+</span></span><span class="line"><span class="cl">$ security list-keychains -d user -s <span class="k">$(</span>security list-keychains -d user <span class="p">|</span> sed -e s/<span class="se">\&#34;</span>//g<span class="k">)</span> cicd
+</span></span><span class="line"><span class="cl"><span class="c1"># Unlock keychain</span>
+</span></span><span class="line"><span class="cl">$ security unlock-keychain -p &lt;keychain-password&gt;
+</span></span></code></pre></div><p><strong>Step 2: Import certificates and provisioning profiles</strong></p>
+<p>Import the certificates with codesign being whitelisted, and copy the provisioning profiles to the dedicated directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import certificate</span>
+</span></span><span class="line"><span class="cl">$ security import &lt;path/to/p12&gt; -P &lt;cert-password&gt; -k cicd -T /usr/bin/codesign
+</span></span><span class="line"><span class="cl"><span class="c1"># Copy provisioning profile</span>
+</span></span><span class="line"><span class="cl">$ cp &lt;path/to/profile&gt; <span class="s2">&#34;~/Library/MobileDevice/Provisioning Profiles/cicd.mobileprovision&#34;</span>
+</span></span></code></pre></div><p><strong>Step 3: Build/archive the project</strong></p>
+<p><strong>Step 4: Dispose keychain if no longer in use</strong></p>
+<p>Delete the keychain. The imported certificates will be disposed along the way.</p>
+<p>Optionally, you can delete the provisioning profiles that were copied earlier.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ security delete-keychain cicd
+</span></span></code></pre></div><h2 id="5-conclusion">5. Conclusion</h2>
+<p>In this blog post, we&rsquo;ve delved into the crucial role of code signing in app distribution. We&rsquo;ve examined the involvement of Keychain in the code signing process and explored how the <code>security</code> CLI can be utilized to bypass certain logic during CI/CD execution.</p>
+<p>Code signing has often posed challenges for developers, but with a deeper understanding, it no longer be a mysterious topic. By implementing the proposed solution, you can ensure smooth code signing on CI without heavy reliance on third-party tools like Fastlane.</p>
+<h2 id="6-references">6. References</h2>
+<ul>
+<li><a href="https://www.objc.io/issues/17-security/inside-code-signing">https://www.objc.io/issues/17-security/inside-code-signing</a></li>
+<li><a href="https://www.unix.com/man-page/osx/1/codesign">https://www.unix.com/man-page/osx/1/codesign</a></li>
+<li><a href="https://www.unix.com/man-page/osx/1/security">https://www.unix.com/man-page/osx/1/security</a></li>
+</ul>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/50-shades-of-git-remotes-and-authentication/'>50 Shades of Git: Remotes and Authentication</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

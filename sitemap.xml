@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://trinhngocthuyen.com/posts/tech/</loc>
-    <lastmod>2023-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/</loc>
     <lastmod>2023-04-19T00:00:00+00:00</lastmod>
@@ -11,10 +11,28 @@
     <loc>https://trinhngocthuyen.com/about/</loc>
   </url><url>
     <loc>https://trinhngocthuyen.com/</loc>
-    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/categories/</loc>
-    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/ci/</loc>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/</loc>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/ios/</loc>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/</loc>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/</loc>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/categories/tech/</loc>
+    <lastmod>2023-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ban-co-dang-be-tac-trong-cong-viec/</loc>
     <lastmod>2023-04-19T00:00:00+00:00</lastmod>
@@ -23,12 +41,6 @@
     <lastmod>2023-04-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/categories/misc/</loc>
-    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/posts/</loc>
-    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/tags/</loc>
     <lastmod>2023-04-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-2/</loc>
@@ -40,22 +52,13 @@
     <loc>https://trinhngocthuyen.com/posts/tech/50-shades-of-git-remotes-and-authentication/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://trinhngocthuyen.com/tags/ci/</loc>
-    <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://trinhngocthuyen.com/tags/git/</loc>
-    <lastmod>2023-02-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/categories/tech/</loc>
     <lastmod>2023-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/tags/cocoapods/</loc>
     <lastmod>2023-02-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/tags/ios/</loc>
     <lastmod>2023-02-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-direct-push/</loc>
