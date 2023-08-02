@@ -130,7 +130,7 @@ When packaging the app, Xcode searches for a matching provisioning profile under
 <p>When we remove <code>codesign</code> from this whitelist, archiving the app will trigger the prompt again.</p>
 <h3 id="33-bypassing-the-prompt">3.3. Bypassing the Prompt</h3>
 <p>The main question is: <em>&ldquo;How to suppress the prompt without using a GUI?”</em></p>
-<p>To the best of my knowledge, the <code>security</code> CLI does not offer a direct waty to grant access to a Keychain identity. Nevertheless, when importing a certificate to a Keychain using the <code>security</code> CLI, we can set the whitelist using the <code>-T</code> option.</p>
+<p>To the best of my knowledge, the <code>security</code> CLI does not offer a direct way to grant access to a Keychain identity. Nevertheless, when importing a certificate to a Keychain using the <code>security</code> CLI, we can set the whitelist using the <code>-T</code> option.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ security import &lt;path/to/p12&gt; -P &lt;passphrase&gt; -T /usr/bin/codesign
 </span></span></code></pre></div><p>After running the above command, you will notice that <code>codesign</code> is added to the whitelist under the Access Control settings of this specific identity (see: Figure 3.2.1).</p>
 <h2 id="4-solution-for-cicd">4. Solution for CI/CD</h2>
