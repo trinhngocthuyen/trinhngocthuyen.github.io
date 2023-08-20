@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Projects</title>
+      <link>https://trinhngocthuyen.com/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/projects/</guid>
+      <description>CI/CD, Testing tools e2e-mobile: End-to-end testing framework for mobile apps. seeeye: CI/CD toolkits for mobile apps. CocoaPods plugins cocoapods-binary-cache: A CocoaPods plugin that helps reduce project build time by prebuilding pod frameworks and caching them in a remote repository to share across multiple machines.
+I had been the maintainer of this open-source project while working at Grab. cocoapods-xcconfig-hooks: A CocoaPods plugin to hook xcconfig of CocoaPods targets. cocoapods-compact-spec: A CocoaPods plugin that helps define pod specs with minimal code.</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>https://trinhngocthuyen.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
