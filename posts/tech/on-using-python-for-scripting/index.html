@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="On Using Python for Scripting in iOS projects">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.2bd0f22cb2c20c3f024945e0332d6cf75853dde04c37baf237d7c0e897b5cbb5.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/on-using-python-for-scripting/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/projects">Projects</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>On Using Python for Scripting in iOS projects</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Aug 22</span>
+</div>
+  
+</header>
+  <p>As an iOS engineer, my recent focus has been on platform work, involving tasks like optimizing build times, integrating CI/CD pipelines, and devising testing solutions. This has led me to explore various scripting options, and I&rsquo;ve found great satisfaction in using Python as our preferred choice.</p>
+<h3 id="the-first-python-code">The first Python code</h3>
+<p>Initially, scripting wasn&rsquo;t a prominent aspect of my team&rsquo;s workflow, largely due to the simplicity of our CI/CD setup and the prevalence of Bash scripts in our project. However, a pivotal moment came when a colleague was tasked with creating a script to upload tracking metrics to Datadog</p>
+<p>While Bash scripts were convenient for execution, their maintenance was challenging, especially when the logic became more complex. Faced with annoying bugs, the engineer sought assistance and asked whether an alternative language like Python could offer better solutions. We had a vote with several options: Bash, Swift, Ruby, and Python. The two prominent were Ruby and Python. I remember my lead said he knew a bit of Ruby but not quite sure about Python. I managed to convinced him that Python’s syntax mirrored Ruby’s, and that Python was advantegous for potential analytics work. Somehow, we landed on Python.</p>
+<p>Eventually, the engineer submitted a pull request with the first-ever Python script in our project, although the code wasn&rsquo;t particularly pythonic.</p>
+<h3 id="the-prime-time-of-cicd-work">The prime time of CI/CD work</h3>
+<p>Over time, our project expanded in contributors and features. The need to reduce build and pipeline times became paramount. This led to a surge in scripting tasks, predominantly using Python. As of mid-2019, our scripting breakdown looked like this:</p>
+<ul>
+<li>65% were written in Python</li>
+<li>25% were written in Ruby</li>
+<li>10% were Bash code</li>
+</ul>
+<h3 id="ruby-vs-python-vs-others">Ruby vs. Python vs. others</h3>
+<p>Ruby&rsquo;s prominence in iOS tooling is notable, driven by CocoaPods and Fastlane. The latter, in particular, stood out for CI/CD due to its abundant actions and plugins. Thus, a hybrid approach was adopted, combining both Python and Ruby. For tasks that were well-supported by Fastlane, such as iOS code signing and TestFlight deployment, we employed the subprocess module to automate these workflows.</p>
+<p>As you know, Ruby is well known for tooling in iOS. This is mainly driven by CocoaPods and Fastlane, the big two rubyish open source tools. The latter, in particular, stood out for CI/CD due to its various actions and plugins. Some non-trivial tasks such as dealing with code signing, working with TestFlight and AppStore submission, were well supported by Fastlane. Thus, to utilize those powers, a hybrid approach was adopted, combining both Python and Ruby.</p>
+<h4 id="python-and-its-power-in-data-analysis">Python and its power in data analysis</h4>
+<p>However, Python often outshined Ruby in some cases. In tasks like build time optimization, where data visualization was essential, Python excelled. For instance, when analyzing Xcode parallel build tasks, we created Gantt charts to gain insights about how target dependencies impacted the overall build time. Python&rsquo;s rich data visualization libraries made this possible, while Ruby&rsquo;s equivalent options were lacking. In fact, there’s a whole data community out there working on this area. By embracing Python, we seamlessly delved into visualization tasks, a pivotal aspect for driving our efforts to enhance build times. Following is the example of visualizing project build time (in form of gantt chart).</p>
+<p><img src="/images/ci/build_time_gantt_chart.png" alt="Build time gantt chart">
+<figcaption>Figure 1: The gantt chart of project build time. This chart is made by <a href="https://plotly.com/">plotly</a> with just a few lines of Python code.</figcaption></p>
+<p>Python also empowered us in data analysis tasks. For example, identifying top time-consuming targets, or analyzing app size breakdowns, or assessing test success rates to see how flaky tests were. Implementing such features in Ruby would be really troublesome. Even when you endeavor to make it work, there are plenty of cases you need to handle, for instance, when your data is not clean enough. Meanwhile, <code>pandas</code>, a famous Python package tailored for data analysis, just works smoothly and effortlessly.</p>
+<h4 id="insightful-cicd">Insightful CI/CD</h4>
+<p>Because Python was our first-class scripting language, I had a lot of fun incorporating data analysis into CI/CD work. Among the mobile teams in the company, ours boasted the most accessible CI/CD data for analysis. With numerous tracking metrics available, you can just batch-download them (via API, of couse) and conduct your own analysis at hand.</p>
+<p>While I got exposed to both Ruby and Python for scripting purpose, I leaned towards Python. The simplicity of Python&rsquo;s syntax appealed to me more than Ruby&rsquo;s &ldquo;multiple ways to do one thing&rdquo; philosophy. In my defense, if we have <code>if</code> then <code>unless</code> becomes redundant. Similar to <code>select</code> and <code>reject</code>. Well, that’s just my preference. I’m not gonna argue with you about this haha.</p>
+<p>An aspect of Python coding that truly captivates me is the “decorator” syntax. This feature adds elegance to the code and often requires minimal changes. For instance, adding the <strong><code>@retry</code></strong> annotation to a method enabled easy retries for unstable actions. Just one-line change.</p>
+<p>Some teams opted for Swift scripting and tooling, leveraging their strengths. However, I preferred the flexibility of a scripting language like Python over a statically-typed one like Swift for the automation of scripting and tooling tasks. This choice minimized extra efforts, especially when distributing tools. Meanwhile, if using Swift, you need to ship the tools separately for MacOS, Linux, etc. Also, tools developed by statically-typed languages are often distributed in form of binaries. This approach constrains the potential to further extend the usages.</p>
+<h4 id="reusable-code-with-package-distribution">Reusable code with package distribution</h4>
+<p>Initially, CI/CD code and Swift code (of the main project) were hosted in the same repo. However, running a pipeline against a change in this monolithic repo took quite a long time. We then relocated our CI/CD to a different repo for faster updates. Not long after that, I had the chance to get involved in different projects. Each required similar CI/CD integrations. This sparked the idea of packaging our CI/CD implementation for reusability. In this regard, scripting languages prove to be more efficient.</p>
+<p>…</p>
+<p>To sum up, while incorporating Python into iOS projects for scripting &amp; tooling may not be conventional, it has led to remarkable achievements. Particularly, if your aspiration is to establish an insightful CI/CD ecosystem, Python emerges as an incredibly fitting choice, thanks to its capabilities in data analysis.</p>
+<p>Given the opportunity to make technology choices for a new project, I would definitely opt for Python once more 🙂.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/code-signing-on-ci/'>Code Signing on CI</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/on-using-python-for-scripting/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>

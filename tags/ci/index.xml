@@ -6,7 +6,17 @@
     <description>Recent content in ci on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>On Using Python for Scripting in iOS projects</title>
+      <link>https://trinhngocthuyen.com/posts/tech/on-using-python-for-scripting/</link>
+      <pubDate>Tue, 22 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/posts/tech/on-using-python-for-scripting/</guid>
+      <description>As an iOS engineer, my recent focus has been on platform work, involving tasks like optimizing build times, integrating CI/CD pipelines, and devising testing solutions. This has led me to explore various scripting options, and I&amp;rsquo;ve found great satisfaction in using Python as our preferred choice.
+The first Python code Initially, scripting wasn&amp;rsquo;t a prominent aspect of my team&amp;rsquo;s workflow, largely due to the simplicity of our CI/CD setup and the prevalence of Bash scripts in our project.</description>
+    </item>
+    
     <item>
       <title>Code Signing on CI</title>
       <link>https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/</link>
