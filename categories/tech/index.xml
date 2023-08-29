@@ -6,7 +6,17 @@
     <description>Recent content in tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Tale of Project Build Time Improvement</title>
+      <link>https://trinhngocthuyen.com/posts/tech/a-tale-of-project-build-time/</link>
+      <pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/posts/tech/a-tale-of-project-build-time/</guid>
+      <description>Introduction Build time is a key factor to engineers’ productivity. Slow build time can be frustrating and lead to hindered progress. There has been a great amount of effort by the community to tackle this complex problem. This blog post highlights various methodologies employed by our team (at Grab) to alleviate this pain point.
+Background The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.</description>
+    </item>
+    
     <item>
       <title>On Using Python for Scripting in iOS Projects</title>
       <link>https://trinhngocthuyen.com/posts/tech/on-using-python-for-scripting/</link>

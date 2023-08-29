@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="A Tale of Project Build Time Improvement">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.2bd0f22cb2c20c3f024945e0332d6cf75853dde04c37baf237d7c0e897b5cbb5.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/a-tale-of-project-build-time/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/projects">Projects</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>A Tale of Project Build Time Improvement</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Aug 29</span>
+</div>
+  
+</header>
+  <h2 id="introduction">Introduction</h2>
+<p>Build time is a key factor to engineers’ productivity. Slow build time can be frustrating and lead to hindered progress. There has been a great amount of effort by the community to tackle this complex problem. This blog post highlights various methodologies employed by our team (at Grab) to alleviate this pain point.</p>
+<h2 id="background">Background</h2>
+<p>The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.), linking binaries, and code signing. These build tasks, while parallelizable, are executed in dependency order.</p>
+<p>The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.), linking binaries, and code signing. These build tasks, while parallelizable, are executed in dependency order.</p>
+<p><strong>Clean builds vs. incremental builds</strong></p>
+<ul>
+<li><strong>Clean build</strong>: This involves compiling the project from scratch. To trigger a clean build, you simply need to clean the derived data beforehand.</li>
+<li><strong>Incremental build</strong>: An incremental build occurs when there’s cached data from the previous build. Only source code that have changed and its dependents need to be recompiled. This is usually the case for local development. While a clean build can take up to 20 minutes, incremental build times vary from seconds to minutes depending on the changes made.</li>
+</ul>
+<p>On CI, we often care about clean builds because cached data between runs may not retain. Also, invalidated cache might result in unexpected build failures, causing frustrations for engineers.</p>
+<p>In large-scale projects, the compilation times can range from 10 to 20 minutes, often viewed as a bottleneck affecting engineers’ productivity. In the following sections, we&rsquo;ll explore several methods we&rsquo;ve adopted to mitigate this challenge.</p>
+<h2 id="methodologies">Methodologies</h2>
+<h3 id="tracking-metrics">Tracking metrics</h3>
+<p>The journey to improving build times begins with understanding the current state. Measuring build times and consistently tracking this data is a prerequisite for evaluating any approach. If the average clean build time over a week is, for instance, 10 minutes, this becomes the baseline for improvement. The goal is to bring this number under 10 minutes. Failing to achieve this indicates an unsuccessful solution.</p>
+<p>One way to measure build time is by timestamping the start and end of actions and calculating time differences. This can be done using Xcode&rsquo;s pre-actions and post-actions support. Additionally, build times for specific targets can be measured by adding run scripts to their build phases. This data enables visualization of build time breakdowns, as shown in the example Gantt chart.</p>
+<p><img src="/images/ci/build_time_gantt_chart.png" alt="Build time gantt chart">
+<figcaption>Figure 1. Build time gantt chart.</figcaption></p>
+<p>Note that scripts for per-target tracking are best suited for CI. Running these scripts for each target during incremental builds would be unnecessary.</p>
+<p><strong>Monitoring build time trends</strong></p>
+<p>Tracked data allows us to monitor trends over time. It’s essential to recognize that the total build time shouldn’t remain static. Rather, we might observe an upward trend as the project’s codebase grows. Because of this correlation, your engineering OKR shouldn’t merely focus on minimizing build time. Factors like code growth must also be considered. For instance, a 20% increase in code size (calculating by the number of lines) could lead to a predicted 12-minute build time (ie. additional 2 minutes in build time). Thus, maintaining a consistent 10-minute build time would already be a significant challenge. This example highlights the importance of tracking not only build time but also factors influencing it.</p>
+<p><strong>CI build time vs. local build time</strong></p>
+<p>Data should be collected from both CI builds and local development builds. While CI build time represents clean builds, local build time reflects incremental builds, varying from seconds to minutes. Therefore, distinguishing between these sources is crucial. Moreover, for noisy data like local build time, percentile (p50, p90) may offer more reliable insights than raw averages.</p>
+<p><strong>Increasing the sample size</strong></p>
+<p>Build time data can fluctuate due to various reasons. Triggering more builds ensures representative data. In our project, we scheduled hourly jobs solely for metrics collection. This approach smoothed out data noise, providing a more accurate representation.</p>
+<p><strong>Gaining insights from tracking metrics</strong></p>
+<p>Once data is collected, we can do some exploratory data analysis (EDA) to gain insights.</p>
+<p>In the gantt chart earlier, there’s a period where Xcode’s build parallelism was under-utilized. During that time, only 2 targets were compiled despite Xcode’s capability to handle up to 10 parallel build processes. This bottleneck suggests ineffective dependency management that fails to leverage parallelism.</p>
+<p><img src="/images/ci/build_time_parallelism_not_utilized.png" alt="Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized."></p>
+<p>Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized.</p>
+<h3 id="modularization">Modularization</h3>
+<p>Modularizing code into smaller modules, often called pods in CocoaPods’s terms, can improve incremental build times. In our project, we organized code based on functionality, with each app function belonging to a tech family (ex. FoodModule in the Deliveries team). This way of structuring code also helps clarify code ownership.</p>
+<p><strong>Analyzing dependencies</strong></p>
+<p>While establishing module dependencies is convenient, we need to be mindful of their impact on build time. Here&rsquo;s an example of a poor dependency structure.</p>
+<p>We had a Logger module dedicated to logging. This core module was heavily relied upon by other modules. It also depended on a third-party logging framework <a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a><strong>.</strong></p>
+<p>part from logging, the Logger had an additional functionality. It processed error logs and uploaded them to Firebase Crashlytics for tracking purpose. Initially, Logger depended on <a href="https://firebase.google.com/docs/crashlytics">FirebaseCrashlytics</a> for this purpose, which proved to be problematic</p>
+<p>The Gantt chart revealed that many targets should have compiled earlier, but they waited for Logger. Many dependencies needed to be compiled just for FirebaseCrashlytics. Let say it takes 20 seconds to build this pod and its dependencies. Then, the compilation of its dependents (which are more than 80 pods) is delayed by at least 20 seconds.</p>
+<p>We removed this unhealthy dependency. To maintain the recording error behavior, we kept the interface of the error recorder in Logger and moved its implementation (which required FirebaseCrashlytics) to the main target.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Module: Logger</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protocol</span> <span class="nc">ErrorRecorder</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">record</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Main target</span>
+</span></span><span class="line"><span class="cl"><span class="kd">import</span> <span class="nc">FirebaseCrashlytics</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">final</span> <span class="kd">class</span> <span class="nc">CrashlyticsErrorRecorder</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">record</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Crashlytics</span><span class="p">.</span><span class="n">crashlytics</span><span class="p">().</span><span class="n">record</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>Module interface and module implementation</strong></p>
+<p>The above example highlights a slow build case where a module&rsquo;s interface and implementation reside together.</p>
+<p>In fact, dependents only require access to interfaces, not implementations. Interfaces are lightweight declarations, while implementations involve more code to connect components.</p>
+<p>In our project, we had a History module depending on a complex module called JobFlow. This module contained logic related to drivers&rsquo; job flow (from receiving a job til finishing that job). As one of the most complicated components in the project, its compilation was usually slow.</p>
+<p>To accelerate compilation, we can split JobFlow into two parts:</p>
+<ul>
+<li><strong>JobFlowInterface</strong>: Contains only interfaces and data models, with just a few Swift files.
+Rarely changes due to internal logic. Such logic are implementation related.</li>
+<li><strong>JobFlowImpl</strong>: Implements JobFlowInterface.</li>
+</ul>
+<p>The dependencies are now structured as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">main target -&gt; History     -&gt; JobFlowInterface
+</span></span><span class="line"><span class="cl">main target -&gt; JobFlowImpl -&gt; JobFlowInterface
+</span></span></code></pre></div><p>If we take further effort to split History into its interface and implementation components, then the dependencies look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">main target -&gt; HistoryImpl -&gt; HistoryInterface -&gt; JobFlowInterface
+</span></span><span class="line"><span class="cl">main target -&gt; JobFlowImpl -&gt; JobFlowInterface
+</span></span></code></pre></div><p>This dependencies model helped kick-start the compilation of interface and implementation modules earlier, hence, utilize Xcode’s build parallelism.</p>
+<p>Note that, an interface module should never depend on an implementation module. Based on the naming, we can write a linter to ensure this principle. It is acceptable that an implementation module depends on another implementation module. However, the <code>Implementation -&gt; Interface</code> dependency should be prioritized first.</p>
+<p><strong>Non-host test targets</strong></p>
+<p>Initially, we had a single test target (UnitTests) for unit tests. This target was a host-app test target because some tests were written to cover logic of the main target. In other words, the UnitTests target depended on the main target. That means Xcode had to compile the main target prior to this test target. Therefore, in the build graph, the compilation of this target occurred at the very end. And once again, the build parallelism during this period was not utilized.</p>
+<p>The compilation order was as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         UnitTests
+</span></span><span class="line"><span class="cl">                         |
+</span></span><span class="line"><span class="cl">               main target
+</span></span><span class="line"><span class="cl">               |
+</span></span><span class="line"><span class="cl">... dependency A
+</span></span><span class="line"><span class="cl">... dependency B
+</span></span><span class="line"><span class="cl">... dependency C
+</span></span></code></pre></div><p>Over time, UnitTests was getting bigger and bigger to the extent that its compilation time was even more than the main target’s.</p>
+<p>Seeing this bottleneck, we split UnitTests into smaller non-host test targets. Each covered logic of a tech family’s code. We also migrated app logic from UnitTests to these new targets. Of course UnitTests still retained to test logic that couldn’t be migrated.</p>
+<p>The compilation order then became like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         UnitTests
+</span></span><span class="line"><span class="cl">                         |
+</span></span><span class="line"><span class="cl">               main target
+</span></span><span class="line"><span class="cl">               |
+</span></span><span class="line"><span class="cl">               TechFamily_X_UnitTests
+</span></span><span class="line"><span class="cl">               |
+</span></span><span class="line"><span class="cl">               TechFamily_Y_UnitTests
+</span></span><span class="line"><span class="cl">               |
+</span></span><span class="line"><span class="cl">... dependency A
+</span></span><span class="line"><span class="cl">... dependency B
+</span></span><span class="line"><span class="cl">... dependency C
+</span></span></code></pre></div><h3 id="fine-tuning-build-settings">Fine-tuning build settings</h3>
+<p>Optimizing build settings is another common approach alongside modularization. Specific build settings impact different aspects of the build process. Fine-tuning them can yield performance improvements.</p>
+<p>Following are some general recommendations in this regards.</p>
+<p><code>DEBUG_INFORMATION_FORMAT</code></p>
+<ul>
+<li>Set as <code>dwarf</code> for Debug because dSYM generation is an overhead cost and often unnecessary during local development.</li>
+</ul>
+<p><code>GCC_GENERATE_DEBUGGING_SYMBOLS</code></p>
+<ul>
+<li>Set as <code>NO</code> if debugging symbols aren&rsquo;t required, especially for CI runs.</li>
+</ul>
+<p><code>SWIFT_COMPILATION_MODE</code></p>
+<ul>
+<li>Use <code>singlefile</code> (incremental) for Debug builds and <code>wholemodule</code> (whole module) for Release builds.</li>
+<li>In theory, <code>wholemodule</code> enables the compiler to perform a big part of the compilation work in parallel (for details, refer to <a href="https://www.swift.org/blog/whole-module-optimizations/#compile-time)">https://www.swift.org/blog/whole-module-optimizations/#compile-time)</a>. Meanwhile, <code>singlefile</code> is preferrable for incremental builds. Therefore, our setup was:
+<ul>
+<li>For CI, set as <code>wholemodule</code> because all builds were not incremental.</li>
+<li>For Release (or any non-Debug) builds, default to <code>wholemodule</code> because of the same reason as above.</li>
+<li>For Debug builds (on local), use <code>wholemodule</code> for 3rd-party pods because those pods were not meant for local changes. The rest, including development pods, the main target, and test targets, had this setting as <code>singlefile</code> to benefit from incremental builds.</li>
+</ul>
+</li>
+</ul>
+<p><code>SWIFT_OPTIMIZATION_LEVEL</code> and <code>GCC_OPTIMIZATION_LEVEL</code></p>
+<ul>
+<li>Set as <code>-Onone</code> and <code>-O0</code> respectively for Debug builds to skip code optimization as it required the compiler to do more work.
+Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <code>GCC_OPTIMIZATION_LEVEL</code> is for C/C++/Objective-C/Objective-C++ code compilation.</li>
+</ul>
+<p>For the extensive list of build settings, refer to this documentation: <a href="https://developer.apple.com/documentation/xcode/build-settings-reference">https://developer.apple.com/documentation/xcode/build-settings-reference</a>.</p>
+<p><strong>A/B testing to figure out the optimal settings</strong></p>
+<p>While some theoretical settings sound promising, their practical results may differ.</p>
+<p>Take <code>SWIFT_COMPILATION_MODE=wholemodule</code> for example. If the project has only a few targets, this setup helps reduce build time significantly. However, our project has more than 80 pods, the <code>wholemodule</code> compilation is also constrained by the parallel-targets build.</p>
+<p>Moreover, there are a number of settings that can impact build time. For example, <code>STRIP_SWIFT_SYMBOLS</code> is a setting to control whether to strip Swift symbols after linking products. And our hypothesis was: the lesser work, the faster build time. Was this hypothesis correct and how much reduction we could have? We conducted A/B tests to verify those kinds of hypotheses.</p>
+<p>We planned to run many control-treatment experiments. In each experiment:</p>
+<ul>
+<li><strong>The control group</strong>: Was the project without any build settings update.</li>
+<li><strong>The treatment group</strong>: Was the project with an update in a given build setting. The update applied to all targets. This was done by interfering in the post_install hooks during the pod installation. The value was handily injected by an environment prefixed with <code>AB_TESTING</code>. For example, when there existed a variable <code>AB_GCC_OPTIMIZATION_LEVEL=-O</code>, the value of <code>GCC_OPTIMIZATION_LEVEL</code> was forced-update to <code>-O</code>.</li>
+<li>The control and treatment groups were ensured to run against the same commit, on the same hardware specs to eliminate all the <a href="https://en.wikipedia.org/wiki/Confounding">confounding factors</a>.</li>
+</ul>
+<p>We ran concurrent experiments multiple times over a few days to make sure the collected data were representative enough. As data collection was already integrated, our remaining work was just to plot data into charts and wait for the results.</p>
+<p>With the A/B testing setup, we happened to figure out some surprising facts. For instance, <code>SWIFT_OPTIMIZATION_LEVEL=wholemodule</code> might display an inverse effect in a project that has lots of dependencies.</p>
+<p>Thus, my recommendation is to establish the A/B testing experiments to figure out the optimal build settings (in practice) on your own. Do not take build settings advices for granted.</p>
+<h3 id="identifying-top-slow-compiled-code-snippets">Identifying top slow-compiled code snippets</h3>
+<p>Micro-level optimizations matter too. Identifying and addressing slow-compiled code snippets can yield unexpected improvements. We found that seemingly simple code expressions, like RxSwift chaining and combined expressions, could drastically slow down compilation times. Surprisingly, some 3-chain expressions (<code>foo.map { }.map { }.map { }</code>) even took more time than a 5-chain one.</p>
+<p>The diagnostic of function/body compilation times can be done with the two frontend flags:</p>
+<ul>
+<li><code>-Xfrontend -warn-long-function-bodies=&lt;limit&gt;</code></li>
+<li><code>-Xfrontend -warn-long-expression-type-checking=&lt;limit&gt;</code></li>
+</ul>
+<p>To automate this diagnostic, we scheduled daily jobs to build the project with those flags. We parsed the xcodebuild logs to extract expression compilation time. The top slow-compiled code were automatically alerted to the team for visibility.</p>
+<p>Note that with those frontend flags on, the overall build time is expected to be longer than usual. Thus, metrics submitted by these dedicated jobs should have dedicated tags so that they would not mess up our build time data.</p>
+<h3 id="using-cocoapods-binary-cache">Using cocoapods-binary-cache</h3>
+<p>In late 2019, we initiated an idea to improve build time by caching frameworks for CocoaPods-based projects. We developed the MVP and open-sourced the project at <a href="https://github.com/grab/cocoapods-binary-cache#">https://github.com/grab/cocoapods-binary-cache</a>.</p>
+<p>This plugin integrates prebuilt frameworks during CocoaPods installation, bypassing the need to compile certain pods from source. The following figure captures how the Xcode project looks like after integrating the prebuilt frameworks.</p>
+<p><img src="/images/ci/cp_bin_cache_project_structure.png" alt="Figure 3. Project structure after integrating prebuilt frameworks."></p>
+<p>Figure 3. Project structure after integrating prebuilt frameworks.</p>
+<p>This idea gave rise to a significant improvement in project build time.</p>
+<p>At first, we adopted this solution for 3rd-party pods only. Meanwhile, development pods were integrated using source code as usual. Given a large number of 3rd-party pods in the project, the reduction was recorded to be up to 7 minutes. This was translated to roughly 30% improvement. As we rarely updated 3rd party pods, the cache hit rate stayed high which resulted in a consistent improvement.</p>
+<p>After seeing the success for the adoption on CI, we continued rolling out the solution for local development. We used separate cache for CI and local builds because:</p>
+<ul>
+<li>For local environment, we needed to support both architectures (x86_64 for simulators and arm64 for devices).</li>
+<li>For CI, we only need x86_64 cache to shorten the cache deployment cycle.</li>
+</ul>
+<p><img src="/images/ci/build_time_gantt_chart_cp_bin_cache.png" alt="Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant."></p>
+<p>Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant.</p>
+<p>After that, we focused on enhancing the plugin to handle development pods. The rollout on CI also displayed a remarkable result. However, maintaining a high cache hit rate was a challenge.</p>
+<p>First, if an engineer makes a change in a module, the cache for that module is invalidated. The cache invalidation also occurs in its dependents. If such a change takes place in a core module, the cache hit rate would not be high. In fact, we saw this very often. In our project, there are some tech-family-related pods for resources (ex. DeliveriesResources, PaymentResources). We used RSwift to generate strong-typed resources (strings, images, etc.). Many business-logic modules depend on resources modules, for access to their strings and icons. As a consequence, whenever an engineer updated localizations or assets, the cache hit rate fell low.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DeliveriesModule → CommonResources
+</span></span><span class="line"><span class="cl">                 → DeliveriesResources
+</span></span></code></pre></div><p>The challenge above can be solved by having multiple cache versions. For example, having up to 3 cache versions for a pod can help increase cache hit rate. However, this multi-versions caching feature has not been yet supported by the plugin.</p>
+<p>It is worth a mention that we only applied prebuilt frameworks for development pods on CI. This was because on local, we make changes on a regular basis. If integrating a development pod as a prebuilt framework, we loose the ability to debug and make changes within that module. The developer experience then will be compromised. We did not spend further effort in solving this pain point.</p>
+<h3 id="adopting-a-different-build-system">Adopting a different build system</h3>
+<p>Another experimental initiative was adopting a different build system. While Xcode/xcodebuild provided good developer experiences, another build system could offer better building capabilities. At that time, another mobile team in the company spent quite some effort in Bazel, a multilingual build system developed by Google. There were two prominent benefits leading us to exploring this build system:</p>
+<ul>
+<li>Bazel was known for highly efficient and <strong>parallelized</strong> build processes.</li>
+<li>It supported <strong>remote caching</strong> which was a game changer for us. Compared to cocoapods-binary-cache, this would be a suitable solution to tackle build time on both CI and local.</li>
+</ul>
+<p>However, there are some downsides if adopting Bazel:</p>
+<ul>
+<li><strong>Learning curve</strong>: Engineers need to onboard with a whole new build system. They have to understand its concepts and know to to configure targets properly. The learning cost would be even more for new comers.</li>
+<li><strong>Maintenance cost</strong>: With a new build system comes a great maintenance effort. It would be difficult for a team with inexperienced engineers to bear that cost.</li>
+<li><strong>Developer experience</strong>: Without Xcode, engineers may find it difficult to finish their tasks without autocompletion and debugging capabilities.</li>
+</ul>
+<p>We experimented two approaches:</p>
+<ul>
+<li><strong>The pure Bazel approach</strong>: We used Bazel entirely for engineers’ workflows. With this approach, the developer experience was compromised. But we wished to estimate how much reduction we might get to see the whole picture first.</li>
+<li><strong>The hybrid approach (Bazel + Xcode)</strong>: We kept the current project structure with each pod target being built by Bazel. We assumed that engineers would still benefit from their familiar workflows with Xcode, hence, pave way for a smoother transition. However, by structuring code into pod targets, we limited the parallelism of Bazel build system.</li>
+</ul>
+<p>The incipient evaluation showed that the downsides outweighed the benefits. Therefore, we did not spend much further effort in this Bazel initiative due to limited capacity.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In the fast-paced iOS development, improving project build time has been of paramount importance. Many approaches can be adopted to tackle this classic problem, from fine-tuning build settings to code modularization. Dependencies in multi-targets projects should be examined to utilize parallelism. Apart from adopting cocoapods-binary-cache for CocoaPods-based projects, engineers might consider alternative build systems for better build performance. However, we need to find the right balance between improved build times and developer experience because at the end of the day, the purpose of build time improvement is just to provider better developer experiences.</p>
+<h3 id="resources">Resources</h3>
+<ul>
+<li>Behind the scenes of the Xcode build process: <a href="https://suelan.github.io/2020/07/05/20200705Behind-the-Scenes-of-the-%E2%80%A2Xcode-Build-Process">https://suelan.github.io/2020/07/05/20200705Behind-the-Scenes-of-the-•Xcode-Build-Process</a></li>
+<li>Build settings reference: <a href="https://developer.apple.com/documentation/xcode/build-settings-reference">https://developer.apple.com/documentation/xcode/build-settings-reference</a></li>
+<li>Whole module optimization: <a href="https://www.swift.org/blog/whole-module-optimizations">https://www.swift.org/blog/whole-module-optimizations</a></li>
+<li>Improving the speed of incremental builds: <a href="https://developer.apple.com/documentation/xcode/improving-the-speed-of-incremental-builds">https://developer.apple.com/documentation/xcode/improving-the-speed-of-incremental-builds</a></li>
+<li>Improving build efficiency with good coding practices: <a href="https://developer.apple.com/documentation/xcode/improving-build-efficiency-with-good-coding-practices">https://developer.apple.com/documentation/xcode/improving-build-efficiency-with-good-coding-practices</a></li>
+<li>Build performance analysis for speeding up Xcode builds: <a href="https://www.avanderlee.com/optimization/analysing-build-performance-xcode">https://www.avanderlee.com/optimization/analysing-build-performance-xcode</a></li>
+<li>CocoaPods binary cache: <a href="https://github.com/grab/cocoapods-binary-cache">https://github.com/grab/cocoapods-binary-cache</a></li>
+</ul>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/on-using-python-for-scripting/'>On Using Python for Scripting in iOS Projects</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/a-tale-of-project-build-time/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+  <div class="container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "trinhngocthuyen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</main></body>
+</html>
