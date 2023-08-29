@@ -78,7 +78,6 @@ if (!doNotTrack) {
 <p>Build time is a key factor to engineers’ productivity. Slow build time can be frustrating and lead to hindered progress. There has been a great amount of effort by the community to tackle this complex problem. This blog post highlights various methodologies employed by our team (at Grab) to alleviate this pain point.</p>
 <h2 id="background">Background</h2>
 <p>The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.), linking binaries, and code signing. These build tasks, while parallelizable, are executed in dependency order.</p>
-<p>The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.), linking binaries, and code signing. These build tasks, while parallelizable, are executed in dependency order.</p>
 <p><strong>Clean builds vs. incremental builds</strong></p>
 <ul>
 <li><strong>Clean build</strong>: This involves compiling the project from scratch. To trigger a clean build, you simply need to clean the derived data beforehand.</li>
