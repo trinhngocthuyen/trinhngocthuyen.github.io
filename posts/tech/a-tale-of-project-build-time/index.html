@@ -103,7 +103,7 @@ if (!doNotTrack) {
 <p>Once data is collected, we can do some exploratory data analysis (EDA) to gain insights.</p>
 <p>In the gantt chart earlier, there’s a period where Xcode’s build parallelism was under-utilized. During that time, only 2 targets were compiled despite Xcode’s capability to handle up to 10 parallel build processes. This bottleneck suggests ineffective dependency management that fails to leverage parallelism.</p>
 <p><img src="/images/ci/build_time_parallelism_not_utilized.png" alt="Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized."></p>
-<p>Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized.</p>
+<figcaption>Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized.</figcaption>
 <h3 id="modularization">Modularization</h3>
 <p>Modularizing code into smaller modules, often called pods in CocoaPods’s terms, can improve incremental build times. In our project, we organized code based on functionality, with each app function belonging to a tech family (ex. FoodModule in the Deliveries team). This way of structuring code also helps clarify code ownership.</p>
 <p><strong>Analyzing dependencies</strong></p>
@@ -220,7 +220,7 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <p>In late 2019, we initiated an idea to improve build time by caching frameworks for CocoaPods-based projects. We developed the MVP and open-sourced the project at <a href="https://github.com/grab/cocoapods-binary-cache#">https://github.com/grab/cocoapods-binary-cache</a>.</p>
 <p>This plugin integrates prebuilt frameworks during CocoaPods installation, bypassing the need to compile certain pods from source. The following figure captures how the Xcode project looks like after integrating the prebuilt frameworks.</p>
 <p><img src="/images/ci/cp_bin_cache_project_structure.png" alt="Figure 3. Project structure after integrating prebuilt frameworks."></p>
-<p>Figure 3. Project structure after integrating prebuilt frameworks.</p>
+<figcaption>Figure 3. Project structure after integrating prebuilt frameworks.</figcaption>
 <p>This idea gave rise to a significant improvement in project build time.</p>
 <p>At first, we adopted this solution for 3rd-party pods only. Meanwhile, development pods were integrated using source code as usual. Given a large number of 3rd-party pods in the project, the reduction was recorded to be up to 7 minutes. This was translated to roughly 30% improvement. As we rarely updated 3rd party pods, the cache hit rate stayed high which resulted in a consistent improvement.</p>
 <p>After seeing the success for the adoption on CI, we continued rolling out the solution for local development. We used separate cache for CI and local builds because:</p>
@@ -229,8 +229,7 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <li>For CI, we only need x86_64 cache to shorten the cache deployment cycle.</li>
 </ul>
 <p><img src="/images/ci/build_time_gantt_chart_cp_bin_cache.png" alt="Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant."></p>
-<p>Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant.</p>
-<p>After that, we focused on enhancing the plugin to handle development pods. The rollout on CI also displayed a remarkable result. However, maintaining a high cache hit rate was a challenge.</p>
+<figcaption><p>Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant.<figcaption><p>After that, we focused on enhancing the plugin to handle development pods. The rollout on CI also displayed a remarkable result. However, maintaining a high cache hit rate was a challenge.</p></p>
 <p>First, if an engineer makes a change in a module, the cache for that module is invalidated. The cache invalidation also occurs in its dependents. If such a change takes place in a core module, the cache hit rate would not be high. In fact, we saw this very often. In our project, there are some tech-family-related pods for resources (ex. DeliveriesResources, PaymentResources). We used RSwift to generate strong-typed resources (strings, images, etc.). Many business-logic modules depend on resources modules, for access to their strings and icons. As a consequence, whenever an engineer updated localizations or assets, the cache hit rate fell low.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DeliveriesModule → CommonResources
 </span></span><span class="line"><span class="cl">                 → DeliveriesResources
@@ -266,6 +265,7 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <li>Build performance analysis for speeding up Xcode builds: <a href="https://www.avanderlee.com/optimization/analysing-build-performance-xcode">https://www.avanderlee.com/optimization/analysing-build-performance-xcode</a></li>
 <li>CocoaPods binary cache: <a href="https://github.com/grab/cocoapods-binary-cache">https://github.com/grab/cocoapods-binary-cache</a></li>
 </ul>
+</figcaption></figcaption>
 
   <div class="entry-footer">
   
