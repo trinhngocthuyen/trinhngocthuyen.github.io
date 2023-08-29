@@ -228,7 +228,8 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <li>For CI, we only need x86_64 cache to shorten the cache deployment cycle.</li>
 </ul>
 <p><img src="/images/ci/build_time_gantt_chart_cp_bin_cache.png" alt="Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant."></p>
-<figcaption><p>Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant.<figcaption><p>After that, we focused on enhancing the plugin to handle development pods. The rollout on CI also displayed a remarkable result. However, maintaining a high cache hit rate was a challenge.</p></p>
+<figcaption>Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant.</figcaption>
+<p>After that, we focused on enhancing the plugin to handle development pods. The rollout on CI also displayed a remarkable result. However, maintaining a high cache hit rate was a challenge.</p>
 <p>First, if an engineer makes a change in a module, the cache for that module is invalidated. The cache invalidation also occurs in its dependents. If such a change takes place in a core module, the cache hit rate would not be high. In fact, we saw this very often. In our project, there are some tech-family-related pods for resources (ex. DeliveriesResources, PaymentResources). We used RSwift to generate strong-typed resources (strings, images, etc.). Many business-logic modules depend on resources modules, for access to their strings and icons. As a consequence, whenever an engineer updated localizations or assets, the cache hit rate fell low.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DeliveriesModule → CommonResources
 </span></span><span class="line"><span class="cl">                 → DeliveriesResources
@@ -264,7 +265,6 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <li>Build performance analysis for speeding up Xcode builds: <a href="https://www.avanderlee.com/optimization/analysing-build-performance-xcode">https://www.avanderlee.com/optimization/analysing-build-performance-xcode</a></li>
 <li>CocoaPods binary cache: <a href="https://github.com/grab/cocoapods-binary-cache">https://github.com/grab/cocoapods-binary-cache</a></li>
 </ul>
-</figcaption></figcaption>
 
   <div class="entry-footer">
   
