@@ -92,20 +92,20 @@ if (!doNotTrack) {
 <p><img src="/images/ci/build_time_gantt_chart.png" alt="Build time gantt chart">
 <figcaption>Figure 1. Build time gantt chart.</figcaption></p>
 <p>Note that scripts for per-target tracking are best suited for CI. Running these scripts for each target during incremental builds would be unnecessary.</p>
-<p><strong>Monitoring build time trends</strong></p>
+<h4 id="monitoring-build-time-trends">Monitoring build time trends</h4>
 <p>Tracked data allows us to monitor trends over time. It’s essential to recognize that the total build time shouldn’t remain static. Rather, we might observe an upward trend as the project’s codebase grows. Because of this correlation, your engineering OKR shouldn’t merely focus on minimizing build time. Factors like code growth must also be considered. For instance, a 20% increase in code size (calculating by the number of lines) could lead to a predicted 12-minute build time (ie. additional 2 minutes in build time). Thus, maintaining a consistent 10-minute build time would already be a significant challenge. This example highlights the importance of tracking not only build time but also factors influencing it.</p>
-<p><strong>CI build time vs. local build time</strong></p>
+<h4 id="ci-build-time-vs-local-build-time">CI build time vs. local build time</h4>
 <p>Data should be collected from both CI builds and local development builds. While CI build time represents clean builds, local build time reflects incremental builds, varying from seconds to minutes. Therefore, distinguishing between these sources is crucial. Moreover, for noisy data like local build time, percentile (p50, p90) may offer more reliable insights than raw averages.</p>
-<p><strong>Increasing the sample size</strong></p>
+<h4 id="increasing-the-sample-size">Increasing the sample size</h4>
 <p>Build time data can fluctuate due to various reasons. Triggering more builds ensures representative data. In our project, we scheduled hourly jobs solely for metrics collection. This approach smoothed out data noise, providing a more accurate representation.</p>
-<p><strong>Gaining insights from tracking metrics</strong></p>
+<h4 id="gaining-insights-from-tracking-metrics">Gaining insights from tracking metrics</h4>
 <p>Once data is collected, we can do some exploratory data analysis (EDA) to gain insights.</p>
 <p>In the gantt chart earlier, there’s a period where Xcode’s build parallelism was under-utilized. During that time, only 2 targets were compiled despite Xcode’s capability to handle up to 10 parallel build processes. This bottleneck suggests ineffective dependency management that fails to leverage parallelism.</p>
 <p><img src="/images/ci/build_time_parallelism_not_utilized.png" alt="Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized."></p>
 <figcaption>Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized.</figcaption>
 <h3 id="modularization">Modularization</h3>
 <p>Modularizing code into smaller modules, often called pods in CocoaPods’s terms, can improve incremental build times. In our project, we organized code based on functionality, with each app function belonging to a tech family (ex. FoodModule in the Deliveries team). This way of structuring code also helps clarify code ownership.</p>
-<p><strong>Analyzing dependencies</strong></p>
+<h4 id="analyzing-dependencies">Analyzing dependencies</h4>
 <p>While establishing module dependencies is convenient, we need to be mindful of their impact on build time. Here&rsquo;s an example of a poor dependency structure.</p>
 <p>We had a Logger module dedicated to logging. This core module was heavily relied upon by other modules. It also depended on a third-party logging framework <a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a><strong>.</strong></p>
 <p>part from logging, the Logger had an additional functionality. It processed error logs and uploaded them to Firebase Crashlytics for tracking purpose. Initially, Logger depended on <a href="https://firebase.google.com/docs/crashlytics">FirebaseCrashlytics</a> for this purpose, which proved to be problematic</p>
@@ -123,7 +123,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="n">Crashlytics</span><span class="p">.</span><span class="n">crashlytics</span><span class="p">().</span><span class="n">record</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">error</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><strong>Module interface and module implementation</strong></p>
+</span></span></code></pre></div><h4 id="module-interface-and-module-implementation">Module interface and module implementation</h4>
 <p>The above example highlights a slow build case where a module&rsquo;s interface and implementation reside together.</p>
 <p>In fact, dependents only require access to interfaces, not implementations. Interfaces are lightweight declarations, while implementations involve more code to connect components.</p>
 <p>In our project, we had a History module depending on a complex module called JobFlow. This module contained logic related to drivers&rsquo; job flow (from receiving a job til finishing that job). As one of the most complicated components in the project, its compilation was usually slow.</p>
@@ -141,7 +141,7 @@ Rarely changes due to internal logic. Such logic are implementation related.</li
 </span></span><span class="line"><span class="cl">main target -&gt; JobFlowImpl -&gt; JobFlowInterface
 </span></span></code></pre></div><p>This dependencies model helped kick-start the compilation of interface and implementation modules earlier, hence, utilize Xcode’s build parallelism.</p>
 <p>Note that, an interface module should never depend on an implementation module. Based on the naming, we can write a linter to ensure this principle. It is acceptable that an implementation module depends on another implementation module. However, the <code>Implementation -&gt; Interface</code> dependency should be prioritized first.</p>
-<p><strong>Non-host test targets</strong></p>
+<h4 id="non-host-test-targets">Non-host test targets</h4>
 <p>Initially, we had a single test target (UnitTests) for unit tests. This target was a host-app test target because some tests were written to cover logic of the main target. In other words, the UnitTests target depended on the main target. That means Xcode had to compile the main target prior to this test target. Therefore, in the build graph, the compilation of this target occurred at the very end. And once again, the build parallelism during this period was not utilized.</p>
 <p>The compilation order was as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         UnitTests
@@ -193,7 +193,7 @@ Rarely changes due to internal logic. Such logic are implementation related.</li
 Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <code>GCC_OPTIMIZATION_LEVEL</code> is for C/C++/Objective-C/Objective-C++ code compilation.</li>
 </ul>
 <p>For the extensive list of build settings, refer to this documentation: <a href="https://developer.apple.com/documentation/xcode/build-settings-reference">https://developer.apple.com/documentation/xcode/build-settings-reference</a>.</p>
-<p><strong>A/B testing to figure out the optimal settings</strong></p>
+<h4 id="ab-testing-to-figure-out-the-optimal-settings">A/B testing to figure out the optimal settings</h4>
 <p>While some theoretical settings sound promising, their practical results may differ.</p>
 <p>Take <code>SWIFT_COMPILATION_MODE=wholemodule</code> for example. If the project has only a few targets, this setup helps reduce build time significantly. However, our project has more than 80 pods, the <code>wholemodule</code> compilation is also constrained by the parallel-targets build.</p>
 <p>Moreover, there are a number of settings that can impact build time. For example, <code>STRIP_SWIFT_SYMBOLS</code> is a setting to control whether to strip Swift symbols after linking products. And our hypothesis was: the lesser work, the faster build time. Was this hypothesis correct and how much reduction we could have? We conducted A/B tests to verify those kinds of hypotheses.</p>
