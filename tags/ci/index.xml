@@ -6,7 +6,17 @@
     <description>Recent content in ci on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Designing Test Quarantine Logic to Deal With Flaky Tests</title>
+      <link>https://trinhngocthuyen.com/posts/tech/test-quarantine/</link>
+      <pubDate>Sun, 17 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/posts/tech/test-quarantine/</guid>
+      <description>Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.
+The Need for Test Quarantine The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity.</description>
+    </item>
+    
     <item>
       <title>A Tale of Project Build Time Improvement</title>
       <link>https://trinhngocthuyen.com/posts/tech/a-tale-of-project-build-time/</link>

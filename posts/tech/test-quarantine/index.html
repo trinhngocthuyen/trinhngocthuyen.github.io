@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Designing Test Quarantine Logic to Deal With Flaky Tests">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+      <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.d16eb33aa3cb5afd6e2409be488bfda9bafd7c2aa942a845ff91f7a6a17e472e.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/test-quarantine/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/projects">Projects</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Designing Test Quarantine Logic to Deal With Flaky Tests</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Sep 17</span>
+</div>
+  
+</header>
+  <h2 id="introduction">Introduction</h2>
+<p>Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.</p>
+<h2 id="the-need-for-test-quarantine">The Need for Test Quarantine</h2>
+<h3 id="the-challenge-of-flaky-tests">The Challenge of Flaky Tests</h3>
+<p>Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity. It&rsquo;s important to acknowledge that encountering flaky tests is an inevitable part of the testing process. And the key lies in how we manage and respond to them effectively.</p>
+<h3 id="what-is-test-quarantine">What is Test Quarantine?</h3>
+<p>Test quarantine is a strategy for handling the outcomes of tests, especially when they exhibit flakiness. When a test is quarantined, it means that the success or failure of that test should not have a direct impact on the overall outcome of a test suite or job.</p>
+<p>For example, consider a job that runs two tests: <code>test1</code> and <code>test2</code>. If <code>test1</code> succeeds while <code>test2</code> fails but is identified as flaky, the job should still be considered successful, despite the failing result of <code>test2</code>.</p>
+<h3 id="the-importance-of-test-quarantine">The Importance of Test Quarantine</h3>
+<p>When a flaky test causes a failure in an engineer&rsquo;s merge/pull request, it can lead to frustration and wasted time. The failure may have nothing to do with the changes made by the engineer. Thus, it is crucial to identify and quarantine flaky tests, ensuring that job executions remain robust in the face of these flakinesses.</p>
+<h2 id="designing-effective-test-quarantine-logic">Designing Effective Test Quarantine Logic</h2>
+<h3 id="overview">Overview</h3>
+<p>The following diagram illustrates the core components of this approach.</p>
+<img src="/images/ios/quarantine.png" width=600>
+<figcaption>Fig. How quarantine logic is involved in deciding the overall result.</figcaption>
+<ul>
+<li><strong>Test result submission:</strong> The results of test executions are stored in a dedicated data store. This store could take the form of a separate Git repo, a database instance, or an S3 bucket.</li>
+<li><strong>Statistical analysis:</strong> Is performed on the ingested data over a defined period (ex. 3 days) to determine the success rates of individual tests.</li>
+<li><strong>Quarantine decision:</strong> When a test fails, the system fetches the relevant statistics and checks the corresponding success rate. If this success rate falls below a predefined threshold, the test is marked for quarantine. If all failed tests are identified as flaky, the job execution is considered a success.</li>
+</ul>
+<h3 id="calculating-test-success-rates">Calculating Test Success Rates</h3>
+<p>The core of this approach hinges on ingesting test data and accurately calculating their success rates. This process resembles an <a href="https://www.databricks.com/glossary/extract-transform-load">ETL (Extract-Transform-Load) pipeline</a> in data engineering.</p>
+<p>There are various approaches for data ingestion, and <a href="https://airflow.apache.org/">Apache Airflow</a> is a great choice for this purpose, providing scalable and manageable workflows.</p>
+<img src="/images/ios/airflow_test_data_ingestion.png" width=800>
+<figcaption>Fig. A sample DAG in Airflow UI.</figcaption>
+<p>However, for iOS development, using Airflow may not be common due to unfamiliarity with Cloud-related tasks. Instead, we can use a Git-based solution as the desired ETL pipelines are fairly simple.</p>
+<h3 id="git-based-etl-pipelines-to-ingest-data">Git-based ETL Pipelines to Ingest Data</h3>
+<p>We create a dedicated Git repo to store test data, referred to as the “data repo”. When calculating the stats, we also store the result in this repo. Each change (ie. storing test data, or updating stats) corresponds to a Git commit.</p>
+<p>A benefit of this Git-based approach is that engineers can easily intervene in the quarantine process. If a test suddenly becomes flaky, for instance, but its success rate is not yet updated, engineers can manually alter the stats data (ex. setting its success rate to 0.1) so that the quarantine takes effect immediately.</p>
+<h4 id="receiving-submission">Receiving submission</h4>
+<p>In the data repo, we set up a pipeline/workflow that can be triggered from the main repo. When triggering such a pipeline, we pass the job ID of the pipeline running tests in the main repo. Related APIs:</p>
+<ul>
+<li>Github Actions: <a href="https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event">Create a workflow dispatch event</a>.</li>
+<li>Gitlab CI/CD: <a href="https://docs.gitlab.com/ee/api/pipeline_triggers.html#trigger-a-pipeline-with-a-token">Trigger a pipeline with a token</a>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">main repo                           data repo
+</span></span><span class="line"><span class="cl">=========                           =========
+</span></span><span class="line"><span class="cl">test --- trigger (job id: ...) ---&gt; receive submission
+</span></span></code></pre></div><p>When receiving a submission from the main repo, we should not download test results right away because:</p>
+<ul>
+<li>There could be concurrent submissions at the same time, performing such updates results in a high chance of Git conflicts.</li>
+<li>The data repo is filled with lots of commits, making it grow in size drastically.</li>
+</ul>
+<p>Rather, we should add the submission to a queue and later batch-download them. This queue indicates a list of job IDs to download test results.</p>
+<p>Again, we wish to update the queue without any commit in the data repo. To achieve this, we can simply use a project variable to encode the queue.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_DATA_SUBMISSION_QUEUE</span><span class="o">=</span>11111,22222
+</span></span></code></pre></div><p>Handling a submission now means updating the dedicated variable. Related APIs:</p>
+<ul>
+<li>Github Actions: <a href="https://docs.github.com/en/rest/actions/variables#update-an-environment-variable">Update an environment variable</a>.</li>
+<li>Gitlab CI/CD: <a href="https://docs.gitlab.com/ee/api/project_level_variables.html#update-a-variable">Update a variable</a>.</li>
+</ul>
+<p>The implementation of the submission handling looks like this (in Python):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">receive_submission</span><span class="p">(</span><span class="n">job_id</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;TEST_DATA_SUBMISSION_QUEUE&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">job_ids</span> <span class="o">=</span> <span class="n">job_ids_from_variable</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updated_job_ids</span> <span class="o">=</span> <span class="n">job_ids</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">job_id</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">api</span><span class="o">.</span><span class="n">update_variable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">job_ids_to_str</span><span class="p">(</span><span class="n">updated_job_ids</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">job_ids_from_variable</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">api</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">job_ids_to_str</span><span class="p">(</span><span class="n">job_ids</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">job_ids</span><span class="p">)</span>
+</span></span></code></pre></div><h4 id="ingesting-data">Ingesting data</h4>
+<p>We can schedule this job to run hourly or every 30 minutes depending on your needs.</p>
+<p>In this job, we perform a batch download of test results in the submission queue. For each job ID, we download the test result (in JSON) from the artifacts of the test pipeline in the main repo.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">download_test_results</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;TEST_DATA_SUBMISSION_QUEUE&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">job_ids</span> <span class="o">=</span> <span class="n">job_ids_from_variable</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">job_id</span> <span class="ow">in</span> <span class="n">job_ids</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">download_from_job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updated_job_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">job_ids_from_variable</span><span class="p">(</span><span class="n">key</span><span class="p">))</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">job_ids</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">api</span><span class="o">.</span><span class="n">update_variable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">job_ids_to_str</span><span class="p">(</span><span class="n">updated_job_ids</span><span class="p">))</span>
+</span></span></code></pre></div><p>Data files are organized in the following structure for convenient queries.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">data  /  &lt;date&gt;     / &lt;test_category&gt;_&lt;job_id&gt;.json
+</span></span><span class="line"><span class="cl">      |
+</span></span><span class="line"><span class="cl">      |- 2023-01-01 / ui_tests_11111.json
+</span></span><span class="line"><span class="cl">      |             / unit_tests_22222.json
+</span></span><span class="line"><span class="cl">      |
+</span></span><span class="line"><span class="cl">      |- 2023-01-02 / ui_tests_33333.json
+</span></span><span class="line"><span class="cl">      |             / unit_tests_44444.json
+</span></span></code></pre></div><p>Each file should have metadata about the job and pipeline to perform analysis on top of them.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ref&#34;</span><span class="p">:</span> <span class="s2">&#34;main&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;pipeline_id&#34;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;pipeline_status&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;job_id&#34;</span><span class="p">:</span> <span class="mi">11111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;job_status&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tests&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Tests/TestCase/testA1&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Tests/TestCase/testA2&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Tests/TestCase/testA3&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="analyzing-data">Analyzing data</h4>
+<p>Once data has been ingested, the next step is to calculate relevant statistics. This task can be configured to run on a scheduled basis, perhaps once every few hours.</p>
+<p>The stats calculation can be easily done with <a href="https://pandas.pydata.org">Pandas</a>, a powerful Python library that simplifies the process of data analysis.</p>
+<p><strong>Loading Data into a DataFrame</strong></p>
+<p>When loading data into a DataFrame, we aggregate data over a specified period, such as the last 3 days, to gain a comprehensive view. The DataFrame structure resembles the following:</p>
+<img src="/images/ios/df_prefilled.png" width=600>
+<figcaption>Fig. DataFrame of aggregated data.</figcaption>
+<p>To achieve this, here&rsquo;s a sample Python code snippet to load data from corresponding JSON files, fill it with metadata, and concatenate the DataFrames:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">glob</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_df</span><span class="p">(</span><span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">n_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">metadata</span><span class="p">,</span> <span class="n">test_results</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;tests&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">test_results</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;job_status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;job_status&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pipeline_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;pipeline_id&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pipeline_status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;pipeline_status&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		        <span class="k">return</span> <span class="n">df</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">periods</span><span class="o">=</span><span class="n">n_days</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s1">_*.json&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span> <span class="k">if</span> <span class="n">dfs</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">load_df</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="s1">&#39;ui_tests&#39;</span><span class="p">,</span> <span class="n">n_days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></div><p><strong>Filtering Relevant Data</strong></p>
+<p>Not all test executions should be included in the analysis. If a test fails on a merge request, the failure might be due to the change instead. Data in some following cases can be used:</p>
+<ul>
+<li>(1) Tests running on the main branch.</li>
+<li>(2) Tests of successful jobs.</li>
+<li>(3) Tests failing in one job but then succeeding after retrying that job. In this case, we just need to check whether the pipeline status is a success.</li>
+</ul>
+<p>After excluding irrelevant data, we can group the DataFrame by test names and calculate the aggregated mean to obtain the success rates.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">successful_pipeline_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">pipeline_status</span><span class="p">]</span><span class="o">.</span><span class="n">pipeline_id</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ref</span> <span class="o">==</span> <span class="s1">&#39;main&#39;</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">df</span><span class="o">.</span><span class="n">job_status</span> \
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">df</span><span class="o">.</span><span class="n">pipeline_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">successful_pipeline_ids</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_stats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_stats</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_rate&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Export data to json file</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stats/ui_tests.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df_stats</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;success_rate&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/images/ios/df_stats.png" width=270>
+<figcaption>Fig. DataFrame of the calculated stats.</figcaption>
+<p>The output of this analysis is a JSON representation of the test success rates within the project, structured as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Tests/TestCase/testA1&#34;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Tests/TestCase/testA2&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Tests/TestCase/testA1&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="keeping-the-data-repo-lean">Keeping the data repo lean</h4>
+<p>As data accumulates over time, the data repo can quickly grow in size. A recommended best practice is to retain data for only the most recent N days. Removing outdated or stale data can be handled separately through scheduled jobs, or it can be integrated into the data ingestion process.</p>
+<p>However, it&rsquo;s important to note that even after deleting stale files, they continue to exist within commits and as blobs, contributing to repo size. Since the commit history is not that important for this data repo, we can opt to replace all existing commits with a new one and then force-push the changes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">GIT_URL</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>git remote get-url origin<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">rm -rf .git
+</span></span><span class="line"><span class="cl">git remote add origin <span class="si">${</span><span class="nv">GIT_URL</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Reborn (triggered by job: </span><span class="nv">$JOB_ID</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl">git push -f origin HEAD
+</span></span></code></pre></div><h4 id="avoiding-git-conflicts">Avoiding Git conflicts</h4>
+<p>Given that a change in the data repo may come from different sources (an ingestion job, an analysis job, or a repo clean task), it’s essential to mitigate the risk of Git conflicts, especially when these jobs run concurrently.</p>
+<p>One approach is to perform a pull-rebase prior to pushing changes. Another simpler solution is to set up job schedules at different times. For instance, we can schedule the ingestion job to run at the start of an hour (<code>0 * * * *</code>) and the analysis job to run 30 minutes after that (<code>30 * * * *</code>). As each execution typically takes less than 5 minutes, this scheduling strategy minimizes the chance of Git conflicts.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post, we&rsquo;ve explored the concept of test quarantine as a powerful strategy to deal with flaky tests in iOS development.</p>
+<p>The key components of such a test quarantine system include data ingestion, statistical analysis, and decision-making based on test success rates. The whole process from test data submission to stats generation is pretty much like an ETL pipeline, which can be solved by specialized tools such as Airflow or simply by a Git-based solution as mentioned.</p>
+<p>The introduction of the quarantine logic establishes an automatic feedback loop within the development process:</p>
+<ul>
+<li>When a test becomes flaky, its success rate starts to decrease, triggering the test&rsquo;s quarantine.</li>
+<li>As the test stabilizes over time, its success rate gradually increases, eventually leading to the removal of the quarantine for that specific test.</li>
+</ul>
+<p>This feedback loop ensures that tests are dynamically managed based on their reliability, promoting a more efficient and stable testing environment.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>Dealing With Flaky UI Tests in iOS: <a href="https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests">https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests</a></li>
+<li>Eradicating Non-Determinism in Tests: <a href="https://martinfowler.com/articles/nonDeterminism.html">https://martinfowler.com/articles/nonDeterminism.html</a></li>
+<li>Airflow documentation: <a href="https://airflow.apache.org/docs">https://airflow.apache.org/docs</a></li>
+<li>Pandas documentation: <a href="https://pandas.pydata.org/docs">https://pandas.pydata.org/docs</a></li>
+</ul>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/a-tale-of-project-build-time/'>A Tale of Project Build Time Improvement</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/test-quarantine/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+</section>
+
+
+</main></body>
+</html>
