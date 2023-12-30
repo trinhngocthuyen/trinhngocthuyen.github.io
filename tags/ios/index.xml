@@ -6,7 +6,17 @@
     <description>Recent content in ios on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Swift Packages in CocoaPods-Based Projects</title>
+      <link>https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/</link>
+      <pubDate>Sat, 30 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/</guid>
+      <description>Introduction Swift Package Manager (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, CocoaPods has gained its power and emerged as a dominant tool in iOS development.
+Not until recently has SPM been adopted widely.</description>
+    </item>
+    
     <item>
       <title>Designing Test Quarantine Logic to Deal With Flaky Tests</title>
       <link>https://trinhngocthuyen.com/posts/tech/test-quarantine/</link>

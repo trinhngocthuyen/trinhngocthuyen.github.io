@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Using Swift Packages in CocoaPods-Based Projects">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+      <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.246cfbdc8107dd364e8edb1955a1c5aacec9cd1d449dca865c66f5313d7970ed.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/spm-with-cocoapods/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/projects">Projects</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Using Swift Packages in CocoaPods-Based Projects</h1>
+  
+  
+  <div class="metadata">
+  <span>2023, Dec 30</span>
+</div>
+  
+</header>
+  <h1 id="introduction">Introduction</h1>
+<p><a href="https://www.swift.org/package-manager">Swift Package Manager</a> (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, <a href="https://cocoapods.org">CocoaPods</a> has gained its power and emerged as a dominant tool in iOS development.</p>
+<p>Not until recently has SPM been adopted widely.  While long-lived open-source projects (ex. RxSwift, SnapKit, Moya, etc) provide the support for both CocoaPods and SPM, some recently launched projects decided to stick to the SPM support only. A typical case is <a href="https://github.com/pointfreeco">Point-Free’s OSS projects</a> such as <a href="https://github.com/pointfreeco/swift-composable-architecture">The Composable Architecture</a>, <a href="https://github.com/pointfreeco/swift-snapshot-testing">SnapshotTesting</a>, and so forth, embracing SPM exclusively.</p>
+<p>In mid 2023, Apple introduced <a href="https://github.com/apple/swift-evolution/blob/main/visions/macros.md">Swift Macros</a> in the WWDC 2023 (Swift 5.9 release). This initiative was a leap in enhancing the language features and capabilities. However, working with Swift macros requires access to <a href="https://github.com/apple/swift-syntax">apple/swift-syntax</a>, which is not available for CocoaPods (the same happens to most of Apple’s open-source projects). This again prompts the consideration of adopting SPM for projects that seek to leverage these advanced Swift features.</p>
+<p>This blog delves into integrating SPM into CocoaPods-based projects, addressing some challenges and presenting a solution for a seamless transition.</p>
+<h1 id="using-spm-in-cocoapods-based-projects">Using SPM in CocoaPods-based Projects</h1>
+<h2 id="the-needs-for-a-hybrid-approach">The Needs for a Hybrid Approach</h2>
+<p>While SPM has gained popularity, CocoaPods remains prevalent in iOS development. Many projects, especially those with a long history, rely heavily on CocoaPods. Transitioning entirely to SPM poses risks, especially when not all dependencies are SPM-compatible, such as vendor libraries or frameworks. Another challenge is when the project spans multiple teams. Coordinating such a migration can be difficult due to varying work priorities and timelines. Therefore, a hybrid approach is crucial to ensure a smooth transition without disrupting the existing project structure.</p>
+<h2 id="current-status"><strong><strong>Current Status</strong></strong></h2>
+<p>As of Dec 2023, CocoaPods still lacks native support for SPM. While there are pending pull requests addressing this issue, the acceptance is anticipated in the next major release of Xcode (see: <a href="https://github.com/CocoaPods/CocoaPods/pull/11953#issuecomment-1701737145">here</a>). The core members just echoed the general consensus in <a href="https://github.com/CocoaPods/CocoaPods/issues/11942#issuecomment-1588091616">this comment</a>.</p>
+<p>The workaround to add SPM packages to the project is modifying <code>Pods.xcodeproj</code> in the <code>post_install</code> hook, mentioned in <a href="https://github.com/CocoaPods/CocoaPods/issues/10049#issuecomment-819480131">this comment</a>, for example. However, there are still more to cover, for instance, how to link binaries or frameworks properly.</p>
+<h2 id="writing-a-cocoapods-plugin">Writing a CocoaPods Plugin</h2>
+<p>Now let’s create a CocoaPods plugin that eases the burden of managing Swift packages in the project.</p>
+<h3 id="high-level-sketch">High-level sketch</h3>
+<p>In a hybrid model, a Swift package behaves similarly to a pod. It can be declared in both Podfile and podspecs.</p>
+<ul>
+<li>
+<p>In Podfile, the package is declared under the context of a specific target and will be accessible to that target.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">spm_pkg</span> <span class="s2">&#34;Package&#34;</span><span class="p">,</span> <span class="ss">:url</span> <span class="o">=&gt;</span> <span class="s2">&#34;path/to/package&#34;</span><span class="p">,</span> <span class="ss">:version</span> <span class="o">=&gt;</span> <span class="s2">&#34;0.0.1&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">target</span> <span class="s2">&#34;App&#34;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">	<span class="n">spm_pkg</span> <span class="s2">&#34;PackageA&#34;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&#34;path/to/package&#34;</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="s2">&#34;0.0.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">target</span> <span class="s2">&#34;Test&#34;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">spm_pkg</span> <span class="s2">&#34;TestPackageX&#34;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&#34;path/to/package&#34;</span><span class="p">,</span> <span class="ss">:branch</span> <span class="o">=&gt;</span> <span class="s2">&#34;main&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div></li>
+<li>
+<p>In the podspec of a pod, the package is declared as one of the pod’s dependencies.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Foo&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="o">.</span><span class="n">dependency</span> <span class="s2">&#34;AnotherPod&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="o">.</span><span class="n">spm_dependency</span> <span class="s2">&#34;PackageA&#34;</span> <span class="c1"># &lt;-- HERE</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>A Swift package may have multiple products some of which a podspec depends on. This can be done with the following format: <code>spm_dependency &quot;PackageName/ProductName&quot;</code>. The idea is conceptually similar to dependencies declaration when having subspecs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="o">.</span><span class="n">spm_dependency</span> <span class="s2">&#34;PackageA/ProductA1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">s</span><span class="o">.</span><span class="n">spm_dependency</span> <span class="s2">&#34;PackageA/ProductA2&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h3 id="integrating-swift-packages-to-the-pods-project">Integrating Swift packages to the Pods project</h3>
+<p>Integrating a Swift package involves creating references and adding them to the Pods project.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">pkgs</span><span class="o">.</span><span class="n">each</span> <span class="o">|</span><span class="n">pkg</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pods_project</span><span class="o">.</span><span class="n">root_object</span><span class="o">.</span><span class="n">package_references</span> <span class="o">&lt;&lt;</span> <span class="n">create_pkg_ref</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>For each pod depending on a package, the package products are added to the pod’s Target Dependencies under the “Build Phases” tab.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">pods_project</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">products_for</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">product</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">target</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">&lt;&lt;</span> <span class="n">create_target_dependency_ref</span><span class="p">(</span><span class="n">product</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><img src="/images/ios/spm_target_dependencies.png" width=550>
+<h3 id="linking-libraries-and-frameworks">Linking libraries and frameworks</h3>
+<p>While some recommendations, such as those found in <a href="https://github.com/CocoaPods/CocoaPods/issues/10049#issuecomment-819480131">this comment</a>, suggest adding the package products to the “Link Binary With Libraries” section of a pod target, this approach may not align with specific use cases. Moreover, this linking approach deviates from how CocoaPods handles the linking setup.</p>
+<img src="/images/ios/spm_link_binaries.png" width=600>
+<p>Rather, a more fitting strategy is linking frameworks or libraries based on the linker flags in the target&rsquo;s build settings.</p>
+<p><strong>Static vs. Dynamic</strong></p>
+<p>A Swift package library can be either static or dynamic, depending on the <a href="https://developer.apple.com/documentation/packagedescription/product/library/librarytype">library type</a> declared in the package product. If unspecified, it defaults to static.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">let</span> <span class="nv">package</span> <span class="o">=</span> Package<span class="o">(</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  products: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    .library<span class="o">(</span>name: <span class="s2">&#34;Foo&#34;</span>, targets: <span class="o">[</span><span class="s2">&#34;Foo&#34;</span><span class="o">])</span>,                // &lt;-- static
+</span></span><span class="line"><span class="cl">    .library<span class="o">(</span>name: <span class="s2">&#34;Bar&#34;</span>, type: .dynamic, targets: <span class="o">[</span><span class="s2">&#34;Bar&#34;</span><span class="o">])</span> // &lt;-- dynamic
+</span></span><span class="line"><span class="cl">  <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></div><p>When compiling such a package:</p>
+<ul>
+<li>A dynamic library is compiled and packaged into a framework under the <code>PackageFrameworks</code> dir (residing in the per-configuration build dir).</li>
+<li>A static library is compiled into a <code>.o</code> binary along with its <code>.swiftmodule</code> in the per-configuration build dir.</li>
+</ul>
+<p>The following image illustrates the products dir structure when compiling a package containing a static library <code>Foo</code> and a dynamic library <code>Bar</code>.</p>
+<img src="/images/ios/spm_static_dynamic.png" width=750>
+<p>As we can see, the Swift modules of <code>Foo</code> and <code>Bar</code> are located in the per-configuration build dir. Despite the existence of <code>Bar.framework</code>, its Swift module is not packaged into that bundle. Thus, we need to add <code>${PODS_CONFIGURATION_BUILD_DIR}</code> to <code>SWIFT_INCLUDE_PATHS</code> so that Xcode can search for additional Swift modules.</p>
+<p>To link static libraries (ex. <code>Foo</code>) with a target:</p>
+<ul>
+<li>Use linker flags: <code>-l&quot;Foo.o&quot;</code></li>
+<li>Add <code>${PODS_CONFIGURATION_BUILD_DIR}</code> to the library search paths (<code>LIBRARY_SEARCH_PATHS</code>)</li>
+</ul>
+<p>To link dynamic libraries (ex. <code>Bar</code>) with a target:</p>
+<ul>
+<li>Use linker flags: <code>-framework &quot;Bar.framework&quot;</code></li>
+<li>Add <code>${PODS_CONFIGURATION_BUILD_DIR}/PackageFrameworks</code> to the framework search paths (<code>FRAMEWORK_SEARCH_PATHS</code>).
+Each framework under this dir must be embedded to the app bundle’s Frameworks. This can be accomplished by appending <code>install_framework &quot;${PODS_CONFIGURATION_BUILD_DIR}/PackageFrameworks/Bar.framework&quot;</code> to the <a href="https://github.com/CocoaPods/CocoaPods/blob/master/lib/cocoapods/generator/embed_frameworks_script.rb">embed frameworks script</a> of an aggregate target.</li>
+</ul>
+<p>The following build settings reflect the outlined linking strategy:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">SWIFT_INCLUDE_PATHS</span> <span class="o">=</span> <span class="k">$(</span>inherited<span class="k">)</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PODS_CONFIGURATION_BUILD_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FRAMEWORK_SEARCH_PATHS</span> <span class="o">=</span> <span class="k">$(</span>inherited<span class="k">)</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PODS_CONFIGURATION_BUILD_DIR</span><span class="si">}</span><span class="s2">/PackageFrameworks&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LIBRARY_SEARCH_PATHS</span> <span class="o">=</span> <span class="k">$(</span>inherited<span class="k">)</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PODS_CONFIGURATION_BUILD_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OTHER_LDFLAGS</span> <span class="o">=</span> <span class="k">$(</span>inherited<span class="k">)</span> -l<span class="s2">&#34;Foo.o&#34;</span> -framework <span class="s2">&#34;Bar.framework&#34;</span>
+</span></span></code></pre></div><h3 id="integrating-swift-macros-as-prebuilt-binaries">Integrating Swift macros as prebuilt binaries</h3>
+<p>As highlighted in the introduction, Swift macros is an important driving force for SPM adoption. However, a notable challenge preventing Swift macros from being adopted, especially in large-scale projects, is their overhead build time. Specifically, a macro package depends on <a href="https://github.com/apple/swift-syntax">swift-syntax</a> which alone takes up 10-15s in the compilation process. This means the compilation time for the macro package could extend to 20s or more. This becomes even more problematic when such a macro is used by many targets, leading to delays in compiling those dependent targets.</p>
+<p>Fortunately, with the proposal <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0394-swiftpm-expression-macros.md">SE-0394</a> being implemented (in Swift 5.9), we can integrate Swift macros in the form of prebuilt binaries. Refer to <a href="https://www.polpiella.dev/binary-swift-macros">this blog post</a> for more details about this approach. Basically, we just need the prebuilt binary of the macro implementation, along with the source files of the macro interfaces. This gives way to the idea of automating the process of prebuilding a macro and integrating it to the project. There is no additional effort required from the package author.</p>
+<p>To illustrate, let’s consider the use case of integrating the <code>[Orcam](https://github.com/trinhngocthuyen/orcam)</code> macro into a project. The following steps outline the process:</p>
+<ul>
+<li>Step (1): Prepare a dedicated pod dir: <code>.spm.pods/Orcam</code></li>
+<li>Step (2): Download the source of that package into: <code>.spm.pods/.download/Orcam</code></li>
+<li>Step (3): Prebuild the macro implementation from the downloaded source.
+Place the binary in <code>.spm.pods/Orcam/.prebuilt/debug/OrcamImpl</code></li>
+<li>Step (4): Copy the source files of the macro interfaces,
+from <code>.spm.pods/.download/Orcam/Sources/Orcam</code>
+to <code>.spm.pods/Orcam/Sources/Orcam</code></li>
+</ul>
+<p>The pod dir <code>.spm.pods/Orcam</code> can now be used as a development pod in the project.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.spm.pods/Orcam/
+</span></span><span class="line"><span class="cl">|-- Orcam.podspec
+</span></span><span class="line"><span class="cl">|-- Sources/
+</span></span><span class="line"><span class="cl">    |-- Orcam/
+</span></span><span class="line"><span class="cl">        |-- Orcam.swift
+</span></span><span class="line"><span class="cl">|-- .prebuilt/
+</span></span><span class="line"><span class="cl">    |-- debug/
+</span></span><span class="line"><span class="cl">        |-- OrcamImpl (*)
+</span></span><span class="line"><span class="cl">    |-- release/
+</span></span><span class="line"><span class="cl">        |-- OrcamImpl (*)
+</span></span></code></pre></div><p>To simplify the usage, we can patch the <code>pod</code> method to introduce an additional option, <code>:macro</code>, to specify its source. Under the hood, it’s just like specifying <code>pod &quot;Orcam&quot;, :path =&gt; &quot;.spm.pods/Orcam&quot;</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">pod</span> <span class="s2">&#34;Orcam&#34;</span><span class="p">,</span> <span class="ss">:macro</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&#34;https://github.com/trinhngocthuyen/orcam.git&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="ss">:branch</span> <span class="o">=&gt;</span> <span class="s2">&#34;main&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>For a deeper understanding of this technique, refer to <a href="https://github.com/trinhngocthuyen/cocoapods-spm/blob/main/docs/under-the-hood-swift-binary-macros.md">this documentation</a>.</p>
+<h2 id="introducing-cocoapods-spm">Introducing cocoapods-spm</h2>
+<p>Struggling to integrate SPM packages seamlessly into your CocoaPods-based projects?</p>
+<p>Meet <a href="https://github.com/trinhngocthuyen/cocoapods-spm">cocoapods-spm</a>, a CocoaPods plugin designed to simplify and enhance the integration process. This plugin offers an intuitive and pod-like syntax for declaring and managing SPM dependencies. The linking strategies discussed above are well effectively handled by the plugin. Additionally, the plugin provides a set of CLI usages to work with Swift binary macros.</p>
+<p>Visit the <a href="https://github.com/trinhngocthuyen/cocoapods-spm">GitHub repo</a> for documentation, issue reporting, and contributions.</p>
+<p>Let&rsquo;s make SPM integration in CocoaPods-based projects a breeze!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/cocoapods" class="tag">cocoapods</a>
+  
+  <a href="/tags/spm" class="tag">spm</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/test-quarantine/'>Designing Test Quarantine Logic to Deal With Flaky Tests</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+</section>
+
+
+</main></body>
+</html>
