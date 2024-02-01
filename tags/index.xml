@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ci</title>
+      <link>https://trinhngocthuyen.com/tags/ci/</link>
+      <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ios</title>
+      <link>https://trinhngocthuyen.com/tags/ios/</link>
+      <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://trinhngocthuyen.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cocoapods</title>
       <link>https://trinhngocthuyen.com/tags/cocoapods/</link>
@@ -17,29 +35,11 @@
     </item>
     
     <item>
-      <title>ios</title>
-      <link>https://trinhngocthuyen.com/tags/ios/</link>
-      <pubDate>Sat, 30 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://trinhngocthuyen.com/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>spm</title>
       <link>https://trinhngocthuyen.com/tags/spm/</link>
       <pubDate>Sat, 30 Dec 2023 00:00:00 +0000</pubDate>
       
       <guid>https://trinhngocthuyen.com/tags/spm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ci</title>
-      <link>https://trinhngocthuyen.com/tags/ci/</link>
-      <pubDate>Sun, 17 Sep 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://trinhngocthuyen.com/tags/ci/</guid>
       <description></description>
     </item>
     

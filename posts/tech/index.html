@@ -78,6 +78,34 @@ if (!doNotTrack) {
 	
   <li class="item">
   <h3 class="title">
+    <a href="/posts/tech/pre-commit/">Using pre-commit for Linters/Formatters</a>
+  </h3>
+  <div class="metadata">
+    <span>2024, Feb 01</span>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+</div>
+
+  </div>
+  <p class="summary">During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.
+At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</p>
+</li>
+
+	
+  <li class="item">
+  <h3 class="title">
     <a href="/posts/tech/spm-with-cocoapods/">Using Swift Packages in CocoaPods-Based Projects</a>
   </h3>
   <div class="metadata">
@@ -326,33 +354,6 @@ Instead of rejecting them, CocoaPods provided the support for plugins.</p>
 
   </div>
   <p class="summary">1. Introduction UI testing is a test technique, besides unit testing, to ensure product quality. While unit testing focuses on small portions (or units) of the system, UI testing aims to cover a wider user journey in the app. This testing technique helps engineers gain more confidence when developing, refactoring, and shipping the products to users. In the context of iOS development, UI testing plays a key role in product quality as the form of a feature shipped to users is usually through what they see on the app.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/ci-extract-test-methods/">CI: Heuristically Extracting Test Methods Before Runtime</a>
-  </h3>
-  <div class="metadata">
-    <span>2020, Nov 08</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-  
-</svg>
-
-  
-  <a href="/tags/ci" class="tag">ci</a>
-  
-  <a href="/tags/ios" class="tag">ios</a>
-  
-</div>
-
-  </div>
-  <p class="summary">1. Introduction Reducing pipeline time is a key problem in the pipeline time reduction epic. As mentioned in the previous post, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called runners). The assignment of what tests to what jobs usually takes place at the end of the build job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have.</p>
 </li>
 
 	

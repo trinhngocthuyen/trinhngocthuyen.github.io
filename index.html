@@ -81,6 +81,34 @@ if (!doNotTrack) {
 	
   <li class="item">
   <h3 class="title">
+    <a href="/posts/tech/pre-commit/">Using pre-commit for Linters/Formatters</a>
+  </h3>
+  <div class="metadata">
+    <span>2024, Feb 01</span>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+</div>
+
+  </div>
+  <p class="summary">During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.
+At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</p>
+</li>
+
+	
+  <li class="item">
+  <h3 class="title">
     <a href="/posts/tech/spm-with-cocoapods/">Using Swift Packages in CocoaPods-Based Projects</a>
   </h3>
   <div class="metadata">
@@ -311,35 +339,6 @@ Mục tiêu của dự án là làm thế nào để cắt giảm thời gian re
 
   </div>
   <p class="summary">Introduction Git is a software development tool that almost all engineers use in their work. This source control tool enables us to make changes to a project code base collaboratively. However, Git can be a headache at times. When running on CI environment, it sometimes does not work the way it does locally. Moreover, we sometimes follow best practices without knowing much about how it works. This gap together with the limited debug capabilities on CI make it even harder to resolve issues.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/cocoapods-explained-plugins/">Cocoapods Explained: Plugins</a>
-  </h3>
-  <div class="metadata">
-    <span>2023, Feb 02</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-  
-</svg>
-
-  
-  <a href="/tags/cocoapods" class="tag">cocoapods</a>
-  
-  <a href="/tags/ios" class="tag">ios</a>
-  
-</div>
-
-  </div>
-  <p class="summary">In the previous post, we talked about Podfile. In this post, we will look into CocoaPods plugins.
-Back in early days, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.
-Instead of rejecting them, CocoaPods provided the support for plugins.</p>
 </li>
 
 	

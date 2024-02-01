@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Using pre-commit for Linters/Formatters">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+      <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+      <link rel="stylesheet" href="/sass/main.246cfbdc8107dd364e8edb1955a1c5aacec9cd1d449dca865c66f5313d7970ed.css">
+
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/pre-commit/">
+    <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/projects">Projects</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<article class="page">
+  <header>
+  
+  <h1>Using pre-commit for Linters/Formatters</h1>
+  
+  
+  <div class="metadata">
+  <span>2024, Feb 1</span>
+</div>
+  
+</header>
+  <p>During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.</p>
+<p>At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively. Dealing with these tools ranged from installing them (which might vary between on local and CI environments) to executing them. As the project expanded, we introduced additional linting use cases, such as validating YAML, JSON, etc. Given the project’s scale, we aimed to lint against changed files while still having the option to lint against all files to identify issues in the project. Not only that, we desired to selectively run specific linters (this is often the case for CI). All those requirements come with a complex and high-maintenance integration.</p>
+<p>Fortunately, <a href="https://pre-commit.com/">pre-commit</a> comes to our rescue. This framework is to manage multi-language pre-commit hooks. Setting up this tool is straightforward. Refer to <a href="https://pre-commit.com/#install">this doc</a> for more details. All we need to do is specify the hooks being used in a configuration file (see: <a href="https://github.com/trinhngocthuyen/templates/blob/main/templates/linters/.pre-commit-config.yaml">example</a>). Each hook corresponds to a linter or formatter, and there’s an extensive list of <a href="https://pre-commit.com/hooks">supported hooks</a>, including both built-in and community-driven options.</p>
+<p><img src="/images/misc/pre_commit_output.jpg" alt="pre_commit_output.jpg">
+<figcaption>Fig. pre-commit hooks execute when committing code.</figcaption></p>
+<p>The beauty of this approach is that it incorporates into our dev workflows. Linters and formatters automatically execute upon code commit and we don’t run into the “oops, I forgot to lint the code” situation. Leveraging git hooks to lint and format code is not a novel concept. While many recommend creating git hooks to handle such tasks, maintaining such hooks is not easy especially when scripting is not of our expertise, and when the requirements for project linters and formatters continue to expand. The <a href="https://pre-commit.com/">pre-commit</a> tool excels in handling this complexity, hence significantly reducing maintenance efforts.</p>
+<p>What makes this tool stand out is its support for many languages, making it easy to set up linters and formatters. For instance, to integrate <a href="https://github.com/realm/SwiftLint">SwiftLint</a>, we simply need to add this setup to the configuration file. The pre-commit tool then takes care of installing SwiftLint and caching it for subsequent executions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">repos</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  - repo: https://github.com/realm/SwiftLint
+</span></span><span class="line"><span class="cl">    rev: 0.50.3
+</span></span><span class="line"><span class="cl">    hooks:
+</span></span><span class="line"><span class="cl">      - id: swiftlint
+</span></span></code></pre></div><p>In contrast, the traditional method requires us to manually install SwiftLint on the machine. The installation may differ depending on the environment, for example, on CI (with docker) versus on local (Mac). With pre-commit, engineers no longer bear such maintenance costs.</p>
+<p>For me, when working on a new initiative, the very first thing to do after initializing the git repo is integrating pre-commit to the project. Check out this <a href="https://github.com/trinhngocthuyen/templates/blob/main/templates/linters/.pre-commit-config.yaml">sample pre-commit configuration</a> for references.</p>
+<p>Final word, as a pre-commit’s user for quite some time, I highly recommend this tool to seamlessly integrate the best industry-standard linters and formatters into your project.</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/ios" class="tag">ios</a>
+  
+  <a href="/tags/ci" class="tag">ci</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/spm-with-cocoapods/'>Using Swift Packages in CocoaPods-Based Projects</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/pre-commit/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+</section>
+
+
+</main></body>
+</html>
