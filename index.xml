@@ -30,11 +30,11 @@ In this little corner, I do blog about tech (mainly related to iOS, CI, engineer
     </item>
     
     <item>
-      <title>How Xcode Recognizes Imports</title>
-      <link>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-imports/</link>
+      <title>How Xcode Recognizes Module Imports</title>
+      <link>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</link>
       <pubDate>Sun, 05 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-imports/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</guid>
       <description>In iOS development, a module is a self-contained unit of code offering a specific set of functionalities. Modules help break down complex apps into smaller components. Developers can incorporate a module into different parts of an app using the import keyword. Behind the scenes, the build system performs several tasks to recognize and integrate these imports seamlessly.
 A module can be distributed in various formats such as collections of source files, or a pre-compiled binaries or bundles.</description>
     </item>
