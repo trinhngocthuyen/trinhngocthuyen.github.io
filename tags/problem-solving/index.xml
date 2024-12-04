@@ -6,39 +6,28 @@
     <description>Recent content in problem-solving on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/problem-solving/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/problem-solving/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tản mạn: Câu hỏi tồi hay là sự hời hợt</title>
       <link>https://trinhngocthuyen.com/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</link>
       <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/tan-man-cau-hoi-toi-hay-la-su-hoi-hot/</guid>
       <description>Có nhiều lần mình thấy có người hỏi những câu hỏi khiến mình đọc vào chẳng muốn trả lời (nếu có khả năng trả lời). Một ví dụ điển hình là “anh ơi, sao cái này em build không được?”. Bản thân mình cảm thấy đây là một câu hỏi rất chung chung và thiếu thông tin. Nếu bạn là dev thì hẳn là bạn đã phải sấp mặt với những cái bugs mà ta phải chửi bới cả tiếng đồng hồ con bọ (bugs) mới nghe điếc lỗ tai mà chui ra ngoài. Đó là khi ta có đầy đủ thông tin. Còn thiếu thông tin như trên thì… ta chỉ biết cách ra ngoài vườn bắt con bọ mà tra khỏi xem đồng bọn của nó ở đâu trong cái mớ code của mình.</description>
     </item>
-    
     <item>
       <title>Mô hình hoá bài toán bằng những người tý hon</title>
       <link>https://trinhngocthuyen.com/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</link>
       <pubDate>Sat, 17 Jan 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon/</guid>
-      <description>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem).
-&amp;hellip;
-Một lần, mình đọc phương pháp “Mô hình hóa bài toán bằng những người tý hon” trong sách của thầy Phan Dũng, thấy cách giải khá độc đáo nên share cùng mọi người. Bài viết này hầu như là viết lại nội dung mà thầy Phan Dũng đã trình bày trong sách [1].</description>
+      <description>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem).&#xA;&amp;hellip;&#xA;Một lần, mình đọc phương pháp “Mô hình hóa bài toán bằng những người tý hon” trong sách của thầy Phan Dũng, thấy cách giải khá độc đáo nên share cùng mọi người. Bài viết này hầu như là viết lại nội dung mà thầy Phan Dũng đã trình bày trong sách [1].</description>
     </item>
-    
     <item>
       <title>Đố vui: bài toán tính quãng đường và việc hiểu bài toán</title>
       <link>https://trinhngocthuyen.com/posts/misc/do-vui-hieu-bai-toan/</link>
       <pubDate>Sat, 27 Dec 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/do-vui-hieu-bai-toan/</guid>
-      <description>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem).
-&amp;hellip;
-Bạn nào thích động não, phân tích vấn đề, hãy cùng nhau thảo luận thử nhé!
-Mục đích (thuật ngữ môn học PPLST&amp;amp;DM gọi là &amp;ldquo;tính hệ thống&amp;rdquo;) của post: Chỉ ra những khả năng có thể ảnh hưởng đến kết quả bài toán.
-Phát biểu bài toán Giả sử Lực đi bộ với vận tốc 1 bước/giây (tương ứng với 0.</description>
+      <description>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem).&#xA;&amp;hellip;&#xA;Bạn nào thích động não, phân tích vấn đề, hãy cùng nhau thảo luận thử nhé!&#xA;Mục đích (thuật ngữ môn học PPLST&amp;amp;DM gọi là &amp;ldquo;tính hệ thống&amp;rdquo;) của post: Chỉ ra những khả năng có thể ảnh hưởng đến kết quả bài toán.&#xA;Phát biểu bài toán Giả sử Lực đi bộ với vận tốc 1 bước/giây (tương ứng với 0.</description>
     </item>
-    
   </channel>
 </rss>

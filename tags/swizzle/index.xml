@@ -6,15 +6,14 @@
     <description>Recent content in swizzle on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/swizzle/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/swizzle/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Method Swizzling: What, Why and How</title>
       <link>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</link>
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</guid>
       <description>Method swizzling is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs. Actually, this special feature is offered by the Objective-C runtime, via message dispatch.</description>
     </item>
-    
   </channel>
 </rss>

@@ -6,93 +6,70 @@
     <description>Recent content in chuyện-nghề on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/chuy%E1%BB%87n-ngh%E1%BB%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/chuy%E1%BB%87n-ngh%E1%BB%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chuyện Nghề: Một Xưởng Tàu Nọ (1)</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-xuong-tau-no-1/</link>
       <pubDate>Thu, 21 Nov 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-xuong-tau-no-1/</guid>
-      <description>Hôm ấy, một buổi chiều thứ sáu như thường lệ… Nắng dệt vàng ươm những cánh buồm lững thững trên mặt nước vùng vịnh. Có lẽ đã rất lâu rồi, mình mới có dịp ngắm nhìn toàn bộ quang cảnh quen thuộc ấy một cách rõ ràng, nhưng không phải dưới ánh đèn phố thị lấp lánh, hay qua một bức tường trong suốt từ trên cao.
-Đảo quốc Sư Tử hôm ấy bình yên đến lạ.</description>
+      <description>Hôm ấy, một buổi chiều thứ sáu như thường lệ… Nắng dệt vàng ươm những cánh buồm lững thững trên mặt nước vùng vịnh. Có lẽ đã rất lâu rồi, mình mới có dịp ngắm nhìn toàn bộ quang cảnh quen thuộc ấy một cách rõ ràng, nhưng không phải dưới ánh đèn phố thị lấp lánh, hay qua một bức tường trong suốt từ trên cao.&#xA;Đảo quốc Sư Tử hôm ấy bình yên đến lạ.</description>
     </item>
-    
     <item>
       <title>Chuyện Nghề: Bạn Có Đang Bế Tắc Trong Công Việc?</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ban-co-dang-be-tac-trong-cong-viec/</link>
       <pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ban-co-dang-be-tac-trong-cong-viec/</guid>
-      <description>Có bạn nhắn tin hỏi lời khuyên của mình về việc nên hay không nên quyết định nghỉ việc khi không còn hứng thú nữa, trong bối cảnh tìm việc khó khăn như hiện tại. Mình cho rằng đây là một chủ đề thú vị nên muốn viết vài dòng suy nghĩ cá nhân về nó.
-Mình là người đã đưa ra đáp án “nghỉ việc” cho trường hợp cụ thể của bản thân.</description>
+      <description>Có bạn nhắn tin hỏi lời khuyên của mình về việc nên hay không nên quyết định nghỉ việc khi không còn hứng thú nữa, trong bối cảnh tìm việc khó khăn như hiện tại. Mình cho rằng đây là một chủ đề thú vị nên muốn viết vài dòng suy nghĩ cá nhân về nó.&#xA;Mình là người đã đưa ra đáp án “nghỉ việc” cho trường hợp cụ thể của bản thân.</description>
     </item>
-    
     <item>
       <title>Chuyện Nghề: Một Dự Án Nọ (2)</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-2/</link>
       <pubDate>Sun, 05 Mar 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-2/</guid>
-      <description>Hôm nay, mình kể mọi người về dự án cuối cùng mà mình tham gia, trước khi nghỉ Grab. Đó là E2E testing. Sorry mọi người, mình quên mất các mốc thời gian cụ thể, nên giờ nhớ gì kể nấy.
-Mục tiêu của dự án là làm thế nào để cắt giảm thời gian regression tests của QA. Mình giải thích sơ về quy trình phần mềm cho mọi người cùng hiểu rõ.</description>
+      <description>Hôm nay, mình kể mọi người về dự án cuối cùng mà mình tham gia, trước khi nghỉ Grab. Đó là E2E testing. Sorry mọi người, mình quên mất các mốc thời gian cụ thể, nên giờ nhớ gì kể nấy.&#xA;Mục tiêu của dự án là làm thế nào để cắt giảm thời gian regression tests của QA. Mình giải thích sơ về quy trình phần mềm cho mọi người cùng hiểu rõ.</description>
     </item>
-    
     <item>
       <title>Chuyện Nghề: Đi Đêm Có Ngày Gặp Ma, Direct Push Có Ngày Gặp Quả Báo</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-direct-push/</link>
       <pubDate>Wed, 21 Dec 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-direct-push/</guid>
-      <description>Ở một bài viết trước đó, tui có đề cập đến một dự án về ingest crashlytics data. Mẫu chuyện hôm nay tui kể liên quan đến dự án đó.
-Giới thiệu ngắn gọn cái ingestion đã được setup. Khi users sử dụng app mà gặp crash hoặc một số lỗi nhất định thì những trường hợp này sẽ được ghi nhận trên hệ thống của Firebase. Đoạn ingestion là làm sao để mà những data này được đổ vào data lake của công ty.</description>
+      <description>Ở một bài viết trước đó, tui có đề cập đến một dự án về ingest crashlytics data. Mẫu chuyện hôm nay tui kể liên quan đến dự án đó.&#xA;Giới thiệu ngắn gọn cái ingestion đã được setup. Khi users sử dụng app mà gặp crash hoặc một số lỗi nhất định thì những trường hợp này sẽ được ghi nhận trên hệ thống của Firebase. Đoạn ingestion là làm sao để mà những data này được đổ vào data lake của công ty.</description>
     </item>
-    
     <item>
       <title>Chuyện Nghề: Một Dự Án Nọ (1)</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-1/</link>
       <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-mot-du-an-no-1/</guid>
       <description>Hồi quý 2 - 2021, tui có tham gia một dự án nọ. Đại ý công việc của dự án là ingest crashlytics data của mobile apps vào data lake của công ty, từ đó thực hiện những truy vấn dữ liệu cần thiết phục vụ nhiều mục đích (vd. monitoring, troubleshoot crashes…). Như các bạn có thể hình dung, phẩn lớn công việc là về data engineering. Nhưng team làm dự án này không có data engineer hay những người đã từng kinh qua công việc tương tự.</description>
     </item>
-    
     <item>
       <title>Chuyện Nghề: Lược Sử 4 Năm Nghề</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</link>
       <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-luoc-su-4-nam-nghe/</guid>
-      <description>Tui viết bài này để giới thiệu lược sử công việc của mình (ở Grab) theo thời gian. Mục đích của bài viết là cho mọi người có cái nhìn sơ bộ, khái quát về mặt thời gian của series chuyện nghề này. Ai hóng drama thì ráng kiên nhẫn nha.
-…
-1 Tui gia nhập công ty từ tháng 2 năm 2018 vào một team gọi là “DAX iOS”. Team này trực thuộc một tech family tên là “Driver Experience (DEX)”.</description>
+      <description>Tui viết bài này để giới thiệu lược sử công việc của mình (ở Grab) theo thời gian. Mục đích của bài viết là cho mọi người có cái nhìn sơ bộ, khái quát về mặt thời gian của series chuyện nghề này. Ai hóng drama thì ráng kiên nhẫn nha.&#xA;…&#xA;1 Tui gia nhập công ty từ tháng 2 năm 2018 vào một team gọi là “DAX iOS”. Team này trực thuộc một tech family tên là “Driver Experience (DEX)”.</description>
     </item>
-    
     <item>
       <title>Chuyện Nghề: Áp Lực là Hàm sin Theo Thời Gian (1)</title>
       <link>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</link>
       <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/chuyen-nghe-ap-luc-ham-sin-1/</guid>
       <description>Áp lực là hàm sin theo thời gian 1 Nhiều lần bạn bè, người thân hỏi tui “làm bển cực hông?”. Tui không ngần ngại đáp “cực, cực hơn ở Việt Nam nhiều”. Thật ra trả lời vậy có phần không thoả đáng vì ngữ cảnh so sánh hơi khập khiễng. Nhưng nó phần nào phản ánh mức độ áp lực ở công ty nớ (bên Sing) so với các công ty cũ của tui ở VN.</description>
     </item>
-    
     <item>
       <title>Tản Mạn: Những Trăn Trở Nghề</title>
       <link>https://trinhngocthuyen.com/posts/misc/tan-man-nhung-tran-tro-nghe/</link>
       <pubDate>Sun, 15 Nov 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/tan-man-nhung-tran-tro-nghe/</guid>
       <description>Nhiều người thấy mình dạo này có vẻ chill, chơi môn này môn nọ, tham gia thử thách này thử thách kia, tưởng rằng mình đang tận hưởng cuộc sống. Nhưng thật ra mình, cũng như bao người khác, luôn có những trăn trở nhất định. Bỏ qua những trăn trở về gia đình và cuộc sống riêng tư, nay mình xin trải lòng với mọi người những trăn trở của mình về nghề nghiệp.</description>
     </item>
-    
     <item>
       <title>Tản Mạn: Chuyện Nghề</title>
       <link>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-nghe/</link>
       <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/tan-man-chuyen-nghe/</guid>
       <description>Tuần này sẵn có một ngày lễ (public holiday) nên mình xin nghỉ luôn 4 ngày còn lại cho đủ nguyên tuần. Cộng thêm mấy ngày cuối tuần nữa thành ra mình nghỉ nguyên một lèo 9 ngày. What a long holiday! Tưởng là dài vậy mà nó trôi qua nhanh cái rẹt, chuẩn bị quay lại mần việc rồi. Mình tranh thủ viết chút xíu nhân dịp đầu óc vẫn còn thư thái, thoải mái.</description>
     </item>
-    
   </channel>
 </rss>

@@ -6,15 +6,14 @@
     <description>Recent content in image-processing on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/image-processing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/image-processing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A dive into Histogram of Oriented Gradients (HOG)</title>
       <link>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</link>
       <pubDate>Thu, 13 Jul 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/a-dive-into-hog/</guid>
       <description>In this post, we will dive into Histogram of Oriented Gradients (HOG), a common technique used to extract features of images&amp;hellip; And then implement it in python (in order to comprehend it).</description>
     </item>
-    
   </channel>
 </rss>

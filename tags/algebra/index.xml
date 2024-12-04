@@ -6,17 +6,14 @@
     <description>Recent content in algebra on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/algebra/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/algebra/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Brain exercising #1</title>
       <link>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</link>
       <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</guid>
-      <description>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&amp;hellip; I am thinking of a little corner of this blog for this sort of exercising.
-Claim: If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.
-If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</description>
+      <description>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&amp;hellip; I am thinking of a little corner of this blog for this sort of exercising.&#xA;Claim: If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.&#xA;If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</description>
     </item>
-    
   </channel>
 </rss>

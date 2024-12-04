@@ -6,44 +6,35 @@
     <description>Recent content in maths on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/maths/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/maths/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Toán: Tuyển sinh PTNK 2018 (p1)</title>
       <link>https://trinhngocthuyen.com/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/toan-tuyen-sinh-ptnk-2018-p1/</guid>
       <description>Cùng giải đề thi tuyển sinh (vào lớp 10 chuyên Toán) Phổ Thông Năng Khiếu, năm 2018 nào. Trong đề có một câu bất đẳng thức như sau&amp;hellip;</description>
     </item>
-    
     <item>
       <title>Định lý cuối cùng của Fermat</title>
       <link>https://trinhngocthuyen.com/posts/misc/fermats-last-theorem/</link>
       <pubDate>Fri, 08 Dec 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/fermats-last-theorem/</guid>
       <description>Khoảng 5-6 tháng trước mình xem một bộ phim tài liệu có tựa đề &amp;ldquo;BBC - Horizon - 1996 - Fermat’s Last Theorem&amp;rdquo;. Đây là một câu chuyện về lịch sử toán học mà mình thấy rất hay nên muốn chia sẻ lại. Fermat là một nhà toán học người Pháp. Ông có nhiều đóng góp quan trọng trong lý thuyết số (number theory). Một trong số đó là định lý Fermat lớn, hay định lý cuối cùng của Fermat (Fermat’s Last Theorem).</description>
     </item>
-    
     <item>
       <title>Brain exercising #1</title>
       <link>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</link>
       <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/brain-exercising-1/</guid>
-      <description>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&amp;hellip; I am thinking of a little corner of this blog for this sort of exercising.
-Claim: If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.
-If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</description>
+      <description>I happened to see this problem on Twitter. It reminded me of my secondary school when I was passionate about solving math problems :)&amp;hellip; I am thinking of a little corner of this blog for this sort of exercising.&#xA;Claim: If $p$ is prime, all the coefficients in $(a+b)^p$ except the first and the last are divisible by $p$.&#xA;If p is prime, all the coefficients in (a+b)^p except the first and last are divisible by p.</description>
     </item>
-    
     <item>
       <title>Topology</title>
       <link>https://trinhngocthuyen.com/posts/misc/topology/</link>
       <pubDate>Sat, 15 Aug 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/misc/topology/</guid>
       <description>I hadn’t known Topology until a friend of mine gave me a quiz related to it. Though I still have no idea about the mathematical stuff, it has been drawing my attention due to some of its interesting facts&amp;hellip;</description>
     </item>
-    
   </channel>
 </rss>

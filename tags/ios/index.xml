@@ -6,297 +6,224 @@
     <description>Recent content in ios on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://trinhngocthuyen.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 May 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://trinhngocthuyen.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Xcode Recognizes Module Imports</title>
       <link>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</link>
       <pubDate>Sun, 05 May 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</guid>
-      <description>In iOS development, a module is a self-contained unit of code offering a specific set of functionalities. Modules help break down complex apps into smaller components. Developers can incorporate a module into different parts of an app using the import keyword. Behind the scenes, the build system performs several tasks to recognize and integrate these imports seamlessly.
-A module can be distributed in various formats such as collections of source files, or a pre-compiled binaries or bundles.</description>
+      <description>In iOS development, a module is a self-contained unit of code offering a specific set of functionalities. Modules help break down complex apps into smaller components. Developers can incorporate a module into different parts of an app using the import keyword. Behind the scenes, the build system performs several tasks to recognize and integrate these imports seamlessly.&#xA;A module can be distributed in various formats such as collections of source files, or a pre-compiled binaries or bundles.</description>
     </item>
-    
     <item>
       <title>pre-commit Environment Issue in SourceTree</title>
       <link>https://trinhngocthuyen.com/posts/tech/pre-commit-env-in-sourcetree/</link>
       <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/pre-commit-env-in-sourcetree/</guid>
-      <description>In the previous post, I mentioned pre-commit as a powerful tool to lint and format in a project.
-It had worked seamlessly for me until I committed code using SourceTree. Just to clarify, I predominantly use git on terminal. I only use a GUI app such as SourceTree to view the diff, or to stage selective chunks in a file (which is a bit difficult to achieve when using terminal). Therefore, the issue went unnoticed during my usual workflow.</description>
+      <description>In the previous post, I mentioned pre-commit as a powerful tool to lint and format in a project.&#xA;It had worked seamlessly for me until I committed code using SourceTree. Just to clarify, I predominantly use git on terminal. I only use a GUI app such as SourceTree to view the diff, or to stage selective chunks in a file (which is a bit difficult to achieve when using terminal). Therefore, the issue went unnoticed during my usual workflow.</description>
     </item>
-    
     <item>
       <title>Using pre-commit for Linters/Formatters</title>
       <link>https://trinhngocthuyen.com/posts/tech/pre-commit/</link>
       <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/pre-commit/</guid>
-      <description>During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.
-At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</description>
+      <description>During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.&#xA;At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</description>
     </item>
-    
     <item>
       <title>Using Swift Packages in CocoaPods-Based Projects</title>
       <link>https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/</link>
       <pubDate>Sat, 30 Dec 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/</guid>
-      <description>Introduction Swift Package Manager (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, CocoaPods has gained its power and emerged as a dominant tool in iOS development.
-Not until recently has SPM been adopted widely.</description>
+      <description>Introduction Swift Package Manager (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, CocoaPods has gained its power and emerged as a dominant tool in iOS development.&#xA;Not until recently has SPM been adopted widely.</description>
     </item>
-    
     <item>
       <title>Designing Test Quarantine Logic to Deal With Flaky Tests</title>
       <link>https://trinhngocthuyen.com/posts/tech/test-quarantine/</link>
       <pubDate>Sun, 17 Sep 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/test-quarantine/</guid>
-      <description>Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.
-The Need for Test Quarantine The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity.</description>
+      <description>Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.&#xA;The Need for Test Quarantine The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity.</description>
     </item>
-    
     <item>
       <title>A Tale of Project Build Time Improvement</title>
       <link>https://trinhngocthuyen.com/posts/tech/a-tale-of-project-build-time/</link>
       <pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/a-tale-of-project-build-time/</guid>
-      <description>Introduction Build time is a key factor to engineers’ productivity. Slow build time can be frustrating and lead to hindered progress. There has been a great amount of effort by the community to tackle this complex problem. This blog post highlights various methodologies employed by our team (at Grab) to alleviate this pain point.
-Background The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.</description>
+      <description>Introduction Build time is a key factor to engineers’ productivity. Slow build time can be frustrating and lead to hindered progress. There has been a great amount of effort by the community to tackle this complex problem. This blog post highlights various methodologies employed by our team (at Grab) to alleviate this pain point.&#xA;Background The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.</description>
     </item>
-    
     <item>
       <title>On Using Python for Scripting in iOS Projects</title>
       <link>https://trinhngocthuyen.com/posts/tech/on-using-python-for-scripting/</link>
       <pubDate>Tue, 22 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/on-using-python-for-scripting/</guid>
-      <description>As an iOS engineer, my recent focus has been on platform work, involving tasks like optimizing build times, integrating CI/CD pipelines, and devising testing solutions. This has led me to explore various scripting options, and I&amp;rsquo;ve found great satisfaction in using Python as our preferred choice.
-The first Python code Initially, scripting wasn&amp;rsquo;t a prominent aspect of my team&amp;rsquo;s workflow, largely due to the simplicity of our CI/CD setup and the prevalence of Bash scripts in our project.</description>
+      <description>As an iOS engineer, my recent focus has been on platform work, involving tasks like optimizing build times, integrating CI/CD pipelines, and devising testing solutions. This has led me to explore various scripting options, and I&amp;rsquo;ve found great satisfaction in using Python as our preferred choice.&#xA;The first Python code Initially, scripting wasn&amp;rsquo;t a prominent aspect of my team&amp;rsquo;s workflow, largely due to the simplicity of our CI/CD setup and the prevalence of Bash scripts in our project.</description>
     </item>
-    
     <item>
       <title>Code Signing on CI</title>
       <link>https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/</link>
       <pubDate>Tue, 01 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/code-signing-on-ci/</guid>
-      <description>1. Introduction Code signing in iOS refers to the process of digitally signing an app&amp;rsquo;s executable code to ensure its authenticity and integrity.
-During feature development, developers usually do not have to worry about code signing because Xcode handles the complicated work. Most of the time, we build and run the app on simulators that do not require special code signing settings.
-However, distributing the app requires code signing. While working locally, you can rely on the &amp;ldquo;Automatically manage signing&amp;rdquo; option in the project settings.</description>
+      <description>1. Introduction Code signing in iOS refers to the process of digitally signing an app&amp;rsquo;s executable code to ensure its authenticity and integrity.&#xA;During feature development, developers usually do not have to worry about code signing because Xcode handles the complicated work. Most of the time, we build and run the app on simulators that do not require special code signing settings.&#xA;However, distributing the app requires code signing. While working locally, you can rely on the &amp;ldquo;Automatically manage signing&amp;rdquo; option in the project settings.</description>
     </item>
-    
     <item>
       <title>Cocoapods Explained: Plugins</title>
       <link>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</link>
       <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-plugins/</guid>
-      <description>In the previous post, we talked about Podfile. In this post, we will look into CocoaPods plugins.
-Back in early days, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.
-Instead of rejecting them, CocoaPods provided the support for plugins.</description>
+      <description>In the previous post, we talked about Podfile. In this post, we will look into CocoaPods plugins.&#xA;Back in early days, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.&#xA;Instead of rejecting them, CocoaPods provided the support for plugins.</description>
     </item>
-    
     <item>
       <title>CocoaPods Explained: Podfile</title>
       <link>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</link>
       <pubDate>Sat, 17 Dec 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/cocoapods-explained-podfile/</guid>
       <description>In iOS development, CocoaPods has become one of the must-know tools. In a team where CocoaPods is adopted, engineers run pod install as often as git checkout. They know how to properly set up a project with CocoaPods, declare dependencies in Podfile, and update dependencies if needed. However, some have little understanding of what happens under the hood. This prevents them from troubleshooting CocoaPods issues if occurred or extending its usage.</description>
     </item>
-    
     <item>
       <title>Dealing With Flaky UI Tests in iOS</title>
       <link>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</link>
       <pubDate>Sat, 25 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/</guid>
       <description>1. Introduction UI testing is a test technique, besides unit testing, to ensure product quality. While unit testing focuses on small portions (or units) of the system, UI testing aims to cover a wider user journey in the app. This testing technique helps engineers gain more confidence when developing, refactoring, and shipping the products to users. In the context of iOS development, UI testing plays a key role in product quality as the form of a feature shipped to users is usually through what they see on the app.</description>
     </item>
-    
     <item>
       <title>CI: Heuristically Extracting Test Methods Before Runtime</title>
       <link>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</link>
       <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/ci-extract-test-methods/</guid>
       <description>1. Introduction Reducing pipeline time is a key problem in the pipeline time reduction epic. As mentioned in the previous post, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called runners). The assignment of what tests to what jobs usually takes place at the end of the build job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have.</description>
     </item>
-    
     <item>
       <title>CI: Thinning iOS Build Artifacts</title>
       <link>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/ci-ios-artifacts-optimization/</guid>
-      <description>1. Introduction 1.1. Pipeline Time Improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).
-For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests.</description>
+      <description>1. Introduction 1.1. Pipeline Time Improvement As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&amp;rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the CI pipeline time (ie. the time it takes for a CI pipeline to run against certain changes).&#xA;For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests.</description>
     </item>
-    
     <item>
       <title>Swift: The downsides of lazy var (part 2)</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</link>
       <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-2/</guid>
       <description>Continue from the previous post, we will look into a few problems when working with lazy var&amp;hellip;</description>
     </item>
-    
     <item>
       <title>Swift: The downsides of lazy var (part 1)</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</link>
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-the-downsides-of-lazy-var-part-1/</guid>
       <description>Lazy evaluation is a really powerful technique which enhances app performance by avoiding unecessary computation. In Swift, apart from this advantage, it also brings convenience when it comes to coding style&amp;hellip;</description>
     </item>
-    
     <item>
       <title>MVVM best practice: Inputs - Outputs</title>
       <link>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/mvvm-best-practice-inputs-outputs/</guid>
       <description>When it comes to iOS architecture, MVVM is one of the most favorable candidates. Not only does it provide higher testability than MVC but also this architecture is lightweight as compared to its counterparts such as VIPER. Despite that, proper approaches should be adopted to take advantage of MVVM. Otherwise, we could end up with an alike version of MVC with an additional component (ViewModel).</description>
     </item>
-    
     <item>
       <title>How to stub network in iOS</title>
       <link>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</link>
       <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/how-to-stub-network-in-ios/</guid>
       <description>There are times we wish to fake a network event, for example, a network error. However, integrating a 3rd party stub library just for this purpose is not really worthy. This post aims at demonstrating how to stub network.</description>
     </item>
-    
     <item>
       <title>Method Swizzling: What, Why and How</title>
       <link>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</link>
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/method-swizzling-what-why-and-how/</guid>
       <description>Method swizzling is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs. Actually, this special feature is offered by the Objective-C runtime, via message dispatch.</description>
     </item>
-    
     <item>
       <title>Method dispatch in Swift</title>
       <link>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</link>
       <pubDate>Mon, 25 Sep 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/method-dispatch-in-swift/</guid>
       <description>Method dispatch is a term referring to mechanisms by which the program determines which operation should be executed (by operation, I mean a set of instructions). There are times we expect a method behavior to be determined only at runtime. This motivation give rise to different mechanisms of dispatching a method, each of which has its own pros and cons.</description>
     </item>
-    
     <item>
       <title>How a Swift file is compiled</title>
       <link>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/how-a-swift-file-is-compiled/</guid>
       <description>First of all, this is not &amp;ldquo;how an iOS/MacOS app is built&amp;rdquo;. An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match&amp;hellip;</description>
     </item>
-    
     <item>
       <title>FAQ on ReactiveCocoa</title>
       <link>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/faq-on-reactivecocoa/</guid>
       <description>This post highlights some Q&amp;amp;A related to ReactiveCocoa - a FRP framework specifically built for iOS.</description>
     </item>
-    
     <item>
       <title>Swift: ExpressibleByStringLiteral</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-expressiblebystringliteral/</guid>
       <description>It is a protocol in Swift 3 (which was StringLiteralConvertible in Swift 2). The name clearly reflects the meaning that an object of a class can be expressed by a literal string</description>
     </item>
-    
     <item>
       <title>Log events in ReactiveCocoa</title>
       <link>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/log-events-in-reactivecocoa/</guid>
       <description>I used to spend a lot of time reading documentations of ReactiveCocoa (Framework overview, design guidlines, basic operators&amp;hellip;) but, unfortunately, missed this one&amp;hellip;</description>
     </item>
-    
     <item>
       <title>A freestyle way to config UIView</title>
       <link>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</link>
       <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/a-freestyle-way-to-config-uiview/</guid>
       <description>This article is to introduce a freestyle way to set up views in iOS (by code).</description>
     </item>
-    
     <item>
       <title>Swift: Generic protocol (p.1)</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</link>
       <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-generic-protocol-p1/</guid>
       <description>In this article, we would look into how to implement a generic protocol. A few lacks of language support (Swift version prior to 3.0) would be also pointed out for discussion.</description>
     </item>
-    
     <item>
       <title>Swift: Concrete types in Protocol</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</link>
       <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-concrete-types-in-protocol/</guid>
       <description>A specific use case that we are unable to use concrete types in protocol, and how to fix it.</description>
     </item>
-    
     <item>
       <title>Swift: Currying</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-currying/</link>
       <pubDate>Sun, 17 Apr 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-currying/</guid>
       <description>This topic has been mentioned as a part of Functional programming. Though it’s kind of fun to use currying, we often see it on the list along with functors, applicative, monads&amp;hellip; In this article, I’ll show you a couple of ways to have fun with currying.</description>
     </item>
-    
     <item>
       <title>Swift: Optional — map</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</link>
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-optional-map/</guid>
       <description>A few experiments with optionals in Swift.</description>
     </item>
-    
     <item>
       <title>Swift: Box with recursive data structure</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</link>
       <pubDate>Sat, 17 Oct 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/swift-box-with-recursive-data-structure/</guid>
       <description>A workaround to model recursive data structure with enum</description>
     </item>
-    
     <item>
       <title>RAC 3.0 with Login workflow</title>
       <link>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</link>
       <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/rac3-with-login-flow/</guid>
       <description>A particular example of RAC 3.0, applied in Login workflow.</description>
     </item>
-    
     <item>
       <title>Optional - Functional</title>
       <link>https://trinhngocthuyen.com/posts/tech/optional-functional/</link>
       <pubDate>Tue, 16 Jun 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://trinhngocthuyen.com/posts/tech/optional-functional/</guid>
       <description>A demonstration of lazy evaluation using a simple trick</description>
     </item>
-    
   </channel>
 </rss>
