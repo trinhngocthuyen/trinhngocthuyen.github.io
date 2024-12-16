@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta property="og:title" content="Overview of Mobile E2E Testing">
+      <title>Thuyen&#39;s corner</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+      
+      <link rel="stylesheet" href="/sass/main.c38281e7151301b364426ea151e845f681ce87e9649b8c5f3cadb6a5748b9cb7.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      
+</head>
+  <body class="" data-url="/posts/tech/mobile-e2e-overview/">
+    
+        <nav role="navigation">
+  <header role="banner">
+    <h1 id="logo">
+      <a href="/">Thuyen&#39;s corner</a>
+    </h1>
+  </header>
+  <div id="menu-toggle" class="menu-toggle">
+    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+  </div>
+  <ul>
+    
+    <li><a href="/posts/tech">Tech</a></li>
+    
+    <li><a href="/posts/misc">Misc (Tạp bút)</a></li>
+    
+    <li><a href="/projects">Projects</a></li>
+    
+    <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+        <main role="main">
+    
+<article class="page">
+  <header>
+  
+  <h1>Overview of Mobile E2E Testing</h1>
+  
+  
+  <div class="metadata">
+  <span>2024, Dec 16</span>
+</div>
+  
+</header>
+  <h2 id="1-introduction">1. Introduction</h2>
+<p>End-to-end (E2E) testing is a software testing strategy that verifies the system integration from start to finish, including apps, backend services, and other related components; to ensure everything functions as expected altogether. Compared to unit tests, E2E tests are often fewer in number due to their complexity and maintenance costs. This type of testing is even more uncommon in mobile development where special setups are often required.</p>
+<p>This blog post aims to provide a quick overview of mobile E2E testing and some opinionated architecture suggestions for incorporating E2E testing into your engineering process.</p>
+<h2 id="2-background">2. Background</h2>
+<h3 id="21-types-of-testing">2.1. Types of Testing</h3>
+<p>The <a href="https://circleci.com/blog/testing-pyramid">testing pyramid model</a> categorizes automated tests into three levels: unit tests, integration tests, and E2E tests.</p>
+<p>Unit tests, often focusing on a single functionality, are the most prevalent due to rapid implementation and execution. Meanwhile, E2E tests - sitting atop the pyramid, offer wider coverage due to higher level of integration, but fewer in quantity due to their greater complexity. Integration tests, lying in the middle, compromises the other two.</p>
+<p>In mobile development, we can view UI tests with a mock backend as integration tests (also sometimes called <em>“workflow UI tests”</em>), and UI tests with real backend as E2E tests. When running UI tests, the test process starts the app and performs UI actions (taps, swipes, scrolls, etc.) just like how a real user interacts with the app.</p>
+<p><img src="/images/e2e/recording.gif" alt="e2e_recording.gif"></p>
+<h3 id="22-e2e-testing-in-mobile-development">2.2. E2E Testing in Mobile Development</h3>
+<p>A testing device is connected to a computer (or the host machine, in case of simulators). With some special setup, we can perform test actions (for instance, launching an app, or querying app elements) on the connected device via this computer.</p>
+<p>In practice, E2E testing on a device usually involves:</p>
+<ul>
+<li>Maintaining a server (with a dedicated port) on this computer that accepts incoming requests from the outside.</li>
+<li>For each test request, this server performs corresponding test actions on the connected device.</li>
+</ul>
+<p>For convenience, we’re gonna use the term “<strong>test server</strong>” to refer to the server performing test actions on devices. When testing with Appium, we start an Appium server to communicate with devices. In this context, the Appium server can be considered the test server we’ve described.</p>
+<h2 id="3-architecting-e2e-testing-solutions">3. Architecting E2E Testing Solutions</h2>
+<h3 id="31-choosing-your-test-framework">3.1. Choosing Your Test Framework</h3>
+<p>We can use native frameworks such as XCUITest for iOS and Espresso/UIAutomator for Android. One clear advantage of this approach is the ability to leverage our programming language of expertise and potentially reuse native component code. However, this method may not be suitable for larger-scale projects due to several reasons.</p>
+<p>First, we need to maintain separate test codebases for each platform (iOS and Android), which can be time-consuming and less cost-effective.</p>
+<p>Second, E2E tests are not always maintained by native engineers. For instance, in one of my previous companies, E2E tests were primarily driven by automation engineers. Adopting a native test framework in such cases introduces an additional learning curve for them, increasing onboarding and maintenance costs.</p>
+<p>Finally, E2E testing often involves more than just native apps; it can also include interactions with backend services or tools to manage simulators and devices. Implementing such tasks using native code can be less straightforward.</p>
+<h4 id="write-once-for-all-platforms">Write Once for All Platforms</h4>
+<p>Given the complexity of E2E tests, many opts for a <strong>cross-platform test framework</strong>. A few candidates stand out.</p>
+<p>The most popular choice is <a href="https://github.com/appium/appium"><strong>Appium</strong></a>, an open-source UI automation solution for many platforms including mobile, browser, desktop, etc. Appium has been around for a long time and is possibly the most mature options available. We will primarily focus on using Appium in future posts about E2E testing.</p>
+<p>One of Appium’s advantages, as compared to others, is that we can write test cases in our  preferred language, thanks to the availability of Appium clients in various languages such as Python, Ruby, Java, JavaScript, etc. Additionally, Appium offers a wide range of features, many of which are driven by its active community.</p>
+<p>Another option is <a href="https://maestro.mobile.dev/"><strong>Maestro</strong></a>, which was first introduced in 2022. Unlike Appium, Maestro emphasizes on declarative syntax-based test cases. This reduces the learning curve as engineers only need to declare test steps in a YAML file. No need to learn other languages as compared to the Appium. However, this approach comes with some trade-offs. We will compare the two declarative vs. scripted approaches in section <a href="#33-declarative-vs-scripted">3.3</a>.</p>
+<p>For React Native projects, <a href="https://github.com/wix/Detox"><strong>Detox</strong></a> is a widely-used tool. This framework is specifically tailored for React Native apps, offering rich integrations with the React Native ecosystem. While I haven’t personally used Detox, my research suggests that it performs slightly better in terms of execution time because <a href="https://wix.github.io/Detox/docs/articles/design-principles">it does not rely on WebDriver</a>. The expectations run directly on the app process, rather than a separate test process. This reduces the overhead IPC (inter-process communication) cost and allows various backdoors for testing. As a result, it’s an excellent fit for React Native-focused projects.</p>
+<h3 id="32-choosing-your-language">3.2. Choosing Your Language</h3>
+<p>As mentioned above, a common choice for writing once for all platforms is using <strong>Appium together with a scripting language</strong> of your interests (to write your tests).</p>
+<p>You can choose any supported language that you’re comfortable with. If you don’t have anything in mind, I personally recommend Python, which is my favorite.</p>
+<p>Once you’ve got your tests working in one language, it should be relatively easy to adapt them in another language. My advice is to focus on the <strong>extensibility</strong> of the test framework in your chosen language and its <strong>plugin ecosystem</strong>. Having worked with both Ruby’s RSpec and Python’s Pytest frameworks, I would say I love Pytest a lot more. It simplifies the process of writing and executing tests. And its rich plugin architecture is a game-changer. With Pytest, you can easily integrate advanced features like fancy reports or parallel testing simply by installing a plugin.</p>
+<p>In two of my previous companies, we both used the Appium + Pytest combination as the core stack for E2E testing.</p>
+<p><img src="/images/e2e/stack.png" alt="stack.png"></p>
+<h3 id="33-declarative-vs-scripted">3.3. Declarative vs. Scripted</h3>
+<p>Some choose Maestro for its declarative syntax to write tests. A Maestro test case looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># search-flow.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">appId</span><span class="p">:</span><span class="w"> </span><span class="l">org.wikimedia.wikipedia</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">launchApp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">tapOn</span><span class="p">:</span><span class="w"> </span><span class="l">Skip</span><span class="w"> </span><span class="c"># dismiss tutorial</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">tapOn</span><span class="p">:</span><span class="w"> </span><span class="l">Search Wikipedia</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">inputText</span><span class="p">:</span><span class="w"> </span><span class="l">Facebook</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">assertVisible</span><span class="p">:</span><span class="w"> </span><span class="l">Facebook is a social media and social networking service owned by Meta</span><span class="w">
+</span></span></span></code></pre></div><p>This looks appealing as test cases are written in human-readable format. While it reduces the learning curve (for how to write Python or Ruby code properly), it’s not a perfect choice in terms of <strong>flexibility</strong>.</p>
+<p>Although Maestro supports running a <a href="https://maestro.mobile.dev/api-reference/commands/runscript">custom script</a> (in JavaScript) or even <a href="https://maestro.mobile.dev/advanced/conditions">conditional execution</a>, this might not be sufficient for large-scale projects with complex test cases. For instance, in cases where retries are necessary to mitigate flakiness, implementing such logic within Maestro can be cumbersome. Meanwhile, with a scripted test case (such as one written with Pytest), this can be achieved by simply adding a custom <code>@retry</code> decorator to the step method.</p>
+<p>Another challenge arises with A/B testing or non-deterministic features. If the test account is whitelisted for a specific rollout, the test flow may need to change. While handling those conditions is possible, the test cases would then look more complicated and no longer be concise and maintainable. In these scenarios, scripted test cases offer more flexibility and scalability.</p>
+<p>Some test frameworks, like <a href="https://cucumber.io">Cucumber</a>, adopt a <em>hybrid solution of both declarative and scripted</em>: test specs written in a human-readable language, test implementation written in a scripting language.</p>
+<p>For me, I prefer the scripted approach as it offers greater flexibility and scalability. Readability can be easily achieved by structuring test code properly.</p>
+<h3 id="34-client-server-testing-vs-server-side-testing">3.4. Client-Server Testing vs. Server-Side Testing</h3>
+<p>There are two types with regards to where tests are executed: <em>client-server testing</em> and <em>server-side testing</em>. In this context, “server” refers to the server/machine that manages your devices or simulators.</p>
+<h4 id="server-side-testing">Server-Side Testing</h4>
+<p><img src="/images/e2e/server-side-testing.png" alt="server-side-testing.png"></p>
+<p>In this model, your tests run on the same machine as the test server (physically, or virtually). Testing with Appium on <a href="https://aws.amazon.com/device-farm">AWS Device Farm</a> works this way. When creating a test run, you are prompted to <a href="https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium-integrate.html#test-types-appium-upload">upload a test package to the Device Farm</a>. Your tests then execute on the Device Farm’s test runners.</p>
+<p>Running tests this way is similar to running tests locally. The tests communicate directly with the test server, which runs on the same machine. This ensures a more stable connection between the test code and the test server.</p>
+<p>Moreover, since you’re running code on the test machine (which connects to the device), you can directly operate on the device directly without going through the test server. For example, you can simply run a shell command <code>tidevice -u &lt;UDID&gt; reboot</code> in your code to reboot the phone if needed.</p>
+<h4 id="client-server-testing">Client-Server Testing</h4>
+<p>This is often the case for testing on CI environments. Typically, CI runners are hosted on remote machines (either in-house or by third-party vendors) and may not connect to your devices. Therefore, a common design is to have dedicated machines to host the testing devices, with your tests connecting to those devices via a test server.</p>
+<p><img src="/images/e2e/client-side-testing.png" alt="client-side-testing.png"></p>
+<p>In this setup, network connection between CI runners and test servers is a key consideration. For example, a test case verifies the presence of an element with a timeout of 1s but the request to the test server might itself take up to 3s, causing test failures.</p>
+<p>When writing tests, you also need to reason <strong>whether this specific code runs on CI runners or test servers</strong>. For instance, you cannot reboot a device by running the <code>tidevice -u &lt;UDID&gt; reboot</code> shell command directly from the CI runner, as the runner does not connect to the device. In such cases, test actions are limited to the APIs exposed by the test servers.</p>
+<p>Take testing with Appium for example: your test cases can only interacts with devices through Appium’s APIs. However, these APIs might not cover all your needs. For example, Appium does not have a device reboot API as of now (Dec 2024). To address such limitations, you can deploy a supplementary test server alongside the Appium server, which will be discussed further in upcoming posts.
+Take testing with Appium for example: your test cases can only interacts with devices through Appium’s APIs. However, these APIs might not cover all your needs. For example, Appium does not have a device reboot API as of now (Dec 2024). To address such limitations, you can deploy a <strong>supplementary test server</strong> alongside the Appium server, which will be discussed further in upcoming posts.</p>
+<h3 id="35-real-devices-vs-simulators-device-farm">3.5. Real Devices vs. Simulators, Device Farm</h3>
+<p>Whether to test on simulators or devices (or both) depends on your testing strategies and available resources.</p>
+<h4 id="testing-on-devices">Testing on devices</h4>
+<p>Testing on devices involves more complex setup, from app signing to managing devices (ex. which ones are available or occupied). Such a device management solution is often called “<strong>device farm</strong>” solution.</p>
+<p>Several 3rd-party device farm solutions are available, such as <a href="https://www.browserstack.com/">BrowserStack</a>, <a href="https://saucelabs.com">Sauce Labs</a>, <a href="https://kobiton.com/">Kobiton</a>, <a href="https://aws.amazon.com/device-farm">AWS Device Farm</a>, etc. These services are usually pay-as-you-go or subscription-based, with pricing models depending on the number of users or parallel test sessions. Some providers allow you to add private devices, so you can use both their devices and your own. While 3rd-party services are convenient, many teams are reluctant to use due to their cost.</p>
+<p>Alternatively, you can orchestrate your own device farm using open-source tools. In my previous company, we used <a href="https://soniccloudorg.github.io/en"><strong>Sonic</strong></a> to manage in-house devices. Other options include <a href="https://github.com/AppiumTestDistribution/appium-device-farm">Appium Device Farm</a>. Both allow you to occupy or release a device, start a test session, and even operate on a device via a Web UI.</p>
+<p><img src="/images/e2e/appium-device-farm-ui.png" alt="appium-device-farm-ui.png">
+<figcaption>Figure 3.5.1. Appium Device Farm. We can occupy a device, then operate on the device remotely via web UI just like how we directly interacts with the device.</figcaption></p>
+<p>Additionally, these tools support setting up devices across multiple nodes/machines. This is crucial for splitting the server load and establishing <em>office-based</em> or <em>team-based</em> device farms.</p>
+<p><img src="/images/e2e/multi-agent-farm.png" alt="multi-agent-farm.png"></p>
+<p>A perk of using an in-house device farm is the level of control over your devices. You can quickly intervene to resolve device issues, making tests more stable. However, this comes with an overhead maintenance cost. For example, we’ve faced the issues like unstable cables causing some iOS devices being disconnected. Or, the “Trust This Computer” popup appears on devices (usually after reconnected to the computer) although the permission was granted before. Even worse, some devices are hosted in distant locations, such as our Hong Kong office, which requires manual operation to resolve the issues.</p>
+<h4 id="testing-on-simulators">Testing on simulators</h4>
+<p>Testing on simulators is generally simpler. It’s similar to how engineers test the app during feature development. On simulators, you can run various simulations, such as updating device location, or triggering push notifications, which simplifies some test setups.</p>
+<p>Testing on simulators is strategic when CI resources are abundant. For instance, in one of my previous companies, we had over 120 MacStadium (Gitlab) runners for iOS. Each runner is a MacOS machine that could be utilized for E2E testing by starting an Appium server on the runner, and run tests with the given local server. This approach essentially follows the “server-side testing” model we discussed earlier. It’s just that the test server, in this case, runs on a CI runner.</p>
+<p>In the upcoming posts, we will explore more about device farm solutions.</p>
+<h3 id="36-shared-appium-server-vs-multiple-servers-for-multiple-devices">3.6. Shared Appium Server vs. Multiple Servers for Multiple Devices</h3>
+<p>We manage over 20 iOS devices in our company, most of which are connected to a Linux machine located in our Hong Kong office. Initially, we set up a shared Appium server to handle all testing on these devices. Tests could connect to this server at <code>http://10.10.10.10:4723</code>, for example, where <code>10.10.10.10</code> is the IP address of the Linux machine.</p>
+<p>Problems arise when we troubleshoot issues on the server side. When multiple test sessions run simultaneously, Appium logs for those sessions are merged into a single log file. This makes it extremely difficult to isolate and analyze logs for a specific test on a specific device.</p>
+<p>Another challenge is maintaining the consistent uptime for the shared server. We observed a significant degraded test performance due to Appium memory leaks. Typically, one Appium server process consumes 150–200MB. For multiple devices, the combined usage is still manageable (&lt; 2GB). However, over time - within 1-2 weeks, the memory usage gradually increased to 10GB (&gt;100% memory of the machine’s memory), resulting in very slow Appium response times. To recover, we had to restart the Appium server, which caused ongoing test sessions to fail.</p>
+<p>To address these challenges, we implemented a solution where <strong>each test session is assigned a dedicated Appium server</strong>. This approach ensures isolation between test sessions and better resource management.</p>
+<ul>
+<li>Start a dedicated Appium server at the beginning of each test session.
+To avoid port collisions, we can assign a unique port to each device. For example, for a device with ID <code>1234</code>, the server URL becomes <code>http://10.10.10.10:11234</code> (port: 10000 + device ID).</li>
+<li>Use the dedicated server URL as the WebDriver URL for your tests.</li>
+<li>Stop the Appium server at the end of the session to release unused resources.</li>
+</ul>
+<p>This start-and-stop mechanism can be orchestrated using a supplementary server (referenced in section <a href="#34-client-server-testing-vs-server-side-testing">3.4</a>).</p>
+<p><img src="/images/e2e/supplementary-server.png" alt="supplementary-server.png"></p>
+<h2 id="4-challenges">4. Challenges</h2>
+<p>E2E testing inherits two prominent problems of UI testing: <strong>flakiness</strong> and <strong>slow execution time</strong>. This also means solutions for these two problems in UI testing might be applicable to E2E testing as well.</p>
+<h3 id="41-flakiness">4.1. Flakiness</h3>
+<p>Flakiness can be caused by various reasons, some of which were discussed in <a href="https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests/#3-contributing-factors-to-flakiness">this post</a>. It is far more prevalent in E2E tests than in workflow UI tests.</p>
+<p>Unlike workflow UI tests, where network requests are often mocked, E2E tests require communication with real APIs. This increases the potential for failures, not just from the app’s requests but also from internal APIs used for test setup, such as preparing test data. As a result, you might need to add retries to certain test actions to ensure stability.</p>
+<p>Device-related issues are harder to manage. For example, on iOS, Appium relies on <a href="https://github.com/appium/webdriveragent">WebDriverAgent (WDA)</a>, which starts a web server on the device. This connection can be unstable during a session, leading to many test failures.</p>
+<p>Given that flakiness is unavoidable, what we can do is automatically detecting flaky tests, and possibly skipping them during critical runs to avoid unnecessary disruptions.</p>
+<h3 id="42-slow-execution-time">4.2. Slow Execution Time</h3>
+<p>Execution time of an E2E test can vary from less than 1m to more than 5m. Let’s assume an average test time of 2m. For a project with 50 test cases, this would mean a total time of 1h40m to complete the whole test suite, not to mention the overhead time of test retries.</p>
+<p>One common strategy to reduce test execution time is parallelization. This is often the case for CI execution as we rarely run all test cases on local.</p>
+<p>Parallel test executions in a pipeline can be done by having multiple test jobs. Each handles a batch of the test suite. In each job, we can also achieve the parallelism by running a subset of tests in parallel threads. If using Python, we have a Pytest plugin called <a href="https://pytest-xdist.readthedocs.io/">pytest-xdist</a> that distributes tests across multiple threads to speed up the overall execution.</p>
+<p>A good test distribution should ensure the balance of execution time across batches.</p>
+<p><img src="/images/e2e/parallel-balanced-time.png" alt="parallel-balanced-time.png"></p>
+<p>One way to do this is by using execution time data from previous runs to heuristically split the test cases.</p>
+<p><img src="/images/e2e/parallel-e2e.png" alt="parallel-e2e.png"></p>
+<p>Occasionally, you may notice that test actions become slower due to degraded performance on the test server. For example, when a test server is handling concurrent executions of 10 devices, each consuming certain amount of CPU/memory, the responsiveness may be slower. Therefore, it’s useful to add instrumentations in your tests (ex. by measuring the response time of querying an element) to monitor test performance and identify bottlenecks  as well as unusual behaviors.</p>
+<h2 id="5-common-practices">5. Common Practices</h2>
+<h3 id="51-backdoor-for-testing">5.1. Backdoor for Testing</h3>
+<p>A common backdoor for testing is simulating the logged-in state. This is important to reduce the execution time because a user login journey might take up to 30s or even more. A typical solution is obtaining the JWT token through internal APIs and injecting it into the app via the process environment. The app can then retrieve the token simply by <code>ProcessInfo.processInfo.environment[&quot;JWT_TOKEN&quot;]</code> (in iOS) and bypass the login flow.</p>
+<p>In fact, many backdoors can be implemented this way, ie. <strong>injecting values into the process environment</strong>. For instance, you can speed up animations in the app by adjusting the <a href="https://developer.apple.com/documentation/quartzcore/camediatiming/1427647-speed">CALayer’s speed</a>, hence reducing the execution time.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">isE2E</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">layerSpeed</span> <span class="p">=</span> <span class="n">ProcessInfo</span><span class="p">.</span><span class="n">processInfo</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s">&#34;LAYER_SPEED&#34;</span><span class="p">].</span><span class="bp">map</span><span class="p">(</span><span class="nb">Float</span><span class="p">.</span><span class="kd">init</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">UIUtils</span><span class="p">.</span><span class="n">windows</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">speed</span> <span class="p">=</span> <span class="n">layerSpeed</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Another use case is controlling A/B testing features in the app. Ideally, you should programmatically whitelist your test account for a certain feature, perhaps using internal APIs. If there’s no such a direct way, you can toggle features on and off by manipulating the process environment or by using configuration files (which can be <a href="https://appium.readthedocs.io/en/latest/en/commands/device/files/push-file">pushed to the device</a>).</p>
+<h3 id="52-designing-test-suite">5.2. Designing Test Suite</h3>
+<p>How you design your test cases can significantly impact the overall execution time. For example, in a project with 50+ test cases, you might consider having a dedicated test case for verifying the user login flow, while the rest of the tests can assume the user is already logged in. This saves time while still ensuring full coverage for app flows. The general formula is:</p>
+<ul>
+<li>A <strong>dedicated test</strong> runs the <strong>full (high-cost) flow</strong>.</li>
+<li>The <strong>majority</strong> of tests run the <strong>shortcut (low-cost) flow</strong>.</li>
+</ul>
+<p>Similarly, if a feature’s entry point is difficult to reach from the home screen, you could use <strong>deep links</strong> (if supported) to directly navigate to the feature. This helps save time and reduce the chances of failure on intermediate screens.</p>
+<h3 id="53-integrating-to-cicd-workflows">5.3. Integrating to CI/CD Workflows</h3>
+<p>Whether to incorporate E2E tests into pre-merge or post-merge pipelines depends on your testing strategies and available resources. Normally, E2E tests run in post-merge pipelines due to limited CI resources and testing devices.</p>
+<p>Running E2E tests pre-merge needs to consider a few factors. The first one is the incurred pipeline time. You may consider running <em><strong>only a subset of your test cases</strong></em>, for example, those of core flows, to ensure the execution is time-bound. Another big question is how to judge whether a test failure is caused by the merge changes, or by flakiness. Setting up your CI pipelines in a way that E2E jobs are <strong>retry-able</strong> can help us co-live with flakiness. Also, having a <strong>tolerated threshold</strong> for the success rate would be helpful. For example, the pipeline could pass if at least 80% of the tests succeed.</p>
+<h3 id="54-enhancing-troubleshooting-experience">5.4. Enhancing Troubleshooting Experience</h3>
+<p>Troubleshooting matters given the uncertainty of E2E testing.</p>
+<p>Having a screenshot and recording after a test succeeds or fails is necessary. We can audit a test flow simply by looking at the recording and figuring out what went unexpected. Those screenshots and recordings are also useful for showcasing features.</p>
+<p>Many failures occur due to incorrect element queries, such as wrong accessibility labels or IDs. A textual representation of the app hierarchy, in XML format - for example, would be very useful for debugging and improving element queries.</p>
+<p>It is also helpful to extract app logs and related files (configs, database, etc.). This can be easily done with <a href="https://appium.readthedocs.io/en/latest/en/commands/device/files/pull-file">Appium’s pull file support</a>.</p>
+<p>Sometimes, we might encounter device issues or Appium-related problems. In such cases, collecting Appium logs, and WebDriverAgent logs (in iOS), would be necessary.</p>
+<h3 id="55-test-retries">5.5. Test Retries</h3>
+<p>Retries are a common solution for flaky tests. However, in E2E testing where a test consumes quite some time, retrying a failed test means an additional amount of overall pipeline time. To mitigate this, we might consider retrying only certain types of failures.</p>
+<h2 id="6-conclusion">6. Conclusion</h2>
+<p>Mobile E2E testing is critical yet challenging to ensure software quality. By choosing the right tools, frameworks, and strategies, you can effectively incorporate E2E testing into your engineering process. While tools like Appium offer flexibility and a rich ecosystem, the choice of framework, language, and execution model depends on your team’s needs and expertise.</p>
+<p>This blog post has covered an overview and architectural considerations for E2E testing in the context of mobile development. Future posts will dive deeper into specific aspects, such as setting up device farms, mitigating flakiness, and integrating with CI/CD pipelines.</p>
+<p>Stay tuned!</p>
+
+  <div class="entry-footer">
+  
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+
+  
+  <a href="/categories/tech" class="category">tech</a>
+  
+</div>
+
+  
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  
+  <a href="/tags/mobile" class="tag">mobile</a>
+  
+  <a href="/tags/e2e" class="tag">e2e</a>
+  
+  <a href="/tags/testing" class="tag">testing</a>
+  
+</div>
+
+</div>
+</article>
+
+
+<nav class='entry-nav'><div class='prev-entry'>
+    <a href='/posts/tech/how-xcode-recognizes-module-imports/'>How Xcode Recognizes Module Imports</a>
+  </div></nav>
+
+
+<section id='comments' class='comments'>
+  
+  <div class="container">
+    
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/mobile-e2e-overview/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+
+  </div>
+  
+  <div class="container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+</section>
+
+
+</main></body>
+</html>

@@ -6,8 +6,15 @@
     <description>Recent content in tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 May 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview of Mobile E2E Testing</title>
+      <link>https://trinhngocthuyen.com/posts/tech/mobile-e2e-overview/</link>
+      <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/mobile-e2e-overview/</guid>
+      <description>1. Introduction End-to-end (E2E) testing is a software testing strategy that verifies the system integration from start to finish, including apps, backend services, and other related components; to ensure everything functions as expected altogether. Compared to unit tests, E2E tests are often fewer in number due to their complexity and maintenance costs. This type of testing is even more uncommon in mobile development where special setups are often required.&#xA;This blog post aims to provide a quick overview of mobile E2E testing and some opinionated architecture suggestions for incorporating E2E testing into your engineering process.</description>
+    </item>
     <item>
       <title>How Xcode Recognizes Module Imports</title>
       <link>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</link>
