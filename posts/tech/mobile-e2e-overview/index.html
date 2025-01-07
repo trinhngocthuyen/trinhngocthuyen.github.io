@@ -7,7 +7,7 @@
       <title>Thuyen&#39;s corner</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
       
-      <link rel="stylesheet" href="/sass/main.c38281e7151301b364426ea151e845f681ce87e9649b8c5f3cadb6a5748b9cb7.css">
+      <link rel="stylesheet" href="/sass/main.fc206dad2a58ab866cf85beb72441ebc12516a94b7f26252cd0c212152bf49cd.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -55,6 +55,7 @@
 <script src="/scripts/menu.js"></script>
         <main role="main">
     
+<div class="page-wrapper">
 <article class="page">
   <header>
   
@@ -240,6 +241,231 @@ To avoid port collisions, we can assign a unique port to each device. For exampl
 
 </div>
 </article>
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#1-introduction" toc_id="1-introduction">1. Introduction</a></div>
+<div><a href="#2-background" toc_id="2-background">2. Background</a></div><div class="toc-section">
+
+<div><a href="#21-types-of-testing" toc_id="21-types-of-testing">2.1. Types of Testing</a></div>
+<div><a href="#22-e2e-testing-in-mobile-development" toc_id="22-e2e-testing-in-mobile-development">2.2. E2E Testing in Mobile Development</a></div></div>
+<div><a href="#3-architecting-e2e-testing-solutions" toc_id="3-architecting-e2e-testing-solutions">3. Architecting E2E Testing Solutions</a></div><div class="toc-section">
+
+<div><a href="#31-choosing-your-test-framework" toc_id="31-choosing-your-test-framework">3.1. Choosing Your Test Framework</a></div><div class="toc-section">
+
+<div><a href="#write-once-for-all-platforms" toc_id="write-once-for-all-platforms">Write Once for All Platforms</a></div></div>
+<div><a href="#32-choosing-your-language" toc_id="32-choosing-your-language">3.2. Choosing Your Language</a></div>
+<div><a href="#33-declarative-vs-scripted" toc_id="33-declarative-vs-scripted">3.3. Declarative vs. Scripted</a></div>
+<div><a href="#34-client-server-testing-vs-server-side-testing" toc_id="34-client-server-testing-vs-server-side-testing">3.4. Client-Server Testing vs. Server-Side Testing</a></div><div class="toc-section">
+
+<div><a href="#server-side-testing" toc_id="server-side-testing">Server-Side Testing</a></div>
+<div><a href="#client-server-testing" toc_id="client-server-testing">Client-Server Testing</a></div></div>
+<div><a href="#35-real-devices-vs-simulators-device-farm" toc_id="35-real-devices-vs-simulators-device-farm">3.5. Real Devices vs. Simulators, Device Farm</a></div><div class="toc-section">
+
+<div><a href="#testing-on-devices" toc_id="testing-on-devices">Testing on devices</a></div>
+<div><a href="#testing-on-simulators" toc_id="testing-on-simulators">Testing on simulators</a></div></div>
+<div><a href="#36-shared-appium-server-vs-multiple-servers-for-multiple-devices" toc_id="36-shared-appium-server-vs-multiple-servers-for-multiple-devices">3.6. Shared Appium Server vs. Multiple Servers for Multiple Devices</a></div></div>
+<div><a href="#4-challenges" toc_id="4-challenges">4. Challenges</a></div><div class="toc-section">
+
+<div><a href="#41-flakiness" toc_id="41-flakiness">4.1. Flakiness</a></div>
+<div><a href="#42-slow-execution-time" toc_id="42-slow-execution-time">4.2. Slow Execution Time</a></div></div>
+<div><a href="#5-common-practices" toc_id="5-common-practices">5. Common Practices</a></div><div class="toc-section">
+
+<div><a href="#51-backdoor-for-testing" toc_id="51-backdoor-for-testing">5.1. Backdoor for Testing</a></div>
+<div><a href="#52-designing-test-suite" toc_id="52-designing-test-suite">5.2. Designing Test Suite</a></div>
+<div><a href="#53-integrating-to-cicd-workflows" toc_id="53-integrating-to-cicd-workflows">5.3. Integrating to CI/CD Workflows</a></div>
+<div><a href="#54-enhancing-troubleshooting-experience" toc_id="54-enhancing-troubleshooting-experience">5.4. Enhancing Troubleshooting Experience</a></div>
+<div><a href="#55-test-retries" toc_id="55-test-retries">5.5. Test Retries</a></div></div>
+<div><a href="#6-conclusion" toc_id="6-conclusion">6. Conclusion</a></div></nav><script src="/scripts/toc.js"></script>
+</div>
 
 
 <nav class='entry-nav'><div class='prev-entry'>

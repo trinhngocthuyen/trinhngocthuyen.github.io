@@ -7,7 +7,7 @@
       <title>Thuyen&#39;s corner</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
       
-      <link rel="stylesheet" href="/sass/main.c38281e7151301b364426ea151e845f681ce87e9649b8c5f3cadb6a5748b9cb7.css">
+      <link rel="stylesheet" href="/sass/main.fc206dad2a58ab866cf85beb72441ebc12516a94b7f26252cd0c212152bf49cd.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -55,6 +55,7 @@
 <script src="/scripts/menu.js"></script>
         <main role="main">
     
+<div class="page-wrapper">
 <article class="page">
   <header>
   
@@ -358,6 +359,222 @@
 
 </div>
 </article>
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#1-introduction" toc_id="1-introduction">1. Introduction</a></div>
+<div><a href="#2-background" toc_id="2-background">2. Background</a></div><div class="toc-section">
+
+<div><a href="#21-what-is-test-flakiness" toc_id="21-what-is-test-flakiness">2.1. What is Test Flakiness?</a></div>
+<div><a href="#22-what-is-ui-testing" toc_id="22-what-is-ui-testing">2.2. What is UI Testing?</a></div>
+<div><a href="#23-two-apps-in-ui-testing" toc_id="23-two-apps-in-ui-testing">2.3. Two Apps in UI Testing</a></div>
+<div><a href="#24-polling-checks-in-ui-testing" toc_id="24-polling-checks-in-ui-testing">2.4. Polling-Checks in UI Testing</a></div>
+<div><a href="#25-end-to-end-testing-vs-workflow-ui-testing" toc_id="25-end-to-end-testing-vs-workflow-ui-testing">2.5. End-To-End Testing vs. Workflow UI Testing</a></div></div>
+<div><a href="#3-contributing-factors-to-flakiness" toc_id="3-contributing-factors-to-flakiness">3. Contributing Factors to Flakiness</a></div><div class="toc-section">
+
+<div><a href="#31-shared-environments" toc_id="31-shared-environments">3.1. Shared Environments</a></div>
+<div><a href="#32-auto-dismissable-components" toc_id="32-auto-dismissable-components">3.2. Auto-dismissable Components</a></div>
+<div><a href="#33-animations" toc_id="33-animations">3.3. Animations</a></div>
+<div><a href="#34-time-sensitive-datanon-deterministic-behaviors" toc_id="34-time-sensitive-datanon-deterministic-behaviors">3.4. Time-sensitive Data/Non-deterministic Behaviors</a></div>
+<div><a href="#35-deviceos-variants" toc_id="35-deviceos-variants">3.5. Device/OS Variants</a></div></div>
+<div><a href="#4-dealing-with-flakiness" toc_id="4-dealing-with-flakiness">4. Dealing With Flakiness</a></div><div class="toc-section">
+
+<div><a href="#41-preventing-flakiness" toc_id="41-preventing-flakiness">4.1. Preventing Flakiness</a></div>
+<div><a href="#42-troubleshooting-flakiness" toc_id="42-troubleshooting-flakiness">4.2. Troubleshooting Flakiness</a></div><div class="toc-section">
+
+<div><a href="#processing-the-xcresult-bundle" toc_id="processing-the-xcresult-bundle">Processing the <code>.xcresult</code> Bundle</a></div>
+<div><a href="#segregating-per-test-data" toc_id="segregating-per-test-data">Segregating per-Test Data</a></div></div>
+<div><a href="#43-fixing-flakiness" toc_id="43-fixing-flakiness">4.3. Fixing Flakiness</a></div><div class="toc-section">
+
+<div><a href="#benchmarking-tests" toc_id="benchmarking-tests">Benchmarking Tests</a></div></div>
+<div><a href="#44-living-with-flakiness" toc_id="44-living-with-flakiness">4.4. Living With Flakiness</a></div><div class="toc-section">
+
+<div><a href="#retrying-failed-tests" toc_id="retrying-failed-tests">Retrying Failed Tests</a></div>
+<div><a href="#test-success-rate" toc_id="test-success-rate">Test Success Rate</a></div>
+<div><a href="#test-quarantine-logic" toc_id="test-quarantine-logic">Test quarantine Logic</a></div></div>
+<div><a href="#5-conclusion" toc_id="5-conclusion">5. Conclusion</a></div></nav><script src="/scripts/toc.js"></script>
+</div>
 
 
 <nav class='entry-nav'><div class='prev-entry'>
