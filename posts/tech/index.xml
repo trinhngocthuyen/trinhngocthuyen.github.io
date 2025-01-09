@@ -6,8 +6,15 @@
     <description>Recent content in Tech 💻 on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WebDriverAgent - The Heart of iOS E2E Testing</title>
+      <link>https://trinhngocthuyen.com/posts/tech/mobile-e2e-wda/</link>
+      <pubDate>Thu, 09 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/mobile-e2e-wda/</guid>
+      <description>In the previous post, we explored the overview of E2E testing in mobile development.&#xA;Today, we’re going to dive deeper into how E2E testing with Appium works on iOS.&#xA;1. Introduction to WebDriverAgent (WDA) 1.1. Running Your First Test With Appium Here’s a simple code snippet to start your tests. For simplicity, we’ll run tests on simulators.&#xA;from appium.webdriver.webdriver import WebDriver from appium.options.ios import XCUITestOptions # Create a WebDriver options = XCUITestOptions() wd = WebDriver(&amp;#39;http://127.</description>
+    </item>
     <item>
       <title>Overview of Mobile E2E Testing</title>
       <link>https://trinhngocthuyen.com/posts/tech/mobile-e2e-overview/</link>
