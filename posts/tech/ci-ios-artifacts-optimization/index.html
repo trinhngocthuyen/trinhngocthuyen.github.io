@@ -79,8 +79,8 @@ if (!doNotTrack) {
 <p>As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there&rsquo;s one constraint engineers have to face before getting their changes merged. That constraint is the <strong>CI pipeline time</strong> (ie. the time it takes for a CI pipeline to run against certain changes).</p>
 <p>For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests. Therefore, the engineering work to reduce pipeline time can be broken down into 2 major problems: <em>build time improvement</em> and <em>test time improvement</em>. While build time improvement is a classic problem that is tackled by many initiatives (mostly driven by community&rsquo;s efforts), there are still many rooms for test time improvement.</p>
 <h3 id="12-separation-of-build-and-test-jobs-in-ios">1.2. Separation of Build and Test Jobs in iOS</h3>
-<p>I once shared a tip to utilize test parallelism within one single CI job (see: <a href="https://engineering.grab.com/tackling-ui-test-execution-time-imbalance-for-xcode-parallel-testing">Tackling UI tests execution time imbalance for Xcode parallel testing</a>). Regarding parallelism among CI jobs, it can be done by splitting tests into smaller sets and run them in multiple CI jobs. As following is the form of pipelines we desire to have:
-<img src="/images/ci/pipeline.png" alt="png"></p>
+<p>I once shared a tip to utilize test parallelism within one single CI job (see: <a href="https://engineering.grab.com/tackling-ui-test-execution-time-imbalance-for-xcode-parallel-testing">Tackling UI tests execution time imbalance for Xcode parallel testing</a>). Regarding parallelism among CI jobs, it can be done by splitting tests into smaller sets and run them in multiple CI jobs. As following is the form of pipelines we desire to have:</p>
+<img src="/images/ci/pipeline.png" style=""/>
 <p>However, the separation of build and test jobs in iOS is not that straightforward because of 2 prominent factors:</p>
 <p><strong>(F1)</strong> It&rsquo;s not feasible to obtain the list of tests we have at compile time. We can only use heuristic approaches to extract such info.</p>
 <p><strong>(F2)</strong> Running unit/UI tests requires some build products from the <code>build</code> job. This is a <em>hard constraint</em> for platforms with statically-typed languages. What makes it harder for iOS development is that the iOS build artifacts are relatively big. Unfortunately, the size of artifacts we pass from one job to another is constrained by the size limit set by the CI infra.<br>
@@ -116,8 +116,8 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 </ul>
 <p>In general, if a framework is used in N targets, it appears N times in the executable bundles. If we check the <strong>checksums of the frameworks</strong> in those executable bundles, they are all <strong>identical</strong>.</p>
 <p>To understand why this happens, we can take a look at how CocoaPods integrates frameworks to the project.</p>
-<p>For dynamic frameworks added to a target, CocoaPods adds a build phase called <code>[CP] Embed Pods Frameworks</code> at the end of the target build phases.
-<img src="/images/ci/cp_build_phase.png" alt="png"></p>
+<p>For dynamic frameworks added to a target, CocoaPods adds a build phase called <code>[CP] Embed Pods Frameworks</code> at the end of the target build phases.</p>
+<img src="/images/ci/cp_build_phase.png" style=""/>
 <p>This build phase actually executes a script <code>&quot;${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks.sh&quot;</code> to copy all dynamic frameworks (managed by CocoaPods) belonging to the target to the <code>Frameworks</code> folder inside the executable bundle of that target. Those frameworks were copied from the framework build products located at the same folder as the executable bundle.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Debug-iphonesimulator / -- App.app / -- Frameworks / -- Dynamic_A.framework
 </span></span><span class="line"><span class="cl">                       |
@@ -138,7 +138,7 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 </span></span><span class="line"><span class="cl">         |-- ResourcesOfStaticFW_D / -- an_image.png
 </span></span></code></pre></div><h2 id="4-reducing-artifacts-based-on-duplications">4. Reducing Artifacts Based on Duplications</h2>
 <p>Based on the observations above, we can thin the artifacts by storing the bundle contents in a storage. Each bundle is unique by its checksum.</p>
-<p><img src="/images/ci/artifacts_opt_storage.png" alt="png"></p>
+<img src="/images/ci/artifacts_opt_storage.png" style=""/>
 <p>To keep track of the original location of a bundle inside the storage, we need a mapping that maps the original location of a bundle to its place in the storage. This way, after thinning the artifacts, we can easily recover the artifacts to its original state. The contents integrity remains unchanged.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">storage/ -- &lt;hash_a&gt;-A.framework
 </span></span><span class="line"><span class="cl">        |-- &lt;hash_b&gt;-B.framework
@@ -146,7 +146,7 @@ The growth in size of an iOS project is propotional to not only <em>the number o
 </span></span><span class="line"><span class="cl">        |-- ...
 </span></span><span class="line"><span class="cl">        |-- storage.json # Contains the mapping
 </span></span></code></pre></div><p>With this storage mapping solution, there are 2 additional steps running on CI:</p>
-<p><img src="/images/ci/artifacts_opt_build_test.png" alt="png"></p>
+<img src="/images/ci/artifacts_opt_build_test.png" style=""/>
 <ul>
 <li>In the <code>build</code> job, run the <strong><code>optimize</code></strong> step at the end of the job.
 <ul>

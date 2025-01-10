@@ -80,7 +80,7 @@ if (!doNotTrack) {
 <li>A test class (subclass of <code>XCTestCase</code>) in a test target.</li>
 <li>A test method inside a test class. A test method is a non-private method, prefixed with <code>test</code>, and has no arguments, no return value.</li>
 </ul>
-<img src="/images/ci/extract_tests_steps.png" width="450"/>
+<img src="/images/ci/extract_tests_steps.png" style="width: 450px"/>
 <p>Usually, there are only a few test targets in the project. Those targets can be easily derived from the scheme, or from the <code>*.xctestrun</code> file after building the project successfully. However, splitting tests by target is not a good choice because:</p>
 <ul>
 <li>A target might finish in a really long time. In our project, it takes approximately 50 mins to run all tests in  UI test target.</li>
@@ -90,7 +90,7 @@ if (!doNotTrack) {
 <h2 id="2-heuristic-approaches">2. Heuristic Approaches</h2>
 <h3 id="21-using-sourcery">2.1. Using Sourcery</h3>
 <p><a href="https://github.com/krzysztofzablocki/Sourcery">Sourcery</a> is a code generator for Swift. It&rsquo;s built on top of <a href="https://github.com/apple/swift/tree/main/tools/SourceKit">SourceKit</a>. For those who did not know, SourceKit is the magic behind Xcode indexing which brings Xcode auto-completion to life. When Xcode indexes source files of a project, you can notice a running process called <code>SourceKitService</code>. Basically, what it does is to build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree (AST)</a> from the source files. From then, you can query information about avalaible classes, structs, protocols, methods and so forth.</p>
-<img src="/images/ci/extract_tests_sourcery.png" width="450"/>
+<img src="/images/ci/extract_tests_sourcery.png" style="width: 450px"/>
 <p>For example, the following <a href="https://stencil.fuller.li">stencil</a> template would generate a list of test methods of classes inheriting from <code>BaseUITestCase</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-django" data-lang="django"><span class="line"><span class="cl"><span class="cp">{%</span> <span class="k">for</span> <span class="nv">type</span> <span class="k">in</span> <span class="nv">types.inheriting.BaseUITestCase</span> <span class="cp">%}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">method</span> <span class="k">in</span> <span class="nv">type.methods</span> <span class="nv">where</span> <span class="nv">method.accessLevel</span> <span class="p">!</span><span class="o">=</span> <span class="s2">&#34;private&#34;</span> <span class="cp">%}</span><span class="x">
