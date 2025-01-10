@@ -131,7 +131,7 @@ if (!doNotTrack) {
 <p>To have better test stability, we need to <strong>ensure a clean state</strong> before and after running a test by resetting cache, database, flags, keychains, etc. Note that uninstalling the app beforehand does not magically put the app into a clean state as some data is not bound to app&rsquo;s life cycle. For example, even if the app is uninstalled, keychain values belonging to that app still persist (see: <a href="https://developer.apple.com/forums/thread/22874?answerId=75464022#75464022">here</a>). This might lead to unexpected behaviors in the next time we install and launch the app for testing. Therefore, it is necessary to have a backdoor for testing to thoroughly put the app in a clean state.</p>
 <h3 id="32-auto-dismissable-components">3.2. Auto-dismissable Components</h3>
 <p>A challenge when testing auto-dismissable components is that we need to check all the details (in such components) <strong>in time</strong>. Those commonly used components are snackbars, or toast messages. They normally persist for one to a few seconds. While a UI check only takes up a fraction of a second, many checks in the component might exceed the appointed time. Note that when running tests in parallel (ex. 4 simulators), it usually takes a bit longer time than usual to perform a UI check due to high CPU usage.</p>
-<p><img src="/images/ios/auto_dismissable_banner.png" ZgotmplZ="width: 375px"/>
+<p><img src="/images/ios/auto_dismissable_banner.png" width="375px"/>
 <figcaption>Fig. Auto-dismissable banner.</figcaption></p>
 <p>There are a few actions we can take to tackle this problem.</p>
 <p>First, we can <strong>inject the display duration</strong> of those components when running UI tests. For example, instead of showing snackbars for 1s, we can increase the duration to 3s.</p>
@@ -162,13 +162,13 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="n">pollFrequency</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span></code></pre></div><p><img src="/images/ios/ui_test_combine_checks.png" ZgotmplZ="width: 600px"/>
+</span></span></code></pre></div><p><img src="/images/ios/ui_test_combine_checks.png" width="600px"/>
 <figcaption>Fig. Combining several checks to reduce the total wait time.</figcaption></p>
 <h3 id="33-animations">3.3. Animations</h3>
 <p>Regarding overhead time of an animation, it is not that much as one normally takes less than 2s to finish. We just need to increase the timeout (ex. to 10s) for element checks to gain better stability.</p>
 <p>However, animations do have a side effect when running UI tests. This is due to an intentional behavior of the XCTest framework. To be more specific, when running tests, the XCTest framework <strong>waits for the host app to idle</strong> before performing UI actions/checks. The app is not in the idle state as long as an animation is still on-going. This explains why we sometimes see tons of <em>&ldquo;Waiting for app to idle&rdquo;</em> in the console log.</p>
 <p>Take the &ldquo;loading/shimmery UI&rdquo; for example. This kind of animations happens continuously until the loaded data is presented. Therefore, even if there are contents elsewhere on the screen, the animation still keeps the test from asserting elements.</p>
-<p><img src="/images/ios/shimmering.png" ZgotmplZ="width: 375px"/>
+<p><img src="/images/ios/shimmering.png" width="375px"/>
 <figcaption>Fig. Shimmery UI, usually with repeated animations.</figcaption></p>
 <p>Another problematic case is when we have animations on auto-dismissable components. The animations prolong the wait time mentioned above. As a result, by the time we check elements on such a component, they are already dismissed.</p>
 <p>There are two common approaches to overcome this problem.</p>
@@ -229,7 +229,7 @@ if (!doNotTrack) {
 <p>When we have flakiness, engineers jump in to investigate and fix the issue. The ability to easily troubleshoot issues matters. As follows are some suggestions to help engineers identify the issues faster.</p>
 <h4 id="processing-the-xcresult-bundle">Processing the <code>.xcresult</code> Bundle</h4>
 <p>Normally, after running tests, we can just open the reports navigator (in Xcode) to view test results. We can also open the <code>.xcresult</code> bundle (produced when a test session is finished) with Xcode to quickly open this UI.</p>
-<p><img src="/images/ios/test_reports_navigator.png" ZgotmplZ="width: 500px"/>
+<p><img src="/images/ios/test_reports_navigator.png" width="500px"/>
 <figcaption>Fig. Details of a failed tests in the reports navigator in Xcode.</figcaption></p>
 <p>This UI displays quite some useful data for further investigation such as screenshots, and app UI hierarchy. However, the logs of the host app which should reveal much about the root cause are hidden from the UI. Also, when running many tests in one session (this is usually the case for CI), opening the produced <code>.xcresult</code> bundle in Xcode is really laggy, causing a very bad developer experience.</p>
 <p>Therefore, to provide the best troubleshoot experience, we need to <strong>extract useful data (for investigation) from the <code>.xcresult</code> bundle</strong>. Those data include app logs (both the runner app and the host app), screenshots, attachments, etc. They can be easily extracted using <a href="https://github.com/ChargePoint/xcparse">xcparse</a>. Alternatively, we can use <code>xcresulttool</code> (which xcparse is using under the hood) to obtain those data ourselves.</p>
@@ -316,7 +316,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--[execute &amp; retry]--&gt; failed --[quarantine] --&gt; all quarantined --&gt; passed
 </span></span><span class="line"><span class="cl">                                           | --&gt; otherwise --&gt; failed
 </span></span></code></pre></div><p>To integrate this quarantine logic, we need to have the stats (test success rates&hellip;) of all tests in the project for the past N days. Such stats data is generated from the executions from the project.</p>
-<p><img src="/images/ios/quarantine.png" ZgotmplZ="width: 600px"/>
+<p><img src="/images/ios/quarantine.png" width="600px"/>
 <figcaption>Fig. How quarantine logic is involved in deciding the overall result.</figcaption></p>
 <p>By introducing the quarantine logic, we create an auto feedback loop into the development process:</p>
 <ul>

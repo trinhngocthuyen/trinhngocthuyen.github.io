@@ -89,7 +89,7 @@ if (!doNotTrack) {
 <li><em>Weights</em>: normal distribution, scaled by factor 0.1.</li>
 </ul>
 <p>The distributions of layer ouputs are illustrated in the figure below. We can apparently see that the variance constantly decreases in deeper layers.</p>
-<p><img src="/images/notebooks/weight_initialization_5_0.png" ZgotmplZ="width: 600px"/>
+<p><img src="/images/notebooks/weight_initialization_5_0.png" width="600px"/>
 <figcaption><em>Fig 1.</em> Distribution of activations in layer 1, 3, 5, 7.</figcaption></p>
 <h3 id="13-impact-of-covariate-shift">1.3. Impact of Covariate Shift?</h3>
 <p>When training a network, if the activations fall in a narrow range like above, the gradient on those activations could be relatively small, leading to <strong>gradient saturation/vanish</strong>. Training gets stuck as a result. We sometimes face the same problem with dispersing distribution.</p>
@@ -184,7 +184,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight_scale</span><span class="p">,</span> <span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">trivial_initializer</span><span class="p">)</span>
-</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_6_0.png" ZgotmplZ="width: 600px"/>
+</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_6_0.png" width="600px"/>
 <figcaption><em>Fig 2.</em> mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.1$.</figcaption></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.009006    std: 0.016165
 </span></span><span class="line"><span class="cl">Layer 17. mean: 0.005849    std: 0.009699
@@ -193,7 +193,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">Layer 20. mean: 0.005232    std: 0.006176
 </span></span></code></pre></div><p>⟶ Not accepted ❌</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">:</span> <span class="n">trivial_initializer</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight_scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
-</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_7_0.png" ZgotmplZ="width: 600px"/>
+</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_7_0.png" width="600px"/>
 <figcaption><em>Fig 3.</em> mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.2$.</figcaption></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 825.965548	std: 1394.566496
 </span></span><span class="line"><span class="cl">Layer 17. mean: 1491.038728	std: 2237.786857
@@ -212,7 +212,7 @@ var(s) = var(\sum_i^N{w_i.x_i}) = &hellip; = N.var(w).var(x)
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_8_0.png" ZgotmplZ="width: 600px"/>
+</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_8_0.png" width="600px"/>
 <figcaption><em>Fig 4.</em> mean and std by layer. Initialized using xavier initialization, with no activation.</figcaption></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.000000	std: 0.742681
 </span></span><span class="line"><span class="cl">Layer 17. mean: -0.000000	std: 0.731260
@@ -222,7 +222,7 @@ var(s) = var(\sum_i^N{w_i.x_i}) = &hellip; = N.var(w).var(x)
 </span></span></code></pre></div><p>⟶ Accepted ✅</p>
 <p>We can see that xavier initialization gives a really nice distribution: <em>gaussian shape, reasonable mean and std</em>. However, this initialization strategy seems not to work well with non-linear activation. If we use ReLU as the activation function, we got a poor distribution.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">relu</span><span class="p">)</span>
-</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_9_0.png" ZgotmplZ="width: 600px"/>
+</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_9_0.png" width="600px"/>
 <figcaption><em>Fig 5.</em> mean and std by layer. With relu activation, normal distribution, $var(w) = 1/N$.</figcaption></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.002048	std: 0.003093
 </span></span><span class="line"><span class="cl">Layer 17. mean: 0.001338	std: 0.002246
@@ -235,7 +235,7 @@ var(s) = var(\sum_i^N{w_i.x_i}) = &hellip; = N.var(w).var(x)
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">d1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">examine_distribution</span><span class="p">(</span><span class="n">xavier_initializer_2</span><span class="p">)</span>
-</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_10_0.png" ZgotmplZ="width: 600px"/>
+</span></span></code></pre></div><p><img src="/images/notebooks/weight_initialization_10_0.png" width="600px"/>
 <figcaption><em>Fig 6.</em> mean and std by layer. With relu activation, normal distribution, $var(w) = 2/N$.</figcaption></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Layer 16. mean: 0.605864	std: 0.924794
 </span></span><span class="line"><span class="cl">Layer 17. mean: 0.569898	std: 0.860651

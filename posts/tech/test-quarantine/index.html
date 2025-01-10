@@ -87,7 +87,7 @@ if (!doNotTrack) {
 <h2 id="3-designing-effective-test-quarantine-logic">3. Designing Effective Test Quarantine Logic</h2>
 <h3 id="31-overview">3.1. Overview</h3>
 <p>The following diagram illustrates the core components of this approach.</p>
-<p><img src="/images/ios/quarantine.png" ZgotmplZ="width: 600px"/>
+<p><img src="/images/ios/quarantine.png" width="600px"/>
 <figcaption>Fig. How quarantine logic is involved in deciding the overall result.</figcaption></p>
 <ul>
 <li><strong>Test result submission:</strong> The results of test executions are stored in a dedicated data store. This store could take the form of a separate Git repo, a database instance, or an S3 bucket.</li>
@@ -97,7 +97,7 @@ if (!doNotTrack) {
 <h3 id="32-calculating-test-success-rates">3.2. Calculating Test Success Rates</h3>
 <p>The core of this approach hinges on ingesting test data and accurately calculating their success rates. This process resembles an <a href="https://www.databricks.com/glossary/extract-transform-load">ETL (Extract-Transform-Load) pipeline</a> in data engineering.</p>
 <p>There are various approaches for data ingestion, and <a href="https://airflow.apache.org/">Apache Airflow</a> is a great choice for this purpose, providing scalable and manageable workflows.</p>
-<p><img src="/images/ios/airflow_test_data_ingestion.png" ZgotmplZ="width: 800px"/>
+<p><img src="/images/ios/airflow_test_data_ingestion.png" width="800px"/>
 <figcaption>Fig. A sample DAG in Airflow UI.</figcaption></p>
 <p>However, for iOS development, using Airflow may not be common due to unfamiliarity with Cloud-related tasks. Instead, we can use a Git-based solution as the desired ETL pipelines are fairly simple.</p>
 <h3 id="33-git-based-etl-pipelines-to-ingest-data">3.3. Git-based ETL Pipelines to Ingest Data</h3>
@@ -176,7 +176,7 @@ if (!doNotTrack) {
 <p>The stats calculation can be easily done with <a href="https://pandas.pydata.org">Pandas</a>, a powerful Python library that simplifies the process of data analysis.</p>
 <p><strong>Loading Data into a DataFrame</strong></p>
 <p>When loading data into a DataFrame, we aggregate data over a specified period, such as the last 3 days, to gain a comprehensive view. The DataFrame structure resembles the following:</p>
-<p><img src="/images/ios/df_prefilled.png" ZgotmplZ="width: 600px"/>
+<p><img src="/images/ios/df_prefilled.png" width="600px"/>
 <figcaption>Fig. DataFrame of aggregated data.</figcaption></p>
 <p>To achieve this, here&rsquo;s a sample Python code snippet to load data from corresponding JSON files, fill it with metadata, and concatenate the DataFrames:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
@@ -225,7 +225,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1"># Export data to json file</span>
 </span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stats/ui_tests.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df_stats</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;success_rate&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span></span></code></pre></div><p><img src="/images/ios/df_stats.png" ZgotmplZ="width: 270px"/>
+</span></span></code></pre></div><p><img src="/images/ios/df_stats.png" width="270px"/>
 <figcaption>Fig. DataFrame of the calculated stats.</figcaption></p>
 <p>The output of this analysis is a JSON representation of the test success rates within the project, structured as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>

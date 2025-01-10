@@ -129,10 +129,10 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="n">target</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">&lt;&lt;</span> <span class="n">create_target_dependency_ref</span><span class="p">(</span><span class="n">product</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><img src="/images/ios/spm_target_dependencies.png" ZgotmplZ="width: 550px"/>
+</span></span></code></pre></div><img src="/images/ios/spm_target_dependencies.png" width="550px"/>
 <h4 id="linking-libraries-and-frameworks">Linking libraries and frameworks</h4>
 <p>While some recommendations, such as those found in <a href="https://github.com/CocoaPods/CocoaPods/issues/10049#issuecomment-819480131">this comment</a>, suggest adding the package products to the “Link Binary With Libraries” section of a pod target, this approach may not align with specific use cases. Moreover, this linking approach deviates from how CocoaPods handles the linking setup.</p>
-<img src="/images/ios/spm_link_binaries.png" ZgotmplZ="width: 600px"/>
+<img src="/images/ios/spm_link_binaries.png" width="600px"/>
 <p>Rather, a more fitting strategy is linking frameworks or libraries based on the linker flags in the target&rsquo;s build settings.</p>
 <p><strong>Static vs. Dynamic</strong></p>
 <p>A Swift package library can be either static or dynamic, depending on the <a href="https://developer.apple.com/documentation/packagedescription/product/library/librarytype">library type</a> declared in the package product. If unspecified, it defaults to static.</p>
@@ -149,7 +149,7 @@ if (!doNotTrack) {
 <li>A static library is compiled into a <code>.o</code> binary along with its <code>.swiftmodule</code> in the per-configuration build dir.</li>
 </ul>
 <p>The following image illustrates the products dir structure when compiling a package containing a static library <code>Foo</code> and a dynamic library <code>Bar</code>.</p>
-<img src="/images/ios/spm_static_dynamic.png" ZgotmplZ="width: 750px"/>
+<img src="/images/ios/spm_static_dynamic.png" width="750px"/>
 <p>As we can see, the Swift modules of <code>Foo</code> and <code>Bar</code> are located in the per-configuration build dir. Despite the existence of <code>Bar.framework</code>, its Swift module is not packaged into that bundle. Thus, we need to add <code>${PODS_CONFIGURATION_BUILD_DIR}</code> to <code>SWIFT_INCLUDE_PATHS</code> so that Xcode can search for additional Swift modules.</p>
 <p>To link static libraries (ex. <code>Foo</code>) with a target:</p>
 <ul>
