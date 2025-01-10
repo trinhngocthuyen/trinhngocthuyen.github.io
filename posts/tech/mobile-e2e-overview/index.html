@@ -14,7 +14,7 @@ This blog post aims to provide a quick overview of mobile E2E testing and some o
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -82,7 +82,7 @@ if (!doNotTrack) {
 <p>The <a href="https://circleci.com/blog/testing-pyramid">testing pyramid model</a> categorizes automated tests into three levels: unit tests, integration tests, and E2E tests.</p>
 <p>Unit tests, often focusing on a single functionality, are the most prevalent due to rapid implementation and execution. Meanwhile, E2E tests - sitting atop the pyramid, offer wider coverage due to higher level of integration, but fewer in quantity due to their greater complexity. Integration tests, lying in the middle, compromises the other two.</p>
 <p>In mobile development, we can view UI tests with a mock backend as integration tests (also sometimes called <em>“workflow UI tests”</em>), and UI tests with real backend as E2E tests. When running UI tests, the test process starts the app and performs UI actions (taps, swipes, scrolls, etc.) just like how a real user interacts with the app.</p>
-<img src="/images/e2e/recording.gif" style=""/>
+<img src="/images/e2e/recording.gif"/>
 <h3 id="22-e2e-testing-in-mobile-development">2.2. E2E Testing in Mobile Development</h3>
 <p>A testing device is connected to a computer (or the host machine, in case of simulators). With some special setup, we can perform test actions (for instance, launching an app, or querying app elements) on the connected device via this computer.</p>
 <p>In practice, E2E testing on a device usually involves:</p>
@@ -108,7 +108,7 @@ if (!doNotTrack) {
 <p>You can choose any supported language that you’re comfortable with. If you don’t have anything in mind, I personally recommend Python, which is my favorite.</p>
 <p>Once you’ve got your tests working in one language, it should be relatively easy to adapt them in another language. My advice is to focus on the <strong>extensibility</strong> of the test framework in your chosen language and its <strong>plugin ecosystem</strong>. Having worked with both Ruby’s RSpec and Python’s Pytest frameworks, I would say I love Pytest a lot more. It simplifies the process of writing and executing tests. And its rich plugin architecture is a game-changer. With Pytest, you can easily integrate advanced features like fancy reports or parallel testing simply by installing a plugin.</p>
 <p>In two of my previous companies, we both used the Appium + Pytest combination as the core stack for E2E testing.</p>
-<img src="/images/e2e/stack.png" style=""/>
+<img src="/images/e2e/stack.png"/>
 <h3 id="33-declarative-vs-scripted">3.3. Declarative vs. Scripted</h3>
 <p>Some choose Maestro for its declarative syntax to write tests. A Maestro test case looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># search-flow.yml</span><span class="w">
@@ -128,13 +128,13 @@ if (!doNotTrack) {
 <h3 id="34-client-server-testing-vs-server-side-testing">3.4. Client-Server Testing vs. Server-Side Testing</h3>
 <p>There are two types with regards to where tests are executed: <em>client-server testing</em> and <em>server-side testing</em>. In this context, “server” refers to the server/machine that manages your devices or simulators.</p>
 <h4 id="server-side-testing">Server-Side Testing</h4>
-<img src="/images/e2e/server-side-testing.png" style=""/>
+<img src="/images/e2e/server-side-testing.png"/>
 <p>In this model, your tests run on the same machine as the test server (physically, or virtually). Testing with Appium on <a href="https://aws.amazon.com/device-farm">AWS Device Farm</a> works this way. When creating a test run, you are prompted to <a href="https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium-integrate.html#test-types-appium-upload">upload a test package to the Device Farm</a>. Your tests then execute on the Device Farm’s test runners.</p>
 <p>Running tests this way is similar to running tests locally. The tests communicate directly with the test server, which runs on the same machine. This ensures a more stable connection between the test code and the test server.</p>
 <p>Moreover, since you’re running code on the test machine (which connects to the device), you can directly operate on the device directly without going through the test server. For example, you can simply run a shell command <code>tidevice -u &lt;UDID&gt; reboot</code> in your code to reboot the phone if needed.</p>
 <h4 id="client-server-testing">Client-Server Testing</h4>
 <p>This is often the case for testing on CI environments. Typically, CI runners are hosted on remote machines (either in-house or by third-party vendors) and may not connect to your devices. Therefore, a common design is to have dedicated machines to host the testing devices, with your tests connecting to those devices via a test server.</p>
-<img src="/images/e2e/client-side-testing.png" style=""/>
+<img src="/images/e2e/client-side-testing.png"/>
 <p>In this setup, network connection between CI runners and test servers is a key consideration. For example, a test case verifies the presence of an element with a timeout of 1s but the request to the test server might itself take up to 3s, causing test failures.</p>
 <p>When writing tests, you also need to reason <strong>whether this specific code runs on CI runners or test servers</strong>. For instance, you cannot reboot a device by running the <code>tidevice -u &lt;UDID&gt; reboot</code> shell command directly from the CI runner, as the runner does not connect to the device. In such cases, test actions are limited to the APIs exposed by the test servers.</p>
 <p>Take testing with Appium for example: your test cases can only interacts with devices through Appium’s APIs. However, these APIs might not cover all your needs. For example, Appium does not have a device reboot API as of now (Dec 2024). To address such limitations, you can deploy a supplementary test server alongside the Appium server, which will be discussed further in upcoming posts.
@@ -145,10 +145,10 @@ Take testing with Appium for example: your test cases can only interacts with de
 <p>Testing on devices involves more complex setup, from app signing to managing devices (ex. which ones are available or occupied). Such a device management solution is often called “<strong>device farm</strong>” solution.</p>
 <p>Several 3rd-party device farm solutions are available, such as <a href="https://www.browserstack.com/">BrowserStack</a>, <a href="https://saucelabs.com">Sauce Labs</a>, <a href="https://kobiton.com/">Kobiton</a>, <a href="https://aws.amazon.com/device-farm">AWS Device Farm</a>, etc. These services are usually pay-as-you-go or subscription-based, with pricing models depending on the number of users or parallel test sessions. Some providers allow you to add private devices, so you can use both their devices and your own. While 3rd-party services are convenient, many teams are reluctant to use due to their cost.</p>
 <p>Alternatively, you can orchestrate your own device farm using open-source tools. In my previous company, we used <a href="https://soniccloudorg.github.io/en"><strong>Sonic</strong></a> to manage in-house devices. Other options include <a href="https://github.com/AppiumTestDistribution/appium-device-farm">Appium Device Farm</a>. Both allow you to occupy or release a device, start a test session, and even operate on a device via a Web UI.</p>
-<p><img src="/images/e2e/appium-device-farm-ui.png" style=""/>
+<p><img src="/images/e2e/appium-device-farm-ui.png"/>
 <figcaption>Figure 3.5.1. Appium Device Farm. We can occupy a device, then operate on the device remotely via web UI just like how we directly interacts with the device.</figcaption></p>
 <p>Additionally, these tools support setting up devices across multiple nodes/machines. This is crucial for splitting the server load and establishing <em>office-based</em> or <em>team-based</em> device farms.</p>
-<img src="/images/e2e/multi-agent-farm.png" style=""/>
+<img src="/images/e2e/multi-agent-farm.png"/>
 <p>A perk of using an in-house device farm is the level of control over your devices. You can quickly intervene to resolve device issues, making tests more stable. However, this comes with an overhead maintenance cost. For example, we’ve faced the issues like unstable cables causing some iOS devices being disconnected. Or, the “Trust This Computer” popup appears on devices (usually after reconnected to the computer) although the permission was granted before. Even worse, some devices are hosted in distant locations, such as our Hong Kong office, which requires manual operation to resolve the issues.</p>
 <h4 id="testing-on-simulators">Testing on simulators</h4>
 <p>Testing on simulators is generally simpler. It’s similar to how engineers test the app during feature development. On simulators, you can run various simulations, such as updating device location, or triggering push notifications, which simplifies some test setups.</p>
@@ -166,7 +166,7 @@ To avoid port collisions, we can assign a unique port to each device. For exampl
 <li>Stop the Appium server at the end of the session to release unused resources.</li>
 </ul>
 <p>This start-and-stop mechanism can be orchestrated using a supplementary server (referenced in section <a href="#34-client-server-testing-vs-server-side-testing">3.4</a>).</p>
-<img src="/images/e2e/supplementary-server.png" style=""/>
+<img src="/images/e2e/supplementary-server.png"/>
 <h2 id="4-challenges">4. Challenges</h2>
 <p>E2E testing inherits two prominent problems of UI testing: <strong>flakiness</strong> and <strong>slow execution time</strong>. This also means solutions for these two problems in UI testing might be applicable to E2E testing as well.</p>
 <h3 id="41-flakiness">4.1. Flakiness</h3>
@@ -179,9 +179,9 @@ To avoid port collisions, we can assign a unique port to each device. For exampl
 <p>One common strategy to reduce test execution time is parallelization. This is often the case for CI execution as we rarely run all test cases on local.</p>
 <p>Parallel test executions in a pipeline can be done by having multiple test jobs. Each handles a batch of the test suite. In each job, we can also achieve the parallelism by running a subset of tests in parallel threads. If using Python, we have a Pytest plugin called <a href="https://pytest-xdist.readthedocs.io/">pytest-xdist</a> that distributes tests across multiple threads to speed up the overall execution.</p>
 <p>A good test distribution should ensure the balance of execution time across batches.</p>
-<img src="/images/e2e/parallel-balanced-time.png" style=""/>
+<img src="/images/e2e/parallel-balanced-time.png"/>
 <p>One way to do this is by using execution time data from previous runs to heuristically split the test cases.</p>
-<img src="/images/e2e/parallel-e2e.png" style=""/>
+<img src="/images/e2e/parallel-e2e.png"/>
 <p>Occasionally, you may notice that test actions become slower due to degraded performance on the test server. For example, when a test server is handling concurrent executions of 10 devices, each consuming certain amount of CPU/memory, the responsiveness may be slower. Therefore, it’s useful to add instrumentations in your tests (ex. by measuring the response time of querying an element) to monitor test performance and identify bottlenecks  as well as unusual behaviors.</p>
 <h2 id="5-common-practices">5. Common Practices</h2>
 <h3 id="51-backdoor-for-testing">5.1. Backdoor for Testing</h3>

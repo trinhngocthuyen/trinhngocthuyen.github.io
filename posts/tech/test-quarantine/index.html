@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:title" content="Designing Test Quarantine Logic to Deal With Flaky Tests" />
-<meta property="og:description" content="Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.
-The Need for Test Quarantine The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity." />
+<meta property="og:description" content="1. Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.
+2. The Need for Test Quarantine 2.1. The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/test-quarantine/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-09-17T00:00:00+00:00" />
@@ -14,7 +14,7 @@ The Need for Test Quarantine The Challenge of Flaky Tests Flaky tests are partic
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -74,33 +74,33 @@ if (!doNotTrack) {
 </div>
   
 </header>
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="1-introduction">1. Introduction</h2>
 <p>Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.</p>
-<h2 id="the-need-for-test-quarantine">The Need for Test Quarantine</h2>
-<h3 id="the-challenge-of-flaky-tests">The Challenge of Flaky Tests</h3>
+<h2 id="2-the-need-for-test-quarantine">2. The Need for Test Quarantine</h2>
+<h3 id="21-the-challenge-of-flaky-tests">2.1. The Challenge of Flaky Tests</h3>
 <p>Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity. It&rsquo;s important to acknowledge that encountering flaky tests is an inevitable part of the testing process. And the key lies in how we manage and respond to them effectively.</p>
-<h3 id="what-is-test-quarantine">What is Test Quarantine?</h3>
+<h3 id="22-what-is-test-quarantine">2.2. What is Test Quarantine?</h3>
 <p>Test quarantine is a strategy for handling the outcomes of tests, especially when they exhibit flakiness. When a test is quarantined, it means that the success or failure of that test should not have a direct impact on the overall outcome of a test suite or job.</p>
 <p>For example, consider a job that runs two tests: <code>test1</code> and <code>test2</code>. If <code>test1</code> succeeds while <code>test2</code> fails but is identified as flaky, the job should still be considered successful, despite the failing result of <code>test2</code>.</p>
-<h3 id="the-importance-of-test-quarantine">The Importance of Test Quarantine</h3>
+<h3 id="23-the-importance-of-test-quarantine">2.3. The Importance of Test Quarantine</h3>
 <p>When a flaky test causes a failure in an engineer&rsquo;s merge/pull request, it can lead to frustration and wasted time. The failure may have nothing to do with the changes made by the engineer. Thus, it is crucial to identify and quarantine flaky tests, ensuring that job executions remain robust in the face of these flakinesses.</p>
-<h2 id="designing-effective-test-quarantine-logic">Designing Effective Test Quarantine Logic</h2>
-<h3 id="overview">Overview</h3>
+<h2 id="3-designing-effective-test-quarantine-logic">3. Designing Effective Test Quarantine Logic</h2>
+<h3 id="31-overview">3.1. Overview</h3>
 <p>The following diagram illustrates the core components of this approach.</p>
-<img src="/images/ios/quarantine.png" width=600>
-<figcaption>Fig. How quarantine logic is involved in deciding the overall result.</figcaption>
+<p><img src="/images/ios/quarantine.png" ZgotmplZ="width: 600px"/>
+<figcaption>Fig. How quarantine logic is involved in deciding the overall result.</figcaption></p>
 <ul>
 <li><strong>Test result submission:</strong> The results of test executions are stored in a dedicated data store. This store could take the form of a separate Git repo, a database instance, or an S3 bucket.</li>
 <li><strong>Statistical analysis:</strong> Is performed on the ingested data over a defined period (ex. 3 days) to determine the success rates of individual tests.</li>
 <li><strong>Quarantine decision:</strong> When a test fails, the system fetches the relevant statistics and checks the corresponding success rate. If this success rate falls below a predefined threshold, the test is marked for quarantine. If all failed tests are identified as flaky, the job execution is considered a success.</li>
 </ul>
-<h3 id="calculating-test-success-rates">Calculating Test Success Rates</h3>
+<h3 id="32-calculating-test-success-rates">3.2. Calculating Test Success Rates</h3>
 <p>The core of this approach hinges on ingesting test data and accurately calculating their success rates. This process resembles an <a href="https://www.databricks.com/glossary/extract-transform-load">ETL (Extract-Transform-Load) pipeline</a> in data engineering.</p>
 <p>There are various approaches for data ingestion, and <a href="https://airflow.apache.org/">Apache Airflow</a> is a great choice for this purpose, providing scalable and manageable workflows.</p>
-<img src="/images/ios/airflow_test_data_ingestion.png" width=800>
-<figcaption>Fig. A sample DAG in Airflow UI.</figcaption>
+<p><img src="/images/ios/airflow_test_data_ingestion.png" ZgotmplZ="width: 800px"/>
+<figcaption>Fig. A sample DAG in Airflow UI.</figcaption></p>
 <p>However, for iOS development, using Airflow may not be common due to unfamiliarity with Cloud-related tasks. Instead, we can use a Git-based solution as the desired ETL pipelines are fairly simple.</p>
-<h3 id="git-based-etl-pipelines-to-ingest-data">Git-based ETL Pipelines to Ingest Data</h3>
+<h3 id="33-git-based-etl-pipelines-to-ingest-data">3.3. Git-based ETL Pipelines to Ingest Data</h3>
 <p>We create a dedicated Git repo to store test data, referred to as the “data repo”. When calculating the stats, we also store the result in this repo. Each change (ie. storing test data, or updating stats) corresponds to a Git commit.</p>
 <p>A benefit of this Git-based approach is that engineers can easily intervene in the quarantine process. If a test suddenly becomes flaky, for instance, but its success rate is not yet updated, engineers can manually alter the stats data (ex. setting its success rate to 0.1) so that the quarantine takes effect immediately.</p>
 <h4 id="receiving-submission">Receiving submission</h4>
@@ -176,8 +176,8 @@ if (!doNotTrack) {
 <p>The stats calculation can be easily done with <a href="https://pandas.pydata.org">Pandas</a>, a powerful Python library that simplifies the process of data analysis.</p>
 <p><strong>Loading Data into a DataFrame</strong></p>
 <p>When loading data into a DataFrame, we aggregate data over a specified period, such as the last 3 days, to gain a comprehensive view. The DataFrame structure resembles the following:</p>
-<img src="/images/ios/df_prefilled.png" width=600>
-<figcaption>Fig. DataFrame of aggregated data.</figcaption>
+<p><img src="/images/ios/df_prefilled.png" ZgotmplZ="width: 600px"/>
+<figcaption>Fig. DataFrame of aggregated data.</figcaption></p>
 <p>To achieve this, here&rsquo;s a sample Python code snippet to load data from corresponding JSON files, fill it with metadata, and concatenate the DataFrames:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">glob</span>
@@ -225,8 +225,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1"># Export data to json file</span>
 </span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stats/ui_tests.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df_stats</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;success_rate&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/images/ios/df_stats.png" width=270>
-<figcaption>Fig. DataFrame of the calculated stats.</figcaption>
+</span></span></code></pre></div><p><img src="/images/ios/df_stats.png" ZgotmplZ="width: 270px"/>
+<figcaption>Fig. DataFrame of the calculated stats.</figcaption></p>
 <p>The output of this analysis is a JSON representation of the test success rates within the project, structured as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;Tests/TestCase/testA1&#34;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
@@ -244,7 +244,7 @@ if (!doNotTrack) {
 </span></span></code></pre></div><h4 id="avoiding-git-conflicts">Avoiding Git conflicts</h4>
 <p>Given that a change in the data repo may come from different sources (an ingestion job, an analysis job, or a repo clean task), it’s essential to mitigate the risk of Git conflicts, especially when these jobs run concurrently.</p>
 <p>One approach is to perform a pull-rebase prior to pushing changes. Another simpler solution is to set up job schedules at different times. For instance, we can schedule the ingestion job to run at the start of an hour (<code>0 * * * *</code>) and the analysis job to run 30 minutes after that (<code>30 * * * *</code>). As each execution typically takes less than 5 minutes, this scheduling strategy minimizes the chance of Git conflicts.</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="4-conclusion">4. Conclusion</h2>
 <p>In this blog post, we&rsquo;ve explored the concept of test quarantine as a powerful strategy to deal with flaky tests in iOS development.</p>
 <p>The key components of such a test quarantine system include data ingestion, statistical analysis, and decision-making based on test success rates. The whole process from test data submission to stats generation is pretty much like an ETL pipeline, which can be solved by specialized tools such as Airflow or simply by a Git-based solution as mentioned.</p>
 <p>The introduction of the quarantine logic establishes an automatic feedback loop within the development process:</p>
@@ -284,24 +284,24 @@ if (!doNotTrack) {
 </article>
 <nav id="toc">
 <h4 class="toc-header">Table of Contents</h4>
-<div><a href="#introduction" toc_id="introduction">Introduction</a></div>
-<div><a href="#the-need-for-test-quarantine" toc_id="the-need-for-test-quarantine">The Need for Test Quarantine</a></div><div class="toc-section">
+<div><a href="#1-introduction" toc_id="1-introduction">1. Introduction</a></div>
+<div><a href="#2-the-need-for-test-quarantine" toc_id="2-the-need-for-test-quarantine">2. The Need for Test Quarantine</a></div><div class="toc-section">
 
-<div><a href="#the-challenge-of-flaky-tests" toc_id="the-challenge-of-flaky-tests">The Challenge of Flaky Tests</a></div>
-<div><a href="#what-is-test-quarantine" toc_id="what-is-test-quarantine">What is Test Quarantine?</a></div>
-<div><a href="#the-importance-of-test-quarantine" toc_id="the-importance-of-test-quarantine">The Importance of Test Quarantine</a></div></div>
-<div><a href="#designing-effective-test-quarantine-logic" toc_id="designing-effective-test-quarantine-logic">Designing Effective Test Quarantine Logic</a></div><div class="toc-section">
+<div><a href="#21-the-challenge-of-flaky-tests" toc_id="21-the-challenge-of-flaky-tests">2.1. The Challenge of Flaky Tests</a></div>
+<div><a href="#22-what-is-test-quarantine" toc_id="22-what-is-test-quarantine">2.2. What is Test Quarantine?</a></div>
+<div><a href="#23-the-importance-of-test-quarantine" toc_id="23-the-importance-of-test-quarantine">2.3. The Importance of Test Quarantine</a></div></div>
+<div><a href="#3-designing-effective-test-quarantine-logic" toc_id="3-designing-effective-test-quarantine-logic">3. Designing Effective Test Quarantine Logic</a></div><div class="toc-section">
 
-<div><a href="#overview" toc_id="overview">Overview</a></div>
-<div><a href="#calculating-test-success-rates" toc_id="calculating-test-success-rates">Calculating Test Success Rates</a></div>
-<div><a href="#git-based-etl-pipelines-to-ingest-data" toc_id="git-based-etl-pipelines-to-ingest-data">Git-based ETL Pipelines to Ingest Data</a></div><div class="toc-section">
+<div><a href="#31-overview" toc_id="31-overview">3.1. Overview</a></div>
+<div><a href="#32-calculating-test-success-rates" toc_id="32-calculating-test-success-rates">3.2. Calculating Test Success Rates</a></div>
+<div><a href="#33-git-based-etl-pipelines-to-ingest-data" toc_id="33-git-based-etl-pipelines-to-ingest-data">3.3. Git-based ETL Pipelines to Ingest Data</a></div><div class="toc-section">
 
 <div><a href="#receiving-submission" toc_id="receiving-submission">Receiving submission</a></div>
 <div><a href="#ingesting-data" toc_id="ingesting-data">Ingesting data</a></div>
 <div><a href="#analyzing-data" toc_id="analyzing-data">Analyzing data</a></div>
 <div><a href="#keeping-the-data-repo-lean" toc_id="keeping-the-data-repo-lean">Keeping the data repo lean</a></div>
 <div><a href="#avoiding-git-conflicts" toc_id="avoiding-git-conflicts">Avoiding Git conflicts</a></div></div>
-<div><a href="#conclusion" toc_id="conclusion">Conclusion</a></div>
+<div><a href="#4-conclusion" toc_id="4-conclusion">4. Conclusion</a></div>
 <div><a href="#resources" toc_id="resources">Resources</a></div></nav><script src="/scripts/toc.js"></script>
 </div>
 

@@ -13,7 +13,7 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -76,18 +76,18 @@ if (!doNotTrack) {
   <p><span class="point">1</span> Khi mình join team, công ty mình host các projects trên Github. Một dev mới vào công ty sẽ được add tài khoản Github cá nhân mình vào tài khoản organization của công ty.
 Lúc ấy, trên Github profile của bạn sẽ hiển thị membership với công ty (bạn phải public cái membership thì người khác mới thấy được nha). Nếu bạn làm cho công ty nào ok, hoặc thuộc dạng top-notch trong nước/khu vực, thì Github profile của bạn sẽ có-vẻ đẹp hơn một tí.</p>
 <p>Ngoài ra, cái biểu đồ contribution trên Github cá nhân của bạn nhìn sẽ xanh xanh, đẹp hơn chút. Nhớ vào <em>contribution settings</em> chỉnh để tính luôn cả <em>private contributions</em> (tức là contribution vào các <em>private repo</em>) nha. Dưới đây là <a href="https://github.com/trinhngocthuyen?tab=overview&amp;from=2018-01-01&amp;to=2018-12-31">contribution của mình trong năm 2018</a>:
-<img src="/images/misc/github-contribution-2018.png" alt="2018 contribution"></p>
+<img src="/images/misc/github-contribution-2018.png"/></p>
 <p>Như bạn thấy đấy, thứ 7 cũng có màu xanh xanh nha, thấy làm việc cần mẫn chưa 😆!? Mình join công ty là cuối tháng 2, đến cuối tháng 8 là hết probation (ừm, probation có 6 tháng chớ mấy 😜). Xong tới cuối tháng 9 thì mấy ô xanh vơi hết. Hổng phải do pass probation rồi nên mình phè phỡn đâu mọi người. Lúc này là thời điểm migrate sang Gitlab xong. Team vẫn  miệt mài push code và đi review code&hellip; nhưng trên Gitlab. Vì Gitlab công ty xài là self-hosted domain, cần VPN để truy cập, và mỗi người xài theo email account của công ty; nên ai cũng mong là <em>&ldquo;con ong làm mật yêu hoa&rdquo;</em>, chứ không kỳ vọng sẽ để lại dấu ấn trên public profile. Sau khi migrate sang Gitlab thì <a href="https://github.com/trinhngocthuyen?tab=overview&amp;from=2019-01-01&amp;to=2019-12-31">contributions của mình trong năm 2019</a> như thế này đây 😂:
-<img src="/images/misc/github-contribution-2019.png" alt="2019 contribution"></p>
+<img src="/images/misc/github-contribution-2019.png"/></p>
 <p><span class="point">2</span> Là một Github user, mới đầu chuyển sang dùng Gitlab mình thấy rất khó chịu vì cái UI/UX của nó. Cho đến thời điểm hiện tại, mình đã bớt khó chịu hơn. Tuy nhiên, cá nhân mình nghĩ là nó có thể làm tốt hơn. Lấy ví dụ về <strong>call to action (CTA)</strong> giữa Github và Gitlab:</p>
 <ul>
 <li>Đối với mình, thiết kế của Github có <em>call to action</em> rất rõ ràng. Ví dụ, khi bạn review 1 cái <em>pull request (PR)</em> của người khác, ngoài việc để lại comment trên code của người ta, hành động sau chót thường là <em>approve PR</em> hoặc <em>request changes</em>. Cái nút <strong>&ldquo;Review changes&rdquo;</strong> màu xanh lè nằm ở góc phải, vẫn cố định (sticky) ở đó khi scroll xuống, rất tiện lợi cho cả 2 chức năng trên vì có độ chú ý cao.
-<img src="/images/misc/github-cta-review-changes.png" alt="Github CTA"></li>
+<img src="/images/misc/github-cta-review-changes.png"/></li>
 <li>Khi mới đầu chuyển sang Gitlab, mình gặp 3 khó khăn chính:
 <ul>
 <li><em>Không kiếm ra cái nút để approve merge request (MR)</em>: nhiều thông tin quá 😞. Mà mấy cái nút này nó không có cố định (sticky) khi scroll nên kéo lên kéo xuống một hồi là phải đi kiếm lại cái nút.</li>
 <li><em>Cái nút để approve 1 cái merge request nó thay đổi trạng thái hoài</em>: Lúc chưa có ai approve thì nó có màu nền xanh dương; còn lúc có người khác approve rồi thì nó nền trắng, viền xanh dương, ghi chữ <em>&ldquo;approve additionally&rdquo;</em>. Đứng dưới góc nhìn người dùng, mình méo quan tâm là &ldquo;additionally&rdquo; hay không. Mình chỉ muốn approve cái merge request và muốn đảm bảo là mình đã bấm đúng nút.
-<img src="/images/misc/gitlab-cta-states.png" alt="Gitlab CTA"></li>
+<img src="/images/misc/gitlab-cta-states.png"/></li>
 <li><em>Nhấn nhầm nút</em>: khi đã có người approve MR rồi, cái nút approve nó chuyển sang nền trắng viền xanh, còn cái nút <em>merge</em> lúc đó có nền xanh lá cây. Lướt qua xung quanh thì cái nút <em>merge</em> đó là có CTA mạnh nhất. Mình theo thói quen, cứ đinh ninh cái nút xanh xanh là cái nút approve. Nhấn cái phập, thế là merge cái MR của người ta luôn 😂. Cái này mình bị 1-2 lần mới quen ak&hellip;<br>
 &ldquo;Ba cái đồ cẩu thả&rdquo; - Ừm, mấy người cứ phán xét tui đi 👊. Nhưng làm theo quán tính mà bị sai như thế này ngụ ý rằng cái UX chưa được tự nhiên cho lắm.</li>
 </ul>

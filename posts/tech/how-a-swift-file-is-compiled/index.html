@@ -13,7 +13,7 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -77,7 +77,7 @@ if (!doNotTrack) {
 <p>This post is about how the compiler translates a single Swift file into lower-level code. In other words, we are interested in what happens when we run this command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xcrun swiftc main.swift
 </span></span></code></pre></div><h3 id="compilation-pipeline">Compilation pipeline</h3>
-<p><img src="/images/ios/swift_build_pipeline.png" alt="png">
+<p><img src="/images/ios/swift_build_pipeline.png"/>
 <figcaption>Source: <a href="http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf">http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf</a></figcaption></p>
 <p>[1] <strong>Parse</strong>. First, the compiler parses the source code and build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract syntax tree (AST)</a>. We could see the AST by the option <code>-dump-ast</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xcrun swiftc -dump-ast main.swift

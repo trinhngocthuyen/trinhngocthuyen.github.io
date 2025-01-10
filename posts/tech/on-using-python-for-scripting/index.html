@@ -14,7 +14,7 @@ The first Python code Initially, scripting wasn&rsquo;t a prominent aspect of my
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -90,7 +90,7 @@ if (!doNotTrack) {
 <p>As you know, Ruby is well known for tooling in iOS. This is mainly driven by CocoaPods and Fastlane, the big two rubyish open source tools. The latter, in particular, stood out for CI/CD due to its various actions and plugins. Some non-trivial tasks such as dealing with code signing, working with TestFlight and AppStore submission, were well supported by Fastlane. Thus, to utilize those powers, a hybrid approach was adopted, combining both Python and Ruby.</p>
 <h4 id="python-and-its-power-in-data-analysis">Python and its power in data analysis</h4>
 <p>However, Python outshined Ruby in some cases. In tasks like build time optimization, where data visualization was essential, Python excelled. For instance, when analyzing Xcode parallel build tasks, we created Gantt charts to gain insights about how target dependencies impacted the overall build time. Python&rsquo;s rich data visualization libraries made this possible, while Ruby&rsquo;s equivalent options were lacking. In fact, there’s a whole data community out there working on this area. By embracing Python, we seamlessly delved into visualization tasks, a pivotal aspect for driving our efforts to enhance build times. Following is the example of visualizing project build time.</p>
-<p><img src="/images/ci/build_time_gantt_chart.png" alt="Build time gantt chart">
+<p><img src="/images/ci/build_time_gantt_chart.png"/>
 <figcaption>Figure 1: The gantt chart of project build time. This chart is made by <a href="https://plotly.com/">plotly</a> with just a few lines of Python code.</figcaption></p>
 <p>Python also empowered us in data analysis tasks. For example, identifying top time-consuming targets, or analyzing app size breakdowns, or calculating test success rates to see how flaky tests were. Implementing such features in Ruby would be really troublesome. Even when you endeavor to make it work, there are plenty of cases you need to handle, for instance, when your data is not clean enough. Meanwhile, <a href="https://pandas.pydata.org"><code>pandas</code></a>, a renowned Python package tailored for data analysis, just works smoothly and effortlessly.</p>
 <h4 id="insightful-cicd">Insightful CI/CD</h4>

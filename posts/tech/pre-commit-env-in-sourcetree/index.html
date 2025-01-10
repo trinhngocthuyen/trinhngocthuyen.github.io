@@ -14,7 +14,7 @@ It had worked seamlessly for me until I committed code using SourceTree. Just to
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -74,11 +74,11 @@ if (!doNotTrack) {
 </div>
   
 </header>
-  <p>In the <a href="https://www.notion.so/pre-commit-Environment-Issue-in-SourceTree-fbda946b7f43471aab627eae56f841e2?pvs=21">previous post</a>, I mentioned <a href="https://pre-commit.com">pre-commit</a> as a powerful tool to lint and format in a project.</p>
+  <p>In the <a href="/posts/tech/pre-commit">previous post</a>, I mentioned <a href="https://pre-commit.com">pre-commit</a> as a powerful tool to lint and format in a project.</p>
 <p>It had worked seamlessly for me until I committed code using SourceTree. Just to clarify, I predominantly use git on terminal. I only use a GUI app such as SourceTree to view the diff, or to stage selective chunks in a file (which is a bit difficult to achieve when using terminal). Therefore, the issue went unnoticed during my usual workflow.</p>
 <h3 id="sourcetree-and-ruby-environment">SourceTree and Ruby environment</h3>
 <p>The problem happened when pre-commit attempted to install Rubocop for Ruby linting, as highlighted in the error log from SourceTree.</p>
-<p><img src="/images/misc/pre_commit_sourcetree_error.jpg" alt="Figure 1. Error log encountered when committing code in SourceTree."></p>
+<img src="/images/misc/pre_commit_sourcetree_error.jpg"/>
 <figcaption>Figure 1. Error log encountered when committing code in SourceTree.</figcaption>
 <p>The log revealed that it was using the System Ruby (version 2.6). This is unexpected as I manage Ruby versions with <a href="https://github.com/rbenv/rbenv">rbenv</a>. Running <code>which ruby</code> on terminal showed a different path: <code>/Users/thuyen/.rbenv/shims/ruby</code>.</p>
 <h3 id="investigating-the-path">Investigating the PATH</h3>
@@ -91,7 +91,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">which ruby <span class="o">&amp;&amp;</span> which python <span class="c1"># &lt;--- INSERTED</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">...
-</span></span></code></pre></div><p><img src="/images/misc/pre_commit_sourcetree_print_path.jpg" alt="Figure 2. Echoing the PATH value along with the resolved paths of ruby and python."></p>
+</span></span></code></pre></div><img src="/images/misc/pre_commit_sourcetree_print_path.jpg"/>
 <figcaption>Figure 2. Echoing the PATH value along with the resolved paths of <code>ruby</code> and <code>python</code>.</figcaption>
 <p>Meanwhile, the PATH we see when running on terminal (ie. creating a shell session) is as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/opt/homebrew/opt/python@3.10/libexec/bin:/opt/bin:/Users/thuyen/.rbenv/shims:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/thuyen/.rugby/clt

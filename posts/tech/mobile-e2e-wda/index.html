@@ -17,7 +17,7 @@ Here’s a simple code snippet to start your tests. For simplicity, we’ll run 
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -97,17 +97,17 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="n">wd</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;accessibility id&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Close&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 </span></span></code></pre></div><p>In this test, we create a WebDriver with the remote URL set to <code>http://127.0.0.1:4723</code>, which is the default Appium server port. The Appium server can be started using the <code>appium</code> or <code>appium server</code> command.</p>
 <p>With the given WebDriver, we can perform various actions, such as activating/launching the app, finding a certain UI element and click it. These actions will be reflected on the simulator.</p>
-<img src="/images/e2e/wda_first_test.gif" style=""/>
+<img src="/images/e2e/wda_first_test.gif"/>
 <h3 id="12-examining-appium-logs">1.2. Examining Appium Logs</h3>
 <p>Looking at relevant Appium logs, we notice that most of the requests to Appium were forwarded to another server on port <strong>8100</strong>. For example, in the <code>find_element</code> call with accessibility id &ldquo;Settings&rdquo;, Appium sent a request at the following endpoint <code>http://127.0.0.1:8100/session/86A3C426-6434-4CF1-9264-B022ACCE2A9D/element</code> to get the response, transform it, and then return to the client.</p>
-<img src="/images/e2e/wda_proxy.png" style=""/>
+<img src="/images/e2e/wda_proxy.png"/>
 <p>The server on port 8100 is, in fact, a WebDriver server, a critical component for iOS E2E testing.</p>
 <h3 id="13-webdriveragent-wda">1.3. WebDriverAgent (WDA)</h3>
 <p>When running tests with Appium, you will notice another app called WebDriverAgentRunner installed alongside your app under testing (AUT). It is sometimes called <strong>WebDriverAgent</strong>, or <strong>WDA</strong> for short. This app is a <a href="https://w3c.github.io/webdriver/webdriver-spec.html">WebDriver server</a> implementation that allows you to launch &amp; kill apps, tap &amp; scroll views, or confirm view presence on a screen.</p>
 <p>When running UI tests from Xcode, you also see the presence of an additional app AppUITests-Runner. This UITests-Runner app is very similar to the WDA in the sense that both use XCTest framework and Apple’s API to execute commands on a device. The main difference is that WDA establish a server that follows the <a href="https://w3c.github.io/webdriver/#endpoints">WebDriver spec</a>.</p>
 <p>You can build the WDA from <a href="https://github.com/appium/webdriveragent">https://github.com/appium/webdriveragent</a>, or from the project under <code>~/.appium/node_modules/appium-xcuitest-driver/node_modules/appium-webdriveragent</code> (if you already installed Appium with the xcuitest driver), or simply by running <code>appium driver run xcuitest build-wda --name &lt;SimulatorName&gt;</code></p>
 <p>Upon launch, WDA exposes two ports: <strong>8100</strong> and <strong>9100</strong>.</p>
-<img src="/images/e2e/wda_ports.png" style=""/>
+<img src="/images/e2e/wda_ports.png"/>
 <p>Port 8100 is used for <strong>processing WebDriver commands</strong> (queries and actions). You can quickly check the status at <code>http://localhost:8100/status</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl http://localhost:8100/status
 </span></span><span class="line"><span class="cl">
@@ -148,21 +148,21 @@ if (!doNotTrack) {
 <h3 id="21-wda-and-remote-testing">2.1. WDA and Remote Testing</h3>
 <p>As mentioned in the <a href="/posts/tech/mobile-e2e-overview">previous post</a>, third-party device farm solutions like Sonic or Appium Device Farm not only help manage devices (e.g., determining whether one is available or occupied), but also allow you to operate the device through a web UI. The underlying implementation turns out to be simple. Since both tools function similarly, let&rsquo;s explore how Appium Device Farm achieves this functionality.</p>
 <p>As follows is the web UI when occupying a physical device. The web mirrors what’s displaying on the phone.</p>
-<img src="/images/e2e/wda_preview.png" style=""/>
+<img src="/images/e2e/wda_preview.png"/>
 <p>Tapping the Google Maps app and examining Appium logs, we notice that behind the scenes, the tool sends a request to WDA at <a href="https://github.com/appium/WebDriverAgent/blob/a1b5af60d5257850dac989dff3fdce2ec459efcd/WebDriverAgentLib/Commands/FBTouchActionCommands.m#L25">this endpoint</a>: <code>/session/{session_id}/actions</code>.</p>
-<img src="/images/e2e/wda_actions.png" style=""/>
+<img src="/images/e2e/wda_actions.png"/>
 <p>We can simulate the same request using <code>curl</code>, and then observe the same result, ie. the Google Maps app being activated.</p>
 <p>Similarly, we can mimic other gestures by inspecting the WDA endpoint of the corresponding actions and their payloads, then performing <code>curl</code> requests accordingly. The following demonstrates a drag gesture on the map. As you can see, the map on the web UI reflects the drag action as soon as the request is fired.</p>
-<img src="/images/e2e/wda_actions_drag.gif" style=""/>
+<img src="/images/e2e/wda_actions_drag.gif"/>
 <p>In summary, when you interact with a device via the web UI, <strong>your gestures are translated into a series of <a href="https://w3c.github.io/webdriver/#actions">W3C actions</a></strong>, which are then fed to WDA. Native iOS gestures can be mapped to a chain of web actions. For example, a long press gesture at coordinates (x, y) could be represented as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pointer move to (x, y) → pointer down → pause 500ms → pointer up
 </span></span></code></pre></div><p>It’s important to note that what you see on the web UI is just a live stream of what&rsquo;s happening on the phone, not direct interaction with the device. This means the display may not immediately reflect your interactions. For example, in Appium Device Farm, while slowly dragging the map, it doesn&rsquo;t move until a few seconds later, as shown in the GIF below. This delay occurs because the action chain is only submitted once the pointer is released. This logic is just a design choice of the tool, and of course, could be adjusted to improve responsiveness.</p>
-<img src="/images/e2e/wda_actions_delayed.gif" style=""/>
+<img src="/images/e2e/wda_actions_delayed.gif"/>
 <h3 id="22-launching-wda">2.2. Launching WDA</h3>
 <h4 id="via-xcodebuild">Via xcodebuild</h4>
 <p>By default, without any special capabilities, Appium starts WebDriverAgent (WDA) using xcodebuild and waits until the WDA server is up and running.</p>
-<p><img src="/images/e2e/wda_appium_xcodebuild.png" style=""/>
-<img src="/images/e2e/wda_xcodebuild.png" style=""/></p>
+<p><img src="/images/e2e/wda_appium_xcodebuild.png"/>
+<img src="/images/e2e/wda_xcodebuild.png"/></p>
 <p>This approach is simple, but not ideal for large-scale usage due to several reasons. First, the overhead time for xcodebuild to build and test the WDA project can be long, sometimes up to 15 seconds, even when a build cache is available. Additionally, xcodebuild is not a lightweight process, typically consuming around 120MB of memory per instance. This results in a total of 1GB for 10 devices.</p>
 <p>Another challenge is that we need to properly setup provisioning profiles and certificates on the host machine in order to build the WDA project on real devices. This introduces additional maintenance cost for device farm operations.</p>
 <p>A better approach is to pre-install WDA on the device and launch it without xcodebuild. Appium provides capabilities to test with a pre-installed WDA (see: <a href="https://appium.github.io/appium-xcuitest-driver/latest/guides/run-preinstalled-wda">here</a>), which relies on simctl/devicectl under the hood.</p>
@@ -176,7 +176,7 @@ if (!doNotTrack) {
 <div class="note">Note that with iOS 17+, you need to remove XCTest-related frameworks under <code>Frameworks/*.framework</code> to successfully launch WDA via <code>devicectl</code> (see: <a href="https://github.com/appium/appium-xcuitest-driver/blob/master/docs/guides/run-preinstalled-wda.md#additional-requirement-for-ios-17tvos17">here</a>).</div>
 <p>A best practice when launching WDA is to stream WDA logs, which can be redirected to a dedicated file for debugging purposes. This can be done using the <code>--console</code> option in simctl and devicectl:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ xcrun simctl launch --terminate-running-process --console &lt;SIMULATOR&gt; com.facebook.WebDriverAgentRunner.xctrunner
-</span></span></code></pre></div><img src="/images/e2e/wda_console_log.png" style=""/>
+</span></span></code></pre></div><img src="/images/e2e/wda_console_log.png"/>
 <h4 id="via-cross-platform-tools">Via cross-platform tools</h4>
 <p>While the previous options are decent, they are specific to macOS. If you are using a Linux server/machine to host iOS devices, there are a few cross-platform alternatives to explore. <a href="https://github.com/SonicCloudOrg">Sonic</a> has developed its own in-house wrapper, <a href="https://github.com/SonicCloudOrg/sonic-ios-bridge">sonic-ios-bridge</a> (sib), which simplifies the process of launching WDA with the <code>sib run wda</code> command. However, this tool is only compatible with iOS versions prior to 17 (as of Jan 2025). This limitation is due to breaking changes in the communication mechanism in iOS 17, shifting from TCP-based communication to QUIC + RemoteXPC (see: <a href="https://github.com/doronz88/pymobiledevice3/blob/master/misc/RemoteXPC.md#overview">here</a>).</p>
 <div class="quote">Starting at iOS 17.0, Apple refactored a lot in the way iOS devices communicate with the macOS. Up until iOS 16, The communication was TCP based (using the help of <code>usbmuxd</code> for USB devices) with TLS (for making sure only trusted peers are able to connect)</div>

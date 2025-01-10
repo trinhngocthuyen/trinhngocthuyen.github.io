@@ -13,7 +13,7 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -170,12 +170,12 @@ if (!doNotTrack) {
 <p>An HTTP/HTTPS remote that allows us to fetch successfully looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://&lt;username&gt;:&lt;password&gt;@github.com/trinhngocthuyen/private-repo
 </span></span></code></pre></div><p>This turns out to be the approach Gitlab CI/CD adopts. If you run <code>git remote -v</code> in a Gitlab job, you should see the URL as follows:</p>
-<p><img src="/images/misc/gitlab_remote.png" alt="gitlab_remote.png"></p>
+<img src="/images/misc/gitlab_remote.png"/>
 <h4 id="using-httpextraheader-config">Using <code>http.extraheader</code> config</h4>
 <p><a href="https://github.com/actions/checkout">Github Checkout Action</a> adopts a different approach. They use the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpextraHeader"><code>http.extraheader</code></a> config to carry the credentials for authentication. And the remote URL is just a bare URL.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://github.com/trinhngocthuyen/private-repo
 </span></span></code></pre></div><p>Below are the logs from the checkout step. Taking a closer look, we notice the command that sets up the authentication. The masked content <code>***</code> is actually the base64 encoded string of <code>x-access-token:&lt;token&gt;</code> (see: <a href="https://github.com/actions/checkout/blob/v3/src/git-auth-helper.ts#L57-L60">src/git-auth-helper.ts#L57-L60</a>).</p>
-<p><img src="/images/misc/github_extraheader.png" alt="github_extraheader.png"></p>
+<img src="/images/misc/github_extraheader.png"/>
 <p>You can easily try out this approach on your local by:</p>
 <ul>
 <li>First, <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">creating an access token</a></li>
@@ -219,7 +219,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">09:22:05.547216 run-command.c:655       trace: run_command: git maintenance run --auto --no-quiet
 </span></span><span class="line"><span class="cl">09:22:05.565672 git.c:460               trace: built-in: git maintenance run --auto --no-quiet
 </span></span></code></pre></div><p>It is <code>git credential-osxkeychain</code> that does the magic in MacOS. In the first successful fetch, the command <code>git credential-osxkeychain store</code> saves the credentials to Keychain. In subsequent uses, it runs <code>git credential-osxkeychain get</code> to retrieve the credentials for authentication.</p>
-<p><img src="/images/misc/git_keychain_cache.png" alt="git_keychain_cache.png"></p>
+<img src="/images/misc/git_keychain_cache.png"/>
 <p>You can easily verify this by checking the corresponding item in Keychain Access, or by running <code>git credential-osxkeychain get</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;host=github.com\nprotocol=https&#34;</span> <span class="p">|</span> git credential-osxkeychain get
 </span></span><span class="line"><span class="cl"><span class="nv">password</span><span class="o">=</span>ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -15,7 +15,7 @@ Instead of rejecting them, CocoaPods provided the support for plugins." />
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -87,7 +87,7 @@ if (!doNotTrack) {
 </span></span></code></pre></div><p>This <code>cocoapods_plugin.rb</code> file is the entrypoint to load the actual implementation of the plugin. Therefore, most of the time you will see the content just like <a href="https://github.com/CocoaPods/cocoapods-search/blob/master/lib/cocoapods_plugin.rb">this</a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;cocoapods-search/command&#34;</span> <span class="c1"># &lt;-- Actual implementation resides in cocoapods-search/command.rb</span>
 </span></span></code></pre></div><p>To list the installed plugins, you can run <code>pod plugins installed</code>.</p>
-<p><img src="/images/ios/cli_pod_plugins.png" alt="Figure 1. Listing installed plugins"></p>
+<img src="/images/ios/cli_pod_plugins.png"/>
 <figcaption>Figure 1. Listing installed plugins</figcaption>
 <p>With a normal gem (ex. <code>xcodeproj</code>), you can magically turn it into a plugin by creating a <code>cocoapods_plugin.rb</code> file under its lib directory. Then, this gem should appear in the console when listing the installed plugins.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Create a file in /Users/thuyen/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/xcodeproj-1.22.0/lib/cocoapods_plugin.rb</span>

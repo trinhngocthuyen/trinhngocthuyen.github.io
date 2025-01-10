@@ -13,7 +13,7 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -100,7 +100,7 @@ conform to that protocol with <code>sourceLanguage</code> as <code>VI_Language</
 VI_EN_Translator does not conform to protocol TranslatorType”</em> despite the fact
 that <code>VI_Language</code> is a subclass of <code>Language</code>. I don’t want to change
 sourceLanguage to Language and cast it to <code>VI_Language</code> every I use it.</p>
-<img src = "/images/ios/concrete_type_protocol_error.png">
+<img src="/images/ios/concrete_type_protocol_error.png"/>
 <p>Not sure wheter we should blame Swift/XCode/Apple for that. Here’s a tip to
 overcome this issue:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">VI_EN_Translator</span><span class="p">:</span> <span class="n">TranslatorType</span> <span class="p">{</span>

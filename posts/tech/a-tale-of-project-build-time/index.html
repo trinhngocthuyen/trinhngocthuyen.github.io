@@ -14,7 +14,7 @@ Background The process of building an iOS project involves multiple steps, inclu
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.06eea860f509d3dc31484b7bcdd12f792a41b76f22efdf78ad0557e8e1c8992b.css">
+<link rel="stylesheet" href="/sass/main.a38173796796b77c238fd10b11af22f6dacb8dcbb1f48eb175e9c79692a9b489.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -89,7 +89,7 @@ if (!doNotTrack) {
 <h3 id="tracking-metrics">Tracking metrics</h3>
 <p>The journey to improving build times begins with understanding the current state. Measuring build times and consistently tracking this data is a prerequisite for evaluating any approach. If the average clean build time over a week is, for instance, 10 minutes, this becomes the baseline for improvement. The goal is to bring this number under 10 minutes. Failing to achieve this indicates an unsuccessful solution.</p>
 <p>One way to measure build time is by timestamping the start and end of actions and calculating time differences. This can be done using Xcode&rsquo;s pre-actions and post-actions support. Additionally, build times for specific targets can be measured by adding run scripts to their build phases. This data enables visualization of build time breakdowns, as shown in the example Gantt chart.</p>
-<p><img src="/images/ci/build_time_gantt_chart.png" alt="Build time gantt chart">
+<p><img src="/images/ci/build_time_gantt_chart.png"/>
 <figcaption>Figure 1. Build time gantt chart.</figcaption></p>
 <p>Note that scripts for per-target tracking are best suited for CI. Running these scripts for each target during incremental builds would be unnecessary.</p>
 <h4 id="monitoring-build-time-trends">Monitoring build time trends</h4>
@@ -101,7 +101,7 @@ if (!doNotTrack) {
 <h4 id="gaining-insights-from-tracking-metrics">Gaining insights from tracking metrics</h4>
 <p>Once data is collected, we can do some exploratory data analysis (EDA) to gain insights.</p>
 <p>In the gantt chart earlier, there’s a period where Xcode’s build parallelism was under-utilized. During that time, only 2 targets were compiled despite Xcode’s capability to handle up to 10 parallel build processes. This bottleneck suggests ineffective dependency management that fails to leverage parallelism.</p>
-<p><img src="/images/ci/build_time_parallelism_not_utilized.png" alt="Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized."></p>
+<img src="/images/ci/build_time_parallelism_not_utilized.png"/>
 <figcaption>Figure 2. Build time gantt chart. The red square indicates that Xcode parallelism was not utilized.</figcaption>
 <h3 id="modularization">Modularization</h3>
 <p>Modularizing code into smaller modules, often called pods in CocoaPods’s terms, can improve incremental build times. In our project, we organized code based on functionality, with each app function belonging to a tech family (ex. FoodModule in the Deliveries team). This way of structuring code also helps clarify code ownership.</p>
@@ -218,7 +218,7 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <h3 id="using-cocoapods-binary-cache">Using cocoapods-binary-cache</h3>
 <p>In late 2019, we initiated an idea to improve build time by caching frameworks for CocoaPods-based projects. We developed the MVP and open-sourced the project at <a href="https://github.com/grab/cocoapods-binary-cache#">https://github.com/grab/cocoapods-binary-cache</a>.</p>
 <p>This plugin integrates prebuilt frameworks during CocoaPods installation, bypassing the need to compile certain pods from source. The following figure captures how the Xcode project looks like after integrating the prebuilt frameworks.</p>
-<p><img src="/images/ci/cp_bin_cache_project_structure.png" alt="Figure 3. Project structure after integrating prebuilt frameworks."></p>
+<img src="/images/ci/cp_bin_cache_project_structure.png"/>
 <figcaption>Figure 3. Project structure after integrating prebuilt frameworks.</figcaption>
 <p>This idea gave rise to a significant improvement in project build time.</p>
 <p>At first, we adopted this solution for 3rd-party pods only. Meanwhile, development pods were integrated using source code as usual. Given a large number of 3rd-party pods in the project, the reduction was recorded to be up to 7 minutes. This was translated to roughly 30% improvement. As we rarely updated 3rd party pods, the cache hit rate stayed high which resulted in a consistent improvement.</p>
@@ -227,7 +227,7 @@ Note that <code>SWIFT_OPTIMIZATION_LEVEL</code> is for Swift compilation while <
 <li>For local environment, we needed to support both architectures (x86_64 for simulators and arm64 for devices).</li>
 <li>For CI, we only need x86_64 cache to shorten the cache deployment cycle.</li>
 </ul>
-<p><img src="/images/ci/build_time_gantt_chart_cp_bin_cache.png" alt="Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant."></p>
+<img src="/images/ci/build_time_gantt_chart_cp_bin_cache.png"/>
 <figcaption>Figure 4. Build time gantt chart when there’s cache for 3rd-party pods. The reduction has been significant.</figcaption>
 <p>After that, we focused on enhancing the plugin to handle development pods. The rollout on CI also displayed a remarkable result. However, maintaining a high cache hit rate was a challenge.</p>
 <p>First, if an engineer makes a change in a module, the cache for that module is invalidated. The cache invalidation also occurs in its dependents. If such a change takes place in a core module, the cache hit rate would not be high. In fact, we saw this very often. In our project, there are some tech-family-related pods for resources (ex. DeliveriesResources, PaymentResources). We used RSwift to generate strong-typed resources (strings, images, etc.). Many business-logic modules depend on resources modules, for access to their strings and icons. As a consequence, whenever an engineer updated localizations or assets, the cache hit rate fell low.</p>
