@@ -1,20 +1,12 @@
 (function () {
-  function toggleClass(element, className) {
-    if (!element || !className) {
-      return;
+  function toggle(e) {
+    if (e) {
+      e.dataset.expanded = (e.dataset.expanded != 'true');
     }
-
-    var classString = element.className, nameIndex = classString.indexOf(className);
-    if (nameIndex == -1) {
-      classString += ' ' + className;
-    } else {
-      classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + className.length);
-    }
-    element.className = classString;
   }
 
   document.getElementById('menu-toggle').addEventListener('mousedown', function () {
-    toggleClass(document.getElementById('menu-toggle'), 'open');
-    toggleClass(document.querySelector('nav[role="navigation"]'), 'open');
+    toggle(document.getElementById('menu-toggle'));
+    toggle(document.querySelector('nav[role="navigation"] .menu-items'));
   });
 })();
