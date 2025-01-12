@@ -12,7 +12,7 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-<link rel="stylesheet" href="/sass/main.f0835d1b0f23b7fa336c8cfa41683c925d4710e555513af896d357174d862122.css">
+<link rel="stylesheet" href="/sass/main.0dd49a33cc3a2dfa02d8f0c87c8476e3d3eaca8823e6cf067d44ae5df949a389.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -31,325 +31,66 @@ if (!doNotTrack) {
 
   </head>
   <body class="" data-url="/">
-    <nav role="navigation">
-  <header role="banner">
-    <h1 id="logo">
-       <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
-    </h1>
-  </header>
-  <div id="menu-toggle" class="menu-toggle">
-    <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <line x1="3" y1="12" x2="21" y2="12" />
-  <line x1="3" y1="6" x2="21" y2="6" />
-  <line x1="3" y1="18" x2="21" y2="18" />
-</svg>
-</span>
-    <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <line x1="18" y1="6" x2="6" y2="18" />
-  <line x1="6" y1="6" x2="18" y2="18" />
-</svg>
-</span>
-  </div>
-  <ul>
-    <li class="menu-item"><a href="/posts/tech">Tech</a></li>
-    <li class="menu-item"><a href="/posts/misc">Misc (Tạp bút)</a></li>
-    <li class="menu-item"><a href="/projects">Projects</a></li>
-    <li class="menu-item"><a href="/about">About</a></li>
-  </ul>
-</nav>
 
-<script src="/scripts/menu.js"></script>
-    <main role="main">
 <div class="frontpage">
-  <p class="welcome">Welcome to</p>
-  <p class="title">Thuyen&#39;s corner</p>
-  
-  <img class="cover" src="/images/static/sea_cropped.png" width="100%"/>
-  
-</div>
-
-
-
-
-
-
-<ul class="post-item">
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/mobile-e2e-wda/">WebDriverAgent - The Heart of iOS E2E Testing</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Jan 09</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/mobile" class="tag">mobile</a>
-  <a href="/tags/e2e" class="tag">e2e</a>
-  <a href="/tags/testing" class="tag">testing</a>
-</div>
+  <div class="overlay"></div>
+  <div class="wrapper">
+    <div class="left">
+      <div class="upper">
+        <div class="welcome">Welcome to</div>
+        <div class="hero-title">THUYEN's</div>
+      </div>
+      <div class="lower">
+        <div class="hero-subtitle">corner</div>
+        <p class="hero-desc">where tech meets contemplation</p>
+        <section class="items">
+          <div class="item"><a href="/posts/tech">Tech Blog</a></div>
+          <div class="item"><a href="/posts/misc">Tạp Bút</a></div>
+          <div class="item"><a href="/projects">Projects</a></div>
+          <div class="item"><a href="/about">About</a></div>
+        </section>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hero-image">
+        <div class="device iphone"><svg width="197" height="426" viewBox="0 0 197 426" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_59_5)">
+  <rect width="196.5" height="426" rx="30" fill="white"/>
+  <rect x="0.0748901" y="37.2421" width="196" height="389" fill="#D3EEF1" fill-opacity="0.5"/>
+  <rect x="5" y="243.5" width="186.5" height="176" fill="#D3EEF1"/>
+  <path d="M20.5 268.5C20.5 264.082 24.0817 260.5 28.5 260.5H164.5C168.918 260.5 172.5 264.082 172.5 268.5V348C172.5 352.418 168.918 356 164.5 356H28.5C24.0817 356 20.5 352.418 20.5 348L20.5 268.5Z" fill="#AFE7EE"/>
+  <path d="M20.5 386.5C20.5 378.216 27.2157 371.5 35.5 371.5H157.5C165.784 371.5 172.5 378.216 172.5 386.5V386.5C172.5 394.784 165.784 401.5 157.5 401.5H35.5C27.2157 401.5 20.5 394.784 20.5 386.5V386.5Z" fill="#1492A0"/>
+  <path d="M70 21C70 18.7909 71.7909 17 74 17H118.5C120.709 17 122.5 18.7909 122.5 21V21C122.5 23.2091 120.709 25 118.5 25H74C71.7909 25 70 23.2091 70 21V21Z" fill="#1492A0"/>
+  <rect x="61.0749" y="105.242" width="111" height="8" rx="4" fill="#D3EEF1"/>
+  <rect x="61.0749" y="137.242" width="111" height="8" rx="4" fill="#D3EEF1"/>
+  <rect x="61.0749" y="169.242" width="111" height="8" rx="4" fill="#D3EEF1"/>
+  <path d="M47.0749 104.242L36.0749 115.242L31.0749 110.242" stroke="#D3EEF1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M47.0749 168.242L36.0749 179.242L31.0749 174.242" stroke="#D3EEF1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="4" y="4" width="188.5" height="418" rx="26" stroke="#1492A0" stroke-width="8"/>
+  <defs>
+  <clipPath id="clip0_59_5">
+  <rect width="196.5" height="426" rx="30" fill="white"/>
+  </clipPath>
+  </defs>
+  </svg></div>
+<div class="device ipad"><svg width="567" height="373" viewBox="0 0 567 373" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_59_17)">
+  <rect x="566.558" y="0.039917" width="372" height="566.5" rx="30" transform="rotate(90 566.558 0.039917)" fill="white"/>
+  <path d="M32.5582 40.04C32.5582 35.6217 36.1399 32.04 40.5582 32.04L172.558 32.04C176.977 32.04 180.558 35.6217 180.558 40.04L180.558 332.04C180.558 336.458 176.977 340.04 172.558 340.04H40.5582C36.14 340.04 32.5582 336.458 32.5582 332.04L32.5582 40.04Z" fill="#AFE7EE"/>
+  <path d="M197.558 40.0399C197.558 35.6216 201.14 32.0399 205.558 32.0399L525.058 32.0399C529.477 32.0399 533.058 35.6216 533.058 40.0399V75.0399C533.058 79.4582 529.477 83.0399 525.058 83.0399L205.558 83.0399C201.14 83.0399 197.558 79.4582 197.558 75.0399V40.0399Z" fill="#D3EEF1"/>
+  <path d="M197.558 111.04C197.558 106.622 201.14 103.04 205.558 103.04L525.058 103.04C529.477 103.04 533.058 106.622 533.058 111.04V332.04C533.058 336.458 529.477 340.04 525.058 340.04L205.558 340.04C201.14 340.04 197.558 336.458 197.558 332.04L197.558 111.04Z" fill="#D3EEF1"/>
+  </g>
+  <rect x="562.558" y="4.03992" width="364" height="558.5" rx="26" transform="rotate(90 562.558 4.03992)" stroke="#1492A0" stroke-width="8"/>
+  <defs>
+  <clipPath id="clip0_59_17">
+  <rect x="566.558" y="0.039917" width="372" height="566.5" rx="30" transform="rotate(90 566.558 0.039917)" fill="white"/>
+  </clipPath>
+  </defs>
+  </svg></div>
+      </div>
+    </div>
   </div>
-  <p class="summary">In the previous post, we explored the overview of E2E testing in mobile development.
-Today, we’re going to dive deeper into how E2E testing with Appium works on iOS.
-1. Introduction to WebDriverAgent (WDA) 1.1. Running Your First Test With Appium Here’s a simple code snippet to start your tests. For simplicity, we’ll run tests on simulators.
-</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/mobile-e2e-overview/">Overview of Mobile E2E Testing</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Dec 16</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/mobile" class="tag">mobile</a>
-  <a href="/tags/e2e" class="tag">e2e</a>
-  <a href="/tags/testing" class="tag">testing</a>
 </div>
-  </div>
-  <p class="summary">1. Introduction End-to-end (E2E) testing is a software testing strategy that verifies the system integration from start to finish, including apps, backend services, and other related components; to ensure everything functions as expected altogether. Compared to unit tests, E2E tests are often fewer in number due to their complexity and maintenance costs. This type of testing is even more uncommon in mobile development where special setups are often required.
-This blog post aims to provide a quick overview of mobile E2E testing and some opinionated architecture suggestions for incorporating E2E testing into your engineering process.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/misc/chuyen-nghe-mot-xuong-tau-no-1/">Chuyện Nghề: Một Xưởng Tàu Nọ (1)</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Nov 21</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/chuy%e1%bb%87n-ngh%e1%bb%81" class="tag">chuyện-nghề</a>
-</div>
-  </div>
-  <p class="summary">Hôm ấy, một buổi chiều thứ sáu như thường lệ… Nắng dệt vàng ươm những cánh buồm lững thững trên mặt nước vùng vịnh. Có lẽ đã rất lâu rồi, mình mới có dịp ngắm nhìn toàn bộ quang cảnh quen thuộc ấy một cách rõ ràng, nhưng không phải dưới ánh đèn phố thị lấp lánh, hay qua một bức tường trong suốt từ trên cao.
-Đảo quốc Sư Tử hôm ấy bình yên đến lạ.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/how-xcode-recognizes-module-imports/">How Xcode Recognizes Module Imports</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, May 05</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-</div>
-  </div>
-  <p class="summary">In iOS development, a module is a self-contained unit of code offering a specific set of functionalities. Modules help break down complex apps into smaller components. Developers can incorporate a module into different parts of an app using the import keyword. Behind the scenes, the build system performs several tasks to recognize and integrate these imports seamlessly.
-A module can be distributed in various formats such as collections of source files, or a pre-compiled binaries or bundles.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/pre-commit-env-in-sourcetree/">pre-commit Environment Issue in SourceTree</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Feb 06</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">In the previous post, I mentioned pre-commit as a powerful tool to lint and format in a project.
-It had worked seamlessly for me until I committed code using SourceTree. Just to clarify, I predominantly use git on terminal. I only use a GUI app such as SourceTree to view the diff, or to stage selective chunks in a file (which is a bit difficult to achieve when using terminal). Therefore, the issue went unnoticed during my usual workflow.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/pre-commit/">Using pre-commit for Linters/Formatters</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Feb 01</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.
-At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/spm-with-cocoapods/">Using Swift Packages in CocoaPods-Based Projects</a>
-  </h3>
-  <div class="metadata">
-    <span>2023, Dec 30</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/cocoapods" class="tag">cocoapods</a>
-  <a href="/tags/spm" class="tag">spm</a>
-</div>
-  </div>
-  <p class="summary">1. Introduction Swift Package Manager (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, CocoaPods has gained its power and emerged as a dominant tool in iOS development.
-Not until recently has SPM been adopted widely.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/test-quarantine/">Designing Test Quarantine Logic to Deal With Flaky Tests</a>
-  </h3>
-  <div class="metadata">
-    <span>2023, Sep 17</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">1. Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.
-2. The Need for Test Quarantine 2.1. The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/a-tale-of-project-build-time/">A Tale of Project Build Time Improvement</a>
-  </h3>
-  <div class="metadata">
-    <span>2023, Aug 29</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">Introduction Build time is a key factor to engineers’ productivity. Slow build time can be frustrating and lead to hindered progress. There has been a great amount of effort by the community to tackle this complex problem. This blog post highlights various methodologies employed by our team (at Grab) to alleviate this pain point.
-Background The process of building an iOS project involves multiple steps, including compiling source code, processing resources (headers, assets, storyboards, etc.</p>
-</li>
-
-	
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/on-using-python-for-scripting/">On Using Python for Scripting in iOS Projects</a>
-  </h3>
-  <div class="metadata">
-    <span>2023, Aug 22</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ci" class="tag">ci</a>
-  <a href="/tags/ios" class="tag">ios</a>
-</div>
-  </div>
-  <p class="summary">As an iOS engineer, my recent focus has been on platform work, involving tasks like optimizing build times, integrating CI/CD pipelines, and devising testing solutions. This has led me to explore various scripting options, and I&amp;rsquo;ve found great satisfaction in using Python as our preferred choice.
-The first Python code Initially, scripting wasn&amp;rsquo;t a prominent aspect of my team&amp;rsquo;s workflow, largely due to the simplicity of our CI/CD setup and the prevalence of Bash scripts in our project.</p>
-</li>
-
-	
-</ul>
-
-
-<nav id='pagination'>
-  <div class='page-links'>
-      
-      <span aria-current='page' class='page-link current'>1</span>
-      
-    
-      
-      <a class='page-link' href='/page/2/'>2</a>
-      
-    
-      
-        <span class='page-link dots'>&hellip;</span>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-      <a class='page-link' href='/page/11/'>11</a>
-      
-    
-  </div>
-</nav>
-
 </main></body>
 </html>
