@@ -1,11 +1,11 @@
 window.addEventListener('DOMContentLoaded', () => {
   function closeSubscription() {
-    $('.frontpage .subscription').css('transform', 'translate(-50%, 100%)');
+    $('.frontpage .subscription').css('display', 'none');
     $('.frontpage .overlay').css('display', 'none');
   }
 
   $('.frontpage .bell').click(function () {
-    $('.frontpage .subscription').css('transform', 'translate(-50%, -50%)');
+    $('.frontpage .subscription').css('display', 'block');
     $('.frontpage .overlay').css('display', 'block');
   });
   $('.frontpage .subscription .close').click(closeSubscription);
