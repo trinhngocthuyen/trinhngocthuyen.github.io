@@ -13,7 +13,7 @@
       <link>https://trinhngocthuyen.com/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://trinhngocthuyen.com/projects/</guid>
-      <description>CI/CD, Testing Tools e2e-mobile: End-to-end testing framework for mobile apps. seeeye: CI/CD toolkits for mobile apps. CocoaPods Plugins cocoapods-binary-cache: A CocoaPods plugin that helps reduce project build time by prebuilding pod frameworks and caching them in a remote repository to share across multiple machines.&#xA;I had been the maintainer of this open-source project while working at Grab (til Jul 2022). cocoapods-spm: A CocoaPods plugin to work with SPM dependencies in CocoaPods-based projects.</description>
+      <description>I enjoy sharing my work with the community. Below are some of my side projects - some originated from my corporate work, while others began as personal tools that I believe could benefit others as well.&#xA;Take a look and see if any might be useful to you. If you share my passion for open source, feel free to contribute!&#xA;CI/CD, Testing Tools 🛠️ e2e-mobile End-to-end testing framework for mobile apps.</description>
     </item>
     <item>
       <title>About</title>
