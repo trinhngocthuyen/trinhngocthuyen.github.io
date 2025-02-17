@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang='en' class="js csstransforms3d">
+  <head>
+    <title>Thuyen&#39;s corner</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Automation at Your Core" />
+<meta property="og:description" content="We often hear that automating repetitive tasks improves productivity. But how do we decide when automation is truly worth the effort?
+1 At OKX, while managing end-to-end testing servers, I frequently needed to SSH into servers to diagnose issues and retrieve relevant logs (to my local) for further investigations. This was tedious but manageable, thanks to my terminal&rsquo;s auto-completion. However, as we expanded to four servers (two in Hong Kong, two in Singapore), keeping track of server IPs, usernames and passwords for the SSH became a hassle." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/automation-at-your-core/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-02-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-02-17T00:00:00+00:00" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<link rel="stylesheet" href="/sass/main.f4667fdba19fda79fc6646083b6f7c886f502029f20b4ce996a029f38ca9ce02.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/automation-at-your-core/">
+    <nav role="navigation">
+  <header class="banner">
+    <h1 class="logo">
+      <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
+    </h1>
+    <div id="menu-toggle" class="menu-toggle">
+      <svg class="icon"  viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+      </svg>
+    </div>
+  </header>
+  <ul class="menu-items">
+    <li class="menu-item"><a href="/posts/tech">Tech Blog</a></li>
+    <li class="menu-item"><a href="/posts/misc">Tạp Bút</a></li>
+    <li class="menu-item"><a href="/projects">Projects</a></li>
+    <li class="menu-item"><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<div class="page-wrapper">
+<article class="page">
+  <header>
+  
+  <h1>Automation at Your Core</h1>
+  
+  
+  <div class="metadata">
+  <span>2025, Feb 17</span>
+</div>
+  
+</header>
+  <p>We often hear that automating repetitive tasks improves productivity. But how do we decide when automation is truly worth the effort?</p>
+<p><span class="point">1</span> At OKX, while managing end-to-end testing servers, I frequently needed to SSH into servers to diagnose issues and retrieve relevant logs (to my local) for further investigations. This was tedious but manageable, thanks to my terminal&rsquo;s auto-completion. However, as we expanded to four servers (two in Hong Kong, two in Singapore), keeping track of server IPs, usernames and passwords for the SSH became a hassle. That&rsquo;s when I built a small utility to simplify the process.</p>
+<p>With this tool, logging into a Hong Kong server (without specifying password) was simply as:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sshe login hk
+</span></span></code></pre></div><p>And pulling a certain file from a server was just:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sshe pull hk path/to/log
+</span></span></code></pre></div><p>This significantly improved efficiency and freed up my time for more important tasks.</p>
+<p><span class="point">2</span> Beyond corporate work, I also maintain several open-source projects on Github, including some Python packages and CocoaPods plugins. From the start, I used Github actions to deploy a new release. All I had to do is to trigger a workflow under the Github actions dashboard. This worked well when managing just one or two projects. However, as the number of repos grew, synchronizing changes across them became a maintenance burden. To reduce this overhead, I extracted the deployment workflow into a shared repo: <a href="https://github.com/trinhngocthuyen/gh-actions/blob/main/.github/workflows/rb-deploy.yml">gh-actions</a>. However, the need for maintenance didn&rsquo;t end there.</p>
+<p><img src="/images/misc/automation_gh_repos.png"/>
+<figcaption>Figure. Many repos having the same deployment workflow.</figcaption></p>
+<p>Technically, deploying a CocoaPods plugin (which is a Ruby gem) requires 2 tokens:</p>
+<ul>
+<li>A <a href="http://RubyGems.org">RubyGems.org</a> token to publish the gem.</li>
+<li>A Github deployment token to create a release and bump the version.</li>
+</ul>
+<img src="/images/misc/automation_gh_secrets.png"/>
+<p>Managing these tokens manually seemed fine… until the token expired. I had to regenerate a new token and update the corresponding secrets across all repos above. This manual process was tedious, requiring navigation through different Github settings (Repo → Settings → Secrets and variables → Actions → make update). Once, my token expired while I was maintaining two active repos (<a href="https://github.com/trinhngocthuyen/cocoapods-spm">cocoapods-spm</a> and <a href="https://github.com/trinhngocthuyen/e2e-mobile">e2e-mobile</a>). I updated the token only for these two, assuming that I wouldn&rsquo;t need it for others (because I won&rsquo;t have any updates for them). This was such a mistake 😅! Later, when I had to update another plugin, the deployment went broken which was frustrating and costed me preliminary investigations.</p>
+<p>I then wrote a CLI tool called <code>sauron</code> (the name was from LOTR) to help with some admin tasks. Thanks to this tool, I can update tokens across multiple repos matching a pattern. This can be done at hand with <a href="https://cli.github.com/manual/">Github CLI</a> or with Github APIs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sauron gh update-token --pattern <span class="s1">&#39;cocoapods-*&#39;</span>
+</span></span></code></pre></div><img src="/images/misc/automation_sauron.png"/>
+<p>Of course setting a long-lived token (ex. without expiration) could have avoided this issue. But automation offers an effortless setup for new repos.</p>
+<p><span class="point">3</span> Automation isn&rsquo;t just about scripting repetitive tasks - it&rsquo;s also about designing workflows and orchestrating them together. Back to my deployment story, although the process was automated, it still required a manual trigger. After fixing bugs in <a href="https://github.com/trinhngocthuyen/cocoapods-spm">cocoapods-spm</a>, for example, I had to manually run the <a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/deploy.yml">deploy workflow</a> to release a new version. This is where human mistakes jump in… coz I sometimes forgot 😅.</p>
+<p>To prevent it, I introduced a weekly auto-deployment workflow:</p>
+<ul>
+<li><a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/milestone-assignment.yml">Milestone assignment</a>: For each project, we have an active milestone (ex. 1.0.2) that indicates the yet-to-be-released version. When a PR gets merged, it is assigned to this milestone.</li>
+<li><a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/weekly-auto-deploy.yml">Scheduled deployment</a>: A cron job runs every Sunday, checking if the active milestone has any associated PRs. If so, it triggers a deployment.</li>
+<li><a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/milestone-creation.yml">Milestone management</a>: After a release, the workflow closes the current milestone and creates a new milestone for the next version.</li>
+</ul>
+<p><span class="point">4</span> Another automation win came from solving LeetCode problems. I prefer coding locally for better debugging experiences. Initially, each solution file was isolated. I needed to write a bunch of boilerplate code to test against given test cases. The unrelated code was even more for graph/tree problems.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span> <span class="c1"># implementation goes here</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Expected: </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s1">, actual: </span><span class="si">{</span><span class="n">actual</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">solution</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">compare</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">compare</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">20</span><span class="p">)</span>
+</span></span></code></pre></div><p>I should have focused on writing the solution instead. So, I spent some time simplifying the setup.</p>
+<ul>
+<li>Running <code>make new LINK=&lt;web-link&gt;</code> automatically generates:
+<ul>
+<li>A solution file with the prefilled code (function signature as in LeetCode code panel)
+<img src="/images/misc/automation_lc_parse_fn.png"/></li>
+<li>Test case files parsed from the problem description.
+Though the parsing logic is heuristic, it works most of the time, giving me a great sense of productivity.
+<img src="/images/misc/automation_lc_parse_cases.png"/></li>
+</ul>
+</li>
+<li>Running <code>make run</code> executes the solution against the test cases.
+<img src="/images/misc/automation_lc_run.png"/></li>
+</ul>
+<p><span class="point">5</span> Returning to our original question: <em>When is the right time to automate?</em> The answer varies based on effort versus benefit. At the end of the day, it&rsquo;s the ROI (return on investment) that drives the actions.</p>
+<p>For me, since I already work closely with automated processes, the time and effort spent setting up a certain automation task might be relatively low compared to an iOS engineer who doesn&rsquo;t regularly deal with it.</p>
+<p>A good rule of thumb is to consider repetition:</p>
+<ul>
+<li>If a manual task happens several times a week, automation is likely worth it.</li>
+<li>If a task occurs rarely for one, say once every 2 months, but is distributed among a team (ex. each takes turn to do it weekly), automating it might still provide significant savings as a whole.</li>
+</ul>
+<p>Of course, the choice also depends on other factors such as capacity and priority.</p>
+<p>…</p>
+<p>Lastly, automation doesn&rsquo;t always mean large-scale solutions. Small and incremental improvements matter too. Start with micro-automations, make it a habit, and it eventually pays off.</p>
+
+  <div class="entry footer">
+  <div>
+    
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+</svg>
+
+  <a href="/categories/tech" class="category">tech</a>
+</div>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/automation" class="tag">automation</a>
+</div>
+  </div>
+  <div class='nav'><div class='prev-entry'>
+    <a href='/posts/tech/mobile-e2e-wda/'>WebDriverAgent - The Heart of iOS E2E Testing</a>
+  </div></div>
+  
+</div>
+  
+<section class='actions'>
+  <div class="container facebook">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/automation-at-your-core/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+</div>
+  <div class="container sponsor">
+<p>Like what you’re reading? Buy me a coffee and keep me going!</p>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</div>
+  <div class="container subscription">
+<p class="cta-desc"><i class="fa-regular fa-bell"></i> Subscribe to this substack<br>to stay updated with the latest content</p>
+<div class="close"><i class="fa-solid fa-xmark"></i></div>
+<iframe src="https://trinhngocthuyen.substack.com/embed" width="100%" height="300" style="border:none;" frameborder="0" scrolling="no"></iframe>
+</div>
+</section>
+</article>
+<script src="/scripts/toc.js"></script>
+</div>
+</main></body>
+</html>

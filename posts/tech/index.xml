@@ -6,8 +6,15 @@
     <description>Recent content in Tech Blog 💻 on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automation at Your Core</title>
+      <link>https://trinhngocthuyen.com/posts/tech/automation-at-your-core/</link>
+      <pubDate>Mon, 17 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/automation-at-your-core/</guid>
+      <description>We often hear that automating repetitive tasks improves productivity. But how do we decide when automation is truly worth the effort?&#xA;1 At OKX, while managing end-to-end testing servers, I frequently needed to SSH into servers to diagnose issues and retrieve relevant logs (to my local) for further investigations. This was tedious but manageable, thanks to my terminal&amp;rsquo;s auto-completion. However, as we expanded to four servers (two in Hong Kong, two in Singapore), keeping track of server IPs, usernames and passwords for the SSH became a hassle.</description>
+    </item>
     <item>
       <title>WebDriverAgent - The Heart of iOS E2E Testing</title>
       <link>https://trinhngocthuyen.com/posts/tech/mobile-e2e-wda/</link>
