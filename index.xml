@@ -9,20 +9,6 @@
     <lastBuildDate>Mon, 17 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Side Projects 💡</title>
-      <link>https://trinhngocthuyen.com/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://trinhngocthuyen.com/projects/</guid>
-      <description>I enjoy sharing my work with the community. Below are some of my side projects - some originated from my corporate work, while others began as personal tools that I believe could benefit others as well.&#xA;Take a look and see if any might be useful to you. If you share my passion for open source, feel free to contribute!&#xA;CI/CD, Testing Tools 🛠️ e2e-mobile End-to-end testing framework for mobile apps.</description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>https://trinhngocthuyen.com/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://trinhngocthuyen.com/about/</guid>
-      <description>Welcome to Thuyen&amp;rsquo;s Corner!&#xA;My name is Thuyen (aka. Chris). I&amp;rsquo;m an iOS Engineer.&#xA;As a youngskeptical engineer, I am curious about how things work and why it works the way it does.&#xA;In this little corner, I do blog about tech (mainly related to iOS, CI, engineering practices or any stack I happened to work with). If you&amp;rsquo;re also a geek, check out the Tech category for technical blog posts.</description>
-    </item>
-    <item>
       <title>Automation at Your Core</title>
       <link>https://trinhngocthuyen.com/posts/tech/automation-at-your-core/</link>
       <pubDate>Mon, 17 Feb 2025 00:00:00 +0000</pubDate>
@@ -391,7 +377,7 @@
       <link>https://trinhngocthuyen.com/posts/misc/random-thoughts-when-we-have-many-choices/</link>
       <pubDate>Tue, 26 Dec 2017 00:00:00 +0000</pubDate>
       <guid>https://trinhngocthuyen.com/posts/misc/random-thoughts-when-we-have-many-choices/</guid>
-      <description>Khi nói đến giải quyết vấn đề, người ta đôi khi dùng một cụm dài hơn là giải quyết vấn đề và ra quyết định (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái: &lt;br&gt;(1) Từ không có lời giải -&amp;gt; có lời giải&lt;br&gt;(2) Từ có nhiều lời giải -&amp;gt; chọn ra lời giải tối ưu&amp;hellip;</description>
+      <description>1 Khi nói đến giải quyết vấn đề, người ta đôi khi dùng một cụm dài hơn là giải quyết vấn đề và ra quyết định (problem solving and decision making). Ta có thể hiểu việc giải bài toán thông qua hai hình thái:&#xA;(1) Từ không có lời giải -&amp;gt; có lời giải (2) Từ có nhiều lời giải -&amp;gt; chọn ra lời giải tối ưu Trường hợp thứ 2 chính là quá trình ra quyết định.</description>
     </item>
     <item>
       <title>MVVM best practice: Inputs - Outputs</title>
@@ -793,6 +779,20 @@
       <description>Xuất phát từ Cảng Sa Kỳ, đoàn của mình gồm có 2 người là: mình và chính mình. Mình gặp 3 thanh niên đi du lịch với những dụng cụ đồ nghề nhìn rất chuyên nghiệp. Được biết họ đến từ Hà Nội và đi Lý Sơn lần đầu tiên sau chuyến đi ở Huế. Mình rất vui và háo hức, vì nơi đây được nhiều người biết đến và người ta cứ kháo nhau rằng “Lý Sơn đẹp lắm”…</description>
     </item>
     <item>
+      <title>About</title>
+      <link>https://trinhngocthuyen.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/about/</guid>
+      <description>Welcome to Thuyen&amp;rsquo;s Corner!&#xA;My name is Thuyen (aka. Chris). I&amp;rsquo;m an iOS Engineer.&#xA;As a youngskeptical engineer, I am curious about how things work and why it works the way it does.&#xA;In this little corner, I do blog about tech (mainly related to iOS, CI, engineering practices or any stack I happened to work with). If you&amp;rsquo;re also a geek, check out the Tech category for technical blog posts.</description>
+    </item>
+    <item>
+      <title>Featured ⭐</title>
+      <link>https://trinhngocthuyen.com/featured/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/featured/</guid>
+      <description>Here&amp;rsquo;s a collection of my favorite writings over the years. Hope you enjoy them!&#xA;Tech (iOS, mobile, etc.) WebDriverAgent - The Heart of iOS E2E Testing 2025, Jan 09 Overview of Mobile E2E Testing 2024, Dec 16 Using Swift Packages in CocoaPods-Based Projects 2023, Dec 30 Designing Test Quarantine Logic to Deal With Flaky Tests 2023, Sep 17 A Tale of Project Build Time Improvement 2023, Aug 29 Cocoapods Explained: Plugins 2023, Feb 02 Dealing With Flaky UI Tests in iOS 2022, Jun 25 Swift: The downsides of lazy var (part 2) 2018, Jun 01 Swift: The downsides of lazy var (part 1) 2018, May 31 Method dispatch in Swift 2017, Sep 25 Tạp Bút Chuyện Nghề: Một Dự Án Nọ (2) 2023, Mar 05 Cắt Nghĩa &amp;#34;Khủng Hoảng Tuổi.</description>
+    </item>
+    <item>
       <title>Resume</title>
       <link>https://trinhngocthuyen.com/resume/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -805,6 +805,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://trinhngocthuyen.com/search/</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Side Projects 💡</title>
+      <link>https://trinhngocthuyen.com/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/projects/</guid>
+      <description>I enjoy sharing my work with the community. Below are some of my side projects - some originated from my corporate work, while others began as personal tools that I believe could benefit others as well.&#xA;Take a look and see if any might be useful to you. If you share my passion for open source, feel free to contribute!&#xA;CI/CD, Testing Tools 🛠️ e2e-mobile End-to-end testing framework for mobile apps.</description>
     </item>
     <item>
       <title>Stay Updated</title>

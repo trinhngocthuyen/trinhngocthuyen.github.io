@@ -2,16 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://trinhngocthuyen.com/posts/tech/</loc>
-    <lastmod>2025-02-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/posts/misc/</loc>
-    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/projects/</loc>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/about/</loc>
-  </url><url>
     <loc>https://trinhngocthuyen.com/</loc>
     <lastmod>2025-02-17T00:00:00+00:00</lastmod>
   </url><url>
@@ -31,6 +21,9 @@
     <lastmod>2025-02-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/categories/tech/</loc>
+    <lastmod>2025-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/tech/</loc>
     <lastmod>2025-02-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/tags/e2e/</loc>
@@ -55,6 +48,9 @@
     <lastmod>2024-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/categories/misc/</loc>
+    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/misc/</loc>
     <lastmod>2024-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</loc>
@@ -513,9 +509,15 @@
     <loc>https://trinhngocthuyen.com/posts/misc/ly-son-tap-0/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://trinhngocthuyen.com/about/</loc>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/featured/</loc>
+  </url><url>
     <loc>https://trinhngocthuyen.com/resume/</loc>
   </url><url>
     <loc>https://trinhngocthuyen.com/search/</loc>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/projects/</loc>
   </url><url>
     <loc>https://trinhngocthuyen.com/subscribe/</loc>
   </url>
