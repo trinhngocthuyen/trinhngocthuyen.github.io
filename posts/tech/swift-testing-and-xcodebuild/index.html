@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang='en' class="js csstransforms3d">
+  <head>
+    <title>Thuyen&#39;s corner</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Swift Testing and the Compatibility With xcodebuild" />
+<meta property="og:description" content="Introduction Swift Testing is a new test framework introduced by Apple at WWDC 2024. It offers a range of macro-based features, making test writing more expressive. One of the key features driving migration from XCTest to Swift Testing is parameterized testing. While this concept has been widely available in other languages (ex. pytest introduced it in 2011), Swift Testing now enables repeated test execution with different inputs and expected outputs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/swift-testing-and-xcodebuild/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-02-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-02-25T00:00:00+00:00" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<link rel="stylesheet" href="/sass/main.1081a7f7ad055e14f14092b4eb8c0c03bf8efb5d3e5121db581f7f63da63d795.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/swift-testing-and-xcodebuild/">
+    <nav role="navigation">
+  <header class="banner">
+    <h1 class="logo">
+      <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
+    </h1>
+    <div id="menu-toggle" class="menu-toggle">
+      <svg class="icon"  viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+      </svg>
+    </div>
+  </header>
+  <ul class="menu-items">
+    <li class="menu-item"><a href="/posts/tech">Tech Blog</a></li>
+    <li class="menu-item"><a href="/posts/misc">Tạp Bút</a></li>
+    <li class="menu-item"><a href="/featured">Featured</a></li>
+    <li class="menu-item"><a href="/projects">Projects</a></li>
+    <li class="menu-item"><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<div class="page-wrapper">
+<article class="page">
+  <header>
+  
+  <h1>Swift Testing and the Compatibility With xcodebuild</h1>
+  
+  
+  <div class="metadata">
+  <span>2025, Feb 25</span>
+</div>
+  
+</header>
+  <h2 id="introduction">Introduction</h2>
+<p><a href="https://developer.apple.com/xcode/swift-testing">Swift Testing</a> is a new test framework introduced by Apple at WWDC 2024. It offers a range of macro-based features, making test writing more expressive. One of the key features driving migration from <a href="https://developer.apple.com/documentation/xctest">XCTest</a> to Swift Testing is <a href="https://developer.apple.com/documentation/testing/parameterizedtesting"><strong>parameterized testing</strong></a>. While this concept has been widely available in other languages (ex. pytest introduced it in 2011), Swift Testing now enables repeated test execution with different inputs and expected outputs.</p>
+<p>Despite these enhancements, one important consideration is whether Swift Testing integrates well with xcodebuild, the foundation of iOS testing with CI/CD.</p>
+<h3 id="coexistence-of-swift-testing-and-xctest">Coexistence of Swift Testing and XCTest</h3>
+<p>Swift Testing and XCTest can coexist within the same Xcode project. This enables an incremental and hybrid migration strategy. For a typical iOS engineer working within Xcode most of the time, their workflow remains unchanged. They can write, run, and view test results directly in Xcode. However, infra engineers may face additional challenges when integrating Swift Testing with xcodebuild.</p>
+<p>Take parallel testing for example, a common approach is discovering tests in the project, dividing them into multiple chunks, and running each of them in concurrent jobs. This blog post explores two key issues in that pipeline:</p>
+<ul>
+<li>Extracting test functions (from the xctest binary)</li>
+<li>Running selective tests with xcodebuild</li>
+</ul>
+<h2 id="extracting-tests-from-the-xctest-binary">Extracting Tests From the xctest Binary</h2>
+<p>Discovering tests and splitting them into chunks is relatively easy in scripting languages like Ruby or Python, where tests can be easily scanned from source files. However, in an iOS project, there are no public APIs to retrieve a list of tests before runtime. A common heuristic approach is parsing symbols in the xctest binary (see <a href="/posts/tech/ci-extract-test-methods">this post</a> for more details). This technique relies on XCTest’s conventions:</p>
+<ul>
+<li>Test functions must be prefixed with <code>test</code></li>
+<li>They must be non-private, and without any arguments</li>
+</ul>
+<h3 id="how-swift-testing-changes-test-discovery">How Swift Testing Changes Test Discovery</h3>
+<p>Swift Testing does not follow these conventions. Any function, even a private one, can be turned into a test using the <code>@Test</code> macro. Test functions do not need to be inside an <code>XCTestCase</code>. They can be in any class, struct, enum, or even exist as free functions. Additionally, parameterized tests accept arguments. In the following example, <code>check</code>, <code>foo</code>, <code>bar</code> and <code>fib</code> are all test functions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="p">@</span><span class="n">Test</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">check</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">struct</span> <span class="nc">NewTestCase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">@</span><span class="n">Test</span> <span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">@</span><span class="n">Test</span> <span class="kd">func</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">@</span><span class="n">Test</span><span class="p">(</span><span class="n">arguments</span><span class="p">:</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="extracting-swift-testing-functions-from-binary-symbols">Extracting Swift Testing Functions from Binary Symbols</h3>
+<p>Fortunately, it is still possible to extract test functions from the xctest binary by examining symbol names:</p>
+<ul>
+<li>
+<p>The expansion of the <code>@Test</code> macro includes a special marker, <code>__🟠$test_container__function__func</code>, which helps identify test functions.</p>
+<img src="/images/misc/swift_testing_xcb_macro_expansion.png"/>
+</li>
+<li>
+<p>The output from <code>nm -gU &lt;path/to/xctest/binary&gt; | swift demangle</code> contains both the original function and its expanded form. Comparing the two allows us to extract test functions programatically.</p>
+<img src="/images/misc/swift_testing_xcb_nm.png"/>
+</li>
+</ul>
+<h2 id="running-selective-tests-with-xcodebuild">Running Selective Tests With xcodebuild</h2>
+<p>In Xcode, individual tests can be run by clicking the diamond button in the Test Navigator. For automation, xcodebuild provides the <code>-only-testing</code> argument, which accepts test identifiers in the following formats:</p>
+<ul>
+<li><code>&lt;Target&gt;</code> (ex. <code>AppTests</code>): Runs all tests in the target</li>
+<li><code>&lt;Target&gt;/&lt;Class&gt;</code> (ex. <code>AppTests/TestCaseA</code>): Runs all tests in a specific class</li>
+<li><code>&lt;Target&gt;/&lt;Class&gt;/&lt;function&gt;</code> (ex. <code>AppTests/TestCaseA/testA1</code>): Runs a single test function</li>
+</ul>
+<p>This works well with XCTest but <strong>not with Swift Testing</strong>. For example, running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">xcodebuild <span class="nb">test</span> ... -only-testing <span class="s1">&#39;AppTests/NewTestCase/foo&#39;</span>
+</span></span></code></pre></div><p>results in <strong>no tests being executed</strong>. Let&rsquo;s explore why.</p>
+<h3 id="debugging-the-issue">Debugging the Issue</h3>
+<p>We know for sure that running selective tests in Xcode works. So, let&rsquo;s run a given test in Xcode, and inspect xcresult logs (using <a href="https://github.com/ChargePoint/xcparse">xcparse</a>) to understand what&rsquo;s happening under the hood.</p>
+<p>The logs show a key difference between XCTest identifiers and Swift Testing identifiers. Swift Testing identifiers <strong>include parentheses</strong> at the end (ex. <code>AppTests/NewTestCase/foo()</code>).</p>
+<img src="/images/misc/swift_testing_xcb_id.png"/>
+<p>Given this clue, I attempted to run again with parentheses added to the test identifiers as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ xcodebuild <span class="nb">test</span> ... -only-testing <span class="s1">&#39;EXTests/NewTestCase/foo()&#39;</span>
+</span></span></code></pre></div><p>The result still remained unchanged, ie. no tests getting executed. The logs show that the identifier was just like before (ie. without parentheses).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">....
+</span></span><span class="line"><span class="cl">  identifiersToRun:&lt;XCTTestIdentifier leaf, method, swift [&#34;NewTestCase&#34;, &#34;foo&#34;]&gt;
+</span></span><span class="line"><span class="cl">....
+</span></span></code></pre></div><p>My hypothesis is that <em>xcodebuild strips the ending parentheses</em>, but only the last pair. Therefore, I tried adding an extra pair of parentheses to the identifier. Surprisingly, it works, confirming my hypothesis.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ xcodebuild <span class="nb">test</span> ... -only-testing <span class="s1">&#39;EXTests/NewTestCase/foo()()&#39;</span>
+</span></span></code></pre></div><p>Note that, for free test functions, we don&rsquo;t need to add extra parentheses because the strip behavior only applies to the 3rd component (ie. test function) of the identifier.</p>
+<h3 id="patching-the-issue-with-xctestconfiguration">Patching the Issue With XCTestConfiguration</h3>
+<p>Although we can now run selective tests with xcodebuild, it occurs to me that this compatibility issue is more of Apple (developer tools) issue. Because of it, we - as engineers, need to bear the additional maintenance cost, including:</p>
+<ul>
+<li>Keeping track of Swift Testing&rsquo;s tests</li>
+<li>Modifying the test identifiers passed to xcodebuild accordingly, excluding free test functions.</li>
+</ul>
+<p>From an engineer&rsquo;s perspective, <code>EXTests/NewTestCase/foo</code> should work as there’s a matching test with the identifier. This motivated me to come up with a patch in the native code instead.</p>
+<p>Now, back to the xcresult logs. The following content suggests that <strong>XCTestConfiguration</strong> may be a good start.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Running tests with active test configuration: &lt;XCTestConfiguration: 0x101b09260&gt;
+</span></span><span class="line"><span class="cl">	                  testBundleURL:.........
+</span></span><span class="line"><span class="cl">	         testBundleRelativePath:.........
+</span></span><span class="line"><span class="cl">	              productModuleName:EXTests
+</span></span><span class="line"><span class="cl">	                  testSelection:&lt;XCTTestSelection: 0x600000c5f540&gt;
+</span></span><span class="line"><span class="cl">	            identifiersToRun:&lt;XCTTestIdentifier leaf, method, swift [&#34;NewTestCase&#34;, &#34;foo()&#34;]&gt;
+</span></span><span class="line"><span class="cl">	            identifiersToSkip:
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>Checking <a href="https://github.com/facebook/idb/blob/27fadda/PrivateHeaders/XCTestPrivate/XCTestConfiguration.h#L47">XCTestConfiguration’s header</a>, we find <code>activeTestConfiguration</code> and <code>testsToRun</code>, which are related to the problem.</p>
+<p>A possible approach to fix this issue is:</p>
+<hr>
+<ul>
+<li>(1) Swizzle the <code>XCTestConfiguration.activeTestConfiguration</code> function.</li>
+<li>(2) In the swizzling handler, loop identifiers in <code>testsToRun</code>. For each one, check if the last component ends with a closing parenthesis. If not, add a new identifier with parentheses appended to <code>testsToRun</code>.</li>
+</ul>
+<hr>
+<p>Check out the demo code: <a href="https://github.com/trinhngocthuyen/ios-demos/blob/main/swift-testing-with-xcodebuild">here</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-objective-c" data-lang="objective-c"><span class="line"><span class="cl"><span class="k">@implementation</span> <span class="nc">XCTestConfiguration</span> <span class="nl">(Swizzlings)</span>
+</span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">load</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Method</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">class_getClassMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="n">activeTestConfiguration</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Method</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">class_getClassMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="n">hooked_activeTestConfiguration</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">hooked_activeTestConfiguration</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">XCTestConfiguration</span><span class="o">*</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="nb">self</span> <span class="n">hooked_activeTestConfiguration</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="n">NSMutableSet</span><span class="o">*</span> <span class="n">swiftTestingIdentifiers</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableSet</span> <span class="n">set</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">XCTTestIdentifier</span><span class="o">*</span> <span class="n">identifier</span> <span class="k">in</span> <span class="n">res</span><span class="p">.</span><span class="n">testsToRun</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Test identifiers suffixed with parentheses `()`, `(x:)` are recognized as swift-testing identifiers.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Therefore, we just need to add a swift-testing identifier to `testsToRun`.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// If an identifier is added but there is no such a test function, no worries, it&#39;s gonna be skipped.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">identifier</span><span class="p">.</span><span class="n">lastComponent</span> <span class="nl">hasSuffix</span><span class="p">:</span><span class="s">@&#34;)&#34;</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">NSMutableArray</span><span class="o">*</span> <span class="n">components</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nl">arrayWithArray</span><span class="p">:</span><span class="n">identifier</span><span class="p">.</span><span class="n">components</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="n">components</span><span class="p">[</span><span class="n">components</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&#34;%@()&#34;</span><span class="p">,</span> <span class="n">identifier</span><span class="p">.</span><span class="n">lastComponent</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="n">swiftTestingIdentifiers</span> <span class="nl">addObject</span><span class="p">:[[</span><span class="n">XCTTestIdentifier</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithComponents</span><span class="p">:</span><span class="n">components</span> <span class="nl">argumentIDs</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">options</span><span class="p">:</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">res</span> <span class="nl">setTestsToRun</span><span class="p">:[</span><span class="n">res</span><span class="p">.</span><span class="n">testsToRun</span> <span class="nl">setByAddingTestIdentifiersFromSet</span><span class="p">:</span><span class="n">swiftTestingIdentifiers</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@end</span>
+</span></span></code></pre></div><p>This patch ensures that xcodebuild treats Swift Testing identifiers correctly without requiring changes to infra-related code.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Swift Testing brings powerful features but also introduces challenges when integrating with xcodebuild, particularly in use cases requiring <code>-only-testing</code> for selective test execution. By analyzing binary symbols and patching <code>XCTestConfiguration</code>, we can ensure compatibility and maintain efficient automation workflows&hellip; Ideally, Apple should improve xcodebuild&rsquo;s support for Swift Testing in future updates, eliminating the need for these workarounds 😅.</p>
+
+  <div class="entry footer">
+  <div>
+    
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+</svg>
+
+  <a href="/categories/tech" class="category">tech</a>
+</div>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/ci" class="tag">ci</a>
+  <a href="/tags/ios" class="tag">ios</a>
+  <a href="/tags/testing" class="tag">testing</a>
+</div>
+  </div>
+  <div class='nav'><div class='prev-entry'>
+    <a href='/posts/tech/automation-at-your-core/'>Automation at Your Core</a>
+  </div></div>
+  
+</div>
+  
+<section class='actions'>
+  <div class="container facebook">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/swift-testing-and-xcodebuild/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+</div>
+  <div class="container sponsor">
+<p>Like what you’re reading? Buy me a coffee and keep me going!</p>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</div>
+  <div class="container subscription">
+<p class="cta-desc"><i class="fa-regular fa-bell"></i> Subscribe to this substack<br>to stay updated with the latest content</p>
+<div class="close"><i class="fa-solid fa-xmark"></i></div>
+<iframe src="https://trinhngocthuyen.substack.com/embed" width="100%" height="300" style="border:none;" frameborder="0" scrolling="no"></iframe>
+</div>
+</section>
+</article>
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#introduction" toc_id="introduction">Introduction</a></div><div class="toc-section">
+
+<div><a href="#coexistence-of-swift-testing-and-xctest" toc_id="coexistence-of-swift-testing-and-xctest">Coexistence of Swift Testing and XCTest</a></div></div>
+<div><a href="#extracting-tests-from-the-xctest-binary" toc_id="extracting-tests-from-the-xctest-binary">Extracting Tests From the xctest Binary</a></div><div class="toc-section">
+
+<div><a href="#how-swift-testing-changes-test-discovery" toc_id="how-swift-testing-changes-test-discovery">How Swift Testing Changes Test Discovery</a></div>
+<div><a href="#extracting-swift-testing-functions-from-binary-symbols" toc_id="extracting-swift-testing-functions-from-binary-symbols">Extracting Swift Testing Functions from Binary Symbols</a></div></div>
+<div><a href="#running-selective-tests-with-xcodebuild" toc_id="running-selective-tests-with-xcodebuild">Running Selective Tests With xcodebuild</a></div><div class="toc-section">
+
+<div><a href="#debugging-the-issue" toc_id="debugging-the-issue">Debugging the Issue</a></div>
+<div><a href="#patching-the-issue-with-xctestconfiguration" toc_id="patching-the-issue-with-xctestconfiguration">Patching the Issue With XCTestConfiguration</a></div></div>
+<div><a href="#conclusion" toc_id="conclusion">Conclusion</a></div></nav><script src="/scripts/toc.js"></script>
+</div>
+</main></body>
+</html>
