@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang='en' class="js csstransforms3d">
+  <head>
+    <title>Thuyen&#39;s corner</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="In Search of Test Discovery Solutions in iOS" />
+<meta property="og:description" content="Introduction Five years ago, I wrote a blog post about extracting test methods before runtime in iOS. This falls under a broader category of test discovery - the process of identifying test cases in a codebase.
+While test discovery is relatively straightforward in scripting languages, it is more challenging in iOS and other statically typed languages. For a Swift package project, this can be done with the swift test list command." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/in-search-of-test-discovery/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-03-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-03-08T00:00:00+00:00" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<link rel="stylesheet" href="/sass/main.1081a7f7ad055e14f14092b4eb8c0c03bf8efb5d3e5121db581f7f63da63d795.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/in-search-of-test-discovery/">
+    <nav role="navigation">
+  <header class="banner">
+    <h1 class="logo">
+      <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
+    </h1>
+    <div id="menu-toggle" class="menu-toggle">
+      <svg class="icon"  viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+      </svg>
+    </div>
+  </header>
+  <ul class="menu-items">
+    <li class="menu-item"><a href="/posts/tech">Tech Blog</a></li>
+    <li class="menu-item"><a href="/posts/misc">Tạp Bút</a></li>
+    <li class="menu-item"><a href="/featured">Featured</a></li>
+    <li class="menu-item"><a href="/projects">Projects</a></li>
+    <li class="menu-item"><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<div class="page-wrapper">
+<article class="page">
+  <header>
+  
+  <h1>In Search of Test Discovery Solutions in iOS</h1>
+  
+  
+  <div class="metadata">
+  <span>2025, Mar 8</span>
+</div>
+  
+</header>
+  <h2 id="introduction">Introduction</h2>
+<p>Five years ago, I wrote a blog post about <a href="/posts/tech/ci-extract-test-methods">extracting test methods before runtime in iOS</a>. This falls under a broader category of <strong>test discovery</strong> - the process of identifying test cases in a codebase.</p>
+<p>While test discovery is relatively straightforward in scripting languages, it is more challenging in iOS and other statically typed languages. For a Swift package project, this can be done with the <code>swift test list</code> command. Meanwhile, projects using <code>.xcworkspace</code> and <code>.xcodeproj</code> do not have such APIs. As a result, most existing approaches rely on heuristics.</p>
+<p>In the above post, I discussed extracting tests by reading symbols from compiled <code>xctest</code> binaries, based on certain XCTest conventions. However, with the emergence of the Swift Testing framework, those conventions no longer hold.</p>
+<p>Interestingly, Xcode appears to recognize tests very early in the development process. As soon as a project is opened, the Test Navigator displays discovered tests. This suggests that understanding how Xcode discover tests could help achieve similar results. Unfortunately, there is little documentation on this topic. My intuition is that it might involve <a href="https://github.com/swiftlang/swift/tree/main/tools/SourceKit"><strong>SourceKit</strong></a> or <strong>Xcode’s indexing</strong> mechanism.</p>
+<img src="/images/misc/test_discovery_xcode.png"/>
+<h2 id="exploring-sourcekit-lsp">Exploring SourceKit-LSP</h2>
+<p>While working on a Swift package project in VSCode, I noticed that the <strong>Testing</strong> view displayed the project’s test cases. According to the <a href="https://github.com/swiftlang/vscode-swift">vscode-swift</a> documentation, this extension uses <strong>SourceKit-LSP</strong> for code completion as well as test discovery.</p>
+<img src="/images/misc/test_discovery_vscode.png"/>
+<p>However, SourceKit-LSP does not support Xcode projects or workspaces. If you open an iOS project with <code>.xcworkspace</code> and <code>.xcodeproj</code>, VSCode won’t display any tests, and code completion is also broken.</p>
+<p>Initially, I suspected that this might be a limitation of the vscode-swift extension. So, I attempted to patch the extension, hoping to make it work with Xcode projects. However, after digging into the SourceKit-LSP codebase, I concluded that it lacks built-in support for Xcode-managed projects. Instead, we need to <a href="https://github.com/swiftlang/sourcekit-lsp/blob/main/Contributor%20Documentation/Implementing%20a%20BSP%20server.md">implement a Build Server Protocol (BSP) server</a> that understands the <code>.xcworkspace</code> and <code>.xcodeproj</code> formats. Related discussion: <a href="https://github.com/swiftlang/sourcekit-lsp/issues/730#issuecomment-2394722212">sourcekit-lsp/issues/730</a>.</p>
+<p>Integrating SourceKit-LSP with a custom BSP server would require further research, which I plan to explore later.</p>
+<h2 id="leveraging-index-store">Leveraging Index Store</h2>
+<p>A key observation is that after disabling Xcode indexing, tests no longer show up in the Test Navigator. This demonstrates that indexing does affect test discovery.</p>
+<div class="note">To disable Xcode indexing, run <code>defaults write com.apple.dt.Xcode IDEIndexDisable 1</code>, then restart Xcode.</div>
+<p>This makes sense because Xcode begins indexing the project shortly after opening it, for code highlighting and completion, which also leads to early test discovery.</p>
+<p>In the project’s derived data, you notice a directory: <code>Index.noindex/DataStore</code>. This is where the indexing results are written to. Here, we can roughly understand the term “Index Store” as the storage of the indexing process, which corresponds to the directory above.</p>
+<p>Note that Xcode itself does not directly handle indexing. Instead, it communicates with an indexer service - <strong>SourceKit</strong>, via <a href="https://developer.apple.com/documentation/xpc">cross-process communication (<strong>XPC</strong>)</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> -----------------
+</span></span><span class="line"><span class="cl">| IDE             |
+</span></span><span class="line"><span class="cl">| (Xcode)         |
+</span></span><span class="line"><span class="cl">|  |              |
+</span></span><span class="line"><span class="cl">| Indexer Service | → Index Store
+</span></span><span class="line"><span class="cl">| (SourceKit)     |       ↑
+</span></span><span class="line"><span class="cl">|                 |       |
+</span></span><span class="line"><span class="cl">| swiftc/clang    | ------|
+</span></span><span class="line"><span class="cl"> -----------------
+</span></span></code></pre></div><p>Even when Xcode indexing is disabled (<code>IDEIndexDisable=1</code>), the <strong>SourceKitService</strong> process still runs. The name <code>IDEIndexDisable</code> clearly states the scope: IDE-driven indexing. This explains the fact that although Xcode indexing is disabled, the jump-to-definition feature still (sometimes) works.</p>
+<img src="/images/misc/test_discovery_sourcekitservice.png"/>
+<p>Additional, when a project is built - whether via Xcode or <code>xcodebuild</code>, the index store is still generated. This behavior is controlled by the <a href="https://developer.apple.com/documentation/xcode/build-settings-reference#Enable-Index-While-Building-Functionality"><strong>index-while-building</strong></a> setting, which is enabled by default. In fact, it’s swiftc/clang that writes to the index store. When inspecting swiftc/clang processes, you should see the argument <code>-index-store-path .../Index.noindex/DataStore</code>.</p>
+<p>The key takeaway here is: <strong>Once a project is built, its index store is available, containing symbols of that project</strong>. This is why static analysis tools like <a href="https://github.com/peripheryapp/periphery">Periphery</a> build the project first, before performing their analysis.</p>
+<p>Test discovery with index stores can be broken into two sub-problems:</p>
+<ul>
+<li><em>How to ensure an index store?</em></li>
+<li><em>Given an index store, how to extract test methods?</em></li>
+</ul>
+<p>Now, let’s begin with the latter because it requires the most effort.</p>
+<h3 id="extracting-test-methods-from-the-index-store">Extracting Test Methods From the Index Store</h3>
+<p>I used a <a href="https://github.com/trinhngocthuyen/ios-demos/tree/main/swift-testing-with-xcodebuild">demo project</a> containing tests for both XCTest and Swift Testing frameworks.</p>
+<p>Apple provides a package called <a href="https://github.com/swiftlang/indexstore-db">indexstore-db</a>, which allows querying an index store. I used it to parse relevant symbols after building the project.</p>
+<p>Interestingly, this package provides a dedicated function to retrieve unit test symbols: <a href="https://github.com/swiftlang/indexstore-db/blob/a434bdf/Sources/IndexStoreDB/IndexStoreDB.swift#L470">IndexStoreDB.swift#L470</a>. Unfortunately, the results only contains XCTest test cases 😞. Swift Testing test cases remain undetected.</p>
+<p>To extract those of Swift Testing, we need some extra works. Here’s a rough approach:</p>
+<hr>
+<ul>
+<li><em>(1) Find all test source files:<br>
+Identify files containing symbols marked with <code>__🟠$test_container__function__</code></em></li>
+<li><em>(2) Load all symbols in these files</em></li>
+<li><em>(3) For each symbol:</em>
+<ul>
+<li><em>(3.1.) Check if its related occurrences contain a Test macro symbol.
+If so, this symbol represents a test method.</em></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Source code: <a href="https://github.com/trinhngocthuyen/itest-scanner">https://github.com/trinhngocthuyen/itest-scanner</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// (1) Find test source files</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">sourceFiles</span> <span class="p">=</span> <span class="n">allSymbolNames</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&#34;__🟠$test_container__function__&#34;</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">compactMap</span> <span class="p">{</span> <span class="n">definition</span><span class="p">(</span><span class="n">of</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)?.</span><span class="n">location</span><span class="p">.</span><span class="n">path</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// (2) Load all symbols in these files</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">symbolsInSourceFiles</span> <span class="p">=</span> <span class="n">sourceFiles</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">symbols</span><span class="p">(</span><span class="n">inFilePath</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// (3) Loop each symbol</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">symbolsInSourceFiles</span><span class="p">.</span><span class="n">compactMap</span> <span class="p">{</span> <span class="n">symbol</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// (3.1) Check if its related occurrences contain a Test macro symbol</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">occurrences</span><span class="p">(</span><span class="n">relatedToUSR</span><span class="p">:</span> <span class="n">symbol</span><span class="p">.</span><span class="n">usr</span><span class="p">,</span> <span class="n">roles</span><span class="p">:</span> <span class="p">.</span><span class="n">containedBy</span><span class="p">).</span><span class="n">hasTestMacro</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">definition</span><span class="p">(</span><span class="n">of</span><span class="p">:</span> <span class="n">symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="kd">extension</span> <span class="nc">Sequence</span><span class="p">&lt;</span><span class="n">SymbolOccurrence</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">func</span> <span class="nf">hasTestMacro</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">contains</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">symbol</span><span class="p">.</span><span class="n">kind</span> <span class="p">==</span> <span class="p">.</span><span class="n">macro</span> <span class="o">&amp;&amp;</span> <span class="nv">$0</span><span class="p">.</span><span class="n">symbol</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">hasPrefix</span><span class="p">(</span><span class="s">&#34;Test(&#34;</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="ensuring-index-store-availability">Ensuring Index Store Availability</h3>
+<p>The approach above works if an index store is available. The question is: how do we ensure it exists?</p>
+<p><strong>During local development:</strong> Xcode indexing ensures the index store is available. Testing with the <a href="https://github.com/wikimedia/wikipedia-ios">Wikipedia project</a> shows that test-related symbols appear in the index store within a minute, even with no cache.</p>
+<p><strong>On CI/CD:</strong> Relying on Xcode indexing is not the case for automation. Since the index-while-building setting ensures a generated index store, we can extract test symbols after the build process. However, some projects disable this setting to reduce extra build tasks, to optimize build time. In such cases, you may consider enabling it for test targets only.</p>
+<p>I wish there’s a way to trigger indexing for a project without requiring a full build, as building is a heavyweight operation. This is an area for improvement, where 3rd-party tools could help bridge the gap.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>With the rise of Swift Testing, test discovery becomes more challenging. Neither Apple’s SourceKit-LSP nor IndexStoreDB natively supports Xcode projects which are prevalent in iOS development. Further effort is needed to make it work for both XCTest and Swift Testing frameworks.</p>
+<p>In this blog post, I have presented an approach to extract test methods by querying symbols from index stores. While this technique is a practical solution, there are still many areas for improvement.</p>
+<p>The lack of built-in support for test discovery in Xcode projects means an opportunity for better tooling, whether from Apple or from community.</p>
+
+  <div class="entry footer">
+  <div>
+    
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+</svg>
+
+  <a href="/categories/tech" class="category">tech</a>
+</div>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/ci" class="tag">ci</a>
+  <a href="/tags/ios" class="tag">ios</a>
+  <a href="/tags/testing" class="tag">testing</a>
+</div>
+  </div>
+  <div class='nav'><div class='prev-entry'>
+    <a href='/posts/tech/swift-testing-and-xcodebuild/'>Swift Testing and the Compatibility With xcodebuild</a>
+  </div></div>
+  
+</div>
+  
+<section class='actions'>
+  <div class="container facebook">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/in-search-of-test-discovery/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+</div>
+  <div class="container sponsor">
+<p>Like what you’re reading? Buy me a coffee and keep me going!</p>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</div>
+  <div class="container subscription">
+<p class="cta-desc"><i class="fa-regular fa-bell"></i> Subscribe to this substack<br>to stay updated with the latest content</p>
+<div class="close"><i class="fa-solid fa-xmark"></i></div>
+<iframe src="https://trinhngocthuyen.substack.com/embed" width="100%" height="300" style="border:none;" frameborder="0" scrolling="no"></iframe>
+</div>
+</section>
+</article>
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#introduction" toc_id="introduction">Introduction</a></div>
+<div><a href="#exploring-sourcekit-lsp" toc_id="exploring-sourcekit-lsp">Exploring SourceKit-LSP</a></div>
+<div><a href="#leveraging-index-store" toc_id="leveraging-index-store">Leveraging Index Store</a></div><div class="toc-section">
+
+<div><a href="#extracting-test-methods-from-the-index-store" toc_id="extracting-test-methods-from-the-index-store">Extracting Test Methods From the Index Store</a></div>
+<div><a href="#ensuring-index-store-availability" toc_id="ensuring-index-store-availability">Ensuring Index Store Availability</a></div></div>
+<div><a href="#conclusion" toc_id="conclusion">Conclusion</a></div></nav><script src="/scripts/toc.js"></script>
+</div>
+</main></body>
+</html>

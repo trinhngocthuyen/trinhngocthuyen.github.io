@@ -6,8 +6,15 @@
     <description>Recent content in ci on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>In Search of Test Discovery Solutions in iOS</title>
+      <link>https://trinhngocthuyen.com/posts/tech/in-search-of-test-discovery/</link>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/in-search-of-test-discovery/</guid>
+      <description>Introduction Five years ago, I wrote a blog post about extracting test methods before runtime in iOS. This falls under a broader category of test discovery - the process of identifying test cases in a codebase.&#xA;While test discovery is relatively straightforward in scripting languages, it is more challenging in iOS and other statically typed languages. For a Swift package project, this can be done with the swift test list command.</description>
+    </item>
     <item>
       <title>Swift Testing and the Compatibility With xcodebuild</title>
       <link>https://trinhngocthuyen.com/posts/tech/swift-testing-and-xcodebuild/</link>
