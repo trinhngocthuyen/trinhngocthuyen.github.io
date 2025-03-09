@@ -77,7 +77,7 @@ if (!doNotTrack) {
 <p>Interestingly, Xcode appears to recognize tests very early in the development process. As soon as a project is opened, the Test Navigator displays discovered tests. This suggests that understanding how Xcode discover tests could help achieve similar results. Unfortunately, there is little documentation on this topic. My intuition is that it might involve <a href="https://github.com/swiftlang/swift/tree/main/tools/SourceKit"><strong>SourceKit</strong></a> or <strong>Xcode’s indexing</strong> mechanism.</p>
 <img src="/images/misc/test_discovery_xcode.png"/>
 <h2 id="exploring-sourcekit-lsp">Exploring SourceKit-LSP</h2>
-<p>While working on a Swift package project in VSCode, I noticed that the <strong>Testing</strong> view displayed the project’s test cases. According to the <a href="https://github.com/swiftlang/vscode-swift">vscode-swift</a> documentation, this extension uses <strong>SourceKit-LSP</strong> for code completion as well as test discovery.</p>
+<p>While working on a Swift package project in VSCode, I noticed that the Testing view displayed the project’s test cases. According to the <a href="https://github.com/swiftlang/vscode-swift">vscode-swift</a> documentation, this extension uses <strong>SourceKit-LSP</strong> for code completion as well as test discovery.</p>
 <img src="/images/misc/test_discovery_vscode.png"/>
 <p>However, SourceKit-LSP does not support Xcode projects or workspaces. If you open an iOS project with <code>.xcworkspace</code> and <code>.xcodeproj</code>, VSCode won’t display any tests, and code completion is also broken.</p>
 <p>Initially, I suspected that this might be a limitation of the vscode-swift extension. So, I attempted to patch the extension, hoping to make it work with Xcode projects. However, after digging into the SourceKit-LSP codebase, I concluded that it lacks built-in support for Xcode-managed projects. Instead, we need to <a href="https://github.com/swiftlang/sourcekit-lsp/blob/main/Contributor%20Documentation/Implementing%20a%20BSP%20server.md">implement a Build Server Protocol (BSP) server</a> that understands the <code>.xcworkspace</code> and <code>.xcodeproj</code> formats. Related discussion: <a href="https://github.com/swiftlang/sourcekit-lsp/issues/730#issuecomment-2394722212">sourcekit-lsp/issues/730</a>.</p>
@@ -114,13 +114,13 @@ if (!doNotTrack) {
 <p>To extract those of Swift Testing, we need some extra works. Here’s a rough approach:</p>
 <hr>
 <ul>
-<li><em>(1) Find all test source files:<br>
-Identify files containing symbols marked with <code>__🟠$test_container__function__</code></em></li>
-<li><em>(2) Load all symbols in these files</em></li>
-<li><em>(3) For each symbol:</em>
+<li>(1) Find all test source files:<br>
+Identify files containing symbols marked with <code>__🟠$test_container__function__</code></li>
+<li>(2) Load all symbols in these files</li>
+<li>(3) For each symbol:
 <ul>
-<li><em>(3.1.) Check if its related occurrences contain a Test macro symbol.
-If so, this symbol represents a test method.</em></li>
+<li>(3.1.) Check if its related occurrences contain a Test macro symbol.<br>
+If so, this symbol represents a test method.</li>
 </ul>
 </li>
 </ul>
