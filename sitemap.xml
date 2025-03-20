@@ -3,13 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://trinhngocthuyen.com/</loc>
-    <lastmod>2025-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/</loc>
-    <lastmod>2025-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/categories/</loc>
-    <lastmod>2025-03-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/categories/misc/</loc>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/problem-solving/</loc>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/tags/</loc>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/misc/</loc>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trinhngocthuyen.com/posts/misc/when-research-goes-off-track/</loc>
+    <lastmod>2025-03-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/tags/ci/</loc>
     <lastmod>2025-03-08T00:00:00+00:00</lastmod>
@@ -18,9 +33,6 @@
     <lastmod>2025-03-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/tags/ios/</loc>
-    <lastmod>2025-03-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/tags/</loc>
     <lastmod>2025-03-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/categories/tech/</loc>
@@ -57,12 +69,6 @@
     <lastmod>2024-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/tags/chuy%E1%BB%87n-ngh%E1%BB%81/</loc>
-    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/categories/misc/</loc>
-    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/posts/misc/</loc>
     <lastmod>2024-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/tech/how-xcode-recognizes-module-imports/</loc>
@@ -232,9 +238,6 @@
   </url><url>
     <loc>https://trinhngocthuyen.com/posts/misc/tan-man-chung-ket-u23-chau-a/</loc>
     <lastmod>2018-01-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://trinhngocthuyen.com/tags/problem-solving/</loc>
-    <lastmod>2018-01-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://trinhngocthuyen.com/tags/questioning/</loc>
     <lastmod>2018-01-23T00:00:00+00:00</lastmod>
