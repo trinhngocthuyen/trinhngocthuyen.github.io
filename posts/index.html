@@ -66,6 +66,29 @@ if (!doNotTrack) {
 <ul class="post-item">
   <li class="item">
   <h3 class="title">
+    <a href="/posts/tech/async-let-bindings-gotcha-and-closer-look/">Async Let Bindings: a Gotcha and a Closer Look</a>
+  </h3>
+  <div class="metadata">
+    <span>2025, Mar 25</span>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/swift" class="tag">swift</a>
+  <a href="/tags/concurrency" class="tag">concurrency</a>
+</div>
+  </div>
+  <p class="summary">Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.
+Besides Task and TaskGroup for managing child tasks, the async let syntax allows you to start concurrent tasks and bind their results to variables, following structured concurrency principles.
+Yet, be cautious when writing async let bindings. Consider these two declarations below.
+async let x = taskX() // returns an Int async let y = taskY() // retunns a String let result = await (x, y) async let (x, y) = (taskX(), taskY()) let result = await (x, y) At first glance, they seem equivalent.</p>
+</li>
+
+  <li class="item">
+  <h3 class="title">
     <a href="/posts/misc/when-research-goes-off-track/">When Your Research Goes Off-Track</a>
   </h3>
   <div class="metadata">
@@ -252,27 +275,6 @@ A module can be distributed in various formats such as collections of source fil
   </div>
   <p class="summary">In the previous post, I mentioned pre-commit as a powerful tool to lint and format in a project.
 It had worked seamlessly for me until I committed code using SourceTree. Just to clarify, I predominantly use git on terminal. I only use a GUI app such as SourceTree to view the diff, or to stage selective chunks in a file (which is a bit difficult to achieve when using terminal). Therefore, the issue went unnoticed during my usual workflow.</p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/pre-commit/">Using pre-commit for Linters/Formatters</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Feb 01</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.
-At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</p>
 </li>
 
 </ul>

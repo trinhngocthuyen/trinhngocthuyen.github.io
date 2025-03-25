@@ -5,10 +5,10 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="Tags" />
+<meta property="og:title" content="concurrency" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://trinhngocthuyen.com/tags/" />
+<meta property="og:url" content="https://trinhngocthuyen.com/tags/concurrency/" />
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
@@ -30,7 +30,7 @@ if (!doNotTrack) {
 </script>
 
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/tags/concurrency/">
     <nav role="navigation">
   <header class="banner">
     <h1 class="logo">
@@ -57,7 +57,9 @@ if (!doNotTrack) {
     <main role="main">
 <header>
   
-  <h1>Tags</h1>
+  
+  <h1>Tag: concurrency</h1>
+  
   
   
 </header>
@@ -65,121 +67,27 @@ if (!doNotTrack) {
 <ul class="post-item">
   <li class="item">
   <h3 class="title">
-    <a href="/tags/concurrency/">concurrency</a>
+    <a href="/posts/tech/async-let-bindings-gotcha-and-closer-look/">Async Let Bindings: a Gotcha and a Closer Look</a>
   </h3>
   <div class="metadata">
     <span>2025, Mar 25</span>
     
-  </div>
-  <p class="summary"></p>
-</li>
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
 
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/swift/">swift</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Mar 25</span>
-    
+  <a href="/tags/swift" class="tag">swift</a>
+  <a href="/tags/concurrency" class="tag">concurrency</a>
+</div>
   </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/problem-solving/">problem-solving</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Mar 20</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/ci/">ci</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Mar 08</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/ios/">ios</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Mar 08</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/testing/">testing</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Mar 08</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/automation/">automation</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Feb 17</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/e2e/">e2e</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Jan 09</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/mobile/">mobile</a>
-  </h3>
-  <div class="metadata">
-    <span>2025, Jan 09</span>
-    
-  </div>
-  <p class="summary"></p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/tags/chuy%E1%BB%87n-ngh%E1%BB%81/">chuyện-nghề</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Nov 21</span>
-    
-  </div>
-  <p class="summary"></p>
+  <p class="summary">Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.
+Besides Task and TaskGroup for managing child tasks, the async let syntax allows you to start concurrent tasks and bind their results to variables, following structured concurrency principles.
+Yet, be cautious when writing async let bindings. Consider these two declarations below.
+async let x = taskX() // returns an Int async let y = taskY() // retunns a String let result = await (x, y) async let (x, y) = (taskX(), taskY()) let result = await (x, y) At first glance, they seem equivalent.</p>
 </li>
 
 </ul>
-<nav id='pagination'>
-  <div class='page-links'>
-      <span aria-current='page' class='page-link current'>1</span>
-      <a class='page-link' href='/tags/page/2/'>2</a><span class='page-link dots'>&hellip;</span>
-      <a class='page-link' href='/tags/page/6/'>6</a>
-  </div>
-</nav>
 </main></body>
 </html>

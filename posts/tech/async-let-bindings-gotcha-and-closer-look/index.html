@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang='en' class="js csstransforms3d">
+  <head>
+    <title>Thuyen&#39;s corner</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Async Let Bindings: a Gotcha and a Closer Look" />
+<meta property="og:description" content="Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.
+Besides Task and TaskGroup for managing child tasks, the async let syntax allows you to start concurrent tasks and bind their results to variables, following structured concurrency principles.
+Yet, be cautious when writing async let bindings. Consider these two declarations below.
+async let x = taskX() // returns an Int async let y = taskY() // retunns a String let result = await (x, y) async let (x, y) = (taskX(), taskY()) let result = await (x, y) At first glance, they seem equivalent." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/async-let-bindings-gotcha-and-closer-look/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-03-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-03-25T00:00:00+00:00" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<link rel="stylesheet" href="/sass/main.1081a7f7ad055e14f14092b4eb8c0c03bf8efb5d3e5121db581f7f63da63d795.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/async-let-bindings-gotcha-and-closer-look/">
+    <nav role="navigation">
+  <header class="banner">
+    <h1 class="logo">
+      <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
+    </h1>
+    <div id="menu-toggle" class="menu-toggle">
+      <svg class="icon"  viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+      </svg>
+    </div>
+  </header>
+  <ul class="menu-items">
+    <li class="menu-item"><a href="/posts/tech">Tech Blog</a></li>
+    <li class="menu-item"><a href="/posts/misc">Tạp Bút</a></li>
+    <li class="menu-item"><a href="/featured">Featured</a></li>
+    <li class="menu-item"><a href="/projects">Projects</a></li>
+    <li class="menu-item"><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<div class="page-wrapper">
+<article class="page">
+  <header>
+  
+  <h1>Async Let Bindings: a Gotcha and a Closer Look</h1>
+  
+  
+  <div class="metadata">
+  <span>2025, Mar 25</span>
+</div>
+  
+</header>
+  <p>Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.</p>
+<p>Besides Task and TaskGroup for managing child tasks, the <code>async let</code> syntax allows you to start concurrent tasks and bind their results to variables, following <a href="https://github.com/swiftlang/swift-evolution/blob/main/proposals/0304-structured-concurrency.md">structured concurrency</a> principles.</p>
+<p>Yet, be cautious when writing <code>async let</code> bindings. Consider these two declarations below.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">taskX</span><span class="p">()</span> <span class="c1">// returns an Int</span>
+</span></span><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="nv">y</span> <span class="p">=</span> <span class="n">taskY</span><span class="p">()</span> <span class="c1">// retunns a String</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="n">await</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">taskX</span><span class="p">(),</span> <span class="n">taskY</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="n">await</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></div><p>At first glance, they seem equivalent. Both deliver <code>result</code> as a tuple of values from <code>taskX()</code> and <code>taskY()</code>. But are they truly the same? <strong>No, they’re NOT</strong>.</p>
+<p>The difference lies in <em>concurrency</em>. In the first example, <code>taskX()</code> and <code>taskY()</code> run concurrently. That results in a total of 1s if each task takes 1s. Meanwhile, the two tasks in the second run sequentially, taking 2s in total. What a performance gap for such a subtle syntax change!</p>
+<h2 id="why-the-difference">Why the Difference?</h2>
+<p>The root cause is how Swift interprets the right-hand side of a binding. In the second example, <code>(taskX(), taskY())</code> is treated as a single asynchronous task. This task consists of two asynchronous calls which are performed <strong>one-by-one</strong> according to the <em>evaluation order</em>, from left to right.</p>
+<p>I guess this is <strong>by design</strong> rather than an implementation limitation. Why? Let’s reverse-think it. If <code>(taskX(), taskY())</code> spawns concurrent tasks, how would you express a tuple of <em>sequential</em> tasks? And what about literal arrays like <code>[taskX(), taskY()]</code> - should they also imply concurrency? These not only clash with Swift’s left-to-right evaluation order but also lead to error-prone code.</p>
+<p>If you want a shorthand for concurrent tuples, you may need a helper function like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">asyncTuple</span><span class="p">&lt;</span><span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="bp">first</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">U</span><span class="p">,</span> <span class="kc">_</span> <span class="n">second</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">V</span><span class="p">)</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">async</span> <span class="kd">let</span> <span class="nv">firstValue</span> <span class="p">=</span> <span class="bp">first</span><span class="p">(),</span> <span class="n">secondValue</span> <span class="p">=</span> <span class="n">second</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">await</span> <span class="p">(</span><span class="n">firstValue</span><span class="p">,</span> <span class="n">secondValue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="n">asyncTuple</span><span class="p">(</span><span class="n">taskX</span><span class="p">(),</span> <span class="n">taskY</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">asyncTuple</span><span class="p">(</span><span class="n">taskX</span><span class="p">(),</span> <span class="n">taskY</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><h2 id="a-closer-look">A Closer Look</h2>
+<h3 id="async-let-vs-task">Async let vs. Task</h3>
+<p>It’s important to know why <code>async let</code> is needed when we already have <code>Task</code>. In fact, the concurrent tuple in the previous section can be implemented this way:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">tx</span> <span class="p">=</span> <span class="n">Task</span> <span class="p">{</span> <span class="n">await</span> <span class="n">taskX</span><span class="p">()</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">ty</span> <span class="p">=</span> <span class="n">Task</span> <span class="p">{</span> <span class="n">await</span> <span class="n">taskY</span><span class="p">()</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="n">await</span> <span class="p">(</span><span class="n">tx</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ty</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+</span></span></code></pre></div><p>Well, this touches on the topic of <a href="https://github.com/swiftlang/swift-evolution/blob/main/proposals/0304-structured-concurrency.md">structured concurrency</a> which we will not go into detail about in this post. While <code>Task</code> works, it’s <em>unstructured</em> in some cases. Tasks can outlive their scope (eg. with <code>Task.detached</code>) which breaks the rules of structured concurrency. Meanwhile, <code>async let</code> ensures execution within a defined scope (eg. within the function), allowing the compiler to enforce compile-time checks for concurrency practices.</p>
+<h3 id="async-let-implementation">Async let Implementation</h3>
+<p>Syntactically, <code>let</code> and <code>async let</code> look similar, but their implementations differ. A regular <code>let</code> binding has two key phases: <em>instantiation</em> and <em>destruction</em>. An <code>async let</code> has one more: when the value is <strong>awaited</strong>, or ready. In Swift’s concurrency model, this can be roughly understood as a <strong>suspension point</strong> where the current execution gives up its thread for others to work (until gaining it back - alongside the result).</p>
+<p>Consider this simple code and look at its SIL (Swift Intermediate Language) to understand the lifetime of an <code>async let</code> variable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="n">taskX</span><span class="p">()</span> <span class="c1">// async -&gt; Int</span>
+</span></span><span class="line"><span class="cl"><span class="n">await</span> <span class="n">x</span>
+</span></span></code></pre></div><div class="note">For clarity, I stripped some irrelevant SIL code. To generate SIL, run:<br>
+<code>xcrun swiftc -emit-silgen &lt;main.swift&gt; | xcrun swift demangle</code></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// allocate result buffer</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// (1) start async task</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">2</span> <span class="p">=</span> <span class="n">alloc_stack</span> <span class="err">$</span><span class="nb">Int</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">8</span> <span class="p">=</span> <span class="n">builtin</span> <span class="s">&#34;startAsyncLetWithLocalBuffer&#34;</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// (2) get value</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">9</span> <span class="p">=</span> <span class="n">function_ref</span> <span class="p">@</span><span class="n">swift_asyncLet_get</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// (2.1) invoke swift_asyncLet_get</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">10</span> <span class="p">=</span> <span class="n">apply</span> <span class="o">%</span><span class="mi">9</span><span class="p">(</span><span class="o">%</span><span class="mi">8</span><span class="p">,</span> <span class="o">%</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// (2.2) read value from result buffer</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">12</span> <span class="p">=</span> <span class="n">pointer_to_address</span> <span class="o">%</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">13</span> <span class="p">=</span> <span class="n">load</span> <span class="p">[</span><span class="n">trivial</span><span class="p">]</span> <span class="o">%</span><span class="mi">12</span> <span class="p">:</span> <span class="err">$</span><span class="o">*</span><span class="nb">Int</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// (3) end lifetime</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">22</span> <span class="p">=</span> <span class="n">builtin</span> <span class="s">&#34;endAsyncLetLifetime&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">dealloc_stack</span> <span class="o">%</span><span class="mi">2</span> <span class="p">:</span> <span class="err">$</span><span class="o">*</span><span class="nb">Int</span>
+</span></span></code></pre></div><p>Here’s what happens:</p>
+<p>(1) <strong>Start</strong> (<code>startAsyncLetWithLocalBuffer</code>)
+Allocates a buffer for the result, and kicks off the task.</p>
+<p>(2) <strong>Await</strong> (<a href="https://github.com/swiftlang/swift/blob/swift-6.0-RELEASE/stdlib/public/Concurrency/AsyncLet.swift#L47"><code>swift_asyncLet_get</code></a>)</p>
+<p>Suspends execution, waits for completion, then reads the result from the buffer.
+Note: There’s a <a href="https://github.com/swiftlang/swift/blob/swift-6.0-RELEASE/stdlib/public/Concurrency/AsyncLet.cpp#L253-L256">cache in swift_asyncLet_get logic</a> to prevent re-running the task if its result is already populated. This allows us to <code>await</code> the result <em>multiple times</em>.</p>
+<p>(3) <strong>End</strong>: Frees up task and its buffers when the scope exits.</p>
+<p>With multiple <code>async let</code> bindings, each has its own <code>startAsyncLetWithLocalBuffer</code>. The order in the SIL as below indicates the concurrent executions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// start taskX</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">8</span> <span class="p">=</span> <span class="n">builtin</span> <span class="s">&#34;startAsyncLetWithLocalBuffer&#34;</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// start taskY</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">15</span> <span class="p">=</span> <span class="n">builtin</span> <span class="s">&#34;startAsyncLetWithLocalBuffer&#34;</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;...</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// get result of taskX</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">16</span> <span class="p">=</span> <span class="n">function_ref</span> <span class="p">@</span><span class="n">swift_asyncLet_get</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// get result of taskY</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">21</span> <span class="p">=</span> <span class="n">function_ref</span> <span class="p">@</span><span class="n">swift_asyncLet_get</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><h3 id="binding-with-patterns-async-let-vs-let">Binding With Patterns: <code>async let</code> vs. <code>let</code></h3>
+<p>Now, let’s revisit the tuple case:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">async</span> <span class="kd">let</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">taskX</span><span class="p">(),</span> <span class="n">taskY</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">await</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></div><p>The SIL shows only one <code>startAsyncLetWithLocalBuffer&lt;Int, String&gt;</code>. This confirms the fact that Swift evaluates the tuple as a whole, rather than splitting into two bindings for <code>x</code> and <code>y</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// initialize tuple</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">2</span> <span class="p">=</span> <span class="n">alloc_stack</span> <span class="err">$</span><span class="p">(</span><span class="nb">Int</span><span class="p">,</span> <span class="nb">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// (1) start task</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">8</span> <span class="p">=</span> <span class="n">builtin</span> <span class="s">&#34;startAsyncLetWithLocalBuffer&#34;</span><span class="o">&lt;</span><span class="p">(</span><span class="nb">Int</span><span class="p">,</span> <span class="nb">String</span><span class="p">)</span><span class="o">&gt;</span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// (2.1) get 1st result of the tuple</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">9</span> <span class="p">=</span> <span class="n">function_ref</span> <span class="p">@</span><span class="n">swift_asyncLet_get</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">10</span> <span class="p">=</span> <span class="n">apply</span> <span class="o">%</span><span class="mi">9</span><span class="p">(</span><span class="o">%</span><span class="mi">8</span><span class="p">,</span> <span class="o">%</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">13</span> <span class="p">=</span> <span class="n">tuple_element_addr</span> <span class="o">%</span><span class="mi">12</span> <span class="p">:</span> <span class="err">$</span><span class="o">*</span><span class="p">(</span><span class="nb">Int</span><span class="p">,</span> <span class="nb">String</span><span class="p">),</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">14</span> <span class="p">=</span> <span class="n">load</span> <span class="p">[</span><span class="n">trivial</span><span class="p">]</span> <span class="o">%</span><span class="mi">13</span> <span class="p">:</span> <span class="err">$</span><span class="o">*</span><span class="nb">Int</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// (2.2) get 2nd result of the tuple</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">15</span> <span class="p">=</span> <span class="n">function_ref</span> <span class="p">@</span><span class="n">swift_asyncLet_get</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">16</span> <span class="p">=</span> <span class="n">apply</span> <span class="o">%</span><span class="mi">15</span><span class="p">(</span><span class="o">%</span><span class="mi">8</span><span class="p">,</span> <span class="o">%</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">19</span> <span class="p">=</span> <span class="n">tuple_element_addr</span> <span class="o">%</span><span class="mi">18</span> <span class="p">:</span> <span class="err">$</span><span class="o">*</span><span class="p">(</span><span class="nb">Int</span><span class="p">,</span> <span class="nb">String</span><span class="p">),</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">20</span> <span class="p">=</span> <span class="n">load</span> <span class="p">[</span><span class="n">trivial</span><span class="p">]</span> <span class="o">%</span><span class="mi">19</span> <span class="p">:</span> <span class="err">$</span><span class="o">*</span><span class="nb">String</span>
+</span></span></code></pre></div><p>But is that the case for <code>let</code> bindings? Let’s find out.</p>
+<p>When binding <code>let (x, y) = ts</code>, the tuple is decomposed into two.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="o">**</span><span class="p">(</span><span class="o">%</span><span class="mi">6</span><span class="p">,</span> <span class="o">%</span><span class="mi">7</span><span class="p">)</span> <span class="p">=</span> <span class="n">destructure_tuple</span> <span class="o">%</span><span class="mi">4</span> <span class="p">:</span> <span class="err">$</span><span class="p">(</span><span class="nb">Int</span><span class="p">,</span> <span class="nb">String</span><span class="p">)</span><span class="o">**</span>
+</span></span><span class="line"><span class="cl"><span class="n">debug_value</span> <span class="o">%</span><span class="mi">6</span> <span class="p">:</span> <span class="err">$</span><span class="nb">Int</span><span class="p">,</span> <span class="kd">let</span><span class="p">,</span> <span class="n">name</span> <span class="s">&#34;x&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">debug_value</span> <span class="o">%</span><span class="mi">7</span> <span class="p">:</span> <span class="err">$</span><span class="nb">Int</span><span class="p">,</span> <span class="kd">let</span><span class="p">,</span> <span class="n">name</span> <span class="s">&#34;y&#34;</span>
+</span></span></code></pre></div><p>However, in cases of exact semantic matches like <code>let (x, y) = (syncTaskX(), syncTaskY())</code>, the SIL reveals that the compiler directly assign <code>syncTaskX()</code> and <code>syncTaskY()</code> to <code>x</code> and <code>y</code>, skipping the unnecessary tuple creation and decomposition.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// assign syncTaskX() directly to x</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">1</span> <span class="p">=</span> <span class="n">apply</span> <span class="o">%</span><span class="mi">0</span><span class="p">()</span> <span class="p">:</span> <span class="err">$</span><span class="p">@</span><span class="n">convention</span><span class="p">(</span><span class="n">thin</span><span class="p">)</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl"><span class="n">debug_value</span> <span class="o">%</span><span class="mi">1</span> <span class="p">:</span> <span class="err">$</span><span class="nb">Int</span><span class="p">,</span> <span class="kd">let</span><span class="p">,</span> <span class="n">name</span> <span class="s">&#34;x&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// assign syncTaskY() directly to y</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">4</span> <span class="p">=</span> <span class="n">apply</span> <span class="o">%</span><span class="mi">3</span><span class="p">()</span> <span class="p">:</span> <span class="err">$</span><span class="p">@</span><span class="n">convention</span><span class="p">(</span><span class="n">thin</span><span class="p">)</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl"><span class="n">debug_value</span> <span class="o">%</span><span class="mi">4</span> <span class="p">:</span> <span class="err">$</span><span class="nb">Int</span><span class="p">,</span> <span class="kd">let</span><span class="p">,</span> <span class="n">name</span> <span class="s">&#34;y&#34;</span>
+</span></span></code></pre></div><p>…</p>
+<p>As you can see, despite the syntactic similarity, <code>let</code> and <code>async let</code> may bind values to variables differently under the hood.<br>
+Be mindful when writing your code. Subtle differences can trip you up.</p>
+
+  <div class="entry footer">
+  <div>
+    
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+</svg>
+
+  <a href="/categories/tech" class="category">tech</a>
+</div>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/swift" class="tag">swift</a>
+  <a href="/tags/concurrency" class="tag">concurrency</a>
+</div>
+  </div>
+  <div class='nav'><div class='prev-entry'>
+    <a href='/posts/tech/in-search-of-test-discovery/'>In Search of Test Discovery Solutions in iOS</a>
+  </div></div>
+  
+</div>
+  
+<section class='actions'>
+  <div class="container facebook">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/async-let-bindings-gotcha-and-closer-look/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+</div>
+  <div class="container sponsor">
+<p>Like what you’re reading? Buy me a coffee and keep me going!</p>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</div>
+  <div class="container subscription">
+<p class="cta-desc"><i class="fa-regular fa-bell"></i> Subscribe to this substack<br>to stay updated with the latest content</p>
+<div class="close"><i class="fa-solid fa-xmark"></i></div>
+<iframe src="https://trinhngocthuyen.substack.com/embed" width="100%" height="300" style="border:none;" frameborder="0" scrolling="no"></iframe>
+</div>
+</section>
+</article>
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#why-the-difference" toc_id="why-the-difference">Why the Difference?</a></div>
+<div><a href="#a-closer-look" toc_id="a-closer-look">A Closer Look</a></div><div class="toc-section">
+
+<div><a href="#async-let-vs-task" toc_id="async-let-vs-task">Async let vs. Task</a></div>
+<div><a href="#async-let-implementation" toc_id="async-let-implementation">Async let Implementation</a></div>
+<div><a href="#binding-with-patterns-async-let-vs-let" toc_id="binding-with-patterns-async-let-vs-let">Binding With Patterns: <code>async let</code> vs. <code>let</code></a></div></nav><script src="/scripts/toc.js"></script>
+</div>
+</main></body>
+</html>

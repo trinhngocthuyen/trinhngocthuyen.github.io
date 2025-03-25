@@ -66,6 +66,29 @@ if (!doNotTrack) {
 <ul class="post-item">
   <li class="item">
   <h3 class="title">
+    <a href="/posts/tech/async-let-bindings-gotcha-and-closer-look/">Async Let Bindings: a Gotcha and a Closer Look</a>
+  </h3>
+  <div class="metadata">
+    <span>2025, Mar 25</span>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/swift" class="tag">swift</a>
+  <a href="/tags/concurrency" class="tag">concurrency</a>
+</div>
+  </div>
+  <p class="summary">Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.
+Besides Task and TaskGroup for managing child tasks, the async let syntax allows you to start concurrent tasks and bind their results to variables, following structured concurrency principles.
+Yet, be cautious when writing async let bindings. Consider these two declarations below.
+async let x = taskX() // returns an Int async let y = taskY() // retunns a String let result = await (x, y) async let (x, y) = (taskX(), taskY()) let result = await (x, y) At first glance, they seem equivalent.</p>
+</li>
+
+  <li class="item">
+  <h3 class="title">
     <a href="/posts/tech/in-search-of-test-discovery/">In Search of Test Discovery Solutions in iOS</a>
   </h3>
   <div class="metadata">
@@ -255,27 +278,6 @@ At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Pyt
   </div>
   <p class="summary">1. Introduction Swift Package Manager (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, CocoaPods has gained its power and emerged as a dominant tool in iOS development.
 Not until recently has SPM been adopted widely.</p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/test-quarantine/">Designing Test Quarantine Logic to Deal With Flaky Tests</a>
-  </h3>
-  <div class="metadata">
-    <span>2023, Sep 17</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">1. Introduction Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.
-2. The Need for Test Quarantine 2.1. The Challenge of Flaky Tests Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity.</p>
 </li>
 
 </ul>

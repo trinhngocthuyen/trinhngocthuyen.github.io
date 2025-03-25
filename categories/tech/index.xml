@@ -6,8 +6,15 @@
     <description>Recent content in tech on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Async Let Bindings: a Gotcha and a Closer Look</title>
+      <link>https://trinhngocthuyen.com/posts/tech/async-let-bindings-gotcha-and-closer-look/</link>
+      <pubDate>Tue, 25 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/async-let-bindings-gotcha-and-closer-look/</guid>
+      <description>Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.&#xA;Besides Task and TaskGroup for managing child tasks, the async let syntax allows you to start concurrent tasks and bind their results to variables, following structured concurrency principles.&#xA;Yet, be cautious when writing async let bindings. Consider these two declarations below.&#xA;async let x = taskX() // returns an Int async let y = taskY() // retunns a String let result = await (x, y) async let (x, y) = (taskX(), taskY()) let result = await (x, y) At first glance, they seem equivalent.</description>
+    </item>
     <item>
       <title>In Search of Test Discovery Solutions in iOS</title>
       <link>https://trinhngocthuyen.com/posts/tech/in-search-of-test-discovery/</link>
