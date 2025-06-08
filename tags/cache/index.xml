@@ -10,9 +10,9 @@
     <atom:link href="https://trinhngocthuyen.com/tags/cache/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Swift Packages: Packaging as an XCFramework (1)</title>
-      <link>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1.md/</link>
+      <link>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1/</link>
       <pubDate>Sun, 08 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1.md/</guid>
+      <guid>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1/</guid>
       <description>Background Modularizing code using Swift packages has become more and more common in iOS development. With the introduction of XCFrameworks, Apple has provided a robust mechanism to ship prebuilt products that support multiple platforms and architectures.&#xA;Binary distribution of SDKs and third-party libraries is not new, especially in closed-source projects where protecting intellectual property is crucial. Another major benefit is reduced build times. Many build caching tools rely on this aspect, ie.</description>
     </item>
   </channel>

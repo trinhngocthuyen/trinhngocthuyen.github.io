@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang='en' class="js csstransforms3d">
+  <head>
+    <title>Thuyen&#39;s corner</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Swift Packages: Packaging as an XCFramework (1)" />
+<meta property="og:description" content="Background Modularizing code using Swift packages has become more and more common in iOS development. With the introduction of XCFrameworks, Apple has provided a robust mechanism to ship prebuilt products that support multiple platforms and architectures.
+Binary distribution of SDKs and third-party libraries is not new, especially in closed-source projects where protecting intellectual property is crucial. Another major benefit is reduced build times. Many build caching tools rely on this aspect, ie." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-06-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-06-08T00:00:00+00:00" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<link rel="stylesheet" href="/sass/main.1081a7f7ad055e14f14092b4eb8c0c03bf8efb5d3e5121db581f7f63da63d795.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/spm-packaging-xcframework-1/">
+    <nav role="navigation">
+  <header class="banner">
+    <h1 class="logo">
+      <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
+    </h1>
+    <div id="menu-toggle" class="menu-toggle">
+      <svg class="icon"  viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+      </svg>
+    </div>
+  </header>
+  <ul class="menu-items">
+    <li class="menu-item"><a href="/posts/tech">Tech Blog</a></li>
+    <li class="menu-item"><a href="/posts/misc">Tạp Bút</a></li>
+    <li class="menu-item"><a href="/featured">Featured</a></li>
+    <li class="menu-item"><a href="/projects">Projects</a></li>
+    <li class="menu-item"><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<div class="page-wrapper">
+<article class="page">
+  <header>
+  
+  <h1>Swift Packages: Packaging as an XCFramework (1)</h1>
+  
+  
+  <div class="metadata">
+  <span>2025, Jun 8</span>
+</div>
+  
+</header>
+  <h2 id="background">Background</h2>
+<p>Modularizing code using Swift packages has become more and more common in iOS development. With the introduction of XCFrameworks, Apple has provided a robust mechanism to ship prebuilt products that support multiple platforms and architectures.</p>
+<p>Binary distribution of SDKs and third-party libraries is not new, especially in closed-source projects where protecting intellectual property is crucial. Another major benefit is reduced build times. Many build caching tools rely on this aspect, ie. prebuilding code into binaries, to speed up development workflows.</p>
+<p>With Swift packages, you can declare a binary target, backed by either an XCFramework, or a zip of an XCFramework, in the manifest using <a href="https://developer.apple.com/documentation/packagedescription/target/binarytarget(name:path:)"><code>.binaryTarget(name:path:)</code></a>.</p>
+<p>However, building an XCFramework from a Swift package target isn’t as straightforward as it seems. The process generally breaks down into two main steps:</p>
+<ul>
+<li>(1) <strong>Creating a framework bundle</strong> for each slice (arm64-ios-simulator, arm64-ios, arm64-macos, etc.)</li>
+<li>(2) <strong>Merging slices</strong> into an XCFramework bundle</li>
+</ul>
+<p>While the second is relatively easy with <code>xcodebuild -create-xcframework</code>, the first step - building the individual frameworks, is where the challenge lies. Let’s explore why.</p>
+<h4 id="why-swift-build-isnt-enough">Why <code>swift build</code> Isn’t Enough</h4>
+<p>When building a Swift package using <code>swift build</code>, you don’t get a <code>.framework</code> bundle, or even a static <code>.a</code> file like you would with an Xcode project. Instead, it produces object files (<code>.o</code>) along with module-related auxiliaries.</p>
+<p>Historically, Swift provided a <code>generate-xcodeproj</code> subcommand that made it easy to create an <code>.xcodeproj</code> file for a package. This allowed developers to build a proper framework via <code>xcodebuild</code>, with support for features like <a href="https://github.com/swiftlang/swift/blob/main/docs/LibraryEvolution.rst">library evolution</a>.</p>
+<p>However, this command was removed in Swift 5.8, leaving developers difficulties distributing their prebuilt frameworks. Many projects maintains their own <code>.xcodeproj</code> for this purpose. <a href="https://github.com/onevcat/Kingfisher">Kingfisher</a>, for example, obtains the XCFramework using a bunch of <a href="https://github.com/onevcat/Kingfisher/blob/8.3.2/fastlane/Fastfile#L93-L166">Fastlane code</a> which requires <a href="https://github.com/onevcat/Kingfisher/tree/8.3.2/Kingfisher.xcodeproj">an Xcode project</a>.</p>
+<p>Some tools like <a href="https://github.com/segment-integrations/swift-create-xcframework">swift-create-xcframework</a> recreate this process by generating an Xcode project and then archiving frameworks via <code>xcodebuild</code>.</p>
+<p>But what if we want to avoid Xcode projects entirely? How do we produce a <code>.framework</code> bundle directly from <code>swift build</code> outputs? Let’s find out.</p>
+<h2 id="creating-a-framework-on-your-own">Creating a Framework on Your Own</h2>
+<p>We can formulate the process of creating a framework from sources. But first, let’s take a look at what a standard framework bundle looks like.</p>
+<h3 id="understanding-framework-structure">Understanding Framework Structure</h3>
+<p>Below is the structure of <code>Kingfisher.framework</code>, taken from its <a href="https://github.com/onevcat/Kingfisher/releases/tag/8.3.2">release page</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Kingfisher.framework
+</span></span><span class="line"><span class="cl">├── Headers
+</span></span><span class="line"><span class="cl">│   └── Kingfisher-Swift.h
+</span></span><span class="line"><span class="cl">├── Info.plist
+</span></span><span class="line"><span class="cl">├── Kingfisher
+</span></span><span class="line"><span class="cl">├── Modules
+</span></span><span class="line"><span class="cl">│   ├── Kingfisher.swiftmodule
+</span></span><span class="line"><span class="cl">│   │   ├── arm64-apple-ios.abi.json
+</span></span><span class="line"><span class="cl">│   │   ├── arm64-apple-ios.private.swiftinterface
+</span></span><span class="line"><span class="cl">│   │   ├── arm64-apple-ios.swiftdoc
+</span></span><span class="line"><span class="cl">│   │   └── arm64-apple-ios.swiftinterface
+</span></span><span class="line"><span class="cl">│   └── module.modulemap
+</span></span><span class="line"><span class="cl">└── PrivacyInfo.xcprivacy
+</span></span></code></pre></div><p>Key components:</p>
+<ul>
+<li><strong>Binary</strong> (<code>Kingfisher</code>): contains the compiled code</li>
+<li><strong>Modules</strong><br>
+<strong><code>Kingfisher.swiftmodule</code></strong> defines the <a href="https://github.com/swiftlang/swift/blob/main/docs/Modules.md">Swift modules</a>, making it visible to Swift code via <code>import X</code>.<br>
+<strong><code>module.modulemap</code></strong> defines the <a href="https://clang.llvm.org/docs/Modules.html#module-maps">Clang module</a>, making it visible to Objective-C code via <code>@import X;</code>.<br>
+For more details on how module imports work, check out my previous article: <a href="/posts/tech/how-xcode-recognizes-module-imports">How Xcode Recognizes Module Imports</a>.</li>
+<li><strong>Headers</strong>: includes public headers, declared in the modulemap.</li>
+<li><strong>Info.plist</strong>: metadata such as name, bundle ID, version, etc.</li>
+</ul>
+<h3 id="examining-build-products">Examining Build Products</h3>
+<p>After running <code>swift build --target Kingfisher</code>, the build directory looks like as follows.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.build/debug/
+</span></span><span class="line"><span class="cl">├── Kingfisher_Kingfisher.bundle
+</span></span><span class="line"><span class="cl">│   └── PrivacyInfo.xcprivacy
+</span></span><span class="line"><span class="cl">├── Kingfisher.build
+</span></span><span class="line"><span class="cl">│   ├── Kingfisher-swift.h
+</span></span><span class="line"><span class="cl">│   ├── *.swift.o  (object files)
+</span></span><span class="line"><span class="cl">│   ...
+</span></span><span class="line"><span class="cl">└── Modules
+</span></span><span class="line"><span class="cl">    ├── Kingfisher.swiftdoc
+</span></span><span class="line"><span class="cl">    ├── Kingfisher.swiftmodule
+</span></span><span class="line"><span class="cl">    └── Kingfisher.swiftsourceinfo
+</span></span></code></pre></div><h3 id="creating-framework-binary">Creating Framework Binary</h3>
+<p>What is missing in the build products compared to the standard framework structure? There is no consolidated binary of the target. Instead, we have scattered object files (<code>.o</code>) under <code>Kingfisher.build</code>.</p>
+<p>We can use <a href="https://www.gnu.org/software/libtool/manual/libtool.html">libtool</a> to produce a static library/archive out of them.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ libtool -static -o Kingfisher.framework/Kingfisher .build/debug/Kingfisher.build/**/*.o
+</span></span></code></pre></div><h3 id="creating-modules">Creating Modules</h3>
+<p>There are some module-related files among build outputs of a Swift target under the Modules directory. We just need to copy them to the <code>.swiftmodule</code> bundle inside the framework (<code>Modules/Kingfisher.swiftmodule</code>).</p>
+<p>Remember to rename those files according to the slice, eg. <code>arm64-ios-simulator</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Kingfisher.framework
+</span></span><span class="line"><span class="cl">└── Modules
+</span></span><span class="line"><span class="cl">    └── Kingfisher.swiftmodule
+</span></span><span class="line"><span class="cl">        ├── arm64-ios-simulator.swiftdoc
+</span></span><span class="line"><span class="cl">        ├── arm64-ios-simulator.swiftmodule
+</span></span><span class="line"><span class="cl">        └── arm64-ios-simulator.swiftsourceinfo
+</span></span></code></pre></div><p>To make this module visible to Objective-C, we need to create a modulemap, under <code>Kingfisher.framework/Modules/module.modulemap</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">framework</span> <span class="n">module</span> <span class="n">Kingfisher</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">umbrella</span> <span class="n">header</span> <span class="s2">&#34;Kingfisher-umbrella.h&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">export</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">  <span class="n">module</span> <span class="o">*</span> <span class="p">{</span> <span class="k">export</span> <span class="o">*</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>In this case, <code>Kingfisher-umbrella.h</code> resides under <code>Headers/</code>. We’ll talk about the headers in the subsequent section.</p>
+<h3 id="creating-headers">Creating Headers</h3>
+<p>Copy the generated Swift header (eg. in <code>Kingfisher.build/Kingfisher-Swift.h</code>) to <code>Headers/</code> and create the umbrella header:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// File: Kingfisher-umbrella.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;Kingfisher/Kingfisher-Swift.h&gt;</span><span class="cp">
+</span></span></span></code></pre></div><p>If the target includes Objective-C code, we need to copy its public headers as well.</p>
+<p>For example, with FirebaseCrashlytics, you’ll find its public headers defined in <a href="https://github.com/firebase/firebase-ios-sdk/blob/v8.15.0/Package.swift#L462">Package.swift#L462</a>. Those under <a href="https://github.com/firebase/firebase-ios-sdk/tree/v8.15.0/Crashlytics/Crashlytics/Public">Crashlytics/Public</a> should be copied to the framework’s Headers, and included in the umbrella header as follows.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// File: FirebaseCrashlytics-umbrella.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;FirebaseCrashlytics/FIRCrashlytics.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;FirebaseCrashlytics/FIRCrashlyticsReport.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;FirebaseCrashlytics/FirebaseCrashlytics.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;FirebaseCrashlytics/FIRExceptionModel.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;FirebaseCrashlytics/FIRStackFrame.h&gt;</span><span class="cp">
+</span></span></span></code></pre></div><p>Now, the framework bundle looks like this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FirebaseCrashlytics.framework
+</span></span><span class="line"><span class="cl">├── FirebaseCrashlytics
+</span></span><span class="line"><span class="cl">├── Headers
+</span></span><span class="line"><span class="cl">│   ├── FirebaseCrashlytics-umbrella.h
+</span></span><span class="line"><span class="cl">│   │
+</span></span><span class="line"><span class="cl">│   ├── FIRCrashlytics.h
+</span></span><span class="line"><span class="cl">│   ├── FIRCrashlyticsReport.h
+</span></span><span class="line"><span class="cl">│   ├── FirebaseCrashlytics.h
+</span></span><span class="line"><span class="cl">│   ├── FIRExceptionModel.h
+</span></span><span class="line"><span class="cl">│   └── FIRStackFrame.h
+</span></span><span class="line"><span class="cl">├── Info.plist
+</span></span><span class="line"><span class="cl">└── Modules
+</span></span><span class="line"><span class="cl">    └── module.modulemap
+</span></span></code></pre></div><p><strong>Dealing with headers in Swift packages is sometimes tricky</strong>. Header imports using <em>flat angle-bracket</em> style <code>#include &lt;foo.h&gt;</code> may break when headers are moved into framework bundles.</p>
+<p>With SPM, this import is valid as long as the header is visible to the header search paths, configured by the <code>publicHeadersPath</code> argument of a target declaration.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">package</span> <span class="p">=</span> <span class="n">Package</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="n">targets</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="n">target</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">name</span><span class="p">:</span> <span class="s">&#34;FirebaseCrashlytics&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">...</span>
+</span></span><span class="line"><span class="cl">      <span class="n">publicHeadersPath</span><span class="p">:</span> <span class="s">&#34;Crashlytics/Public&#34;</span><span class="p">,</span> <span class="o">&lt;--</span> <span class="n">HERE</span>
+</span></span><span class="line"><span class="cl">      <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>However, inside a framework, headers are isolated from SPM’s header search paths, resulting in <em>&ldquo;header not found&rdquo;</em> errors. Imports like <code>#include &lt;foo.h&gt;</code> no longer works. Meanwhile, cross-referencing headers of another framework is still okay. Therefore, we may need to change the import from <em>flat angle-bracket</em> style to the <em>nested angle-bracket</em> style: <code>#include &lt;foo/foo.h&gt;</code>. This way, the compile can resolve header imports as long as the framework and its dependency frameworks are shipped together.</p>
+<h3 id="enabling-library-evolution">Enabling Library Evolution</h3>
+<p>With the xcodeproj-based approach, this can be done simply by setting the build setting <code>BUILD_LIBRARY_FOR_DISTRIBUTION=YES</code>.</p>
+<p>Once enabled, you’ll notice that the <code>.swiftmodule</code> bundle differs from the standard case. Instead of a binary <code>.swiftmodule</code> file, it now includes a textual <code>.swiftinterface</code> file. We need it for the packaging process.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Kingfisher.framework
+</span></span><span class="line"><span class="cl">└── Modules
+</span></span><span class="line"><span class="cl">    └── Kingfisher.swiftmodule
+</span></span><span class="line"><span class="cl">        ├── arm64-ios-simulator.swiftinterface &lt;-- HERE
+</span></span></code></pre></div><p>To achieve the same result using <code>swiftc</code>, you need to pass the following flags: <code>enable-library-evolution</code> and <code>emit-module-interface</code>.</p>
+<p>You might encounter an error like <code>'X' is not a member type of class 'X.X’</code> if a struct, class, or enum shares the same name as the module. This can be resolved by adding the <code>swiftc</code> flag <code>-alias-module-names-in-module-interface</code>.</p>
+<p>These flags are passed to <code>swift build</code> via the <code>-Xswiftc</code> option. Your command should look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">swift build ... <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-Xswiftc -enable-library-evolution <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-Xswiftc -emit-module-interface -Xswiftc <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-Xswiftc -alias-module-names-in-module-interface
+</span></span></code></pre></div><p>Keep in mind that not all packages are compatible with library evolution. For example, in <a href="https://github.com/swiftlang/swift-syntax">swift-syntax</a>, many <code>switch</code> statements do not use <code>@unknown default</code> (see: <a href="https://github.com/swiftlang/swift-syntax/blob/release/6.1/Sources/SwiftSyntaxMacros/Syntax%2BLexicalContext.swift#L70">here</a>), causing failures when generating Swift interfaces.</p>
+<p>In such cases, you may prefer to ship the framework without enabling library evolution. When creating an XCFramework from slices using <code>xcodebuild</code>, you need to add the <code>-allow-internal-distribution</code> flag to skip interface validation.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">xcodebuild -create-xcframework -allow-internal-distribution ...
+</span></span></code></pre></div><h2 id="introducing-xccache">Introducing xccache</h2>
+<p>Too much hassle just to produce an XCFramework? Meet <a href="https://github.com/trinhngocthuyen/xccache">xccache</a>, a caching tool for Xcode projects, with SPM support.</p>
+<p>In addition to powerful build caching features, <a href="https://github.com/trinhngocthuyen/xccache">xccache</a> makes it easy to build a Swift package target into an XCFramework. No need to worry about headers, Swift modules, module maps, or other low-level details. Just one command, and you&rsquo;re done.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">xccache pkg build Kingfisher
+</span></span></code></pre></div><p>The CLI also supports multi-platform builds, along with other features.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">xccache pkg build Kingfisher --sdk<span class="o">=</span>iphoneos,iphonesimulator,macos,tvos
+</span></span></code></pre></div><p>Check it out at: <a href="https://github.com/trinhngocthuyen/xccache"><strong>xccache</strong></a>.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>Distributing prebuilt Swift packages as XCFrameworks is powerful but nuanced without Xcode projects. By understanding how modules, headers, Swift interfaces fit together, we can construct framework bundles from <code>swift build</code> outputs.</p>
+<p>Tools like <a href="https://github.com/trinhngocthuyen/xccache">xccache</a> help simplify the process, making binary distribution more efficient in a modern SPM-driven workflow.</p>
+
+  <div class="entry footer">
+  <div>
+    
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+</svg>
+
+  <a href="/categories/tech" class="category">tech</a>
+</div>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/ios" class="tag">ios</a>
+  <a href="/tags/spm" class="tag">spm</a>
+  <a href="/tags/cache" class="tag">cache</a>
+</div>
+  </div>
+  <div class='nav'><div class='prev-entry'>
+    <a href='/posts/tech/async-let-bindings-gotcha-and-closer-look/'>Async Let Bindings: a Gotcha and a Closer Look</a>
+  </div></div>
+  
+</div>
+  
+<section class='actions'>
+  <div class="container facebook">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+</div>
+  <div class="container sponsor">
+<p>Like what you’re reading? Buy me a coffee and keep me going!</p>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</div>
+  <div class="container subscription">
+<p class="cta-desc"><i class="fa-regular fa-bell"></i> Subscribe to this substack<br>to stay updated with the latest content</p>
+<div class="close"><i class="fa-solid fa-xmark"></i></div>
+<iframe src="https://trinhngocthuyen.substack.com/embed" width="100%" height="300" style="border:none;" frameborder="0" scrolling="no"></iframe>
+</div>
+</section>
+</article>
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#background" toc_id="background">Background</a></div><div class="toc-section">
+
+<div><a href="#why-swift-build-isnt-enough" toc_id="why-swift-build-isnt-enough">Why <code>swift build</code> Isn’t Enough</a></div></div>
+<div><a href="#creating-a-framework-on-your-own" toc_id="creating-a-framework-on-your-own">Creating a Framework on Your Own</a></div><div class="toc-section">
+
+<div><a href="#understanding-framework-structure" toc_id="understanding-framework-structure">Understanding Framework Structure</a></div>
+<div><a href="#examining-build-products" toc_id="examining-build-products">Examining Build Products</a></div>
+<div><a href="#creating-framework-binary" toc_id="creating-framework-binary">Creating Framework Binary</a></div>
+<div><a href="#creating-modules" toc_id="creating-modules">Creating Modules</a></div>
+<div><a href="#creating-headers" toc_id="creating-headers">Creating Headers</a></div>
+<div><a href="#enabling-library-evolution" toc_id="enabling-library-evolution">Enabling Library Evolution</a></div></div>
+<div><a href="#introducing-xccache" toc_id="introducing-xccache">Introducing xccache</a></div>
+<div><a href="#wrapping-up" toc_id="wrapping-up">Wrapping Up</a></div></nav><script src="/scripts/toc.js"></script>
+</div>
+</main></body>
+</html>
