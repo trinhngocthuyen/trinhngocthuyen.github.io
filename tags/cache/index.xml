@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>spm on Thuyen&#39;s corner</title>
-    <link>https://trinhngocthuyen.com/tags/spm/</link>
-    <description>Recent content in spm on Thuyen&#39;s corner</description>
+    <title>cache on Thuyen&#39;s corner</title>
+    <link>https://trinhngocthuyen.com/tags/cache/</link>
+    <description>Recent content in cache on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 08 Jun 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://trinhngocthuyen.com/tags/spm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://trinhngocthuyen.com/tags/cache/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Swift Packages: Packaging as an XCFramework (1)</title>
       <link>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1.md/</link>
       <pubDate>Sun, 08 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1.md/</guid>
       <description>Background Modularizing code using Swift packages has become more and more common in iOS development. With the introduction of XCFrameworks, Apple has provided a robust mechanism to ship prebuilt products that support multiple platforms and architectures.&#xA;Binary distribution of SDKs and third-party libraries is not new, especially in closed-source projects where protecting intellectual property is crucial. Another major benefit is reduced build times. Many build caching tools rely on this aspect, ie.</description>
-    </item>
-    <item>
-      <title>Using Swift Packages in CocoaPods-Based Projects</title>
-      <link>https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/</link>
-      <pubDate>Sat, 30 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://trinhngocthuyen.com/posts/tech/spm-with-cocoapods/</guid>
-      <description>1. Introduction Swift Package Manager (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, CocoaPods has gained its power and emerged as a dominant tool in iOS development.&#xA;Not until recently has SPM been adopted widely.</description>
     </item>
   </channel>
 </rss>
