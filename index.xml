@@ -846,7 +846,7 @@
       <link>https://trinhngocthuyen.com/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://trinhngocthuyen.com/projects/</guid>
-      <description>I enjoy sharing my work with the community. Below are some of my side projects - some originated from my corporate work, while others began as personal tools that I believe could benefit others as well.&#xA;Take a look and see if any might be useful to you. If you share my passion for open source, feel free to contribute!&#xA;CI/CD, Testing Tools 🛠️ e2e-mobile End-to-end testing framework for mobile apps.</description>
+      <description>I enjoy sharing my work with the community. Below are some of my side projects - some originated from my corporate work, while others began as personal tools that I believe could benefit others as well.&#xA;Take a look and see if any might be useful to you. If you share my passion for open source, feel free to contribute!&#xA;CI/CD, Testing/Build Tools 🛠️ xccache A build caching tool for Xcode projects, with SPM support.</description>
     </item>
     <item>
       <title>Stay Updated</title>
