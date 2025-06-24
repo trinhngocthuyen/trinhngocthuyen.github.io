@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang='en' class="js csstransforms3d">
+  <head>
+    <title>Thuyen&#39;s corner</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="A Journey of Maintaining Device Farms for E2E Testing" />
+<meta property="og:description" content="Continuing from the end-to-end testing series, today we’ll dive into the practical challenges of maintaining a device farm - something that&rsquo;s much easier said than done.
+A device farm refers to the infrastructure - usually a server setup - responsible for managing and orchestrating E2E test executions across physical devices. This could be a mix of iOS and Android phones connected to a server.
+Maintaining such a device farm can be challenging, and require deep technical insight to mitigate stability and performance issues." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trinhngocthuyen.com/posts/tech/mobile-e2e-device-farm-journey/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-06-24T00:00:00+00:00" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<link rel="stylesheet" href="/sass/main.1081a7f7ad055e14f14092b4eb8c0c03bf8efb5d3e5121db581f7f63da63d795.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/b0896cba62.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWZ70X3N46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-VWZ70X3N46', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="" data-url="/posts/tech/mobile-e2e-device-farm-journey/">
+    <nav role="navigation">
+  <header class="banner">
+    <h1 class="logo">
+      <a href="/"><span class="first">🏠 THUYEN's</span> <span class="second">corner</span></a>
+    </h1>
+    <div id="menu-toggle" class="menu-toggle">
+      <svg class="icon"  viewbox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%"/>
+      </svg>
+    </div>
+  </header>
+  <ul class="menu-items">
+    <li class="menu-item"><a href="/posts/tech">Tech Blog</a></li>
+    <li class="menu-item"><a href="/posts/misc">Tạp Bút</a></li>
+    <li class="menu-item"><a href="/featured">Featured</a></li>
+    <li class="menu-item"><a href="/projects">Projects</a></li>
+    <li class="menu-item"><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+<script src="/scripts/menu.js"></script>
+    <main role="main">
+<div class="page-wrapper">
+<article class="page">
+  <header>
+  
+  <h1>A Journey of Maintaining Device Farms for E2E Testing</h1>
+  
+  
+  <div class="metadata">
+  <span>2025, Jun 24</span>
+</div>
+  
+</header>
+  <p>Continuing from the <a href="/tags/e2e">end-to-end testing series</a>, today we’ll dive into the practical challenges of maintaining a device farm - something that&rsquo;s much easier said than done.</p>
+<p>A <strong>device farm</strong> refers to the infrastructure - usually a server setup - responsible for managing and orchestrating E2E test executions across physical devices. This could be a mix of iOS and Android phones connected to a server.</p>
+<p>Maintaining such a device farm can be challenging, and require deep technical insight to mitigate <strong>stability</strong> and <strong>performance</strong> issues. This post is story-telling the journey I went through maintaining device farms in my previous company.</p>
+<p>When I joined the company, the farms were barely stable. There were two farms, one in Hong Kong, and another in Singapore. The Hong Kong farm was the primary one, housing the majority of the devices. These devices (both iOS and Android) were physically connected to a Linux machine.</p>
+<p>Despite the machine’s high-end specs, the observed performance and reliability were not that great due to various reasons. Let’s explore why, especially on the iOS side..</p>
+<h3 id="long-running-services">Long-Running Services</h3>
+<p>Our E2E tests were powered by <a href="https://appium.io/">Appium</a>.  We ran an Appium server directly on the Linux machine, to interact with the connected devices.</p>
+<p>Initially, we used a <strong>single shared Appium server</strong> for all devices - iOS and Android. This turned out to be a poor architectural decision.</p>
+<p>The first challenge was to ensure the <strong>uptime</strong>. Since tests could be triggered at any time, the Appium server needed to run 24/7. Over a period of one or two weeks, we noticed that the Appium process memory went up from under 2GB to more than 10GB, maxing out the system memory. This resulted in a <em>very slow Appium response times</em> due to the nature of the swap memory being used. A request might take up to a few seconds to finish (the typical duration should be way under one second). Test executions became painfully slow as a consequence.</p>
+<p>We had to restart the Appium server to recover performance, But doing so caused all active sessions to fail. Even though we followed best practices to release resources from the client side (eg. by quitting the driver session after done), the issue persisted. We came to a conclusion that there could be memory leaks from Appium, leading to the accumulated memory over time.</p>
+<h3 id="service-restart-and-backup-services">Service Restart and Backup Services</h3>
+<p>To mitigate this, we developed a mechanism to <strong>periodically restart services</strong> - but without affecting ongoing sessions.</p>
+<p>Our solution involved a <strong>backup Appium server</strong>. Let say, the primary server runs on port 8096, then the backup server listens on port 8196. We scheduled a daily service restart at a predefined time, 11PM - for instance. The time window from 10PM to 12AM is called the <strong>maintenance zone</strong>. During this time, all incoming requests were routed to the backup server. This gave us a safe window to restart the primary Appium server.</p>
+<img src="/images/e2e/service-restart.png"/>
+<p>Once the window ended, the primary server resumed traffic, and we shut down or restarted the backup server. The alternate restarts between the primary and the backup kept the long-running executions stable. This strategy is inspired by the <strong>blue-green deployments</strong> in web services.</p>
+<h3 id="monitoring-health">Monitoring Health</h3>
+<p>Realizing the severity of the performance issues, we implemented a monitoring system to surface server health issues so that we could respond in time. That’s where our <strong>supplementary server</strong> came in - a lightweight <a href="https://flask.palletsprojects.com/">Flask</a> app running on the host machine.</p>
+<p>This server periodically ran <a href="https://github.com/viniciuschiele/flask-apscheduler">scheduled jobs</a> to monitor critical metrics. If, for instance, Appium memory usage crossed 75% of system memory, it triggered alerts.</p>
+<h3 id="dedicated-appium-server-per-sessiondevice">Dedicated Appium Server per Session/Device</h3>
+<p>Even with service restarts in place, there was still one major problem: <strong>log noise</strong>.</p>
+<p>Our main focus that time was addressing stability issues which required diving into Appium logs for insights. However, using a shared Appium server made it extremely difficult to debug individual test sessions as logs from multiple devices were intertwined.</p>
+<p>So we moved to a <strong>separate Appium server per device</strong> model. Each device was assigned a fixed port (for its Appium server). For example, if device ID 1234 ran tests, we spun up an Appium server on port 11234 at the start of the session, and shut it down at the end. This way, logs were clean and isolated, resources were properly disposed, giving way to other executions. The supplementary mentioned above took care of starting and stopping these sessions. After adopting this model, we no longer needed the service restart logic for Appium.</p>
+<img src="/images/e2e/supplementary-server.png"/>
+<h3 id="linux-vs-mac-server-for-ios-devices">Linux vs. Mac Server for iOS Devices</h3>
+<p>Originally, our iOS devices were connected to the Linux server. Since Linux doesn’t natively support iOS device connections, we used a third-party tool called <a href="https://github.com/libimobiledevice/libusbmuxd">libusbmuxd</a>. Big thanks to the open-source community for making this possible. However, the cracks began to show over time.</p>
+<p>A typical one was the <a href="https://github.com/libimobiledevice/usbmuxd/issues/216"><em>resource temporarily unavailable</em></a> problem where connections to devices were refused. This was often accompanied by unusually high CPU usage from the <strong>usbmuxd</strong> process, sometimes exceeding 100%. We had no choice but to restart the usbmuxd service. Although it can be detected and auto-resolved by the supplementary server, the issue was unpredictable and critical.</p>
+<p>Additionally, using Linux limited our ability to utilize developer tools like xcodebuild, simctl, or devicectl. For example, launching the <a href="https://github.com/appium/WebDriverAgent">WebDriverAgent (WDA)</a> for testing on iOS 17+ devices is straightforward on macOS, but far more involved on Linux.</p>
+<p>Because of these limitations, we migrated iOS devices in Hong Kong to a dedicated macOS. A Mac mini could reliably host up to 8 devices without significant overhead.</p>
+<p>However, macOS needs tuning and careful attention to ensure best performance. There shall be services or processes that you don’t really need. For example, Spotlight indexing - if enabled - may hurt performance because test executions often come with I/O tasks. You might see the <code>fseventsd</code> process consuming excessive CPU. In this case, just kill that process (don’t worry, it’s auto restarted, and be back to normal, ie consuming low CPU). Then, disable indexing.</p>
+<h3 id="detecting-and-cleaning-up-stale-processes">Detecting and Cleaning up Stale Processes</h3>
+<p>Another aspect of farm health is dealing with stale processes. A stale process here refers to a process that’s no longer in use.</p>
+<p>We used <a href="https://github.com/SonicCloudOrg">Sonic</a>, which interacts with devices using <a href="https://github.com/SonicCloudOrg/sonic-ios-bridge">SIB (sonic-ios-bridge)</a>. When a test starts, Sonic spawns a process to launch WDA. Upon completion, it kills the process. But what if a test session crashes or is force-aborted without proper cleanup? The process might remain stale. This, of course, depends on the implementation details of the tools involved&hellip; Over time, those stale processes hog system resources. We once found multiple SIB processes tied to the same device ID - which did not make sense. This was also the reason why we assigned a fixed Appium port or WDA port for a device. This way, we can identify zombie processes and remove them. In fact, we once claimed back 3GB of memory usage by cleaning up stale processes.</p>
+<p>Another adverse effect of stale processes was the number of occupied ports growing. A typical test process - such as a SIB process - occupies two ports on the host machine: WDA port (to communicate with the automation backend), and MJPEG port (for streaming the recording). With stale processes, these ports remained occupied, gradually reducing the pool of available ports. We used to face the issue where there was no usable ports for Android because the UIAutomator2 driver uses a fix port range (8200 - 8299) which became saturated due to stale processes.</p>
+<p>Therefore, we scheduled hourly cleanup jobs (via the supplementary server) to ensure the server machine is in a healthy state.</p>
+<h3 id="supplementary-server-as-the-coordinator">Supplementary Server as the Coordinator</h3>
+<p>Originally built for simple health monitoring, the supplementary server evolved into a core component of our device farm management.</p>
+<p>It now orchestrates task scheduling, health checks, and also offers <strong>backdoor APIs for diagnostics</strong>. For instance, if a test session fails due to a device issue, we can trigger the server to reboot the device, gather logs, or retry the test automatically. Such a diagnosis action can be: taking screenshots, reporting battery info, listing running processes, or force-killing a certain process.</p>
+<p>You might ask “Why taking screenshots when Appium already supports it?”. Well, Appium APIs require a successfully created driver. But there might be reasons causing failures during driver creation. In such cases, screenshots captured by the supplementary could help reveal what went wrong.</p>
+<h3 id="handling-trust-this-computer-popups">Handling “Trust This Computer” Popups</h3>
+<p>Permission popups, especially the infamous <em>“Trust This Computer”</em> popup, were among the most frustrating hurdles we faced. Without prior authorization, the system blocks access to essential services including UI automation, causing test failures.</p>
+<p>This popup typically appears when an iOS device is connected to a new computer. You tap “Trust” once, and the device is expected to remember the decision. At least, that’s how it should work. But in practice, it didn’t.</p>
+<p>We frequently ran into scenarios where a previously trusted device suddenly lost its authorization. For example, the cable being unstable at times might also trigger the re-authorization. We didn’t figure out the pattern yet. Only when tests failed did we realize the issue.</p>
+<p>Even worse, sometimes the trust dialog didn&rsquo;t reappear after reconnecting the device. In those cases, we needed to run a special command to trigger the pairing popup.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pymobiledevice3 lockdown pair --udid &lt;UDID&gt;
+</span></span></code></pre></div><p>The issue became more frustrating due to our farm’s geography. Most of our devices were physically located in a different office. So when the issue occurred, we had to rely on our onsite colleagues to operate on the encountered devices. While their support was always appreciated, the process was often slowed down by communication gaps and knowledge gap.</p>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>Maintaining a device farm isn’t just about plugging in phones and pressing play. It requires careful system design, detailed monitoring, and the ability to recover from failures.</p>
+<p>Throughout this journey, we encountered a wide range of issues from unreliable device connections to leaks and stale processes, leading to performance degradation. We gradually adopted a series of strategies that helped us build a more stable and resilient infrastructure. Yet, not all problems were purely technical. Some - like the unpredictable “Trust This Computer” popup - still required manual intervention.</p>
+
+  <div class="entry footer">
+  <div>
+    
+<div class="categories">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+</svg>
+
+  <a href="/categories/tech" class="category">tech</a>
+</div>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/mobile" class="tag">mobile</a>
+  <a href="/tags/e2e" class="tag">e2e</a>
+  <a href="/tags/testing" class="tag">testing</a>
+</div>
+  </div>
+  <div class='nav'><div class='prev-entry'>
+    <a href='/posts/tech/spm-packaging-xcframework-1/'>Swift Packages: Packaging as an XCFramework (1)</a>
+  </div></div>
+  
+<div class="series">
+<p class="title">This post is a part of a series.<br>Check out other related posts as follows:</p>
+<ul>
+<li><a href="https://trinhngocthuyen.com/posts/tech/mobile-e2e-wda/">WebDriverAgent - The Heart of iOS E2E Testing</a></li>
+<li><a href="https://trinhngocthuyen.com/posts/tech/mobile-e2e-overview/">Overview of Mobile E2E Testing</a></li>
+</ul>
+</div>
+</div>
+  
+<section class='actions'>
+  <div class="container facebook">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+<div class="share">
+  <div class="fb-like" data-href="https://trinhngocthuyen.com/posts/tech/mobile-e2e-device-farm-journey/" data-width="" data-layout="standard" data-action="like" data-share="true"></div>
+</div>
+</div>
+  <div class="container sponsor">
+<p>Like what you’re reading? Buy me a coffee and keep me going!</p>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="trinhngocthuyen" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</div>
+  <div class="container subscription">
+<p class="cta-desc"><i class="fa-regular fa-bell"></i> Subscribe to this substack<br>to stay updated with the latest content</p>
+<div class="close"><i class="fa-solid fa-xmark"></i></div>
+<iframe src="https://trinhngocthuyen.substack.com/embed" width="100%" height="300" style="border:none;" frameborder="0" scrolling="no"></iframe>
+</div>
+</section>
+</article>
+<nav id="toc">
+<h4 class="toc-header">Table of Contents</h4>
+<div><a href="#long-running-services" toc_id="long-running-services">Long-Running Services</a></div>
+<div><a href="#service-restart-and-backup-services" toc_id="service-restart-and-backup-services">Service Restart and Backup Services</a></div>
+<div><a href="#monitoring-health" toc_id="monitoring-health">Monitoring Health</a></div>
+<div><a href="#dedicated-appium-server-per-sessiondevice" toc_id="dedicated-appium-server-per-sessiondevice">Dedicated Appium Server per Session/Device</a></div>
+<div><a href="#linux-vs-mac-server-for-ios-devices" toc_id="linux-vs-mac-server-for-ios-devices">Linux vs. Mac Server for iOS Devices</a></div>
+<div><a href="#detecting-and-cleaning-up-stale-processes" toc_id="detecting-and-cleaning-up-stale-processes">Detecting and Cleaning up Stale Processes</a></div>
+<div><a href="#supplementary-server-as-the-coordinator" toc_id="supplementary-server-as-the-coordinator">Supplementary Server as the Coordinator</a></div>
+<div><a href="#handling-trust-this-computer-popups" toc_id="handling-trust-this-computer-popups">Handling “Trust This Computer” Popups</a></div>
+<div><a href="#final-thoughts" toc_id="final-thoughts">Final Thoughts</a></div></nav><script src="/scripts/toc.js"></script>
+</div>
+</main></body>
+</html>

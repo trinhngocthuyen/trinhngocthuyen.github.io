@@ -6,8 +6,15 @@
     <description>Recent content in Tech Blog 💻 on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Journey of Maintaining Device Farms for E2E Testing</title>
+      <link>https://trinhngocthuyen.com/posts/tech/mobile-e2e-device-farm-journey/</link>
+      <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/mobile-e2e-device-farm-journey/</guid>
+      <description>Continuing from the end-to-end testing series, today we’ll dive into the practical challenges of maintaining a device farm - something that&amp;rsquo;s much easier said than done.&#xA;A device farm refers to the infrastructure - usually a server setup - responsible for managing and orchestrating E2E test executions across physical devices. This could be a mix of iOS and Android phones connected to a server.&#xA;Maintaining such a device farm can be challenging, and require deep technical insight to mitigate stability and performance issues.</description>
+    </item>
     <item>
       <title>Swift Packages: Packaging as an XCFramework (1)</title>
       <link>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1/</link>

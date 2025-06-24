@@ -6,8 +6,15 @@
     <description>Recent content in 🏡 Home on Thuyen&#39;s corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://trinhngocthuyen.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Journey of Maintaining Device Farms for E2E Testing</title>
+      <link>https://trinhngocthuyen.com/posts/tech/mobile-e2e-device-farm-journey/</link>
+      <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://trinhngocthuyen.com/posts/tech/mobile-e2e-device-farm-journey/</guid>
+      <description>Continuing from the end-to-end testing series, today we’ll dive into the practical challenges of maintaining a device farm - something that&amp;rsquo;s much easier said than done.&#xA;A device farm refers to the infrastructure - usually a server setup - responsible for managing and orchestrating E2E test executions across physical devices. This could be a mix of iOS and Android phones connected to a server.&#xA;Maintaining such a device farm can be challenging, and require deep technical insight to mitigate stability and performance issues.</description>
+    </item>
     <item>
       <title>Swift Packages: Packaging as an XCFramework (1)</title>
       <link>https://trinhngocthuyen.com/posts/tech/spm-packaging-xcframework-1/</link>
@@ -825,7 +832,7 @@
       <link>https://trinhngocthuyen.com/featured/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://trinhngocthuyen.com/featured/</guid>
-      <description>Here&amp;rsquo;s a collection of my favorite writings over the years. Hope you enjoy them!&#xA;Tech (iOS, mobile, etc.) Swift Packages: Packaging as an XCFramework (1) 2025, Jun 08 WebDriverAgent - The Heart of iOS E2E Testing 2025, Jan 09 Overview of Mobile E2E Testing 2024, Dec 16 Using Swift Packages in CocoaPods-Based Projects 2023, Dec 30 Designing Test Quarantine Logic to Deal With Flaky Tests 2023, Sep 17 A Tale of Project Build Time Improvement 2023, Aug 29 Code Signing on CI 2023, Aug 01 CocoaPods Explained: Podfile 2022, Dec 17 Dealing With Flaky UI Tests in iOS 2022, Jun 25 Swift: The downsides of lazy var (part 2) 2018, Jun 01 Swift: The downsides of lazy var (part 1) 2018, May 31 Method dispatch in Swift 2017, Sep 25 Tạp Bút | mainly in Vietnamese 🇻🇳 Chuyện Nghề: Một Dự Án Nọ (2) 2023, Mar 05 Cắt Nghĩa &amp;#34;Khủng Hoảng Tuổi.</description>
+      <description>Here&amp;rsquo;s a collection of my favorite writings over the years. Hope you enjoy them!&#xA;Tech (iOS, mobile, etc.) A Journey of Maintaining Device Farms for E2E Testing 2025, Jun 24 Swift Packages: Packaging as an XCFramework (1) 2025, Jun 08 WebDriverAgent - The Heart of iOS E2E Testing 2025, Jan 09 Overview of Mobile E2E Testing 2024, Dec 16 Using Swift Packages in CocoaPods-Based Projects 2023, Dec 30 Designing Test Quarantine Logic to Deal With Flaky Tests 2023, Sep 17 A Tale of Project Build Time Improvement 2023, Aug 29 Code Signing on CI 2023, Aug 01 CocoaPods Explained: Podfile 2022, Dec 17 Dealing With Flaky UI Tests in iOS 2022, Jun 25 Swift: The downsides of lazy var (part 2) 2018, Jun 01 Swift: The downsides of lazy var (part 1) 2018, May 31 Method dispatch in Swift 2017, Sep 25 Tạp Bút | mainly in Vietnamese 🇻🇳 Chuyện Nghề: Một Dự Án Nọ (2) 2023, Mar 05 Cắt Nghĩa &amp;#34;Khủng Hoảng Tuổi.</description>
     </item>
     <item>
       <title>Resume</title>

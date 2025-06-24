@@ -67,6 +67,29 @@ if (!doNotTrack) {
 <ul class="post-item">
   <li class="item">
   <h3 class="title">
+    <a href="/posts/tech/mobile-e2e-device-farm-journey/">A Journey of Maintaining Device Farms for E2E Testing</a>
+  </h3>
+  <div class="metadata">
+    <span>2025, Jun 24</span>
+    
+<div class="tags">
+  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+</svg>
+
+  <a href="/tags/mobile" class="tag">mobile</a>
+  <a href="/tags/e2e" class="tag">e2e</a>
+  <a href="/tags/testing" class="tag">testing</a>
+</div>
+  </div>
+  <p class="summary">Continuing from the end-to-end testing series, today we’ll dive into the practical challenges of maintaining a device farm - something that&amp;rsquo;s much easier said than done.
+A device farm refers to the infrastructure - usually a server setup - responsible for managing and orchestrating E2E test executions across physical devices. This could be a mix of iOS and Android phones connected to a server.
+Maintaining such a device farm can be challenging, and require deep technical insight to mitigate stability and performance issues.</p>
+</li>
+
+  <li class="item">
+  <h3 class="title">
     <a href="/posts/tech/spm-packaging-xcframework-1/">Swift Packages: Packaging as an XCFramework (1)</a>
   </h3>
   <div class="metadata">
@@ -258,27 +281,6 @@ A module can be distributed in various formats such as collections of source fil
   </div>
   <p class="summary">In the previous post, I mentioned pre-commit as a powerful tool to lint and format in a project.
 It had worked seamlessly for me until I committed code using SourceTree. Just to clarify, I predominantly use git on terminal. I only use a GUI app such as SourceTree to view the diff, or to stage selective chunks in a file (which is a bit difficult to achieve when using terminal). Therefore, the issue went unnoticed during my usual workflow.</p>
-</li>
-
-  <li class="item">
-  <h3 class="title">
-    <a href="/posts/tech/pre-commit/">Using pre-commit for Linters/Formatters</a>
-  </h3>
-  <div class="metadata">
-    <span>2024, Feb 01</span>
-    
-<div class="tags">
-  <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
-  <line x1="7" y1="7" x2="7" y2="7"/>
-</svg>
-
-  <a href="/tags/ios" class="tag">ios</a>
-  <a href="/tags/ci" class="tag">ci</a>
-</div>
-  </div>
-  <p class="summary">During my tenure at Grab, I witnessed the project’s transformation from an iOS exclusive to a multi-language initiative. Initially, the project primarily comprised iOS code. Over time, we developed various scripts (Ruby, Python, Bash, etc.) to enhance project build time and facilitate CI/CD integration. However, the linter setup was not sufficient for such a multi-language project.
-At a glance, we used SwiftLint, Rubocop, and Flake8 to lint Swift, Ruby, and Python code, respectively.</p>
 </li>
 
 </ul>
