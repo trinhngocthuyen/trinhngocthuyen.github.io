@@ -1,0 +1,114 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","swift-generic-protocol-p1",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","swift-generic-protocol-p1","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","swift-generic-protocol-p1","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T2c11,<p>In this article, we would look into how to implement a generic protocol. A few lacks of language support (Swift version prior to 3.0) would be also pointed out for discussion.</p>
+<p>Let's get started with an example. We are writing a bunch of code to implement data fetching used for a specific screen. We expect to use the same behavior for different types of data, different screens. Here's the protocol:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">protocol</span> <span class="hljs-title class_">DataFetchingType</span> {
+    <span class="hljs-keyword">associatedtype</span> <span class="hljs-type">DataType</span>
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromLocal</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>)
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromServer</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>)
+}
+</code></pre>
+<p>The protocol should have an associated type <code>DataType</code> which is particular for an api service.</p>
+<p>OK! The next step is to create concrete classes that implement this protocol.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">EventsFetcher</span>: <span class="hljs-title class_ inherited__">DataFetchingType</span> {
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">DataType</span> <span class="hljs-operator">=</span> <span class="hljs-type">Event</span>
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromLocal</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) {
+        <span class="hljs-comment">// Implementation goes here</span>
+    }
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromServer</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) {
+        <span class="hljs-comment">// Implementation goes here</span>
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">OrdersFetcher</span>: <span class="hljs-title class_ inherited__">DataFetchingType</span> {
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">DataType</span> <span class="hljs-operator">=</span> <span class="hljs-type">Event</span>
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromLocal</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) {
+        <span class="hljs-comment">// Implementation goes here</span>
+    }
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromServer</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) {
+        <span class="hljs-comment">// Implementation goes here</span>
+    }
+}
+</code></pre>
+<p>So far, it's good. Now we put a data fetcher in a view model which is also generic.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ViewModel</span>&#x3C;<span class="hljs-type">DataType</span>> {
+    <span class="hljs-keyword">var</span> fetcher: <span class="hljs-type">DataFetchingType</span>
+    <span class="hljs-operator">...</span>
+}
+</code></pre>
+<p>Actually, XCode yields an error, complaining that <code>DataFetchingType</code> is a generic protocol and thus cannot be used in such a way like that. More painfully, the current version of Swift does not yet support writing it similarly to generic class</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">var</span> fetcher: <span class="hljs-type">DataFetchingType</span>&#x3C;<span class="hljs-type">DataType</span>>
+</code></pre>
+<h3 id="solution">Solution</h3>
+<p>Here comes the trick to overcome this problem. The idea is simple, we use a generic class to wrap the protocol.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericDataFetcher</span>&#x3C;<span class="hljs-type">DT</span>>: <span class="hljs-title class_ inherited__">DataFetchingType</span> {
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">DataType</span> <span class="hljs-operator">=</span> <span class="hljs-type">DT</span>
+    <span class="hljs-operator">............</span>
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ViewModel</span>&#x3C;<span class="hljs-type">DataType</span>> {
+    <span class="hljs-keyword">var</span> fetcher: <span class="hljs-type">GenericDataFetcher</span>&#x3C;<span class="hljs-type">DataType</span>>
+}
+
+</code></pre>
+<p>It's still generic and the compiler would not complain. And the hard part remaining is to make <code>GenericDataFetcher</code> flexible that we WOULD NOT write <code>EventFetcher</code> as a subclass of <code>GenericDataFetcher</code> (subclassing is not really a good idea here).</p>
+<p>A solution: <em><strong>init GenericDataFetcher from a protocol, store the required functions, properties of that protocol.</strong></em></p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericDataFetchingType</span>&#x3C;<span class="hljs-type">DT</span>>: <span class="hljs-title class_ inherited__">DataFetchingType</span> {
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">DataType</span> <span class="hljs-operator">=</span> <span class="hljs-type">DT</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> _fetchFromLocal: (from: <span class="hljs-type">NSDate</span>, to: <span class="hljs-type">NSDate</span>, completion: [<span class="hljs-type">DT</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) -> <span class="hljs-type">Void</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> _fetchFromServer: (from: <span class="hljs-type">NSDate</span>, to: <span class="hljs-type">NSDate</span>, completion: [<span class="hljs-type">DT</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) -> <span class="hljs-type">Void</span>
+
+    <span class="hljs-keyword">init</span>&#x3C;<span class="hljs-type">DF</span>: <span class="hljs-type">DataFetchingType</span> where <span class="hljs-type">DF</span>.<span class="hljs-type">DataType</span> == <span class="hljs-type">DT</span>>(<span class="hljs-params">fetcher</span>: <span class="hljs-type">DF</span>) {
+        <span class="hljs-keyword">self</span>._fetchFromLocal <span class="hljs-operator">=</span> fetcher.fetchFromLocal(from:to:completion:)
+        <span class="hljs-keyword">self</span>._fetchFromServer <span class="hljs-operator">=</span> fetcher.fetchFromServer(from:to:completion:)
+    }
+
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromLocal</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) {
+        _fetchFromLocal(from: from, to: to, completion: completion)
+    }
+
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchFromServer</span>(<span class="hljs-params">from</span> <span class="hljs-params">from</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">to</span>: <span class="hljs-type">NSDate</span>, <span class="hljs-params">completion</span>: [<span class="hljs-type">DataType</span>]<span class="hljs-operator">?</span> -> <span class="hljs-type">Void</span>) {
+        _fetchFromServer(from: from, to: to, completion: completion)
+    }
+}
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ViewModel</span>&#x3C;<span class="hljs-type">DataType</span>> {
+    <span class="hljs-keyword">var</span> fetcher: <span class="hljs-type">GenericDataFetcher</span>&#x3C;<span class="hljs-type">DataType</span>>
+    <span class="hljs-keyword">init</span>&#x3C;<span class="hljs-type">DF</span>: <span class="hljs-type">DataFetchingType</span> where <span class="hljs-type">DF</span>.<span class="hljs-type">DataType</span> == <span class="hljs-type">DataType</span>>(<span class="hljs-params">fetcher</span>: <span class="hljs-type">DF</span>) {
+        <span class="hljs-keyword">self</span>.fetcher <span class="hljs-operator">=</span> <span class="hljs-type">GenericDataFetcher</span>(fetcher)
+    }
+}
+
+<span class="hljs-keyword">let</span> eventsViewModel <span class="hljs-operator">=</span> <span class="hljs-type">ViewModel</span>(fetcher: <span class="hljs-type">EventsFetcher</span>())
+</code></pre>
+<p>P/s: I wish we would not need this trick any more in the near future.</p>
+<h3 id="reference">Reference</h3>
+<ol>
+<li><a href="http://krakendev.io/blog/generic-protocols-and-their-shortcomings">http://krakendev.io/blog/generic-protocols-and-their-shortcomings</a></li>
+<li><a href="https://milen.me/writings/swift-generic-protocols">https://milen.me/writings/swift-generic-protocols</a></li>
+<li><a href="https://milen.me/writings/swift-generic-protocols">https://github.com/apple/swift-evolution/tree/master/proposals</a> (with keywords: generic, protocol :D)</li>
+</ol>
+<p>Have fun!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2016-06-25"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Swift: Generic protocol (p.1)"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/swift-concrete-types-in-protocol","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: Concrete types in Protocol"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2016-06-19"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/a-freestyle-way-to-config-uiview","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"A freestyle way to config UIView"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2016-09-11"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Swift: Generic protocol (p.1) — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

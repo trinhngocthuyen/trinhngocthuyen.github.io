@@ -1,0 +1,94 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","method-swizzling-what-why-and-how",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","method-swizzling-what-why-and-how","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","method-swizzling-what-why-and-how","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T20c5,<h3 id="what-is-method-swizzling">What is Method swizzling?</h3>
+<p><em>Method swizzling</em> is a very powerful technique that takes advantage of dynamism. The core idea of this technique is to replace the real implementation of a method at runtime. With this power, we could be able to do a lot of cool stuffs.</p>
+<p>Actually, this special feature is offered by the Objective-C runtime, via message dispatch. You could read my <a href="/tech/method-dispatch-in-swift">previous post</a> to have a clear picture of method dispatch in Swift.</p>
+<h3 id="why-does-it-matter">Why does it matter?</h3>
+<p>A very common case study of this is integrating analytics in your app. Take Google Analytics (GA) for example, each time user enters a screen, the app should call the GA APIs for page views tracking.</p>
+<p>One could implement it simply by making GA requests once the method <code>viewWillAppear</code> of each view controllers is invoked.</p>
+<p>However, there could be up to hundreds of view controllers in the app. Manually calling GA APIs in each controller is apparently ineffective although it only costs just a single line of code. Another drawback is that it is hard to control which one is missing. Also, you have limited ability to hook into the code of 3rd party libraries if necessary.</p>
+<p>The problem appears to be quite simple with <em>method swizzling</em>. All you have to do is to write a custom function <code>_tracked_viewWillAppear</code> then swap it with the original function <code>viewWillAppear</code>. I will talk in detail later.</p>
+<h3 id="how-to-swizzle-a-method">How to swizzle a method?</h3>
+<p>The magic function you need to remember is <a href="https://developer.apple.com/documentation/objectivec/1418769-method_exchangeimplementations"><code>method_exchangeImplementations</code></a>:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">method_exchangeImplementations</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">m1</span>: <span class="hljs-type">Method</span>, <span class="hljs-keyword">_</span> <span class="hljs-params">m2</span>: <span class="hljs-type">Method</span>)
+</code></pre>
+<p>As the name reflects, the implementations of <code>m1</code> and <code>m2</code> get swapped after calling this function (if the exchange is successful). It means that an invocation to <code>m1</code> actually executes the code inside <code>m2</code> and vice versa.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> selector1 <span class="hljs-operator">=</span> <span class="hljs-keyword">#selector</span>(<span class="hljs-type">UIViewController</span>.viewWillAppear(<span class="hljs-keyword">_</span>:))
+<span class="hljs-keyword">let</span> selector2 <span class="hljs-operator">=</span> <span class="hljs-keyword">#selector</span>(<span class="hljs-type">UIViewController</span>._swizzled_viewWillAppear(<span class="hljs-keyword">_</span>:))
+<span class="hljs-keyword">let</span> method1 <span class="hljs-operator">=</span> class_getInstanceMethod(<span class="hljs-type">UIViewController</span>.<span class="hljs-keyword">self</span>, selector1)<span class="hljs-operator">!</span>
+<span class="hljs-keyword">let</span> method2 <span class="hljs-operator">=</span> class_getInstanceMethod(<span class="hljs-type">UIViewController</span>.<span class="hljs-keyword">self</span>, selector2)<span class="hljs-operator">!</span>
+method_exchangeImplementations(method1, method2)
+</code></pre>
+<p>This is what the function <code>_swizzled_viewWillAppear</code> looks like:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">extension</span> <span class="hljs-title class_">UIViewController</span> {
+    <span class="hljs-keyword">@objc</span> <span class="hljs-keyword">dynamic</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">_swizzled_viewWillAppear</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">animated</span>: <span class="hljs-type">Bool</span>) {
+        <span class="hljs-type">NSLog</span>(<span class="hljs-string">"Enter screen: <span class="hljs-subst">\(<span class="hljs-built_in">type</span>(of: <span class="hljs-keyword">self</span>))</span>"</span>)
+        _swizzled_viewWillAppear(animated)
+    }
+}
+</code></pre>
+<p>When <code>viewWillAppear</code> is called, the system runs the code inside <code>_swizzled_viewWillAppear</code> instead. In this function, a recursive call is made which ends up executing the implementation of the original <code>viewWillAppear</code>. In short, when the view is about to be displayed, the program prints a log, for example, <code>Enter screen: LoginViewController</code> and does what it is supposed to do.</p>
+<p>Notice:</p>
+<ul>
+<li>In order to swizzle successfully, the methods must be dynamically dispatched via message. So, we explicit declare it with <code>dynamic</code> keyword. Of course, at times you don't necessarily need that keyword to make it dynamic :D.</li>
+<li>The swizzling action for a pair of methods should only run once.</li>
+</ul>
+<h3 id="a-look-at-nskeyvalueobservation">A look at NSKeyValueObservation</h3>
+<p>Look at the implementation of <a href="https://github.com/apple/swift/blob/master/stdlib/public/SDK/Foundation/NSObject.swift"><code>NSKeyValueObservation</code></a>. Have you seen any swizzling 😎?</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>: <span class="hljs-title class_ inherited__">NSObject</span> {
+    <span class="hljs-keyword">@objc</span> <span class="hljs-keyword">dynamic</span> <span class="hljs-keyword">var</span> name: <span class="hljs-type">String</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>
+    <span class="hljs-keyword">var</span> observation: <span class="hljs-type">NSKeyValueObservation</span>?
+
+    <span class="hljs-keyword">override</span> <span class="hljs-keyword">init</span>() {
+        <span class="hljs-keyword">super</span>.<span class="hljs-keyword">init</span>()
+        observation <span class="hljs-operator">=</span> observe(\.name) { object, change <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"Observe a change. Name: <span class="hljs-subst">\(object.name)</span>"</span>)
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> person <span class="hljs-operator">=</span> <span class="hljs-type">Person</span>()
+person.name <span class="hljs-operator">=</span> <span class="hljs-string">"Thuyen"</span>
+<span class="hljs-comment">// Console: </span>
+<span class="hljs-comment">// Observe a change. Name: Thuyen</span>
+</code></pre>
+<p>Though the function <code>_swizzle_me_observeValue</code> is not exposed, we know that the swizzle method must be dynamically dispatched. So, if we create a method with the exactly same name, our function will be called when an observed change is triggered.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">extension</span> <span class="hljs-title class_">NSKeyValueObservation</span> {
+    <span class="hljs-keyword">@objc</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">_swizzle_me_observeValue</span>(<span class="hljs-params">forKeyPath</span> <span class="hljs-params">keyPath</span>: <span class="hljs-type">String</span>?, <span class="hljs-params">of</span> <span class="hljs-params">object</span>: <span class="hljs-keyword">Any</span><span class="hljs-operator">?</span>, <span class="hljs-params">change</span>: [<span class="hljs-params">NSString</span> : <span class="hljs-keyword">Any</span>]<span class="hljs-operator">?</span>, <span class="hljs-params">context</span>: <span class="hljs-type">UnsafeMutableRawPointer</span>?) {
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"_swizzle_me_observeValue gets called"</span>)
+    }
+}
+
+<span class="hljs-keyword">let</span> person <span class="hljs-operator">=</span> <span class="hljs-type">Person</span>()
+person.name <span class="hljs-operator">=</span> <span class="hljs-string">"Thuyen"</span>
+<span class="hljs-comment">// Console:</span>
+<span class="hljs-comment">// _swizzle_me_observeValue gets called</span>
+</code></pre>
+<p>Have fun!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2017-10-20"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Method Swizzling: What, Why and How"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","swift",{"href":"/tags/swift","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"swift"}],["$","$L5","swizzle",{"href":"/tags/swizzle","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"swizzle"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/method-dispatch-in-swift","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Method dispatch in Swift"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-09-25"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/quick-thoughts-on-tail-recursion-in-swift","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Quick thoughts on Tail recursion in Swift"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-10-30"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"what-is-method-swizzling","text":"What is Method swizzling?","level":3},{"id":"why-does-it-matter","text":"Why does it matter?","level":3},{"id":"how-to-swizzle-a-method","text":"How to swizzle a method?","level":3},{"id":"a-look-at-nskeyvalueobservation","text":"A look at NSKeyValueObservation","level":3}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Method Swizzling: What, Why and How — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

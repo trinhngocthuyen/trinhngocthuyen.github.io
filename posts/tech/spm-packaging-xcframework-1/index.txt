@@ -1,0 +1,187 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","spm-packaging-xcframework-1",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","spm-packaging-xcframework-1","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","spm-packaging-xcframework-1","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T3c21,<h2 id="background">Background</h2>
+<p>Modularizing code using Swift packages has become more and more common in iOS development. With the introduction of XCFrameworks, Apple has provided a robust mechanism to ship prebuilt products that support multiple platforms and architectures.</p>
+<p>Binary distribution of SDKs and third-party libraries is not new, especially in closed-source projects where protecting intellectual property is crucial. Another major benefit is reduced build times. Many build caching tools rely on this aspect, ie. prebuilding code into binaries, to speed up development workflows.</p>
+<p>With Swift packages, you can declare a binary target, backed by either an XCFramework, or a zip of an XCFramework, in the manifest using <a href="https://developer.apple.com/documentation/packagedescription/target/binarytarget(name:path:)"><code>.binaryTarget(name:path:)</code></a>.</p>
+<p>However, building an XCFramework from a Swift package target isn’t as straightforward as it seems. The process generally breaks down into two main steps:</p>
+<ul>
+<li>(1) <strong>Creating a framework bundle</strong> for each slice (arm64-ios-simulator, arm64-ios, arm64-macos, etc.)</li>
+<li>(2) <strong>Merging slices</strong> into an XCFramework bundle</li>
+</ul>
+<p>While the second is relatively easy with <code>xcodebuild -create-xcframework</code>, the first step - building the individual frameworks, is where the challenge lies. Let’s explore why.</p>
+<h4 id="why-swift-build-isnt-enough">Why <code>swift build</code> Isn’t Enough</h4>
+<p>When building a Swift package using <code>swift build</code>, you don’t get a <code>.framework</code> bundle, or even a static <code>.a</code> file like you would with an Xcode project. Instead, it produces object files (<code>.o</code>) along with module-related auxiliaries.</p>
+<p>Historically, Swift provided a <code>generate-xcodeproj</code> subcommand that made it easy to create an <code>.xcodeproj</code> file for a package. This allowed developers to build a proper framework via <code>xcodebuild</code>, with support for features like <a href="https://github.com/swiftlang/swift/blob/main/docs/LibraryEvolution.rst">library evolution</a>.</p>
+<p>However, this command was removed in Swift 5.8, leaving developers difficulties distributing their prebuilt frameworks. Many projects maintains their own <code>.xcodeproj</code> for this purpose. <a href="https://github.com/onevcat/Kingfisher">Kingfisher</a>, for example, obtains the XCFramework using a bunch of <a href="https://github.com/onevcat/Kingfisher/blob/8.3.2/fastlane/Fastfile#L93-L166">Fastlane code</a> which requires <a href="https://github.com/onevcat/Kingfisher/tree/8.3.2/Kingfisher.xcodeproj">an Xcode project</a>.</p>
+<p>Some tools like <a href="https://github.com/segment-integrations/swift-create-xcframework">swift-create-xcframework</a> recreate this process by generating an Xcode project and then archiving frameworks via <code>xcodebuild</code>.</p>
+<p>But what if we want to avoid Xcode projects entirely? How do we produce a <code>.framework</code> bundle directly from <code>swift build</code> outputs? Let’s find out.</p>
+<h2 id="creating-a-framework-on-your-own">Creating a Framework on Your Own</h2>
+<p>We can formulate the process of creating a framework from sources. But first, let’s take a look at what a standard framework bundle looks like.</p>
+<h3 id="understanding-framework-structure">Understanding Framework Structure</h3>
+<p>Below is the structure of <code>Kingfisher.framework</code>, taken from its <a href="https://github.com/onevcat/Kingfisher/releases/tag/8.3.2">release page</a>.</p>
+<pre><code class="hljs language-arduino">Kingfisher.framework
+│── Headers
+│   │── Kingfisher-Swift.h
+│── Info.plist
+│── Kingfisher
+│── Modules
+│   │── Kingfisher.swiftmodule
+│   │   │── arm64-apple-ios.abi.json
+│   │   │── arm64-apple-ios.<span class="hljs-keyword">private</span>.swiftinterface
+│   │   │── arm64-apple-ios.swiftdoc
+│   │   │── arm64-apple-ios.swiftinterface
+│   │── <span class="hljs-keyword">module</span>.modulemap
+│── PrivacyInfo.xcprivacy
+</code></pre>
+<p>Key components:</p>
+<ul>
+<li><strong>Binary</strong> (<code>Kingfisher</code>): contains the compiled code</li>
+<li><strong>Modules</strong><br>
+<strong><code>Kingfisher.swiftmodule</code></strong> defines the <a href="https://github.com/swiftlang/swift/blob/main/docs/Modules.md">Swift modules</a>, making it visible to Swift code via <code>import X</code>.<br>
+<strong><code>module.modulemap</code></strong> defines the <a href="https://clang.llvm.org/docs/Modules.html#module-maps">Clang module</a>, making it visible to Objective-C code via <code>@import X;</code>.<br>
+For more details on how module imports work, check out my previous article: <a href="/posts/tech/how-xcode-recognizes-module-imports">How Xcode Recognizes Module Imports</a>.</li>
+<li><strong>Headers</strong>: includes public headers, declared in the modulemap.</li>
+<li><strong>Info.plist</strong>: metadata such as name, bundle ID, version, etc.</li>
+</ul>
+<h3 id="examining-build-products">Examining Build Products</h3>
+<p>After running <code>swift build --target Kingfisher</code>, the build directory looks like as follows.</p>
+<pre><code class="hljs language-bash">.build/debug/
+│── Kingfisher_Kingfisher.bundle
+│   │── PrivacyInfo.xcprivacy
+│── Kingfisher.build
+│   │── Kingfisher-swift.h
+│   │── *.swift.o  (object files)
+│   ...
+│── Modules
+    │── Kingfisher.swiftdoc
+    │── Kingfisher.swiftmodule
+    │── Kingfisher.swiftsourceinfo
+</code></pre>
+<h3 id="creating-framework-binary">Creating Framework Binary</h3>
+<p>What is missing in the build products compared to the standard framework structure? There is no consolidated binary of the target. Instead, we have scattered object files (<code>.o</code>) under <code>Kingfisher.build</code>.</p>
+<p>We can use <a href="https://www.gnu.org/software/libtool/manual/libtool.html">libtool</a> to produce a static library/archive out of them.</p>
+<pre><code class="hljs language-bash">$ libtool -static -o Kingfisher.framework/Kingfisher .build/debug/Kingfisher.build/**/*.o
+</code></pre>
+<h3 id="creating-modules">Creating Modules</h3>
+<p>There are some module-related files among build outputs of a Swift target under the Modules directory. We just need to copy them to the <code>.swiftmodule</code> bundle inside the framework (<code>Modules/Kingfisher.swiftmodule</code>).</p>
+<p>Remember to rename those files according to the slice, eg. <code>arm64-ios-simulator</code>.</p>
+<pre><code class="hljs language-markdown">Kingfisher.framework
+│── Modules
+<span class="hljs-code">    │── Kingfisher.swiftmodule
+        │── arm64-ios-simulator.swiftdoc
+        │── arm64-ios-simulator.swiftmodule
+        │── arm64-ios-simulator.swiftsourceinfo
+</span></code></pre>
+<p>To make this module visible to Objective-C, we need to create a modulemap, under <code>Kingfisher.framework/Modules/module.modulemap</code>.</p>
+<pre><code class="hljs language-arduino">framework <span class="hljs-keyword">module</span> Kingfisher {
+  umbrella header <span class="hljs-string">"Kingfisher-umbrella.h"</span>
+
+  <span class="hljs-keyword">export</span> *
+  <span class="hljs-keyword">module</span> * { <span class="hljs-keyword">export</span> * }
+}
+</code></pre>
+<p>In this case, <code>Kingfisher-umbrella.h</code> resides under <code>Headers/</code>. We’ll talk about the headers in the subsequent section.</p>
+<h3 id="creating-headers">Creating Headers</h3>
+<p>Copy the generated Swift header (eg. in <code>Kingfisher.build/Kingfisher-Swift.h</code>) to <code>Headers/</code> and create the umbrella header:</p>
+<pre><code class="hljs language-c"><span class="hljs-comment">// File: Kingfisher-umbrella.h</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&#x3C;Kingfisher/Kingfisher-Swift.h></span></span>
+</code></pre>
+<p>If the target includes Objective-C code, we need to copy its public headers as well.</p>
+<p>For example, with FirebaseCrashlytics, you’ll find its public headers defined in <a href="https://github.com/firebase/firebase-ios-sdk/blob/v8.15.0/Package.swift#L462">Package.swift#L462</a>. Those under <a href="https://github.com/firebase/firebase-ios-sdk/tree/v8.15.0/Crashlytics/Crashlytics/Public">Crashlytics/Public</a> should be copied to the framework’s Headers, and included in the umbrella header as follows.</p>
+<pre><code class="hljs language-c"><span class="hljs-comment">// File: FirebaseCrashlytics-umbrella.h</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&#x3C;FirebaseCrashlytics/FIRCrashlytics.h></span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&#x3C;FirebaseCrashlytics/FIRCrashlyticsReport.h></span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&#x3C;FirebaseCrashlytics/FirebaseCrashlytics.h></span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&#x3C;FirebaseCrashlytics/FIRExceptionModel.h></span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&#x3C;FirebaseCrashlytics/FIRStackFrame.h></span></span>
+</code></pre>
+<p>Now, the framework bundle looks like this.</p>
+<pre><code class="hljs language-arduino">FirebaseCrashlytics.framework
+│── FirebaseCrashlytics
+│── Headers
+│   │── FirebaseCrashlytics-umbrella.h
+│   │
+│   │── FIRCrashlytics.h
+│   │── FIRCrashlyticsReport.h
+│   │── FirebaseCrashlytics.h
+│   │── FIRExceptionModel.h
+│   │── FIRStackFrame.h
+│── Info.plist
+│── Modules
+    │── <span class="hljs-keyword">module</span>.modulemap
+</code></pre>
+<p><strong>Dealing with headers in Swift packages is sometimes tricky</strong>. Header imports using <em>flat angle-bracket</em> style <code>#include &#x3C;foo.h></code> may break when headers are moved into framework bundles.</p>
+<p>With SPM, this import is valid as long as the header is visible to the header search paths, configured by the <code>publicHeadersPath</code> argument of a target declaration.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> <span class="hljs-keyword">package</span> <span class="hljs-operator">=</span> <span class="hljs-type">Package</span>(
+  <span class="hljs-operator">...</span>
+  targets: [
+    .target(
+      name: <span class="hljs-string">"FirebaseCrashlytics"</span>,
+      <span class="hljs-operator">...</span>
+      publicHeadersPath: <span class="hljs-string">"Crashlytics/Public"</span>, <span class="hljs-operator">&#x3C;--</span> <span class="hljs-type">HERE</span>
+      <span class="hljs-operator">...</span>
+    )
+  ]
+)
+</code></pre>
+<p>However, inside a framework, headers are isolated from SPM’s header search paths, resulting in <em>"header not found"</em> errors. Imports like <code>#include &#x3C;foo.h></code> no longer works. Meanwhile, cross-referencing headers of another framework is still okay. Therefore, we may need to change the import from <em>flat angle-bracket</em> style to the <em>nested angle-bracket</em> style: <code>#include &#x3C;foo/foo.h></code>. This way, the compile can resolve header imports as long as the framework and its dependency frameworks are shipped together.</p>
+<h3 id="enabling-library-evolution">Enabling Library Evolution</h3>
+<p>With the xcodeproj-based approach, this can be done simply by setting the build setting <code>BUILD_LIBRARY_FOR_DISTRIBUTION=YES</code>.</p>
+<p>Once enabled, you’ll notice that the <code>.swiftmodule</code> bundle differs from the standard case. Instead of a binary <code>.swiftmodule</code> file, it now includes a textual <code>.swiftinterface</code> file. We need it for the packaging process.</p>
+<pre><code class="hljs language-lua">Kingfisher.framework
+│── Modules
+    │── Kingfisher.swiftmodule
+        │── arm64-ios-simulator.swiftinterface &#x3C;<span class="hljs-comment">-- HERE</span>
+</code></pre>
+<p>To achieve the same result using <code>swiftc</code>, you need to pass the following flags: <code>enable-library-evolution</code> and <code>emit-module-interface</code>.</p>
+<p>You might encounter an error like <code>'X' is not a member type of class 'X.X’</code> if a struct, class, or enum shares the same name as the module. This can be resolved by adding the <code>swiftc</code> flag <code>-alias-module-names-in-module-interface</code>.</p>
+<p>These flags are passed to <code>swift build</code> via the <code>-Xswiftc</code> option. Your command should look like this:</p>
+<pre><code class="hljs language-bash">swift build ... \
+	-Xswiftc -enable-library-evolution \
+	-Xswiftc -emit-module-interface -Xswiftc \
+	-Xswiftc -alias-module-names-in-module-interface
+</code></pre>
+<p>Keep in mind that not all packages are compatible with library evolution. For example, in <a href="https://github.com/swiftlang/swift-syntax">swift-syntax</a>, many <code>switch</code> statements do not use <code>@unknown default</code> (see: <a href="https://github.com/swiftlang/swift-syntax/blob/release/6.1/Sources/SwiftSyntaxMacros/Syntax%2BLexicalContext.swift#L70">here</a>), causing failures when generating Swift interfaces.</p>
+<p>In such cases, you may prefer to ship the framework without enabling library evolution. When creating an XCFramework from slices using <code>xcodebuild</code>, you need to add the <code>-allow-internal-distribution</code> flag to skip interface validation.</p>
+<pre><code class="hljs language-bash">xcodebuild -create-xcframework -allow-internal-distribution ...
+</code></pre>
+<h2 id="introducing-xccache">Introducing xccache</h2>
+<p>Too much hassle just to produce an XCFramework? Meet <a href="https://github.com/trinhngocthuyen/xccache">xccache</a>, a caching tool for Xcode projects, with SPM support.</p>
+<p>In addition to powerful build caching features, <a href="https://github.com/trinhngocthuyen/xccache">xccache</a> makes it easy to build a Swift package target into an XCFramework. No need to worry about headers, Swift modules, module maps, or other low-level details. Just one command, and you're done.</p>
+<pre><code class="hljs language-bash">xccache pkg build Kingfisher
+</code></pre>
+<p>The CLI also supports multi-platform builds, along with other features.</p>
+<pre><code class="hljs language-bash">xccache pkg build Kingfisher --sdk=iphoneos,iphonesimulator,macos,tvos
+</code></pre>
+<p>Check it out at: <a href="https://github.com/trinhngocthuyen/xccache"><strong>xccache</strong></a>.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>Distributing prebuilt Swift packages as XCFrameworks is powerful but nuanced without Xcode projects. By understanding how modules, headers, Swift interfaces fit together, we can construct framework bundles from <code>swift build</code> outputs.</p>
+<p>Tools like <a href="https://github.com/trinhngocthuyen/xccache">xccache</a> help simplify the process, making binary distribution more efficient in a modern SPM-driven workflow.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2025-06-08"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Swift Packages: Packaging as an XCFramework (1)"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","spm",{"href":"/tags/spm","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"spm"}],["$","$L5","cache",{"href":"/tags/cache","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"cache"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/async-let-bindings-gotcha-and-closer-look","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Async Let Bindings: a Gotcha and a Closer Look"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-03-25"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/mobile-e2e-device-farm-journey","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"A Journey of Maintaining Device Farms for E2E Testing"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-06-24"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"background","text":"Background","level":2},{"id":"creating-a-framework-on-your-own","text":"Creating a Framework on Your Own","level":2},{"id":"understanding-framework-structure","text":"Understanding Framework Structure","level":3},{"id":"examining-build-products","text":"Examining Build Products","level":3},{"id":"creating-framework-binary","text":"Creating Framework Binary","level":3},{"id":"creating-modules","text":"Creating Modules","level":3},{"id":"creating-headers","text":"Creating Headers","level":3},{"id":"enabling-library-evolution","text":"Enabling Library Evolution","level":3},{"id":"introducing-xccache","text":"Introducing xccache","level":2},{"id":"wrapping-up","text":"Wrapping Up","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Swift Packages: Packaging as an XCFramework (1) — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

@@ -1,0 +1,125 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","mvvm-best-practice-inputs-outputs",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","mvvm-best-practice-inputs-outputs","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","mvvm-best-practice-inputs-outputs","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T20e4,<p>When it comes to iOS architecture, MVVM is one of the most favorable candidates. Not only does it provide higher testability than MVC but also this architecture is lightweight as compared to its counterparts such as VIPER. Despite that, proper approaches should be adopted to take advantage of MVVM. Otherwise, we could end up with an alike version of MVC with an additional component (ViewModel).</p>
+<p>This post introduces an approach call <em>Inputs - Outputs</em>, currently used at Kickstarter. You can see a high fraction of this style in the Kickstarter iOS app.</p>
+<p><em>Disclaimer: This approach is nothing but a convention. Don't get confused it with an architecture.</em></p>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><code>inputs</code> is a set of actions and events that have impacts on viewModel such as the tap action on a button, or the viewDidLoad event.</li>
+<li><code>outputs</code> represents changes that views should reflect.</li>
+<li>Since <code>ouputs</code> may change over time, it's best to return an <code>Observable</code> (in RxSwift context) for each ouput.</li>
+<li>Behaviors defined in <code>inputs</code> should not be expressed as <code>Variable</code> because we don't need the inputs to be obseravable.</li>
+</ul>
+<h3 id="how-to">How-to</h3>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">protocol</span> <span class="hljs-title class_">LoginViewModelInputsType</span> {
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">viewDidLoad</span>()
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">tapSubmit</span>()
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">type</span>(<span class="hljs-params">email</span>: <span class="hljs-type">String</span>)
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">type</span>(<span class="hljs-params">password</span>: <span class="hljs-type">String</span>)
+}
+
+<span class="hljs-keyword">protocol</span> <span class="hljs-title class_">LoginViewModelOutputsType</span> {
+	<span class="hljs-keyword">var</span> validInput: <span class="hljs-type">Observable</span>&#x3C;<span class="hljs-type">Bool</span>> { <span class="hljs-keyword">get</span> }
+	<span class="hljs-keyword">var</span> isLoading: <span class="hljs-type">Observable</span>&#x3C;<span class="hljs-type">Bool</span>> { <span class="hljs-keyword">get</span> }
+	<span class="hljs-keyword">var</span> loginSuccess: <span class="hljs-type">Observable</span>&#x3C;<span class="hljs-type">Void</span>> { <span class="hljs-keyword">get</span> }
+	<span class="hljs-keyword">var</span> loginFailure: <span class="hljs-type">Observable</span>&#x3C;<span class="hljs-type">ErrorMessage</span>> { <span class="hljs-keyword">get</span> }
+}
+
+<span class="hljs-keyword">protocol</span> <span class="hljs-title class_">LoginViewModelType</span> {
+	<span class="hljs-keyword">var</span> inputs: <span class="hljs-type">LoginViewModelInputsType</span> { <span class="hljs-keyword">get</span> }
+	<span class="hljs-keyword">var</span> ouputs: <span class="hljs-type">LoginViewModelOutputsType</span> { <span class="hljs-keyword">get</span> }
+}
+</code></pre>
+<p>This is what <code>LoginViewModel</code> looks like:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LoginViewModel</span>: <span class="hljs-title class_ inherited__">LoginViewModelType</span>, <span class="hljs-title class_ inherited__">LoginViewModelInputsType</span>, <span class="hljs-title class_ inherited__">LoginViewModelOutputsType</span> {
+	<span class="hljs-keyword">var</span> inputs: <span class="hljs-type">LoginViewModelInputsType</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span> }
+	<span class="hljs-keyword">var</span> ouputs: <span class="hljs-type">LoginViewModelOutputsType</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span> }
+
+	<span class="hljs-comment">// MARK: - Inputs</span>
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">let</span> _tapSubmit <span class="hljs-operator">=</span> <span class="hljs-type">Variable</span>&#x3C;<span class="hljs-type">Void</span>>(())
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">tapSubmit</span>() { 
+		_tapSubmit.value <span class="hljs-operator">=</span> ()
+	}
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">let</span> _email <span class="hljs-operator">=</span> <span class="hljs-type">Variable</span>&#x3C;<span class="hljs-type">String</span>>(<span class="hljs-string">""</span>)
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">type</span>(<span class="hljs-params">email</span>: <span class="hljs-type">String</span>) {
+		_email.value <span class="hljs-operator">=</span> email
+	}
+	<span class="hljs-operator">...</span>
+
+	<span class="hljs-comment">// MARK: - Ouputs</span>
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">let</span> _loginSuccess <span class="hljs-operator">=</span> <span class="hljs-type">Variable</span>&#x3C;<span class="hljs-type">Void</span>>(())
+	<span class="hljs-keyword">var</span> loginSuccess: <span class="hljs-type">Observable</span>&#x3C;<span class="hljs-type">Void</span>> { <span class="hljs-keyword">return</span> _loginSuccess.skip(<span class="hljs-number">1</span>) }
+	<span class="hljs-operator">...</span>
+
+	<span class="hljs-keyword">init</span>() {
+		<span class="hljs-keyword">let</span> loginObservable <span class="hljs-operator">=</span> _tapSubmit.asObservable().skip(<span class="hljs-number">1</span>)
+			.flatMapLatest(login)
+			.share()
+
+		loginObservable
+			.bind(to: _loginSuccess)
+			.diposed(by: disposeBag)
+
+		<span class="hljs-comment">// Binding for `_loginFailure` and `isLoading` goes here</span>
+		<span class="hljs-operator">...</span>
+	}
+}
+</code></pre>
+<h3 id="why-inputs---outputs">Why Inputs - Outputs?</h3>
+<p>First of all, by using protocols like this, we achieve higher level of abstraction. Therefore, our code is more behavior-oriented and easier to test.</p>
+<p>Another advantage of this protocol-based convention is readability in unit tests. Let's take a look at the two simple tests below:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">test_When_PasswordIsEmpty_Then_InputIsInvalid</span>() {
+	viewModel.inputs.viewDidLoad()
+	viewModel.inputs.type(email: <span class="hljs-string">"abc@xyz.com"</span>)
+
+	<span class="hljs-comment">// `grabLatestValue` is just an utility function we can write to retrieve</span>
+	<span class="hljs-comment">// the latest value in the stream (during a specific period of time).</span>
+	<span class="hljs-comment">// `RxBlocking` comes for the rescue.</span>
+	<span class="hljs-keyword">let</span> validInput <span class="hljs-operator">=</span> grabLatestValue(viewModel.outputs.validInput, duration: <span class="hljs-number">1</span>)
+	expect(validInput).to(beFalse())
+}
+
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">test_When_Submitting_Then_ShouldShowLoadingAndThenHideWhenCompleted</span>() {
+	viewModel.inputs.viewDidLoad()
+	viewModel.inputs.type(email: <span class="hljs-string">"abc@xyz.com"</span>)
+	viewModel.inputs.type(password: <span class="hljs-string">"Password0"</span>)
+	viewModel.inputs.tapSubmit()
+
+	<span class="hljs-keyword">let</span> loadingStates <span class="hljs-operator">=</span> grabLatestValue(viewModel.outputs.isLoading, duration: <span class="hljs-number">1</span>)
+	expect(loadingStates).to(beEqual([<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>]))
+}
+</code></pre>
+<p>By looking at the codes related to <code>inputs</code> calls, we quickly have a sense of the scenarios we are trying to simulate. Similarly, what we expect to see are reflected upon <code>outputs</code>.</p>
+<h3 id="reference">Reference</h3>
+<ol>
+<li><a href="https://github.com/kickstarter/native-docs/blob/master/vm-structure.md">https://github.com/kickstarter/native-docs/blob/master/vm-structure.md</a></li>
+<li><a href="https://github.com/kickstarter/native-docs/blob/master/inputs-outputs.md">https://github.com/kickstarter/native-docs/blob/master/inputs-outputs.md</a></li>
+</ol>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2017-12-20"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"MVVM best practice: Inputs - Outputs"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","architecture",{"href":"/tags/architecture","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"architecture"}],["$","$L5","mvvm",{"href":"/tags/mvvm","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"mvvm"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/an-example-of-survey-with-privacy","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"An example of Survey with privacy"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-11-14"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/indicator-rvs-and-the-fundamental-bridge","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Indicator r.v.s and the fundamental bridge"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2018-01-04"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"principles","text":"Principles","level":3},{"id":"how-to","text":"How-to","level":3},{"id":"why-inputs---outputs","text":"Why Inputs - Outputs?","level":3},{"id":"reference","text":"Reference","level":3}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"MVVM best practice: Inputs - Outputs — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

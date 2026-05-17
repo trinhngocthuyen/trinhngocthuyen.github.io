@@ -1,0 +1,173 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","mobile-e2e-wda",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","mobile-e2e-wda","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","mobile-e2e-wda","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T4d42,<p>In the <a href="/posts/tech/mobile-e2e-overview">previous post</a>, we explored the overview of E2E testing in mobile development.</p>
+<p>Today, we’re going to dive deeper into how E2E testing with Appium works on iOS.</p>
+<h2 id="1-introduction-to-webdriveragent-wda">1. Introduction to WebDriverAgent (WDA)</h2>
+<h3 id="11-running-your-first-test-with-appium">1.1. Running Your First Test With Appium</h3>
+<p>Here’s a simple code snippet to start your tests. For simplicity, we’ll run tests on simulators.</p>
+<!--more-->
+<pre><code class="hljs language-python"><span class="hljs-keyword">from</span> appium.webdriver.webdriver <span class="hljs-keyword">import</span> WebDriver
+<span class="hljs-keyword">from</span> appium.options.ios <span class="hljs-keyword">import</span> XCUITestOptions
+
+<span class="hljs-comment"># Create a WebDriver</span>
+options = XCUITestOptions()
+wd = WebDriver(<span class="hljs-string">'http://127.0.0.1:4723'</span>, options=options)
+
+<span class="hljs-comment"># Activate the app</span>
+wd.activate_app(<span class="hljs-string">'org.wikimedia.wikipedia'</span>)
+
+<span class="hljs-comment"># Finding elements and click</span>
+wd.find_element(by=<span class="hljs-string">'accessibility id'</span>, value=<span class="hljs-string">'Settings'</span>).click()
+wd.find_element(by=<span class="hljs-string">'accessibility id'</span>, value=<span class="hljs-string">'Close'</span>).click()
+</code></pre>
+<p>In this test, we create a WebDriver with the remote URL set to <code>http://127.0.0.1:4723</code>, which is the default Appium server port. The Appium server can be started using the <code>appium</code> or <code>appium server</code> command.</p>
+<p>With the given WebDriver, we can perform various actions, such as activating/launching the app, finding a certain UI element and click it. These actions will be reflected on the simulator.</p>
+<p><img src="/images/e2e/wda_first_test.gif" alt=""></p>
+<h3 id="12-examining-appium-logs">1.2. Examining Appium Logs</h3>
+<p>Looking at relevant Appium logs, we notice that most of the requests to Appium were forwarded to another server on port <strong>8100</strong>. For example, in the <code>find_element</code> call with accessibility id "Settings", Appium sent a request at the following endpoint <code>http://127.0.0.1:8100/session/86A3C426-6434-4CF1-9264-B022ACCE2A9D/element</code> to get the response, transform it, and then return to the client.</p>
+<p><img src="/images/e2e/wda_proxy.png" alt=""></p>
+<p>The server on port 8100 is, in fact, a WebDriver server, a critical component for iOS E2E testing.</p>
+<h3 id="13-webdriveragent-wda">1.3. WebDriverAgent (WDA)</h3>
+<p>When running tests with Appium, you will notice another app called WebDriverAgentRunner installed alongside your app under testing (AUT). It is sometimes called <strong>WebDriverAgent</strong>, or <strong>WDA</strong> for short. This app is a <a href="https://w3c.github.io/webdriver/webdriver-spec.html">WebDriver server</a> implementation that allows you to launch &#x26; kill apps, tap &#x26; scroll views, or confirm view presence on a screen.</p>
+<p>When running UI tests from Xcode, you also see the presence of an additional app AppUITests-Runner. This UITests-Runner app is very similar to the WDA in the sense that both use XCTest framework and Apple’s API to execute commands on a device. The main difference is that WDA establish a server that follows the <a href="https://w3c.github.io/webdriver/#endpoints">WebDriver spec</a>.</p>
+<p>You can build the WDA from <a href="https://github.com/appium/webdriveragent">https://github.com/appium/webdriveragent</a>, or from the project under <code>~/.appium/node_modules/appium-xcuitest-driver/node_modules/appium-webdriveragent</code> (if you already installed Appium with the xcuitest driver), or simply by running <code>appium driver run xcuitest build-wda --name &#x3C;SimulatorName></code></p>
+<p>Upon launch, WDA exposes two ports: <strong>8100</strong> and <strong>9100</strong>.</p>
+<p><img src="/images/e2e/wda_ports.png" alt=""></p>
+<p>Port 8100 is used for <strong>processing WebDriver commands</strong> (queries and actions). You can quickly check the status at <code>http://localhost:8100/status</code>.</p>
+<pre><code class="hljs language-bash">$ curl http://localhost:8100/status
+
+{
+  <span class="hljs-string">"value"</span> : {
+    <span class="hljs-string">"build"</span> : {
+      <span class="hljs-string">"version"</span> : <span class="hljs-string">"8.12.0"</span>,
+      <span class="hljs-string">"time"</span> : <span class="hljs-string">"Jan  1 2025 10:35:42"</span>,
+      <span class="hljs-string">"productBundleIdentifier"</span> : <span class="hljs-string">"com.facebook.WebDriverAgentRunner"</span>
+    },
+    <span class="hljs-string">"os"</span> : {
+      <span class="hljs-string">"testmanagerdVersion"</span> : 65535,
+      <span class="hljs-string">"name"</span> : <span class="hljs-string">"iOS"</span>,
+      <span class="hljs-string">"sdkVersion"</span> : <span class="hljs-string">"18.0"</span>,
+      <span class="hljs-string">"version"</span> : <span class="hljs-string">"18.1"</span>
+    },
+    <span class="hljs-string">"device"</span> : <span class="hljs-string">"iphone"</span>,
+    <span class="hljs-string">"ios"</span> : {
+      <span class="hljs-string">"simulatorVersion"</span> : <span class="hljs-string">"18.1"</span>,
+      <span class="hljs-string">"ip"</span> : <span class="hljs-string">"192.168.1.3"</span>
+    },
+    <span class="hljs-string">"message"</span> : <span class="hljs-string">"WebDriverAgent is ready to accept commands"</span>,
+    <span class="hljs-string">"state"</span> : <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"ready"</span> : <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-string">"sessionId"</span> : null
+}
+</code></pre>
+<p>Meanwhile port 9100 is used for <strong>streaming the screen</strong> via MJPEG. You can try opening <code>http://localhost:9100</code> on web browser to see the mirroring of the phone.</p>
+<p>Ports 8100 and 9100 in this example are sometimes called <strong>WDA port</strong> and <strong>MJPEG port</strong> respectively.</p>
+<h3 id="14-wda-on-simulators-and-devices">1.4. WDA on Simulators and Devices</h3>
+<p>Note that the server on ports 8100/9100 is running on the device. You can verify the WDA status by opening <code>http://localhost:8100/status</code> in Safari on the phone.</p>
+<p>For simulators, since they share the same network as the host machine, you will see those ports occupied on the computer once WDA is launched.</p>
+<p>When launching WDA on physical devices, the device network is different from the computer's. As a result, <strong>port forwarding</strong> is required to map the device's ports to the computer. This can be done using tools like <a href="https://man.archlinux.org/man/extra/libusbmuxd/iproxy.1.en">iproxy</a>, which comes with <a href="https://github.com/libimobiledevice/libusbmuxd">libusbmuxd</a> (can be <a href="https://formulae.brew.sh/formula/libusbmuxd">installed via Homebrew</a>).</p>
+<pre><code class="hljs language-bash">$ iproxy -u &#x3C;DEVICE_UDID> 8100:8100 9100:9100
+</code></pre>
+<p>This command binds the TCP ports 8100 and 9100 with those on the device over a USB connection. After running it, you should see ports 8100 and 9100 occupied, and both <code>http://localhost:8100</code> and <code>http://localhost:9100</code> should be accessible.</p>
+<p>In fact, device farm solutions like <a href="https://github.com/SonicCloudOrg">Sonic</a> or <a href="https://github.com/AppiumTestDistribution/appium-device-farm">Appium Device Farm</a> use a similar approach. For example, you can find the code running the <code>iproxy</code> command in the <a href="https://github.com/SonicCloudOrg/sonic-agent">sonic-agent</a> project <a href="https://github.com/SonicCloudOrg/sonic-agent/blob/acae68d/src/main/java/org/cloud/sonic/agent/bridge/ios/SibTool.java#L283-L284">here</a>.</p>
+<h2 id="2-wda-in-device-farms">2. WDA in Device Farms</h2>
+<h3 id="21-wda-and-remote-testing">2.1. WDA and Remote Testing</h3>
+<p>As mentioned in the <a href="/posts/tech/mobile-e2e-overview">previous post</a>, third-party device farm solutions like Sonic or Appium Device Farm not only help manage devices (e.g., determining whether one is available or occupied), but also allow you to operate the device through a web UI. The underlying implementation turns out to be simple. Since both tools function similarly, let's explore how Appium Device Farm achieves this functionality.</p>
+<p>As follows is the web UI when occupying a physical device. The web mirrors what’s displaying on the phone.</p>
+<p><img src="/images/e2e/wda_preview.png" alt=""></p>
+<p>Tapping the Google Maps app and examining Appium logs, we notice that behind the scenes, the tool sends a request to WDA at <a href="https://github.com/appium/WebDriverAgent/blob/a1b5af60d5257850dac989dff3fdce2ec459efcd/WebDriverAgentLib/Commands/FBTouchActionCommands.m#L25">this endpoint</a>: <code>/session/{session_id}/actions</code>.</p>
+<p><img src="images/e2e/wda_actions.png" alt=""></p>
+<p>We can simulate the same request using <code>curl</code>, and then observe the same result, ie. the Google Maps app being activated.</p>
+<p>Similarly, we can mimic other gestures by inspecting the WDA endpoint of the corresponding actions and their payloads, then performing <code>curl</code> requests accordingly. The following demonstrates a drag gesture on the map. As you can see, the map on the web UI reflects the drag action as soon as the request is fired.</p>
+<p><img src="/images/e2e/wda_actions_drag.gif" alt=""></p>
+<p>In summary, when you interact with a device via the web UI, <strong>your gestures are translated into a series of <a href="https://w3c.github.io/webdriver/#actions">W3C actions</a></strong>, which are then fed to WDA. Native iOS gestures can be mapped to a chain of web actions. For example, a long press gesture at coordinates (x, y) could be represented as follows:</p>
+<pre><code class="hljs language-scss">pointer move to (x, y) → pointer down → <span class="hljs-attribute">pause</span> <span class="hljs-number">500ms</span> → pointer up
+</code></pre>
+<p>It’s important to note that what you see on the web UI is just a live stream of what's happening on the phone, not direct interaction with the device. This means the display may not immediately reflect your interactions. For example, in Appium Device Farm, while slowly dragging the map, it doesn't move until a few seconds later, as shown in the GIF below. This delay occurs because the action chain is only submitted once the pointer is released. This logic is just a design choice of the tool, and of course, could be adjusted to improve responsiveness.</p>
+<p><img src="/images/e2e/wda_actions_delayed.gif" alt=""></p>
+<h3 id="22-launching-wda">2.2. Launching WDA</h3>
+<h4 id="via-xcodebuild">Via xcodebuild</h4>
+<p>By default, without any special capabilities, Appium starts WebDriverAgent (WDA) using xcodebuild and waits until the WDA server is up and running.</p>
+<p><img src="/images/e2e/wda_appium_xcodebuild.png" alt="">
+<img src="/images/e2e/wda_xcodebuild.png" alt=""></p>
+<p>This approach is simple, but not ideal for large-scale usage due to several reasons. First, the overhead time for xcodebuild to build and test the WDA project can be long, sometimes up to 15 seconds, even when a build cache is available. Additionally, xcodebuild is not a lightweight process, typically consuming around 120MB of memory per instance. This results in a total of 1GB for 10 devices.</p>
+<p>Another challenge is that we need to properly setup provisioning profiles and certificates on the host machine in order to build the WDA project on real devices. This introduces additional maintenance cost for device farm operations.</p>
+<p>A better approach is to pre-install WDA on the device and launch it without xcodebuild. Appium provides capabilities to test with a pre-installed WDA (see: <a href="https://appium.github.io/appium-xcuitest-driver/latest/guides/run-preinstalled-wda">here</a>), which relies on simctl/devicectl under the hood.</p>
+<h4 id="via-simctldevicectl">Via simctl/devicectl</h4>
+<p>WDA (or any other app) can be launched using simctl for simulators and devicectl for devices.</p>
+<p>For simulators:</p>
+<pre><code class="hljs language-bash">$ xcrun simctl launch --terminate-running-process &#x3C;SIMULATOR> com.facebook.WebDriverAgentRunner.xctrunner
+</code></pre>
+<p>For devices:</p>
+<pre><code class="hljs language-bash">$ xcrun devicectl device process launch --terminate-existing --device &#x3C;DEVICE> com.facebook.WebDriverAgentRunner.xctrunner
+</code></pre>
+<p>Where <code>com.facebook.WebDriverAgentRunner.xctrunner</code> is the bundle ID for WDA. This ID might vary depending on your provisioning profile setup.</p>
+<div class="tip">
+<p>Note that with iOS 17+, you need to remove XCTest-related frameworks under <code>Frameworks/*.framework</code> to successfully launch WDA via <code>devicectl</code> (see: <a href="https://github.com/appium/appium-xcuitest-driver/blob/master/docs/guides/run-preinstalled-wda.md#additional-requirement-for-ios-17tvos17">here</a>).</p>
+</div>
+<p>A best practice when launching WDA is to stream WDA logs, which can be redirected to a dedicated file for debugging purposes. This can be done using the <code>--console</code> option in simctl and devicectl:</p>
+<pre><code class="hljs language-bash">$ xcrun simctl launch --terminate-running-process --console &#x3C;SIMULATOR> com.facebook.WebDriverAgentRunner.xctrunner
+</code></pre>
+<p><img src="/images/e2e/wda_console_log.png" alt=""></p>
+<h4 id="via-cross-platform-tools">Via cross-platform tools</h4>
+<p>While the previous options are decent, they are specific to macOS. If you are using a Linux server/machine to host iOS devices, there are a few cross-platform alternatives to explore. <a href="https://github.com/SonicCloudOrg">Sonic</a> has developed its own in-house wrapper, <a href="https://github.com/SonicCloudOrg/sonic-ios-bridge">sonic-ios-bridge</a> (sib), which simplifies the process of launching WDA with the <code>sib run wda</code> command. However, this tool is only compatible with iOS versions prior to 17 (as of Jan 2025). This limitation is due to breaking changes in the communication mechanism in iOS 17, shifting from TCP-based communication to QUIC + RemoteXPC (see: <a href="https://github.com/doronz88/pymobiledevice3/blob/master/misc/RemoteXPC.md#overview">here</a>).</p>
+<blockquote>
+<p>Starting at iOS 17.0, Apple refactored a lot in the way iOS devices communicate with the macOS. Up until iOS 16, The communication was TCP based (using the help of <code>usbmuxd</code> for USB devices) with TLS (for making sure only trusted peers are able to connect)</p>
+</blockquote>
+<p>So far, the most dominant cross-platform tools that support iOS 17+ is probably <a href="https://github.com/doronz88/pymobiledevice3">pymobiledevice3</a>.</p>
+<h3 id="23-avoiding-port-collisions-for-multiple-devices">2.3. Avoiding Port Collisions For Multiple Devices</h3>
+<p>The default ports used by the WDA proxy and MJPEG server are 8100 and 9100, respectively. When managing multiple devices, it's essential to assign unique ports to each device to prevent port collisions.</p>
+<p>For real devices, this is straightforward: regardless of the ports being used on the devices, we only need to ensure that the <em>forwarded ports on the computer are different</em>.</p>
+<pre><code class="hljs language-bash">$ iproxy -u &#x3C;DEVICE-X> &#x3C;WDA-PORT-X>:8100 &#x3C;MJPEG-PORT-X>:9100
+$ iproxy -u &#x3C;DEVICE-Y> &#x3C;WDA-PORT-Y>:8100 &#x3C;MJPEG-PORT-Y>:9100
+</code></pre>
+<p>However, for simulators, we need to specify custom ports for the WDA server because of the shared network. Luckily, WDA allows us to override these ports using two environment variables: <a href="https://github.com/appium/WebDriverAgent/blob/a1b5af6/WebDriverAgentLib/Utilities/FBConfiguration.m#L129-L131">USE_PORT</a> and <a href="https://github.com/appium/WebDriverAgent/blob/a1b5af6/WebDriverAgentLib/Utilities/FBConfiguration.m#L143-L145">MJPEG_SERVER_PORT</a>. To do this, set these variables with the <code>SIMCTL_CHILD_</code> prefix when launching the server with simctl:</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">env</span> SIMCTL_CHILD_USE_PORT=8101 SIMCTL_CHILD_MJPEG_SERVER_PORT=9101 \
+    xcrun simctl launch --terminate-running-process &#x3C;SIMULATOR> com.facebook.WebDriverAgentRunner.xctrunner
+</code></pre>
+<p>Similarly, you can launch WDA with custom ports on real devices using devicectl, using a similar approach (with the <code>DEVICECTL_CHILD_</code> prefix):</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">env</span> DEVICECTL_CHILD_USE_PORT=8101 DEVICECTL_CHILD_MJPEG_SERVER_PORT=9101 \
+    xcrun devicectl device process launch --terminate-existing --device &#x3C;DEVICE> com.facebook.WebDriverAgentRunner.xctrunner
+</code></pre>
+<h3 id="24-managing-the-wda-life-cycle-yourself-in-appium-tests">2.4. Managing the WDA Life Cycle Yourself in Appium Tests</h3>
+<p>So far, we've discussed how WDA contributes to automation and enhancing the power of testing with Appium.</p>
+<p>But why should we worry about WDA management when Appium already handles the heavy lifting, from building and launching WDA for testing, to port forwarding?</p>
+<p>In my company, we initially let Appium manage WDA. Of course we use prebuilt and pre-installed WDA for simulators and devices to save time. However, we encountered several issues when running tests concurrently on multiple simulators/devices. These issues weren't just performance-related; they also involved stability. For instance, if the WDA connection was interrupted during a test, Appium did not have a strategy - such as automatically relaunching WDA - to recover from the disruption. As a result, we decided to take control and manage the WDA life cycle ourselves.</p>
+<p>By doing so, specify the <code>'appium:webDriverAgentUrl': &#x3C;URL></code> capability in Appium tests (see: <a href="https://appium.github.io/appium-xcuitest-driver/latest/guides/attach-to-running-wda">here</a>). This tells Appium that the WDA was launched beforehand, so it doesn't need to handle that part.</p>
+<p>Managing the WDA life cycle ourselves has provided several advantages. First, it gives us more control when dealing with errors. For example, if WDA encounters issues (which are frequent on devices), we can simply relaunch WDA and retry the test. Another benefit arises when a WDA session has been running for a long period, potentially leading to intermittent issues. In this case, we prefer to keep WDA sessions short by restarting WDA after a few tests.</p>
+<p>A further advantage of self-managing WDA is the ability to collect and isolate WDA logs for each test. This is crucial for troubleshooting and resolving issues effectively.</p>
+<h2 id="3-summary">3. Summary</h2>
+<p>In this post, we have explored how WDA plays a critical role in E2E testing with Appium. Acting as the server that directly controls iOS devices remotely, WDA implements most of the <a href="https://w3c.github.io/webdriver">WebDriver spec</a>, making it the backbone of not only test automation but also remote testing solutions.</p>
+<p>By understanding the role of WDA and how it functions within Appium, you can design your testing solution to be both more efficient and resilient, especially when dealing with device-related issues.</p>
+<p>…</p>
+<p>Stay tuned for more posts, where we’ll dive into various aspects of E2E testing, such as additional tools, strategies, and best practices.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2025-01-09"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"WebDriverAgent - The Heart of iOS E2E Testing"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","mobile",{"href":"/tags/mobile","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"mobile"}],["$","$L5","e2e",{"href":"/tags/e2e","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"e2e"}],["$","$L5","testing",{"href":"/tags/testing","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"testing"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+19:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+1a:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[["$","div",null,{"className":"border-l-[3px] border-[--theme] pl-4","children":[["$","div",null,{"className":"flex items-baseline gap-2 mb-3","children":[["$","span",null,{"className":"text-[13px] font-bold text-theme-primary","children":"E2E Testing Series"}],["$","span",null,{"className":"text-xs text-muted","children":["· ",3," parts"]}]]}],["$","div",null,{"children":[["$","div","mobile-e2e-overview",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":1}],["$","$L5",null,{"href":"/posts/tech/mobile-e2e-overview","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Overview of Mobile E2E Testing"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2024-12-16"}]]}],["$","div","mobile-e2e-wda",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":2}],["$","span",null,{"className":"text-[14px] font-normal text-muted truncate","children":"WebDriverAgent - The Heart of iOS E2E Testing"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2025-01-09"}]]}],["$","div","mobile-e2e-device-farm-journey",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":3}],["$","$L5",null,{"href":"/posts/tech/mobile-e2e-device-farm-journey","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"A Journey of Maintaining Device Farms for E2E Testing"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2025-06-24"}]]}]]}],["$","div",null,{"className":"mt-4 pt-3 border-t border-border/30","children":["$","$L5",null,{"href":"/posts/tech/mobile-e2e-device-farm-journey","className":"text-[13px] font-medium text-theme-primary no-underline hover:text-hover-accent transition-colors","children":["Next in series: ","A Journey of Maintaining Device Farms for E2E Testing"," →"]}]}]]}],["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/mobile-e2e-overview","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Overview of Mobile E2E Testing"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2024-12-16"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/automation-at-your-core","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Automation at Your Core"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-02-17"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],"$L17"]}],"$L18"]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L19",null,{"headings":[{"id":"1-introduction-to-webdriveragent-wda","text":"1. Introduction to WebDriverAgent (WDA)","level":2},{"id":"11-running-your-first-test-with-appium","text":"1.1. Running Your First Test With Appium","level":3},{"id":"12-examining-appium-logs","text":"1.2. Examining Appium Logs","level":3},{"id":"13-webdriveragent-wda","text":"1.3. WebDriverAgent (WDA)","level":3},{"id":"14-wda-on-simulators-and-devices","text":"1.4. WDA on Simulators and Devices","level":3},{"id":"2-wda-in-device-farms","text":"2. WDA in Device Farms","level":2},{"id":"21-wda-and-remote-testing","text":"2.1. WDA and Remote Testing","level":3},{"id":"22-launching-wda","text":"2.2. Launching WDA","level":3},{"id":"23-avoiding-port-collisions-for-multiple-devices","text":"2.3. Avoiding Port Collisions For Multiple Devices","level":3},{"id":"24-managing-the-wda-life-cycle-yourself-in-appium-tests","text":"2.4. Managing the WDA Life Cycle Yourself in Appium Tests","level":3},{"id":"3-summary","text":"3. Summary","level":2}]}]}]
+16:["$","$L1a",null,{"headings":"$15:props:children:props:headings"}]
+17:["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]
+18:["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+1b:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"WebDriverAgent - The Heart of iOS E2E Testing — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L1b","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

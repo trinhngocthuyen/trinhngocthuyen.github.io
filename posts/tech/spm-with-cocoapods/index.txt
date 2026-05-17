@@ -1,0 +1,166 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","spm-with-cocoapods",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","spm-with-cocoapods","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","spm-with-cocoapods","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T3d42,<h2 id="1-introduction">1. Introduction</h2>
+<p><a href="https://www.swift.org/package-manager">Swift Package Manager</a> (SwiftPM, or SPM) is a tool for managing the distribution of Swift code. Initially launched in 2015, it primarily catered to server-side or command-like projects. Its adoption has been limited over the years due to lack of support for the mainstream iOS/MacOS development. During this time, <a href="https://cocoapods.org">CocoaPods</a> has gained its power and emerged as a dominant tool in iOS development.</p>
+<p>Not until recently has SPM been adopted widely.  While long-lived open-source projects (ex. RxSwift, SnapKit, Moya, etc) provide the support for both CocoaPods and SPM, some recently launched projects decided to stick to the SPM support only. A typical case is <a href="https://github.com/pointfreeco">Point-Free’s OSS projects</a> such as <a href="https://github.com/pointfreeco/swift-composable-architecture">The Composable Architecture</a>, <a href="https://github.com/pointfreeco/swift-snapshot-testing">SnapshotTesting</a>, and so forth, embracing SPM exclusively.</p>
+<p>In mid 2023, Apple introduced <a href="https://github.com/apple/swift-evolution/blob/main/visions/macros.md">Swift Macros</a> in the WWDC 2023 (Swift 5.9 release). This initiative was a leap in enhancing the language features and capabilities. However, working with Swift macros requires access to <a href="https://github.com/apple/swift-syntax">apple/swift-syntax</a>, which is not available for CocoaPods (the same happens to most of Apple’s open-source projects). This again prompts the consideration of adopting SPM for projects that seek to leverage these advanced Swift features.</p>
+<p>This blog delves into integrating SPM into CocoaPods-based projects, addressing some challenges and presenting a solution for a seamless transition.</p>
+<h2 id="2-using-spm-in-cocoapods-based-projects">2. Using SPM in CocoaPods-based Projects</h2>
+<h3 id="21-the-needs-for-a-hybrid-approach">2.1. The Needs for a Hybrid Approach</h3>
+<p>While SPM has gained popularity, CocoaPods remains prevalent in iOS development. Many projects, especially those with a long history, rely heavily on CocoaPods. Transitioning entirely to SPM poses risks, especially when not all dependencies are SPM-compatible, such as vendor libraries or frameworks. Another challenge is when the project spans multiple teams. Coordinating such a migration can be difficult due to varying work priorities and timelines. Therefore, a hybrid approach is crucial to ensure a smooth transition without disrupting the existing project structure.</p>
+<h3 id="22-current-status">2.2. Current Status</h3>
+<p>As of Dec 2023, CocoaPods still lacks native support for SPM. While there are pending pull requests addressing this issue, the acceptance is anticipated in the next major release of Xcode (see: <a href="https://github.com/CocoaPods/CocoaPods/pull/11953#issuecomment-1701737145">here</a>). The core members just echoed the general consensus in <a href="https://github.com/CocoaPods/CocoaPods/issues/11942#issuecomment-1588091616">this comment</a>.</p>
+<p>The workaround to add SPM packages to the project is modifying <code>Pods.xcodeproj</code> in the <code>post_install</code> hook, mentioned in <a href="https://github.com/CocoaPods/CocoaPods/issues/10049#issuecomment-819480131">this comment</a>, for example. However, there are still more to cover, for instance, how to link binaries or frameworks properly.</p>
+<h3 id="23-writing-a-cocoapods-plugin">2.3. Writing a CocoaPods Plugin</h3>
+<p>Now let’s create a CocoaPods plugin that eases the burden of managing Swift packages in the project.</p>
+<h4 id="high-level-sketch">High-level sketch</h4>
+<p>In a hybrid model, a Swift package behaves similarly to a pod. It can be declared in both Podfile and podspecs.</p>
+<ul>
+<li>
+<p>In Podfile, the package is declared under the context of a specific target and will be accessible to that target.</p>
+<pre><code class="hljs language-ruby">spm_pkg <span class="hljs-string">"Package"</span>, <span class="hljs-symbol">:url</span> => <span class="hljs-string">"path/to/package"</span>, <span class="hljs-symbol">:version</span> => <span class="hljs-string">"0.0.1"</span>
+
+target <span class="hljs-string">"App"</span> <span class="hljs-keyword">do</span>
+	spm_pkg <span class="hljs-string">"PackageA"</span>, <span class="hljs-symbol">:git</span> => <span class="hljs-string">"path/to/package"</span>, <span class="hljs-symbol">:tag</span> => <span class="hljs-string">"0.0.1"</span>
+<span class="hljs-keyword">end</span>
+
+target <span class="hljs-string">"Test"</span> <span class="hljs-keyword">do</span>
+  spm_pkg <span class="hljs-string">"TestPackageX"</span>, <span class="hljs-symbol">:git</span> => <span class="hljs-string">"path/to/package"</span>, <span class="hljs-symbol">:branch</span> => <span class="hljs-string">"main"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+</li>
+<li>
+<p>In the podspec of a pod, the package is declared as one of the pod’s dependencies.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-title class_">Pod::Spec</span>.new <span class="hljs-keyword">do</span> |<span class="hljs-params">s</span>|
+  s.name = <span class="hljs-string">"Foo"</span>
+  ...
+  s.dependency <span class="hljs-string">"AnotherPod"</span>
+  s.spm_dependency <span class="hljs-string">"PackageA"</span> <span class="hljs-comment"># &#x3C;-- HERE</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+</li>
+</ul>
+<p>A Swift package may have multiple products some of which a podspec depends on. This can be done with the following format: <code>spm_dependency "PackageName/ProductName"</code>. The idea is conceptually similar to dependencies declaration when having subspecs.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-title class_">Pod::Spec</span>.new <span class="hljs-keyword">do</span> |<span class="hljs-params">s</span>|
+  ...
+  s.spm_dependency <span class="hljs-string">"PackageA/ProductA1"</span>
+  s.spm_dependency <span class="hljs-string">"PackageA/ProductA2"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4 id="integrating-swift-packages-to-the-pods-project">Integrating Swift packages to the Pods project</h4>
+<p>Integrating a Swift package involves creating references and adding them to the Pods project.</p>
+<pre><code class="hljs language-ruby">pkgs.each |<span class="hljs-params">pkg</span>|
+  pods_project.root_object.package_references &#x3C;&#x3C; create_pkg_ref(pkg)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>For each pod depending on a package, the package products are added to the pod’s Target Dependencies under the “Build Phases” tab.</p>
+<pre><code class="hljs language-ruby">pods_project.targets.each <span class="hljs-keyword">do</span> |<span class="hljs-params">target</span>|
+  products_for(target).each <span class="hljs-keyword">do</span> |<span class="hljs-params">product</span>|
+    target.dependencies &#x3C;&#x3C; create_target_dependency_ref(product)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<img src="/images/ios/spm_target_dependencies.png" style="width:550px">
+<h4 id="linking-libraries-and-frameworks">Linking libraries and frameworks</h4>
+<p>While some recommendations, such as those found in <a href="https://github.com/CocoaPods/CocoaPods/issues/10049#issuecomment-819480131">this comment</a>, suggest adding the package products to the “Link Binary With Libraries” section of a pod target, this approach may not align with specific use cases. Moreover, this linking approach deviates from how CocoaPods handles the linking setup.</p>
+<img src="/images/ios/spm_link_binaries.png" style="width:600px">
+<p>Rather, a more fitting strategy is linking frameworks or libraries based on the linker flags in the target's build settings.</p>
+<p><strong>Static vs. Dynamic</strong></p>
+<p>A Swift package library can be either static or dynamic, depending on the <a href="https://developer.apple.com/documentation/packagedescription/product/library/librarytype">library type</a> declared in the package product. If unspecified, it defaults to static.</p>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">let</span> package = Package(
+  ...
+  products: [
+    .library(name: <span class="hljs-string">"Foo"</span>, targets: [<span class="hljs-string">"Foo"</span>]),                // &#x3C;-- static
+    .library(name: <span class="hljs-string">"Bar"</span>, <span class="hljs-built_in">type</span>: .dynamic, targets: [<span class="hljs-string">"Bar"</span>]) // &#x3C;-- dynamic
+  ]
+)
+</code></pre>
+<p>When compiling such a package:</p>
+<ul>
+<li>A dynamic library is compiled and packaged into a framework under the <code>PackageFrameworks</code> dir (residing in the per-configuration build dir).</li>
+<li>A static library is compiled into a <code>.o</code> binary along with its <code>.swiftmodule</code> in the per-configuration build dir.</li>
+</ul>
+<p>The following image illustrates the products dir structure when compiling a package containing a static library <code>Foo</code> and a dynamic library <code>Bar</code>.</p>
+<img src="/images/ios/spm_static_dynamic.png" style="width:750px">
+<p>As we can see, the Swift modules of <code>Foo</code> and <code>Bar</code> are located in the per-configuration build dir. Despite the existence of <code>Bar.framework</code>, its Swift module is not packaged into that bundle. Thus, we need to add <code>${PODS_CONFIGURATION_BUILD_DIR}</code> to <code>SWIFT_INCLUDE_PATHS</code> so that Xcode can search for additional Swift modules.</p>
+<p>To link static libraries (ex. <code>Foo</code>) with a target:</p>
+<ul>
+<li>Use linker flags: <code>-l"Foo.o"</code></li>
+<li>Add <code>${PODS_CONFIGURATION_BUILD_DIR}</code> to the library search paths (<code>LIBRARY_SEARCH_PATHS</code>)</li>
+</ul>
+<p>To link dynamic libraries (ex. <code>Bar</code>) with a target:</p>
+<ul>
+<li>Use linker flags: <code>-framework "Bar.framework"</code></li>
+<li>Add <code>${PODS_CONFIGURATION_BUILD_DIR}/PackageFrameworks</code> to the framework search paths (<code>FRAMEWORK_SEARCH_PATHS</code>).
+Each framework under this dir must be embedded to the app bundle’s Frameworks. This can be accomplished by appending <code>install_framework "${PODS_CONFIGURATION_BUILD_DIR}/PackageFrameworks/Bar.framework"</code> to the <a href="https://github.com/CocoaPods/CocoaPods/blob/master/lib/cocoapods/generator/embed_frameworks_script.rb">embed frameworks script</a> of an aggregate target.</li>
+</ul>
+<p>The following build settings reflect the outlined linking strategy:</p>
+<pre><code class="hljs language-bash">SWIFT_INCLUDE_PATHS = $(inherited) <span class="hljs-string">"<span class="hljs-variable">${PODS_CONFIGURATION_BUILD_DIR}</span>"</span>
+FRAMEWORK_SEARCH_PATHS = $(inherited) <span class="hljs-string">"<span class="hljs-variable">${PODS_CONFIGURATION_BUILD_DIR}</span>/PackageFrameworks"</span>
+LIBRARY_SEARCH_PATHS = $(inherited) <span class="hljs-string">"<span class="hljs-variable">${PODS_CONFIGURATION_BUILD_DIR}</span>"</span>
+OTHER_LDFLAGS = $(inherited) -l<span class="hljs-string">"Foo.o"</span> -framework <span class="hljs-string">"Bar.framework"</span>
+</code></pre>
+<h4 id="integrating-swift-macros-as-prebuilt-binaries">Integrating Swift macros as prebuilt binaries</h4>
+<p>As highlighted in the introduction, Swift macros is an important driving force for SPM adoption. However, a notable challenge preventing Swift macros from being adopted, especially in large-scale projects, is their overhead build time. Specifically, a macro package depends on <a href="https://github.com/apple/swift-syntax">swift-syntax</a> which alone takes up 10-15s in the compilation process. This means the compilation time for the macro package could extend to 20s or more. This becomes even more problematic when such a macro is used by many targets, leading to delays in compiling those dependent targets.</p>
+<p>Fortunately, with the proposal <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0394-swiftpm-expression-macros.md">SE-0394</a> being implemented (in Swift 5.9), we can integrate Swift macros in the form of prebuilt binaries. Refer to <a href="https://www.polpiella.dev/binary-swift-macros">this blog post</a> for more details about this approach. Basically, we just need the prebuilt binary of the macro implementation, along with the source files of the macro interfaces. This gives way to the idea of automating the process of prebuilding a macro and integrating it to the project. There is no additional effort required from the package author.</p>
+<p>To illustrate, let’s consider the use case of integrating the <code>[Orcam](https://github.com/trinhngocthuyen/orcam)</code> macro into a project. The following steps outline the process:</p>
+<ul>
+<li>Step (1): Prepare a dedicated pod dir: <code>.spm.pods/Orcam</code></li>
+<li>Step (2): Download the source of that package into: <code>.spm.pods/.download/Orcam</code></li>
+<li>Step (3): Prebuild the macro implementation from the downloaded source.
+Place the binary in <code>.spm.pods/Orcam/.prebuilt/debug/OrcamImpl</code></li>
+<li>Step (4): Copy the source files of the macro interfaces,
+from <code>.spm.pods/.download/Orcam/Sources/Orcam</code>
+to <code>.spm.pods/Orcam/Sources/Orcam</code></li>
+</ul>
+<p>The pod dir <code>.spm.pods/Orcam</code> can now be used as a development pod in the project.</p>
+<pre><code class="hljs language-lua">.spm.pods/Orcam/
+|<span class="hljs-comment">-- Orcam.podspec</span>
+|<span class="hljs-comment">-- Sources/</span>
+    |<span class="hljs-comment">-- Orcam/</span>
+        |<span class="hljs-comment">-- Orcam.swift</span>
+|<span class="hljs-comment">-- .prebuilt/</span>
+    |<span class="hljs-comment">-- debug/</span>
+        |<span class="hljs-comment">-- OrcamImpl (*)</span>
+    |<span class="hljs-comment">-- release/</span>
+        |<span class="hljs-comment">-- OrcamImpl (*)</span>
+</code></pre>
+<p>To simplify the usage, we can patch the <code>pod</code> method to introduce an additional option, <code>:macro</code>, to specify its source. Under the hood, it’s just like specifying <code>pod "Orcam", :path => ".spm.pods/Orcam"</code>.</p>
+<pre><code class="hljs language-ruby">pod <span class="hljs-string">"Orcam"</span>, <span class="hljs-symbol">:macro</span> => {
+  <span class="hljs-symbol">:git</span> => <span class="hljs-string">"https://github.com/trinhngocthuyen/orcam.git"</span>,
+  <span class="hljs-symbol">:branch</span> => <span class="hljs-string">"main"</span>,
+}
+</code></pre>
+<p>For a deeper understanding of this technique, refer to <a href="https://github.com/trinhngocthuyen/cocoapods-spm/blob/main/docs/under-the-hood-swift-binary-macros.md">this documentation</a>.</p>
+<h2 id="3-introducing-cocoapods-spm">3. Introducing cocoapods-spm</h2>
+<p>Struggling to integrate SPM packages seamlessly into your CocoaPods-based projects?</p>
+<p>Meet <a href="https://github.com/trinhngocthuyen/cocoapods-spm">cocoapods-spm</a>, a CocoaPods plugin designed to simplify and enhance the integration process. This plugin offers an intuitive and pod-like syntax for declaring and managing SPM dependencies. The linking strategies discussed above are well effectively handled by the plugin. Additionally, the plugin provides a set of CLI usages to work with Swift binary macros.</p>
+<p>Visit the <a href="https://github.com/trinhngocthuyen/cocoapods-spm">GitHub repo</a> for documentation, issue reporting, and contributions.</p>
+<p>Let's make SPM integration in CocoaPods-based projects a breeze!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2023-12-30"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Using Swift Packages in CocoaPods-Based Projects"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","cocoapods",{"href":"/tags/cocoapods","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"cocoapods"}],["$","$L5","spm",{"href":"/tags/spm","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"spm"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/test-quarantine","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Designing Test Quarantine Logic to Deal With Flaky Tests"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-09-17"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/pre-commit","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Using pre-commit for Linters/Formatters"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2024-02-01"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"1-introduction","text":"1. Introduction","level":2},{"id":"2-using-spm-in-cocoapods-based-projects","text":"2. Using SPM in CocoaPods-based Projects","level":2},{"id":"21-the-needs-for-a-hybrid-approach","text":"2.1. The Needs for a Hybrid Approach","level":3},{"id":"22-current-status","text":"2.2. Current Status","level":3},{"id":"23-writing-a-cocoapods-plugin","text":"2.3. Writing a CocoaPods Plugin","level":3},{"id":"3-introducing-cocoapods-spm","text":"3. Introducing cocoapods-spm","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Using Swift Packages in CocoaPods-Based Projects — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

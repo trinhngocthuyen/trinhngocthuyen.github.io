@@ -1,0 +1,105 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","cocoapods-explained-plugins",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","cocoapods-explained-plugins","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","cocoapods-explained-plugins","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T21be,<p>In the <a href="/posts/tech/cocoapods-explained-podfile/">previous post</a>, we talked about Podfile. In this post, we will look into CocoaPods plugins.</p>
+<p>Back in <a href="https://blog.cocoapods.org/CocoaPods-0.28/">early days</a>, very few maintainers maintain quite some features. It was difficult for them to stick to the main goals of the project given a number of features being requested. Some features definitely benefit a group of users but they don’t quite fit in the picture of a dependency manager.</p>
+<p>Instead of rejecting them, CocoaPods provided the support for plugins. With the plugin architecture, one can extend CocoaPods usage on their own. This helps not only ease the burden on the maintainers but also gives more freedom to community.</p>
+<h3 id="what-is-a-cocoapods-plugin">What is a CocoaPods plugin?</h3>
+<p>A plugin is a just a ruby gem having a file <code>cocoapods_plugin.rb</code> in its <a href="https://github.com/trinhngocthuyen/cocoapods-xcconfig-hooks/tree/main/lib">gem’s lib</a> directory. This file is loaded when running any pod command such as <code>pod install</code> or <code>pod --help</code>.</p>
+<p>For example, <a href="https://github.com/CocoaPods/cocoapods-search">cocoapods-search</a> is a CocoaPods plugin to search multiple pod spec repos for specific pods matching a query. Its directory is as follows:</p>
+<pre><code class="hljs language-lua"><span class="hljs-comment">--- lib --- cocoapods-search ---</span>
+       |<span class="hljs-comment">--- cocoapods-search.rb</span>
+       |<span class="hljs-comment">--- cocoapods_plugin.rb     # &#x3C;-- HERE</span>
+</code></pre>
+<p>This <code>cocoapods_plugin.rb</code> file is the entrypoint to load the actual implementation of the plugin. Therefore, most of the time you will see the content just like <a href="https://github.com/CocoaPods/cocoapods-search/blob/master/lib/cocoapods_plugin.rb">this</a>:</p>
+<pre><code class="hljs language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"cocoapods-search/command"</span> <span class="hljs-comment"># &#x3C;-- Actual implementation resides in cocoapods-search/command.rb</span>
+</code></pre>
+<p>To list the installed plugins, you can run <code>pod plugins installed</code>.</p>
+<p><img src="/images/ios/cli_pod_plugins.png" alt=""></p>
+<p><span class="figcaption">Figure 1. Listing installed plugins</span></p>
+<p>With a normal gem (ex. <code>xcodeproj</code>), you can magically turn it into a plugin by creating a <code>cocoapods_plugin.rb</code> file under its lib directory. Then, this gem should appear in the console when listing the installed plugins.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Create a file in /Users/thuyen/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/xcodeproj-1.22.0/lib/cocoapods_plugin.rb</span>
+$ <span class="hljs-built_in">touch</span> $(<span class="hljs-built_in">dirname</span> $(gem <span class="hljs-built_in">which</span> xcodeproj))/cocoapods_plugin.rb
+
+$ pod plugins installed
+
+Installed CocoaPods Plugins:
+    - cocoapods-deintegrate    : 1.0.5
+    - cocoapods-plugins        : 1.0.0
+    - cocoapods-search         : 1.0.1
+    - cocoapods-trunk          : 1.6.0
+    - cocoapods-try            : 1.2.0
+    - cocoapods-xcconfig-hooks : 0.0.1 (post_install hook)
+    - slather                  : 2.7.2 (post_install hook)
+    - xcodeproj                : 1.22.0     <span class="hljs-comment"># &#x3C;--- 👈 👈 👈</span>
+</code></pre>
+<h3 id="what-can-a-cocoapods-plugin-do">What can a CocoaPods plugin do?</h3>
+<p>First, you can tweak CocoaPods’s implementation. In the previous post, we mentioned the tweak in order to <a href="/posts/tech/cocoapods-explained-podfile#methods-in-podfile">add the <code>:xcode_migration</code> option to the <code>pod</code> declaration</a>. You can place the tweak in the plugin code instead.</p>
+<p>Second, you can add new commands to the <code>pod</code> command. This is done by subclassing the <code>Pod::Command</code> class. For example, the following code allows the usage of <code>pod analyze</code>.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-keyword">module</span> <span class="hljs-title class_">Pod</span>
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Command</span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Analyze</span> &#x3C; <span class="hljs-title class_ inherited__">Command</span> <span class="hljs-comment"># &#x3C;-- Corresponding to the new command: pod analyze</span>
+      <span class="hljs-variable language_">self</span>.summary = <span class="hljs-string">"Analyze dependencies"</span>
+
+      <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>
+        <span class="hljs-comment"># &#x3C;-- Implementation goes here</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Finally, a plugin can hook into the pod installation process via <code>pre_install</code>/<code>post_install</code> hooks. A hook is registered using the <a href="https://github.com/CocoaPods/CocoaPods/blob/1.10.0/lib/cocoapods/hooks_manager.rb#L73"><code>Pod::HooksManager.register</code></a> method.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-comment"># In cocoapods_plugin.rb</span>
+
+<span class="hljs-title class_">Pod</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:HooksManager</span>.register(<span class="hljs-string">"&#x3C;gem_name>"</span>, <span class="hljs-symbol">:post_install</span>) <span class="hljs-keyword">do</span> |<span class="hljs-params">installer</span>|
+  <span class="hljs-comment"># &#x3C;-- Implementation goes here</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Such plugin hooks are similar to the hooks declared in Podfile using <code>pre_install</code>/<code>post_install</code> methods. However, they are slightly different in terms of execution order and scope. We’ll cover more of this matter in another post about pod installation.</p>
+<p>…</p>
+<p>As you can see in figure 1, <code>cocoapods-xcconfig-hooks</code> and <code>slather</code> are shipped with the hooks. However, a plugin’s hook can only be executed if that plugin is declared in Podfile as follows.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-comment"># In Podfile</span>
+plugin <span class="hljs-string">"cocoapods-xcconfigs-hooks"</span>
+</code></pre>
+<p>Note that this <code>plugin</code> method only affects the registered hooks. The plugin code is always loaded regardless of whether this method is called or not.</p>
+<h3 id="how-to-create-a-plugin">How to create a plugin?</h3>
+<p>Working with CocoaPods plugins is just like working with gems. Just take a glance at the guides at <a href="https://guides.rubygems.org/">https://guides.rubygems.org</a> during development. While writing plugin code, you might want to reference to <a href="https://www.rubydoc.info/gems/cocoapods/">cocoapods's rubydoc</a> and <a href="https://www.rubydoc.info/gems/cocoapods-core">cocoapods-core’s rubydoc</a>.</p>
+<p>There are many CLIs that help create a gem at hand, for example, <code>bundle gem cocoapods-foo</code> or <code>pod plugins create foo</code>. Then, you just need to fill in some metadata.</p>
+<p>Engineers sometimes place the gem code in the same project with iOS code for convenience. However, not all project contributors understand gem folder structure. They might get distracted by a scatter of non-iOS files even when only one of those files is of interest. In that case, you might consider using <a href="https://github.com/trinhngocthuyen/cocoapods-ezplugin">cocoapods-ezplugin</a> without caring much about versioning, gemspec, and so forth.</p>
+<h3 id="when-to-consider-writing-a-plugin">When to consider writing a plugin?</h3>
+<p>Following are some examples:</p>
+<ul>
+<li>You want to collect stats about dependencies in the project (how many dependencies including transitive ones, how many vendor frameworks…)</li>
+<li>You want to enforce some rules for dependencies. For example, testing pods should not be imported to the main target.</li>
+<li>You write a tool for Bazel adoption that generates <a href="https://bazel.build/concepts/build-files">BUILD files</a> based on a CocoaPods-based project.</li>
+<li>You want to alter CocoaPods behaviors. For example, turning pods into static frameworks by default.</li>
+<li>…</li>
+</ul>
+<p>For upcoming explanations for CocoaPods, stay tuned!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2023-02-02"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Cocoapods Explained: Plugins"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","cocoapods",{"href":"/tags/cocoapods","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"cocoapods"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+18:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+19:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[["$","div",null,{"className":"border-l-[3px] border-[--theme] pl-4","children":[["$","div",null,{"className":"flex items-baseline gap-2 mb-3","children":[["$","span",null,{"className":"text-[13px] font-bold text-theme-primary","children":"CocoaPods Explained"}],["$","span",null,{"className":"text-xs text-muted","children":["· ",2," parts"]}]]}],["$","div",null,{"children":[["$","div","cocoapods-explained-podfile",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":1}],["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-podfile","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"CocoaPods Explained: Podfile"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2022-12-17"}]]}],["$","div","cocoapods-explained-plugins",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":2}],["$","span",null,{"className":"text-[14px] font-normal text-muted truncate","children":"Cocoapods Explained: Plugins"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-02-02"}]]}]]}],null]}],["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-podfile","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"CocoaPods Explained: Podfile"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2022-12-17"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/50-shades-of-git-remotes-and-authentication","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"50 Shades of Git: Remotes and Authentication"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-02-14"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ","$L17"," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L18",null,{"headings":[{"id":"what-is-a-cocoapods-plugin","text":"What is a CocoaPods plugin?","level":3},{"id":"what-can-a-cocoapods-plugin-do","text":"What can a CocoaPods plugin do?","level":3},{"id":"how-to-create-a-plugin","text":"How to create a plugin?","level":3},{"id":"when-to-consider-writing-a-plugin","text":"When to consider writing a plugin?","level":3}]}]}]
+16:["$","$L19",null,{"headings":"$15:props:children:props:headings"}]
+17:["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+1a:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Cocoapods Explained: Plugins — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L1a","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

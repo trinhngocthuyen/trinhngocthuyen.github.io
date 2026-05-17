@@ -1,0 +1,114 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","misc","do-vui-hieu-bai-toan",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","misc","d"],{"children":[["slug","do-vui-hieu-bai-toan","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","misc","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","do-vui-hieu-bai-toan","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T1c26,<p><em>Bài viết này được migrated từ một cái note trên facebook cá nhân của mình (vốn chỉ giới hạn cho bạn bè xem)</em>.</p>
+<p>...</p>
+<p>Bạn nào thích động não, phân tích vấn đề, hãy cùng nhau thảo luận thử nhé!</p>
+<p>Mục đích (thuật ngữ môn học PPLST&#x26;DM gọi là "tính hệ thống") của post:
+<em>Chỉ ra những khả năng có thể ảnh hưởng đến kết quả bài toán.</em></p>
+<h3 id="phát-biểu-bài-toán">Phát biểu bài toán</h3>
+<blockquote>
+<p>Giả sử Lực đi bộ với vận tốc 1 bước/giây (tương ứng với 0.5m/s). Giả sử đoạn đường AB dài 30m. Hỏi sau thời gian bao lâu kể từ lúc xuất phát tại vị trí A, thì Lực đi đến đích B?</p>
+</blockquote>
+<p>Ghi chú:</p>
+<ul>
+<li><em>Nếu thông tin nào không được phát biểu mà bạn cần đến, hãy "giả định".</em></li>
+<li><em>Vì mỗi người có một cách nhìn khác nhau đối với cùng vấn đề, nên hy vọng các bạn không phán xét phê bình câu trả lời của nhau. Hãy học hỏi lẫn nhau!</em></li>
+<li><em>Khuyến khích sử dụng hình vẽ minh họa. Nếu cmt của bạn dài, khuyến khích bạn upload file word/google docs và tô đậm, in nghiêng những chỗ cần thiết để tiện cho việc theo dõi.</em></li>
+</ul>
+<h3 id="hiểu-bài-toán">Hiểu bài toán</h3>
+<p>Trước khi giải bài toán, ta cần phải hiểu bài toán. Việc hiểu bài toán bao gồm: xác định mục đích cần đạt, xác định những giả thiết sẵn có, xác định rõ <em><strong>"định nghĩa"</strong></em> và các <em><strong>"nghĩa có thể có"</strong></em> của các thuật ngữ...</p>
+<h4 id="mục-đích-cần-đạt">Mục đích cần đạt</h4>
+<p>Đưa ra những khả năng ảnh hưởng đến kết quả.</p>
+<h4 id="giả-thiết">Giả thiết</h4>
+<ul>
+<li>Vận tốc đi độ: 1 bước/giây = 0.5m/s.</li>
+<li>Vị trí xuất phát: A</li>
+<li>Vị trí đích đến: B</li>
+<li>Chiều dài quãng đường: AB = 30m.</li>
+</ul>
+<h4 id="định-nghĩa---nghĩa-có-thể-có">Định nghĩa - nghĩa có thể có</h4>
+<p>Ở đây mình sẽ đặt ra những câu  hỏi để giúp ta tránh hiểu thuật ngữ dưới một cái nhìn <em>"mặc định"</em>:</p>
+<ul>
+<li><em><strong>"Đi bộ"</strong></em> là gì?</li>
+<li><em><strong>"Vận tốc"</strong></em> là gì? Ở đây có hiểu <em>"vận tốc"</em> là <em>"tốc độ"</em> không?</li>
+<li><em><strong>"Quãng đường"</strong></em> là gì?</li>
+<li>Có thể có nghĩa nào của <em><strong>"đi bộ"</strong></em> (hay có những kiểu đi bộ nào)?
+<ul>
+<li><em><strong>"Phương"</strong></em> di chuyển như thế nào?<br>
+--> Vuông góc với AB, song song với AB, tạo thành góc 30 độ so với mặt đường, nằm trên mặt đường nhưng đi xéo góc 30 độ (không phải đi giữa đường), đi hình zig zag<br>
+.........</li>
+<li><em><strong>"Hướng"</strong></em> di chuyển như thế nào?<br>
+--> Gần dần so với B, xa dần so với B, đổi hướng ngược lại sau 10 giây</li>
+</ul>
+</li>
+<li>Có thể có nghĩa nào của <em><strong>"vận tốc"</strong></em>?
+<ul>
+<li>Vận tốc đề cập đến là <em><strong>"vận tốc đều"</strong></em> hay <em><strong>"vận tốc trung bình"</strong></em>?</li>
+</ul>
+</li>
+<li>Có thể có nghĩa nào của <em><strong>"quãng đường"</strong></em>?
+<ul>
+<li>Quãng đường là đường thẳng</li>
+<li>Quãng đường là đường cong: đường núi</li>
+<li>Quãng đường là một băng chuyền (thang cuốn) đang di chuyển cùng/ngược chiều<br>
+.........</li>
+</ul>
+</li>
+<li>Các trường hợp có thể có của A và B?
+<ul>
+<li>A là nóc nhà cao tầng, B là nóc nhà cao tầng đối diện</li>
+<li>A là một con thuyền dài đang xuôi/ngược dòng, B là một điểm cố định<br>
+.........</li>
+</ul>
+</li>
+<li>Có thể có nghĩa nào của <em><strong>"đến đích"</strong></em>?
+<ul>
+<li>Cả người qua hẳn vệt đích hay là chỉ cần một bộ phận cơ thể người chạm qua vệt đích?</li>
+</ul>
+</li>
+</ul>
+<p>Chắc các bạn cũng hình dung trong mỗi trường hợp trên thì kết quả bị ảnh hưởng như thế nào rồi :)</p>
+<h3 id="bàn-luận">Bàn luận</h3>
+<ul>
+<li>
+<p>Trong notes mình cũng đã phát biểu sẵn mục đích cần đạt là <em><strong>"đưa ra những khả năng ảnh hưởng đến kết quả"</strong></em>, chứ không phải đi tìm lời giải cho bài toán đi bộ này (thời gian đi đến đích). Một lỗi hay mắc phải của chúng ta, khi gặp một bài toán, vấn đề nào đó, ta hay lao vào đi tìm lời giải, coi thường bước <em><strong>"xác định mục đích cần đạt"</strong></em>.</p>
+</li>
+<li>
+<p>Vì trong trường học, ta quen giải những bài toán với giả thiết và kết luận đều rất rõ ràng. Tất cả những thông tin khác đều được mặc định theo ngữ cảnh bài toán (chẳng hạn, những việc di chuyển nêu trên ta mặc định hiểu là di chuyển trên Trái Đất, hoặc Lực luôn sống sót trong lúc di chuyển). Do đó, ta thường hay hiểu "định nghĩa" và "các nghĩa có thể có"  theo những cách "mặc định". Và như các bạn thấy, việc làm rõ nghĩa của các thuật ngữ đã giúp chỉ ra những khả năng có của bài toán một cách logic và đầy đủ hơn, hạn chế được <em><strong>"tính ỳ tâm lý"</strong></em> (psychological inertia). Có thể hiểu <em><strong>"tính ý tâm lý"</strong></em> bằng một thuật ngữ bình dân (nhưng không phản ánh hết nghĩa của nó) là <em><strong>"suy nghĩ lối mòn"</strong></em> hay <em><strong>"tư duy lối mòn"</strong></em>.</p>
+</li>
+</ul>
+<h3 id="kết-luận">Kết luận</h3>
+<ul>
+<li>Trong giải quyết vấn đề (bài toán), việc hiểu bài toán là rất quan trọng.</li>
+<li>Luôn nhớ xác định <em><strong>"mục đích cần đạt"</strong></em> của bài toán trước.</li>
+<li>Xem xét các <em><strong>"định nghĩa"</strong></em> của các thuật ngữ và các <em><strong>"nghĩa có thể có"</strong></em> của nó để thu thập thông tin có hiệu quả hơn.</li>
+</ul>
+<p>P/s: Trong ví dụ này, tầm quan trọng của mức hiểu "định nghĩa" chưa được thể hiện rõ. Thuyên xin đưa ra một tình huống để các bạn cùng suy ngẫm.</p>
+<p>Một số công ty hiện nay xem xét "sáng tạo" là tiêu chí quan trọng để tuyển dụng nhân viên, thậm chí có công ty đặt nó lên trên hàng đầu trong "core values" của môi trường doanh nghiệp mà công ty hướng tới. Họ đã hiểu sáng tạo như thế nào? Theo các bạn, "SÁNG TẠO là gì?". Nó không phải chỉ liên quan đến "trí tưởng tượng" chứ! :D</p>7:["$","div",null,{"className":"section-misc","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/misc","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tạp Bút"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2014-12-27"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Đố vui: bài toán tính quãng đường và việc hiểu bài toán"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","creative-thinking",{"href":"/tags/creative-thinking","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"creative-thinking"}],["$","$L5","problem-solving",{"href":"/tags/problem-solving","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"problem-solving"}],["$","$L5","triz",{"href":"/tags/triz","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"triz"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/misc/ly-son-tap-7","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"[Lý Sơn v1] Tập cuối: Hội đua thuyền Tứ linh"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2014-02-07"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/misc/mo-hinh-hoa-bai-toan-bang-nhung-nguoi-ty-hon","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Mô hình hoá bài toán bằng những người tý hon"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2015-01-17"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"phát-biểu-bài-toán","text":"Phát biểu bài toán","level":3},{"id":"hiểu-bài-toán","text":"Hiểu bài toán","level":3},{"id":"bàn-luận","text":"Bàn luận","level":3},{"id":"kết-luận","text":"Kết luận","level":3}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Đố vui: bài toán tính quãng đường và việc hiểu bài toán — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

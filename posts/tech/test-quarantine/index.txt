@@ -1,0 +1,227 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","test-quarantine",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","test-quarantine","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","test-quarantine","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T5135,<h2 id="1-introduction">1. Introduction</h2>
+<p>Flaky tests, known for producing inconsistent results (success or failure) over time, can be a source of frustration for developers. These non-deterministic tests can arise due to various factors, including code issues or an inconsistent testing environment. In this blog post, we will explore the concept of test quarantine, an approach to mitigate the challenges posed by flaky tests.</p>
+<h2 id="2-the-need-for-test-quarantine">2. The Need for Test Quarantine</h2>
+<h3 id="21-the-challenge-of-flaky-tests">2.1. The Challenge of Flaky Tests</h3>
+<p>Flaky tests are particularly prevalent in certain types of testing, such as UI testing, where the higher level of integration introduces greater complexity. It's important to acknowledge that encountering flaky tests is an inevitable part of the testing process. And the key lies in how we manage and respond to them effectively.</p>
+<h3 id="22-what-is-test-quarantine">2.2. What is Test Quarantine?</h3>
+<p>Test quarantine is a strategy for handling the outcomes of tests, especially when they exhibit flakiness. When a test is quarantined, it means that the success or failure of that test should not have a direct impact on the overall outcome of a test suite or job.</p>
+<p>For example, consider a job that runs two tests: <code>test1</code> and <code>test2</code>. If <code>test1</code> succeeds while <code>test2</code> fails but is identified as flaky, the job should still be considered successful, despite the failing result of <code>test2</code>.</p>
+<h3 id="23-the-importance-of-test-quarantine">2.3. The Importance of Test Quarantine</h3>
+<p>When a flaky test causes a failure in an engineer's merge/pull request, it can lead to frustration and wasted time. The failure may have nothing to do with the changes made by the engineer. Thus, it is crucial to identify and quarantine flaky tests, ensuring that job executions remain robust in the face of these flakinesses.</p>
+<h2 id="3-designing-effective-test-quarantine-logic">3. Designing Effective Test Quarantine Logic</h2>
+<h3 id="31-overview">3.1. Overview</h3>
+<p>The following diagram illustrates the core components of this approach.</p>
+<img src="/images/ios/quarantine.png" style="width:600px">
+<span class="figcaption">Fig. How quarantine logic is involved in deciding the overall result.</span>
+<ul>
+<li><strong>Test result submission:</strong> The results of test executions are stored in a dedicated data store. This store could take the form of a separate Git repo, a database instance, or an S3 bucket.</li>
+<li><strong>Statistical analysis:</strong> Is performed on the ingested data over a defined period (ex. 3 days) to determine the success rates of individual tests.</li>
+<li><strong>Quarantine decision:</strong> When a test fails, the system fetches the relevant statistics and checks the corresponding success rate. If this success rate falls below a predefined threshold, the test is marked for quarantine. If all failed tests are identified as flaky, the job execution is considered a success.</li>
+</ul>
+<h3 id="32-calculating-test-success-rates">3.2. Calculating Test Success Rates</h3>
+<p>The core of this approach hinges on ingesting test data and accurately calculating their success rates. This process resembles an <a href="https://www.databricks.com/glossary/extract-transform-load">ETL (Extract-Transform-Load) pipeline</a> in data engineering.</p>
+<p>There are various approaches for data ingestion, and <a href="https://airflow.apache.org/">Apache Airflow</a> is a great choice for this purpose, providing scalable and manageable workflows.</p>
+<img src="/images/ios/airflow_test_data_ingestion.png" style="width:800px">
+<span class="figcaption">Fig. A sample DAG in Airflow UI.</span>
+<p>However, for iOS development, using Airflow may not be common due to unfamiliarity with Cloud-related tasks. Instead, we can use a Git-based solution as the desired ETL pipelines are fairly simple.</p>
+<h3 id="33-git-based-etl-pipelines-to-ingest-data">3.3. Git-based ETL Pipelines to Ingest Data</h3>
+<p>We create a dedicated Git repo to store test data, referred to as the “data repo”. When calculating the stats, we also store the result in this repo. Each change (ie. storing test data, or updating stats) corresponds to a Git commit.</p>
+<p>A benefit of this Git-based approach is that engineers can easily intervene in the quarantine process. If a test suddenly becomes flaky, for instance, but its success rate is not yet updated, engineers can manually alter the stats data (ex. setting its success rate to 0.1) so that the quarantine takes effect immediately.</p>
+<h4 id="receiving-submission">Receiving submission</h4>
+<p>In the data repo, we set up a pipeline/workflow that can be triggered from the main repo. When triggering such a pipeline, we pass the job ID of the pipeline running tests in the main repo. Related APIs:</p>
+<ul>
+<li>Github Actions: <a href="https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event">Create a workflow dispatch event</a>.</li>
+<li>Gitlab CI/CD: <a href="https://docs.gitlab.com/ee/api/pipeline_triggers.html#trigger-a-pipeline-with-a-token">Trigger a pipeline with a token</a>.</li>
+</ul>
+<pre><code class="hljs language-bash">main repo                           data repo
+=========                           =========
+<span class="hljs-built_in">test</span> --- trigger (job <span class="hljs-built_in">id</span>: ...) ---> receive submission
+</code></pre>
+<p>When receiving a submission from the main repo, we should not download test results right away because:</p>
+<ul>
+<li>There could be concurrent submissions at the same time, performing such updates results in a high chance of Git conflicts.</li>
+<li>The data repo is filled with lots of commits, making it grow in size drastically.</li>
+</ul>
+<p>Rather, we should add the submission to a queue and later batch-download them. This queue indicates a list of job IDs to download test results.</p>
+<p>Again, we wish to update the queue without any commit in the data repo. To achieve this, we can simply use a project variable to encode the queue.</p>
+<pre><code class="hljs language-bash">TEST_DATA_SUBMISSION_QUEUE=11111,22222
+</code></pre>
+<p>Handling a submission now means updating the dedicated variable. Related APIs:</p>
+<ul>
+<li>Github Actions: <a href="https://docs.github.com/en/rest/actions/variables#update-an-environment-variable">Update an environment variable</a>.</li>
+<li>Gitlab CI/CD: <a href="https://docs.gitlab.com/ee/api/project_level_variables.html#update-a-variable">Update a variable</a>.</li>
+</ul>
+<p>The implementation of the submission handling looks like this (in Python):</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">receive_submission</span>(<span class="hljs-params">job_id</span>):
+    key = <span class="hljs-string">'TEST_DATA_SUBMISSION_QUEUE'</span>
+    job_ids = job_ids_from_variable(key)
+    updated_job_ids = job_ids + [<span class="hljs-built_in">str</span>(job_id)]
+    api.update_variable(key, job_ids_to_str(updated_job_ids))
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">job_ids_from_variable</span>(<span class="hljs-params">key</span>) -> <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]:
+    <span class="hljs-keyword">return</span> [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> api.get_variable(key).split(<span class="hljs-string">','</span>) <span class="hljs-keyword">if</span> x]
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">job_ids_to_str</span>(<span class="hljs-params">job_ids</span>) -> <span class="hljs-built_in">str</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-string">','</span>.join(job_ids)
+</code></pre>
+<h4 id="ingesting-data">Ingesting data</h4>
+<p>We can schedule this job to run hourly or every 30 minutes depending on your needs.</p>
+<p>In this job, we perform a batch download of test results in the submission queue. For each job ID, we download the test result (in JSON) from the artifacts of the test pipeline in the main repo.</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">download_test_results</span>():
+    key = <span class="hljs-string">'TEST_DATA_SUBMISSION_QUEUE'</span>
+    job_ids = job_ids_from_variable(key)
+    <span class="hljs-keyword">for</span> job_id <span class="hljs-keyword">in</span> job_ids:
+        download_from_job(job_id)
+    ...
+    updated_job_ids = <span class="hljs-built_in">set</span>(job_ids_from_variable(key)).difference(job_ids)
+    api.update_variable(key, job_ids_to_str(updated_job_ids))
+</code></pre>
+<p>Data files are organized in the following structure for convenient queries.</p>
+<pre><code class="hljs language-php-template"><span class="xml">data  /  <span class="hljs-tag">&#x3C;<span class="hljs-name">date</span>></span>     / <span class="hljs-tag">&#x3C;<span class="hljs-name">test_category</span>></span>_<span class="hljs-tag">&#x3C;<span class="hljs-name">job_id</span>></span>.json
+      |
+      |- 2023-01-01 / ui_tests_11111.json
+      |             / unit_tests_22222.json
+      |
+      |- 2023-01-02 / ui_tests_33333.json
+      |             / unit_tests_44444.json
+</span></code></pre>
+<p>Each file should have metadata about the job and pipeline to perform analysis on top of them.</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"metadata"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"ref"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"main"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pipeline_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12345</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pipeline_status"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"job_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">11111</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"job_status"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"tests"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"Tests/TestCase/testA1"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"Tests/TestCase/testA2"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"Tests/TestCase/testA3"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h4 id="analyzing-data">Analyzing data</h4>
+<p>Once data has been ingested, the next step is to calculate relevant statistics. This task can be configured to run on a scheduled basis, perhaps once every few hours.</p>
+<p>The stats calculation can be easily done with <a href="https://pandas.pydata.org">Pandas</a>, a powerful Python library that simplifies the process of data analysis.</p>
+<p><strong>Loading Data into a DataFrame</strong></p>
+<p>When loading data into a DataFrame, we aggregate data over a specified period, such as the last 3 days, to gain a comprehensive view. The DataFrame structure resembles the following:</p>
+<img src="/images/ios/df_prefilled.png" style="width:600px">
+<span class="figcaption">Fig. DataFrame of aggregated data.</span>
+<p>To achieve this, here's a sample Python code snippet to load data from corresponding JSON files, fill it with metadata, and concatenate the DataFrames:</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">import</span> datetime
+<span class="hljs-keyword">import</span> glob
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load_df</span>(<span class="hljs-params">category: <span class="hljs-built_in">str</span>, n_days: <span class="hljs-built_in">int</span> = <span class="hljs-number">3</span></span>) -> pd.DataFrame:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">load</span>(<span class="hljs-params">path</span>) -> pd.DataFrame:
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(path) <span class="hljs-keyword">as</span> f:
+            data = json.load(f)
+            metadata, test_results = data[<span class="hljs-string">'metadata'</span>], data[<span class="hljs-string">'tests'</span>]
+		        df = pd.DataFrame([test_results]).T.reset_index()
+		        df.columns = [<span class="hljs-string">'name'</span>, <span class="hljs-string">'status'</span>]
+		        df[<span class="hljs-string">'ref'</span>] = metadata[<span class="hljs-string">'ref'</span>]
+		        df[<span class="hljs-string">'job_status'</span>] = metadata[<span class="hljs-string">'job_status'</span>]
+		        df[<span class="hljs-string">'pipeline_id'</span>] = metadata[<span class="hljs-string">'pipeline_id'</span>]
+		        df[<span class="hljs-string">'pipeline_status'</span>] = metadata[<span class="hljs-string">'pipeline_status'</span>]
+		        <span class="hljs-keyword">return</span> df
+
+    dfs = [
+        load(path)
+        <span class="hljs-keyword">for</span> date <span class="hljs-keyword">in</span> pd.date_range(end=datetime.date.today(), periods=n_days)
+        <span class="hljs-keyword">for</span> path <span class="hljs-keyword">in</span> glob.glob(<span class="hljs-string">f'data/<span class="hljs-subst">{date.date()}</span>/<span class="hljs-subst">{category}</span>_*.json'</span>)
+    ]
+    <span class="hljs-keyword">return</span> pd.concat(dfs) <span class="hljs-keyword">if</span> dfs <span class="hljs-keyword">else</span> pd.DataFrame()
+
+df = load_df(category=<span class="hljs-string">'ui_tests'</span>, n_days=<span class="hljs-number">3</span>)
+</code></pre>
+<p><strong>Filtering Relevant Data</strong></p>
+<p>Not all test executions should be included in the analysis. If a test fails on a merge request, the failure might be due to the change instead. Data in some following cases can be used:</p>
+<ul>
+<li>(1) Tests running on the main branch.</li>
+<li>(2) Tests of successful jobs.</li>
+<li>(3) Tests failing in one job but then succeeding after retrying that job. In this case, we just need to check whether the pipeline status is a success.</li>
+</ul>
+<p>After excluding irrelevant data, we can group the DataFrame by test names and calculate the aggregated mean to obtain the success rates.</p>
+<pre><code class="hljs language-python">successful_pipeline_ids = <span class="hljs-built_in">set</span>(df[df.pipeline_status].pipeline_id.to_list())
+condition = (df.ref == <span class="hljs-string">'main'</span>) \
+    | df.job_status \
+    | df.pipeline_id.isin(successful_pipeline_ids)
+
+df = df[condition]
+df_stats = df[[<span class="hljs-string">'name'</span>, <span class="hljs-string">'status'</span>]].groupby(<span class="hljs-string">'name'</span>).mean()
+df_stats.columns = [<span class="hljs-string">'success_rate'</span>]
+
+<span class="hljs-comment"># Export data to json file</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'stats/ui_tests.json'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(df_stats.to_dict()[<span class="hljs-string">'success_rate'</span>], f, indent=<span class="hljs-number">2</span>)
+</code></pre>
+<img src="/images/ios/df_stats.png" style="width:270px">
+<span class="figcaption">Fig. DataFrame of the calculated stats.</span>
+<p>The output of this analysis is a JSON representation of the test success rates within the project, structured as follows:</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"Tests/TestCase/testA1"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.75</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"Tests/TestCase/testA2"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"Tests/TestCase/testA1"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h4 id="keeping-the-data-repo-lean">Keeping the data repo lean</h4>
+<p>As data accumulates over time, the data repo can quickly grow in size. A recommended best practice is to retain data for only the most recent N days. Removing outdated or stale data can be handled separately through scheduled jobs, or it can be integrated into the data ingestion process.</p>
+<p>However, it's important to note that even after deleting stale files, they continue to exist within commits and as blobs, contributing to repo size. Since the commit history is not that important for this data repo, we can opt to replace all existing commits with a new one and then force-push the changes.</p>
+<pre><code class="hljs language-bash">GIT_URL=<span class="hljs-string">"<span class="hljs-subst">$(git remote get-url origin)</span>"</span>
+<span class="hljs-built_in">rm</span> -rf .git
+git remote add origin <span class="hljs-variable">${GIT_URL}</span>
+git commit -m <span class="hljs-string">"Reborn (triggered by job: <span class="hljs-variable">$JOB_ID</span>)"</span>
+git push -f origin HEAD
+</code></pre>
+<h4 id="avoiding-git-conflicts">Avoiding Git conflicts</h4>
+<p>Given that a change in the data repo may come from different sources (an ingestion job, an analysis job, or a repo clean task), it’s essential to mitigate the risk of Git conflicts, especially when these jobs run concurrently.</p>
+<p>One approach is to perform a pull-rebase prior to pushing changes. Another simpler solution is to set up job schedules at different times. For instance, we can schedule the ingestion job to run at the start of an hour (<code>0 * * * *</code>) and the analysis job to run 30 minutes after that (<code>30 * * * *</code>). As each execution typically takes less than 5 minutes, this scheduling strategy minimizes the chance of Git conflicts.</p>
+<h2 id="4-conclusion">4. Conclusion</h2>
+<p>In this blog post, we've explored the concept of test quarantine as a powerful strategy to deal with flaky tests in iOS development.</p>
+<p>The key components of such a test quarantine system include data ingestion, statistical analysis, and decision-making based on test success rates. The whole process from test data submission to stats generation is pretty much like an ETL pipeline, which can be solved by specialized tools such as Airflow or simply by a Git-based solution as mentioned.</p>
+<p>The introduction of the quarantine logic establishes an automatic feedback loop within the development process:</p>
+<ul>
+<li>When a test becomes flaky, its success rate starts to decrease, triggering the test's quarantine.</li>
+<li>As the test stabilizes over time, its success rate gradually increases, eventually leading to the removal of the quarantine for that specific test.</li>
+</ul>
+<p>This feedback loop ensures that tests are dynamically managed based on their reliability, promoting a more efficient and stable testing environment.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>Dealing With Flaky UI Tests in iOS: <a href="https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests">https://trinhngocthuyen.com/posts/tech/dealing-with-flaky-ui-tests</a></li>
+<li>Eradicating Non-Determinism in Tests: <a href="https://martinfowler.com/articles/nonDeterminism.html">https://martinfowler.com/articles/nonDeterminism.html</a></li>
+<li>Airflow documentation: <a href="https://airflow.apache.org/docs">https://airflow.apache.org/docs</a></li>
+<li>Pandas documentation: <a href="https://pandas.pydata.org/docs">https://pandas.pydata.org/docs</a></li>
+</ul>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2023-09-17"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Designing Test Quarantine Logic to Deal With Flaky Tests"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+19:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+1a:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[["$","div",null,{"className":"border-l-[3px] border-[--theme] pl-4","children":[["$","div",null,{"className":"flex items-baseline gap-2 mb-3","children":[["$","span",null,{"className":"text-[13px] font-bold text-theme-primary","children":"CI Engineering"}],["$","span",null,{"className":"text-xs text-muted","children":["· ",4," parts"]}]]}],["$","div",null,{"children":[["$","div","dealing-with-flaky-ui-tests",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":1}],["$","$L5",null,{"href":"/posts/tech/dealing-with-flaky-ui-tests","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Dealing With Flaky UI Tests in iOS"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2022-06-25"}]]}],["$","div","code-signing-on-ci",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":2}],["$","$L5",null,{"href":"/posts/tech/code-signing-on-ci","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Code Signing on CI"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-08-01"}]]}],["$","div","test-quarantine",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":3}],["$","span",null,{"className":"text-[14px] font-normal text-muted truncate","children":"Designing Test Quarantine Logic to Deal With Flaky Tests"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-09-17"}]]}],["$","div","in-search-of-test-discovery",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":4}],["$","$L5",null,{"href":"/posts/tech/in-search-of-test-discovery","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"In Search of Test Discovery Solutions in iOS"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2025-03-08"}]]}]]}],["$","div",null,{"className":"mt-4 pt-3 border-t border-border/30","children":["$","$L5",null,{"href":"/posts/tech/in-search-of-test-discovery","className":"text-[13px] font-medium text-theme-primary no-underline hover:text-hover-accent transition-colors","children":["Next in series: ","In Search of Test Discovery Solutions in iOS"," →"]}]}]]}],["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/a-tale-of-project-build-time","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"A Tale of Project Build Time Improvement"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-08-29"}]]}],"$L17"]}]}],"$L18"]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L19",null,{"headings":[{"id":"1-introduction","text":"1. Introduction","level":2},{"id":"2-the-need-for-test-quarantine","text":"2. The Need for Test Quarantine","level":2},{"id":"21-the-challenge-of-flaky-tests","text":"2.1. The Challenge of Flaky Tests","level":3},{"id":"22-what-is-test-quarantine","text":"2.2. What is Test Quarantine?","level":3},{"id":"23-the-importance-of-test-quarantine","text":"2.3. The Importance of Test Quarantine","level":3},{"id":"3-designing-effective-test-quarantine-logic","text":"3. Designing Effective Test Quarantine Logic","level":2},{"id":"31-overview","text":"3.1. Overview","level":3},{"id":"32-calculating-test-success-rates","text":"3.2. Calculating Test Success Rates","level":3},{"id":"33-git-based-etl-pipelines-to-ingest-data","text":"3.3. Git-based ETL Pipelines to Ingest Data","level":3},{"id":"4-conclusion","text":"4. Conclusion","level":2},{"id":"resources","text":"Resources","level":2}]}]}]
+16:["$","$L1a",null,{"headings":"$15:props:children:props:headings"}]
+17:["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/spm-with-cocoapods","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Using Swift Packages in CocoaPods-Based Projects"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-12-30"}]]}]
+18:["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+1b:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Designing Test Quarantine Logic to Deal With Flaky Tests — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L1b","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

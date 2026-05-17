@@ -1,0 +1,141 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","swift-currying",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","swift-currying","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","swift-currying","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T35ef,<p>This topic (aka Currying) has been mentioned as a part of Functional programming. Though it’s kind of fun to use currying, we often see it on the list of <em>what-must-not-be-named</em> (along with functors, applicative, monads...) LOL. In this article, I’ll show you a couple of ways to have fun with currying.</p>
+<h3 id="what-is-currying">What is currying?</h3>
+<p>Roughly speaking, currying is the act of <em><strong>translating a single function of N arguments into N functions of a single argument</strong></em>. For those who did not know what it is, take a look at <a href="https://www.objc.io/blog/2014/11/10/functional-snippet-6-currying/">this link</a>.
+Suppose we a have a function multiply:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">mutiply</span>(<span class="hljs-params">op1</span>: <span class="hljs-type">Int</span>, <span class="hljs-params">op2</span>: <span class="hljs-type">Int</span>) -> <span class="hljs-type">Int</span> {
+   <span class="hljs-keyword">return</span> op1 <span class="hljs-operator">*</span> op2
+}
+</code></pre>
+<p>The type of multiply is: <code>(Int, Int) -> Int</code>.
+Currying this function results in another function which is of type: <code>Int -> Int -> Int</code>. And this is how to get the result using the curried function:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> curriedMultiply(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)
+</code></pre>
+<p>Note that the result of <code>curriedMultiply(2)</code> is a function <code>Int -> Int</code>. This function take an integer <code>x</code> as a parameter and return <code>2 * x</code>, equivalent to making a number double. Similarly, we could create lots of derived functions:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> makeDouble <span class="hljs-operator">=</span> curriedMultiply(<span class="hljs-number">2</span>)		<span class="hljs-comment">// Int -> Int</span>
+<span class="hljs-keyword">let</span> makeTriple <span class="hljs-operator">=</span> curriedMultiply(<span class="hljs-number">3</span>)		<span class="hljs-comment">// Int -> Int</span>
+<span class="hljs-keyword">let</span> makeFourTimes <span class="hljs-operator">=</span> curriedMultiply(<span class="hljs-number">4</span>)	<span class="hljs-comment">// Int -> Int</span>
+</code></pre>
+<h3 id="whats-the-difference">What's the difference?</h3>
+<p>We transform the values before passing them as the parameters of a function on a very regular basis. In other words, we often use a function like this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> f(g(a), h(b), k(c))
+</code></pre>
+<p>In this scenario, isolating the parameters make the function more flexible &#x26; reusable.</p>
+<h3 id="examples">Examples</h3>
+<h4 id="write-function-curry">Write function "curry"</h4>
+<p>First of all, lets write a function to curry a function:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">curry</span>(<span class="hljs-params">f</span>: (<span class="hljs-type">A</span>, <span class="hljs-type">B</span>) -> <span class="hljs-type">R</span>) -> <span class="hljs-type">A</span> -> <span class="hljs-type">B</span> -> <span class="hljs-type">R</span> {
+	<span class="hljs-keyword">return</span> { a <span class="hljs-keyword">in</span> { b <span class="hljs-keyword">in</span> f(a, b) } }
+}
+</code></pre>
+<p>Similarly, you could write more implementations of curry for functions that have 3, 4, 5 parameters</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">curry</span>(<span class="hljs-params">f</span>: (<span class="hljs-type">A</span>, <span class="hljs-type">B</span>, <span class="hljs-type">C</span>) -> <span class="hljs-type">R</span>) -> <span class="hljs-type">A</span> -> <span class="hljs-type">B</span> -> <span class="hljs-type">C</span> -> <span class="hljs-type">R</span>
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">curry</span>(<span class="hljs-params">f</span>: (<span class="hljs-type">A</span>, <span class="hljs-type">B</span>, <span class="hljs-type">C</span>, <span class="hljs-type">D</span>) -> <span class="hljs-type">R</span>) -> <span class="hljs-type">A</span> -> <span class="hljs-type">B</span> -> <span class="hljs-type">C</span> -> <span class="hljs-type">D</span> -> <span class="hljs-type">R</span>
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">curry</span>(<span class="hljs-params">f</span>: (<span class="hljs-type">A</span>, <span class="hljs-type">B</span>, <span class="hljs-type">C</span>, <span class="hljs-type">D</span>, <span class="hljs-type">E</span>) -> <span class="hljs-type">R</span>) -> <span class="hljs-type">A</span> -> <span class="hljs-type">B</span> -> <span class="hljs-type">C</span> -> <span class="hljs-type">D</span> -> <span class="hljs-type">E</span> -> <span class="hljs-type">R</span>
+</code></pre>
+<p>Now, lets curry a function</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">addWithScale</span>(<span class="hljs-params">op1</span>: <span class="hljs-type">Int</span>, <span class="hljs-params">op2</span>: <span class="hljs-type">Int</span>, <span class="hljs-params">scale</span>: <span class="hljs-type">Int</span>) -> <span class="hljs-type">Int</span> {
+	<span class="hljs-keyword">return</span> (op1 <span class="hljs-operator">+</span> op2) <span class="hljs-operator">*</span> scale
+}
+
+<span class="hljs-keyword">let</span> curriedAddWithScale <span class="hljs-operator">=</span> curry(addWithScale)
+<span class="hljs-keyword">let</span> result1 <span class="hljs-operator">=</span> curriedAddWithScale(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)		<span class="hljs-comment">// result1 = 9</span>
+<span class="hljs-keyword">let</span> scaleMySum <span class="hljs-operator">=</span> curriedAddWithScale(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)		<span class="hljs-comment">// scaleMySum: Int -> Int</span>
+<span class="hljs-keyword">let</span> result2 <span class="hljs-operator">=</span> scaleMySum(<span class="hljs-number">3</span>)						<span class="hljs-comment">// result2 = 9</span>
+</code></pre>
+<h4 id="use-with-custom-operators-">Use with custom operators <code>|></code></h4>
+<p>To make the code more readable, lets define an operator <code>|></code> (we read it as "apply") that calculates the result of a specific function:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">infix</span> <span class="hljs-keyword">operator</span> <span class="hljs-title">|></span> { associativity left }
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">|></span> &#x3C;<span class="hljs-type">A</span>, <span class="hljs-type">R</span>>(<span class="hljs-params">f</span>: <span class="hljs-type">A</span> -> <span class="hljs-type">R</span>, <span class="hljs-params">x</span>: <span class="hljs-type">A</span>) -> <span class="hljs-type">R</span> {
+    <span class="hljs-keyword">return</span> f(x)
+}
+</code></pre>
+<p>Now, use it with <code>curriedAddWithScale</code>:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> result1 <span class="hljs-operator">=</span> curriedAddWithScale <span class="hljs-operator">|></span> <span class="hljs-number">1</span> <span class="hljs-operator">|></span> <span class="hljs-number">2</span> <span class="hljs-operator">|></span> <span class="hljs-number">3</span>
+<span class="hljs-keyword">let</span> scaleMySum <span class="hljs-operator">=</span> curriedAddWithScale <span class="hljs-operator">|></span> <span class="hljs-number">1</span> <span class="hljs-operator">|></span> <span class="hljs-number">2</span>
+<span class="hljs-keyword">let</span> result2 <span class="hljs-operator">=</span> scaleMySun <span class="hljs-operator">|></span> <span class="hljs-number">3</span> 
+</code></pre>
+<p>Still the same? Hold on, you could add some argument labels like this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> result1 <span class="hljs-operator">=</span> curriedAddWithScale
+	<span class="hljs-operator">|></span> (op1: <span class="hljs-number">1</span>)			<span class="hljs-comment">// You could omit the label "op1" if you want</span>
+	<span class="hljs-operator">|></span> (op2: <span class="hljs-number">2</span>)			<span class="hljs-comment">// You could omit the label "op2" if you want</span>
+	<span class="hljs-operator">|></span> (scale: <span class="hljs-number">3</span>)		<span class="hljs-comment">// You could omit the label "scale" if you want</span>
+</code></pre>
+<h4 id="use-with-apple-swift-functions">Use with Apple Swift functions</h4>
+<p>Have a look at the init methods of UIColor. How to get the right init function. We only want to curry this init method:</p>
+<pre><code class="hljs language-swift"><span class="hljs-type">UIImage</span>.<span class="hljs-keyword">init</span>(red: <span class="hljs-type">CGFloat</span>, green: <span class="hljs-type">CGFloat</span>, blue: <span class="hljs-type">CGFloat</span>, alpha: <span class="hljs-type">CGFloat</span>)
+</code></pre>
+<p>Try this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> curriedColorInit <span class="hljs-operator">=</span> curry(<span class="hljs-type">UIColor</span>.<span class="hljs-keyword">init</span>(red:green:blue:alpha:))
+<span class="hljs-keyword">let</span> orangeWithAlpha <span class="hljs-operator">=</span> curriedColorInit <span class="hljs-operator">|></span> <span class="hljs-number">0.945</span> <span class="hljs-operator">|></span> <span class="hljs-number">0.353</span> <span class="hljs-operator">|></span> <span class="hljs-number">0.133</span>
+<span class="hljs-keyword">let</span> orange1 <span class="hljs-operator">=</span> orangeWithAlpha <span class="hljs-operator">|></span> <span class="hljs-number">0.9</span>
+<span class="hljs-keyword">let</span> orange2 <span class="hljs-operator">=</span> orangeWithAlpha <span class="hljs-operator">|></span> <span class="hljs-number">0.3</span>
+
+</code></pre>
+<h4 id="refactor-closure">Refactor closure</h4>
+<p>Suppose we have a function fetchData as follows:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">fetchData</span>(<span class="hljs-params">path</span>: <span class="hljs-type">String</span>, <span class="hljs-params">successfulHandler</span>: <span class="hljs-type">NSData</span>? -> <span class="hljs-type">Void</span>, <span class="hljs-params">failedHandler</span>: <span class="hljs-type">NSError</span>? -> <span class="hljs-type">Void</span>) {
+	<span class="hljs-operator">...</span>
+}
+</code></pre>
+<p>I believe you have been a bit frustrated with this sort of functions because of the ugly caller like this:</p>
+<pre><code class="hljs language-swift">fetchData(<span class="hljs-string">"www.mysite.com"</span>, successfulHandler: { data <span class="hljs-keyword">in</span>
+    <span class="hljs-comment">// Handle success</span>
+    }, failedHandler: { error <span class="hljs-keyword">in</span>
+        <span class="hljs-comment">// Handle failure</span>
+})
+</code></pre>
+<p>or this</p>
+<pre><code class="hljs language-swift">fetchData(<span class="hljs-string">"www.mysite.com"</span>, successfulHandler: { data <span class="hljs-keyword">in</span>
+    <span class="hljs-comment">// Handle success</span>
+    }) { error <span class="hljs-keyword">in</span>
+        <span class="hljs-comment">// Handle failure</span>
+}
+
+</code></pre>
+<p>The <code>successfulHandler</code> and <code>failedHandler</code> should have the same indent, right? Moreover, the syntax to write the path and successfulHandler in the same line makes us hard to read.</p>
+<p>Now, with the combination of curry and operator |> we could write it in such a readable manner like this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> fetchDataWithHandlers <span class="hljs-operator">=</span> curry(fetchData) <span class="hljs-operator">|></span> <span class="hljs-string">"www.mysite.com"</span>
+fetchDataWithHandlers
+    <span class="hljs-operator">|></span> (successful: { data <span class="hljs-keyword">in</span>
+        <span class="hljs-comment">// Handle success</span>
+    })
+    <span class="hljs-operator">|></span> (failed: { error <span class="hljs-keyword">in</span>
+        <span class="hljs-comment">// Handle failure</span>
+    })
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> curriedAnimate <span class="hljs-operator">=</span> curry(<span class="hljs-type">UIView</span>.animateWithDuration(<span class="hljs-keyword">_</span>:animations:completion:))
+curriedAnimate
+    <span class="hljs-operator">|></span> (duration: <span class="hljs-number">0.25</span>)
+    <span class="hljs-operator">|></span> (animation: { <span class="hljs-keyword">_</span> <span class="hljs-keyword">in</span>
+        <span class="hljs-comment">// Animation here</span>
+    })
+    <span class="hljs-operator">|></span> (completion: <span class="hljs-literal">nil</span>)
+</code></pre>
+<p>It seems better looking now!</p>
+<p>Have fun!</p>
+<p>The playground could be found <a href="https://github.com/trinhngocthuyen/iOS-blog-posts/tree/master/functional-currying/functional-currying.playground">here</a></p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2016-04-17"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Swift: Currying"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/swift-optional-map","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: Optional — map"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2016-02-27"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/swift-concrete-types-in-protocol","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: Concrete types in Protocol"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2016-06-19"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Swift: Currying — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

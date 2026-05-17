@@ -1,0 +1,92 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","automation-at-your-core",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","automation-at-your-core","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","automation-at-your-core","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T2112,<p>We often hear that automating repetitive tasks improves productivity. But how do we decide when automation is truly worth the effort?</p>
+<p><span class="point-badge">1</span> At OKX, while managing end-to-end testing servers, I frequently needed to SSH into servers to diagnose issues and retrieve relevant logs (to my local) for further investigations. This was tedious but manageable, thanks to my terminal's auto-completion. However, as we expanded to four servers (two in Hong Kong, two in Singapore), keeping track of server IPs, usernames and passwords for the SSH became a hassle. That's when I built a small utility to simplify the process.</p>
+<p>With this tool, logging into a Hong Kong server (without specifying password) was simply as:</p>
+<pre><code class="hljs language-bash">$ sshe login hk
+</code></pre>
+<p>And pulling a certain file from a server was just:</p>
+<pre><code class="hljs language-bash">$ sshe pull hk path/to/log
+</code></pre>
+<p>This significantly improved efficiency and freed up my time for more important tasks.</p>
+<p><span class="point-badge">2</span> Beyond corporate work, I also maintain several open-source projects on Github, including some Python packages and CocoaPods plugins. From the start, I used Github actions to deploy a new release. All I had to do is to trigger a workflow under the Github actions dashboard. This worked well when managing just one or two projects. However, as the number of repos grew, synchronizing changes across them became a maintenance burden. To reduce this overhead, I extracted the deployment workflow into a shared repo: <a href="https://github.com/trinhngocthuyen/gh-actions/blob/main/.github/workflows/rb-deploy.yml">gh-actions</a>. However, the need for maintenance didn't end there.</p>
+<p><img src="/images/misc/automation_gh_repos.png" alt="">
+<span class="figcaption">Figure. Many repos having the same deployment workflow.</span></p>
+<p>Technically, deploying a CocoaPods plugin (which is a Ruby gem) requires 2 tokens:</p>
+<ul>
+<li>A <a href="http://RubyGems.org">RubyGems.org</a> token to publish the gem.</li>
+<li>A Github deployment token to create a release and bump the version.</li>
+</ul>
+<p><img src="/images/misc/automation_gh_secrets.png" alt=""></p>
+<p>Managing these tokens manually seemed fine… until the token expired. I had to regenerate a new token and update the corresponding secrets across all repos above. This manual process was tedious, requiring navigation through different Github settings (Repo → Settings → Secrets and variables → Actions → make update). Once, my token expired while I was maintaining two active repos (<a href="https://github.com/trinhngocthuyen/cocoapods-spm">cocoapods-spm</a> and <a href="https://github.com/trinhngocthuyen/e2e-mobile">e2e-mobile</a>). I updated the token only for these two, assuming that I wouldn't need it for others (because I won't have any updates for them). This was such a mistake 😅! Later, when I had to update another plugin, the deployment went broken which was frustrating and costed me preliminary investigations.</p>
+<p>I then wrote a CLI tool called <code>sauron</code> (the name was from LOTR) to help with some admin tasks. Thanks to this tool, I can update tokens across multiple repos matching a pattern. This can be done at hand with <a href="https://cli.github.com/manual/">Github CLI</a> or with Github APIs.</p>
+<pre><code class="hljs language-bash">$ sauron gh update-token --pattern <span class="hljs-string">'cocoapods-*'</span>
+</code></pre>
+<p><img src="/images/misc/automation_sauron.png" alt=""></p>
+<p>Of course setting a long-lived token (ex. without expiration) could have avoided this issue. But automation offers an effortless setup for new repos.</p>
+<p><span class="point-badge">3</span> Automation isn't just about scripting repetitive tasks - it's also about designing workflows and orchestrating them together. Back to my deployment story, although the process was automated, it still required a manual trigger. After fixing bugs in <a href="https://github.com/trinhngocthuyen/cocoapods-spm">cocoapods-spm</a>, for example, I had to manually run the <a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/deploy.yml">deploy workflow</a> to release a new version. This is where human mistakes jump in… coz I sometimes forgot 😅.</p>
+<p>To prevent it, I introduced a weekly auto-deployment workflow:</p>
+<ul>
+<li><a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/milestone-assignment.yml">Milestone assignment</a>: For each project, we have an active milestone (ex. 1.0.2) that indicates the yet-to-be-released version. When a PR gets merged, it is assigned to this milestone.</li>
+<li><a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/weekly-auto-deploy.yml">Scheduled deployment</a>: A cron job runs every Sunday, checking if the active milestone has any associated PRs. If so, it triggers a deployment.</li>
+<li><a href="https://github.com/trinhngocthuyen/cocoapods-spm/actions/workflows/milestone-creation.yml">Milestone management</a>: After a release, the workflow closes the current milestone and creates a new milestone for the next version.</li>
+</ul>
+<p><span class="point-badge">4</span> Another automation win came from solving LeetCode problems. I prefer coding locally for better debugging experiences. Initially, each solution file was isolated. I needed to write a bunch of boilerplate code to test against given test cases. The unrelated code was even more for graph/tree problems.</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self, x: <span class="hljs-built_in">int</span></span>) -> <span class="hljs-built_in">int</span>:
+    <span class="hljs-keyword">pass</span> <span class="hljs-comment"># implementation goes here</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">compare</span>(<span class="hljs-params">actual, expected</span>):
+	<span class="hljs-keyword">assert</span> actual == expected, <span class="hljs-string">f'Expected: <span class="hljs-subst">{expected}</span>, actual: <span class="hljs-subst">{actual}</span>'</span>
+
+solution = Solution()
+compare(solution.run(<span class="hljs-number">1</span>), <span class="hljs-number">10</span>)
+compare(solution.run(<span class="hljs-number">2</span>), <span class="hljs-number">20</span>)
+</code></pre>
+<p>I should have focused on writing the solution instead. So, I spent some time simplifying the setup.</p>
+<ul>
+<li>Running <code>make new LINK=&#x3C;web-link></code> automatically generates:
+<ul>
+<li>A solution file with the prefilled code (function signature as in LeetCode code panel)
+<img src="/images/misc/automation_lc_parse_fn.png" alt=""></li>
+<li>Test case files parsed from the problem description.
+Though the parsing logic is heuristic, it works most of the time, giving me a great sense of productivity.
+<img src="/images/misc/automation_lc_parse_cases.png" alt=""></li>
+</ul>
+</li>
+<li>Running <code>make run</code> executes the solution against the test cases.
+<img src="/images/misc/automation_lc_run.png" alt=""></li>
+</ul>
+<p><span class="point-badge">5</span> Returning to our original question: <em>When is the right time to automate?</em> The answer varies based on effort versus benefit. At the end of the day, it's the ROI (return on investment) that drives the actions.</p>
+<p>For me, since I already work closely with automated processes, the time and effort spent setting up a certain automation task might be relatively low compared to an iOS engineer who doesn't regularly deal with it.</p>
+<p>A good rule of thumb is to consider repetition:</p>
+<ul>
+<li>If a manual task happens several times a week, automation is likely worth it.</li>
+<li>If a task occurs rarely for one, say once every 2 months, but is distributed among a team (ex. each takes turn to do it weekly), automating it might still provide significant savings as a whole.</li>
+</ul>
+<p>Of course, the choice also depends on other factors such as capacity and priority.</p>
+<p>…</p>
+<p>Lastly, automation doesn't always mean large-scale solutions. Small and incremental improvements matter too. Start with micro-automations, make it a habit, and it eventually pays off.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2025-02-17"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Automation at Your Core"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","automation",{"href":"/tags/automation","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"automation"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/mobile-e2e-wda","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"WebDriverAgent - The Heart of iOS E2E Testing"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-01-09"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/swift-testing-and-xcodebuild","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift Testing and the Compatibility With xcodebuild"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-02-25"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Automation at Your Core — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

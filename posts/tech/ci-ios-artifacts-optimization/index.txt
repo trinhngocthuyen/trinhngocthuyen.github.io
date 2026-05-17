@@ -1,0 +1,131 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","ci-ios-artifacts-optimization",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","ci-ios-artifacts-optimization","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","ci-ios-artifacts-optimization","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T327a,<h2 id="1-introduction">1. Introduction</h2>
+<h3 id="11-pipeline-time-improvement">1.1. Pipeline Time Improvement</h3>
+<p>As engineers, we always want to land our change on master as quickly as possible. Apart from the time it takes to resolve code review comments from peers, there's one constraint engineers have to face before getting their changes merged. That constraint is the <strong>CI pipeline time</strong> (ie. the time it takes for a CI pipeline to run against certain changes).</p>
+<p>For iOS development, a typical CI pre-merge pipeline usually involves building the project, then running unit tests and UI tests. Therefore, the engineering work to reduce pipeline time can be broken down into 2 major problems: <em>build time improvement</em> and <em>test time improvement</em>. While build time improvement is a classic problem that is tackled by many initiatives (mostly driven by community's efforts), there are still many rooms for test time improvement.</p>
+<h3 id="12-separation-of-build-and-test-jobs-in-ios">1.2. Separation of Build and Test Jobs in iOS</h3>
+<p>I once shared a tip to utilize test parallelism within one single CI job (see: <a href="https://engineering.grab.com/tackling-ui-test-execution-time-imbalance-for-xcode-parallel-testing">Tackling UI tests execution time imbalance for Xcode parallel testing</a>). Regarding parallelism among CI jobs, it can be done by splitting tests into smaller sets and run them in multiple CI jobs. As following is the form of pipelines we desire to have:</p>
+<p><img src="/images/ci/pipeline.png" alt=""></p>
+<p>However, the separation of build and test jobs in iOS is not that straightforward because of 2 prominent factors:</p>
+<p><strong>(F1)</strong> It's not feasible to obtain the list of tests we have at compile time. We can only use heuristic approaches to extract such info.</p>
+<p><strong>(F2)</strong> Running unit/UI tests requires some build products from the <code>build</code> job. This is a <em>hard constraint</em> for platforms with statically-typed languages. What makes it harder for iOS development is that the iOS build artifacts are relatively big. Unfortunately, the size of artifacts we pass from one job to another is constrained by the size limit set by the CI infra.<br>
+The growth in size of an iOS project is propotional to not only <em>the number of code lines</em> but also <em>the number of targets</em> we have.</p>
+<ul>
+<li>As of Oct 2020, there are 340 targets in our project, including 323 pod targets (aka. framework targets) and 17 executable targets (1 app target + 16 test targets). The artifacts size of our project is around 3.6GB which exceeds the size limit.</li>
+</ul>
+<p>This post introduces a tip to overcome the artifacts size constraint in (F2).</p>
+<h2 id="2-a-closer-look-at-ios-build-artifacts">2. A Closer Look at iOS Build Artifacts</h2>
+<p>Now, let's take a look at a project that has both <em>hosted test targets</em> and <em>non-hosted test targets</em>. Assume we're using CocoaPods to manage dependencies in your project. When building the project, the build products folder would be in the following structure.</p>
+<pre><code class="hljs language-lua">|<span class="hljs-comment">-- App.app / -- App (*)</span>
+|           |
+|           |<span class="hljs-comment">-- Frameworks / -- DynamicFW_A.framework</span>
+|           |               |<span class="hljs-comment">-- DynamicFW_B.framework / -- DynamicFW_B.bundle</span>
+|           |
+|           |<span class="hljs-comment">-- Plugins / -- HostedTestTarget.xctest</span>
+|           |
+|           |<span class="hljs-comment">-- StaticFW_C.bundle</span>
+|
+|<span class="hljs-comment">-- NonHostedTestTarget.xctest</span>
+</code></pre>
+<p>The <code>.app</code> bundles and <code>.xctest</code> bundles are both <strong>executable bundles</strong>. They have the same folder structure. Inside such a bundle:</p>
+<ul>
+<li>The <code>Frameworks</code> folder contains the <code>.framework</code> bundles of frameworks built as dynamic. Note that some system dynamic libraries such as <code>libswiftCore.dylib</code>, <code>libswiftFoundation.dylib</code>... also reside in this folder.</li>
+<li>The <code>Plugins</code> folder contains the <code>.xctest</code> bundles of the app's hosted test targets (ie. test targets that use this app as its host app). Meanwhile, <code>.xctest</code> bundles of non-hosted test targets reside in the same folder of the <code>.app</code> bundles.</li>
+<li>The resources and resource bundles (in form of <code>.bunlde</code> packages) of static frameworks are located under the root of the executable bundles.</li>
+</ul>
+<h2 id="3-duplicated-contents">3. Duplicated Contents</h2>
+<h3 id="31-dynamic-frameworks">3.1. Dynamic Frameworks</h3>
+<p>From the structure above, we can easily spot the duplication that if a dynamic framework is used in both the app and a test target, that framework exists in 2 places:</p>
+<ul>
+<li>Under the <code>Frameworks</code> folder of the <code>.app</code> bundle</li>
+<li>Under the <code>Frameworks</code> folder of the <code>.xctest</code> bundle.</li>
+</ul>
+<p>In general, if a framework is used in N targets, it appears N times in the executable bundles. If we check the <strong>checksums of the frameworks</strong> in those executable bundles, they are all <strong>identical</strong>.</p>
+<p>To understand why this happens, we can take a look at how CocoaPods integrates frameworks to the project.</p>
+<p>For dynamic frameworks added to a target, CocoaPods adds a build phase called <code>[CP] Embed Pods Frameworks</code> at the end of the target build phases.</p>
+<p><img src="/images/ci/cp_build_phase.png" alt=""></p>
+<p>This build phase actually executes a script <code>"${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks.sh"</code> to copy all dynamic frameworks (managed by CocoaPods) belonging to the target to the <code>Frameworks</code> folder inside the executable bundle of that target. Those frameworks were copied from the framework build products located at the same folder as the executable bundle.</p>
+<pre><code class="hljs language-lua">Debug-iphonesimulator / <span class="hljs-comment">-- App.app / -- Frameworks / -- Dynamic_A.framework</span>
+                       |
+                       |<span class="hljs-comment">-- Dynamic_A / -- Dynamic_A.framework 👈 👈 👈</span>
+</code></pre>
+<p>One thing that's worth a mention is that the checksum of the framework in the framework build products (ex. <code>Debug-iphonesimulator/Dynamic_A</code>) is different from the one in the <code>Frameworks</code> folder of the app bundle. This is because CocoaPods strips some unnecessary info of frameworks while copying them to the app bundles. The stripped info includes <code>Headers</code>, <code>PrivateHeaders</code>, <code>Modules</code> folder inside the <code>.framework</code> bundle and so forth.</p>
+<pre><code class="hljs language-sh"><span class="hljs-function"><span class="hljs-title">install_framework</span></span>()
+{
+  ...
+  rsync --delete -av <span class="hljs-string">"<span class="hljs-variable">${RSYNC_PROTECT_TMP_FILES[@]}</span>"</span> --links --filter <span class="hljs-string">"- CVS/"</span> --filter <span class="hljs-string">"- .svn/"</span> --filter <span class="hljs-string">"- .git/"</span> --filter <span class="hljs-string">"- .hg/"</span> --filter <span class="hljs-string">"- Headers"</span> --filter <span class="hljs-string">"- PrivateHeaders"</span> --filter <span class="hljs-string">"- Modules"</span> <span class="hljs-string">"<span class="hljs-variable">${source}</span>"</span> <span class="hljs-string">"<span class="hljs-variable">${destination}</span>"</span>
+  ...
+}
+</code></pre>
+<h3 id="32-resourcesresource-bundles-of-static-frameworks">3.2. Resources/Resource Bundles of Static Frameworks</h3>
+<p>For pods integrated as static frameworks, their resources and resource bundles will be copied to the executable bundles. And the duplication of these contents takes place the same way dynamics frameworks getting duplicated.</p>
+<pre><code class="hljs language-lua">App.app / <span class="hljs-comment">-- App (*)</span>
+         |
+         |<span class="hljs-comment">-- StaticFW_C.bundle</span>
+         |
+         |<span class="hljs-comment">-- ResourcesOfStaticFW_D / -- an_image.png</span>
+</code></pre>
+<h2 id="4-reducing-artifacts-based-on-duplications">4. Reducing Artifacts Based on Duplications</h2>
+<p>Based on the observations above, we can thin the artifacts by storing the bundle contents in a storage. Each bundle is unique by its checksum.</p>
+<p><img src="/images/ci/artifacts_opt_storage.png" alt=""></p>
+<p>To keep track of the original location of a bundle inside the storage, we need a mapping that maps the original location of a bundle to its place in the storage. This way, after thinning the artifacts, we can easily recover the artifacts to its original state. The contents integrity remains unchanged.</p>
+<pre><code class="hljs language-lua">storage/ <span class="hljs-comment">-- &#x3C;hash_a>-A.framework</span>
+        |<span class="hljs-comment">-- &#x3C;hash_b>-B.framework</span>
+        |<span class="hljs-comment">-- &#x3C;hash_c>-C.framework</span>
+        |<span class="hljs-comment">-- ...</span>
+        |<span class="hljs-comment">-- storage.json # Contains the mapping</span>
+</code></pre>
+<p>With this storage mapping solution, there are 2 additional steps running on CI:</p>
+<p><img src="/images/ci/artifacts_opt_build_test.png" alt=""></p>
+<ul>
+<li>In the <code>build</code> job, run the <strong><code>optimize</code></strong> step at the end of the job.
+<ul>
+<li>In this step, we look for contents under the the build products folder that match certain patterns such as <code>**/*.framework</code>, <code>**/*.bundle</code> and <code>**/*.dylib</code>. For each item, we move them to the storage (if not exist there), then add it to the mapping.</li>
+</ul>
+</li>
+<li>In the <code>test</code> job, run the <strong><code>recover</code></strong> step at the beginning of the job.
+<ul>
+<li>In this step, we copy the item in the storage to its original places based on the mapping.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-discussion">5. Discussion</h2>
+<p>First, the technique to remove duplications like above is nothing new, and is not specific to iOS development. It can be applied to any project. It's just that the problem becomes more noticeable with iOS projects because of the way Xcode structures the build products.</p>
+<p>Second, The number of dynamic frameworks in the project plays an important role in the performance of this solution. Normally, inside a <code>.framework</code> bundle, for ex. <code>A.framework</code>, the framework binary <code>A.framework/A</code> takes up most of the space. However, in case of static frameworks, their binaries are merged into the executable binaries during the linking step (done by the <a href="https://linux.die.net/man/1/ld"><code>ld</code></a> linker). That means, we cannot reduce much for static frameworks except their resources and resource bundles.</p>
+<ul>
+<li>About a year ago, we maintained a duo linking strategies. If build for testing, we turn all frameworks into dynamic frameworks (except some cases). Otherwise, make them static. Making the majority of them dynamic is to resolve a code coverage issue which has been now resolved. Back then, this technique was proven to be powerful. The <em>optimize</em> step reduced the artifacts from arounnd 3GB to only 800MB. However, after shifting from dynamic frameworks to static frameworks, we have seen a decrease in the thinning performance. At the moment, the artifacts are thinned from 3.6GB to 2.1GB after the <em>optimize</em> step.</li>
+</ul>
+<p>In some cases, we observe 2 frameworks with the same name but having different checksums in the storage.</p>
+<pre><code class="hljs language-css">storage / -- &#x3C;hash_1>-<span class="hljs-selector-tag">A</span><span class="hljs-selector-class">.framework</span>
+         |-- &#x3C;hash_2>-<span class="hljs-selector-tag">A</span><span class="hljs-selector-class">.framework</span>
+</code></pre>
+<p>This sometimes happens when you declare pods with different forms in different targets. For example, one target is using a pod with subspec <code>A/Child_1</code> and another target is using <code>A/Child_2</code>. Another scenario this might happen is when you use a different dependencies manager that strips framework bundles differently. In such cases, you can run another round of optimization on the storage.</p>
+<p>Last, does this work if we don't use CocoaPods as the dependencies manager in the project? Actually, what other dependencies managers do is similar in essence. This tip is based on the duplications (in executable bundles structure) when we have more targets in the project. It should be general and independent of what dependencies manager we're using.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2020-11-02"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"CI: Thinning iOS Build Artifacts"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/when-project-labels-are-not-just-to-categorize-things","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"When Project Labels are not Just to Categorize Things"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2020-03-29"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/ci-extract-test-methods","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"CI: Heuristically Extracting Test Methods Before Runtime"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2020-11-08"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"1-introduction","text":"1. Introduction","level":2},{"id":"11-pipeline-time-improvement","text":"1.1. Pipeline Time Improvement","level":3},{"id":"12-separation-of-build-and-test-jobs-in-ios","text":"1.2. Separation of Build and Test Jobs in iOS","level":3},{"id":"2-a-closer-look-at-ios-build-artifacts","text":"2. A Closer Look at iOS Build Artifacts","level":2},{"id":"3-duplicated-contents","text":"3. Duplicated Contents","level":2},{"id":"31-dynamic-frameworks","text":"3.1. Dynamic Frameworks","level":3},{"id":"32-resourcesresource-bundles-of-static-frameworks","text":"3.2. Resources/Resource Bundles of Static Frameworks","level":3},{"id":"4-reducing-artifacts-based-on-duplications","text":"4. Reducing Artifacts Based on Duplications","level":2},{"id":"5-discussion","text":"5. Discussion","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"CI: Thinning iOS Build Artifacts — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

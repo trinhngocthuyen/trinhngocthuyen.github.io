@@ -1,0 +1,233 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","50-shades-of-git-remotes-and-authentication",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","50-shades-of-git-remotes-and-authentication","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","50-shades-of-git-remotes-and-authentication","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T5494,<h2 id="introduction">Introduction</h2>
+<p>Git is a software development tool that almost all engineers use in their work. This source control tool enables us to make changes to a project code base collaboratively. However, Git can be a headache at times. When running on CI environment, it sometimes does not work the way it does locally. Moreover, we sometimes follow best practices without knowing much about how it works. This gap together with the limited debug capabilities on CI make it even harder to resolve issues.</p>
+<p>In this blog post, we are going to fill a bit of that gap. To be more specific, we are looking into how different ways of configuring a remote may affect the way Git authenticates with the server.</p>
+<h2 id="background">Background</h2>
+<p>A Git <strong>server</strong> refers to the server in which a repo is hosted. Those can be Github (<a href="https://github.com">github.com</a>), Gitlab (<a href="https://gitlab.com">gitlab.com</a>), Bitbucket (<a href="https://bitbucket.org">bitbucket.org</a>), or self-hosted server (ex. <a href="http://gitlab.company.com">gitlab.company.com</a>)</p>
+<p>A <strong>remote</strong> in Git refers to a repo (hosted in a Git server) in which team members collaborate, ex. <a href="https://github.com/trinhngocthuyen/cocoapods-ezplugin">https://github.com/trinhngocthuyen/cocoapods-ezplugin</a>.</p>
+<p>A <strong>fetch</strong> action is to fetch changes (of branches or tags) from a remote. A <strong>push</strong> action is to transfer your local changes to a remote. These actions are done by the <code>git fetch</code> and <code>git push</code> commands respectively.</p>
+<p>A typical workflow would be:</p>
+<ul>
+<li>(1) An engineer <strong>fetches</strong> the latest changes (using <code>git fetch</code> command) from remotes.</li>
+<li>(2) He/she makes changes on top of the latest on his/her local.</li>
+<li>(3) He/she <strong>pushes</strong> his/her changes (using <code>git push</code> command) to remotes.</li>
+</ul>
+<p>Conflicts may arise in steps (1) or (3). Engineers have to resolve them and sometimes try again.</p>
+<p>Depending on preference, some may use <code>git pull</code> in their workflow in step (1). Under the hood, <code>git pull</code> is just <code>git fetch</code> followed up with <code>git merge</code>.</p>
+<h3 id="configuring-a-remote">Configuring a Remote</h3>
+<p>A remote is denoted by a URL. This URL contains information about the transport protocol (SSH, HTTP/HTTPS, FTP…). Below are some valid examples:</p>
+<pre><code class="hljs language-bash">ssh://git@github.com/trinhngocthuyen/cocoapods-ezplugin.git
+git@github.com:trinhngocthuyen/cocoapods-ezplugin.git
+https://github.com/trinhngocthuyen/cocoapods-ezplugin.git
+</code></pre>
+<p>To view remotes of a repo, run <code>git remove -v</code>.</p>
+<pre><code class="hljs language-bash">$ git remote -v
+origin  https://github.com/trinhngocthuyen/ezactions.git (fetch)
+origin 	https://github.com/trinhngocthuyen/ezactions.git (push)
+</code></pre>
+<p>We can configure different URLs for the push action. This is done by running <code>git remote set-url --push</code>.</p>
+<pre><code class="hljs language-bash">$ git remote set-url --push origin https://github/trinhngocthuyen/foo.git
+$ git remote -v
+origin  https://github.com/trinhngocthuyen/ezactions.git (fetch)
+origin  https://github.com/trinhngocthuyen/foo.git (push)
+</code></pre>
+<p>Alternatively, we can use <code>git config remote.&#x3C;origin_name>.pushurl</code> to alter the push URL.</p>
+<pre><code class="hljs language-bash">$ git config remote.origin.pushurl https://github/trinhngocthuyen/bar.git
+$ git remote -v
+origin  https://github.com/trinhngocthuyen/ezactions.git (fetch)
+origin  https://github.com/trinhngocthuyen/bar.git (push)
+</code></pre>
+<p>We can configure more than one remote per repo. This is usually the case for <em>open-source projects</em> where each engineer forks the repo. He/she pushes changes to his/her forked repo but still desires to keep his/her fork up to date with the main repo. This case is also useful when you work with mirrors (for example, one public repo on Github/Gitlab, and one private repo on your company server). However, we shall not dive into details for that topic.</p>
+<p>A fetch/push/clone is associated with a remote. Prior to this action, Git authenticates with the server (ex. Github) and then performs further steps if applicable. Therefore, the credentials used for authentication is adjacent to the remote configuration. Those credentials could be an SSH key, a tuple of username/password, or an access token. In the following section, we’ll look into how such credentials play role in the authentication.</p>
+<h2 id="remotes-and-credentials-for-authentication">Remotes and Credentials for Authentication</h2>
+<p>Authentication with a Git server when cloning/fetching from/pushing to a remote is similar.  For convenience, we take the fetch action as a typical example. If you take a closer look at how Gitlab CI/CD or Github Actions implements their checkout, you should see the order like this:</p>
+<ul>
+<li>Initializing the project (with <code>git init</code>)</li>
+<li>Cd to that project</li>
+<li>Then, configuring the <code>origin</code> remote</li>
+<li>Then, fetching the origin and checking out a given commit</li>
+</ul>
+<h3 id="ssh">SSH</h3>
+<p>Using SSH to connect with a Git server is a common practice. A remote used with SSH is like this:</p>
+<pre><code class="hljs language-swift">git<span class="hljs-meta">@github</span>.com<span class="hljs-regexp">/trinhngocthuyen/</span>cocoapods<span class="hljs-operator">-</span>ezplugin.git
+</code></pre>
+<p>When fetching such a remote, Git opens an SSH connection to the server under the hood. This is when the authentication jumps in. As you know, it requires a pair of public &#x26; private keys. The public key is added to the server (ex. Github). The private one is owned by the user and used for authentication. This key, in OpenSSH, is known as “Identity Key” and is located in a file called IdentifyFile. By default, the following files are used</p>
+<pre><code class="hljs language-bash">~/.ssh/id_rsa,
+~/.ssh/id_ecdsa
+~/.ssh/id_ed25519
+...
+</code></pre>
+<p>If you have them configured, you can test the connection by running: <code>ssh -T git@&#x3C;server></code></p>
+<pre><code class="hljs language-bash">$ ssh -T git@github.com
+Hi trinhngocthuyen! You<span class="hljs-string">'ve successfully authenticated, but GitHub does not provide shell access.
+$ ssh -T git@gitlab.com
+Welcome to GitLab, @trinhngocthuyen!
+</span></code></pre>
+<h4 id="using-different-keys-for-different-servers">Using different keys for different servers</h4>
+<p>Some choose to use different keys for Github, Gitlab, or your company server.</p>
+<pre><code class="hljs language-bash">~/.ssh/id_rsa_github
+~/.ssh/id_rsa_gitlab
+~/.ssh/id_rsa_company
+</code></pre>
+<p>To add a key to the authentication agent, use <code>ssh-add</code>:</p>
+<pre><code class="hljs language-bash">$ ssh-add ~/.ssh/id_rsa_github
+$ ssh -T git@github.com
+Hi trinhngocthuyen! You<span class="hljs-string">'ve successfully authenticated, but GitHub does not provide shell access.
+</span></code></pre>
+<p>Manually loading keys like this has two downsides:</p>
+<ul>
+<li>First, those keys are wiped upon system restart, or when the SSH agent is restarted. And we need to load them again. There are <a href="https://gist.github.com/echo-dave/0d1ee6951c4e3bf00d738e84868e7d59">some tips</a> to automate this task (ie. loading keys) upon Mac login. Yet, the workaround is not quite universal.</li>
+<li>Second, more than one key may work. And the one to be used is not one that should be used. For example, if the above three keys work for Github, the chosen one might be the one you do not expect. I know this example seems a bit extreme but my point is it increases management costs.</li>
+</ul>
+<p>A more proper approach is to use the <a href="https://www.ssh.com/academy/ssh/config">SSH config</a> (located in <code>~/.ssh/config</code>). This way, you can configure what key is used for what server.</p>
+<pre><code class="hljs language-bash">Host github.com
+	IdentityFile ~/.ssh/id_rsa_github
+Host gitlab.com
+	IdentityFile ~/.ssh/id_rsa_gitlab
+Host gitlab.company.com
+	IdentityFile ~/.ssh/id_rsa_company
+</code></pre>
+<h4 id="using-different-keys-for-different-repos">Using different keys for different repos</h4>
+<p>This is usually the case for CI. When running on CI, you should be mindful of what to write outside of the project directory. For self-hosted runners, files you write outside of these directories might retain. This issue happens a lot for Shell (MacOS) runners.</p>
+<p>Two main drawbacks when such files are not properly cleaned up are:</p>
+<ul>
+<li>Subsequent executions get affected. For example, a runner picks up a job that writes the SSH config above and exits. Then it picks up another job belonging to another team that handles SSH differently, this file may lead to unexpected behaviors.</li>
+<li>Sensitive files could be leaked. For example, if you write your key to <code>~/.ssh/id_rsa</code> and forget to clean it up properly, another employee in your company can just run jobs and dump this file (if exists) to obtain your key.</li>
+</ul>
+<p>Therefore, a best practice is to stick to the project directory or any directory that is guaranteed to be cleaned up by the CI/CD infra.</p>
+<p>Then, in this case, we can instruct git to use the key by the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresshCommand"><code>core.sshCommand</code> config</a> (see: <a href="https://docs.gitlab.com/ee/user/ssh.html#use-different-keys-for-different-repositories">reference</a>):</p>
+<pre><code class="hljs language-bash">$ git config core.sshCommand <span class="hljs-string">"ssh -o IdentitiesOnly=yes -i &#x3C;path/to/key> -F /dev/null"</span>
+</code></pre>
+<h3 id="httphttps">HTTP/HTTPS</h3>
+<p>There is no problem if the repo is public. The remote URL is just like the web URL to the repo. For convenience, let’s call this kind of URL “bare URL”.</p>
+<pre><code class="hljs language-bash">https://github.com/trinhngocthuyen/public-repo
+</code></pre>
+<p>Now, we only care about how to fetch from a private repo.</p>
+<p>Git authenticates with the server using a username &#x26; password, or a token. We can see a token as a username/password tuple where the password is the token and the username is just anything you want (ex. <code>x-access-token</code>, <code>gitlab-token</code>…). Therefore, we can treat these two roughly the same.</p>
+<h4 id="using-usernamepassword-in-the-remote-url">Using username/password in the remote URL</h4>
+<p>An HTTP/HTTPS remote that allows us to fetch successfully looks like this:</p>
+<pre><code class="hljs language-perl">https:<span class="hljs-regexp">//</span>&#x3C;username>:&#x3C;password><span class="hljs-variable">@github</span>.com/trinhngocthuyen/private-repo
+</code></pre>
+<p>This turns out to be the approach Gitlab CI/CD adopts. If you run <code>git remote -v</code> in a Gitlab job, you should see the URL as follows:</p>
+<p><img src="/images/misc/gitlab_remote.png" alt=""></p>
+<h4 id="using-httpextraheader-config">Using <code>http.extraheader</code> config</h4>
+<p><a href="https://github.com/actions/checkout">Github Checkout Action</a> adopts a different approach. They use the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpextraHeader"><code>http.extraheader</code></a> config to carry the credentials for authentication. And the remote URL is just a bare URL.</p>
+<pre><code class="hljs language-vbnet"><span class="hljs-symbol">https:</span>//github.com/trinhngocthuyen/<span class="hljs-keyword">private</span>-repo
+</code></pre>
+<p>Below are the logs from the checkout step. Taking a closer look, we notice the command that sets up the authentication. The masked content <code>***</code> is actually the base64 encoded string of <code>x-access-token:&#x3C;token></code> (see: <a href="https://github.com/actions/checkout/blob/v3/src/git-auth-helper.ts#L57-L60">src/git-auth-helper.ts#L57-L60</a>).</p>
+<p><img src="/images/misc/github_extraheader.png" alt=""></p>
+<p>You can easily try out this approach on your local by:</p>
+<ul>
+<li>First, <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">creating an access token</a></li>
+<li>Configure <code>http.extraheader</code></li>
+<li>Then try fetching a private repo</li>
+</ul>
+<pre><code class="hljs language-bash">$ git config http.extraheader <span class="hljs-string">"Authorization: Basic <span class="hljs-subst">$(echo -n x-access-token:&#x3C;TOKEN> | base64)</span>"</span>
+$ git fetch https://github.com/trinhngocthuyen/private-repo
+</code></pre>
+<p>Note: If you’re using Bash to encode <code>&#x3C;username>:&#x3C;password></code>, be careful with the trailing newlines. It should be <code>echo -n &#x3C;username>:&#x3C;password> | base64</code> instead of <code>echo &#x3C;username>:&#x3C;password> | base64</code>.</p>
+<p>In case you want to configure for Github only, then use <code>http.https://github.com/.extraheader</code> instead of <code>http.extraheader</code>.</p>
+<pre><code class="hljs language-bash">$ git config http.https://github.com/.extraheader <span class="hljs-string">"Authorization: Basic &#x3C;base64(username:password)>"</span>
+</code></pre>
+<p>This approach also works for other servers (Gitlab, Bitbucket…) as long as they support basic authentication.</p>
+<h4 id="usernamepassword-prompts">Username/password prompts</h4>
+<p>If you fetch a remote with a bare URL (without a username/password), Git prompts you to ask for a username and password. Let's say, we input <code>x-access-token</code> for the username and the access token for the password. Then, it successfully fetches from this remote.</p>
+<pre><code class="hljs language-bash">$ git fetch https://github.com/trinhngocthuyen/private-repo
+Username <span class="hljs-keyword">for</span> <span class="hljs-string">'https://github.com'</span>: x-access-token
+Password <span class="hljs-keyword">for</span> <span class="hljs-string">'https://x-access-token@github.com'</span>: my-token-goes-here
+From https://github.com/trinhngocthuyen/private-repo
+ * branch            HEAD       -> FETCH_HEAD
+</code></pre>
+<p>Let say, you are a MacOS user. Now, you fetch from this remote again. Then, you are able to perform the fetch without seeing the username/password prompts again.</p>
+<pre><code class="hljs language-bash">$ git fetch https://github.com/trinhngocthuyen/private-repo
+From https://github.com/trinhngocthuyen/private-repo
+ * branch            HEAD       -> FETCH_HEAD
+</code></pre>
+<p>This behavior is due to the fact that Git caches the credentials. When enabling git traces by setting variable <code>GIT_TRACE=1</code>, you should see what handles the credentials cache.</p>
+<pre><code class="hljs language-bash">$ GIT_TRACE=1 git fetch https://github.com/trinhngocthuyen/private-repo
+09:22:03.977378 git.c:460               trace: built-in: git fetch https://github.com/trinhngocthuyen/private-repo
+09:22:03.978347 run-command.c:655       trace: run_command: GIT_DIR=.git git remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
+09:22:03.992273 git.c:750               trace: <span class="hljs-built_in">exec</span>: git-remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
+09:22:03.992846 run-command.c:655       trace: run_command: git-remote-https https://github.com/trinhngocthuyen/private-repo https://github.com/trinhngocthuyen/private-repo
+09:22:04.464215 run-command.c:655       trace: run_command: <span class="hljs-string">'git credential-osxkeychain get'</span>
+09:22:04.509220 git.c:750               trace: <span class="hljs-built_in">exec</span>: git-credential-osxkeychain get
+09:22:04.510059 run-command.c:655       trace: run_command: git-credential-osxkeychain get
+09:22:04.993732 run-command.c:655       trace: run_command: <span class="hljs-string">'git credential-osxkeychain store'</span>
+09:22:05.038985 git.c:750               trace: <span class="hljs-built_in">exec</span>: git-credential-osxkeychain store
+09:22:05.039730 run-command.c:655       trace: run_command: git-credential-osxkeychain store
+09:22:05.506154 run-command.c:655       trace: run_command: git rev-list --objects --stdin --not --all --quiet --alternate-refs
+From https://github.com/trinhngocthuyen/private-repo
+ * branch            HEAD       -> FETCH_HEAD
+09:22:05.547164 run-command.c:1524      run_processes_parallel: preparing to run up to 1 tasks
+09:22:05.547195 run-command.c:1551      run_processes_parallel: <span class="hljs-keyword">done</span>
+09:22:05.547216 run-command.c:655       trace: run_command: git maintenance run --auto --no-quiet
+09:22:05.565672 git.c:460               trace: built-in: git maintenance run --auto --no-quiet
+</code></pre>
+<p>It is <code>git credential-osxkeychain</code> that does the magic in MacOS. In the first successful fetch, the command <code>git credential-osxkeychain store</code> saves the credentials to Keychain. In subsequent uses, it runs <code>git credential-osxkeychain get</code> to retrieve the credentials for authentication.</p>
+<p><img src="/images/misc/git_keychain_cache.png" alt=""></p>
+<p>You can easily verify this by checking the corresponding item in Keychain Access, or by running <code>git credential-osxkeychain get</code>:</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"host=github.com\nprotocol=https"</span> | git credential-osxkeychain get
+password=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+username=x-access-token
+</code></pre>
+<h4 id="git-credential-storage">Git credential storage</h4>
+<p>What happened in the precedent section is the credentials are handled by “<a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">credential storage</a>”. In MacOS, Git comes with the <code>osxkeychain</code> mode which allows caching such info to Keychain.</p>
+<p>If you also observe the same behavior (ie. Git remembers your credentials), then maybe you have the cache in place. To see the current credential storage:</p>
+<pre><code class="hljs language-bash">$ git config credential.helper
+osxkeychain
+</code></pre>
+<p>In fact, for me, <code>osxkeychain</code> is set as the credential storage by the system git config (located in <code>/System/Volumes/Data/usr/local/etc/gitconfig</code>)</p>
+<pre><code class="hljs language-bash">$ git config --system --list
+credential.helper=osxkeychain
+</code></pre>
+<p>There are several built-in options besides <code>osxkeychain</code> (see: <a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">reference</a>):</p>
+<ul>
+<li><code>cache</code>: short-lived cache in memory (for 15m)</li>
+<li><code>store</code>: the cache persists in a text file <code>~/.git-credentials</code></li>
+<li>…</li>
+</ul>
+<p>You can try out these options by overriding the config:</p>
+<pre><code class="hljs language-bash">$ git config credential.helper cache
+</code></pre>
+<h3 id="using-urlbaseinsteadof-config">Using <code>url.&#x3C;base>.insteadOf</code> config</h3>
+<p><a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf">This config</a> is really useful, especially for CI environment.</p>
+<p>For Git-based dependencies in the project (declared in Gemfile, Podfile, etc.), engineers may choose to use SSH URLs because those work for them on their local. When running on CI environment, those URLs possibly won’t work if the CI provider does not use SSH for authentication (ex. Github, Gitlab). Changing those URLs to HTTP/HTTPS format, unfortunately, might cause the issue on their local.</p>
+<p>A simple solution to mitigate this issue is using the <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf"><code>url.&#x3C;base>.insteadOf</code> config</a>. This way, a URL format can be translated into the expected one.</p>
+<p>Using this config is a very common practice to make your CI executions robust. Therefore, sometimes you might see the code like this on CI:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># For Github Actions</span>
+$ git config --global url.<span class="hljs-string">"https://x-access-token:<span class="hljs-variable">${{ secrets.GITHUB_TOKEN }</span>}@github.com/"</span>.insteadOf <span class="hljs-string">"git@github.com:"</span>
+
+<span class="hljs-comment"># For Gitlab CI</span>
+$ git config --global url.<span class="hljs-string">"https://gitlab-ci-token:<span class="hljs-variable">${CI_JOB_TOKEN}</span>@gitlab.com/"</span>.insteadOf <span class="hljs-string">"git@gitlab.com:"</span>
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post, we covered some areas of how Git authenticates with the server. We also mentioned some best practices when working with SSH and HTTP/HTTPS remotes. Although some practices are not really the case for local development, they are quite common for CI integration. Given that different CI providers may adopt different approaches (ex. Github using the <code>.extraheader</code> config, Gitlab using token-based remotes, CircleCI using SSH), knowing how they work helps you be less confused with the workflows.</p>
+<p>At the end of the day, good engineering quality comes from not only excelling at domain knowledge but also being proficient in your day-to-day tools, in my opinion.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2023-02-14"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"50 Shades of Git: Remotes and Authentication"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}],["$","$L5","git",{"href":"/tags/git","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"git"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-plugins","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Cocoapods Explained: Plugins"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-02-02"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/code-signing-on-ci","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Code Signing on CI"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-08-01"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"introduction","text":"Introduction","level":2},{"id":"background","text":"Background","level":2},{"id":"configuring-a-remote","text":"Configuring a Remote","level":3},{"id":"remotes-and-credentials-for-authentication","text":"Remotes and Credentials for Authentication","level":2},{"id":"ssh","text":"SSH","level":3},{"id":"httphttps","text":"HTTP/HTTPS","level":3},{"id":"using-urlbaseinsteadof-config","text":"Using  config","level":3},{"id":"conclusion","text":"Conclusion","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"50 Shades of Git: Remotes and Authentication — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

@@ -1,0 +1,155 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","rac3-with-login-flow",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","rac3-with-login-flow","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","rac3-with-login-flow","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T21fc,<p>In this post, we will have a look at an example on how to use
+<a href="https://github.com/ReactiveCocoa/ReactiveCocoa"><code>ReactiveCocoa</code></a> (v3.0) to handle
+a simple Login workflow.</p>
+<h3 id="an-example">An example</h3>
+<p>First of all, you may wonder why we should use it. Let’s have a look at the
+following example.</p>
+<p>Almost every app needs authentication, which is simply implemented by
+login with email and password. It is not only a network task, but also a
+task requiring interactions with a server. But the problem is: <em>“every
+task may fail”</em>. This leads to the fact that sometimes we <em>spend more time
+handling failures than successful cases</em>. These failures include
+network failures and server-interaction failures.</p>
+<h4 id="traditional-version">Traditional version</h4>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">tapLoginButton</span>() {
+   <span class="hljs-operator">...</span>
+   <span class="hljs-type">YourAPI</span>.login(loginParameters) { (result, error) <span class="hljs-keyword">in</span>
+      <span class="hljs-keyword">if</span> error <span class="hljs-operator">!=</span> <span class="hljs-literal">nil</span> {
+         <span class="hljs-keyword">switch</span> error.type {
+         <span class="hljs-keyword">case</span> .<span class="hljs-type">NetworkError</span>:
+            <span class="hljs-comment">// Handle network failure</span>
+         <span class="hljs-keyword">case</span> .<span class="hljs-type">IncorrectEmailOrPassword</span>:
+            <span class="hljs-comment">// Handle failure</span>
+         <span class="hljs-keyword">case</span> .<span class="hljs-type">InvalidInformation</span>:
+            <span class="hljs-comment">// Handle failure</span>
+            <span class="hljs-comment">// …</span>
+         } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Handle success</span>
+         }
+      }
+   }
+}
+</code></pre>
+<p>This code has a few disadvantages:</p>
+<ul>
+<li>The handling implementation is put inside a closure. If we have 10 tasks that
+need to be executed immediately after logging in, they have to be placed in this
+closure. Ugly and hard to debug, right?</li>
+<li>Assume we need chaining tasks: If login task is done → execute task 1. If task 1
+is done → execute task 2… In that case, each task need a closure:</li>
+</ul>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">task1</span>(<span class="hljs-params">completion</span>: (<span class="hljs-type">SuccessType</span>) -> ())
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">task2</span>(<span class="hljs-params">completion</span>: (<span class="hljs-type">SuccessType</span>) -> ())
+</code></pre>
+<ul>
+<li>Errors and successful results don’t exist simultaneously. The parameters
+declaration (result, error) seems redundant.</li>
+</ul>
+<h4 id="how-to-refactor">How to refactor?</h4>
+<p>Replace closures by <code>Signals</code> or <code>SignalProducers</code>. We will discuss the
+differences between <code>Signal</code> and <code>SignalProducer</code> later.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">API</span> {
+   <span class="hljs-keyword">static</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">login</span>(<span class="hljs-params">loginParameters</span>: <span class="hljs-type">LoginParameters</span>) -> 
+                         <span class="hljs-type">SignalProducer</span>&#x3C;<span class="hljs-type">SuccessType</span>, <span class="hljs-type">ErrorType</span>> {
+      <span class="hljs-keyword">let</span> signalProducer <span class="hljs-operator">=</span> <span class="hljs-type">SignalProducer</span>&#x3C;<span class="hljs-type">SuccessType</span>, <span class="hljs-type">ErrorType</span>> {
+         sink, disposable <span class="hljs-keyword">in</span>
+         <span class="hljs-comment">// For now, dont care much about `sink` and `disposable`</span>
+         <span class="hljs-comment">// Send request</span>
+         <span class="hljs-comment">// Validate request</span>
+         <span class="hljs-keyword">if</span> networkErrorOccured() {
+            <span class="hljs-keyword">let</span> error <span class="hljs-operator">=</span> makeUpNetworkError()
+            sendError(sink, error)
+         } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> serverErrorOccured() {
+            <span class="hljs-keyword">let</span> error <span class="hljs-operator">=</span> makeUpServerError()
+            sendError(sink, error)
+         } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">let</span> successResult <span class="hljs-operator">=</span> parseJsonAndGetSuccessResult()
+            sendNext(sink, successResult)
+            sendCompleted(sink)
+         }
+      }
+   }
+}
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">tapLoginButton</span>() {
+   <span class="hljs-keyword">let</span> loginParameters <span class="hljs-operator">=</span> <span class="hljs-type">LoginParameters</span>(username, password)
+   <span class="hljs-keyword">let</span> loginSignalProducer <span class="hljs-operator">=</span> <span class="hljs-type">API</span>.login(loginParameters)
+   <span class="hljs-comment">// Task 1</span>
+   loginSignalProducer
+   <span class="hljs-operator">|></span> start(error: { error <span class="hljs-keyword">in</span>
+      handleErrorTask1()
+   }, next { successfulResult <span class="hljs-keyword">in</span>
+      handleSuccessTask1()
+   })
+   <span class="hljs-comment">// Task 2</span>
+   loginSignalProducer
+   <span class="hljs-operator">|></span> observe(error: { error <span class="hljs-keyword">in</span>
+      handleErrorTask2()
+   }, next { successfulResult <span class="hljs-keyword">in</span>
+      handleSuccessTask2()
+   })
+   <span class="hljs-operator">…</span>
+   <span class="hljs-comment">// Task 10</span>
+   loginSignalProducer
+   <span class="hljs-operator">|></span> observe(error: { error <span class="hljs-keyword">in</span>
+      handleErrorTask10()
+   }, next { successfulResult <span class="hljs-keyword">in</span>
+      handleSuccessTask10()
+   })
+}
+</code></pre>
+<p>This implementation looks more elegant since:</p>
+<ul>
+<li>Failure and success are handled separately</li>
+<li>Each observation is handled separately</li>
+<li>We dont have to take much care of asynchronous tasks</li>
+</ul>
+<h3 id="what-makes-differences">What makes differences?</h3>
+<p>I think what make sense are the abstract types:</p>
+<ul>
+<li><code>Result</code>: handles failures</li>
+<li><code>Event</code>: handles asynchronous tasks</li>
+<li><code>Signal</code>: handles observation for changes along with time</li>
+</ul>
+<h4 id="a-little-explanation">A little explanation</h4>
+<p>If you already heard of <a href="https://www.coursera.org/course/reactive">FRP (Functional Reactive
+Programming)</a>, this may help you
+understand more straightforwardly:</p>
+<pre><code class="hljs language-swift"><span class="hljs-operator">-</span> <span class="hljs-type">Result</span>&#x3C;<span class="hljs-type">SuccessType</span>, <span class="hljs-type">ErrorType</span>>  <span class="hljs-operator">=</span> <span class="hljs-type">Try</span>[<span class="hljs-type">SuccessType</span>, <span class="hljs-type">ErrorType</span>]
+<span class="hljs-operator">-</span> <span class="hljs-type">Event</span>&#x3C;<span class="hljs-type">SomeType</span>, <span class="hljs-type">ErrorType</span>>      <span class="hljs-operator">=</span> <span class="hljs-type">Future</span>[<span class="hljs-type">SomeType</span>, <span class="hljs-type">ErrorType</span>]
+<span class="hljs-operator">-</span> <span class="hljs-type">Signal</span>&#x3C;<span class="hljs-type">SomeType</span>, <span class="hljs-type">ErrorType</span>>     <span class="hljs-operator">=</span> <span class="hljs-type">Observable</span>[<span class="hljs-type">SomeType</span>, <span class="hljs-type">ErrorType</span>]
+                                  <span class="hljs-operator">=</span> a series of <span class="hljs-type">Events</span>
+</code></pre>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>Don’t waste your time implementing Observer pattern or manually handling
+asynchronous tasks.</li>
+<li>If you’re in favor of Java, a similar framework could be found as
+<a href="https://github.com/ReactiveX/RxJava">RxJava</a>.</li>
+</ul>
+<p>The next blog post, I will come up with a small comparison between RAC 2.0 and
+RAC 3.0.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2015-08-22"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"RAC 3.0 with Login workflow"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/optional-functional","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Optional - Functional"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2015-06-16"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/swift-box-with-recursive-data-structure","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: Box with recursive data structure"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2015-10-17"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"RAC 3.0 with Login workflow — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

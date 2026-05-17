@@ -1,0 +1,304 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","dealing-with-flaky-ui-tests",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","dealing-with-flaky-ui-tests","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","dealing-with-flaky-ui-tests","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T8418,<h2 id="1-introduction">1. Introduction</h2>
+<p>UI testing is a test technique, besides unit testing, to ensure product quality. While unit testing focuses on small portions (or units) of the system, UI testing aims to cover a wider user journey in the app. This testing technique helps engineers gain more confidence when developing, refactoring, and shipping the products to users. In the context of iOS development, UI testing plays a key role in product quality as the form of a feature shipped to users is usually through what they see on the app.</p>
+<p>Despite its benefits, UI testing is also a source of headache when it comes to flakiness. UI tests have a higher level of integration (ie. many components are involved) as compared to unit tests. Therefore, flakiness is always part of the system.</p>
+<p>In this post, we are going to discover what fators contribute to test flakiness and how to cope with them.</p>
+<h2 id="2-background">2. Background</h2>
+<h3 id="21-what-is-test-flakiness">2.1. What is Test Flakiness?</h3>
+<p>A flaky test is a test that produces different results (passed or failed) each time it runs.</p>
+<h3 id="22-what-is-ui-testing">2.2. What is UI Testing?</h3>
+<p>UI testing is a technique to test features of a software like how a user interacts with that software. This involves testing visual elements of the software. A test action could be a UI interaction (ex. tapping a button, typing an input, etc), or an assertion (ex. checking if a text is displayed).</p>
+<p>A typical UI test flow in iOS apps would be:</p>
+<ul>
+<li>Launch the app.</li>
+<li>In the home screen, tap the avatar icon to open the profile screen.</li>
+<li>In the profile screen, check the presence of the name, email of the user.</li>
+<li>Tap the edit icon to edit the profile, then type the new first name, last name.</li>
+<li>Tap save, then expect to see the updated info.</li>
+</ul>
+<h3 id="23-two-apps-in-ui-testing">2.3. Two Apps in UI Testing</h3>
+<p>UI testing in iOS involves two apps:</p>
+<ul>
+<li><strong>Host app</strong>, sometimes called <em>app under test</em> (AUT): The app we want to test. The test workflows we expect to see occur in this app.</li>
+<li><strong>Runner app</strong>: The app that performs test actions. The code to tap buttons, assert labels In the test case belongs to this runner app, not the host app.</li>
+</ul>
+<p>Note that these 2 apps are sandboxed and running in two different processes. Even if a framework (imported in both apps) has a global variable (ex. <code>MyFramework.MyClass.myGlobalVariable</code>), that variable is NOT shared across the two apps.</p>
+<p>We can think of a UI test action as an <a href="https://en.wikipedia.org/wiki/Inter-process_communication">inter-process communication</a> between the runner app and the host app. What happens under the hood during a test execution are as follows:</p>
+<ul>
+<li>The runner app requests/queries for elements of the host app.</li>
+<li>The host app receives the request and returns the matching elements with some attributes (identifier, text, enabled, hittable...).</li>
+<li>The runner app requests to tap a specific element.</li>
+<li>The host app receives the request and performs the tap action on that element.</li>
+<li>...</li>
+</ul>
+<p>Some UI test actions such as querying elements, or tapping/scrolling/toggling elements are supported by the XCTest framework. To perform more complicated actions such as triggering a database cleanup, we might need to implement the inter-process communication ourselves. Using TCP socket is a common choice for this purpose.</p>
+<h3 id="24-polling-checks-in-ui-testing">2.4. Polling-Checks in UI Testing</h3>
+<p>UI elements do not immediately show up on the screen. The delayed display could be due to animations, or network. Therefore, it is a common practice to do polling-checks in UI testing. The pseudo-implementation would be like this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">waitForExistence</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">element</span>: <span class="hljs-type">XCUIElement</span>) -> <span class="hljs-type">XCUIElement</span>? {
+  <span class="hljs-keyword">var</span> found: <span class="hljs-type">XCUIElement</span>?
+  <span class="hljs-keyword">while</span> notExceedTimeout(timeout) {
+    <span class="hljs-keyword">if</span> element.exist {
+      found <span class="hljs-operator">=</span> element
+      <span class="hljs-keyword">break</span>
+    }
+    sleep(pollingFrequency) <span class="hljs-comment">// &#x3C;-- wait a bit (ex. 0.1s), then check again</span>
+  }
+  <span class="hljs-keyword">return</span> found
+}
+</code></pre>
+<p>In each iteration, we check the presence of an element. If not found, we wait a bit then check again. If the condition does not satisfy within a certain timeout, we throw a test failure.</p>
+<h3 id="25-end-to-end-testing-vs-workflow-ui-testing">2.5. End-To-End Testing vs. Workflow UI Testing</h3>
+<p>Testing mobile app flows usually includes both backend (BE) and frontend (FE). The system under testing (SUT) in mobile testing is the frontend, ie. the mobile app.</p>
+<p>When using the real backend in UI testing, this approach is called "<strong>end-to-end (E2E) testing</strong>". It involves testing the system from beginning to end (both backend and frontend). Usually, E2E testing is under automation QAs' maintenance. Meanwhile, UI testing with a mock backend just cares about the frontend. This approach is to ensure app behaves correctly given a stable mock backend. To avoid the ambiguity, let's call this approach "<strong>workflow UI testing</strong>".</p>
+<p>In this post, we scope the discussion to workflow UI testing only. We will talk about E2E testing in some upcoming posts. Note that the flakiness we are going to discuss also persists in E2E testing.</p>
+<h2 id="3-contributing-factors-to-flakiness">3. Contributing Factors to Flakiness</h2>
+<h3 id="31-shared-environments">3.1. Shared Environments</h3>
+<p>Shared resources imply flakiness. Such resources for testing could be mocks/stubs, database, etc.</p>
+<p>For UI testing in iOS, the simulator that runs tests can also be seen as shared resources. This is why the execution of a test might be affected by the execution of others on the same simulator. For example, if we toggle a (shared/global) flag in one test and forget to reset it after the execution, this flag might cause failures in the subsequent executions. Keep in mind that flakiness due to shared environments might come from both host app and runner app implementation.</p>
+<p>To have better test stability, we need to <strong>ensure a clean state</strong> before and after running a test by resetting cache, database, flags, keychains, etc. Note that uninstalling the app beforehand does not magically put the app into a clean state as some data is not bound to app's life cycle. For example, even if the app is uninstalled, keychain values belonging to that app still persist (see: <a href="https://developer.apple.com/forums/thread/22874?answerId=75464022#75464022">here</a>). This might lead to unexpected behaviors in the next time we install and launch the app for testing. Therefore, it is necessary to have a backdoor for testing to thoroughly put the app in a clean state.</p>
+<h3 id="32-auto-dismissable-components">3.2. Auto-dismissable Components</h3>
+<p>A challenge when testing auto-dismissable components is that we need to check all the details (in such components) <strong>in time</strong>. Those commonly used components are snackbars, or toast messages. They normally persist for one to a few seconds. While a UI check only takes up a fraction of a second, many checks in the component might exceed the appointed time. Note that when running tests in parallel (ex. 4 simulators), it usually takes a bit longer time than usual to perform a UI check due to high CPU usage.</p>
+<img src="/images/ios/auto_dismissable_banner.png" style="width:375px">
+<span class="figcaption">Fig. Auto-dismissable banner.</span>
+<p>There are a few actions we can take to tackle this problem.</p>
+<p>First, we can <strong>inject the display duration</strong> of those components when running UI tests. For example, instead of showing snackbars for 1s, we can increase the duration to 3s.</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// In the app target</span>
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">showSnackBar</span>(<span class="hljs-params">text</span>: <span class="hljs-type">String</span>) {
+  <span class="hljs-operator">...</span>
+  <span class="hljs-keyword">let</span> defaultDuration <span class="hljs-operator">=</span> <span class="hljs-number">1.0</span>
+  <span class="hljs-keyword">let</span> injectedDuration <span class="hljs-operator">=</span> <span class="hljs-type">ProcessInfo</span>.processInfo.environment[<span class="hljs-string">"SNACKBAR_DURATION"</span>].flatMap { <span class="hljs-type">Double</span>(<span class="hljs-variable">$0</span>) }
+  <span class="hljs-keyword">let</span> duration <span class="hljs-operator">=</span> injectedDuration <span class="hljs-operator">??</span> defaultDuration
+  _show(text: text, duration: duration) { <span class="hljs-operator">...</span> }
+}
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// In the test target</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseTestCase</span>: <span class="hljs-title class_ inherited__">XCTestCase</span> {
+  <span class="hljs-keyword">let</span> app <span class="hljs-operator">=</span> <span class="hljs-type">XCUIApplication</span>()
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">setUp</span>() {
+    <span class="hljs-keyword">super</span>.setUp()
+    app.launchEnvironment <span class="hljs-operator">=</span> [<span class="hljs-string">"SNACKBAR_DURATION"</span>: <span class="hljs-number">3</span>] <span class="hljs-comment">// &#x3C;-- inject the value</span>
+    app.launch()
+  }
+}
+</code></pre>
+<p>Second, if there are many checks in a UI component, we can <strong>combine several checks</strong> in one query. Let say, we wish to see 10 elements on the screen. Instead of sequentially checking each element, we can check all elements together in one poll iteration. The polling-check above can be justified for the multiple elements as follows:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">waitForExistence</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">elements</span>: [<span class="hljs-type">XCUIElement</span>]) -> [<span class="hljs-type">XCUIElement</span>] {
+  <span class="hljs-operator">...</span>
+  <span class="hljs-keyword">while</span> notExceedTimeout(timeout) {
+    <span class="hljs-keyword">if</span> elements.allSatisfy({ <span class="hljs-variable">$0</span>.exist }) { <span class="hljs-comment">// &#x3C;-- combine the checks</span>
+      <span class="hljs-operator">...</span>
+      <span class="hljs-keyword">break</span>
+    }
+    sleep(pollFrequency)
+  }
+</code></pre>
+<img src="/images/ios/ui_test_combine_checks.png" style="width:600px">
+<span class="figcaption">Fig. Combining several checks to reduce the total wait time.</span>
+<h3 id="33-animations">3.3. Animations</h3>
+<p>Regarding overhead time of an animation, it is not that much as one normally takes less than 2s to finish. We just need to increase the timeout (ex. to 10s) for element checks to gain better stability.</p>
+<p>However, animations do have a side effect when running UI tests. This is due to an intentional behavior of the XCTest framework. To be more specific, when running tests, the XCTest framework <strong>waits for the host app to idle</strong> before performing UI actions/checks. The app is not in the idle state as long as an animation is still on-going. This explains why we sometimes see tons of <em>"Waiting for app to idle"</em> in the console log.</p>
+<p>Take the "loading/shimmery UI" for example. This kind of animations happens continuously until the loaded data is presented. Therefore, even if there are contents elsewhere on the screen, the animation still keeps the test from asserting elements.</p>
+<img src="/images/ios/shimmering.png" style="width:375px">
+<span class="figcaption">Fig. Shimmery UI, usually with repeated animations.</span>
+<p>Another problematic case is when we have animations on auto-dismissable components. The animations prolong the wait time mentioned above. As a result, by the time we check elements on such a component, they are already dismissed.</p>
+<p>There are two common approaches to overcome this problem.</p>
+<p>First, we can just <strong>disable animations</strong> when running UI tests.</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// In the app target</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AppDelegate</span>: <span class="hljs-title class_ inherited__">UIResponder</span>, <span class="hljs-title class_ inherited__">UIApplicationDelegate</span> {
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">application</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">application</span>: <span class="hljs-type">UIApplication</span>, <span class="hljs-params">didFinishLaunchingWithOptions</span> <span class="hljs-params">launchOptions</span>: [<span class="hljs-type">UIApplication</span>.<span class="hljs-params">LaunchOptionsKey</span>: <span class="hljs-keyword">Any</span>]<span class="hljs-operator">?</span>) -> <span class="hljs-type">Bool</span> {
+    <span class="hljs-keyword">if</span> <span class="hljs-type">ProcessInfo</span>.processInfo.environment[<span class="hljs-string">"IS_UI_TEST"</span>] <span class="hljs-operator">==</span> <span class="hljs-string">"YES"</span> {
+      <span class="hljs-type">UIView</span>.setAnimationsEnabled(<span class="hljs-literal">false</span>)
+    }
+    <span class="hljs-operator">...</span>
+  }
+}
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// In the test target</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseTestCase</span>: <span class="hljs-title class_ inherited__">XCTestCase</span> {
+  <span class="hljs-keyword">let</span> app <span class="hljs-operator">=</span> <span class="hljs-type">XCUIApplication</span>()
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">setUp</span>() {
+    <span class="hljs-keyword">super</span>.setUp()
+    app.launchEnvironment <span class="hljs-operator">=</span> [<span class="hljs-string">"IS_UI_TEST"</span>: <span class="hljs-string">"YES"</span>] <span class="hljs-comment">// &#x3C;-- inject the value</span>
+    app.launch()
+  }
+}
+</code></pre>
+<p>This approach has 2 major drawbacks:</p>
+<ul>
+<li>Somewhere in the app code might have <code>UIView.setAnimationsEnabled(true)</code> to enable animations. Then, the problem happens again.</li>
+<li>Many things in the app simply do not work without animations.</li>
+</ul>
+<p>The second approach is to <strong>suppress the waiting behavior</strong>. In case of testing with <a href="https://appium.io/">Appium</a>, there is an option called <code>appium:waitForQuiescence</code> in the <a href="https://github.com/appium/appium-xcuitest-driver#desired-capabilities">desired capabilities</a> to achieve this. Unfortunately, XCTest does not have a public API to do so. Appium makes it work simply by swizzling the corresponding function of <code>XCUIApplicationProcess</code> (a private class in XCTest) (see: <a href="https://github.com/appium/WebDriverAgent/blob/e1c9635/WebDriverAgentLib/Categories/XCUIApplicationProcess+FBQuiescence.m#L20-L39">here</a>) and doing nothing if the option <code>appium:waitForQuiescence</code> is <code>false</code>. If not using Appium, we can also use the same approach.</p>
+<h3 id="34-time-sensitive-datanon-deterministic-behaviors">3.4. Time-sensitive Data/Non-deterministic Behaviors</h3>
+<p>If a feature is time-dependant, what we see might depend on the time we execute tests. For example, if a UI component displays differently during daytime or nighttime, tests might fail because the assertion assumes it is daytime while the actual result corresponds to nighttime.</p>
+<p>Another notorious time-sensitive data is <strong>timezone</strong>. When writing tests, engineers often overlook this aspect because most of the time, everyone in the team is in the same timezone. But when their team expands to not just one country, the problem arises. Consider the following example:</p>
+<ul>
+<li>A Singapore-based engineer writes a test with a fixed time (8:00 AM 2022-06-25, local time).</li>
+<li>He/she then asserts seeing "8:00 AM" in the test, assuming that the UI always displays "8:00 AM" as it is using a fixed time.</li>
+<li>This change bypasses CI as the runners are configured with Singapore timezone (GMT +8:00).</li>
+<li>Then a Jakarta-based engineer runs this test and gets a failure because he is seeing "7:00 AM" instead of "8:00 AM".</li>
+</ul>
+<p>In this example, the UI in the 2 timezones are just slightly different. But when we have Seattle engineers (GMT -7:00) contributing to the project, what they see in the app might differ considerably as the local date in Seattle is 2022-06-24 (not 2022-06-25).</p>
+<p>Given this annoying disprepancy, many teams usually choose to <strong>agree on a default timezone</strong> to save the maintenance effort.</p>
+<h3 id="35-deviceos-variants">3.5. Device/OS Variants</h3>
+<p>When testing on different device models, we might run into the issue in which an element is visible on iPhone X while it is not on iPhone 7. This frequently happens with table views or scroll views. Therefore, sometimes we need to perform extra swipes/scrolls to make sure the element is in the visible area of the screen.</p>
+<p>There are two common failures when running tests on different iOS versions:</p>
+<ul>
+<li>In certain iOS versions, the accessibility IDs/labels of some components are not deterministics. For example, when scrolling a component, the element type of its contents might change (see: <a href="https://developer.apple.com/forums/thread/106681">here</a>). This kind of weird issues seems to happen more with table views and collection views which have the built-in resuable behavior.</li>
+<li>Some system UI components might change. Examples would be <em>notification banners</em>, or <em>permission alerts</em>.</li>
+</ul>
+<p>Similar to the approach to different timezones, we can <strong>agree on a fixed device model and iOS version</strong>. Yet, it is a bit difficult to stick to an iOS version on CI for all Xcode versions because:</p>
+<ul>
+<li>By default, we only have an iOS runtime that is shipped together with Xcode. For example, with Xcode 12.0 we get iOS 14.0, with Xcode 13.0 we get iOS 15.0.</li>
+<li>Installing other iOS runtimes for CI runners is not straightforward especially when the team does not have full control over the runners.</li>
+</ul>
+<p>This explains why Xcode migration occasionally involves fixing UI/unit/snapshot tests. The most noticeable failed tests are those having table/collection views because a new iOS release usually changes themes of those components.</p>
+<h2 id="4-dealing-with-flakiness">4. Dealing With Flakiness</h2>
+<p>The measures in this section correspond to 3 stages: <strong>before</strong>, <strong>while</strong>, and <strong>after</strong> flakiness is introduced.</p>
+<h3 id="41-preventing-flakiness">4.1. Preventing Flakiness</h3>
+<p>During development, we should anticipate possible flakiness and make our code robust. We need to take into consideration the contributing factors mentioned above. The measures to mitigate each of those factors were already discussed in the previous section.</p>
+<h3 id="42-troubleshooting-flakiness">4.2. Troubleshooting Flakiness</h3>
+<p>When we have flakiness, engineers jump in to investigate and fix the issue. The ability to easily troubleshoot issues matters. As follows are some suggestions to help engineers identify the issues faster.</p>
+<h4 id="processing-the-xcresult-bundle">Processing the <code>.xcresult</code> Bundle</h4>
+<p>Normally, after running tests, we can just open the reports navigator (in Xcode) to view test results. We can also open the <code>.xcresult</code> bundle (produced when a test session is finished) with Xcode to quickly open this UI.</p>
+<img src="/images/ios/test_reports_navigator.png" style="width:500px">
+<span class="figcaption">Fig. Details of a failed tests in the reports navigator in Xcode.</span>
+<p>This UI displays quite some useful data for further investigation such as screenshots, and app UI hierarchy. However, the logs of the host app which should reveal much about the root cause are hidden from the UI. Also, when running many tests in one session (this is usually the case for CI), opening the produced <code>.xcresult</code> bundle in Xcode is really laggy, causing a very bad developer experience.</p>
+<p>Therefore, to provide the best troubleshoot experience, we need to <strong>extract useful data (for investigation) from the <code>.xcresult</code> bundle</strong>. Those data include app logs (both the runner app and the host app), screenshots, attachments, etc. They can be easily extracted using <a href="https://github.com/ChargePoint/xcparse">xcparse</a>. Alternatively, we can use <code>xcresulttool</code> (which xcparse is using under the hood) to obtain those data ourselves.</p>
+<h4 id="segregating-per-test-data">Segregating per-Test Data</h4>
+<p>On CI, many tests are executed in the same session. Some data such as app logs are consolidated for all tests.</p>
+<p>It is best to have <strong>artifacts of each test</strong> separately. This way, we only care about what happened for the test of interest only.</p>
+<pre><code class="hljs language-lua">artifacts / MyTestTarget / MyTestClass / testFunction1 / <span class="hljs-comment">-- screenshot.png</span>
+                                                         <span class="hljs-comment">-- host_app_hierarchy.txt</span>
+                                                         <span class="hljs-comment">-- host_app.txt</span>
+                                                         <span class="hljs-comment">-- runner_app.txt</span>
+                                       / testFunction2
+</code></pre>
+<p>Logs in the runner app are well structured. With some regexes, we can easily extract logs of a specific test from the consolidated logs.</p>
+<pre><code class="hljs language-sql">Test <span class="hljs-keyword">Case</span> <span class="hljs-string">'-[EXUITests.EXUITests testX1]'</span> started.
+...
+Test <span class="hljs-keyword">Case</span> <span class="hljs-string">'-[EXUITests.EXUITests testX1]'</span> failed (<span class="hljs-number">4.568</span> seconds).
+...
+Test <span class="hljs-keyword">Case</span> <span class="hljs-string">'-[EXUITests.EXUITests testX2]'</span> started.
+...
+Test <span class="hljs-keyword">Case</span> <span class="hljs-string">'-[EXUITests.EXUITests testX2]'</span> passed (<span class="hljs-number">3.528</span> seconds).
+</code></pre>
+<p>Meanwhile, logs in the host app do not indicate what test it is running against. One trick to have that info is to <strong>pass the test name via launch environment</strong> when launching the app. After that, we can use regexes to extract relevant logs.</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// In the app target</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AppDelegate</span>: <span class="hljs-title class_ inherited__">UIResponder</span>, <span class="hljs-title class_ inherited__">UIApplicationDelegate</span> {
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">application</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">application</span>: <span class="hljs-type">UIApplication</span>, <span class="hljs-params">didFinishLaunchingWithOptions</span> <span class="hljs-params">launchOptions</span>: [<span class="hljs-type">UIApplication</span>.<span class="hljs-params">LaunchOptionsKey</span>: <span class="hljs-keyword">Any</span>]<span class="hljs-operator">?</span>) -> <span class="hljs-type">Bool</span> {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> testName <span class="hljs-operator">=</span> <span class="hljs-type">ProcessInfo</span>.processInfo.environment[<span class="hljs-string">"TEST_NAME"</span>] {
+      <span class="hljs-built_in">print</span>(<span class="hljs-string">"Test started: <span class="hljs-subst">\(testName)</span>"</span>)
+    }
+    <span class="hljs-operator">...</span>
+  }
+}
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// In the test target</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseTestCase</span>: <span class="hljs-title class_ inherited__">XCTestCase</span> {
+  <span class="hljs-keyword">let</span> app <span class="hljs-operator">=</span> <span class="hljs-type">XCUIApplication</span>()
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">setUp</span>() {
+    <span class="hljs-keyword">super</span>.setUp()
+    app.launchEnvironment <span class="hljs-operator">=</span> [<span class="hljs-string">"TEST_NAME"</span>: <span class="hljs-keyword">self</span>.name] <span class="hljs-comment">// &#x3C;-- inject the value</span>
+    app.launch()
+  }
+}
+</code></pre>
+<p>Regarding attachments and screenshots, xcparse does not group them by test. Extra effort (patching xcparse/wrapping xcresulttool) is needed to place them in the respective test dirs. One trick to avoid this effort is to manually collect the screenshot and UI hierarchy in the <a href="https://developer.apple.com/documentation/xctest/xctestcase/3546549-record"><code>record(_:)</code> function</a>.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseTestCase</span>: <span class="hljs-title class_ inherited__">XCTestCase</span> {
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">record</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">issue</span>: <span class="hljs-type">XCTIssue</span>) {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Host app:<span class="hljs-subst">\n</span><span class="hljs-subst">\(app.debugDescription)</span>"</span>)           <span class="hljs-comment">// &#x3C;-- Dump App UI hierarchy to the console</span>
+    app.screenshot().pngRepresentation.write(to: testDir) <span class="hljs-comment">// &#x3C;-- Save screenshot to the test dir</span>
+    <span class="hljs-keyword">super</span>.record(issue)
+  }
+}
+</code></pre>
+<h3 id="43-fixing-flakiness">4.3. Fixing Flakiness</h3>
+<h4 id="benchmarking-tests">Benchmarking Tests</h4>
+<p>When fixing a flaky test, we need to ensure the test is stable enough before merging the fix. Therefore, it is useful to <strong>benchmark the test on CI</strong>.</p>
+<p>We have a CI feature that an engineer can benchmark tests on his/her merge requests by specifying the instructions in the merge request description.</p>
+<pre><code class="hljs language-md">This merge request aims to fix <span class="hljs-code">`testFunction1`</span> and <span class="hljs-code">`testFunction2`</span>.
+
+Benchmark: MyTestTarget/MyTestClass/testFunction1 x10
+Benchmark: MyTestTarget/MyTestClass/testFunction2 x5
+</code></pre>
+<p>In the sample merge request description above, the line <code>Benchmark: MyTestTarget/MyTestClass/testFunction1 x10</code> directs CI to benchmark the test <code>testFunction1</code> 10 times.</p>
+<p>To get the list of tests to benchmark in this example, we can send an API request to get the merge request description, then apply some regexes. The benchmark can be done with <a href="https://www.avanderlee.com/debugging/flaky-tests-test-repetitions/">test repetitions</a> (introduced since Xcode 13), or simply by running <code>xcodebuild</code> multiple times with the given tests.</p>
+<h3 id="44-living-with-flakiness">4.4. Living With Flakiness</h3>
+<p>As mentioned ealier, flakiness is always part of the system. Zero-tolerance against flakiness would lead to a very bad developer experience. Consider the following scenario:</p>
+<ul>
+<li>A test has been added to the project. It succeeds consistently.</li>
+<li>One day, it fails intermittently on CI for some reasons. This prevents some engineers from merging their changes. Those engineers have to retry the jobs, hoping that it shall pass in the retry.</li>
+<li>Someone in the team has to take actions, to either investigate the flakiness, or temporarily disable that test.</li>
+</ul>
+<p>The costs in the above scenario are:</p>
+<ul>
+<li><em>Maintenance effort</em> of the test owners (not to mention that this effort comes in form of ad-hoc tasks which might intervene in team process).</li>
+<li><em>Waiting time</em> of the affected engineers.</li>
+<li><em>Communication effort</em> between the affected engineers and the test owners.</li>
+</ul>
+<p>Therefore, we need to design our CI system in a way that flakiness should have minimal impacts on deverloper experiences.</p>
+<h4 id="retrying-failed-tests">Retrying Failed Tests</h4>
+<p>This is the most common approach to live with flaky tests. Failed tests will go through several retries. The number of retries might be different for each project. The more retries we have, the longer time it takes to finish the job.</p>
+<h4 id="test-success-rate">Test Success Rate</h4>
+<p>The success rate of a test is defined as the number of successful attempts over the total number of attempts. If a test succeeds 9 out of 10 times, its success rate is 0.9.</p>
+<p>This success rate is the key metric to evaluate how flaky a test is. A test is considered flaky if its success rate falls below a certain threshold.</p>
+<p>Note that not all test executions are reliable. If a test fails on a merge request, the failure might be due to the change instead. Data in some following cases can be used:</p>
+<ul>
+<li>(1) Tests succeeding or failing on the main branches.</li>
+<li>(2) Tests succeeding on merge requests.</li>
+<li>(3) Tests failing in one job and then succeeding when (manually) retrying that job.</li>
+</ul>
+<h4 id="test-quarantine-logic">Test quarantine Logic</h4>
+<p>A flaky test is <strong>quarantined</strong> if its result (success/failure) does not affect the overall result of the job. If all failed tests are quarantined, we are good to go.</p>
+<pre><code class="hljs language-rust">--[execute &#x26; retry]-<span class="hljs-punctuation">-></span> failed --[quarantine] -<span class="hljs-punctuation">-></span> all quarantined -<span class="hljs-punctuation">-></span> passed
+                                           | -<span class="hljs-punctuation">-></span> otherwise -<span class="hljs-punctuation">-></span> failed
+</code></pre>
+<p>To integrate this quarantine logic, we need to have the stats (test success rates...) of all tests in the project for the past N days. Such stats data is generated from the executions from the project.</p>
+<img src="/images/ios/quarantine.png" style="width:600px">
+<span class="figcaption">Fig. How quarantine logic is involved in deciding the overall result.</span>
+<p>By introducing the quarantine logic, we create an auto feedback loop into the development process:</p>
+<ul>
+<li>When a test becomes flaky, its success rate decreases. The quarantine for this test is in effect.</li>
+<li>When this test stabilizes, it success rate increases. Then the quarantine is lifted for this test.</li>
+</ul>
+<p>The stats used in the quarantine logic can just be a json file hosted anywhere as long as we can download it. The storage could be an S3 bucket, or a git repo.</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"MyTestTarget/MyTestClass/testFunction1"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.9</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"MyTestTarget/MyTestClass/testFunction2"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"MyTestTarget/MyTestClass/testFunction3"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>The whole process from test data submission to stats generation is pretty much like an <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">ETL pipeline</a>. So, you can choose any implementation that fits your need. For us, we use a git repo to reduce the effort for <a href="https://en.wikipedia.org/wiki/Identity_management">Identity Access Management (IAM)</a>. Let's discuss the detailed setup with a git repo in the upcoming posts.</p>
+<h2 id="5-conclusion">5. Conclusion</h2>
+<p>In this post, we cover some background of UI testing and what contributes to test flakiness. Some flakiness can be prevented in the early stage when writing tests and developing features. Despite our prevention measures, flakiness will always persist. Therefore, a long term approach to cope with flakiness should focus on improving troubleshoot experiences, bug fixing experiences, and making flakiness tolerated.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2022-06-25"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Dealing With Flaky UI Tests in iOS"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+19:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+1a:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[["$","div",null,{"className":"border-l-[3px] border-[--theme] pl-4","children":[["$","div",null,{"className":"flex items-baseline gap-2 mb-3","children":[["$","span",null,{"className":"text-[13px] font-bold text-theme-primary","children":"CI Engineering"}],["$","span",null,{"className":"text-xs text-muted","children":["· ",4," parts"]}]]}],["$","div",null,{"children":[["$","div","dealing-with-flaky-ui-tests",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":1}],["$","span",null,{"className":"text-[14px] font-normal text-muted truncate","children":"Dealing With Flaky UI Tests in iOS"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2022-06-25"}]]}],["$","div","code-signing-on-ci",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":2}],["$","$L5",null,{"href":"/posts/tech/code-signing-on-ci","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Code Signing on CI"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-08-01"}]]}],["$","div","test-quarantine",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":3}],["$","$L5",null,{"href":"/posts/tech/test-quarantine","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Designing Test Quarantine Logic to Deal With Flaky Tests"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-09-17"}]]}],["$","div","in-search-of-test-discovery",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":4}],["$","$L5",null,{"href":"/posts/tech/in-search-of-test-discovery","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"In Search of Test Discovery Solutions in iOS"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2025-03-08"}]]}]]}],["$","div",null,{"className":"mt-4 pt-3 border-t border-border/30","children":["$","$L5",null,{"href":"/posts/tech/code-signing-on-ci","className":"text-[13px] font-medium text-theme-primary no-underline hover:text-hover-accent transition-colors","children":["Next in series: ","Code Signing on CI"," →"]}]}]]}],["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/ci-extract-test-methods","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"CI: Heuristically Extracting Test Methods Before Runtime"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2020-11-08"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":"$L17"}]]}]}],"$L18"]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L19",null,{"headings":[{"id":"1-introduction","text":"1. Introduction","level":2},{"id":"2-background","text":"2. Background","level":2},{"id":"21-what-is-test-flakiness","text":"2.1. What is Test Flakiness?","level":3},{"id":"22-what-is-ui-testing","text":"2.2. What is UI Testing?","level":3},{"id":"23-two-apps-in-ui-testing","text":"2.3. Two Apps in UI Testing","level":3},{"id":"24-polling-checks-in-ui-testing","text":"2.4. Polling-Checks in UI Testing","level":3},{"id":"25-end-to-end-testing-vs-workflow-ui-testing","text":"2.5. End-To-End Testing vs. Workflow UI Testing","level":3},{"id":"3-contributing-factors-to-flakiness","text":"3. Contributing Factors to Flakiness","level":2},{"id":"31-shared-environments","text":"3.1. Shared Environments","level":3},{"id":"32-auto-dismissable-components","text":"3.2. Auto-dismissable Components","level":3},{"id":"33-animations","text":"3.3. Animations","level":3},{"id":"34-time-sensitive-datanon-deterministic-behaviors","text":"3.4. Time-sensitive Data/Non-deterministic Behaviors","level":3},{"id":"35-deviceos-variants","text":"3.5. Device/OS Variants","level":3},{"id":"4-dealing-with-flakiness","text":"4. Dealing With Flakiness","level":2},{"id":"41-preventing-flakiness","text":"4.1. Preventing Flakiness","level":3},{"id":"42-troubleshooting-flakiness","text":"4.2. Troubleshooting Flakiness","level":3},{"id":"43-fixing-flakiness","text":"4.3. Fixing Flakiness","level":3},{"id":"44-living-with-flakiness","text":"4.4. Living With Flakiness","level":3},{"id":"5-conclusion","text":"5. Conclusion","level":2}]}]}]
+16:["$","$L1a",null,{"headings":"$15:props:children:props:headings"}]
+17:[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-podfile","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"CocoaPods Explained: Podfile"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2022-12-17"}]]
+18:["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+1b:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Dealing With Flaky UI Tests in iOS — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L1b","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

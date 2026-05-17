@@ -1,0 +1,107 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","cocoapods-explained-podfile",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","cocoapods-explained-podfile","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","cocoapods-explained-podfile","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T2312,<p>In iOS development, CocoaPods has become one of the must-know tools. In a team where CocoaPods is adopted, engineers run <code>pod install</code> as often as <code>git checkout</code>. They know how to properly set up a project with CocoaPods, declare dependencies in Podfile, and update dependencies if needed. However, some have little understanding of what happens under the hood. This prevents them from troubleshooting CocoaPods issues if occurred or extending its usage. The “CocoaPods Explained” series I am writing aims to fill that gap.</p>
+<p>In this post, we take a look at Podfile and try to understand it a little bit more.</p>
+<h3 id="declaration-in-podfile">Declaration in Podfile</h3>
+<p>Podfile is where we declare dependencies of the project. This file is just a snippet of ruby code on top of provided methods (reference: <a href="https://guides.cocoapods.org/syntax/podfile.html">Podfile syntax</a>).</p>
+<pre><code class="hljs language-ruby">platform <span class="hljs-symbol">:ios</span>, <span class="hljs-string">"14.0"</span>
+use_frameworks!
+
+target <span class="hljs-string">"App"</span> <span class="hljs-keyword">do</span>
+  pod <span class="hljs-string">"RxSwift"</span>
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In Podfile, we declare a dependency using the <code>pod</code> function. Such a dependency could be from CocoaPods-managed repos, a git repo, or a local directory:</p>
+<pre><code class="hljs language-ruby">pod <span class="hljs-string">"RxSwift"</span>, <span class="hljs-string">"6.1.0"</span>
+pod <span class="hljs-string">"Moya"</span>, <span class="hljs-symbol">:git</span> => <span class="hljs-string">"https://github.com/Moya/Moya.git"</span>, <span class="hljs-symbol">:tag</span> => <span class="hljs-string">"15.0.3"</span>
+pod <span class="hljs-string">"Services"</span>, <span class="hljs-symbol">:path</span> => <span class="hljs-string">"LocalPods/Services"</span>
+</code></pre>
+<h3 id="when-is-podfile-loaded">When is Podfile loaded?</h3>
+<p>Not all pod commands load this Podfile. We can easily verify this hypothesis by printing a log message at the beginning of Podfile (ex. prepending this line <code>puts "Load Podfile"</code>). The message appears in the logs when running <code>pod install</code> while it does not when running some other commands like <code>pod repo list</code>.</p>
+<p>This behavior makes sense because Podfile is meant for dependencies declaration. CLI usages related to dependencies should load Podfile. Otherwise, loading Podfile is not necessary. Looking at the pod subcommand descriptions (ie. running <code>pod --help</code>), one may intuitively tell that <code>pod install</code>, <code>pod update</code>, and <code>pod outdated</code> do load Podfile.</p>
+<p><img src="/images/ios/cli_pod_help.png" alt=""></p>
+<p>Looking at the code of <a href="https://github.com/CocoaPods/CocoaPods">cocoapods</a> and <a href="https://github.com/CocoaPods/Core">cocoapods-core</a>, Podfile is loaded when we first access <code>Pod::Config.instance.podfile</code> (ie. the attribute <code>podfile</code> of the config singleton).</p>
+<p><a href="https://github.com/CocoaPods/CocoaPods/blob/1.11.0/lib/cocoapods/config.rb#L204-L206">https://github.com/CocoaPods/CocoaPods/blob/1.11.0/lib/cocoapods/config.rb#L204-L206</a></p>
+<pre><code class="hljs language-ruby"><span class="hljs-keyword">module</span> <span class="hljs-title class_">Pod</span>
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Config</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">podfile</span>
+	    <span class="hljs-variable">@podfile</span> |<span class="hljs-params"></span>|= <span class="hljs-title class_">Podfile</span>.from_file(podfile_path) <span class="hljs-keyword">if</span> podfile_path
+    <span class="hljs-keyword">end</span>
+    ...
+ <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We can verify this easily by executing a one-line ruby code that accesses the value. The log <code>Load Podfile</code> should appear in the console.</p>
+<pre><code class="hljs language-bash">$ ruby -e <span class="hljs-string">'require "cocoapods"; Pod::Config.instance.podfile'</span>
+
+Load Podfile
+</code></pre>
+<h3 id="methods-in-podfile">Methods in Podfile</h3>
+<p>Podfile content is <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile.rb#L327-L338">evaluated within <code>Pod::Podfile</code> context</a>. This gives us code access to <code>Pod::Podfile</code>'s instance variables and private methods. Therefore, what we can do in Podfile is much more than just dependencies declaration.</p>
+<p>Have you ever got annoyed by the Podfile checksum changing all the time? This change causes a high chance of merge conflicts in Podfile.lock, especially when there are many contributors to the project.</p>
+<pre><code class="hljs language-diff"><span class="hljs-deletion">-PODFILE CHECKSUM: ad5874f24bb0dbffd1e9bb8443604e3578796c7a</span>
+<span class="hljs-addition">+PODFILE CHECKSUM: ab71b2c6800abc9eba8a3500b110eccf4e33e7f4</span>
+</code></pre>
+<p>We can tackle this problem by setting the <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile.rb#L259-L268"><code>@checksum</code> attribute</a> right in Podfile. After running <code>pod install</code>, we should see the dummy checksum being reflected in Podfile.lock.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-comment"># In Podfile</span>
+<span class="hljs-variable">@checksum</span> = <span class="hljs-string">"dummy-text-to-reduce-merge-conflicts"</span>
+</code></pre>
+<p>...</p>
+<p>As mentioned, we have access to <a href="https://www.rubydoc.info/gems/cocoapods-core/Pod/Podfile"><code>Pod::Podfile</code></a>'s methods in Podfile. Those commonly used in Podfile are <code>use_frameworks!</code>, <code>platform :ios, "14.0"</code>, <code>target "..."</code>, <code>pod "..."</code>. In fact, those methods are <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile/dsl.rb#L35">defined in <code>Pod::Podfile::DSL</code></a> and <a href="https://github.com/CocoaPods/Core/blob/1.11.0/lib/cocoapods-core/podfile.rb#L16">included in <code>Pod::Podfile</code></a>.</p>
+<p>We can patch those methods to add more customizations. This could be done using <code>alias_method</code> with the corresponding method in <code>Pod::Podfile</code> or <code>Pod::Podfile::DSL</code>. Using <code>alias_method</code> is similar to the <a href="/posts/tech/method-swizzling-what-why-and-how/">method swizzling technique in Swift</a>. Some CocoaPods plugins alter CocoaPods’s behaviors this way to interfere with the pod installation process.</p>
+<p>The following code demonstrates how we introduce the <code>:xcode_migration</code> option to the <code>pod</code> syntax. This option helps eliminate many if/else checks in Podfile, making the usage more declarative.</p>
+<pre><code class="hljs language-ruby"><span class="hljs-comment"># In Podfile</span>
+require_relative <span class="hljs-string">"patch"</span> <span class="hljs-comment"># &#x3C;-- Load patch.rb</span>
+...
+pod <span class="hljs-string">"RxSwift"</span>, <span class="hljs-symbol">:xcode_migration</span> => {
+  <span class="hljs-symbol">:default</span> => <span class="hljs-string">"6.1.0"</span>,
+  <span class="hljs-symbol">:xcode14</span> => {
+    <span class="hljs-symbol">:git</span> => <span class="hljs-string">"link/to/fork"</span>,
+    <span class="hljs-symbol">:branch</span> => <span class="hljs-string">"xcode14"</span>
+  }
+}
+</code></pre>
+<pre><code class="hljs language-ruby"><span class="hljs-comment"># In patch.rb</span>
+<span class="hljs-keyword">module</span> <span class="hljs-title class_">Pod</span>
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Podfile</span>
+	  alias_method <span class="hljs-symbol">:original_pod</span>, <span class="hljs-symbol">:pod</span>
+	  <span class="hljs-keyword">def</span> <span class="hljs-title function_">pod</span>(<span class="hljs-params">*args, **kwargs</span>)
+      <span class="hljs-keyword">if</span> (opts = kwargs[<span class="hljs-symbol">:xcode_migration</span>])
+        <span class="hljs-comment"># Process opts &#x26; update args/kwargs to use the version/branch accordingly</span>
+        ...
+        <span class="hljs-keyword">if</span> xcode14?
+          ...
+        <span class="hljs-keyword">end</span>
+			<span class="hljs-keyword">end</span>
+	    original_pod(*args, **kwargs) <span class="hljs-comment"># &#x3C;-- call the original method with the processed args/kwargs</span>
+		<span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>...</p>
+<p>Above are some explanations of how Podfile works. More topics will be covered in the upcoming posts. Stay tuned!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2022-12-17"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"CocoaPods Explained: Podfile"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","cocoapods",{"href":"/tags/cocoapods","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"cocoapods"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[["$","div",null,{"className":"border-l-[3px] border-[--theme] pl-4","children":[["$","div",null,{"className":"flex items-baseline gap-2 mb-3","children":[["$","span",null,{"className":"text-[13px] font-bold text-theme-primary","children":"CocoaPods Explained"}],["$","span",null,{"className":"text-xs text-muted","children":["· ",2," parts"]}]]}],["$","div",null,{"children":[["$","div","cocoapods-explained-podfile",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":1}],["$","span",null,{"className":"text-[14px] font-normal text-muted truncate","children":"CocoaPods Explained: Podfile"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2022-12-17"}]]}],["$","div","cocoapods-explained-plugins",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":2}],["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-plugins","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Cocoapods Explained: Plugins"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-02-02"}]]}]]}],["$","div",null,{"className":"mt-4 pt-3 border-t border-border/30","children":["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-plugins","className":"text-[13px] font-medium text-theme-primary no-underline hover:text-hover-accent transition-colors","children":["Next in series: ","Cocoapods Explained: Plugins"," →"]}]}]]}],["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/dealing-with-flaky-ui-tests","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Dealing With Flaky UI Tests in iOS"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2022-06-25"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/cocoapods-explained-plugins","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Cocoapods Explained: Plugins"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-02-02"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],"$L15"]}]]}]]}]
+15:["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+16:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"CocoaPods Explained: Podfile — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L16","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

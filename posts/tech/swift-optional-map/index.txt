@@ -1,0 +1,104 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","swift-optional-map",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","swift-optional-map","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","swift-optional-map","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T1bd3,<p>There are a number of cases in which we would like to initialize an object with
+some parameters but what we currently have (i.e. these parameters),
+unfortunately, are <em>Optional Type</em>. For instance, we have a <strong>urlString</strong> with
+the type <strong>String?</strong> (or <em>Optional<String></em>), and we want to get a <strong>url</strong> from
+<em>urlString</em>.</p>
+<p>Basically, we expect to get a <em>url</em> of <strong>NSURL?</strong> (or <em>Optional<NSURL></em>). If
+<strong>urlString == nil</strong>, the <em>url</em> should be <em>nil</em> as well.</p>
+<p>However, the initialization of <strong>NSURL</strong> requires a <strong>string</strong> of <strong>String</strong>
+(which is already unwrapped).</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NSURL</span> {
+   <span class="hljs-keyword">init?</span>(<span class="hljs-params">string</span> <span class="hljs-params">URLString</span>: <span class="hljs-type">String</span>)
+}
+</code></pre>
+<p>Here comes a very popular way to deal with this <em>type-incompatibility</em>:</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// let urlString: String? = "www.myurl.com"</span>
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> urlString <span class="hljs-operator">=</span> urlString {
+   <span class="hljs-keyword">let</span> url <span class="hljs-operator">=</span> <span class="hljs-type">NSURL</span>(string: urlString)
+   <span class="hljs-comment">// Do stuff</span>
+}
+</code></pre>
+<p>In case we wish to use the <em>url</em> outside the <em>if-let block</em>, it’s quite common
+that we make <em>url</em> mutable and assign its value inside the condition block.</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// let urlString: String? = "www.myurl.com"</span>
+<span class="hljs-keyword">var</span> url: <span class="hljs-type">NSURL</span>?
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> urlString <span class="hljs-operator">=</span> urlString {
+   url <span class="hljs-operator">=</span> <span class="hljs-type">NSURL</span>(string: urlString)
+}
+</code></pre>
+<p>This looks acceptable but:</p>
+<ul>
+<li><em>A few lines of code should have not been added for such a circumstance like this</em></li>
+<li><em>The only reason to change url from immutable to mutable (from let … to var …)
+is merely this type-incompatibility</em></li>
+</ul>
+<h4 id="map-is-coming-for-the-rescue"><em>Map</em> is coming for the rescue</h4>
+<p>Luckily, we have a function <strong>map</strong> on <strong>Optional</strong>. (If Swift does not support,
+we could define it :D). I am quite sure you also have used <strong>map</strong> on an
+<strong>Array</strong> a lot, right?</p>
+<p>For the sake of better understanding, I removed some unnecessary keywords that
+are not directly relevant to this topic.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Optional</span>&#x3C;<span class="hljs-type">Wrapped</span>> {
+   map<span class="hljs-operator">&#x3C;</span><span class="hljs-type">U</span><span class="hljs-operator">></span>(f: (<span class="hljs-type">Wrapped</span>) -> <span class="hljs-type">U</span>) -> <span class="hljs-type">U</span>?
+}
+</code></pre>
+<p>Now, we could init an object with a parameter of <em>Optional</em>, like this:</p>
+<pre><code class="hljs language-vbnet">// <span class="hljs-keyword">let</span> urlString: <span class="hljs-type">String</span>? = <span class="hljs-string">"www.myurl.com"</span>
+<span class="hljs-keyword">let</span> url = urlString.map { NSURL(<span class="hljs-type">string</span>: $<span class="hljs-number">0</span> }
+</code></pre>
+<p>Of course we could use this tip with other functions apart from initializations</p>
+<pre><code class="hljs language-bash">// <span class="hljs-built_in">let</span> urlString: String? = <span class="hljs-string">"www.myurl.com"</span>
+<span class="hljs-built_in">let</span> data = urlString.map { fetchDataFromPath(<span class="hljs-variable">$0</span> }   // data: NSData?
+</code></pre>
+<h4 id="how-about-a-function-with-2-parameters">How about a function with 2 parameters?</h4>
+<pre><code class="hljs language-swift">fetchDataFromPath(path: <span class="hljs-type">String</span>, withToken: <span class="hljs-type">String</span>)
+</code></pre>
+<p>We can come up with the idea to turn a 2 optionals into an optional of
+<strong>Tuple</strong>. Lets define an *operator *<strong>&#x3C;&#x26;></strong> to combine 2 optionals</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">infix</span> <span class="hljs-keyword">operator</span> <span class="hljs-title">&#x3C;&#x26;></span> { associativity left }
+
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">&#x3C;&#x26;>&#x3C;</span><span class="hljs-type">T</span>, <span class="hljs-type">U</span><span class="hljs-operator">></span> (left: <span class="hljs-type">Optional</span>&#x3C;<span class="hljs-type">T</span>>, right: <span class="hljs-type">Optional</span>&#x3C;<span class="hljs-type">U</span>>) -> <span class="hljs-type">Optional</span>&#x3C;(<span class="hljs-type">T</span>, <span class="hljs-type">U</span>)> {
+   <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> left <span class="hljs-operator">=</span> left, right <span class="hljs-operator">=</span> right {
+      <span class="hljs-keyword">return</span> (left, right)
+   }
+   <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+}
+</code></pre>
+<p>Or we could define it in a more concise way using <em>flatMap</em> on <em>Optional</em>.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">infix</span> <span class="hljs-keyword">operator</span> <span class="hljs-title">&#x3C;&#x26;></span> { associativity left }
+
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">&#x3C;&#x26;>&#x3C;</span><span class="hljs-type">T</span>, <span class="hljs-type">U</span><span class="hljs-operator">></span> (left: <span class="hljs-type">Optional</span>&#x3C;<span class="hljs-type">T</span>>, right: <span class="hljs-type">Optional</span>&#x3C;<span class="hljs-type">U</span>>) -> <span class="hljs-type">Optional</span>&#x3C;(<span class="hljs-type">T</span>, <span class="hljs-type">U</span>)> {
+   <span class="hljs-keyword">return</span> left.flatMap { x <span class="hljs-keyword">in</span> right.flatMap { y <span class="hljs-keyword">in</span> (x, y) } }
+}
+</code></pre>
+<p>And this is how we use it:</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// let urlString: String? = "www.myurl.com"</span>
+<span class="hljs-comment">// let token: String? = "token"</span>
+<span class="hljs-keyword">let</span> data <span class="hljs-operator">=</span> (urlString <span class="hljs-operator">&#x3C;&#x26;></span> token).map { fetchDataFromPath(<span class="hljs-variable">$0</span>, withToken: <span class="hljs-variable">$1</span>) }
+</code></pre>
+<p>Have fun!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2016-02-27"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Swift: Optional — map"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/swift-box-with-recursive-data-structure","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: Box with recursive data structure"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2015-10-17"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/swift-currying","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: Currying"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2016-04-17"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Swift: Optional — map — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

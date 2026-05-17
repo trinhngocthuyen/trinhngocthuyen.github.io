@@ -1,0 +1,139 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","code-signing-on-ci",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","code-signing-on-ci","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","code-signing-on-ci","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T328f,<h2 id="1-introduction">1. Introduction</h2>
+<p>Code signing in iOS refers to the process of digitally signing an app's executable code to ensure its authenticity and integrity.</p>
+<p>During feature development, developers usually do not have to worry about code signing because Xcode handles the complicated work. Most of the time, we build and run the app on simulators that do not require special code signing settings.</p>
+<p>However, distributing the app requires code signing. While working locally, you can rely on the <em>"Automatically manage signing"</em> option in the project settings. But, this option is not sufficient for medium/large-scale teams. Problems arise when integrating the distribution with CI/CD. You cannot log into your developer account on CI runners, and even if you could, it would be considered a security risk.</p>
+<p>This article focuses on how to make code signing work in a CI/CD environment.</p>
+<h2 id="2-background">2. Background</h2>
+<h3 id="21-distributing-an-app">2.1. Distributing an App</h3>
+<p>In this article, "distributing an app" refers to the process of converting the code base of a project into an <code>.ipa</code> file that can be sent to a distribution channel. Such a channel could be:</p>
+<ul>
+<li>TestFlight/App Store (for those enrolled in the Apple Developer Program)</li>
+<li>Third-party channels (such as Firebase App Distribution, Visual Studio App Center, etc.) or in-house channels (for those enrolled in the Apple Developer Enterprise Program)</li>
+</ul>
+<p>To obtain the <code>.ipa</code>, a developer must do the following:</p>
+<ul>
+<li>Step 1: Archive the project. This can be done by selecting Products > Archive in Xcode, or by running <code>xcodebuild</code> with the <code>archive</code> action. The output of this step is an <code>.xcarchive</code> bundle.</li>
+<li>Step 2: Export this <code>.xcarchive</code> to the <code>.ipa</code>. This step is done by running <code>xcodebuild</code> with the <code>-exportArchive</code> option. If you are using Xcode, you can choose <code>Distribute App</code> and follow some additional steps to obtain the <code>.ipa</code> or even upload it to TestFlight/App Store.</li>
+</ul>
+<p>In the two steps mentioned above, the code signing process occurs during step 1. In fact, code signing is also involved when we build the project. In the Xcode build/archive logs, you can locate the code signing step at the very end.</p>
+<pre><code class="hljs language-bash">$ /usr/bin/codesign --force --sign ECED04E29B6BF995A54ED871F657D8CB0AEDC3F6 ......
+</code></pre>
+<p><img src="/images/ios/codesign_xcodebuild.png" alt="">
+<span class="figcaption">Figure 2.1.1: The <code>codesign</code> step in Xcode build/archive logs.</span></p>
+<p>Even when we perform a normal debug build (for simulators), Xcode still executes this step. In this case, you should see the log stating <code>Signing Identity: "-”</code>. This implies that Xcode performs ad-hoc signing, which does not use any identities at all.</p>
+<h3 id="22-code-signing-components">2.2. Code Signing Components</h3>
+<p>Code signing requires two essential components:</p>
+<ul>
+<li><strong>A certificate</strong> (associated with a private key), which is stored in Keychain. Sometimes, the term <em>"identity"</em> is used to refer to the private key (similar to "identity" in SSH). The <em>"code sign identity"</em> in Xcode build settings refers to the identity (stored in Keychain) being used for the signing process.</li>
+<li><strong>A provisioning profile</strong>, which indicates which apps to sign (based on the app ID), and who is allowed to sign (ie. those with the private key corresponding to the certificate). The provisioning profile must match the given certificate. Therefore, if we update the certificate for code signing, the corresponding profile must also be regenerated.<br>
+When packaging the app, Xcode searches for a matching provisioning profile under <code>~/Library/MobileDevice/Provisioning Profiles</code>. Therefore, importing a provisioning profile generally involves copying that <code>.mobileprovision</code> file to this directory.\</li>
+</ul>
+<img src="/images/ios/provisioning_profile_previewed.png" style="width:600px">
+<span class="figcaption">Figure 2.2.1: Previewed data of a provisioning profile.</span>
+<p>To archive successfully, the corresponding build settings must be configured properly.</p>
+<pre><code class="hljs language-ini"><span class="hljs-attr">CODE_SIGN_IDENTITY</span> = &#x3C;identity name or uuid> // Ex: Apple Distribution
+<span class="hljs-attr">DEVELOPMENT_TEAM</span> = &#x3C;team id>
+<span class="hljs-attr">PROVISIONING_PROFILE_SPECIFIER</span> = &#x3C;name or uuid>
+</code></pre>
+<h2 id="3-demystifying-code-signing">3. Demystifying Code Signing</h2>
+<h3 id="31-the-role-of-keychain">3.1. The Role of Keychain</h3>
+<p>Code signing uses the MacOS keychain to store and manage cryptographic keys and certificates.</p>
+<p>According to the <a href="https://www.unix.com/man-page/osx/1/codesign/"><code>codesign</code> man page</a>:</p>
+<blockquote>
+<p>To be used for code signing, a digital identity must be stored in a keychain that is on the calling user's keychain search list.</p>
+</blockquote>
+<p>You can find those identities under the Certificates tab in Keychain Access.</p>
+<p><img src="/images/ios/keychain_identity.png" alt="">
+<span class="figcaption">Figure 3.1.1: Private key of a certificate in Keychain Access.</span></p>
+<p>By default, Xcode automatically manages certificates according to your developer account. However, there may be cases where you need to import a certificate to Keychain. For instance, if the certificate was created by another engineer, it may not be synchronized with Xcode managed certificates. Another example is when your developer account is not logged in, which is often the case for CI/CD execution.</p>
+<p>To import an identity to a keychain, simply double click on the <code>.p12</code> file and enter the password (if required). Alternatively, you can run the <a href="https://ss64.com/osx/security-export.html"><code>security import</code></a> command.</p>
+<pre><code class="hljs language-bash">$ security import &#x3C;path/to/p12> -P &#x3C;cert-passphrase>
+</code></pre>
+<h3 id="32-keychain-prompt">3.2. Keychain Prompt</h3>
+<p>When code signing is attempted, a prompt may appear asking for permission to access keychain items. The codesign awaits users’ action on the prompt.</p>
+<img src="/images/ios/keychain_prompt.png" style="width:375px">
+<span class="figcaption">Figure 3.2.1: Keychain prompt asking for permissions to access keychain items.</span>
+<p>If choosing “Always Allow”, the prompt will not display again. Once this option is selected, you can find <code>codesign</code> being whitelisted under the Access Control settings of the corresponding identity in the Keychain Access (right-click on the private key, choose “Get Info”, and navigate to the “Access Control” tab).</p>
+<img src="/images/ios/codesign_access_control.png" style="width:500px">
+<span class="figcaption">Figure 3.2.2: `codesign` in the whitelist</span>
+<p>When we remove <code>codesign</code> from this whitelist, archiving the app will trigger the prompt again.</p>
+<h3 id="33-bypassing-the-prompt">3.3. Bypassing the Prompt</h3>
+<p>The main question is: <em>"How to suppress the prompt without using a GUI?”</em></p>
+<p>To the best of my knowledge, the <code>security</code> CLI does not offer a direct way to grant access to a Keychain identity. Nevertheless, when importing a certificate to a Keychain using the <code>security</code> CLI, we can set the whitelist using the <code>-T</code> option.</p>
+<pre><code class="hljs language-bash">$ security import &#x3C;path/to/p12> -P &#x3C;passphrase> -T /usr/bin/codesign
+</code></pre>
+<p>After running the above command, you will notice that <code>codesign</code> is added to the whitelist under the Access Control settings of this specific identity (see: Figure 3.2.1).</p>
+<h2 id="4-solution-for-cicd">4. Solution for CI/CD</h2>
+<h3 id="41-fastlane-match">4.1. Fastlane Match</h3>
+<p>A common choice for code signing solution on CI is <a href="https://docs.fastlane.tools/actions/match">Fastlane Match</a>. With this solution, code signing identities and profiles are shared across your team using various storage options such as Git repo, Google Cloud, Amazon S3. Those files are securely encrypted with a passphrase.</p>
+<p>While this is a powerful tool, it introduces additional maintenance costs. First, you need to align yourself with Fastlane ecosystem. Second, when using a Git repo for Fastland Match, there might be some concerns when scaling for different projects. Having separate repos for N projects, each for each project, would be too many to maintain. Whereas, if we use a centralized repo for certificates and profiles, access control would be a problem. For instance, an engineer should have access to project A only, not project B. Then there is no trivial way to set up the access control this way (given that certificates and profiles of project A and B are stored in the same Git repo).</p>
+<p>It would be great if Fastlane Match supports storing certificates and profiles directly in a directory inside the project repo. In that scenario, the certificates and profiles are encrypted and committed to the project repo, where they are utilized.</p>
+<h3 id="42-handling-code-signing-on-ci">4.2. Handling Code Signing on CI</h3>
+<p>From what we have discussed in section (3), we can easily unveil the core logic that handles the code signing in Fastlane Match. Let’s create our own tool that handle code signing process.</p>
+<p>Assume that you already have valid certificates and profiles necessary for archiving the app. It is now up to you to decide how and where to store those files.</p>
+<p>Below are the general instructions for CI/CD setup. The provided steps are in Bash. You may rewrite the logic in your preferred language.</p>
+<p><strong>Step 1: Prepare a custom keychain</strong></p>
+<p>First, create a keychain. By having a dedicated keychain, it's easier to do the cleanup. Also, you can avoid compromisising the login password (if using the login keychain).</p>
+<p>Then, you need to add this keychain to user’s search list.</p>
+<p>To suppress the prompt asking for keychain password when importing certificates, we unlock the keychain in advance.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Create keychain</span>
+$ security create-keychain -p &#x3C;keychain-password> cicd
+<span class="hljs-comment"># Add to user's search list</span>
+$ security list-keychains -d user -s $(security list-keychains -d user | sed -e s/\"//g) cicd
+<span class="hljs-comment"># Unlock keychain</span>
+$ security unlock-keychain -p &#x3C;keychain-password>
+</code></pre>
+<p><strong>Step 2: Import certificates and provisioning profiles</strong></p>
+<p>Import the certificates with codesign being whitelisted, and copy the provisioning profiles to the dedicated directory.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Import certificate</span>
+$ security import &#x3C;path/to/p12> -P &#x3C;cert-password> -k cicd -T /usr/bin/codesign
+<span class="hljs-comment"># Copy provisioning profile</span>
+$ <span class="hljs-built_in">cp</span> &#x3C;path/to/profile> <span class="hljs-string">"~/Library/MobileDevice/Provisioning Profiles/cicd.mobileprovision"</span>
+</code></pre>
+<p><strong>Step 3: Build/archive the project</strong></p>
+<p><strong>Step 4: Dispose keychain if no longer in use</strong></p>
+<p>Delete the keychain. The imported certificates will be disposed along the way.</p>
+<p>Optionally, you can delete the provisioning profiles that were copied earlier.</p>
+<pre><code class="hljs language-bash">$ security delete-keychain cicd
+</code></pre>
+<h2 id="5-conclusion">5. Conclusion</h2>
+<p>In this blog post, we've delved into the crucial role of code signing in app distribution. We've examined the involvement of Keychain in the code signing process and explored how the <code>security</code> CLI can be utilized to bypass certain logic during CI/CD execution.</p>
+<p>Code signing has often posed challenges for developers, but with a deeper understanding, it no longer be a mysterious topic. By implementing the proposed solution, you can ensure smooth code signing on CI without heavy reliance on third-party tools like Fastlane.</p>
+<h2 id="6-references">6. References</h2>
+<ul>
+<li><a href="https://www.objc.io/issues/17-security/inside-code-signing">https://www.objc.io/issues/17-security/inside-code-signing</a></li>
+<li><a href="https://codesigning.guide">https://codesigning.guide</a></li>
+<li><a href="https://www.unix.com/man-page/osx/1/codesign">https://www.unix.com/man-page/osx/1/codesign</a></li>
+<li><a href="https://www.unix.com/man-page/osx/1/security">https://www.unix.com/man-page/osx/1/security</a></li>
+</ul>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2023-08-01"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Code Signing on CI"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+19:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+1a:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[["$","div",null,{"className":"border-l-[3px] border-[--theme] pl-4","children":[["$","div",null,{"className":"flex items-baseline gap-2 mb-3","children":[["$","span",null,{"className":"text-[13px] font-bold text-theme-primary","children":"CI Engineering"}],["$","span",null,{"className":"text-xs text-muted","children":["· ",4," parts"]}]]}],["$","div",null,{"children":[["$","div","dealing-with-flaky-ui-tests",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":1}],["$","$L5",null,{"href":"/posts/tech/dealing-with-flaky-ui-tests","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Dealing With Flaky UI Tests in iOS"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2022-06-25"}]]}],["$","div","code-signing-on-ci",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":2}],["$","span",null,{"className":"text-[14px] font-normal text-muted truncate","children":"Code Signing on CI"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-08-01"}]]}],["$","div","test-quarantine",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":3}],["$","$L5",null,{"href":"/posts/tech/test-quarantine","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"Designing Test Quarantine Logic to Deal With Flaky Tests"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2023-09-17"}]]}],["$","div","in-search-of-test-discovery",{"className":"flex justify-between items-baseline gap-4 py-[5px] border-t border-border/30 first:border-t-0","children":[["$","div",null,{"className":"flex items-baseline gap-2.5 min-w-0","children":[["$","span",null,{"className":"text-[11px] text-muted shrink-0 w-4 text-right tabular-nums","children":4}],["$","$L5",null,{"href":"/posts/tech/in-search-of-test-discovery","className":"text-[14px] font-medium text-ink no-underline hover:text-theme-primary transition-colors truncate","children":"In Search of Test Discovery Solutions in iOS"}]]}],["$","span",null,{"className":"text-[12px] text-muted shrink-0 tabular-nums","children":"2025-03-08"}]]}]]}],["$","div",null,{"className":"mt-4 pt-3 border-t border-border/30","children":["$","$L5",null,{"href":"/posts/tech/test-quarantine","className":"text-[13px] font-medium text-theme-primary no-underline hover:text-hover-accent transition-colors","children":["Next in series: ","Designing Test Quarantine Logic to Deal With Flaky Tests"," →"]}]}]]}],["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/50-shades-of-git-remotes-and-authentication","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"50 Shades of Git: Remotes and Authentication"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-02-14"}]]}],"$L17"]}]}],"$L18"]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L19",null,{"headings":[{"id":"1-introduction","text":"1. Introduction","level":2},{"id":"2-background","text":"2. Background","level":2},{"id":"21-distributing-an-app","text":"2.1. Distributing an App","level":3},{"id":"22-code-signing-components","text":"2.2. Code Signing Components","level":3},{"id":"3-demystifying-code-signing","text":"3. Demystifying Code Signing","level":2},{"id":"31-the-role-of-keychain","text":"3.1. The Role of Keychain","level":3},{"id":"32-keychain-prompt","text":"3.2. Keychain Prompt","level":3},{"id":"33-bypassing-the-prompt","text":"3.3. Bypassing the Prompt","level":3},{"id":"4-solution-for-cicd","text":"4. Solution for CI/CD","level":2},{"id":"41-fastlane-match","text":"4.1. Fastlane Match","level":3},{"id":"42-handling-code-signing-on-ci","text":"4.2. Handling Code Signing on CI","level":3},{"id":"5-conclusion","text":"5. Conclusion","level":2},{"id":"6-references","text":"6. References","level":2}]}]}]
+16:["$","$L1a",null,{"headings":"$15:props:children:props:headings"}]
+17:["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/on-using-python-for-scripting","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"On Using Python for Scripting in iOS Projects"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2023-08-22"}]]}]
+18:["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+1b:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Code Signing on CI — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L1b","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

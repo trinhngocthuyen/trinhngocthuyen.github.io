@@ -1,0 +1,87 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","misc","2018-in-review",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","misc","d"],{"children":[["slug","2018-in-review","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","misc","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","2018-in-review","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T1869,<h3 id="tổng-quan">Tổng quan</h3>
+<ul>
+<li>Nhìn chung, 2018 đối với mình là năm của công việc.</li>
+<li>Đây là năm đầu tiên mình sống ở nước ngoài. Vì Sing cũng là một nước Á châu nên cuộc sống cũng dễ thích nghi.</li>
+</ul>
+<h3 id="công-việc">Công việc</h3>
+<ul>
+<li>Cho đến thời điểm hiện tại, mình thấy hài lòng với công việc hiện tại. Hài lòng ở đây không phải là an bài mà có nghĩa là mình thấy có thử thách, có điều kiện phát triển.</li>
+<li>Mình được gặp và làm việc với <strong>nhiều người giỏi</strong>, mỗi người có những thế mạnh khác nhau: người thì giỏi mảng này, người thì giỏi mảng kia.<br/>
+<em>Fun fact: vì công ty nhiều người, nhiều tech families, nên có cơ hội làm việc với nhiều thể loại developers/QAs/PMs/Designers trong cái danh sách <a href="https://people.neilon.software/?fbclid=IwAR2V9W7r3ZUtcw9Cxequk65mwVXgITtowBaVEdIZMKvAkilgL_CuU6F5NEs">"How to Deal with Difficult People on Software Projects"</a> này :)).</em></li>
+<li>So với những công ty trước thì ở chỗ này có những điểm này nổi bật:
+<ul>
+<li><strong>Software process</strong> chuẩn hơn. Có sprint planning, daily standup, release process, on-call duty... Cho nên mình nhìn thấy được quá trình một tính năng được delivered như thế nào.</li>
+<li>Văn hóa <strong>code review</strong>. Mỗi ngày, mỗi người phải dành ra một khoảng thời gian để code review những merge requests của người khác. Thông qua code review thì cả người review lẫn người được review đều học thêm nhiều thứ. Hồi xưa mình hay gửi tâm tư vào trong code, nhưng giờ thì không dám nữa... Vì thể nào cũng bị review 😂.</li>
+<li>Chú trọng đến <strong>code quality</strong>. Code review là một cách để đảm bảo có chất lượng tốt. Ngoài ra, team luôn luôn có engineering work. Mỗi sprint (kéo dài 2 tuần), ngoài những tính năng (features), đều có engineering tasks... Cũng phải thôi, vì <em>"code quality implies product quality"</em> mà 🙂.</li>
+</ul>
+</li>
+<li><em>"Ở đâu cũng có anh hùng, ở đâu cũng có người khùng người điên"</em>. Dĩ nhiên ở đâu cũng có vấn đề, không cái này thì cũng cái khác.</li>
+<li>Đi kèm với những lợi ích là những trách nhiệm và áp lực. Có những lúc mình cảm thấy khá áp lực, vì phải đảm trách những vài trò mới (ko phải lead nha, đừng hiểu nhầm), nhiều công việc hơn, đòi hỏi nhiều kỹ năng hơn. Nhưng dần rồi quen 🙂. Ai cũng thế!</li>
+<li>Mình phải thừa nhận là mình code hơi bị chậm :(.</li>
+</ul>
+<h3 id="phát-triển-cá-nhân">Phát triển cá nhân</h3>
+<h4 id="thể-chất">Thể chất</h4>
+<ul>
+<li>Đây là một điểm mình cần phải cải thiện trong năm tới.</li>
+<li>Qua Singapore, mặc dù đi bộ nhiều hơn, nhưng mình cảm thấy rằng mình ít vận động hơn. Thấy người lúc nào cũng trong trạng thái mỏi mệt.</li>
+<li>Có 2 vấn đề chính mình cần phải cải thiện.
+<ul>
+<li>Thứ nhất là <strong>giấc ngủ</strong>. Từ ngày qua Sing, mình hay bị mất ngủ (cả những ngày uống cafe và không uống cafe). Ngủ dậy mệt mỏi, trong người khó chịu, tâm trạng cáu kỉnh, nên cũng  phần nào ảnh hưởng đến chất lượng công việc và năng suất làm việc.</li>
+<li>Thứ nhì là <strong>thói quen sinh hoạt</strong>. Ngủ trễ, dậy trễ, ăn trễ... ☠</li>
+</ul>
+</li>
+</ul>
+<h4 id="tinh-thần">Tinh thần</h4>
+<ul>
+<li>Năm ni bị nghèo nàn trải nghiệm. Mình chẳng đi đâu sất. Toàn ru rú trong nhà. Cơ mà... Dù gì thì sống bên Sing bản thân nó cũng là một trải nghiệm mới rồi.</li>
+<li>Có lẽ mình dành nhiều thời gian và sức lực cho công việc nên thấy mất thăng bằng giữa cuộc sống và công việc (work-life balance).</li>
+<li>Nói về chuyến đi thì mình chỉ đi Bintan (ở Indo) và Joho Bahru (ở Maylay) thôi. Còn lại là... đi về VN thăm gia đình, tiện thể ăn bánh mì tuấn mập, bún bò, món quảng... và ăn cơm má nấu 😍.</li>
+<li>Năm nay chẳng đọc sách chi. Mấy cuốn sách kỹ thuật đang đọc còn dang dở... Và sẽ còn dang dở tiếp trong 1 thời gian nữa 🤔.</li>
+</ul>
+<h4 id="quan-hệ-xã-hội">Quan hệ xã hội</h4>
+<ul>
+<li>Thật ngộ là qua Sing thì thấy mình kết bạn với nhiều người Việt hơn là ở VN. Nhiều lúc thấy Sing nhỏ bé, toàn quen nhau xà quần.</li>
+</ul>
+<h4 id="ngoài-lề">Ngoài lề</h4>
+<ul>
+<li>Ai mà ai nghĩ rằng <em>"thằng nó sống ở nước ngoài nên chắc tiếng Anh giỏi lắm"</em>, thì sai lầm rồi nghen 😞. Đây cũng là một điều mà mình cảm thấy rất xấu hổ. Mang tiếng là ở Sing gần ngót nghét một năm, mà tiếng Anh của mình dở òm. Mình vẫn còn cảm thấy khó khăn trong việc giao tiếp và diễn đạt. Càng xấu hổ hơn khi đầu năm 2018, mình đã có dự định là sẽ bắt đầu tự học tiếng Pháp từ giữa năm nay.</li>
+<li>Một điều đáng tiếc là năm nay mình không blog thường xuyên vì có những mối bạn tâm khác. Không chừng cái blog tiếp theo sẽ là "2019 in review" 😓.</li>
+</ul>
+<h3 id="ngoài-lề-1">Ngoài lề</h3>
+<ul>
+<li>Điều tự hào nhất: N/A.</li>
+<li>Sách tâm đắc nhất: N/A.</li>
+<li>Chuyến đi mong đợi nhất: home 🏡.</li>
+<li>Talk tâm đắc nhất: <a href="https://www.youtube.com/watch?v=YHZKX0H6cUE&#x26;fbclid=IwAR2vwmnHK8ClYnPSaXVcyd9E52JcDR1BJ8PiX8O3M30FMZOInCjpVCQUeI8">Eugenia Cheng: "The Art of Logic: How to Make Sense in a World that Doesn't"</a></li>
+<li>Subscription tâm đắc nhất: <a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17A">3Blue1Brown</a></li>
+<li>...</li>
+</ul>7:["$","div",null,{"className":"section-misc","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/misc","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tạp Bút"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2018-12-31"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"📝 Tổng kết năm 2018"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","retrospective",{"href":"/tags/retrospective","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"retrospective"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/misc/toan-tuyen-sinh-ptnk-2018-p1","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Toán: Tuyển sinh PTNK 2018 (p1)"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2018-05-30"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/misc/sg-vs-sg-1","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"SG vs. SG (p1)"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2019-03-24"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"tổng-quan","text":"Tổng quan","level":3},{"id":"công-việc","text":"Công việc","level":3},{"id":"phát-triển-cá-nhân","text":"Phát triển cá nhân","level":3},{"id":"ngoài-lề-1","text":"Ngoài lề","level":3}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"📝 Tổng kết năm 2018 — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

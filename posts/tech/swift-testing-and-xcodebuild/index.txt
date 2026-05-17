@@ -1,0 +1,150 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","swift-testing-and-xcodebuild",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","swift-testing-and-xcodebuild","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","swift-testing-and-xcodebuild","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T3121,<h2 id="introduction">Introduction</h2>
+<p><a href="https://developer.apple.com/xcode/swift-testing">Swift Testing</a> is a new test framework introduced by Apple at WWDC 2024. It offers a range of macro-based features, making test writing more expressive. One of the key features driving migration from <a href="https://developer.apple.com/documentation/xctest">XCTest</a> to Swift Testing is <a href="https://developer.apple.com/documentation/testing/parameterizedtesting"><strong>parameterized testing</strong></a>. While this concept has been widely available in other languages (ex. pytest introduced it in 2011), Swift Testing now enables repeated test execution with different inputs and expected outputs.</p>
+<p>Despite these enhancements, one important consideration is whether Swift Testing integrates well with xcodebuild, the foundation of iOS testing with CI/CD.</p>
+<h3 id="coexistence-of-swift-testing-and-xctest">Coexistence of Swift Testing and XCTest</h3>
+<p>Swift Testing and XCTest can coexist within the same Xcode project. This enables an incremental and hybrid migration strategy. For a typical iOS engineer working within Xcode most of the time, their workflow remains unchanged. They can write, run, and view test results directly in Xcode. However, infra engineers may face additional challenges when integrating Swift Testing with xcodebuild.</p>
+<p>Take parallel testing for example, a common approach is discovering tests in the project, dividing them into multiple chunks, and running each of them in concurrent jobs. This blog post explores two key issues in that pipeline:</p>
+<ul>
+<li>Extracting test functions (from the xctest binary)</li>
+<li>Running selective tests with xcodebuild</li>
+</ul>
+<h2 id="extracting-tests-from-the-xctest-binary">Extracting Tests From the xctest Binary</h2>
+<p>Discovering tests and splitting them into chunks is relatively easy in scripting languages like Ruby or Python, where tests can be easily scanned from source files. However, in an iOS project, there are no public APIs to retrieve a list of tests before runtime. A common heuristic approach is parsing symbols in the xctest binary (see <a href="/posts/tech/ci-extract-test-methods">this post</a> for more details). This technique relies on XCTest’s conventions:</p>
+<ul>
+<li>Test functions must be prefixed with <code>test</code></li>
+<li>They must be non-private, and without any arguments</li>
+</ul>
+<h3 id="how-swift-testing-changes-test-discovery">How Swift Testing Changes Test Discovery</h3>
+<p>Swift Testing does not follow these conventions. Any function, even a private one, can be turned into a test using the <code>@Test</code> macro. Test functions do not need to be inside an <code>XCTestCase</code>. They can be in any class, struct, enum, or even exist as free functions. Additionally, parameterized tests accept arguments. In the following example, <code>check</code>, <code>foo</code>, <code>bar</code> and <code>fib</code> are all test functions.</p>
+<pre><code class="hljs language-swift"><span class="hljs-meta">@Test</span> <span class="hljs-keyword">private</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">check</span>() { }
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">NewTestCase</span> {
+  <span class="hljs-meta">@Test</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">foo</span>() { }
+  <span class="hljs-meta">@Test</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">bar</span>() { }
+
+  <span class="hljs-meta">@Test</span>(arguments: [(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">4</span>, <span class="hljs-number">3</span>), (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)])
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">fib</span>(<span class="hljs-params">n</span>: <span class="hljs-type">Int</span>, <span class="hljs-params">expected</span>: <span class="hljs-type">Int</span>) { }
+}
+</code></pre>
+<h3 id="extracting-swift-testing-functions-from-binary-symbols">Extracting Swift Testing Functions from Binary Symbols</h3>
+<p>Fortunately, it is still possible to extract test functions from the xctest binary by examining symbol names:</p>
+<ul>
+<li>
+<p>The expansion of the <code>@Test</code> macro includes a special marker, <code>__🟠$test_container__function__func</code>, which helps identify test functions.</p>
+<p><img src="/images/misc/swift_testing_xcb_macro_expansion.png" alt=""></p>
+</li>
+<li>
+<p>The output from <code>nm -gU &#x3C;path/to/xctest/binary> | swift demangle</code> contains both the original function and its expanded form. Comparing the two allows us to extract test functions programatically.</p>
+<p><img src="/images/misc/swift_testing_xcb_nm.png" alt=""></p>
+</li>
+</ul>
+<h2 id="running-selective-tests-with-xcodebuild">Running Selective Tests With xcodebuild</h2>
+<p>In Xcode, individual tests can be run by clicking the diamond button in the Test Navigator. For automation, xcodebuild provides the <code>-only-testing</code> argument, which accepts test identifiers in the following formats:</p>
+<ul>
+<li><code>&#x3C;Target></code> (ex. <code>AppTests</code>): Runs all tests in the target</li>
+<li><code>&#x3C;Target>/&#x3C;Class></code> (ex. <code>AppTests/TestCaseA</code>): Runs all tests in a specific class</li>
+<li><code>&#x3C;Target>/&#x3C;Class>/&#x3C;function></code> (ex. <code>AppTests/TestCaseA/testA1</code>): Runs a single test function</li>
+</ul>
+<p>This works well with XCTest but <strong>not with Swift Testing</strong>. For example, running:</p>
+<pre><code class="hljs language-bash">xcodebuild <span class="hljs-built_in">test</span> ... -only-testing <span class="hljs-string">'AppTests/NewTestCase/foo'</span>
+</code></pre>
+<p>results in <strong>no tests being executed</strong>. Let's explore why.</p>
+<h3 id="debugging-the-issue">Debugging the Issue</h3>
+<p>We know for sure that running selective tests in Xcode works. So, let's run a given test in Xcode, and inspect xcresult logs (using <a href="https://github.com/ChargePoint/xcparse">xcparse</a>) to understand what's happening under the hood.</p>
+<p>The logs show a key difference between XCTest identifiers and Swift Testing identifiers. Swift Testing identifiers <strong>include parentheses</strong> at the end (ex. <code>AppTests/NewTestCase/foo()</code>).</p>
+<p><img src="/images/misc/swift_testing_xcb_id.png" alt=""></p>
+<p>Given this clue, I attempted to run again with parentheses added to the test identifiers as follows:</p>
+<pre><code class="hljs language-bash">$ xcodebuild <span class="hljs-built_in">test</span> ... -only-testing <span class="hljs-string">'EXTests/NewTestCase/foo()'</span>
+</code></pre>
+<p>The result still remained unchanged, ie. no tests getting executed. The logs show that the identifier was just like before (ie. without parentheses).</p>
+<pre><code class="hljs language-less">....
+  <span class="hljs-selector-tag">identifiersToRun</span>:&#x3C;<span class="hljs-selector-tag">XCTTestIdentifier</span> <span class="hljs-selector-tag">leaf</span>, <span class="hljs-selector-tag">method</span>, <span class="hljs-selector-tag">swift</span> <span class="hljs-selector-attr">[<span class="hljs-string">"NewTestCase"</span>, <span class="hljs-string">"foo"</span>]</span>>
+....
+</code></pre>
+<p>My hypothesis is that <em>xcodebuild strips the ending parentheses</em>, but only the last pair. Therefore, I tried adding an extra pair of parentheses to the identifier. Surprisingly, it works, confirming my hypothesis.</p>
+<pre><code class="hljs language-bash">$ xcodebuild <span class="hljs-built_in">test</span> ... -only-testing <span class="hljs-string">'EXTests/NewTestCase/foo()()'</span>
+</code></pre>
+<p>Note that, for free test functions, we don't need to add extra parentheses because the strip behavior only applies to the 3rd component (ie. test function) of the identifier.</p>
+<h3 id="patching-the-issue-with-xctestconfiguration">Patching the Issue With XCTestConfiguration</h3>
+<p>Although we can now run selective tests with xcodebuild, it occurs to me that this compatibility issue is more of Apple (developer tools) issue. Because of it, we - as engineers, need to bear the additional maintenance cost, including:</p>
+<ul>
+<li>Keeping track of Swift Testing's tests</li>
+<li>Modifying the test identifiers passed to xcodebuild accordingly, excluding free test functions.</li>
+</ul>
+<p>From an engineer's perspective, <code>EXTests/NewTestCase/foo</code> should work as there’s a matching test with the identifier. This motivated me to come up with a patch in the native code instead.</p>
+<p>Now, back to the xcresult logs. The following content suggests that <strong>XCTestConfiguration</strong> may be a good start.</p>
+<pre><code class="hljs language-objectivec">Running tests with active test configuration: &#x3C;<span class="hljs-built_in">XCTestConfiguration</span>: <span class="hljs-number">0x101b09260</span>>
+	                  testBundleURL:.........
+	         testBundleRelativePath:.........
+	              productModuleName:EXTests
+	                  testSelection:&#x3C;<span class="hljs-built_in">XCTTestSelection</span>: <span class="hljs-number">0x600000c5f540</span>>
+	            identifiersToRun:&#x3C;<span class="hljs-built_in">XCTTestIdentifier</span> leaf, method, swift [<span class="hljs-string">"NewTestCase"</span>, <span class="hljs-string">"foo()"</span>]>
+	            identifiersToSkip:
+...
+</code></pre>
+<p>Checking <a href="https://github.com/facebook/idb/blob/27fadda/PrivateHeaders/XCTestPrivate/XCTestConfiguration.h#L47">XCTestConfiguration’s header</a>, we find <code>activeTestConfiguration</code> and <code>testsToRun</code>, which are related to the problem.</p>
+<p>A possible approach to fix this issue is:</p>
+<div class="callout">
+<ol>
+<li>Swizzle the <code>XCTestConfiguration.activeTestConfiguration</code> function.</li>
+<li>In the swizzling handler, loop identifiers in <code>testsToRun</code>. For each one, check if the last component ends with a closing parenthesis. If not, add a new identifier with parentheses appended to <code>testsToRun</code>.</li>
+</ol>
+</div>
+Check out the demo code: [here](https://github.com/trinhngocthuyen/ios-demos/blob/main/swift-testing-with-xcodebuild).
+<pre><code class="hljs language-objective-c">@implementation XCTestConfiguration (Swizzlings)
++ (void)load {
+  Method m1 = class_getClassMethod(self, @selector(activeTestConfiguration));
+  Method m2 = class_getClassMethod(self, @selector(hooked_activeTestConfiguration));
+  method_exchangeImplementations(m1, m2);
+}
+
++ (id)hooked_activeTestConfiguration {
+  XCTestConfiguration* res = [self hooked_activeTestConfiguration];
+  NSMutableSet* swiftTestingIdentifiers = [NSMutableSet set];
+  for (XCTTestIdentifier* identifier in res.testsToRun) {
+    // Test identifiers suffixed with parentheses `()`, `(x:)` are recognized as swift-testing identifiers.
+    // Therefore, we just need to add a swift-testing identifier to `testsToRun`.
+    // If an identifier is added but there is no such a test function, no worries, it's gonna be skipped.
+    if (![identifier.lastComponent hasSuffix:@")"]) {
+      NSMutableArray* components = [NSMutableArray arrayWithArray:identifier.components];
+      components[components.count - 1] = [NSString stringWithFormat:@"%@()", identifier.lastComponent];
+      [swiftTestingIdentifiers addObject:[[XCTTestIdentifier alloc] initWithComponents:components argumentIDs:nil options:0]];
+    }
+  }
+  [res setTestsToRun:[res.testsToRun setByAddingTestIdentifiersFromSet:swiftTestingIdentifiers]];
+  return res;
+}
+@end
+</code></pre>
+<p>This patch ensures that xcodebuild treats Swift Testing identifiers correctly without requiring changes to infra-related code.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Swift Testing brings powerful features but also introduces challenges when integrating with xcodebuild, particularly in use cases requiring <code>-only-testing</code> for selective test execution. By analyzing binary symbols and patching <code>XCTestConfiguration</code>, we can ensure compatibility and maintain efficient automation workflows... Ideally, Apple should improve xcodebuild's support for Swift Testing in future updates, eliminating the need for these workarounds 😅.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2025-02-25"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Swift Testing and the Compatibility With xcodebuild"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","testing",{"href":"/tags/testing","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"testing"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/automation-at-your-core","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Automation at Your Core"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-02-17"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/in-search-of-test-discovery","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"In Search of Test Discovery Solutions in iOS"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-03-08"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"introduction","text":"Introduction","level":2},{"id":"coexistence-of-swift-testing-and-xctest","text":"Coexistence of Swift Testing and XCTest","level":3},{"id":"extracting-tests-from-the-xctest-binary","text":"Extracting Tests From the xctest Binary","level":2},{"id":"how-swift-testing-changes-test-discovery","text":"How Swift Testing Changes Test Discovery","level":3},{"id":"extracting-swift-testing-functions-from-binary-symbols","text":"Extracting Swift Testing Functions from Binary Symbols","level":3},{"id":"running-selective-tests-with-xcodebuild","text":"Running Selective Tests With xcodebuild","level":2},{"id":"debugging-the-issue","text":"Debugging the Issue","level":3},{"id":"patching-the-issue-with-xctestconfiguration","text":"Patching the Issue With XCTestConfiguration","level":3},{"id":"conclusion","text":"Conclusion","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Swift Testing and the Compatibility With xcodebuild — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

@@ -1,0 +1,131 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","ci-extract-test-methods",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","ci-extract-test-methods","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","ci-extract-test-methods","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T388b,<h2 id="1-introduction">1. Introduction</h2>
+<p>Reducing pipeline time is a key problem in the <em>pipeline time reduction</em> epic. As mentioned in <a href="/posts/tech/ci-ios-artifacts-optimization/">the previous post</a>, this can be done by dividing tests in the project into smaller sets and run them in parallel CI jobs (sometimes called <em>runners</em>). The assignment of <em>what tests to what jobs</em> usually takes place at the end of the <code>build</code> job, before tests being executed. In order to assign/distribute tests to runners, we must know what tests we have. A test, in this context, can be either:</p>
+<ul>
+<li>A test target, for ex. <code>AppUnitTests</code>, <code>AppUITests</code>.</li>
+<li>A test class (subclass of <code>XCTestCase</code>) in a test target.</li>
+<li>A test method inside a test class. A test method is a non-private method, prefixed with <code>test</code>, and has no arguments, no return value.</li>
+</ul>
+<img src="/images/ci/extract_tests_steps.png" style="width:450px">
+<p>Usually, there are only a few test targets in the project. Those targets can be easily derived from the scheme, or from the <code>*.xctestrun</code> file after building the project successfully. However, splitting tests by target is not a good choice because:</p>
+<ul>
+<li>A target might finish in a really long time. In our project, it takes approximately 50 mins to run all tests in  UI test target.</li>
+<li>There could be a significant imbalance in test time between targets. One could take only 5 mins to finish while another takes up to 30 mins.</li>
+</ul>
+<p>Therefore, splitting tests by <em>test class</em> or <em>test method</em> is a key to the efficiency of the infrastructure. Unfortunately, it's not trivial to extract test classes and test methods in the project before runtime. This blog post introduces 2 approaches to heuristically detect test classes and test methods of a test target.</p>
+<h2 id="2-heuristic-approaches">2. Heuristic Approaches</h2>
+<h3 id="21-using-sourcery">2.1. Using Sourcery</h3>
+<p><a href="https://github.com/krzysztofzablocki/Sourcery">Sourcery</a> is a code generator for Swift. It's built on top of <a href="https://github.com/apple/swift/tree/main/tools/SourceKit">SourceKit</a>. For those who did not know, SourceKit is the magic behind Xcode indexing which brings Xcode auto-completion to life. When Xcode indexes source files of a project, you can notice a running process called <code>SourceKitService</code>. Basically, what it does is to build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree (AST)</a> from the source files. From then, you can query information about avalaible classes, structs, protocols, methods and so forth.</p>
+<img src="/images/ci/extract_tests_sourcery.png" style="width:450px">
+<p>For example, the following <a href="https://stencil.fuller.li">stencil</a> template would generate a list of test methods of classes inheriting from <code>BaseUITestCase</code>.</p>
+<pre><code class="hljs language-django">{% for type in types.inheriting.BaseUITestCase %}
+{% for method in type.methods where method.accessLevel != "private" %}
+{% if method.selectorName|hasPrefix:"test" and method.parameters.count == 0 %}
+{{type.name}}.{{method.selectorName}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+</code></pre>
+<p>What the above template does is simple:</p>
+<ul>
+<li>For each subclass of <code>BaseUITestCase</code>, look for methods prefixed with <code>test</code> that is not private and does not have any argument, then print its class and method.</li>
+</ul>
+<p>When running the CLI, we need to specify the source folder/files and the stencil templates we're using. Then, Sourcery scans code in the given source folder/files, and generates data based on the given templates.</p>
+<pre><code class="hljs language-sh">$ sourcery --sources AppUITests --templates all_ui_tests.stencil
+</code></pre>
+<p>The output would look like this:</p>
+<pre><code class="hljs">TestCaseA.testA1
+TestCaseA.testA2
+TestCaseB.testB1
+</code></pre>
+<p>Now, let's talk about pros and cons.</p>
+<p>One big advantage of this approach is that it does <em>not require any build products</em>. This tests extraction step can be done as early as you wish. Also, it's easy to adopt this solution as the setup is lightweight.</p>
+<p>However, this approach has some drawbacks:</p>
+<ul>
+<li>It does NOT work well with <em><strong>pre-processing flags</strong></em>. Following is the example in which we encounter the issue while migrating from <a href="https://github.com/kif-framework/KIF">KIF tests</a> to XCUITests. Since Sourcery has no idea about pre-processing flags and it just scans code from top to bottom, the type of <code>BaseUITestCase</code> can be wrongly resolved to <code>BaseKIFTestCase</code> while it should be <code>BaseXCUITestCase</code>.</li>
+</ul>
+<pre><code class="hljs language-ini"><span class="hljs-comment">#if XCUITEST</span>
+typealias <span class="hljs-attr">BaseUITestCase</span> = BaseXCUITestCase
+<span class="hljs-comment">#else</span>
+typealias <span class="hljs-attr">BaseUITestCase</span> = BaseKIFTestCase
+<span class="hljs-comment">#end</span>
+</code></pre>
+<ul>
+<li>It might take a fairly long time to finish if there are a lot of source files to be scanned. With our project, it took around 10 secs to run with the template above.</li>
+<li>Moreover, your source files should be well structured to give an accurate output.</li>
+</ul>
+<h3 id="22-parsing-symbols-of-target-binaries">2.2. Parsing Symbols of Target Binaries</h3>
+<p>Another approach is to parse the symbols of a test target binary.
+Assume we have a UI test target <code>AppUITests</code> with a test class <code>UITestCaseX</code> of which the declaration is as follows:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">class</span> <span class="hljs-title class_">UITestCaseX</span>: <span class="hljs-title class_ inherited__">XCTestCase</span> {
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">testX1</span>() { }
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">testX2</span>() { }
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">testX000</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">x</span>: <span class="hljs-type">Int</span>) { }  <span class="hljs-comment">// &#x3C;-- Not a test method b/c of having arguments</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">testX999</span>() { }  <span class="hljs-comment">// &#x3C;-- Not a test method b/c of being private</span>
+}
+</code></pre>
+<p>In this class, there are 2 test methods <code>testX1</code> and <code>testX2</code>. Meanwhile, <code>testX000</code> and <code>test999</code> are not test methods, meaning, they won't be picked up when running <code>UITestCaseX</code>.</p>
+<p>...</p>
+<p>After compiling the project, the symbols of this class will be merged into the target executable (or target binary). As <code>AppUITests</code> is a UI test target, its binary locates inside the <code>Plugins</code> folder of the runner app bundle: <code>AppUITests-Runner.app/Plugins/AppUITests.xctest/AppUITests</code>.</p>
+<p>We can look up the symbols of this binary using the <code>nm</code> (or, <code>xcrun nm</code>) command. Since the symbols were obfuscated, we're gonna pipe the output to <code>xcrun swift-demangle</code> to make it more readble:</p>
+<pre><code class="hljs language-sh">$ xcrun nm <span class="hljs-variable">${DERIVED_DATA_PATH}</span>/AppUITests-Runner.app/PlugIns/AppUITests.xctest/AppUITests \
+  | xcrun swift-demangle
+</code></pre>
+<p>Let's take a quick look at the output.</p>
+<pre><code class="hljs language-swift"><span class="hljs-operator">...</span>
+<span class="hljs-number">0000000000001740</span> t <span class="hljs-keyword">@objc</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.<span class="hljs-keyword">init</span>(invocation: __C.<span class="hljs-type">NSInvocation</span>?) -> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>
+00000000000014b0 <span class="hljs-type">T</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX1() -> ()
+00000000000014d0 t <span class="hljs-keyword">@objc</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX1() -> ()
+0000000000001d04 <span class="hljs-type">S</span> method descriptor <span class="hljs-keyword">for</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX1() -> ()
+<span class="hljs-number">0000000000001510</span> <span class="hljs-type">T</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX2() -> ()
+<span class="hljs-number">0000000000001530</span> t <span class="hljs-keyword">@objc</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX2() -> ()
+0000000000001d0c <span class="hljs-type">S</span> method descriptor <span class="hljs-keyword">for</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX2() -> ()
+<span class="hljs-number">0000000000001780</span> <span class="hljs-type">T</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.__allocating_init(selector: <span class="hljs-type">ObjectiveC</span>.<span class="hljs-type">Selector</span>) -> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>
+00000000000017b0 <span class="hljs-type">T</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.<span class="hljs-keyword">init</span>(selector: <span class="hljs-type">ObjectiveC</span>.<span class="hljs-type">Selector</span>) -> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>
+<span class="hljs-number">0000000000001840</span> t <span class="hljs-keyword">@objc</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.<span class="hljs-keyword">init</span>(selector: <span class="hljs-type">ObjectiveC</span>.<span class="hljs-type">Selector</span>) -> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>
+<span class="hljs-number">0000000000001570</span> <span class="hljs-type">T</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX000(<span class="hljs-type">Swift</span>.<span class="hljs-type">Int</span>) -> ()
+<span class="hljs-number">0000000000001590</span> t <span class="hljs-keyword">@objc</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX000(<span class="hljs-type">Swift</span>.<span class="hljs-type">Int</span>) -> ()
+0000000000001d14 <span class="hljs-type">S</span> method descriptor <span class="hljs-keyword">for</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.testX000(<span class="hljs-type">Swift</span>.<span class="hljs-type">Int</span>) -> ()
+<span class="hljs-number">00000000000015e0</span> <span class="hljs-type">T</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.(testX999 <span class="hljs-keyword">in</span> _52DD9D513BE9E5B52CB47DED7BE88AA3)() -> ()
+0000000000001d1c s method descriptor <span class="hljs-keyword">for</span> <span class="hljs-type">SpecExtractorUITests</span>.<span class="hljs-type">UITestCaseX</span>.(testX999 <span class="hljs-keyword">in</span> _52DD9D513BE9E5B52CB47DED7BE88AA3)() -> ()
+<span class="hljs-operator">...</span>
+</code></pre>
+<ul>
+<li>Each row in the output represent the <a href="https://developer.apple.com/documentation/kernel/nlist"><code>nlist</code></a> entry in the symbol table.</li>
+<li>The second column in each entry is a letter representing the segment type in the binary. <code>T</code> and <code>t</code> refer to <code>__TEXT</code> and <code>__text</code> which translates to the segments containing the compiled code to be run. These letters being in uppercase or lowercase means the symbol is <em>external</em> or <em>non-external</em> respectively. <em>Non-external</em>, in this context, means <code>private</code>.</li>
+</ul>
+<p>For our case, we only need to extract symbols with type <code>T</code> that end with <code>.test&#x3C;BlahBlah>() -> ()</code>. A simple regex could help with the extraction: <code>\S+ T (\S+\.\S+\.test\S+)\(\) -> \(\)</code>.</p>
+<p>As compared to the previous approach (using Sourcery), this solution provides a <em><strong>more accurate output</strong></em> since it parses symbols from the target binary. We won't face the issue with pre-processing flags mentioned earlier. Moreover, the time to extract tests is pretty fast as it depends solely on the binaries (not the source files).</p>
+<h2 id="3-discussion">3. Discussion</h2>
+<p>In this post, we have got to know 2 different techniques to heuristically extract test methods of the project. Each has its own pros and cons. Which one to use really depends on your project. If your project has a lightweight and consistent codebase, using Sourcery probably suffices. Otherwise, you can consider the second approach which requires some additional efforts to search for the binaries, then extract the symbols of interest from them. In our project, we initially used the former approach and then migrated to the latter due to some issues mentioned before. Kudos to my colleague <a href="https://www.linkedin.com/in/alexander-apriamashvili/">Alex</a> for coming up with this approach.</p>
+<p>There is one case we have not yet covered. If you use <a href="https://github.com/Quick/Quick">Quick</a> to write tests, then extracting test methods does not make sense anymore because Quick swizzles to make up tests of a test class in a different way. To be  more specific, a test method of a test class will not be picked up to run if that test class is a subclass of <code>QuickSpec</code>. In this case, what you can do is to <strong>extract test classes</strong> instead.</p>
+<p>...</p>
+<p>Stay tuned for more tips ahead!</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2020-11-08"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"CI: Heuristically Extracting Test Methods Before Runtime"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ci",{"href":"/tags/ci","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ci"}],["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/ci-ios-artifacts-optimization","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"CI: Thinning iOS Build Artifacts"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2020-11-02"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/dealing-with-flaky-ui-tests","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Dealing With Flaky UI Tests in iOS"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2022-06-25"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"1-introduction","text":"1. Introduction","level":2},{"id":"2-heuristic-approaches","text":"2. Heuristic Approaches","level":2},{"id":"21-using-sourcery","text":"2.1. Using Sourcery","level":3},{"id":"22-parsing-symbols-of-target-binaries","text":"2.2. Parsing Symbols of Target Binaries","level":3},{"id":"3-discussion","text":"3. Discussion","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"CI: Heuristically Extracting Test Methods Before Runtime — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

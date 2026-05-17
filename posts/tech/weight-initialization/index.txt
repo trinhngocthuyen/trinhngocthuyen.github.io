@@ -1,0 +1,233 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","weight-initialization",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","weight-initialization","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","weight-initialization","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T7af6,<p>In this post, I will carry out some experiments to demonstrate the impact of weight initialization on the distribution of activations on each layer in neural network, especially the very last layers. This was mentioned by Andrej in <a href="https://www.youtube.com/watch?v=hd_KFJ5ktUc&#x26;index=6&#x26;list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC">cs231n/lec6</a> as a motivation paving the way for batch normalization.</p>
+<p>I will try to keep things simple with intuition. Mathematics will not be richly convered.</p>
+<h2 id="1-covariate-shift">1. Covariate Shift</h2>
+<h3 id="11-what-is-covariate-shift">1.1. What is Covariate Shift?</h3>
+<p><em>Covariate shift</em> refers to changes in the distribution of input variables. This shift is usually addressed as a problem causing poor performance in training neural networks.</p>
+<p>Note: In the context of neural networks, a layer takes the activations of the previous layer as its input. Therefore, it is also equivalent if we investigate the distribution of activations of a layer.</p>
+<h3 id="12-what-does-it-look-like">1.2 .What Does it Look Like?</h3>
+<p>Consider a neural networks with 20 fully connected layers.</p>
+<ul>
+<li><em>Input shape</em>: 49000x3072 (reshape from 49000 CIFAR images of size 32x32) and was whitened (zero-centered &#x26; normalized).</li>
+<li><em>Hidden layers</em>: 19 layers of shape (100, 100)</li>
+<li><em>Activation function</em>: ReLU.</li>
+<li><em>Biases</em>: all zeros.</li>
+<li><em>Weights</em>: normal distribution, scaled by factor 0.1.</li>
+</ul>
+<p>The distributions of layer ouputs are illustrated in the figure below. We can apparently see that the variance constantly decreases in deeper layers.</p>
+<img src="/images/notebooks/weight_initialization_5_0.png" style="width:600px">
+<span class="figcaption">_Fig 1._ Distribution of activations in layer 1, 3, 5, 7.</span>
+<h3 id="13-impact-of-covariate-shift">1.3. Impact of Covariate Shift?</h3>
+<p>When training a network, if the activations fall in a narrow range like above, the gradient on those activations could be relatively small, leading to <strong>gradient saturation/vanish</strong>. Training gets stuck as a result. We sometimes face the same problem with dispersing distribution.</p>
+<h2 id="2-param-initialization">2. Param Initialization</h2>
+<p>Param initialization is a primary cause of covariate shift. We will focus on weight initialization, and let biases be all zeros.</p>
+<p>An initialization strategy is considered good if it maintains the same mean and variance (or standard deviation) throughout layers. Since the input data was whitened, we expect mean around zero (+/-1), std around 1 (+/-0.5).</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mn>0.3</mn><mo separator="true">,</mo><mi>σ</mi><mo>=</mo><mn>0.7</mn></mrow><annotation encoding="application/x-tex">\mu = 0.3, \sigma = 0.7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0.3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.7</span></span></span></span>  ⟶ accepted ✅</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mn>0.3</mn><mo separator="true">,</mo><mi>σ</mi><mo>=</mo><mn>0.003</mn></mrow><annotation encoding="application/x-tex">\mu = 0.3, \sigma = 0.003</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0.3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.003</span></span></span></span> ⟶ NOT accepted ❌</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mn>15</mn><mo separator="true">,</mo><mi>σ</mi><mo>=</mo><mn>320</mn></mrow><annotation encoding="application/x-tex">\mu = 15, \sigma = 320</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">15</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">320</span></span></span></span> ⟶ NOT accepted ❌</li>
+</ul>
+<h3 id="21-setup">2.1. Setup</h3>
+<p>Some setup code for experiments:</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">relu</span>(<span class="hljs-params">x</span>):
+    <span class="hljs-keyword">return</span> np.maximum(x, <span class="hljs-number">0</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">X_flat, hid_dims, weights, biases, activation=relu</span>):
+    <span class="hljs-string">"""
+    Feed forward.
+     - X_flat: shape: N x D, where D = d1 x ... x dk.
+     - hid_dims: 1D array.
+     - weights: array of weights: W1, W2, ...
+     - biases: array of biases: b1, b2, ...
+     - activation: activation on each layer. None if no activation.
+    """</span>
+    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(weights) == <span class="hljs-built_in">len</span>(biases), <span class="hljs-string">'weights and biases must have the same length'</span>
+    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(hid_dims) + <span class="hljs-number">1</span> == <span class="hljs-built_in">len</span>(weights), <span class="hljs-string">'len(weights) must equal len(hid_dims) + 1'</span>
+
+    all_layers = []
+    out = X_flat
+    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(hid_dims) + <span class="hljs-number">1</span>):
+        out = np.dot(out, weights[l]) + biases[l]
+        <span class="hljs-keyword">if</span> activation <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+            out = activation(out)
+        all_layers.append(out)
+
+    <span class="hljs-keyword">return</span> out, all_layers
+</code></pre>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">visualize_distribution</span>(<span class="hljs-params">all_activations</span>):
+    n_layers = <span class="hljs-built_in">len</span>(all_activations)
+    activations_mean = [np.asscalar(np.mean(activations)) <span class="hljs-keyword">for</span> activations <span class="hljs-keyword">in</span> all_activations]
+    activations_std = [np.asscalar(np.std(activations)) <span class="hljs-keyword">for</span> activations <span class="hljs-keyword">in</span> all_activations]
+
+    xs = <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n_layers+<span class="hljs-number">1</span>)
+    _, axes = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, figsize=(<span class="hljs-number">8</span>, <span class="hljs-number">8</span>))
+    ax1, ax2, ax3, ax4 = axes[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], axes[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], axes[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], axes[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]
+    ax1.plot(xs, activations_mean, <span class="hljs-string">'-o'</span>, color=<span class="hljs-string">'#0067a7'</span>)
+    ax1.set_title(<span class="hljs-string">'means by layer'</span>)
+    ax1.set_xlabel(<span class="hljs-string">'layer'</span>)
+    ax2.plot(xs, activations_std, <span class="hljs-string">'-o'</span>, color=<span class="hljs-string">'red'</span>)
+    ax2.set_title(<span class="hljs-string">'std by layer'</span>)
+    ax2.set_xlabel(<span class="hljs-string">'layer'</span>)
+
+    ax3.hist(all_activations[<span class="hljs-number">14</span>].ravel(), bins=<span class="hljs-number">50</span>, color=<span class="hljs-string">'green'</span>)
+    ax3.set_title(<span class="hljs-string">'Distribution of layer 15'</span>)
+    ax4.hist(all_activations[-<span class="hljs-number">1</span>].ravel(), bins=<span class="hljs-number">50</span>, color=<span class="hljs-string">'green'</span>)
+    ax4.set_title(<span class="hljs-string">'Distribution of the layer %d'</span> % n_layers)
+
+    plt.tight_layout()
+    plt.show()
+
+    <span class="hljs-comment"># Print mean and std of last 5 layer</span>
+    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_layers)[-<span class="hljs-number">5</span>:]:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">'Layer %2d. mean: %f\tstd: %f'</span> % (l+<span class="hljs-number">1</span>, activations_mean[l], activations_std[l]))
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">initialize_params</span>(<span class="hljs-params">in_dim, hid_dims, out_dim,
+                      weight_initializer=np.random.randn,
+                      bias_initializer=np.zeros</span>):
+    dims = [in_dim] + hid_dims + [out_dim]
+    weights, biases = [], []
+    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(hid_dims) + <span class="hljs-number">1</span>):
+        w = weight_initializer(dims[l], dims[l+<span class="hljs-number">1</span>])
+        b = bias_initializer(dims[l+<span class="hljs-number">1</span>])
+        weights.append(w)
+        biases.append(b)
+    <span class="hljs-keyword">return</span> weights, biases
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">examine_distribution</span>(<span class="hljs-params">weight_initializer, activation=relu, n_layers=<span class="hljs-number">20</span></span>):
+    in_dim, out_dim = <span class="hljs-number">32</span>*<span class="hljs-number">32</span>*<span class="hljs-number">3</span>, <span class="hljs-number">10</span>
+    hid_dims = [<span class="hljs-number">100</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_layers - <span class="hljs-number">1</span>)]
+
+    weights, biases = initialize_params(in_dim, hid_dims, out_dim,
+        weight_initializer=weight_initializer)
+
+    _, all_activations = forward(X_train_normalized, hid_dims=hid_dims, 
+        weights=weights, biases=biases, activation=activation)
+
+    visualize_distribution(all_activations)
+</code></pre>
+<p>Now, lets examine some initialization schemes...</p>
+<h3 id="22-trivial-initialization">2.2. Trivial Initialization</h3>
+<p>The common way is using normal randomization with a scale. This scale should equal the standard deviation of the random numbers.</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">trivial_initializer</span>(<span class="hljs-params">d1, d2, weight_scale=<span class="hljs-number">0.1</span></span>):
+    <span class="hljs-keyword">return</span> np.random.normal(<span class="hljs-number">0</span>, weight_scale, (d1, d2))
+
+examine_distribution(trivial_initializer)
+</code></pre>
+<img src="/images/notebooks/weight_initialization_6_0.png" style="width:600px">
+<span class="figcaption">_Fig 2._ mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.1$.</span>
+<pre><code class="hljs language-c">Layer <span class="hljs-number">16.</span> mean: <span class="hljs-number">0.009006</span>    <span class="hljs-built_in">std</span>: <span class="hljs-number">0.016165</span>
+Layer <span class="hljs-number">17.</span> mean: <span class="hljs-number">0.005849</span>    <span class="hljs-built_in">std</span>: <span class="hljs-number">0.009699</span>
+Layer <span class="hljs-number">18.</span> mean: <span class="hljs-number">0.004207</span>    <span class="hljs-built_in">std</span>: <span class="hljs-number">0.007308</span>
+Layer <span class="hljs-number">19.</span> mean: <span class="hljs-number">0.002917</span>    <span class="hljs-built_in">std</span>: <span class="hljs-number">0.004961</span>
+Layer <span class="hljs-number">20.</span> mean: <span class="hljs-number">0.005232</span>    <span class="hljs-built_in">std</span>: <span class="hljs-number">0.006176</span>
+</code></pre>
+<p>⟶ Not accepted ❌</p>
+<pre><code class="hljs language-python">examine_distribution(<span class="hljs-keyword">lambda</span> d1, d2: trivial_initializer(d1, d2, weight_scale=<span class="hljs-number">0.2</span>))
+</code></pre>
+<img src="/images/notebooks/weight_initialization_7_0.png" style="width:600px">
+<span class="figcaption">_Fig 3._ mean and std by layer. Initialized by Gaussian $\mu=0, \sigma^2=0.2$.</span>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">Layer 16. mean:</span> <span class="hljs-number">825.965548</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">1394.566496</span>
+<span class="hljs-attr">Layer 17. mean:</span> <span class="hljs-number">1491.038728	</span><span class="hljs-attr">std:</span> <span class="hljs-number">2237.786857</span>
+<span class="hljs-attr">Layer 18. mean:</span> <span class="hljs-number">2149.680649	</span><span class="hljs-attr">std:</span> <span class="hljs-number">3300.200497</span>
+<span class="hljs-attr">Layer 19. mean:</span> <span class="hljs-number">3008.496905	</span><span class="hljs-attr">std:</span> <span class="hljs-number">4961.155125</span>
+<span class="hljs-attr">Layer 20. mean:</span> <span class="hljs-number">2845.114905	</span><span class="hljs-attr">std:</span> <span class="hljs-number">4381.190124</span>
+</code></pre>
+<p>⟶ Not accepted ❌</p>
+<p>Notice that after changing weight scale from 0.1 to 0.2, how output values are distributed changed radically. Quite sensitive to weight scale, huh?</p>
+<h3 id="23-xavier-initialization-glorot-initialization">2.3. Xavier Initialization (Glorot Initialization)</h3>
+<p>This scheme is based on the observation that:</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">var</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><msubsup><mo>∑</mo><mi>i</mi><mi>N</mi></msubsup><msub><mi>w</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>x</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mo>=</mo><mo>⋯</mo><mo>=</mo><mi>N</mi><mo>⋅</mo><mi mathvariant="normal">var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi mathvariant="normal">var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{var}(s) = \operatorname{var}\!\left(\sum_i^N w_i \cdot x_i\right) = \cdots = N \cdot \operatorname{var}(w) \cdot \operatorname{var}(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">var</span></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="mop"><span class="mord mathrm">var</span></span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">var</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">var</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></p>
+<p>In order to keep the same variance, we need: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">\operatorname{var}(w) = 1/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">var</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span>. So, the weight scale should be <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mi>N</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{1/N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.305em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord">1/</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-2.895em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.305em;"><span></span></span></span></span></span></span></span></span></p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">xavier_initializer_1</span>(<span class="hljs-params">d1, d2</span>):
+    <span class="hljs-keyword">return</span> np.random.randn(d1, d2) * np.sqrt(<span class="hljs-number">1.0</span> / d1)
+
+examine_distribution(xavier_initializer_1, activation=<span class="hljs-literal">None</span>)
+</code></pre>
+<img src="/images/notebooks/weight_initialization_8_0.png" style="width:600px">
+<span class="figcaption">_Fig 4._ mean and std by layer. Initialized using xavier initialization, with no activation.</span>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">Layer 16. mean:</span> <span class="hljs-number">0.000000</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.742681</span>
+<span class="hljs-attr">Layer 17. mean:</span> <span class="hljs-number">-0.000000</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.731260</span>
+<span class="hljs-attr">Layer 18. mean:</span> <span class="hljs-number">-0.000000</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.718502</span>
+<span class="hljs-attr">Layer 19. mean:</span> <span class="hljs-number">0.000000</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.724088</span>
+<span class="hljs-attr">Layer 20. mean:</span> <span class="hljs-number">-0.000000</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.740663</span>
+</code></pre>
+<p>⟶ Accepted ✅</p>
+<p>We can see that xavier initialization gives a really nice distribution: <em>gaussian shape, reasonable mean and std</em>. However, this initialization strategy seems not to work well with non-linear activation. If we use ReLU as the activation function, we got a poor distribution.</p>
+<pre><code class="hljs language-python">examine_distribution(xavier_initializer_1, activation=relu)
+</code></pre>
+<img src="/images/notebooks/weight_initialization_9_0.png" style="width:600px">
+<span class="figcaption">_Fig 5._ mean and std by layer. With relu activation, normal distribution, $\operatorname{var}(w) = 1/N$.</span>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">Layer 16. mean:</span> <span class="hljs-number">0.002048</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.003093</span>
+<span class="hljs-attr">Layer 17. mean:</span> <span class="hljs-number">0.001338</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.002246</span>
+<span class="hljs-attr">Layer 18. mean:</span> <span class="hljs-number">0.000834</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.001481</span>
+<span class="hljs-attr">Layer 19. mean:</span> <span class="hljs-number">0.000434</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.000776</span>
+<span class="hljs-attr">Layer 20. mean:</span> <span class="hljs-number">0.000440</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.000590</span>
+</code></pre>
+<p>⟶ Not accepted ❌</p>
+<p>A recent paper by <a href="https://arxiv.org/pdf/1502.01852v1.pdf">He et al</a> dove into the analysis with ReLU activation and finally reached the conclusion that the variance of weights should be <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">2/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2/</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span>. This is often used in practice.</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">xavier_initializer_2</span>(<span class="hljs-params">d1, d2</span>):
+    <span class="hljs-keyword">return</span> np.random.randn(d1, d2) * np.sqrt(<span class="hljs-number">2.0</span> / d1)
+
+examine_distribution(xavier_initializer_2)
+</code></pre>
+<img src="/images/notebooks/weight_initialization_10_0.png" style="width:600px">
+<span class="figcaption">_Fig 6._ mean and std by layer. With relu activation, normal distribution, $\operatorname{var}(w) = 2/N$.</span>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">Layer 16. mean:</span> <span class="hljs-number">0.605864</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.924794</span>
+<span class="hljs-attr">Layer 17. mean:</span> <span class="hljs-number">0.569898</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.860651</span>
+<span class="hljs-attr">Layer 18. mean:</span> <span class="hljs-number">0.530719</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.835036</span>
+<span class="hljs-attr">Layer 19. mean:</span> <span class="hljs-number">0.433965</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.776518</span>
+<span class="hljs-attr">Layer 20. mean:</span> <span class="hljs-number">0.335705</span>	<span class="hljs-attr">std:</span> <span class="hljs-number">0.556218</span>
+</code></pre>
+<p>⟶ Accepted ✅</p>
+<h2 id="3-another-approach">3. Another Approach</h2>
+<p>Another technique was recently developed called <strong>batch normalization</strong>. We will take a look at it later.
+P/s: A huge advantage of batch normalization is that it is more robust to bad initialization. In fact, using different values of weight scale does not produce much significant performance (and it's already good). Therefore, tuning hyperparams would be less painful.</p>
+<h2 id="4-conclusion">4. Conclusion</h2>
+<p>We have discussed <em>covariate shift</em> and its impact on training performance. With a proper scheme of initialization, the training could be less likely to get into this problem.
+We also have a look at some examples to see the distribution of activations corresponds to different schemes of initialization.</p>
+<p>Hope this post provides helpful visualization to help understand some problems of neural networks.</p>
+<p>Reference:</p>
+<ol>
+<li><a href="http://cs231n.github.io/neural-networks-2">CS231n course notes</a></li>
+<li><a href="http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf">Understanding the difficulty of training deep feedforward neural networks</a></li>
+<li><a href="https://arxiv.org/pdf/1502.01852v1.pdf">Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification</a></li>
+</ol>
+<p>Source code: <a href="https://github.com/trinhngocthuyen/teach-myself-ml/blob/master/experiments/weight_initialization.ipynb">here</a></p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2017-07-25"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Weight initialization - impact on layer distribution"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","neural-networks",{"href":"/tags/neural-networks","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"neural-networks"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/a-dive-into-hog","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"A dive into Histogram of Oriented Gradients (HOG)"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-07-13"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/a-misuse-of-expectation","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"A misuse of Expectation"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-07-30"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"1-covariate-shift","text":"1. Covariate Shift","level":2},{"id":"11-what-is-covariate-shift","text":"1.1. What is Covariate Shift?","level":3},{"id":"12-what-does-it-look-like","text":"1.2 .What Does it Look Like?","level":3},{"id":"13-impact-of-covariate-shift","text":"1.3. Impact of Covariate Shift?","level":3},{"id":"2-param-initialization","text":"2. Param Initialization","level":2},{"id":"21-setup","text":"2.1. Setup","level":3},{"id":"22-trivial-initialization","text":"2.2. Trivial Initialization","level":3},{"id":"23-xavier-initialization-glorot-initialization","text":"2.3. Xavier Initialization (Glorot Initialization)","level":3},{"id":"3-another-approach","text":"3. Another Approach","level":2},{"id":"4-conclusion","text":"4. Conclusion","level":2}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Weight initialization - impact on layer distribution — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

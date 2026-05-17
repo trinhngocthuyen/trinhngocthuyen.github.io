@@ -1,0 +1,129 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","swift-the-downsides-of-lazy-var-part-2",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","swift-the-downsides-of-lazy-var-part-2","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","swift-the-downsides-of-lazy-var-part-2","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T2598,<p>Continue from the <a href="/tech/swift-the-downsides-of-lazy-var-part-1">previous post</a>, we will look into a few problems when working with lazy var.</p>
+<h3 id="problems">Problems</h3>
+<h4 id="problem-1-not-working-smoothly-with-structs">Problem 1: not working smoothly with structs</h4>
+<p>Since the getter of lazy var is mutating, using it with structs sometimes requires extra work. For example, this code below does not compile:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Person</span> {
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">lazy</span> <span class="hljs-keyword">var</span> name <span class="hljs-operator">=</span> <span class="hljs-string">"thuyen"</span>
+	<span class="hljs-keyword">var</span> alias: <span class="hljs-type">String</span> { <span class="hljs-keyword">return</span> name } 	<span class="hljs-comment">// error: Cannot use mutating getter on immutable</span>
+}
+</code></pre>
+<p>To make this code work, we have to explicitly declare <code>getter</code> of <code>alias</code> as <code>mutating</code>. But personally, I would rather not make an object mutable just in order to access a specific property.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Person</span> {
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">lazy</span> <span class="hljs-keyword">var</span> name <span class="hljs-operator">=</span> <span class="hljs-string">"thuyen"</span>
+	<span class="hljs-keyword">var</span> alias: <span class="hljs-type">String</span> {
+		<span class="hljs-keyword">mutating</span> <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> name }
+	}
+}
+</code></pre>
+<p>Another approach is to wrap lazy var inside a class <code>LazyBox</code>, like in <a href="https://oleb.net/blog/2015/12/lazy-properties-in-structs-swift">this article</a>. We will later use this approach as we can handle more issues such as concurrency.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazyBox</span>&#x3C;<span class="hljs-type">T</span>> {
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> _value: <span class="hljs-type">T</span>?
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">let</span> compute: () -> <span class="hljs-type">T</span>
+	<span class="hljs-keyword">init</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">compute</span>: <span class="hljs-keyword">@escaping</span> () -> <span class="hljs-type">T</span>) {
+		<span class="hljs-keyword">self</span>.compute <span class="hljs-operator">=</span> compute
+	}
+
+	<span class="hljs-keyword">var</span> value: <span class="hljs-type">T</span> {
+		<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> _value <span class="hljs-operator">=</span> _value { <span class="hljs-keyword">return</span> _value }
+		<span class="hljs-keyword">let</span> v <span class="hljs-operator">=</span> compute()
+		_value <span class="hljs-operator">=</span> v
+		<span class="hljs-keyword">return</span> v
+	}
+}
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Person</span> {
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">let</span> _name <span class="hljs-operator">=</span> <span class="hljs-type">LazyBox</span>&#x3C;<span class="hljs-type">String</span>> { <span class="hljs-string">"thuyen"</span> }
+	<span class="hljs-keyword">var</span> alias: <span class="hljs-type">String</span> { <span class="hljs-keyword">return</span> _name.value }
+}
+</code></pre>
+<h4 id="problem-2-concurrency">Problem 2: concurrency</h4>
+<p>Another problem is that <code>lazy var</code> is not thread-safe which means the closure can get executed multiple times due to accesses from different threads. This is also mentioned in the Apple documentation:</p>
+<blockquote>
+<p>If a property marked with the <code>lazy</code> modifier is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.</p>
+</blockquote>
+<p>To prevent race condition, a simple implementation is to lock every read to the value:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazyBox</span>&#x3C;<span class="hljs-type">T</span>> {
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">let</span> lock: <span class="hljs-type">Synchronizing</span> <span class="hljs-operator">=</span> <span class="hljs-type">NSLock</span>()
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">lazy</span> <span class="hljs-keyword">var</span> _lazyValue: <span class="hljs-type">T</span> <span class="hljs-operator">=</span> compute()
+	<span class="hljs-operator">...</span>
+	<span class="hljs-keyword">var</span> value: <span class="hljs-type">T</span> {
+		<span class="hljs-keyword">return</span> lock.sync { _lazyValue }
+	}
+}
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">extension</span> <span class="hljs-title class_">Locking</span> {
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">lock</span>()
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">unlock</span>()
+}
+
+<span class="hljs-keyword">protocol</span> <span class="hljs-title class_">Synchronizing</span> {
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">sync</span>&#x3C;<span class="hljs-type">T</span>>(<span class="hljs-params">execute</span>: () <span class="hljs-keyword">throws</span> -> <span class="hljs-type">T</span>) <span class="hljs-keyword">rethrows</span> -> <span class="hljs-type">T</span>
+}
+
+<span class="hljs-keyword">extension</span> <span class="hljs-title class_">Locking</span> {
+	<span class="hljs-keyword">func</span> <span class="hljs-title function_">sync</span>&#x3C;<span class="hljs-type">T</span>>(<span class="hljs-params">execute</span>: () <span class="hljs-keyword">throws</span> -> <span class="hljs-type">T</span>) <span class="hljs-keyword">rethrows</span> -> <span class="hljs-type">T</span> {
+		<span class="hljs-keyword">defer</span> { unlock() }
+		lock()
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">try</span> execute()
+	}
+}
+
+<span class="hljs-comment">// Let's use NSLock for simplicity. Alternatives: DispatchQueue, pthread_mutex_t, semaphore...</span>
+<span class="hljs-keyword">extension</span> <span class="hljs-title class_">NSLock</span>: <span class="hljs-title class_ inherited__">Locking</span>, <span class="hljs-title class_ inherited__">Synchronizing</span> { }
+</code></pre>
+<p>Now, it works as expected. However, the computation should only occur in the first read access. Locking every read will hurt performance a bit. Therefore, a better implementation is to lock the computation instead.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazyBox</span>&#x3C;<span class="hljs-type">T</span>> {
+	<span class="hljs-operator">...</span>
+	<span class="hljs-keyword">var</span> value: <span class="hljs-type">T</span> {
+		<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> _value <span class="hljs-operator">=</span> _value { <span class="hljs-keyword">return</span> _value }
+		<span class="hljs-keyword">return</span> lock.sync {
+			<span class="hljs-comment">// Perform computation here</span>
+			<span class="hljs-operator">...</span>
+		}
+	}
+}
+</code></pre>
+<p>Note that performing computation more than once is still fine as long as they are synchronous and later computation reuses the result of previous ones.
+We know for sure that in the next execution inside <code>lock.sync</code>, we definitely have <code>_value</code> computed. Then we can reuse that result, like this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazyBox</span>&#x3C;<span class="hljs-type">T</span>> {
+	<span class="hljs-operator">...</span>
+	<span class="hljs-keyword">var</span> value: <span class="hljs-type">T</span> {
+		<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> _value <span class="hljs-operator">=</span> _value { <span class="hljs-keyword">return</span> _value }
+		<span class="hljs-keyword">return</span> lock.sync {
+			<span class="hljs-comment">// Check again if the value is already computed (from the first one get called)</span>
+			<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> _value <span class="hljs-operator">=</span> _value { <span class="hljs-keyword">return</span> _value }
+			<span class="hljs-keyword">let</span> v <span class="hljs-operator">=</span> compute()
+			_value <span class="hljs-operator">=</span> v
+			<span class="hljs-keyword">return</span> v
+		}
+	}
+}
+</code></pre>
+<h3 id="benchmark">Benchmark</h3>
+<p>I ran a performance test for the two implementations (locking computation only vs. locking every read).
+The result shows a significant performance gain for the former one (0.002s as compared to 0.065s). The code for the benchmark can be found <a href="https://gist.github.com/trinhngocthuyen/c51e4025658510b63f28b30596714f55">here</a>.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2018-06-01"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Swift: The downsides of lazy var (part 2)"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","swift",{"href":"/tags/swift","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"swift"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/swift-the-downsides-of-lazy-var-part-1","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift: The downsides of lazy var (part 1)"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2018-05-31"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/random-thoughts-on-being-a-ci-engineer","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Random thoughts on being a CI engineer"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2019-06-30"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Swift: The downsides of lazy var (part 2) — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

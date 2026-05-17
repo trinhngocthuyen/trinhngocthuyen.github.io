@@ -1,0 +1,159 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","how-a-swift-file-is-compiled",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","how-a-swift-file-is-compiled","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","how-a-swift-file-is-compiled","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T4537,<p>First of all, this is not "how an iOS/MacOS app is built". An app consists of a bunch of source code files, structured in modules/frameworks, each of which could be purely in swift/objective-c, or mixed and match. Besides, linking those modules is also another aspect. <a href="https://stackoverflow.com/questions/15198725/build-or-compile">The two terms <em>compiling</em> and <em>building</em> should not be confused!</a></p>
+<p>This post is about how the compiler translates a single Swift file into lower-level code. In other words, we are interested in what happens when we run this command:</p>
+<pre><code class="hljs language-css">xcrun swiftc <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span>
+</code></pre>
+<h3 id="compilation-pipeline">Compilation pipeline</h3>
+<p><img src="/images/ios/swift_build_pipeline.png" alt="">
+<span class="figcaption">Source: <a href="http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf">http://llvm.org/devmtg/2015-10/slides/GroffLattner-SILHighLevelIR.pdf</a></span></p>
+<p>[1] <strong>Parse</strong>. First, the compiler parses the source code and build the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract syntax tree (AST)</a>. We could see the AST by the option <code>-dump-ast</code>:</p>
+<pre><code class="hljs language-css">xcrun swiftc -dump-ast <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span>
+</code></pre>
+<p>Semantic analysis could be performed when the AST is constructed.</p>
+<p>[2] <strong>SILGen</strong>. Generate the Swift intermediate language. To get the SIL after this phase:</p>
+<pre><code class="hljs language-css">xcrun swiftc -emit-silgen <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span>
+</code></pre>
+<p>[3] <strong>SIL Optimizations</strong>. Perform some performance optimizations on the SIL generated.</p>
+<pre><code class="hljs language-css">xcrun swiftc -emit-sil <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span>
+</code></pre>
+<p>[4] <strong>IR</strong>. Generate the LLVM Intermediate representation. You can examine the IR by:</p>
+<pre><code class="hljs language-css">xcrun swiftc -emit-ir <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span>
+</code></pre>
+<p>[5] <strong>Code Generation</strong>. LLVM generates the assembly code and finally produces lower-level code (.o, executable...). To view the assembly:</p>
+<pre><code class="hljs language-css">xcrun swiftc -S <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span>
+</code></pre>
+<h3 id="swift-intermediate-language-sil">Swift Intermediate Language (SIL)</h3>
+<h4 id="name-mangling">Name mangling</h4>
+<p>My first look at the SIL was like "omg. what the heck is <code>_T04main6AnimalC9makeSoundyyF</code>?". But it's not as scary as you thought.</p>
+<pre><code class="hljs language-perl">// Animal.makeSound()
+sil hidden <span class="hljs-variable">@_T04main6AnimalC9makeSoundyyF</span> : <span class="hljs-variable">$@</span>convention(<span class="hljs-function"><span class="hljs-keyword">method</span>) (@<span class="hljs-title">guaranteed</span> <span class="hljs-title">Animal</span>) -> () </span>{
+// <span class="hljs-variable">%0</span>                                             // user: <span class="hljs-variable">%1</span>
+bb0(<span class="hljs-variable">%0</span> : <span class="hljs-variable">$Animal</span>):
+  debug_value <span class="hljs-variable">%0</span> : <span class="hljs-variable">$Animal</span>, let, name <span class="hljs-string">"self"</span>, argno <span class="hljs-number">1</span> // id: <span class="hljs-variable">%1</span>
+  <span class="hljs-variable">%2</span> = tuple ()                                   // user: <span class="hljs-variable">%3</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">%2</span> : <span class="hljs-variable">$(</span>)                                 // id: <span class="hljs-variable">%3</span>
+} // end sil function <span class="hljs-string">'_T04main6AnimalC9makeSoundyyF'</span>
+</code></pre>
+<p><em><strong>Name mangling</strong></em> is used to squash additional information of an entity into a single string. The encoded name could tell us its type (class/struct/enum), module, context... For example, in <code>_T04main6PersonVACycfC</code>, the letter <code>V</code> following <code>Person</code> implies that <code>Person</code> is a struct. We won't dive into the detail of this technique. For more info, you could read <a href="https://github.com/apple/swift/blob/master/docs/ABI/Mangling.rst">here</a>.</p>
+<h4 id="make-sil-more-readable">Make SIL more readable</h4>
+<p>We could trace a mangled string back to the originally readable text using <code>swift-demangle</code></p>
+<pre><code class="hljs language-arduino">xcrun swift-demangle _T04main6AnimalC9makeSoundyyF
+<span class="hljs-comment">// Output: _T04main6AnimalC9makeSoundyyF ---> main.Animal.makeSound() -> ()</span>
+</code></pre>
+<p>In short, more friendly SIL could be obtained by:</p>
+<pre><code class="hljs language-css">xcrun swiftc -emit-silgen <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.swift</span> | xcrun swift-demangle
+</code></pre>
+<pre><code class="hljs language-perl">// Animal.makeSound()
+sil hidden <span class="hljs-variable">@main</span>.Animal.makeSound() -> () : <span class="hljs-variable">$@</span>convention(<span class="hljs-function"><span class="hljs-keyword">method</span>) (@<span class="hljs-title">guaranteed</span> <span class="hljs-title">Animal</span>) -> () </span>{
+// <span class="hljs-variable">%0</span>                                             // user: <span class="hljs-variable">%1</span>
+bb0(<span class="hljs-variable">%0</span> : <span class="hljs-variable">$Animal</span>):
+  debug_value <span class="hljs-variable">%0</span> : <span class="hljs-variable">$Animal</span>, let, name <span class="hljs-string">"self"</span>, argno <span class="hljs-number">1</span> // id: <span class="hljs-variable">%1</span>
+  <span class="hljs-variable">%2</span> = tuple ()                                   // user: <span class="hljs-variable">%3</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">%2</span> : <span class="hljs-variable">$(</span>)                                 // id: <span class="hljs-variable">%3</span>
+} // end sil function <span class="hljs-string">'main.Animal.makeSound() -> ()'</span>
+</code></pre>
+<h4 id="a-walk-through-sil-syntax">A walk through SIL syntax</h4>
+<p>Consider this simple code:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Person</span> { }
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> {
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">makeSound</span>() { }
+}
+
+<span class="hljs-keyword">func</span> <span class="hljs-title function_">isEndangered</span>(<span class="hljs-params">animal</span>: <span class="hljs-type">Animal</span>) -> <span class="hljs-type">Bool</span> { <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> }
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>: <span class="hljs-title class_ inherited__">Animal</span> {
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">makeSound</span>() { }
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">doSimpleMath</span>(<span class="hljs-params">x</span>: <span class="hljs-type">Int</span>, <span class="hljs-params">y</span>: <span class="hljs-type">Int</span>) -> <span class="hljs-type">Int</span> { <span class="hljs-keyword">return</span> x <span class="hljs-operator">+</span> y }
+  <span class="hljs-keyword">func</span> <span class="hljs-title function_">makeFriends</span>(<span class="hljs-params">animal</span>: <span class="hljs-type">Animal</span>, <span class="hljs-params">person</span>: <span class="hljs-type">Person</span>) { }
+}
+</code></pre>
+<p>Let's look at the SIL and demystify some basic syntax. I strongly recommend this <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">official documentation</a> for full details.</p>
+<pre><code class="hljs language-perl">// Animal.makeSound()
+sil hidden <span class="hljs-variable">@main</span>.Animal.makeSound() -> () : <span class="hljs-variable">$@</span>convention(<span class="hljs-function"><span class="hljs-keyword">method</span>) (@<span class="hljs-title">guaranteed</span> <span class="hljs-title">Animal</span>) -> () </span>{
+// <span class="hljs-variable">%0</span>                                             // user: <span class="hljs-variable">%1</span>
+bb0(<span class="hljs-variable">%0</span> : <span class="hljs-variable">$Animal</span>):
+  debug_value <span class="hljs-variable">%0</span> : <span class="hljs-variable">$Animal</span>, let, name <span class="hljs-string">"self"</span>, argno <span class="hljs-number">1</span> // id: <span class="hljs-variable">%1</span>
+  <span class="hljs-variable">%2</span> = tuple ()                                   // user: <span class="hljs-variable">%3</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">%2</span> : <span class="hljs-variable">$(</span>)                                 // id: <span class="hljs-variable">%3</span>
+} // end sil function <span class="hljs-string">'main.Animal.makeSound() -> ()'</span>
+</code></pre>
+<ul>
+<li>A function starts with keyword <code>sil</code>.</li>
+<li>The keyword <code>hidden</code> corresponds to <code>internal</code> in Swift code, indicating that this function is only visible to objects in the same Swift module.</li>
+<li><code>@main.Animal.makeSound() -> ()</code> is the demangled text of <code>_T04main6AnimalC9makeSoundyyF</code>, representing the function name.</li>
+<li><code>$@convention(method)</code> means: a call to this function requires a context. For example, in <code>self.makeSound()</code>, <code>self</code> is the context of the function call.</li>
+<li><code>$@convention(thin)</code> says: this is a free function. No context is needed to make an invocation.</li>
+</ul>
+<pre><code class="hljs language-less"><span class="hljs-selector-tag">sil</span> <span class="hljs-selector-tag">hidden</span> @<span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.Dog</span><span class="hljs-selector-class">.makeFriends</span>(<span class="hljs-attribute">animal</span>: main.Animal, <span class="hljs-attribute">person</span>: main.Person) <span class="hljs-selector-tag">-</span>> () : $@<span class="hljs-selector-tag">convention</span>(method) (<span class="hljs-variable">@owned</span> Animal, Person, <span class="hljs-variable">@guaranteed</span> Dog) <span class="hljs-selector-tag">-</span>> () {
+......
+</code></pre>
+<ul>
+<li>If the argument is reference type, an annotation <code>@owned</code> is attached.</li>
+</ul>
+<pre><code class="hljs language-kotlin">......
+  debug_value %<span class="hljs-number">0</span> : $<span class="hljs-built_in">Int</span>, let, name <span class="hljs-string">"x"</span>, argno <span class="hljs-number">1</span>   <span class="hljs-comment">// id: %3</span>
+  debug_value %<span class="hljs-number">1</span> : $<span class="hljs-built_in">Int</span>, let, name <span class="hljs-string">"y"</span>, argno <span class="hljs-number">2</span>   <span class="hljs-comment">// id: %4</span>
+  debug_value %<span class="hljs-number">2</span> : $Dog, let, name <span class="hljs-string">"self"</span>, argno <span class="hljs-number">3</span> <span class="hljs-comment">// id: %5</span>
+  <span class="hljs-comment">// function_ref static Int.+ infix(_:_:)</span>
+  %<span class="hljs-number">6</span> = function_ref <span class="hljs-meta">@static</span> Swift.<span class="hljs-built_in">Int</span>.+ <span class="hljs-keyword">infix</span>(Swift.<span class="hljs-built_in">Int</span>, Swift.<span class="hljs-built_in">Int</span>) -> Swift.<span class="hljs-built_in">Int</span> : $<span class="hljs-meta">@convention(method)</span> (<span class="hljs-built_in">Int</span>, <span class="hljs-built_in">Int</span>, <span class="hljs-meta">@thin</span> <span class="hljs-built_in">Int</span>.Type) -> <span class="hljs-built_in">Int</span> <span class="hljs-comment">// user: %8</span>
+  %<span class="hljs-number">7</span> = metatype $<span class="hljs-meta">@thin</span> <span class="hljs-built_in">Int</span>.Type                   <span class="hljs-comment">// user: %8</span>
+  %<span class="hljs-number">8</span> = apply %<span class="hljs-number">6</span>(%<span class="hljs-number">0</span>, %<span class="hljs-number">1</span>, %<span class="hljs-number">7</span>) : $<span class="hljs-meta">@convention(method)</span> (<span class="hljs-built_in">Int</span>, <span class="hljs-built_in">Int</span>, <span class="hljs-meta">@thin</span> <span class="hljs-built_in">Int</span>.Type) -> <span class="hljs-built_in">Int</span> <span class="hljs-comment">// user: %9</span>
+  <span class="hljs-keyword">return</span> %<span class="hljs-number">8</span> : $<span class="hljs-built_in">Int</span>                                <span class="hljs-comment">// id: %9</span>
+......
+</code></pre>
+<ul>
+<li>A function call is made by taking the function pointer (<code>function_ref</code>) and applying it with arguments.</li>
+<li>Each instance method requires a metatype as an argument at the end of the invocation.</li>
+</ul>
+<pre><code class="hljs language-less"><span class="hljs-selector-tag">sil_vtable</span> <span class="hljs-selector-tag">Animal</span> {
+  <span class="hljs-selector-id">#Animal</span><span class="hljs-selector-class">.makeSound</span>!<span class="hljs-number">1</span>: (Animal) <span class="hljs-selector-tag">-</span>> () <span class="hljs-selector-tag">-</span>> () : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.Animal</span><span class="hljs-selector-class">.makeSound</span>() <span class="hljs-selector-tag">-</span>> ()	<span class="hljs-comment">// Animal.makeSound()</span>
+  ......
+}
+
+<span class="hljs-selector-tag">sil_vtable</span> <span class="hljs-selector-tag">Dog</span> {
+  <span class="hljs-selector-id">#Animal</span><span class="hljs-selector-class">.makeSound</span>!<span class="hljs-number">1</span>: (Animal) <span class="hljs-selector-tag">-</span>> () <span class="hljs-selector-tag">-</span>> () : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.Dog</span><span class="hljs-selector-class">.makeSound</span>() <span class="hljs-selector-tag">-</span>> ()	<span class="hljs-comment">// Dog.makeSound()</span>
+  <span class="hljs-selector-id">#Dog</span><span class="hljs-selector-class">.doSimpleMath</span>!<span class="hljs-number">1</span>: (Dog) <span class="hljs-selector-tag">-</span>> (Int, Int) <span class="hljs-selector-tag">-</span>> <span class="hljs-selector-tag">Int</span> : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.Dog</span><span class="hljs-selector-class">.doSimpleMath</span>(<span class="hljs-attribute">x</span>: Swift.Int, <span class="hljs-attribute">y</span>: Swift.Int) <span class="hljs-selector-tag">-</span>> <span class="hljs-selector-tag">Swift</span><span class="hljs-selector-class">.Int</span>	<span class="hljs-comment">// Dog.doSimpleMath(x:y:)</span>
+  <span class="hljs-selector-id">#Dog</span><span class="hljs-selector-class">.makeFriends</span>!<span class="hljs-number">1</span>: (Dog) <span class="hljs-selector-tag">-</span>> (Animal, Person) <span class="hljs-selector-tag">-</span>> () : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.Dog</span><span class="hljs-selector-class">.makeFriends</span>(<span class="hljs-attribute">animal</span>: main.Animal, <span class="hljs-attribute">person</span>: main.Person) <span class="hljs-selector-tag">-</span>> ()	<span class="hljs-comment">// Dog.makeFriends(animal:person:)</span>
+  ......
+}
+</code></pre>
+<ul>
+<li>Each class has a <a href="https://en.wikipedia.org/wiki/Virtual_method_table">virtual table</a> <code>vtable</code> in order for the compiler to lookup the correct method to execute in runtime (if it's dynamically dispatched). We will talk about method dispatch in the upcoming posts.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>In this post, we took a glance into the pipeline in which Swift code is compiled. We also looked into the SIL, a high-level intermediate language Apple came up with for analysis and optimization of Swift code.</p>
+<p>From the perspective of a practical developer, this topic does not help us write clean code or overwhelming design patterns. Despite that, it helps you understand (just a tiny bit) what the code is actually going on under the hood, and... thereby less scared when reading lower-level interpretations of the code. By reading these stuffs, we could figure out some specific patterns that are at the core principles of the language.</p>
+<h3 id="reference">Reference</h3>
+<ol>
+<li><a href="https://github.com/apple/swift/blob/master/docs/SIL.rst">Official documentation: Design of SIL</a></li>
+<li><a href="https://llvm.org/devmtg/2015-10/#talk7">Swift's High-Level IR: A Case Study of Complementing LLVM IR with Language-Specific Optimization</a></li>
+<li><a href="https://www.youtube.com/watch?v=NH-qIKOoKgA">Introduction to Swift Intermediate Language — Alex Blewitt</a></li>
+</ol>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2017-09-23"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"How a Swift file is compiled"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}],["$","$L5","swift",{"href":"/tags/swift","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"swift"}],["$","$L5","compiler",{"href":"/tags/compiler","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"compiler"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/what-is-simpsons-paradox","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"What is Simpson's paradox?"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-09-07"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/method-dispatch-in-swift","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Method dispatch in Swift"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-09-25"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"compilation-pipeline","text":"Compilation pipeline","level":3},{"id":"swift-intermediate-language-sil","text":"Swift Intermediate Language (SIL)","level":3},{"id":"conclusion","text":"Conclusion","level":3},{"id":"reference","text":"Reference","level":3}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"How a Swift file is compiled — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

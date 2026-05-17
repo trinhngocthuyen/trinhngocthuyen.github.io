@@ -1,0 +1,136 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","faq-on-reactivecocoa",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","faq-on-reactivecocoa","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","faq-on-reactivecocoa","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T26da,<h3 id="fundamental-concepts">Fundamental Concepts</h3>
+<h4 id="q-what-is-reactivecocoa">Q: What is ReactiveCocoa?</h4>
+<p>ReactiveCocoa is an FRP (Functional Reactive Programming) framework particularly used for iOS. FRP = <strong>reactive programming</strong> built on the components of <strong>functional concepts</strong>.</p>
+<ul>
+<li>Reactive programming is <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">programming with asynchronous data streams</a>.</li>
+<li>Functional concepts: <em>high-order functions, monads, functors, function compositions, natural transformation (map, filter, reduce...)... (You do not need to digest &#x26; comprehend it now)</em>.</li>
+</ul>
+<p>References:</p>
+<ul>
+<li>Github: ReactiveCocoa: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa">https://github.com/ReactiveCocoa/ReactiveCocoa</a></li>
+<li>Github: ReactiveSwift: <a href="https://github.com/ReactiveCocoa/ReactiveSwift">https://github.com/ReactiveCocoa/ReactiveSwift</a></li>
+<li>Framework overview: <a href="https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/FrameworkOverview.md">https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/FrameworkOverview.md</a></li>
+<li>Design guidelines: <a href="https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DesignGuidelines.md">https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/Documentation/DesignGuidelines.md</a></li>
+</ul>
+<p>P/s: For convenience, we sometimes use the abbreviation RAC to refer to ReactiveCocoa.</p>
+<h4 id="q-what-is-reactiveswift">Q: What is ReactiveSwift?</h4>
+<p>Prior to RAC 5.0, there had been only 1 module ReactiveCocoa to contain the whole source code. In RAC 5.0, they separated the <strong>core components</strong> to a new module called ReactiveSwift. And ReactiveCocoa now acts as a <strong>wrapper</strong> of reactive concepts with Cocoa frameworks (in order to work with NSObject, UI classes, binding stuff...).</p>
+<p>P/s: In this page, when I mention RAC, I implicitly mean the 2 modules (ReactiveCocoa &#x26; ReactiveSwift) as a whole. Just forget the separation in this FAQ.</p>
+<h4 id="q-what-can-we-do-with-reactivecocoa">Q: What can we do with ReactiveCocoa?</h4>
+<p>Using RAC, we could eliminate some old-fashioned technology stacks/programming patterns:</p>
+<ul>
+<li>Observer pattern</li>
+<li>Delegate pattern</li>
+<li>Closures/callbacks</li>
+</ul>
+<p>Additionally, RAC could help us save a lot effort to implement:</p>
+<ul>
+<li>Binding</li>
+<li>Task management</li>
+</ul>
+<h4 id="q-what-is-a-stream">Q: What is a stream?</h4>
+<blockquote>
+<p><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">A stream is a sequence of ongoing events ordered in time</a>.</p>
+</blockquote>
+<h4 id="q-what-can-be-considered-a-stream">Q: What can be considered a stream?</h4>
+<p><strong>Anything!</strong> From now on, you have to keep in mind that <strong>everything can be a stream</strong>.</p>
+<ul>
+<li>The data downloaded from server</li>
+<li>The state of DB</li>
+<li>The event user taps on the screen</li>
+<li>...</li>
+</ul>
+<p>Again, remember, everything can be a stream. Let your mind free (big grin)</p>
+<h4 id="q-what-aspects-of-streams-should-we-care-about">Q: What aspects of streams should we care about?</h4>
+<p>We should care about the life cycle of a stream:</p>
+<ul>
+<li>Stream is created &#x26; <strong>started</strong></li>
+<li>Stream received a success with a <strong>value</strong></li>
+<li>Stream received a <strong>failure</strong></li>
+<li>Stream <strong>completed</strong></li>
+<li>Stream is <strong>disposed</strong></li>
+</ul>
+<p><img src="https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67" alt="Alt text"></p>
+<p>Besides, we should acknowledge some operations on streams:</p>
+<ul>
+<li>Transform a stream</li>
+<li>Compose streams: combine/zip/merge 2 streams, forward events of a stream to another stream, start a new stream on an event</li>
+</ul>
+<p>Note that streams are immutable (a basic principle in Functional Programming). Therefore, operations on streams always return a new stream. For ex: the code bellow will return another <code>SignalProducer</code>: <code>stringProducer.filter { !$0.isEmpty }</code></p>
+<h4 id="q-what-alternatives-could-we-have-for-rac">Q: What alternatives could we have for RAC?</h4>
+<p>RxSwift is a really qualified candidate. It commenced later than RAC but it has been drawing much attention. From my observation, brand new projects tend to adopt RxSwift due to the active community. Besides, this community also ports the FRP to other platforms (Go, Android, .NET...), therefore, the contribution is more actively.</p>
+<p>Btw, there is an article explaining why they upgrade their project from RAC 2.x → RxSwift. It's worth a look: <a href="http://artsy.github.io/blog/2015/12/08/reactive-cocoa-to-rxswift/">http://artsy.github.io/blog/2015/12/08/reactive-cocoa-to-rxswift/</a></p>
+<h4 id="q-when-should-we-use-it">Q: When should we use it?</h4>
+<p>We could use it aggressively in different use cases. Here are some that I always prefer RAC:</p>
+<ul>
+<li>Async tasks with <strong>callbacks</strong></li>
+<li>Handle <strong>complicated workflows</strong> that need <em>retry, timeout, cancellation</em>...</li>
+<li>Get tired using <strong>delegates</strong></li>
+<li><strong>Binding</strong> things</li>
+</ul>
+<h3 id="signal-and-signalproducer">Signal and SignalProducer</h3>
+<h4 id="q-what-is-signal-what-is-signalproducer">Q: What is Signal? What is SignalProducer?</h4>
+<p><code>Singal</code> and <code>SignalProducer</code> are 2 implementations of streams. The bare difference between them is that <code>Signal</code> represents <strong>hot observable</strong> while <code>SignalProducer</code> refers to <strong>cold observable</strong>. I personally prefer <code>SignalProducer</code> over <code>Signal</code>.</p>
+<h4 id="q-i-created-a-signalproducer-i-added-some-observers-but-none-of-them-are-executed-what-happened">Q: I created a SignalProducer, I added some observers, but none of them are executed. What happened?</h4>
+<p>Perhaps you forgot to start the producer. We need to start it manually, it's cold observable, remember?</p>
+<h4 id="q-its-hard-to-debug-with-rac-how-to-troubleshoot-issues-effectively">Q: It's hard to debug with RAC. How to troubleshoot issues effectively?</h4>
+<p>The easiest way which I often use is printing log to verify if a value arrived, (or) the stream completed, (or) any error occurred... Well, RAC provides a built-in function <code>logEvents</code> for debugging. You could also write your own functions :D</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> loginProducer <span class="hljs-operator">=</span> login(email: email, password: password)
+  .logEvents(identifier: <span class="hljs-string">"--- Login"</span>, events: [.started, .value, .completed, .failed])
+<span class="hljs-keyword">let</span> signupProducer <span class="hljs-operator">=</span> signup(email: email, password: password)
+  .logWhenStarted(<span class="hljs-string">"--- Signup. Started"</span>)
+  .logWhenNext({<span class="hljs-string">"--- Signup. Next: <span class="hljs-subst">\(<span class="hljs-variable">$0</span>)</span>"</span>})
+  .logWhenFailed({<span class="hljs-string">"--- Signup. Failed with error: <span class="hljs-subst">\(<span class="hljs-variable">$0</span>)</span>"</span>})
+</code></pre>
+<h3 id="operators">Operators</h3>
+<h4 id="q-whats-the-difference-between-the-2-operators-then-and-flatmap">Q: What's the difference between the 2 operators "then" and "flatMap"?</h4>
+<p>Now we compare the 2 implementations. Assume that we do not care about the returned values of the producer. Given that: <code>downloadUrl1()</code> and <code>downloadUrl2()</code> is of type <code>SignalProducer&#x3C;Void, NSError></code></p>
+<pre><code class="hljs language-scss">Impl <span class="hljs-number">1</span>:	// Using `then`
+    <span class="hljs-built_in">downloadUrl1</span>().<span class="hljs-built_in">then</span>(<span class="hljs-built_in">downloadUrl2</span>())	
+Impl <span class="hljs-number">2</span>:	// Using `flatMap`
+    downloadUrl1.<span class="hljs-built_in">flatMap</span>(.latest) { _ in <span class="hljs-built_in">downloadUrl2</span>() }
+</code></pre>
+<ul>
+<li>The operator <code>then</code> triggers on event completed: <code>downloadUrl2()</code> starts  when <code>downloadUrl1()</code> completes</li>
+<li>The operator <code>flatMap</code> triggers on event value: <code>downloadUrl2()</code> starts when <code>downloadUrl1()</code> receives a value</li>
+</ul>
+<p>Discussion: As a best practice, for this kind of download, we often call <code>sendCompleted()</code> immediately after <code>sendNext()</code>. So basically, the 2 implementations above are considered the same.</p>
+<h4 id="q-how-to-cancel-a-signalproducer-from-the-outside">Q: How to cancel a SignalProducer (from the outside)?</h4>
+<p>Manually dispose of the producer</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> disposable <span class="hljs-operator">=</span> producer.start()	<span class="hljs-comment">// Starting a producer returns a disposable</span>
+<span class="hljs-operator">...</span>
+<span class="hljs-comment">// You manually dispose it by calling .dispose()</span>
+disposable.dispose()	
+<span class="hljs-operator">...</span>
+<span class="hljs-comment">// You could also add it to a parent composite disposable.</span>
+<span class="hljs-comment">// When the parent is disposed, it triggers disposing of the attached disposables</span>
+parentCompositeDisposable.add(disposable)	
+</code></pre>
+<p>Or trigger by another signal/producer, like this</p>
+<pre><code class="hljs language-swift">producer.take(until: cancelProducer)	<span class="hljs-comment">// cancelProducer = cancelButton.rac_tap</span>
+</code></pre>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"","children":[["$","div",null,{"className":"max-w-[760px] w-full mx-auto","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2017-02-25"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"FAQ on ReactiveCocoa"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","ios",{"href":"/tags/ios","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"ios"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],false]}]}],false]}]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/gc-algorithms","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Garbage Collection (GC) algorithms"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-02-25"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/create-custom-xcode-templates","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Create custom Xcode templates"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2017-02-28"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+15:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"FAQ on ReactiveCocoa — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L15","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"

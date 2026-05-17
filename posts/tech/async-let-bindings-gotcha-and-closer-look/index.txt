@@ -1,0 +1,159 @@
+1:"$Sreact.fragment"
+2:I[889,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],""]
+6:I[3195,["619","static/chunks/619-ba102abea3e3d0e4.js","177","static/chunks/app/layout-5f1ec88e925252a1.js"],"default"]
+8:I[4431,[],"OutletBoundary"]
+a:I[5278,[],"AsyncMetadataOutlet"]
+c:I[4431,[],"ViewportBoundary"]
+e:I[4431,[],"MetadataBoundary"]
+f:"$Sreact.suspense"
+11:I[7150,[],""]
+:HL["/_next/static/media/10f65c94012f0d89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/443896d591e4f761-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c9e6921c7fc300d8-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d16d3675c31bd2eb.css","style"]
+:HL["/_next/static/css/51fb0904da6533a6.css","style"]
+0:{"P":null,"b":"D0CMm07KovoEIXIFkh_TJ","p":"","c":["","posts","tech","async-let-bindings-gotcha-and-closer-look",""],"i":false,"f":[[["",{"children":["posts",{"children":[["category","tech","d"],{"children":[["slug","async-let-bindings-gotcha-and-closer-look","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d16d3675c31bd2eb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/51fb0904da6533a6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_b2d906 __variable_ffcbc2","data-scroll-behavior":"smooth","children":[["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"section-tech","children":["$","div",null,{"className":"mx-auto px-[54px] py-24 max-w-[760px] max-md:px-5","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mb-3","children":"404"}],["$","h1",null,{"className":"text-[clamp(32px,4vw,46px)] font-bold tracking-tight text-theme-primary mb-3","children":"Page not found."}],["$","p",null,{"className":"text-base text-muted mb-8","children":"This page doesn't exist or has been moved."}],["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent transition-colors","children":"← Back to Tech Blog"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],["$","$L6",null,{}]]}]]}],{"children":["posts",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","tech","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","async-let-bindings-gotcha-and-closer-look","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",null,["$","$L8",null,{"children":["$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Le",null,{"children":["$","div",null,{"hidden":true,"children":["$","$f",null,{"fallback":null,"children":"$L10"}]}]}]]}],false]],"m":"$undefined","G":["$11",[]],"s":false,"S":true}
+12:I[9174,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+13:T48e0,<p>Swift 5.5 introduced a powerful set of concurrency tools to deal with asynchronous tasks, eliminating the complexity of callbacks and queues.</p>
+<p>Besides Task and TaskGroup for managing child tasks, the <code>async let</code> syntax allows you to start concurrent tasks and bind their results to variables, following <a href="https://github.com/swiftlang/swift-evolution/blob/main/proposals/0304-structured-concurrency.md">structured concurrency</a> principles.</p>
+<p>Yet, be cautious when writing <code>async let</code> bindings. Consider these two declarations below.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> x <span class="hljs-operator">=</span> taskX() <span class="hljs-comment">// returns an Int</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> y <span class="hljs-operator">=</span> taskY() <span class="hljs-comment">// retunns a String</span>
+<span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> <span class="hljs-keyword">await</span> (x, y)
+</code></pre>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> (x, y) <span class="hljs-operator">=</span> (taskX(), taskY())
+<span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> <span class="hljs-keyword">await</span> (x, y)
+</code></pre>
+<p>At first glance, they seem equivalent. Both deliver <code>result</code> as a tuple of values from <code>taskX()</code> and <code>taskY()</code>. But are they truly the same? <strong>No, they’re NOT</strong>.</p>
+<p>The difference lies in <em>concurrency</em>. In the first example, <code>taskX()</code> and <code>taskY()</code> run concurrently. That results in a total of 1s if each task takes 1s. Meanwhile, the two tasks in the second run sequentially, taking 2s in total. What a performance gap for such a subtle syntax change!</p>
+<h2 id="why-the-difference">Why the Difference?</h2>
+<p>The root cause is how Swift interprets the right-hand side of a binding. In the second example, <code>(taskX(), taskY())</code> is treated as a single asynchronous task. This task consists of two asynchronous calls which are performed <strong>one-by-one</strong> according to the <em>evaluation order</em>, from left to right.</p>
+<p>I guess this is <strong>by design</strong> rather than an implementation limitation. Why? Let’s reverse-think it. If <code>(taskX(), taskY())</code> spawns concurrent tasks, how would you express a tuple of <em>sequential</em> tasks? And what about literal arrays like <code>[taskX(), taskY()]</code> - should they also imply concurrency? These not only clash with Swift’s left-to-right evaluation order but also lead to error-prone code.</p>
+<p>If you want a shorthand for concurrent tuples, you may need a helper function like this:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">asyncTuple</span>&#x3C;<span class="hljs-type">U</span>, <span class="hljs-type">V</span>>(<span class="hljs-keyword">_</span> <span class="hljs-params">first</span>: <span class="hljs-keyword">@autoclosure</span> () <span class="hljs-keyword">async</span> -> <span class="hljs-type">U</span>, <span class="hljs-keyword">_</span> <span class="hljs-params">second</span>: <span class="hljs-keyword">@autoclosure</span> () <span class="hljs-keyword">async</span> -> <span class="hljs-type">V</span>) <span class="hljs-keyword">async</span> -> (<span class="hljs-type">U</span>, <span class="hljs-type">V</span>) {
+  <span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> firstValue <span class="hljs-operator">=</span> first(), secondValue <span class="hljs-operator">=</span> second()
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> (firstValue, secondValue)
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> asyncTuple(taskX(), taskY())
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> (x, y) <span class="hljs-operator">=</span> asyncTuple(taskX(), taskY())
+<span class="hljs-operator">...</span>
+</code></pre>
+<h2 id="a-closer-look">A Closer Look</h2>
+<h3 id="async-let-vs-task">Async let vs. Task</h3>
+<p>It’s important to know why <code>async let</code> is needed when we already have <code>Task</code>. In fact, the concurrent tuple in the previous section can be implemented this way:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">let</span> tx <span class="hljs-operator">=</span> <span class="hljs-type">Task</span> { <span class="hljs-keyword">await</span> taskX() }
+<span class="hljs-keyword">let</span> ty <span class="hljs-operator">=</span> <span class="hljs-type">Task</span> { <span class="hljs-keyword">await</span> taskY() }
+<span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> <span class="hljs-keyword">await</span> (tx.value, ty.value)
+</code></pre>
+<p>Well, this touches on the topic of <a href="https://github.com/swiftlang/swift-evolution/blob/main/proposals/0304-structured-concurrency.md">structured concurrency</a> which we will not go into detail about in this post. While <code>Task</code> works, it’s <em>unstructured</em> in some cases. Tasks can outlive their scope (eg. with <code>Task.detached</code>) which breaks the rules of structured concurrency. Meanwhile, <code>async let</code> ensures execution within a defined scope (eg. within the function), allowing the compiler to enforce compile-time checks for concurrency practices.</p>
+<h3 id="async-let-implementation">Async let Implementation</h3>
+<p>Syntactically, <code>let</code> and <code>async let</code> look similar, but their implementations differ. A regular <code>let</code> binding has two key phases: <em>instantiation</em> and <em>destruction</em>. An <code>async let</code> has one more: when the value is <strong>awaited</strong>, or ready. In Swift’s concurrency model, this can be roughly understood as a <strong>suspension point</strong> where the current execution gives up its thread for others to work (until gaining it back - alongside the result).</p>
+<p>Consider this simple code and look at its SIL (Swift Intermediate Language) to understand the lifetime of an <code>async let</code> variable.</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> x <span class="hljs-operator">=</span> taskX() <span class="hljs-comment">// async -> Int</span>
+<span class="hljs-keyword">await</span> x
+</code></pre>
+<div class="tip">
+<p>For clarity, I stripped some irrelevant SIL code. To generate SIL, run: <code>xcrun swiftc -emit-silgen &#x3C;main.swift> | xcrun swift demangle</code></p>
+</div>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// allocate result buffer</span>
+<span class="hljs-comment">// (1) start async task</span>
+<span class="hljs-operator">%</span><span class="hljs-number">2</span> <span class="hljs-operator">=</span> alloc_stack <span class="hljs-variable">$Int</span>
+<span class="hljs-operator">...</span>
+<span class="hljs-operator">%</span><span class="hljs-number">8</span> <span class="hljs-operator">=</span> builtin <span class="hljs-string">"startAsyncLetWithLocalBuffer"</span><span class="hljs-operator">&#x3C;</span><span class="hljs-type">Int</span><span class="hljs-operator">></span><span class="hljs-operator">...</span>
+
+<span class="hljs-operator">...</span>
+<span class="hljs-comment">// (2) get value</span>
+<span class="hljs-operator">%</span><span class="hljs-number">9</span> <span class="hljs-operator">=</span> function_ref <span class="hljs-meta">@swift_asyncLet_get</span> <span class="hljs-operator">...</span>
+<span class="hljs-comment">// (2.1) invoke swift_asyncLet_get</span>
+<span class="hljs-operator">%</span><span class="hljs-number">10</span> <span class="hljs-operator">=</span> apply <span class="hljs-operator">%</span><span class="hljs-number">9</span>(<span class="hljs-operator">%</span><span class="hljs-number">8</span>, <span class="hljs-operator">%</span><span class="hljs-number">3</span>)
+<span class="hljs-operator">...</span>
+<span class="hljs-comment">// (2.2) read value from result buffer</span>
+<span class="hljs-operator">%</span><span class="hljs-number">12</span> <span class="hljs-operator">=</span> pointer_to_address <span class="hljs-operator">%</span><span class="hljs-number">3</span>
+<span class="hljs-operator">%</span><span class="hljs-number">13</span> <span class="hljs-operator">=</span> load [trivial] <span class="hljs-operator">%</span><span class="hljs-number">12</span> : $<span class="hljs-operator">*</span><span class="hljs-type">Int</span>
+<span class="hljs-operator">...</span>
+
+<span class="hljs-comment">// (3) end lifetime</span>
+<span class="hljs-operator">%</span><span class="hljs-number">22</span> <span class="hljs-operator">=</span> builtin <span class="hljs-string">"endAsyncLetLifetime"</span>
+dealloc_stack <span class="hljs-operator">%</span><span class="hljs-number">2</span> : $<span class="hljs-operator">*</span><span class="hljs-type">Int</span>
+</code></pre>
+<p>Here’s what happens:</p>
+<p>(1) <strong>Start</strong> (<code>startAsyncLetWithLocalBuffer</code>)
+Allocates a buffer for the result, and kicks off the task.</p>
+<p>(2) <strong>Await</strong> (<a href="https://github.com/swiftlang/swift/blob/swift-6.0-RELEASE/stdlib/public/Concurrency/AsyncLet.swift#L47"><code>swift_asyncLet_get</code></a>)</p>
+<p>Suspends execution, waits for completion, then reads the result from the buffer.
+Note: There’s a <a href="https://github.com/swiftlang/swift/blob/swift-6.0-RELEASE/stdlib/public/Concurrency/AsyncLet.cpp#L253-L256">cache in swift_asyncLet_get logic</a> to prevent re-running the task if its result is already populated. This allows us to <code>await</code> the result <em>multiple times</em>.</p>
+<p>(3) <strong>End</strong>: Frees up task and its buffers when the scope exits.</p>
+<p>With multiple <code>async let</code> bindings, each has its own <code>startAsyncLetWithLocalBuffer</code>. The order in the SIL as below indicates the concurrent executions.</p>
+<pre><code class="hljs language-swift"><span class="hljs-operator">...</span>
+<span class="hljs-comment">// start taskX</span>
+<span class="hljs-operator">%</span><span class="hljs-number">8</span> <span class="hljs-operator">=</span> builtin <span class="hljs-string">"startAsyncLetWithLocalBuffer"</span><span class="hljs-operator">&#x3C;</span><span class="hljs-type">Int</span><span class="hljs-operator">></span><span class="hljs-operator">...</span>
+<span class="hljs-comment">// start taskY</span>
+<span class="hljs-operator">%</span><span class="hljs-number">15</span> <span class="hljs-operator">=</span> builtin <span class="hljs-string">"startAsyncLetWithLocalBuffer"</span><span class="hljs-operator">&#x3C;</span><span class="hljs-type">String</span><span class="hljs-operator">></span><span class="hljs-operator">...</span>
+<span class="hljs-operator">...</span>
+<span class="hljs-comment">// get result of taskX</span>
+<span class="hljs-operator">%</span><span class="hljs-number">16</span> <span class="hljs-operator">=</span> function_ref <span class="hljs-meta">@swift_asyncLet_get</span> <span class="hljs-operator">...</span>
+<span class="hljs-comment">// get result of taskY</span>
+<span class="hljs-operator">%</span><span class="hljs-number">21</span> <span class="hljs-operator">=</span> function_ref <span class="hljs-meta">@swift_asyncLet_get</span> <span class="hljs-operator">...</span>
+<span class="hljs-operator">...</span>
+</code></pre>
+<h3 id="binding-with-patterns-async-let-vs-let">Binding With Patterns: <code>async let</code> vs. <code>let</code></h3>
+<p>Now, let’s revisit the tuple case:</p>
+<pre><code class="hljs language-swift"><span class="hljs-keyword">async</span> <span class="hljs-keyword">let</span> (x, y) <span class="hljs-operator">=</span> (taskX(), taskY())
+<span class="hljs-keyword">await</span> (x, y)
+</code></pre>
+<p>The SIL shows only one <code>startAsyncLetWithLocalBuffer&#x3C;Int, String></code>. This confirms the fact that Swift evaluates the tuple as a whole, rather than splitting into two bindings for <code>x</code> and <code>y</code>.</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// initialize tuple</span>
+<span class="hljs-operator">%</span><span class="hljs-number">2</span> <span class="hljs-operator">=</span> alloc_stack $(<span class="hljs-type">Int</span>, <span class="hljs-type">String</span>)
+<span class="hljs-operator">...</span>
+
+<span class="hljs-comment">// (1) start task</span>
+<span class="hljs-operator">%</span><span class="hljs-number">8</span> <span class="hljs-operator">=</span> builtin <span class="hljs-string">"startAsyncLetWithLocalBuffer"</span><span class="hljs-operator">&#x3C;</span>(<span class="hljs-type">Int</span>, <span class="hljs-type">String</span>)<span class="hljs-operator">></span><span class="hljs-operator">...</span>
+<span class="hljs-operator">...</span>
+
+<span class="hljs-comment">// (2.1) get 1st result of the tuple</span>
+<span class="hljs-operator">%</span><span class="hljs-number">9</span> <span class="hljs-operator">=</span> function_ref <span class="hljs-meta">@swift_asyncLet_get</span> <span class="hljs-operator">...</span>
+<span class="hljs-operator">%</span><span class="hljs-number">10</span> <span class="hljs-operator">=</span> apply <span class="hljs-operator">%</span><span class="hljs-number">9</span>(<span class="hljs-operator">%</span><span class="hljs-number">8</span>, <span class="hljs-operator">%</span><span class="hljs-number">3</span>)
+<span class="hljs-operator">...</span>
+<span class="hljs-operator">%</span><span class="hljs-number">13</span> <span class="hljs-operator">=</span> tuple_element_addr <span class="hljs-operator">%</span><span class="hljs-number">12</span> : $<span class="hljs-operator">*</span>(<span class="hljs-type">Int</span>, <span class="hljs-type">String</span>), <span class="hljs-number">0</span>
+<span class="hljs-operator">%</span><span class="hljs-number">14</span> <span class="hljs-operator">=</span> load [trivial] <span class="hljs-operator">%</span><span class="hljs-number">13</span> : $<span class="hljs-operator">*</span><span class="hljs-type">Int</span>
+<span class="hljs-operator">...</span>
+
+<span class="hljs-comment">// (2.2) get 2nd result of the tuple</span>
+<span class="hljs-operator">%</span><span class="hljs-number">15</span> <span class="hljs-operator">=</span> function_ref <span class="hljs-meta">@swift_asyncLet_get</span> <span class="hljs-operator">...</span>
+<span class="hljs-operator">%</span><span class="hljs-number">16</span> <span class="hljs-operator">=</span> apply <span class="hljs-operator">%</span><span class="hljs-number">15</span>(<span class="hljs-operator">%</span><span class="hljs-number">8</span>, <span class="hljs-operator">%</span><span class="hljs-number">3</span>)
+<span class="hljs-operator">...</span>
+<span class="hljs-operator">%</span><span class="hljs-number">19</span> <span class="hljs-operator">=</span> tuple_element_addr <span class="hljs-operator">%</span><span class="hljs-number">18</span> : $<span class="hljs-operator">*</span>(<span class="hljs-type">Int</span>, <span class="hljs-type">String</span>), <span class="hljs-number">1</span>
+<span class="hljs-operator">%</span><span class="hljs-number">20</span> <span class="hljs-operator">=</span> load [trivial] <span class="hljs-operator">%</span><span class="hljs-number">19</span> : $<span class="hljs-operator">*</span><span class="hljs-type">String</span>
+</code></pre>
+<p>But is that the case for <code>let</code> bindings? Let’s find out.</p>
+<p>When binding <code>let (x, y) = ts</code>, the tuple is decomposed into two.</p>
+<pre><code class="hljs language-swift"><span class="hljs-operator">**</span>(<span class="hljs-operator">%</span><span class="hljs-number">6</span>, <span class="hljs-operator">%</span><span class="hljs-number">7</span>) <span class="hljs-operator">=</span> destructure_tuple <span class="hljs-operator">%</span><span class="hljs-number">4</span> : $(<span class="hljs-type">Int</span>, <span class="hljs-type">String</span>)<span class="hljs-operator">**</span>
+debug_value <span class="hljs-operator">%</span><span class="hljs-number">6</span> : <span class="hljs-variable">$Int</span>, <span class="hljs-keyword">let</span>, name <span class="hljs-string">"x"</span>
+debug_value <span class="hljs-operator">%</span><span class="hljs-number">7</span> : <span class="hljs-variable">$Int</span>, <span class="hljs-keyword">let</span>, name <span class="hljs-string">"y"</span>
+</code></pre>
+<p>However, in cases of exact semantic matches like <code>let (x, y) = (syncTaskX(), syncTaskY())</code>, the SIL reveals that the compiler directly assign <code>syncTaskX()</code> and <code>syncTaskY()</code> to <code>x</code> and <code>y</code>, skipping the unnecessary tuple creation and decomposition.</p>
+<pre><code class="hljs language-swift"><span class="hljs-comment">// assign syncTaskX() directly to x</span>
+<span class="hljs-operator">%</span><span class="hljs-number">1</span> <span class="hljs-operator">=</span> apply <span class="hljs-operator">%</span><span class="hljs-number">0</span>() : $<span class="hljs-meta">@convention</span>(thin) () -> <span class="hljs-type">Int</span>
+debug_value <span class="hljs-operator">%</span><span class="hljs-number">1</span> : <span class="hljs-variable">$Int</span>, <span class="hljs-keyword">let</span>, name <span class="hljs-string">"x"</span>
+<span class="hljs-operator">...</span>
+<span class="hljs-comment">// assign syncTaskY() directly to y</span>
+<span class="hljs-operator">%</span><span class="hljs-number">4</span> <span class="hljs-operator">=</span> apply <span class="hljs-operator">%</span><span class="hljs-number">3</span>() : $<span class="hljs-meta">@convention</span>(thin) () -> <span class="hljs-type">Int</span>
+debug_value <span class="hljs-operator">%</span><span class="hljs-number">4</span> : <span class="hljs-variable">$Int</span>, <span class="hljs-keyword">let</span>, name <span class="hljs-string">"y"</span>
+</code></pre>
+<p>…</p>
+<p>As you can see, despite the syntactic similarity, <code>let</code> and <code>async let</code> may bind values to variables differently under the hood.<br>
+Be mindful when writing your code. Subtle differences can trip you up.</p>7:["$","div",null,{"className":"section-tech","children":[["$","div",null,{"className":"max-w-[1116px] mx-auto px-[54px] py-12 max-md:px-5 max-md:py-7","children":["$","div",null,{"className":"flex items-start gap-12","children":[["$","div",null,{"className":"flex-1 min-w-0","children":[["$","$L5",null,{"href":"/","className":"text-sm font-semibold text-theme-primary no-underline hover:text-hover-accent","children":"← Tech Blog"}],["$","header",null,{"className":"mb-9","children":[["$","p",null,{"className":"text-[11px] font-bold uppercase tracking-wider text-muted mt-4 mb-2 tabular-nums","children":"2025-03-25"}],["$","h1",null,{"className":"text-[clamp(26px,4vw,40px)] font-bold tracking-tight text-theme-primary leading-[1.1]","children":"Async Let Bindings: a Gotcha and a Closer Look"}],["$","div",null,{"className":"mt-3","children":[["$","$L5","swift",{"href":"/tags/swift","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"swift"}],["$","$L5","concurrency",{"href":"/tags/concurrency","className":"text-[11px] font-normal text-theme-primary bg-theme-bg px-[7px] py-[3px] rounded-full mr-1 no-underline transition-colors hover:bg-theme-primary hover:text-theme-bg","children":"concurrency"}]]}]]}],["$","$L12",null,{"html":"$13"}],"$L14"]}],"$L15"]}]}],"$L16"]}]
+17:I[9891,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+18:I[7987,["619","static/chunks/619-ba102abea3e3d0e4.js","529","static/chunks/app/posts/%5Bcategory%5D/%5Bslug%5D/page-2fd842dc59378182.js"],"default"]
+14:["$","footer",null,{"className":"mt-14 border-t border-border pt-10 space-y-10","children":[false,["$","div",null,{"children":["$","div",null,{"className":"grid grid-cols-2 gap-8 max-md:grid-cols-1","children":[["$","div",null,{"children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"← older"}],["$","$L5",null,{"href":"/posts/tech/in-search-of-test-discovery","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"In Search of Test Discovery Solutions in iOS"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-03-08"}]]}],["$","div",null,{"className":"text-right max-md:text-left","children":[["$","div",null,{"className":"text-[11px] text-muted mb-1.5","children":"newer →"}],["$","$L5",null,{"href":"/posts/tech/spm-packaging-xcframework-1","className":"text-[15px] font-medium text-ink no-underline hover:text-theme-primary transition-colors leading-snug block","children":"Swift Packages: Packaging as an XCFramework (1)"}],["$","div",null,{"className":"text-[11px] text-muted mt-1 tabular-nums","children":"2025-06-08"}]]}]]}]}],["$","div",null,{"className":"space-y-3","children":[["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://buymeacoffee.com/trinhngocthuyen","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-[#1a1a1a] no-underline hover:opacity-90 transition-opacity whitespace-nowrap","style":{"backgroundColor":"#FFDD00"},"children":"☕ Buy me a coffee"}],["$","p",null,{"className":"text-[13px] text-muted","children":"Like what you're reading? Buy me a coffee and keep me going!"}]]}],["$","div",null,{"className":"flex items-center gap-4 max-md:flex-col max-md:items-start max-md:gap-2","children":[["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-primary text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity whitespace-nowrap","children":"Subscribe →"}],["$","p",null,{"className":"text-[13px] text-muted","children":["Subscribe to"," ",["$","a",null,{"href":"https://trinhngocthuyen.substack.com/","target":"_blank","rel":"noopener noreferrer","className":"font-semibold text-theme-primary no-underline hover:underline","children":"Thuyen's Cornerstack"}]," ","to stay updated with the latest content."]}]]}]]}]]}]
+15:["$","aside",null,{"className":"sticky top-[92px] w-[200px] shrink-0 hidden md:block","children":["$","$L17",null,{"headings":[{"id":"why-the-difference","text":"Why the Difference?","level":2},{"id":"a-closer-look","text":"A Closer Look","level":2},{"id":"async-let-vs-task","text":"Async let vs. Task","level":3},{"id":"async-let-implementation","text":"Async let Implementation","level":3},{"id":"binding-with-patterns-async-let-vs-let","text":"Binding With Patterns:  vs. ","level":3}]}]}]
+16:["$","$L18",null,{"headings":"$15:props:children:props:headings"}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+19:I[622,[],"IconMark"]
+b:{"metadata":[["$","title","0",{"children":"Async Let Bindings: a Gotcha and a Closer Look — Thuyen's Corner"}],["$","meta","1",{"name":"description","content":"iOS engineering, CI infrastructure, and personal essays by Thuyen Trinh."}],["$","link","2",{"rel":"icon","href":"/icon.svg?a5ef18f7d7bf3ccd","type":"image/svg+xml","sizes":"any"}],["$","$L19","3",{}]],"error":null,"digest":"$undefined"}
+10:"$b:metadata"
